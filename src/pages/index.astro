@@ -445,7 +445,8 @@ const undergrads = [
         paginationContainer.innerHTML = html;
       }
 
-      window.changePage = function(page) {
+      // 加入 scrollToNews 參數，預設為 true。如果為 false 就不執行視角滑動
+      window.changePage = function(page, scrollToNews = true) {
         const totalPages = Math.ceil(newsItems.length / itemsPerPage);
         if (page < 1 || page > totalPages) return;
         
@@ -471,13 +472,17 @@ const undergrads = [
 
         renderPagination();
 
-        const newsSection = document.getElementById('news');
-        const elementPosition = newsSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        // 只有在 scrollToNews 為 true 時 (代表使用者手動點擊)，才滑動螢幕
+        if (scrollToNews) {
+          const newsSection = document.getElementById('news');
+          const elementPosition = newsSection.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+        }
       };
 
-      window.changePage(1);
+      // 網頁初始載入：顯示第一頁，傳入 false 避免觸發自動滑動
+      window.changePage(1, false);
     });
   </script>
 
