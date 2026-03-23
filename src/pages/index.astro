@@ -329,76 +329,202 @@ import "../styles/global.css";
         </div>
       </div>
 
-      <!-- 👥 實驗室成員清單 -->
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <!-- 👥 實驗室成員清單 (全版網格化設計，完美適應大量人數) -->
+      <div class="space-y-16">
         
-        <!-- 左欄：助理與博士生 -->
-        <div class="space-y-10">
-          <!-- 專任助理 -->
-          <div>
-            <h3 class="text-lg font-bold text-slate-800 mb-4 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
-            <div class="bg-white border border-slate-200 p-5 flex items-center gap-5">
-              <!-- 👇 請替換 src="照片路徑" -->
-              <img src="/images/member-placeholder.png" alt="專任助理 照片" class="w-16 h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+        <!-- 專任助理 (預設排版：一行 3~4 個) -->
+        <div>
+          <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <!-- 助理 1 -->
+            <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" alt="專任助理" class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
               <div>
-                <h4 class="font-bold text-slate-900 text-base">XXX</h4>
-                <p class="text-xs text-slate-500 mt-0.5">實驗室專任助理 / 計畫管理</p>
+                <h4 class="font-bold text-slate-900 text-base">助理 A</h4>
+                <p class="text-xs text-slate-500 mt-0.5">計畫管理</p>
               </div>
             </div>
-          </div>
-
-          <!-- 博士班 -->
-          <div>
-            <h3 class="text-lg font-bold text-slate-800 mb-4 border-l-4 border-slate-300 pl-3">博士班 Ph.D. Students</h3>
-            <div class="bg-white border border-slate-200 p-5 flex items-center gap-5">
-              <!-- 👇 請替換 src="照片路徑" -->
-              <img src="/images/member-placeholder.png" alt="博士生 A 照片" class="w-16 h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+            <!-- 助理 2 -->
+            <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" alt="專任助理" class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
               <div>
-                <h4 class="font-bold text-slate-900 text-base">博士生 A</h4>
-                <p class="text-xs text-slate-500 mt-0.5">研究領域：人工智慧醫療聯網、深度學習</p>
+                <h4 class="font-bold text-slate-900 text-base">助理 B</h4>
+                <p class="text-xs text-slate-500 mt-0.5">系統開發</p>
+              </div>
+            </div>
+            <!-- 助理 3 -->
+            <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" alt="專任助理" class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+              <div>
+                <h4 class="font-bold text-slate-900 text-base">助理 C</h4>
+                <p class="text-xs text-slate-500 mt-0.5">行政庶務</p>
+              </div>
+            </div>
+            <!-- 助理 4 -->
+            <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" alt="專任助理" class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+              <div>
+                <h4 class="font-bold text-slate-900 text-base">助理 D</h4>
+                <p class="text-xs text-slate-500 mt-0.5">軟體工程</p>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- 右欄：碩士與專題生 -->
-        <div class="space-y-10">
-          <!-- 碩士班 -->
-          <div>
-            <h3 class="text-lg font-bold text-slate-800 mb-4 border-l-4 border-slate-300 pl-3">碩士班 Master Students</h3>
-            <div class="bg-white border border-slate-200 divide-y divide-slate-100">
-              <div class="p-5 flex items-center gap-4 hover:bg-slate-50 transition">
-                <!-- 👇 請替換 src="照片路徑" -->
-                <img src="/images/member-placeholder.png" alt="碩士生 A 照片" class="w-12 h-12 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
-                <div>
-                  <h4 class="font-bold text-slate-900 text-sm">碩士生 A</h4>
-                  <p class="text-xs text-slate-500 mt-0.5">研究領域：智慧工廠邊緣運算系統</p>
-                </div>
+        <!-- 博士班 (預設排版：一行 3 個) -->
+        <div>
+          <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">博士班 Ph.D. Students</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- 博士 1 -->
+            <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" alt="博士生" class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+              <div>
+                <h4 class="font-bold text-slate-900 text-base">博士生 A</h4>
+                <p class="text-xs text-slate-500 mt-0.5 leading-tight">人工智慧醫療聯網、深度學習影像辨識</p>
               </div>
-              <div class="p-5 flex items-center gap-4 hover:bg-slate-50 transition">
-                <!-- 👇 請替換 src="照片路徑" -->
-                <img src="/images/member-placeholder.png" alt="碩士生 B 照片" class="w-12 h-12 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
-                <div>
-                  <h4 class="font-bold text-slate-900 text-sm">碩士生 B</h4>
-                  <p class="text-xs text-slate-500 mt-0.5">研究領域：擴增實境與無人機協作</p>
-                </div>
+            </div>
+            <!-- 博士 2 -->
+            <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" alt="博士生" class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+              <div>
+                <h4 class="font-bold text-slate-900 text-base">博士生 B</h4>
+                <p class="text-xs text-slate-500 mt-0.5 leading-tight">智慧工廠架構、邊緣運算最佳化</p>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- 專題生 -->
-          <div>
-            <h3 class="text-lg font-bold text-slate-800 mb-4 border-l-4 border-slate-300 pl-3">大學部專題生 Undergraduates</h3>
-            <div class="bg-white border border-slate-200 divide-y divide-slate-100">
-              <div class="p-5 hover:bg-slate-50 transition">
-                <h4 class="font-bold text-slate-900 text-sm mb-1">專題生 A</h4>
-                <p class="text-xs text-slate-500">專題題目：穿戴式裝置訊號擷取</p>
-              </div>
-              <div class="p-5 hover:bg-slate-50 transition">
-                <h4 class="font-bold text-slate-900 text-sm mb-1">專題生 B</h4>
-                <p class="text-xs text-slate-500">專題題目：室內定位系統演算法實作</p>
-              </div>
+        <!-- 碩士班 (緊湊型卡片：一行排 4 個，容納 10+ 人也不佔空間) -->
+        <div>
+          <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">碩士班 Master Students</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+            
+            <!-- (模擬 10 位以上的碩士生) -->
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 01</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">智慧工廠邊緣運算系統</p></div>
             </div>
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 02</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">擴增實境與無人機協作</p></div>
+            </div>
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 03</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">穿戴式心電圖異常偵測</p></div>
+            </div>
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 04</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">產線瑕疵自動光學檢測</p></div>
+            </div>
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 05</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">低功耗藍牙室內定位</p></div>
+            </div>
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 06</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">5G 專網與機器人通訊</p></div>
+            </div>
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 07</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">聯邦學習於醫療資料隱私</p></div>
+            </div>
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 08</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">邊緣裝置上之輕量化 AI</p></div>
+            </div>
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 09</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">混合實境手術導航系統</p></div>
+            </div>
+            <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src="/images/member-placeholder.png" class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+              <div><h4 class="font-bold text-slate-900 text-sm">碩士生 10</h4><p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">無人自走車避障演算法</p></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- 專題生 (無照片純文字小卡：一行排 3~4 個，容納 20+ 人) -->
+        <div>
+          <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">大學部專題生 Undergraduates</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
+            
+            <!-- (模擬大量專題生，純文字卡片可有效壓縮空間) -->
+            <!-- 專題生卡片範本 -->
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 01
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：穿戴式裝置訊號擷取</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 02
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：室內定位系統演算法實作</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 03
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：工廠機台數據爬蟲系統</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 04
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：物聯網溫濕度感測介面設計</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 05
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：醫療影像初步標註與清洗</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 06
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：AR 眼鏡基礎互動模組</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 07
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：邊緣端 YOLO 模型壓縮測試</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 08
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：藍牙防丟器之韌體開發</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 09
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：跌倒偵測演算法效能評估</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 10
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：智慧病房儀表板前端切版</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 11
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：無人機影像回傳延遲測試</p>
+            </div>
+            <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+              <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> 專題生 12
+              </h4>
+              <p class="text-[11px] text-slate-500 leading-tight">專題：ROS 機器人作業系統通訊整合</p>
+            </div>
+            <!-- ... 繼續往下加都不會影響版面！ -->
+
           </div>
         </div>
 
