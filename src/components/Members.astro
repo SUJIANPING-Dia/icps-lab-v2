@@ -1,0 +1,176 @@
+---
+// ==========================================
+// 🔹 實驗室成員資料區 (新增成員只需在這裡加入)
+// ==========================================
+const assistants = [
+  { name: "助理 A", desc: "計畫管理", img: "/images/member-placeholder.png" },
+  { name: "助理 B", desc: "系統開發", img: "/images/member-placeholder.png" },
+  { name: "助理 C", desc: "行政庶務", img: "/images/member-placeholder.png" },
+  { name: "助理 D", desc: "軟體工程", img: "/images/member-placeholder.png" }
+];
+
+const phds = [
+  { name: "博士生 A", desc: "人工智慧醫療聯網、深度學習影像辨識", img: "/images/member-placeholder.png" },
+  { name: "博士生 B", desc: "智慧工廠架構、邊緣運算最佳化", img: "/images/member-placeholder.png" }
+];
+
+const masters = [
+  { name: "碩士生 01", desc: "智慧工廠邊緣運算系統", img: "/images/member-placeholder.png" },
+  { name: "碩士生 02", desc: "擴增實境與無人機協作", img: "/images/member-placeholder.png" },
+  { name: "碩士生 03", desc: "穿戴式心電圖異常偵測", img: "/images/member-placeholder.png" },
+  { name: "碩士生 04", desc: "產線瑕疵自動光學檢測", img: "/images/member-placeholder.png" },
+  { name: "碩士生 05", desc: "低功耗藍牙室內定位", img: "/images/member-placeholder.png" },
+  { name: "碩士生 06", desc: "5G 專網與機器人通訊", img: "/images/member-placeholder.png" },
+  { name: "碩士生 07", desc: "聯邦學習於醫療資料隱私", img: "/images/member-placeholder.png" },
+  { name: "碩士生 08", desc: "邊緣裝置上之輕量化 AI", img: "/images/member-placeholder.png" },
+  { name: "碩士生 09", desc: "混合實境手術導航系統", img: "/images/member-placeholder.png" },
+  { name: "碩士生 10", desc: "無人自走車避障演算法", img: "/images/member-placeholder.png" }
+];
+
+const undergrads = [
+  { name: "專題生 01", desc: "穿戴式裝置訊號擷取" },
+  { name: "專題生 02", desc: "室內定位系統演算法實作" },
+  { name: "專題生 03", desc: "工廠機台數據爬蟲系統" },
+  { name: "專題生 04", desc: "物聯網溫濕度感測介面設計" },
+  { name: "專題生 05", desc: "醫療影像初步標註與清洗" },
+  { name: "專題生 06", desc: "AR 眼鏡基礎互動模組" },
+  { name: "專題生 07", desc: "邊緣端 YOLO 模型壓縮測試" },
+  { name: "專題生 08", desc: "藍牙防丟器之韌體開發" },
+  { name: "專題生 09", desc: "跌倒偵測演算法效能評估" },
+  { name: "專題生 10", desc: "智慧病房儀表板前端切版" },
+  { name: "專題生 11", desc: "無人機影像回傳延遲測試" },
+  { name: "專題生 12", desc: "ROS 機器人作業系統通訊整合" }
+];
+---
+
+<section id="members" class="scroll-mt-12">
+  <div class="border-b-2 border-slate-800 pb-3 mb-10">
+    <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+      <div class="w-2 h-8 bg-blue-700"></div>
+      團隊成員
+      <span class="text-sm font-normal text-slate-500 uppercase tracking-wider ml-2 hidden sm:inline">Team Members</span>
+    </h2>
+  </div>
+
+  <!-- 👑 指導教授 -->
+  <div class="mb-16">
+    <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">指導教授 Principal Investigator</h3>
+    <div class="bg-white border border-slate-200 shadow-sm rounded-sm relative overflow-hidden flex flex-col">
+      <div class="absolute top-0 left-0 w-full h-1 bg-blue-800"></div>
+      <div class="p-8 pb-6 flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
+        <img src="/images/professor.jpg" alt="張萬榮 教授" class="w-40 sm:w-48 aspect-[454/686] object-cover object-top rounded mb-2 lg:mb-0 border border-slate-200 shadow-sm shrink-0" />
+        <div class="flex-1 w-full">
+          <div class="border-b border-slate-100 pb-5 mb-6">
+            <h4 class="text-3xl font-extrabold text-slate-900 tracking-tight">張萬榮 <span class="text-lg text-slate-600 font-medium ml-1">教授</span></h4>
+            <p class="text-slate-500 font-mono text-sm mt-1">Wan-Jung Chang, Ph.D.</p>
+            <div class="flex flex-wrap gap-x-8 gap-y-3 mt-5 text-sm text-slate-600">
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-700 transition break-all">allenchang@nkust.edu.tw</a>
+              </div>
+              <div class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                <span>校內分機：15672</span>
+              </div>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div>
+              <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Education 學歷</h5>
+              <p class="text-slate-800 font-medium leading-relaxed">國立成功大學 電機工程研究所<br/>電腦與網路組 博士</p>
+            </div>
+            <div>
+              <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Affiliations 所屬組別</h5>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2.5 py-1 bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-sm">醫學工程組(合聘)</span>
+                <span class="px-2.5 py-1 bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-sm">醫學工程組</span>
+                <span class="px-2.5 py-1 bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-sm">AI資安組</span>
+                <span class="px-2.5 py-1 bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-sm">電信組</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bg-slate-50 p-8 border-t border-slate-100">
+        <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-5">Research Interests 研究專長</h5>
+        <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-sm text-slate-700">
+          <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0"><span class="text-blue-700 font-bold mt-0.5 select-none">▪</span><span>雲端與智慧物聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Cloud and AIoT Systems</span></span></li>
+          <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0"><span class="text-blue-700 font-bold mt-0.5 select-none">▪</span><span>無線感測網路與高速網路系統 <br/><span class="text-xs text-slate-400 font-mono">Wireless Sensor Networks & High-Speed Networks</span></span></li>
+          <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0"><span class="text-blue-700 font-bold mt-0.5 select-none">▪</span><span>人工智慧穿戴式裝置聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Wearable Devices IoT Systems</span></span></li>
+          <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0"><span class="text-blue-700 font-bold mt-0.5 select-none">▪</span><span>人工智慧醫療聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Artificial Intelligent Medical IoT (MIoT) Systems</span></span></li>
+          <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0"><span class="text-blue-700 font-bold mt-0.5 select-none">▪</span><span>人工智慧製造聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Artificial Intelligent Industrial IoT (IIoT) Systems</span></span></li>
+          <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0"><span class="text-blue-700 font-bold mt-0.5 select-none">▪</span><span>擴增實境聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Augmented Reality IoT (ARIoT) Systems</span></span></li>
+          <li class="flex items-start gap-2"><span class="text-blue-700 font-bold mt-0.5 select-none">▪</span><span>人工智慧機器人技術 <br/><span class="text-xs text-slate-400 font-mono">Artificial Intelligent Robotics</span></span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- 👥 實驗室成員清單 (透過上方的陣列自動渲染) -->
+  <div class="space-y-16">
+    
+    <!-- 專任助理 -->
+    <div>
+      <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+        {assistants.map((person) => (
+          <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+            <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+            <div>
+              <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
+              <p class="text-xs text-slate-500 mt-0.5">{person.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 博士班 -->
+    <div>
+      <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">博士班 Ph.D. Students</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {phds.map((person) => (
+          <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+            <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+            <div>
+              <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
+              <p class="text-xs text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 碩士班 -->
+    <div>
+      <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">碩士班 Master Students</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+        {masters.map((person) => (
+          <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+            <img src={person.img} alt={person.name} class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" />
+            <div>
+              <h4 class="font-bold text-slate-900 text-sm">{person.name}</h4>
+              <p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">{person.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- 專題生 -->
+    <div>
+      <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">大學部專題生 Undergraduates</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
+        {undergrads.map((person) => (
+          <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+            <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+              <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> {person.name}
+            </h4>
+            <p class="text-[11px] text-slate-500 leading-tight">專題：{person.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+
+  </div>
+</section>

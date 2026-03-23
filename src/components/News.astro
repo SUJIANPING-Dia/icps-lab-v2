@@ -1,0 +1,230 @@
+---
+// ==========================================
+// 🔹 最新消息資料區 (新增公告只需在這裡加入)
+// ==========================================
+const newsData = [
+  {
+    date: "2026.03.01",
+    tag: "系統公告",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "實驗室全新官方網站正式上線，提供最新研究成果與成員資訊。",
+    img: "/images/news-placeholder.jpg",
+    imgAlt: "實驗室大合照 1477x1108",
+    content: `
+      <p>為了提供更豐富的學術交流與研究資訊展示，智慧網宇實體系統實驗室 (ICPS Lab) 全新官方網站已於今日正式上線。新版網站不僅優化了整體視覺設計，更加入了響應式介面，讓使用者無論在桌機或手機上都能獲得最佳的瀏覽體驗。</p>
+      <p>本實驗室致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究。透過此網站，我們將不定期更新以下資訊：</p>
+      <ul class="list-disc list-inside space-y-1 pl-2 text-slate-800 font-medium mt-2 mb-2">
+        <li>國內外頂尖期刊與會議之研究論文發表 (Publications)</li>
+        <li>產學合作計畫與科技部計畫執行進度 (Projects)</li>
+        <li>實驗室成員的競賽獲獎與卓越表現 (Honors & Awards)</li>
+      </ul>
+      <p>歡迎對本實驗室研究領域有興趣的同學、學者與業界先進，隨時關注我們的最新動態。若有任何產學合作提案或招生相關問題，也歡迎透過網站下方的聯絡資訊與張萬榮教授聯繫。</p>
+    `
+  },
+  {
+    date: "2026.02.15",
+    tag: "招生資訊",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "【115學年度】熱烈招收新進碩士生與專題生，歡迎加入 ICPS Lab 研究團隊！",
+    img: "",
+    imgAlt: "",
+    content: `
+      <p class="text-base font-bold text-slate-900 mb-4">歡迎具備電機、資工、醫工或相關科系背景，且對軟硬體整合充滿熱忱的同學加入我們！</p>
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">🔬 實驗室重點研究方向：</h4>
+        <p>在本實驗室，你將有機會參與大型產學合作計畫，並將演算法實際落地於產業場域。我們目前的研究涵蓋：智慧物聯網 (AIoT) 與邊緣運算、醫療影像分析與穿戴式生理訊號辨識、以及智慧製造與擴增實境 (AR) 協作系統。</p>
+      </div>
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">💡 我們能提供給你：</h4>
+        <ul class="list-disc list-inside space-y-1 pl-2 text-slate-700">
+          <li>依參與計畫表現，提供<span class="font-bold text-amber-700">優渥的每月計畫津貼</span>。</li>
+          <li>豐富的硬體資源：多台高階 GPU 伺服器、AR/VR 設備、多元感測器與開發板。</li>
+          <li>扎實的實作訓練與產學接軌經驗，大幅提升畢業後的就業競爭力。</li>
+          <li>融洽的實驗室氛圍與不定期聚餐活動。</li>
+        </ul>
+      </div>
+      <div class="bg-blue-50 p-4 rounded border border-blue-100">
+        <h4 class="font-bold text-slate-900 mb-2">📩 面談報名方式：</h4>
+        <p>意者請將您的 <strong class="text-blue-700">1. 個人簡歷</strong>、<strong class="text-blue-700">2. 歷年成績單</strong> 與 <strong class="text-blue-700">3. 專題報告或相關作品(若有)</strong> 寄至張教授信箱： <a href="mailto:allenchang@nkust.edu.tw" class="text-blue-600 hover:underline">allenchang@nkust.edu.tw</a></p>
+        <p class="text-xs text-slate-500 mt-2">※ 信件主旨請註明：「[加入實驗室] 姓名 - 欲報考碩士班/專題生」，我們收到後將盡快與您安排實驗室參觀與面談時間！</p>
+      </div>
+    `
+  },
+  {
+    date: "2026.01.20",
+    tag: "榮譽榜單",
+    tagTheme: "text-emerald-800 bg-emerald-50 border-emerald-200",
+    title: "恭賀！本實驗室團隊榮獲「2025 全國智慧聯網創新應用競賽」特優。",
+    img: "",
+    imgAlt: "",
+    content: "<p>恭喜實驗室碩士班同學開發之「智慧醫療輔助系統」榮獲全國特優，展現卓越研發實力！</p>"
+  },
+  {
+    date: "2025.12.10",
+    tag: "學術發表",
+    tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
+    title: "張萬榮教授與團隊最新 AIoT 研究論文獲 IEEE IoT Journal 接受刊登。",
+    img: "",
+    imgAlt: "",
+    content: "<p>本期論文針對邊緣運算於醫療影像辨識之延遲問題提出創新演算法，獲得國際期刊高度肯定。</p>"
+  },
+  {
+    date: "2025.11.05",
+    tag: "活動紀錄",
+    tagTheme: "text-slate-800 bg-slate-100 border-slate-300",
+    title: "舉辦 2025 智慧醫療與網宇實體系統產學交流研討會圓滿落幕。",
+    img: "",
+    imgAlt: "",
+    content: "<p>感謝產官學界先進熱情參與，共同探討智慧醫院轉型與 AIoT 落地應用之挑戰與機遇。</p>"
+  },
+  {
+    date: "2025.09.28",
+    tag: "產學合作",
+    tagTheme: "text-rose-800 bg-rose-50 border-rose-200",
+    title: "本實驗室與知名科技大廠簽署三年期「智慧工廠邊緣 AI 協作計畫」。",
+    img: "",
+    imgAlt: "",
+    content: "<p>將著重於利用 AR 技術結合邊緣運算，打造次世代產線維修輔助系統。</p>"
+  }
+];
+---
+
+<section id="news" class="scroll-mt-12">
+  <div class="border-b-2 border-slate-800 pb-3 mb-8 flex justify-between items-end">
+    <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+      <div class="w-2 h-8 bg-blue-700"></div>
+      最新消息
+      <span class="text-sm font-normal text-slate-500 uppercase tracking-wider ml-2 hidden sm:inline">News & Announcements</span>
+    </h2>
+  </div>
+
+  <div class="bg-white border border-slate-200 rounded-sm shadow-sm">
+    <!-- 最新消息列表 (透過上方的陣列自動渲染) -->
+    <ul id="news-list" class="divide-y divide-slate-100">
+      {newsData.map((item) => (
+        <li class="group news-item">
+          <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
+            <div class="flex flex-col md:flex-row md:items-center gap-4">
+              <div class="flex items-center gap-4 md:w-56 shrink-0">
+                <span class="text-slate-500 font-mono text-sm tracking-tight">{item.date}</span>
+                <span class={`px-2.5 py-1 text-xs font-medium rounded-sm border ${item.tagTheme}`}>{item.tag}</span>
+              </div>
+              <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">{item.title}</span>
+            </div>
+            <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          
+          <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
+            <div class="overflow-hidden">
+              <div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed space-y-5">
+                {item.img && (
+                  <div class="w-full max-w-3xl aspect-[1477/1108] bg-slate-100 rounded border border-slate-200 overflow-hidden flex items-center justify-center relative mt-2">
+                    <img src={item.img} alt={item.imgAlt} class="w-full h-full object-cover absolute inset-0" onerror="this.style.display='none';" />
+                    <span class="text-slate-400 font-medium">[ {item.imgAlt} ]</span>
+                  </div>
+                )}
+                <!-- 載入文章 HTML 內容 -->
+                <div set:html={item.content}></div>
+              </div>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- 分頁控制按鈕區域 -->
+  <div id="pagination-controls" class="flex justify-center items-center mt-8 gap-2"></div>
+</section>
+
+<!-- 🔷 展開式手風琴與分頁 控制腳本 -->
+<script is:inline>
+  document.addEventListener('DOMContentLoaded', () => {
+    // 手風琴展開功能
+    const toggleButtons = document.querySelectorAll('.news-toggle-btn');
+    toggleButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const content = this.nextElementSibling;
+        const icon = this.querySelector('.toggle-icon');
+        const isExpanded = content.getAttribute('data-expanded') === 'true';
+
+        if (!isExpanded) {
+          content.style.gridTemplateRows = '1fr';
+          content.setAttribute('data-expanded', 'true');
+          if (icon) icon.style.transform = 'rotate(180deg)';
+        } else {
+          content.style.gridTemplateRows = '0fr';
+          content.setAttribute('data-expanded', 'false');
+          if (icon) icon.style.transform = 'rotate(0deg)';
+        }
+      });
+    });
+
+    // 分頁功能 (一頁 5 筆)
+    const itemsPerPage = 5;
+    let currentPage = 1;
+    const newsItems = Array.from(document.querySelectorAll('.news-item'));
+    const paginationContainer = document.getElementById('pagination-controls');
+
+    function renderPagination() {
+      const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+      if (totalPages <= 1) {
+        paginationContainer.innerHTML = '';
+        return;
+      }
+
+      let html = '';
+      const prevDisabled = currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
+      html += `<button onclick="window.changePage(${currentPage - 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${prevDisabled}" ${currentPage === 1 ? 'disabled' : ''}>上一頁</button>`;
+
+      for (let i = 1; i <= totalPages; i++) {
+        const activeClass = i === currentPage ? 'bg-blue-700 text-white border-blue-700 shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50';
+        html += `<button onclick="window.changePage(${i})" class="w-8 h-8 flex items-center justify-center text-sm font-bold rounded border transition ${activeClass}">${i}</button>`;
+      }
+
+      const nextDisabled = currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
+      html += `<button onclick="window.changePage(${currentPage + 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${nextDisabled}" ${currentPage === totalPages ? 'disabled' : ''}>下一頁</button>`;
+
+      paginationContainer.innerHTML = html;
+    }
+
+    // 加入 scrollToNews 參數，預設為 true。如果為 false 就不執行視角滑動
+    window.changePage = function(page, scrollToNews = true) {
+      const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+      if (page < 1 || page > totalPages) return;
+      
+      currentPage = page;
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+
+      newsItems.forEach((item, index) => {
+        const content = item.querySelector('[data-expanded]');
+        const icon = item.querySelector('.toggle-icon');
+        if(content && content.getAttribute('data-expanded') === 'true') {
+          content.style.gridTemplateRows = '0fr';
+          content.setAttribute('data-expanded', 'false');
+          if (icon) icon.style.transform = 'rotate(0deg)';
+        }
+
+        if (index >= startIndex && index < endIndex) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      renderPagination();
+
+      // 只有在 scrollToNews 為 true 時 (代表使用者手動點擊)，才滑動螢幕
+      if (scrollToNews) {
+        const newsSection = document.getElementById('news');
+        const elementPosition = newsSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      }
+    };
+
+    // 網頁初始載入：顯示第一頁，傳入 false 避免觸發自動滑動
+    window.changePage(1, false);
+  });
+</script>
