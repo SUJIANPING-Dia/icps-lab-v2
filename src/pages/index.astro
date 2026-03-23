@@ -19,14 +19,14 @@ import Members from "../components/Members.astro";
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
 
   <!-- 🔷 頂部導覽列 (Navbar) -->
-  <nav class="w-full bg-white border-b border-slate-200 shadow-sm">
+  <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">
       
       <!-- 學校/實驗室寬版 Logo 區塊 -->
       <div class="flex flex-col justify-center max-w-[65%] sm:max-w-none">
         <div class="text-[10px] sm:text-xs text-slate-500 font-bold leading-none mb-1.5 tracking-wider ml-1">NKUST 國立高雄科技大學</div>
         <a href="#" class="block">
-          <img src="/images/sicp-logo.png" alt="ICPS Lab 智慧網宇實體系統實驗室" class="h-8 sm:h-10 md:h-12 w-auto object-contain" />
+          <img src="/images/sicp-logo.png" alt="ICPS Lab 智慧網宇實體系統實驗室" class="h-8 sm:h-10 md:h-12 w-auto object-contain" onerror="this.style.display='none';" />
         </a>
       </div>
 
@@ -37,26 +37,51 @@ import Members from "../components/Members.astro";
     </div>
   </nav>
 
-  <!-- 🔷 封面視覺 (Hero Section) -->
-  <header class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden border-b-4 border-blue-700">
-    <img src="/images/hero-bg.png" alt="實驗室背景" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none';" />
-    <div class="absolute inset-0 bg-slate-900/40"></div>
+  <!-- 🔷 封面視覺 (Hero Section) - 多圖自動輪播版 -->
+  <header class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden border-b-4 border-blue-700 group">
     
-    <div class="relative max-w-7xl mx-auto px-6 text-white">
+    <!-- 輪播圖片容器 -->
+    <div id="hero-slider" class="absolute inset-0 w-full h-full bg-slate-900">
+      <!-- 第一張圖 (預設顯示 opacity-100) -->
+      <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
+      <!-- 第二張圖 (預設透明 opacity-0) -->
+      <img src="/images/hero-bg-2.png" alt="實驗室背景 2" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <!-- 第三張圖 (預設透明 opacity-0) -->
+      <img src="/images/hero-bg-3.png" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop';" />
+    </div>
+    
+    <!-- 黑色半透明遮罩 (加上 z-10 確保蓋在輪播圖上方，讓白字更清晰) -->
+    <div class="absolute inset-0 bg-slate-900/50 z-10"></div>
+    
+    <!-- 左右切換按鈕 (預設微微透明，Hover時變明顯) -->
+    <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-0 group-hover:opacity-100">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+      </svg>
+    </button>
+
+    <button id="next-btn" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-0 group-hover:opacity-100">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+      </svg>
+    </button>
+
+    <!-- 文字內容區塊 (加上 z-20 確保文字在最上層) -->
+    <div class="relative z-20 max-w-7xl mx-auto px-6 text-white text-center md:text-left">
       <div class="inline-block px-3 py-1 mb-6 border border-slate-400 text-slate-200 text-xs font-bold tracking-widest uppercase rounded bg-slate-900/50 backdrop-blur-md">
         Intelligent Cyber-Physical Systems Laboratory
       </div>
       <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 tracking-tight drop-shadow-lg">
         ICPS Lab
       </h1>
-      <p class="text-lg lg:text-xl text-slate-100 font-light mb-8 max-w-3xl leading-relaxed drop-shadow-md">
+      <p class="text-lg lg:text-xl text-slate-100 font-light mb-8 max-w-3xl leading-relaxed drop-shadow-md mx-auto md:mx-0">
         致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究與產業應用落地。
       </p>
     </div>
   </header>
 
   <!-- 🔷 網站主體區域 -->
-  <main class="max-w-7xl mx-auto px-6 py-16 space-y-20">
+  <main class="max-w-7xl mx-auto px-6 py-16 space-y-20 relative z-20">
 
     <!-- 👇 呼叫最新消息元件 -->
     <News />
@@ -67,7 +92,7 @@ import Members from "../components/Members.astro";
   </main>
 
   <!-- 🔷 頁尾 (Footer) -->
-  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800">
+  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
         <h2 class="text-2xl font-bold text-white tracking-wider mb-2">ICPS Lab</h2>
@@ -89,6 +114,81 @@ import Members from "../components/Members.astro";
       <p class="text-xs text-slate-500">All rights reserved.</p>
     </div>
   </footer>
+
+  <!-- 👇 控制封面輪播與按鈕的 JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const images = document.querySelectorAll('.slider-img');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      
+      let currentIndex = 0;
+      let slideInterval;
+
+      // 如果圖片少於兩張，就不執行輪播並隱藏按鈕
+      if (images.length < 2) {
+        if(prevBtn) prevBtn.style.display = 'none';
+        if(nextBtn) nextBtn.style.display = 'none';
+        return;
+      }
+
+      // 切換圖片的共用函式
+      const showImage = (index) => {
+        // 將當前圖片隱藏
+        images[currentIndex].classList.remove('opacity-100');
+        images[currentIndex].classList.add('opacity-0');
+
+        // 更新索引
+        currentIndex = index;
+
+        // 顯示新圖片
+        images[currentIndex].classList.remove('opacity-0');
+        images[currentIndex].classList.add('opacity-100');
+      };
+
+      // 下一張
+      const nextImage = () => {
+        const nextIndex = (currentIndex + 1) % images.length;
+        showImage(nextIndex);
+      };
+
+      // 上一張
+      const prevImage = () => {
+        // 加上 images.length 避免產生負數索引
+        const prevIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(prevIndex);
+      };
+
+      // 啟動自動輪播
+      const startSlide = () => {
+        slideInterval = setInterval(nextImage, 10000); // 10秒切換一次
+      };
+
+      // 重置自動輪播計時器 (當使用者手動點擊時觸發)
+      const resetSlide = () => {
+        clearInterval(slideInterval);
+        startSlide();
+      };
+
+      // 綁定按鈕點擊事件
+      if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+          nextImage();
+          resetSlide();
+        });
+      }
+
+      if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+          prevImage();
+          resetSlide();
+        });
+      }
+
+      // 初始化啟動自動輪播
+      startSlide();
+    });
+  </script>
 
 </body>
 </html>

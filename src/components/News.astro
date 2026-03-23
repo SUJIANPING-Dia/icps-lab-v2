@@ -3,24 +3,51 @@
 // 🔹 最新消息資料區 (新增公告只需在這裡加入)
 // ==========================================
 const newsData = [
-  {
-    date: "2026.03.01",
-    tag: "系統公告",
-    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
-    title: "實驗室全新官方網站正式上線，提供最新研究成果與成員資訊。",
-    img: "/images/news-placeholder.jpg",
-    imgAlt: "實驗室大合照 1477x1108",
-    content: `
-      <p>為了提供更豐富的學術交流與研究資訊展示，智慧網宇實體系統實驗室 (ICPS Lab) 全新官方網站已於今日正式上線。新版網站不僅優化了整體視覺設計，更加入了響應式介面，讓使用者無論在桌機或手機上都能獲得最佳的瀏覽體驗。</p>
-      <p>本實驗室致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究。透過此網站，我們將不定期更新以下資訊：</p>
-      <ul class="list-disc list-inside space-y-1 pl-2 text-slate-800 font-medium mt-2 mb-2">
-        <li>國內外頂尖期刊與會議之研究論文發表 (Publications)</li>
-        <li>產學合作計畫與科技部計畫執行進度 (Projects)</li>
-        <li>實驗室成員的競賽獲獎與卓越表現 (Honors & Awards)</li>
-      </ul>
-      <p>歡迎對本實驗室研究領域有興趣的同學、學者與業界先進，隨時關注我們的最新動態。若有任何產學合作提案或招生相關問題，也歡迎透過網站下方的聯絡資訊與張萬榮教授聯繫。</p>
-    `
-  },
+{
+  date: "2026.03.01",
+  tag: "系統公告",
+  tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+  title: "ICPS Lab 官方網站正式上線",
+  img: "/images/news-placeholder.jpg",
+  imgAlt: "實驗室大合照",
+  content: `
+    <p class="text-base font-semibold text-slate-900 mb-4">
+      ICPS Lab 智慧網宇實體系統實驗室官方網站正式啟用。
+    </p>
+
+    <p class="mb-6 text-slate-700">
+      本網站將作為實驗室對外資訊與交流平台，提供成員介紹與最新消息更新。
+    </p>
+
+    <div class="space-y-6">
+
+      <!-- 區塊1 -->
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h3 class="font-semibold text-blue-700 mb-2">📡 平台內容</h3>
+        <p class="text-slate-700">
+          提供實驗室成員資訊與最新動態，讓訪客能快速了解 ICPS Lab 的研究團隊與發展。
+        </p>
+      </div>
+
+      <!-- 區塊2 -->
+      <div class="border-l-4 border-blue-500 pl-4">
+        <h3 class="font-semibold text-blue-700 mb-2">🧪 研究領域</h3>
+        <p class="text-slate-700">
+          涵蓋人工智慧物聯網（AIoT）、邊緣運算及智慧應用等相關研究方向。
+        </p>
+      </div>
+
+      <!-- 區塊3 -->
+      <div class="border border-slate-200 bg-slate-50 rounded p-4">
+        <h3 class="font-semibold text-slate-800 mb-2">📢 後續更新</h3>
+        <p class="text-slate-700">
+          未來將持續於本站發布實驗室最新消息與相關資訊，歡迎定期關注。
+        </p>
+      </div>
+
+    </div>
+  `
+},
   {
     date: "2026.02.15",
     tag: "招生資訊",
@@ -50,6 +77,7 @@ const newsData = [
       </div>
     `
   },
+
 ];
 ---
 
