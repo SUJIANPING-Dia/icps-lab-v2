@@ -1,17 +1,549 @@
 ---
-
+import "../styles/global.css";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICPS Lab | 智慧網宇實體系統實驗室 - 國立高雄科技大學</title>
+</head>
+
+<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
+
+  <!-- 🔷 頂部導覽列 (Navbar) - 已取消固定置頂 -->
+  <nav class="w-full bg-white border-b border-slate-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">
+      
+      <!-- 學校/實驗室寬版 Logo 區塊 -->
+      <div class="flex flex-col justify-center max-w-[65%] sm:max-w-none">
+        <div class="text-[10px] sm:text-xs text-slate-500 font-bold leading-none mb-1.5 tracking-wider ml-1">NKUST 國立高雄科技大學</div>
+        <a href="#" class="block">
+          <!-- 鎖定高度 (h-8 到 h-12)，寬度設為自動 (w-auto)，完美支援 1831*231 的比例 -->
+          <img src="/images/sicp-logo.png" alt="ICPS Lab 智慧網宇實體系統實驗室" class="h-8 sm:h-10 md:h-12 w-auto object-contain" />
+        </a>
+      </div>
+
+      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600">
+        <a href="#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
+        <a href="#members" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">團隊成員</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 🔷 封面視覺 (Hero Section) -->
+  <header class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden border-b-4 border-blue-700">
+    
+    <!-- 👇 背景圖片 (建議尺寸: 1920x1080 或 1920x800) -->
+    <img src="/images/hero-bg.png" alt="實驗室背景" class="absolute inset-0 w-full h-full object-cover" onerror="this.style.display='none';" />
+    
+    <!-- 👇 微微的深色半透明遮罩：調低透明度(40%)且移除模糊效果，讓您的圖片可以清晰顯現，同時維持白字可讀性 -->
+    <div class="absolute inset-0 bg-slate-900/40"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-6 text-white">
+      <div class="inline-block px-3 py-1 mb-6 border border-slate-400 text-slate-200 text-xs font-bold tracking-widest uppercase rounded bg-slate-900/50 backdrop-blur-md">
+        Intelligent Cyber-Physical Systems Laboratory
+      </div>
+      <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 tracking-tight drop-shadow-lg">
+        ICPS Lab
+      </h1>
+      <p class="text-lg lg:text-xl text-slate-100 font-light mb-8 max-w-3xl leading-relaxed drop-shadow-md">
+        致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究與產業應用落地。
+      </p>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-6 py-16 space-y-20">
+
+    <!-- 🔷 最新消息 (News & Announcements) -->
+    <!-- 因為 Navbar 不再置頂，把 scroll-mt-28 調小為 scroll-mt-12 給予適當留白即可 -->
+    <section id="news" class="scroll-mt-12">
+      <div class="border-b-2 border-slate-800 pb-3 mb-8 flex justify-between items-end">
+        <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+          <div class="w-2 h-8 bg-blue-700"></div>
+          最新消息
+          <span class="text-sm font-normal text-slate-500 uppercase tracking-wider ml-2 hidden sm:inline">News & Announcements</span>
+        </h2>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-sm shadow-sm">
+        <!-- 加入了 id="news-list" 供分頁腳本選取 -->
+        <ul id="news-list" class="divide-y divide-slate-100">
+          
+          <!-- 公告項目 1 (手風琴展開式) -->
+          <li class="group news-item">
+            <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
+              <div class="flex flex-col md:flex-row md:items-center gap-4">
+                <div class="flex items-center gap-4 md:w-56 shrink-0">
+                  <span class="text-slate-500 font-mono text-sm tracking-tight">2026.03.01</span>
+                  <span class="px-2.5 py-1 text-xs font-medium text-blue-800 bg-blue-50 border border-blue-200 rounded-sm">系統公告</span>
+                </div>
+                <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">實驗室全新官方網站正式上線，提供最新研究成果與成員資訊。</span>
+              </div>
+              <!-- 展開/收合箭頭 -->
+              <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            
+            <!-- 展開的詳細圖文內容 -->
+            <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
+              <div class="overflow-hidden">
+                <div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed space-y-5">
+                  <!-- 👇 調整圖片比例為 1477:1108，並加上 max-w-3xl 避免在大螢幕上過度放大 -->
+                  <div class="w-full max-w-3xl aspect-[1477/1108] bg-slate-100 rounded border border-slate-200 overflow-hidden flex items-center justify-center relative mt-2">
+                    <img src="/images/news-placeholder.jpg" alt="實驗室大合照" class="w-full h-full object-cover absolute inset-0" onerror="this.style.display='none';" />
+                    <span class="text-slate-400 font-medium">[ 實驗室大合照 1477x1108 ]</span>
+                  </div>
+                  <p>為了提供更豐富的學術交流與研究資訊展示，智慧網宇實體系統實驗室 (ICPS Lab) 全新官方網站已於今日正式上線。新版網站不僅優化了整體視覺設計，更加入了響應式介面，讓使用者無論在桌機或手機上都能獲得最佳的瀏覽體驗。</p>
+                  <p>本實驗室致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究。透過此網站，我們將不定期更新以下資訊：</p>
+                  <ul class="list-disc list-inside space-y-1 pl-2 text-slate-800 font-medium">
+                    <li>國內外頂尖期刊與會議之研究論文發表 (Publications)</li>
+                    <li>產學合作計畫與科技部計畫執行進度 (Projects)</li>
+                    <li>實驗室成員的競賽獲獎與卓越表現 (Honors & Awards)</li>
+                  </ul>
+                  <p>歡迎對本實驗室研究領域有興趣的同學、學者與業界先進，隨時關注我們的最新動態。若有任何產學合作提案或招生相關問題，也歡迎透過網站下方的聯絡資訊與張萬榮教授聯繫。</p>
+                </div>
+              </div>
+            </div>
+          </li>
+          
+          <!-- 公告項目 2 (手風琴展開式) -->
+          <li class="group news-item">
+            <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
+              <div class="flex flex-col md:flex-row md:items-center gap-4">
+                <div class="flex items-center gap-4 md:w-56 shrink-0">
+                  <span class="text-slate-500 font-mono text-sm tracking-tight">2026.02.15</span>
+                  <span class="px-2.5 py-1 text-xs font-medium text-amber-800 bg-amber-50 border border-amber-200 rounded-sm">招生資訊</span>
+                </div>
+                <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">【115學年度】熱烈招收新進碩士生與專題生，歡迎加入 ICPS Lab 研究團隊！</span>
+              </div>
+              <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            
+            <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
+              <div class="overflow-hidden">
+                <div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed space-y-5">
+                  <p class="mt-2 text-base font-bold text-slate-900">歡迎具備電機、資工、醫工或相關科系背景，且對軟硬體整合充滿熱忱的同學加入我們！</p>
+                  
+                  <div>
+                    <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">🔬 實驗室重點研究方向：</h4>
+                    <p>在本實驗室，你將有機會參與大型產學合作計畫，並將演算法實際落地於產業場域。我們目前的研究涵蓋：智慧物聯網 (AIoT) 與邊緣運算、醫療影像分析與穿戴式生理訊號辨識、以及智慧製造與擴增實境 (AR) 協作系統。</p>
+                  </div>
+
+                  <div>
+                    <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">💡 我們能提供給你：</h4>
+                    <ul class="list-disc list-inside space-y-1 pl-2 text-slate-700">
+                      <li>依參與計畫表現，提供<span class="font-bold text-amber-700">優渥的每月計畫津貼</span>。</li>
+                      <li>豐富的硬體資源：多台高階 GPU 伺服器、AR/VR 設備、多元感測器與開發板。</li>
+                      <li>扎實的實作訓練與產學接軌經驗，大幅提升畢業後的就業競爭力。</li>
+                      <li>融洽的實驗室氛圍與不定期聚餐活動。</li>
+                    </ul>
+                  </div>
+
+                  <div class="bg-blue-50 p-4 rounded border border-blue-100">
+                    <h4 class="font-bold text-slate-900 mb-2">📩 面談報名方式：</h4>
+                    <p>意者請將您的 <strong class="text-blue-700">1. 個人簡歷</strong>、<strong class="text-blue-700">2. 歷年成績單</strong> 與 <strong class="text-blue-700">3. 專題報告或相關作品(若有)</strong> 寄至張教授信箱： <a href="mailto:allenchang@nkust.edu.tw" class="text-blue-600 hover:underline">allenchang@nkust.edu.tw</a></p>
+                    <p class="text-xs text-slate-500 mt-2">※ 信件主旨請註明：「[加入實驗室] 姓名 - 欲報考碩士班/專題生」，我們收到後將盡快與您安排實驗室參觀與面談時間！</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- 👇 為了測試分頁，自動產生的第 3 ~ 6 筆新聞 -->
+          <li class="group news-item">
+            <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
+              <div class="flex flex-col md:flex-row md:items-center gap-4">
+                <div class="flex items-center gap-4 md:w-56 shrink-0">
+                  <span class="text-slate-500 font-mono text-sm tracking-tight">2026.01.20</span>
+                  <span class="px-2.5 py-1 text-xs font-medium text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-sm">榮譽榜單</span>
+                </div>
+                <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">恭賀！本實驗室團隊榮獲「2025 全國智慧聯網創新應用競賽」特優。</span>
+              </div>
+              <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
+              <div class="overflow-hidden"><div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed"><p class="mt-2">恭喜實驗室碩士班同學開發之「智慧醫療輔助系統」榮獲全國特優，展現卓越研發實力！</p></div></div>
+            </div>
+          </li>
+
+          <li class="group news-item">
+            <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
+              <div class="flex flex-col md:flex-row md:items-center gap-4">
+                <div class="flex items-center gap-4 md:w-56 shrink-0">
+                  <span class="text-slate-500 font-mono text-sm tracking-tight">2025.12.10</span>
+                  <span class="px-2.5 py-1 text-xs font-medium text-purple-800 bg-purple-50 border border-purple-200 rounded-sm">學術發表</span>
+                </div>
+                <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">張萬榮教授與團隊最新 AIoT 研究論文獲 IEEE IoT Journal 接受刊登。</span>
+              </div>
+              <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
+              <div class="overflow-hidden"><div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed"><p class="mt-2">本期論文針對邊緣運算於醫療影像辨識之延遲問題提出創新演算法，獲得國際期刊高度肯定。</p></div></div>
+            </div>
+          </li>
+
+          <li class="group news-item">
+            <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
+              <div class="flex flex-col md:flex-row md:items-center gap-4">
+                <div class="flex items-center gap-4 md:w-56 shrink-0">
+                  <span class="text-slate-500 font-mono text-sm tracking-tight">2025.11.05</span>
+                  <span class="px-2.5 py-1 text-xs font-medium text-slate-800 bg-slate-100 border border-slate-300 rounded-sm">活動紀錄</span>
+                </div>
+                <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">舉辦 2025 智慧醫療與網宇實體系統產學交流研討會圓滿落幕。</span>
+              </div>
+              <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
+              <div class="overflow-hidden"><div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed"><p class="mt-2">感謝產官學界先進熱情參與，共同探討智慧醫院轉型與 AIoT 落地應用之挑戰與機遇。</p></div></div>
+            </div>
+          </li>
+
+          <li class="group news-item">
+            <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
+              <div class="flex flex-col md:flex-row md:items-center gap-4">
+                <div class="flex items-center gap-4 md:w-56 shrink-0">
+                  <span class="text-slate-500 font-mono text-sm tracking-tight">2025.09.28</span>
+                  <span class="px-2.5 py-1 text-xs font-medium text-rose-800 bg-rose-50 border border-rose-200 rounded-sm">產學合作</span>
+                </div>
+                <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">本實驗室與知名科技大廠簽署三年期「智慧工廠邊緣 AI 協作計畫」。</span>
+              </div>
+              <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+            </button>
+            <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
+              <div class="overflow-hidden"><div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed"><p class="mt-2">將著重於利用 AR 技術結合邊緣運算，打造次世代產線維修輔助系統。</p></div></div>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <!-- 👇 加入的分頁控制按鈕區域 -->
+      <div id="pagination-controls" class="flex justify-center items-center mt-8 gap-2">
+        <!-- 分頁按鈕會由 JS 動態生成在這裡 -->
+      </div>
+    </section>
+
+    <!-- 🔷 團隊成員 (Team Members) -->
+    <section id="members" class="scroll-mt-12">
+      <div class="border-b-2 border-slate-800 pb-3 mb-10">
+        <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
+          <div class="w-2 h-8 bg-blue-700"></div>
+          團隊成員
+          <span class="text-sm font-normal text-slate-500 uppercase tracking-wider ml-2 hidden sm:inline">Team Members</span>
+        </h2>
+      </div>
+
+      <!-- 👑 指導教授 (Principal Investigator) - 重新排版為上下結構 -->
+      <div class="mb-16">
+        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">指導教授 Principal Investigator</h3>
+        
+        <div class="bg-white border border-slate-200 shadow-sm rounded-sm relative overflow-hidden flex flex-col">
+          <!-- 頂部裝飾線 -->
+          <div class="absolute top-0 left-0 w-full h-1 bg-blue-800"></div>
+
+          <!-- 上半部：個人基本資訊與學歷 -->
+          <div class="p-8 pb-6 flex flex-col lg:flex-row gap-8 lg:gap-10 items-start">
+            
+            <!-- 照片 -->
+            <img src="/images/professor.jpg" alt="張萬榮 教授" class="w-40 sm:w-48 aspect-[454/686] object-cover object-top rounded mb-2 lg:mb-0 border border-slate-200 shadow-sm shrink-0" />
+            
+            <!-- 資訊區塊 -->
+            <div class="flex-1 w-full">
+              <!-- 姓名與聯絡方式 -->
+              <div class="border-b border-slate-100 pb-5 mb-6">
+                <h4 class="text-3xl font-extrabold text-slate-900 tracking-tight">張萬榮 <span class="text-lg text-slate-600 font-medium ml-1">教授</span></h4>
+                <p class="text-slate-500 font-mono text-sm mt-1">Wan-Jung Chang, Ph.D.</p>
+                
+                <div class="flex flex-wrap gap-x-8 gap-y-3 mt-5 text-sm text-slate-600">
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-700 transition break-all">allenchang@nkust.edu.tw</a>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    <span>校內分機：15672</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 學歷與單位 -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 學歷 -->
+                <div>
+                  <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Education 學歷</h5>
+                  <p class="text-slate-800 font-medium leading-relaxed">國立成功大學 電機工程研究所<br/>電腦與網路組 博士</p>
+                </div>
+
+                <!-- 所屬單位 -->
+                <div>
+                  <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Affiliations 所屬組別</h5>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-2.5 py-1 bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-sm">醫學工程組(合聘)</span>
+                    <span class="px-2.5 py-1 bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-sm">醫學工程組</span>
+                    <span class="px-2.5 py-1 bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-sm">AI資安組</span>
+                    <span class="px-2.5 py-1 bg-slate-50 text-slate-700 border border-slate-200 text-xs font-medium rounded-sm">電信組</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 下半部：研究專長 (橫跨全寬度，解決左右不對稱問題) -->
+          <div class="bg-slate-50 p-8 border-t border-slate-100">
+            <h5 class="text-xs font-bold text-slate-400 uppercase tracking-widest mb-5">Research Interests 研究專長</h5>
+            <ul class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-4 text-sm text-slate-700">
+              <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0">
+                <span class="text-blue-700 font-bold mt-0.5 select-none">▪</span>
+                <span>雲端與智慧物聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Cloud and AIoT Systems</span></span>
+              </li>
+              <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0">
+                <span class="text-blue-700 font-bold mt-0.5 select-none">▪</span>
+                <span>無線感測網路與高速網路系統 <br/><span class="text-xs text-slate-400 font-mono">Wireless Sensor Networks & High-Speed Networks</span></span>
+              </li>
+              <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0">
+                <span class="text-blue-700 font-bold mt-0.5 select-none">▪</span>
+                <span>人工智慧穿戴式裝置聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Wearable Devices IoT Systems</span></span>
+              </li>
+              <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0">
+                <span class="text-blue-700 font-bold mt-0.5 select-none">▪</span>
+                <span>人工智慧醫療聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Artificial Intelligent Medical IoT (MIoT) Systems</span></span>
+              </li>
+              <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0">
+                <span class="text-blue-700 font-bold mt-0.5 select-none">▪</span>
+                <span>人工智慧製造聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Artificial Intelligent Industrial IoT (IIoT) Systems</span></span>
+              </li>
+              <li class="flex items-start gap-2 border-b md:border-none border-slate-200/60 pb-3 md:pb-0">
+                <span class="text-blue-700 font-bold mt-0.5 select-none">▪</span>
+                <span>擴增實境聯網系統 <br/><span class="text-xs text-slate-400 font-mono">Augmented Reality IoT (ARIoT) Systems</span></span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-700 font-bold mt-0.5 select-none">▪</span>
+                <span>人工智慧機器人技術 <br/><span class="text-xs text-slate-400 font-mono">Artificial Intelligent Robotics</span></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 👥 實驗室成員清單 -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+        
+        <!-- 左欄：助理與博士生 -->
+        <div class="space-y-10">
+          <!-- 專任助理 -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-800 mb-4 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
+            <div class="bg-white border border-slate-200 p-5 flex items-center gap-5">
+              <!-- 👇 請替換 src="照片路徑" -->
+              <img src="/images/member-placeholder.png" alt="專任助理 照片" class="w-16 h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+              <div>
+                <h4 class="font-bold text-slate-900 text-base">XXX</h4>
+                <p class="text-xs text-slate-500 mt-0.5">實驗室專任助理 / 計畫管理</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 博士班 -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-800 mb-4 border-l-4 border-slate-300 pl-3">博士班 Ph.D. Students</h3>
+            <div class="bg-white border border-slate-200 p-5 flex items-center gap-5">
+              <!-- 👇 請替換 src="照片路徑" -->
+              <img src="/images/member-placeholder.png" alt="博士生 A 照片" class="w-16 h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+              <div>
+                <h4 class="font-bold text-slate-900 text-base">博士生 A</h4>
+                <p class="text-xs text-slate-500 mt-0.5">研究領域：人工智慧醫療聯網、深度學習</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 右欄：碩士與專題生 -->
+        <div class="space-y-10">
+          <!-- 碩士班 -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-800 mb-4 border-l-4 border-slate-300 pl-3">碩士班 Master Students</h3>
+            <div class="bg-white border border-slate-200 divide-y divide-slate-100">
+              <div class="p-5 flex items-center gap-4 hover:bg-slate-50 transition">
+                <!-- 👇 請替換 src="照片路徑" -->
+                <img src="/images/member-placeholder.png" alt="碩士生 A 照片" class="w-12 h-12 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">碩士生 A</h4>
+                  <p class="text-xs text-slate-500 mt-0.5">研究領域：智慧工廠邊緣運算系統</p>
+                </div>
+              </div>
+              <div class="p-5 flex items-center gap-4 hover:bg-slate-50 transition">
+                <!-- 👇 請替換 src="照片路徑" -->
+                <img src="/images/member-placeholder.png" alt="碩士生 B 照片" class="w-12 h-12 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" />
+                <div>
+                  <h4 class="font-bold text-slate-900 text-sm">碩士生 B</h4>
+                  <p class="text-xs text-slate-500 mt-0.5">研究領域：擴增實境與無人機協作</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 專題生 -->
+          <div>
+            <h3 class="text-lg font-bold text-slate-800 mb-4 border-l-4 border-slate-300 pl-3">大學部專題生 Undergraduates</h3>
+            <div class="bg-white border border-slate-200 divide-y divide-slate-100">
+              <div class="p-5 hover:bg-slate-50 transition">
+                <h4 class="font-bold text-slate-900 text-sm mb-1">專題生 A</h4>
+                <p class="text-xs text-slate-500">專題題目：穿戴式裝置訊號擷取</p>
+              </div>
+              <div class="p-5 hover:bg-slate-50 transition">
+                <h4 class="font-bold text-slate-900 text-sm mb-1">專題生 B</h4>
+                <p class="text-xs text-slate-500">專題題目：室內定位系統演算法實作</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 🔷 頁尾 (Footer) - 重新佈局純文字版本 -->
+  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
+      
+      <!-- 左側：純文字實驗室名稱與描述 -->
+      <div class="md:w-1/2">
+        <h2 class="text-2xl font-bold text-white tracking-wider mb-2">ICPS Lab</h2>
+        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+          Intelligent Cyber-Physical Systems Laboratory <br/>
+          國立高雄科技大學 (NKUST)
+        </p>
+      </div>
+      
+      <!-- 右側：聯絡資訊 -->
+      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
+        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
+        <p class="flex items-center gap-2 text-slate-300">
+          <span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)
+        </p>
+        <p class="flex items-center gap-2 text-slate-300">
+          <span class="text-slate-500">📞</span> 07-3814526 分機 15672
+        </p>
+        <p class="flex items-center gap-2 text-slate-300">
+          <span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a>
+        </p>
+      </div>
+
+    </div>
+    
+    <!-- 底部版權宣告 -->
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-slate-500">&copy; 2026 ICPS Lab, National Kaohsiung University of Science and Technology.</p>
+      <p class="text-xs text-slate-500">All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- 🔷 展開式手風琴 (Accordion) 與分頁 控制腳本 -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      
+      // === 1. 手風琴展開功能 ===
+      const toggleButtons = document.querySelectorAll('.news-toggle-btn');
+      
+      toggleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const content = this.nextElementSibling;
+          const icon = this.querySelector('.toggle-icon');
+          const isExpanded = content.getAttribute('data-expanded') === 'true';
+
+          if (!isExpanded) {
+            content.style.gridTemplateRows = '1fr';
+            content.setAttribute('data-expanded', 'true');
+            if (icon) icon.style.transform = 'rotate(180deg)';
+          } else {
+            content.style.gridTemplateRows = '0fr';
+            content.setAttribute('data-expanded', 'false');
+            if (icon) icon.style.transform = 'rotate(0deg)';
+          }
+        });
+      });
+
+      // === 2. 分頁功能 (一頁 5 筆) ===
+      const itemsPerPage = 5;
+      let currentPage = 1;
+      const newsItems = Array.from(document.querySelectorAll('.news-item'));
+      const paginationContainer = document.getElementById('pagination-controls');
+
+      // 渲染分頁按鈕
+      function renderPagination() {
+        const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+        
+        // 如果只有一頁或沒新聞，就不顯示分頁列
+        if (totalPages <= 1) {
+          paginationContainer.innerHTML = '';
+          return;
+        }
+
+        let html = '';
+        
+        // 上一頁按鈕
+        const prevDisabled = currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
+        html += `<button onclick="window.changePage(${currentPage - 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${prevDisabled}" ${currentPage === 1 ? 'disabled' : ''}>上一頁</button>`;
+
+        // 數字頁碼按鈕
+        for (let i = 1; i <= totalPages; i++) {
+          const activeClass = i === currentPage 
+            ? 'bg-blue-700 text-white border-blue-700 shadow-sm' 
+            : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50';
+          html += `<button onclick="window.changePage(${i})" class="w-8 h-8 flex items-center justify-center text-sm font-bold rounded border transition ${activeClass}">${i}</button>`;
+        }
+
+        // 下一頁按鈕
+        const nextDisabled = currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
+        html += `<button onclick="window.changePage(${currentPage + 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${nextDisabled}" ${currentPage === totalPages ? 'disabled' : ''}>下一頁</button>`;
+
+        paginationContainer.innerHTML = html;
+      }
+
+      // 切換頁面函式 (掛載到 window 以供 onclick 呼叫)
+      window.changePage = function(page) {
+        const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+        if (page < 1 || page > totalPages) return;
+        
+        currentPage = page;
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+
+        // 顯示或隱藏新聞項目
+        newsItems.forEach((item, index) => {
+          // 先把展開的內容收合，避免版面亂掉
+          const content = item.querySelector('[data-expanded]');
+          const icon = item.querySelector('.toggle-icon');
+          if(content && content.getAttribute('data-expanded') === 'true') {
+            content.style.gridTemplateRows = '0fr';
+            content.setAttribute('data-expanded', 'false');
+            if (icon) icon.style.transform = 'rotate(0deg)';
+          }
+
+          // 決定顯示與否
+          if (index >= startIndex && index < endIndex) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+
+        renderPagination();
+
+        // 換頁後稍微將視角滑動回新聞區塊頂端 (因為拿掉 fixed navbar，這裡改對齊區塊頂端)
+        const newsSection = document.getElementById('news');
+        const elementPosition = newsSection.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset;
+        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      };
+
+      // 初始化：顯示第一頁
+      window.changePage(1);
+
+    });
+  </script>
+
+</body>
 </html>
