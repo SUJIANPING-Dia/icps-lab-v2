@@ -1,7 +1,8 @@
 ---
 import "../styles/global.css";
-// 👇 匯入我們獨立出去的兩個元件
+// 👇 匯入我們獨立出去的三個元件
 import News from "../components/News.astro";
+import Videos from "../components/Videos.astro";
 import Members from "../components/Members.astro";
 ---
 
@@ -32,6 +33,7 @@ import Members from "../components/Members.astro";
 
       <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600">
         <a href="#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
+        <a href="#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
         <a href="#members" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">團隊成員</a>
       </div>
     </div>
@@ -46,7 +48,7 @@ import Members from "../components/Members.astro";
       <!-- 只要圖片是 1920x800 (12:5)，這裡的 object-cover 就會達成 100% 完美貼合、0% 裁切 -->
       <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
       <img src="/images/hero-bg-2.png" alt="實驗室背景 2" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-     <!--  <img src="/images/hero-bg-3.png" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop';" />-->
+      <!-- <img src="/images/hero-bg-3.png" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop';" /> -->
       
       <!-- 左右切換按鈕 -->
       <!-- 手機版常駐顯示 (觸控無hover)，電腦版預設隱藏，滑鼠移入圖片時才顯示 -->
@@ -84,6 +86,10 @@ import Members from "../components/Members.astro";
   <main class="max-w-7xl mx-auto px-6 py-16 space-y-20 relative z-20">
     <!-- 👇 呼叫最新消息元件 -->
     <News />
+
+    <!-- 👇 呼叫影音專區元件 -->
+    <Videos />
+
     <!-- 👇 呼叫團隊成員元件 -->
     <Members />
   </main>
