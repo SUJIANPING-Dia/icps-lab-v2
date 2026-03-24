@@ -37,55 +37,55 @@ import Members from "../components/Members.astro";
     </div>
   </nav>
 
-  <!-- 🔷 封面視覺 (Hero Section) - 多圖自動輪播版 -->
-  <header class="relative pt-24 pb-20 lg:pt-32 lg:pb-28 overflow-hidden border-b-4 border-blue-700 group">
+  <!-- 🔷 封面視覺 (Hero Section) - 1920x800 完美比例零裁切版 -->
+  <header class="relative w-full bg-[#0f172a] flex flex-col lg:block lg:aspect-[12/5] overflow-hidden border-b-4 border-blue-700">
     
-    <!-- 輪播圖片容器 -->
-    <div id="hero-slider" class="absolute inset-0 w-full h-full">
-      <!-- 第一張圖 (預設顯示 opacity-100) -->
+    <!-- 輪播圖片容器 (手機版：獨立佔據上方並保持 12:5；電腦版：變為背景滿版並保持 12:5) -->
+    <div id="hero-slider" class="relative w-full aspect-[12/5] lg:absolute lg:inset-0 z-10 group/slider">
+      
+      <!-- 只要圖片是 1920x800 (12:5)，這裡的 object-cover 就會達成 100% 完美貼合、0% 裁切 -->
       <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
-      <!-- 第二張圖 (預設透明 opacity-0) -->
       <img src="/images/hero-bg-2.png" alt="實驗室背景 2" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <!-- 第三張圖 (預設透明 opacity-0) -->
       <img src="/images/hero-bg-3.png" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop';" />
+      
+      <!-- 左右切換按鈕 -->
+      <!-- 手機版常駐顯示 (觸控無hover)，電腦版預設隱藏，滑鼠移入圖片時才顯示 -->
+      <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+
+      <button id="next-btn" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
     </div>
-    
-    <!-- 左右切換按鈕 (預設微微透明，Hover時變明顯) -->
-    <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-0 group-hover:opacity-100">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-      </svg>
-    </button>
 
-    <button id="next-btn" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-0 group-hover:opacity-100">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-      </svg>
-    </button>
-
-    <!-- 文字內容區塊 (加上 id="hero-text" 與漸變 class) -->
-    <div id="hero-text" class="relative z-20 max-w-7xl mx-auto px-6 text-white text-center md:text-left transition-opacity duration-1000 ease-in-out opacity-100">
-      <div class="inline-block px-3 py-1 mb-6 border border-slate-400 text-slate-200 text-xs font-bold tracking-widest uppercase rounded bg-slate-900/50 backdrop-blur-md">
-        Intelligent Cyber-Physical Systems Laboratory
+    <!-- 文字內容區塊 -->
+    <!-- pointer-events-none 確保滑鼠可以穿透文字區塊，去點擊後方的切換按鈕 -->
+    <div class="relative z-20 w-full max-w-7xl mx-auto px-6 py-12 lg:py-0 lg:absolute lg:inset-0 lg:flex lg:items-center pointer-events-none">
+      <div id="hero-text" class="w-full text-white text-center md:text-left transition-opacity duration-1000 ease-in-out opacity-100 pointer-events-auto">
+        <div class="inline-block px-3 py-1 mb-6 border border-slate-400 text-slate-200 text-xs font-bold tracking-widest uppercase rounded bg-slate-900/50 backdrop-blur-md">
+          Intelligent Cyber-Physical Systems Laboratory
+        </div>
+        <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 tracking-tight drop-shadow-lg">
+          ICPS Lab
+        </h1>
+        <p class="text-lg lg:text-xl text-slate-100 font-light max-w-3xl leading-relaxed drop-shadow-md mx-auto md:mx-0">
+          致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究與產業應用落地。
+        </p>
       </div>
-      <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 tracking-tight drop-shadow-lg">
-        ICPS Lab
-      </h1>
-      <p class="text-lg lg:text-xl text-slate-100 font-light mb-8 max-w-3xl leading-relaxed drop-shadow-md mx-auto md:mx-0">
-        致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究與產業應用落地。
-      </p>
     </div>
   </header>
 
   <!-- 🔷 網站主體區域 -->
   <main class="max-w-7xl mx-auto px-6 py-16 space-y-20 relative z-20">
-
     <!-- 👇 呼叫最新消息元件 -->
     <News />
-
     <!-- 👇 呼叫團隊成員元件 -->
     <Members />
-
   </main>
 
   <!-- 🔷 頁尾 (Footer) -->
@@ -118,32 +118,26 @@ import Members from "../components/Members.astro";
       const images = document.querySelectorAll('.slider-img');
       const prevBtn = document.getElementById('prev-btn');
       const nextBtn = document.getElementById('next-btn');
-      const heroText = document.getElementById('hero-text'); // 👇 取得文字區塊
+      const heroText = document.getElementById('hero-text'); 
       
       let currentIndex = 0;
       let slideInterval;
 
-      // 如果圖片少於兩張，就不執行輪播並隱藏按鈕
       if (images.length < 2) {
         if(prevBtn) prevBtn.style.display = 'none';
         if(nextBtn) nextBtn.style.display = 'none';
         return;
       }
 
-      // 切換圖片的共用函式
       const showImage = (index) => {
-        // 將當前圖片隱藏
         images[currentIndex].classList.remove('opacity-100');
         images[currentIndex].classList.add('opacity-0');
 
-        // 更新索引
         currentIndex = index;
 
-        // 顯示新圖片
         images[currentIndex].classList.remove('opacity-0');
         images[currentIndex].classList.add('opacity-100');
 
-        // 👇 判斷是否顯示文字 (只有 currentIndex === 0 也就是第一張時顯示)
         if (heroText) {
           if (currentIndex === 0) {
             heroText.classList.remove('opacity-0', 'pointer-events-none');
@@ -155,31 +149,25 @@ import Members from "../components/Members.astro";
         }
       };
 
-      // 下一張
       const nextImage = () => {
         const nextIndex = (currentIndex + 1) % images.length;
         showImage(nextIndex);
       };
 
-      // 上一張
       const prevImage = () => {
-        // 加上 images.length 避免產生負數索引
         const prevIndex = (currentIndex - 1 + images.length) % images.length;
         showImage(prevIndex);
       };
 
-      // 啟動自動輪播
       const startSlide = () => {
-        slideInterval = setInterval(nextImage, 10000); // 10秒切換一次
+        slideInterval = setInterval(nextImage, 10000); 
       };
 
-      // 重置自動輪播計時器 (當使用者手動點擊時觸發)
       const resetSlide = () => {
         clearInterval(slideInterval);
         startSlide();
       };
 
-      // 綁定按鈕點擊事件
       if (nextBtn) {
         nextBtn.addEventListener('click', () => {
           nextImage();
@@ -194,7 +182,6 @@ import Members from "../components/Members.astro";
         });
       }
 
-      // 初始化啟動自動輪播
       startSlide();
     });
   </script>
