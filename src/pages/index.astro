@@ -24,23 +24,29 @@ import Members from "../components/Members.astro";
   <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">
       
-      <!-- 學校/實驗室寬版 Logo 區塊 -->
-      <div class="flex items-center gap-3 sm:gap-5 max-w-[70%] sm:max-w-none">
-        <!-- 新增：高科大 Logo -->
-        <a href="https://www.nkust.edu.tw/" target="_blank" class="block shrink-0">
-          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-8 sm:h-10 md:h-12 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
+      <!-- 學校/實驗室寬版 Logo 區塊 (優化佈局) -->
+      <!-- 加大 gap 讓圖片有呼吸空間，並加入 min-w-0 避免擠壓到右側選單 -->
+      <div class="flex items-center gap-4 sm:gap-6 lg:gap-8 min-w-0">
+        
+        <!-- 高科大 Logo -->
+        <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
+          <!-- 微調高度，讓它比實驗室 Logo 稍微小一點點，達成主從平衡 -->
+          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-8 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
         </a>
         
-        <!-- 分隔線 -->
-        <div class="h-6 sm:h-8 md:h-10 border-l border-slate-300 shrink-0"></div>
+        <!-- 分隔線 (改短、變淡，讓視覺更精緻。手機版空間小則隱藏) -->
+        <div class="hidden sm:block h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
 
-        <!-- 原本：實驗室 Logo -->
-        <a href="#" class="block shrink-0">
-          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-8 sm:h-10 md:h-12 w-auto object-contain" onerror="this.style.display='none';" />
+        <!-- 實驗室 Logo -->
+        <a href="#" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
+          <!-- 實驗室Logo作為主角，高度可以稍微飽滿一點 -->
+          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-9 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
         </a>
+        
       </div>
 
-      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600">
+      <!-- 右側導覽連結 -->
+      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
         <a href="#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
         <a href="#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
         <a href="#members" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">團隊成員</a>
