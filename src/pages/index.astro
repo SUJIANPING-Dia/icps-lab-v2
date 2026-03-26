@@ -14,7 +14,8 @@ import Members from "../components/Members.astro";
   <!-- 👇 網頁分頁的小圖示 -->
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
   
-  <title>ICPS Lab | 智慧網宇實體系統實驗室 - 國立高雄科技大學</title>
+  <!-- 標題列文字不支援HTML標籤，直接改為小寫i -->
+  <title>iCPS Lab | 智慧網宇實體系統實驗室 - 國立高雄科技大學</title>
 </head>
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
@@ -24,10 +25,18 @@ import Members from "../components/Members.astro";
     <div class="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">
       
       <!-- 學校/實驗室寬版 Logo 區塊 -->
-      <div class="flex flex-col justify-center max-w-[65%] sm:max-w-none">
-        <div class="text-[10px] sm:text-xs text-slate-500 font-bold leading-none mb-1.5 tracking-wider ml-1">NKUST 國立高雄科技大學</div>
-        <a href="#" class="block">
-          <img src="/images/sicp-logo.png" alt="ICPS Lab 智慧網宇實體系統實驗室" class="h-8 sm:h-10 md:h-12 w-auto object-contain" onerror="this.style.display='none';" />
+      <div class="flex items-center gap-3 sm:gap-5 max-w-[70%] sm:max-w-none">
+        <!-- 新增：高科大 Logo -->
+        <a href="https://www.nkust.edu.tw/" target="_blank" class="block shrink-0">
+          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-8 sm:h-10 md:h-12 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
+        </a>
+        
+        <!-- 分隔線 -->
+        <div class="h-6 sm:h-8 md:h-10 border-l border-slate-300 shrink-0"></div>
+
+        <!-- 原本：實驗室 Logo -->
+        <a href="#" class="block shrink-0">
+          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-8 sm:h-10 md:h-12 w-auto object-contain" onerror="this.style.display='none';" />
         </a>
       </div>
 
@@ -42,16 +51,12 @@ import Members from "../components/Members.astro";
   <!-- 🔷 封面視覺 (Hero Section) - 1920x800 完美比例零裁切版 -->
   <header class="relative w-full bg-[#0f172a] flex flex-col lg:block lg:aspect-[12/5] overflow-hidden border-b-4 border-blue-700">
     
-    <!-- 輪播圖片容器 (手機版：獨立佔據上方並保持 12:5；電腦版：變為背景滿版並保持 12:5) -->
+    <!-- 輪播圖片容器 -->
     <div id="hero-slider" class="relative w-full aspect-[12/5] lg:absolute lg:inset-0 z-10 group/slider">
-      
-      <!-- 只要圖片是 1920x800 (12:5)，這裡的 object-cover 就會達成 100% 完美貼合、0% 裁切 -->
       <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
       <img src="/images/hero-bg-2.png" alt="實驗室背景 2" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <!-- <img src="/images/hero-bg-3.png" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop';" /> -->
       
       <!-- 左右切換按鈕 -->
-      <!-- 手機版常駐顯示 (觸控無hover)，電腦版預設隱藏，滑鼠移入圖片時才顯示 -->
       <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -66,14 +71,14 @@ import Members from "../components/Members.astro";
     </div>
 
     <!-- 文字內容區塊 -->
-    <!-- pointer-events-none 確保滑鼠可以穿透文字區塊，去點擊後方的切換按鈕 -->
     <div class="relative z-20 w-full max-w-7xl mx-auto px-6 py-12 lg:py-0 lg:absolute lg:inset-0 lg:flex lg:items-center pointer-events-none">
       <div id="hero-text" class="w-full text-white text-center md:text-left transition-opacity duration-1000 ease-in-out opacity-100 pointer-events-auto">
         <div class="inline-block px-3 py-1 mb-6 border border-slate-400 text-slate-200 text-xs font-bold tracking-widest uppercase rounded bg-slate-900/50 backdrop-blur-md">
           Intelligent Cyber-Physical Systems Laboratory
         </div>
+        <!-- 修改此處：i小寫且斜體，並套用 Times New Roman -->
         <h1 class="text-5xl lg:text-7xl font-extrabold mb-6 tracking-tight drop-shadow-lg">
-          ICPS Lab
+          <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em] mr-1">i</span>CPS Lab
         </h1>
         <p class="text-lg lg:text-xl text-slate-100 font-light max-w-3xl leading-relaxed drop-shadow-md mx-auto md:mx-0">
           致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究與產業應用落地。
@@ -84,13 +89,8 @@ import Members from "../components/Members.astro";
 
   <!-- 🔷 網站主體區域 -->
   <main class="max-w-7xl mx-auto px-6 py-16 space-y-20 relative z-20">
-    <!-- 👇 呼叫最新消息元件 -->
     <News />
-
-    <!-- 👇 呼叫影音專區元件 -->
     <Videos />
-
-    <!-- 👇 呼叫團隊成員元件 -->
     <Members />
   </main>
 
@@ -98,7 +98,8 @@ import Members from "../components/Members.astro";
   <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
-        <h2 class="text-2xl font-bold text-white tracking-wider mb-2">ICPS Lab</h2>
+        <!-- 修改此處：i小寫且斜體，並套用 Times New Roman -->
+        <h2 class="text-2xl font-bold text-white tracking-wider mb-2"><span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em] mr-0.5">i</span>CPS Lab</h2>
         <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
         <p class="text-sm text-slate-400 leading-relaxed max-w-md">
           Intelligent Cyber-Physical Systems Laboratory <br/>
@@ -113,7 +114,8 @@ import Members from "../components/Members.astro";
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-slate-500">&copy; 2026 ICPS Lab, National Kaohsiung University of Science and Technology.</p>
+      <!-- 修改此處：i小寫且斜體，並套用 Times New Roman -->
+      <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
       <p class="text-xs text-slate-500">All rights reserved.</p>
     </div>
   </footer>
