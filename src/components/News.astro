@@ -158,6 +158,18 @@ const newsData = [
         const icon = this.querySelector('.toggle-icon');
         const isExpanded = content.getAttribute('data-expanded') === 'true';
 
+        // 🟢 新增：如果要展開當前項目，先收起所有其他已展開的項目
+        if (!isExpanded) {
+          const allExpanded = document.querySelectorAll('#news-list [data-expanded="true"]');
+          allExpanded.forEach(expandedContent => {
+            expandedContent.style.gridTemplateRows = '0fr';
+            expandedContent.setAttribute('data-expanded', 'false');
+            const expandedIcon = expandedContent.previousElementSibling.querySelector('.toggle-icon');
+            if (expandedIcon) expandedIcon.style.transform = 'rotate(0deg)';
+          });
+        }
+
+        // 切換當前項目的狀態
         if (!isExpanded) {
           content.style.gridTemplateRows = '1fr';
           content.setAttribute('data-expanded', 'true');
@@ -208,6 +220,8 @@ const newsData = [
       newsItems.forEach((item, index) => {
         const content = item.querySelector('[data-expanded]');
         const icon = item.querySelector('.toggle-icon');
+        
+        // 換頁時自動收合所有展開的項目
         if(content && content.getAttribute('data-expanded') === 'true') {
           content.style.gridTemplateRows = '0fr';
           content.setAttribute('data-expanded', 'false');
