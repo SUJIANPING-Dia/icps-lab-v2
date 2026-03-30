@@ -3,51 +3,75 @@
 // 🔹 最新消息資料區 (新增公告只需在這裡加入)
 // ==========================================
 const newsData = [
-{
-  date: "2026.03.01",
-  tag: "系統公告",
-  tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
-  title: "ICPS Lab 官方網站正式上線",
-  img: "/images/news-placeholder.jpg",
-  imgAlt: "實驗室大合照",
-  content: `
-    <p class="text-base font-semibold text-slate-900 mb-4">
-      ICPS Lab 智慧網宇實體系統實驗室官方網站正式啟用。
-    </p>
+  {
+    date: "2026.03.15",
+    tag: "活動花絮",
+    tagTheme: "text-emerald-800 bg-emerald-50 border-emerald-200",
+    title: "【活動花絮】實驗室慶功聚餐！狂賀「第21屆數位訊號處理創思設計競賽」榮獲一亞三佳作",
+    img: "/images/momo-paradise-dinner.jpg",
+    imgAlt: "ICPS Lab 實驗室成員於 MO-MO-PARADISE 慶功聚餐大合照",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        為了慶祝實驗室團隊在「第21屆數位訊號處理創思設計競賽」中取得優異成績，張教授特別舉辦了慶功聚餐，慰勞大家這段時間備賽的辛勞！
+      </p>
 
-    <p class="mb-6 text-slate-700">
-      本網站將作為實驗室對外資訊與交流平台，提供成員介紹與最新消息更新。
-    </p>
+      <p class="mb-6 text-slate-700">
+        在此次競賽中，ICPS Lab 團隊展現了扎實的研發實力與創新思維，一舉斬獲了<strong>一個第二名（亞軍）</strong>以及<strong>三個佳作</strong>的亮眼殊榮。這份佳績不僅是對參賽同學們技術能力的肯定，更是實驗室全體成員互相支持、共同努力的成果。
+      </p>
 
-    <div class="space-y-6">
-
-      <!-- 區塊1 -->
-      <div class="border-l-4 border-blue-500 pl-4">
-        <h3 class="font-semibold text-blue-700 mb-2">📡 平台內容</h3>
-        <p class="text-slate-700">
-          提供實驗室成員資訊與最新動態，讓訪客能快速了解 ICPS Lab 的研究團隊與發展。
-        </p>
+      <div class="space-y-6">
+        <div class="border border-slate-200 bg-slate-50 rounded p-4 border-l-4 border-l-emerald-500">
+          <h3 class="font-semibold text-emerald-800 mb-2">🥩 歡聚壽喜燒：共享榮耀與傳承經驗</h3>
+          <p class="text-slate-700 mb-2">
+            賽後，大家帶著輕鬆愉快的心情一同前往 MO-MO-PARADISE 享用豐盛的壽喜燒。席間氣氛熱絡，參賽團隊熱情分享了從發想、實作到最終上場比賽的甘苦談與寶貴經驗。
+          </p>
+          <p class="text-slate-700">
+            這次的小聚餐不僅讓平時埋首於研究的大家得以放鬆身心，也讓實驗室成員間的感情更加緊密。吃飽喝足後，我們將帶著滿滿的動力回到實驗室，期許未來 ICPS Lab 能持續突破自我，在各項挑戰中再創佳績！
+          </p>
+        </div>
       </div>
+    `
+  },
+  {
+    date: "2026.03.01",
+    tag: "系統公告",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "ICPS Lab 官方網站正式上線",
+    img: "/images/news-placeholder.jpg",
+    imgAlt: "實驗室大合照",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        ICPS Lab 智慧網宇實體系統實驗室官方網站正式啟用。
+      </p>
 
-      <!-- 區塊2 -->
-      <div class="border-l-4 border-blue-500 pl-4">
-        <h3 class="font-semibold text-blue-700 mb-2">🧪 研究領域</h3>
-        <p class="text-slate-700">
-          涵蓋人工智慧物聯網（AIoT）、邊緣運算及智慧應用等相關研究方向。
-        </p>
+      <p class="mb-6 text-slate-700">
+        本網站將作為實驗室對外資訊與交流平台，提供成員介紹與最新消息更新。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">📡 平台內容</h3>
+          <p class="text-slate-700">
+            提供實驗室成員資訊與最新動態，讓訪客能快速了解 ICPS Lab 的研究團隊與發展。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">🧪 研究領域</h3>
+          <p class="text-slate-700">
+            涵蓋人工智慧物聯網（AIoT）、邊緣運算及智慧應用等相關研究方向。
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">📢 後續更新</h3>
+          <p class="text-slate-700">
+            未來將持續於本站發布實驗室最新消息與相關資訊，歡迎定期關注。
+          </p>
+        </div>
       </div>
-
-      <!-- 區塊3 -->
-      <div class="border border-slate-200 bg-slate-50 rounded p-4">
-        <h3 class="font-semibold text-slate-800 mb-2">📢 後續更新</h3>
-        <p class="text-slate-700">
-          未來將持續於本站發布實驗室最新消息與相關資訊，歡迎定期關注。
-        </p>
-      </div>
-
-    </div>
-  `
-},
+    `
+  },
   {
     date: "2026.02.15",
     tag: "招生資訊",
@@ -76,8 +100,7 @@ const newsData = [
         <p class="text-xs text-slate-500 mt-2">※ 信件主旨請註明：「[加入實驗室] 姓名 - 欲報考碩士班/專題生」，我們收到後將盡快與您安排實驗室參觀與面談時間！</p>
       </div>
     `
-  },
-
+  }
 ];
 ---
 
@@ -91,7 +114,6 @@ const newsData = [
   </div>
 
   <div class="bg-white border border-slate-200 rounded-sm shadow-sm">
-    <!-- 最新消息列表 (透過上方的陣列自動渲染) -->
     <ul id="news-list" class="divide-y divide-slate-100">
       {newsData.map((item) => (
         <li class="group news-item">
@@ -115,7 +137,6 @@ const newsData = [
                     <span class="text-slate-400 font-medium">[ {item.imgAlt} ]</span>
                   </div>
                 )}
-                <!-- 載入文章 HTML 內容 -->
                 <div set:html={item.content}></div>
               </div>
             </div>
@@ -125,14 +146,11 @@ const newsData = [
     </ul>
   </div>
 
-  <!-- 分頁控制按鈕區域 -->
   <div id="pagination-controls" class="flex justify-center items-center mt-8 gap-2"></div>
 </section>
 
-<!-- 🔷 展開式手風琴與分頁 控制腳本 -->
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
-    // 手風琴展開功能
     const toggleButtons = document.querySelectorAll('.news-toggle-btn');
     toggleButtons.forEach(button => {
       button.addEventListener('click', function() {
@@ -152,7 +170,6 @@ const newsData = [
       });
     });
 
-    // 分頁功能 (一頁 5 筆)
     const itemsPerPage = 5;
     let currentPage = 1;
     const newsItems = Array.from(document.querySelectorAll('.news-item'));
@@ -180,7 +197,6 @@ const newsData = [
       paginationContainer.innerHTML = html;
     }
 
-    // 加入 scrollToNews 參數，預設為 true。如果為 false 就不執行視角滑動
     window.changePage = function(page, scrollToNews = true) {
       const totalPages = Math.ceil(newsItems.length / itemsPerPage);
       if (page < 1 || page > totalPages) return;
@@ -207,7 +223,6 @@ const newsData = [
 
       renderPagination();
 
-      // 只有在 scrollToNews 為 true 時 (代表使用者手動點擊)，才滑動螢幕
       if (scrollToNews) {
         const newsSection = document.getElementById('news');
         const elementPosition = newsSection.getBoundingClientRect().top;
@@ -216,7 +231,6 @@ const newsData = [
       }
     };
 
-    // 網頁初始載入：顯示第一頁，傳入 false 避免觸發自動滑動
     window.changePage(1, false);
   });
 </script>
