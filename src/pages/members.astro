@@ -194,10 +194,10 @@ const internationals = [];
         <!-- 頁籤選單 -->
         <div class="border-b border-slate-200 mb-8 overflow-x-auto">
           <nav class="flex space-x-2 md:space-x-8 min-w-max px-1" aria-label="Tabs">
-            <button class="tab-btn border-blue-700 text-blue-700 active whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-phd">
+            <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-phd">
               博士班 ({phds.length})
             </button>
-            <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-master">
+            <button class="tab-btn border-blue-700 text-blue-700 active whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-master">
               碩士班 ({masters.length})
             </button>
             <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-undergrad">
@@ -213,7 +213,7 @@ const internationals = [];
         <div class="min-h-[300px]"> <!-- 給予最小高度避免切換時畫面跳動 -->
           
           <!-- [博士班] 內容 -->
-          <div id="tab-phd" class="tab-content block animate-[fadeIn_0.3s_ease-in-out]">
+          <div id="tab-phd" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             {phds.length > 0 ? (
               <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {phds.map((person) => (
@@ -239,7 +239,7 @@ const internationals = [];
           </div>
 
           <!-- [碩士班] 內容 -->
-          <div id="tab-master" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
+          <div id="tab-master" class="tab-content block animate-[fadeIn_0.3s_ease-in-out]">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
               {masters.map((person) => (
                 <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
