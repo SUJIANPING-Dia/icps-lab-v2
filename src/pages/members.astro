@@ -14,6 +14,7 @@ const assistants = [
 // 👇 博士班目前無成員，清空陣列
 const phds = [];
 
+// 👇 碩士生調整為 7 人
 const masters = [
   { name: "碩士生 01", desc: "智慧工廠邊緣運算系統", img: "/images/member-placeholder.png" },
   { name: "碩士生 02", desc: "擴增實境與無人機協作", img: "/images/member-placeholder.png" },
@@ -21,12 +22,10 @@ const masters = [
   { name: "碩士生 04", desc: "產線瑕疵自動光學檢測", img: "/images/member-placeholder.png" },
   { name: "碩士生 05", desc: "低功耗藍牙室內定位", img: "/images/member-placeholder.png" },
   { name: "碩士生 06", desc: "5G 專網與機器人通訊", img: "/images/member-placeholder.png" },
-  { name: "碩士生 07", desc: "聯邦學習於醫療資料隱私", img: "/images/member-placeholder.png" },
-  { name: "碩士生 08", desc: "邊緣裝置上之輕量化 AI", img: "/images/member-placeholder.png" },
-  { name: "碩士生 09", desc: "混合實境手術導航系統", img: "/images/member-placeholder.png" },
-  { name: "碩士生 10", desc: "無人自走車避障演算法", img: "/images/member-placeholder.png" }
+  { name: "碩士生 07", desc: "聯邦學習於醫療資料隱私", img: "/images/member-placeholder.png" }
 ];
 
+// 👇 大學部調整為 20 人
 const undergrads = [
   { name: "專題生 01", desc: "穿戴式裝置訊號擷取" },
   { name: "專題生 02", desc: "室內定位系統演算法實作" },
@@ -39,16 +38,20 @@ const undergrads = [
   { name: "專題生 09", desc: "跌倒偵測演算法效能評估" },
   { name: "專題生 10", desc: "智慧病房儀表板前端切版" },
   { name: "專題生 11", desc: "無人機影像回傳延遲測試" },
-  { name: "專題生 12", desc: "ROS 機器人作業系統通訊整合" }
+  { name: "專題生 12", desc: "ROS 機器人作業系統通訊整合" },
+  { name: "專題生 13", desc: "無人機影像辨識技術" },
+  { name: "專題生 14", desc: "AI 邊緣運算平台建置" },
+  { name: "專題生 15", desc: "智慧工廠感測器整合" },
+  { name: "專題生 16", desc: "醫療數據統計與分析" },
+  { name: "專題生 17", desc: "混合實境互動介面設計" },
+  { name: "專題生 18", desc: "物聯網通訊協定測試" },
+  { name: "專題生 19", desc: "機器學習模型優化" },
+  { name: "專題生 20", desc: "智慧病房系統後端開發" }
 ];
 
-// 🔹 新增：歷屆校友資料
-const alumni = [
-  { name: "畢業生 A", desc: "任職於 台積電 TSMC", img: "/images/member-placeholder.png" },
-  { name: "畢業生 B", desc: "任職於 聯發科 MediaTek", img: "/images/member-placeholder.png" },
-  { name: "畢業生 C", desc: "美國卡內基梅隆大學 攻讀博士", img: "/images/member-placeholder.png" },
-  { name: "畢業生 D", desc: "自行創業", img: "/images/member-placeholder.png" }
-];
+// 👇 外籍生目前無成員，清空陣列
+const internationals = [];
+
 ---
 
 <html lang="zh-TW" class="scroll-smooth">
@@ -127,9 +130,10 @@ const alumni = [
 
       <hr class="border-slate-200" />
 
-      <!-- 🔹 學生與校友 (使用頁籤分類) -->
+      <!-- 🔹 學生 (使用頁籤分類) -->
       <div>
-        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">學生與校友 Students & Alumni</h3>
+        <!-- 移除校友字樣 -->
+        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">學生 Students</h3>
         
         <!-- 頁籤選單 -->
         <div class="border-b border-slate-200 mb-8 overflow-x-auto">
@@ -143,8 +147,8 @@ const alumni = [
             <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-undergrad">
               大學部 ({undergrads.length})
             </button>
-            <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-alumni">
-              歷屆校友 ({alumni.length})
+            <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-international">
+              外籍生 ({internationals.length})
             </button>
           </nav>
         </div>
@@ -167,7 +171,6 @@ const alumni = [
                 ))}
               </div>
             ) : (
-              <!-- 👇 新增：博士班無人時顯示的招募區塊 -->
               <div class="bg-slate-50 border-2 border-dashed border-slate-300 p-12 flex flex-col items-center justify-center text-center rounded-sm mx-auto max-w-3xl mt-4">
                 <span class="text-5xl mb-4">🎓</span>
                 <h4 class="text-xl font-bold text-slate-800 mb-3">目前無博士班成員</h4>
@@ -208,19 +211,30 @@ const alumni = [
             </div>
           </div>
 
-          <!-- [歷屆校友] 內容 -->
-          <div id="tab-alumni" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {alumni.map((person) => (
-                <div class="bg-slate-50 border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-slate-300 transition rounded-sm opacity-90 hover:opacity-100">
-                  <img src={person.img} alt={person.name} class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0 grayscale" onerror="this.src='/images/default-avatar.png';" />
-                  <div>
-                    <h4 class="font-bold text-slate-700 text-sm">{person.name}</h4>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
+          <!-- [外籍生] 內容 -->
+          <div id="tab-international" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
+            {internationals.length > 0 ? (
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {internationals.map((person) => (
+                  <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+                    <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
+                      <p class="text-xs text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div class="bg-slate-50 border-2 border-dashed border-slate-300 p-12 flex flex-col items-center justify-center text-center rounded-sm mx-auto max-w-3xl mt-4">
+                <span class="text-5xl mb-4">🌍</span>
+                <h4 class="text-xl font-bold text-slate-800 mb-3">目前無外籍生 (No International Students Currently)</h4>
+                <p class="text-slate-500 text-base leading-relaxed">
+                  Welcome international students to join us! We focus on AIoT, Medical IoT, and Industrial IoT.<br/>
+                  <span class="text-blue-600 font-bold mt-3 inline-block bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">🔥 International Students Recruiting / 外籍生熱烈招募中 🔥</span>
+                </p>
+              </div>
+            )}
           </div>
 
         </div>
