@@ -5,43 +5,43 @@ import "../styles/global.css";
 // 🔹 實驗室成員資料區 (新增成員只需在這裡加入)
 // ==========================================
 const assistants = [
-  { name: "助理 A", desc: "計畫管理", img: "/images/member-placeholder.png" },
-  { name: "助理 B", desc: "系統開發", img: "/images/member-placeholder.png" },
-  { name: "助理 C", desc: "行政庶務", img: "/images/member-placeholder.png" },
-  { name: "助理 D", desc: "軟體工程", img: "/images/member-placeholder.png" }
+  { name: "助理 A", desc: "計畫管理", img: "/images/member-placeholder.png" },
+  { name: "助理 B", desc: "系統開發", img: "/images/member-placeholder.png" },
+  { name: "助理 C", desc: "行政庶務", img: "/images/member-placeholder.png" },
+  { name: "助理 D", desc: "軟體工程", img: "/images/member-placeholder.png" }
 ];
 
 const phds = [
-  { name: "博士生 A", desc: "人工智慧醫療聯網、深度學習影像辨識", img: "/images/member-placeholder.png" },
-  { name: "博士生 B", desc: "智慧工廠架構、邊緣運算最佳化", img: "/images/member-placeholder.png" }
+  { name: "博士生 A", desc: "人工智慧醫療聯網、深度學習影像辨識", img: "/images/member-placeholder.png" },
+  { name: "博士生 B", desc: "智慧工廠架構、邊緣運算最佳化", img: "/images/member-placeholder.png" }
 ];
 
 const masters = [
-  { name: "碩士生 01", desc: "智慧工廠邊緣運算系統", img: "/images/member-placeholder.png" },
-  { name: "碩士生 02", desc: "擴增實境與無人機協作", img: "/images/member-placeholder.png" },
-  { name: "碩士生 03", desc: "穿戴式心電圖異常偵測", img: "/images/member-placeholder.png" },
-  { name: "碩士生 04", desc: "產線瑕疵自動光學檢測", img: "/images/member-placeholder.png" },
-  { name: "碩士生 05", desc: "低功耗藍牙室內定位", img: "/images/member-placeholder.png" },
-  { name: "碩士生 06", desc: "5G 專網與機器人通訊", img: "/images/member-placeholder.png" },
-  { name: "碩士生 07", desc: "聯邦學習於醫療資料隱私", img: "/images/member-placeholder.png" },
-  { name: "碩士生 08", desc: "邊緣裝置上之輕量化 AI", img: "/images/member-placeholder.png" },
-  { name: "碩士生 09", desc: "混合實境手術導航系統", img: "/images/member-placeholder.png" },
-  { name: "碩士生 10", desc: "無人自走車避障演算法", img: "/images/member-placeholder.png" }
+  { name: "碩士生 01", desc: "智慧工廠邊緣運算系統", img: "/images/member-placeholder.png" },
+  { name: "碩士生 02", desc: "擴增實境與無人機協作", img: "/images/member-placeholder.png" },
+  { name: "碩士生 03", desc: "穿戴式心電圖異常偵測", img: "/images/member-placeholder.png" },
+  { name: "碩士生 04", desc: "產線瑕疵自動光學檢測", img: "/images/member-placeholder.png" },
+  { name: "碩士生 05", desc: "低功耗藍牙室內定位", img: "/images/member-placeholder.png" },
+  { name: "碩士生 06", desc: "5G 專網與機器人通訊", img: "/images/member-placeholder.png" },
+  { name: "碩士生 07", desc: "聯邦學習於醫療資料隱私", img: "/images/member-placeholder.png" },
+  { name: "碩士生 08", desc: "邊緣裝置上之輕量化 AI", img: "/images/member-placeholder.png" },
+  { name: "碩士生 09", desc: "混合實境手術導航系統", img: "/images/member-placeholder.png" },
+  { name: "碩士生 10", desc: "無人自走車避障演算法", img: "/images/member-placeholder.png" }
 ];
 
 const undergrads = [
-  { name: "專題生 01", desc: "穿戴式裝置訊號擷取" },
-  { name: "專題生 02", desc: "室內定位系統演算法實作" },
-  { name: "專題生 03", desc: "工廠機台數據爬蟲系統" },
-  { name: "專題生 04", desc: "物聯網溫濕度感測介面設計" },
-  { name: "專題生 05", desc: "醫療影像初步標註與清洗" },
-  { name: "專題生 06", desc: "AR 眼鏡基礎互動模組" },
-  { name: "專題生 07", desc: "邊緣端 YOLO 模型壓縮測試" },
-  { name: "專題生 08", desc: "藍牙防丟器之韌體開發" },
-  { name: "專題生 09", desc: "跌倒偵測演算法效能評估" },
-  { name: "專題生 10", desc: "智慧病房儀表板前端切版" },
-  { name: "專題生 11", desc: "無人機影像回傳延遲測試" },
-  { name: "專題生 12", desc: "ROS 機器人作業系統通訊整合" }
+  { name: "專題生 01", desc: "穿戴式裝置訊號擷取" },
+  { name: "專題生 02", desc: "室內定位系統演算法實作" },
+  { name: "專題生 03", desc: "工廠機台數據爬蟲系統" },
+  { name: "專題生 04", desc: "物聯網溫濕度感測介面設計" },
+  { name: "專題生 05", desc: "醫療影像初步標註與清洗" },
+  { name: "專題生 06", desc: "AR 眼鏡基礎互動模組" },
+  { name: "專題生 07", desc: "邊緣端 YOLO 模型壓縮測試" },
+  { name: "專題生 08", desc: "藍牙防丟器之韌體開發" },
+  { name: "專題生 09", desc: "跌倒偵測演算法效能評估" },
+  { name: "專題生 10", desc: "智慧病房儀表板前端切版" },
+  { name: "專題生 11", desc: "無人機影像回傳延遲測試" },
+  { name: "專題生 12", desc: "ROS 機器人作業系統通訊整合" }
 ];
 
 // 🔹 新增：歷屆校友資料
@@ -55,38 +55,38 @@ const alumni = [
 
 <html lang="zh-TW" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/images/lab-logo.png" />
-  <title>實驗室成員 | iCPS Lab 智慧網宇實體系統實驗室</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/images/lab-logo.png" />
+  <title>實驗室成員 | iCPS Lab 智慧網宇實體系統實驗室</title>
 </head>
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
 
-  <!-- 🔷 頂部導覽列 (Navbar) -->
-  <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
-    <div class="max-w-7xl mx-auto px-6 flex items-center justify-between py-4">
-      <div class="flex items-center gap-4 sm:gap-6 lg:gap-8 min-w-0">
-        <!-- 高科大 Logo -->
-        <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-8 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
-        </a>
-        <!-- 分隔線 -->
-        <div class="hidden sm:block h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
-        <!-- 實驗室 Logo -->
-        <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-9 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
-        </a>
-      </div>
+  <!-- 🔷 頂部導覽列 (Navbar) - 已同步首頁的修復設定 -->
+  <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
+      <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
+        <!-- 高科大 Logo -->
+        <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
+          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
+        </a>
+        <!-- 分隔線 -->
+        <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
+        <!-- 實驗室 Logo -->
+        <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
+          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
+        </a>
+      </div>
 
-      <!-- 右側導覽連結 -->
-      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-        <a href="/#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
-        <a href="/#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
-        <a href="/members" class="text-blue-800 border-b-2 border-blue-800 pb-1">實驗室成員</a>
-      </div>
-    </div>
-  </nav>
+      <!-- 右側導覽連結 -->
+      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
+        <a href="/#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
+        <a href="/#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
+        <a href="/members" class="text-blue-800 border-b-2 border-blue-800 pb-1">實驗室成員</a>
+      </div>
+    </div>
+  </nav>
 
   <!-- 🔷 頁面標題區 -->
   <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
@@ -98,8 +98,8 @@ const alumni = [
     </div>
   </header>
 
-  <!-- 🔷 網站主體區域 -->
-  <main class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
+  <!-- 🔷 網站主體區域 -->
+  <main class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
 
     <!-- 回首頁按鈕 -->
     <div class="mb-10">
@@ -109,23 +109,23 @@ const alumni = [
       </a>
     </div>
 
-    <div class="space-y-16">
-      
-      <!-- 🔹 專任助理 (獨立顯示於最上方) -->
-      <div>
-        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
-          {assistants.map((person) => (
-            <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
-              <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
-              <div>
-                <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
-                <p class="text-xs text-slate-500 mt-0.5">{person.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div class="space-y-16">
+      
+      <!-- 🔹 專任助理 (獨立顯示於最上方) -->
+      <div>
+        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+          {assistants.map((person) => (
+            <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+              <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
+              <div>
+                <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
+                <p class="text-xs text-slate-500 mt-0.5">{person.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       <hr class="border-slate-200" />
 
@@ -157,92 +157,91 @@ const alumni = [
           <!-- [博士班] 內容 -->
           <div id="tab-phd" class="tab-content block animate-[fadeIn_0.3s_ease-in-out]">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {phds.map((person) => (
-                <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
-                  <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
-                  <div>
-                    <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
-                    <p class="text-xs text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+              {phds.map((person) => (
+                <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+                  <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
+                    <p class="text-xs text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <!-- [碩士班] 內容 -->
           <div id="tab-master" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
-              {masters.map((person) => (
-                <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
-                  <img src={person.img} alt={person.name} class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
-                  <div>
-                    <h4 class="font-bold text-slate-900 text-sm">{person.name}</h4>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">{person.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+              {masters.map((person) => (
+                <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+                  <img src={person.img} alt={person.name} class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
+                  <div>
+                    <h4 class="font-bold text-slate-900 text-sm">{person.name}</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">{person.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
           <!-- [大學部專題生] 內容 -->
           <div id="tab-undergrad" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
-              {undergrads.map((person) => (
-                <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
-                  <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
-                    <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> {person.name}
-                  </h4>
-                  <p class="text-[11px] text-slate-500 leading-tight">專題：{person.desc}</p>
-                </div>
-              ))}
-            </div>
+              {undergrads.map((person) => (
+                <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
+                  <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
+                    <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> {person.name}
+                  </h4>
+                  <p class="text-[11px] text-slate-500 leading-tight">專題：{person.desc}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
           <!-- [歷屆校友] 內容 -->
           <div id="tab-alumni" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {alumni.map((person) => (
-                <div class="bg-slate-50 border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-slate-300 transition rounded-sm opacity-90 hover:opacity-100">
-                  <img src={person.img} alt={person.name} class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0 grayscale" onerror="this.src='/images/default-avatar.png';" />
-                  <div>
-                    <h4 class="font-bold text-slate-700 text-sm">{person.name}</h4>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
+              {alumni.map((person) => (
+                <div class="bg-slate-50 border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-slate-300 transition rounded-sm opacity-90 hover:opacity-100">
+                  <img src={person.img} alt={person.name} class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0 grayscale" onerror="this.src='/images/default-avatar.png';" />
+                  <div>
+                    <h4 class="font-bold text-slate-700 text-sm">{person.name}</h4>
+                    <p class="text-[11px] text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
 
         </div>
       </div>
 
-    </div>
-  </main>
+    </div>
+  </main>
 
-  <!-- 🔷 頁尾 (Footer) -->
-  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-      <div class="md:w-1/2">
-        <!-- 修改此處：i小寫且斜體，並套用 Times New Roman -->
-        <h2 class="text-2xl font-bold text-white tracking-wider mb-2"><span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em] mr-0.5">i</span>CPS Lab</h2>
-        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
-        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-          Intelligent Cyber-Physical Systems Laboratory <br/>
-          國立高雄科技大學 (NKUST)
-        </p>
-      </div>
-      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
-        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
-      </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
-      <p class="text-xs text-slate-500">All rights reserved.</p>
-    </div>
-  </footer>
+  <!-- 🔷 頁尾 (Footer) -->
+  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
+      <div class="md:w-1/2">
+        <h2 class="text-2xl font-bold text-white tracking-wider mb-2"><span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em] mr-0.5">i</span>CPS Lab</h2>
+        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+          Intelligent Cyber-Physical Systems Laboratory <br/>
+          國立高雄科技大學 (NKUST)
+        </p>
+      </div>
+      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
+        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
+      <p class="text-xs text-slate-500">All rights reserved.</p>
+    </div>
+  </footer>
 
   <!-- 🔷 控制頁籤切換的 JavaScript -->
   <script>
