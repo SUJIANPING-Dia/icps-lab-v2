@@ -11,10 +11,8 @@ const assistants = [
   { name: "助理 D", desc: "軟體工程", img: "/images/member-placeholder.png" }
 ];
 
-const phds = [
-  { name: "博士生 A", desc: "人工智慧醫療聯網、深度學習影像辨識", img: "/images/member-placeholder.png" },
-  { name: "博士生 B", desc: "智慧工廠架構、邊緣運算最佳化", img: "/images/member-placeholder.png" }
-];
+// 👇 博士班目前無成員，清空陣列
+const phds = [];
 
 const masters = [
   { name: "碩士生 01", desc: "智慧工廠邊緣運算系統", img: "/images/member-placeholder.png" },
@@ -156,17 +154,29 @@ const alumni = [
           
           <!-- [博士班] 內容 -->
           <div id="tab-phd" class="tab-content block animate-[fadeIn_0.3s_ease-in-out]">
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {phds.map((person) => (
-                <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
-                  <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
-                  <div>
-                    <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
-                    <p class="text-xs text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
+            {phds.length > 0 ? (
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {phds.map((person) => (
+                  <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
+                    <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
+                    <div>
+                      <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
+                      <p class="text-xs text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <!-- 👇 新增：博士班無人時顯示的招募區塊 -->
+              <div class="bg-slate-50 border-2 border-dashed border-slate-300 p-12 flex flex-col items-center justify-center text-center rounded-sm mx-auto max-w-3xl mt-4">
+                <span class="text-5xl mb-4">🎓</span>
+                <h4 class="text-xl font-bold text-slate-800 mb-3">目前無博士班成員</h4>
+                <p class="text-slate-500 text-base leading-relaxed">
+                  歡迎對雲端智慧物聯網系統、AI醫療或製造聯網等前瞻技術有興趣的菁英加入！<br/>
+                  <span class="text-blue-600 font-bold mt-3 inline-block bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">🔥 博士班熱烈招募中 🔥</span>
+                </p>
+              </div>
+            )}
           </div>
 
           <!-- [碩士班] 內容 -->
