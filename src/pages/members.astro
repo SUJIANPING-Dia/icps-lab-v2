@@ -88,7 +88,7 @@ const internationals = [];
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
 
-  <!-- 🔷 頂部導覽列 (Navbar) - 已同步首頁的修復設定 -->
+  <!-- 🔷 頂部導覽列 (Navbar) -->
   <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
       <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
@@ -115,7 +115,6 @@ const internationals = [];
 
   <!-- 🔷 頁面標題區 -->
   <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
-    <!-- 簡單的背景裝飾 -->
     <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
     <div class="relative z-10">
       <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">實驗室成員</h1>
@@ -136,17 +135,15 @@ const internationals = [];
 
     <div class="space-y-16">
       
-      <!-- 🔹 專任助理 (獨立顯示於最上方) -->
+      <!-- 🔹 專任助理 (最上層 - 最大張圖卡) -->
       <div>
         <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
-        <!-- 保持三欄排版 -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {assistants.map((person) => (
             <div class="bg-white border border-slate-200 p-5 flex flex-col sm:flex-row items-start gap-5 hover:shadow-md hover:border-blue-300 transition rounded-sm">
               <img src={person.img} alt={person.name} class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
               
               <div class="flex-1 w-full">
-                <!-- 姓名與職稱 -->
                 <div class="mb-4">
                   <h4 class="font-bold text-slate-900 text-lg leading-tight">{person.name}</h4>
                   <span class="inline-block mt-1.5 text-[11px] font-bold tracking-widest text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
@@ -154,7 +151,6 @@ const internationals = [];
                   </span>
                 </div>
                 
-                <!-- 工作職掌 -->
                 <div class="mb-4">
                   <p class="text-xs font-bold text-slate-500 mb-2 flex items-center gap-1.5">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
@@ -170,7 +166,6 @@ const internationals = [];
                   </ul>
                 </div>
                 
-                <!-- 聯絡資訊 -->
                 <div class="space-y-2 pt-4 border-t border-slate-100 text-[13px] text-slate-600">
                   <p class="flex items-center gap-2">
                     <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -182,7 +177,6 @@ const internationals = [];
                   </p>
                 </div>
               </div>
-              
             </div>
           ))}
         </div>
@@ -213,18 +207,18 @@ const internationals = [];
         </div>
 
         <!-- 頁籤內容區塊 -->
-        <div class="min-h-[300px]"> <!-- 給予最小高度避免切換時畫面跳動 -->
+        <div class="min-h-[300px]">
           
-          <!-- [博士班] 內容 -->
+          <!-- [博士班] 內容 (中等圖卡) -->
           <div id="tab-phd" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             {phds.length > 0 ? (
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {phds.map((person) => (
-                  <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
-                    <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
-                    <div>
-                      <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
-                      <p class="text-xs text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
+                  <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm">
+                    <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
+                    <div class="flex-1">
+                      <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
+                      <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.desc}</p>
                     </div>
                   </div>
                 ))}
@@ -241,22 +235,22 @@ const internationals = [];
             )}
           </div>
 
-          <!-- [碩士班] 內容 -->
+          <!-- [碩士班] 內容 (中等圖卡：比大學部大，比助理小) -->
           <div id="tab-master" class="tab-content block animate-[fadeIn_0.3s_ease-in-out]">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {masters.map((person) => (
-                <div class="bg-white border border-slate-200 p-3.5 flex items-center gap-3 hover:shadow-md hover:border-blue-200 transition rounded-sm">
-                  <img src={person.img} alt={person.name} class="w-12 h-12 rounded-full object-cover border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
-                  <div>
-                    <h4 class="font-bold text-slate-900 text-sm">{person.name}</h4>
-                    <p class="text-[11px] text-slate-500 mt-0.5 leading-tight line-clamp-2">{person.desc}</p>
+                <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm">
+                  <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
+                  <div class="flex-1">
+                    <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
+                    <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.desc}</p>
                   </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <!-- [大學部專題生] 內容 -->
+          <!-- [大學部專題生] 內容 (最小圖卡，無照片) -->
           <div id="tab-undergrad" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
               {undergrads.map((person) => (
@@ -270,16 +264,16 @@ const internationals = [];
             </div>
           </div>
 
-          <!-- [外籍生] 內容 -->
+          <!-- [外籍生] 內容 (比照碩博班中等圖卡) -->
           <div id="tab-international" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             {internationals.length > 0 ? (
-              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {internationals.map((person) => (
-                  <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 hover:shadow-md hover:border-blue-200 transition rounded-sm">
-                    <img src={person.img} alt={person.name} class="w-14 h-14 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0" onerror="this.src='/images/default-avatar.png';" />
-                    <div>
-                      <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
-                      <p class="text-xs text-slate-500 mt-0.5 leading-tight">{person.desc}</p>
+                  <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm">
+                    <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
+                    <div class="flex-1">
+                      <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
+                      <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed">{person.desc}</p>
                     </div>
                   </div>
                 ))}
