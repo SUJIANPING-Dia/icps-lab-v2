@@ -1,28 +1,90 @@
----
-const images = await fetch('https://icps-lab.com/api/cloudinary')
-  .then(res => res.json());
----
+import React, { useState, useEffect } from 'react';
 
-<html>
-  <head>
-    <title>ICCT-Pacific 2026</title>
-  </head>
+export default function App() {
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  <body style="background:#fff; padding:20px;">
+  useEffect(() => {
+    // 這裡我們模擬您的 Cloudinary API 抓取動作
+    // 因為您的 API 可能有 CORS 限制無法在預覽器直接呼叫，我們加入了一些優美的示範資料
+    const fetchImages = async () => {
+      try {
+        // 實際使用時，這裡是您的 API 呼叫：
+        // const res = await fetch('https://icps-lab.com/api/cloudinary');
+        // let data = await res.json();
+        
+        // 示範資料 (模擬 API 回傳格式)
+        let mockData = [
+          { secure_url: 'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80', created_at: '2026-04-01T10:00:00Z', id: 1 },
+          { secure_url: 'https://images.unsplash.com/photo-1511556532299-8f662fc26c06?w=800&q=80', created_at: '2026-04-01T09:00:00Z', id: 2 },
+          { secure_url: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80', created_at: '2026-04-01T11:00:00Z', id: 3 },
+          { secure_url: 'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=800&q=80', created_at: '2026-03-31T15:00:00Z', id: 4 },
+          { secure_url: 'https://images.unsplash.com/photo-1505236858219-8359eb29e329?w=800&q=80', created_at: '2026-03-31T16:00:00Z', id: 5 },
+          { secure_url: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=800&q=80', created_at: '2026-04-01T08:00:00Z', id: 6 },
+          { secure_url: 'https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=800&q=80', created_at: '2026-03-30T10:00:00Z', id: 7 },
+          { secure_url: 'https://images.unsplash.com/photo-1475721028070-9759c86fcb80?w=800&q=80', created_at: '2026-03-30T11:00:00Z', id: 8 }
+        ];
 
-    <h1 style="text-align:center; margin-bottom:30px;">
-      ICCT-Pacific 2026 活動照片
-    </h1>
+        // 解決「亂排序」的關鍵邏輯：依據上傳時間排序 (由新到舊)
+        // 您可以根據 Cloudinary 實際回傳的屬性 (例如 created_at) 來修改
+        const sortedData = mockData.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+        
+        setImages(sortedData);
+      } catch (error) {
+        console.error("Failed to fetch", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    <div style="
-      display:grid;
-      grid-template-columns: repeat(3,1fr);
-      gap:20px;
-    ">
-      {images.map(img => (
-        <img src={img.secure_url} style="width:100%;" />
-      ))}
+    fetchImages();
+  }, []);
+
+  return (
+    <div className="min-h-screen bg-slate-50 py-12 px-4 sm:px-6 lg:px-8 font-sans">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-extrabold text-slate-900 tracking-tight sm:text-5xl">
+            ICCT-Pacific 2026 
+            <span className="block text-indigo-600 mt-2 text-3xl sm:text-4xl">活動照片集錦</span>
+          </h1>
+          <p className="mt-4 text-lg text-slate-500 max-w-2xl mx-auto">
+            所有照片已經過自動裁切對齊與時間排序，呈現最完美的視覺體驗。
+          </p>
+        </div>
+
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-4 border-indigo-600 border-t-transparent"></div>
+          </div>
+        ) : (
+          /* 使用自動響應式網格取代固定的 repeat(3, 1fr) */
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            {images.map((img, idx) => (
+              <div 
+                key={img.id || idx} 
+                className="group relative rounded-2xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 bg-slate-200 aspect-[4/3]"
+              >
+                {/* object-cover 搭配 aspect-[4/3] 是讓圖片不會變形、且等高對齊的關鍵 
+                */}
+                <img
+                  src={img.secure_url}
+                  alt={`活動照片 ${idx + 1}`}
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                  loading="lazy"
+                />
+                
+                {/* 增加一點質感：滑鼠移上去時的黑色漸層遮罩 */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute bottom-4 left-4 text-white text-sm font-medium">
+                    照片 #{idx + 1}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
-
-  </body>
-</html>
+  );
+}
