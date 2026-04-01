@@ -4,43 +4,13 @@ import "../styles/global.css";
 // ==========================================
 // 🔹 活動花絮相簿資料區 (圖片卡片列表)
 // ==========================================
-// 💡 提示：只需填寫日期、標題、外部相簿連結，以及 Cloudinary 的封面圖片網址
+// 💡 提示：只需填寫日期、標題、相簿連結，以及 Cloudinary 的封面圖片網址
 const albums = [
   {
     date: "2026.03.15",
-    title: "2026 智慧物聯網國際學術研討會暨成果展",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-1.jpg", // 👈 將此處替換為您的 Cloudinary 圖片網址
-    link: "#" // 👈 請填寫外部相簿連結 (例如 Google 雲端硬碟或 Google 相簿)
-  },
-  {
-    date: "2025.12.20",
-    title: "實驗室期末聚餐暨專題發表會",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-2.jpg",
-    link: "#"
-  },
-  {
-    date: "2025.10.05",
-    title: "全國創新創業競賽 榮獲特優獎",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-3.jpg",
-    link: "#"
-  },
-  {
-    date: "2025.08.12",
-    title: "工研院產學合作企業參訪",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/hero-bg-1.jpg", 
-    link: "#"
-  },
-  {
-    date: "2025.06.10",
-    title: "113學年度 畢業生撥穗與送舊聚餐",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/hero-bg-2.jpg", 
-    link: "#"
-  },
-  {
-    date: "2025.01.15",
-    title: "年度計畫期末審查暨迎新活動",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-1.jpg", 
-    link: "#"
+    title: "ICCT-Pacific 2026 活動照片",
+    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-1.jpg", // 👈 將此處替換為您的相簿封面圖片網址
+    link: "#" // 👈 請填寫點擊後要前往的相簿連結 (例如 "/activities/icct-pacific-2026" 或 Google 相簿連結)
   }
 ];
 ---
@@ -105,10 +75,7 @@ const albums = [
     <!-- 相簿圖片網格 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {albums.map((album) => (
-        // 使用 target="_blank" 可以在新分頁開啟外部相簿連結
         <a href={album.link} target="_blank" rel="noopener noreferrer" class="group bg-white rounded-sm shadow-sm border border-slate-200 overflow-hidden hover:shadow-md hover:border-blue-400 transition-all duration-300 flex flex-col">
-          
-          <!-- 左側/上方：相簿封面 -->
           <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
             <img 
               src={album.cover} 
@@ -116,7 +83,6 @@ const albums = [
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               onerror="this.src='https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800&auto=format&fit=crop';" 
             />
-            <!-- 懸停時的遮罩與圖示 -->
             <div class="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/30 transition-colors duration-300 flex items-center justify-center">
               <div class="bg-white text-blue-700 p-3.5 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-50 group-hover:scale-100 shadow-lg flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -126,7 +92,6 @@ const albums = [
             </div>
           </div>
           
-          <!-- 右側/下方：日期與標題 -->
           <div class="p-5 flex-1 flex flex-col bg-white">
             <p class="text-xs text-slate-500 font-mono mb-2 flex items-center gap-1.5">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -136,11 +101,9 @@ const albums = [
               {album.title}
             </h3>
           </div>
-
         </a>
       ))}
     </div>
-
   </main>
 
   <!-- 🔷 頁尾 (Footer) -->
