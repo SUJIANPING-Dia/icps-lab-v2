@@ -1,5 +1,5 @@
 ---
-const images = await fetch(`${Astro.url.origin}/api/cloudinary`)
+const images = await fetch(new URL('/api/cloudinary', Astro.url))
   .then(res => res.json());
 ---
 
