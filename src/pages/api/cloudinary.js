@@ -2,8 +2,8 @@ import { v2 as cloudinary } from 'cloudinary';
 
 cloudinary.config({
   cloud_name: 'dahniduay',
-  api_key: '你的API_KEY',
-  api_secret: '你的API_SECRET',
+  api_key: '371257267424889',
+  api_secret: 'lXOLsgktpVS2EgiBHwxp5p-5L_A',
 });
 
 export async function GET() {
@@ -16,10 +16,16 @@ export async function GET() {
 
     return new Response(JSON.stringify(result.resources), {
       status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   } catch (error) {
     return new Response(JSON.stringify({ error: error.message }), {
       status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
     });
   }
 }
