@@ -105,10 +105,7 @@ const albums = [
     <!-- 相簿圖片網格 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
       {albums.map((album) => (
-        // 使用 target="_blank" 可以在新分頁開啟外部相簿連結
         <a href={album.link} target="_blank" rel="noopener noreferrer" class="group bg-white rounded-sm shadow-sm border border-slate-200 overflow-hidden hover:shadow-md hover:border-blue-400 transition-all duration-300 flex flex-col">
-          
-          <!-- 左側/上方：相簿封面 -->
           <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
             <img 
               src={album.cover} 
@@ -116,7 +113,6 @@ const albums = [
               class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
               onerror="this.src='https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800&auto=format&fit=crop';" 
             />
-            <!-- 懸停時的遮罩與圖示 -->
             <div class="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/30 transition-colors duration-300 flex items-center justify-center">
               <div class="bg-white text-blue-700 p-3.5 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-50 group-hover:scale-100 shadow-lg flex items-center justify-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -126,7 +122,6 @@ const albums = [
             </div>
           </div>
           
-          <!-- 右側/下方：日期與標題 -->
           <div class="p-5 flex-1 flex flex-col bg-white">
             <p class="text-xs text-slate-500 font-mono mb-2 flex items-center gap-1.5">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -136,10 +131,29 @@ const albums = [
               {album.title}
             </h3>
           </div>
-
         </a>
       ))}
     </div>
+
+    <!-- 🔷 ICCT-Pacific 2026 Cloudinary 相簿 -->
+    <section class="mt-16">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6 border-b border-slate-200 pb-4">
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-blue-700 font-semibold mb-2">Cloudinary Album</p>
+          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-wide">ICCT-Pacific 2026 活動照片</h2>
+          <p class="text-sm text-slate-500 mt-2">以下照片將由 Cloudinary 相簿自動載入顯示。</p>
+        </div>
+        <span id="cloudinary-count" class="text-sm font-medium text-slate-400">相簿載入中...</span>
+      </div>
+
+      <div id="cloudinary-loading" class="text-sm text-slate-500 mb-4">正在讀取相簿照片...</div>
+
+      <div id="cloudinary-error" class="hidden mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+        相簿載入失敗，請稍後再試。
+      </div>
+
+      <div id="cloudinary-gallery" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5"></div>
+    </section>
 
   </main>
 
@@ -182,6 +196,62 @@ const albums = [
       </div>
     </div>
   </footer>
+
+  <!-- 🔷 Cloudinary 相簿載入 -->
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const galleryEl = document.getElementById("cloudinary-gallery");
+      const loadingEl = document.getElementById("cloudinary-loading");
+      const errorEl = document.getElementById("cloudinary-error");
+      const countEl = document.getElementById("cloudinary-count");
+
+      if (!galleryEl || !loadingEl || !errorEl || !countEl) return;
+
+      try {
+        const response = await fetch("/api/cloudinary");
+
+        if (!response.ok) {
+          throw new Error("API 回應失敗");
+        }
+
+        const images = await response.json();
+
+        loadingEl.classList.add("hidden");
+
+        if (!Array.isArray(images) || images.length === 0) {
+          countEl.textContent = "目前尚無相簿照片";
+          galleryEl.innerHTML = `
+            <div class="col-span-full rounded-lg border border-slate-200 bg-white px-6 py-10 text-center text-sm text-slate-500">
+              目前尚未載入任何照片。
+            </div>
+          `;
+          return;
+        }
+
+        countEl.textContent = `目前共載入 ${images.length} 張照片`;
+
+        galleryEl.innerHTML = images.map((img) => `
+          <a href="${img.secure_url}" target="_blank" rel="noopener noreferrer" class="group block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
+            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
+              <img
+                src="${img.secure_url}"
+                alt="${img.public_id || "活動照片"}"
+                loading="lazy"
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+              <div class="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition-colors duration-300"></div>
+            </div>
+          </a>
+        `).join("");
+
+      } catch (error) {
+        console.error("Cloudinary 相簿載入失敗:", error);
+        loadingEl.classList.add("hidden");
+        errorEl.classList.remove("hidden");
+        countEl.textContent = "相簿載入失敗";
+      }
+    });
+  </script>
 
   <!-- 🔷 智慧訪客計數器 -->
   <script>
