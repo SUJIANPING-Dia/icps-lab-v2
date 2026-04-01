@@ -399,8 +399,8 @@ import Videos from "../components/Videos.astro";
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
 
-        // 設定專屬的命名空間與計數器名稱
-        const namespace = 'icps-lab.com';
+        // 👇 修正：移除命名空間的點 (.) 避免 API 判斷成檔案副檔名報錯
+        const namespace = 'icpslab_com';
         const key = 'homepage_visits';
         
         // 檢查瀏覽器的 localStorage，確認該使用者是否已經造訪過
@@ -417,6 +417,12 @@ import Videos from "../components/Videos.astro";
 
           // 獲取目前的最新數字 (包含剛剛 +1 後的結果)
           const response = await fetch(url);
+          
+          // 👇 加上錯誤處理：若非 2xx 回應，丟出錯誤
+          if (!response.ok) {
+            throw new Error(`API 伺服器錯誤: ${response.status}`);
+          }
+          
           const data = await response.json();
           
           if(data && data.count !== undefined) {
