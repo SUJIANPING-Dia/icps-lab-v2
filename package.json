@@ -12,7 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^6.0.8"
+    "astro": "^6.0.8",
+    "cloudinary": "^2.9.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.27",
