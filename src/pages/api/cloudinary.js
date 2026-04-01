@@ -1,207 +1,31 @@
----
-import "../styles/global.css";
+import { v2 as cloudinary } from 'cloudinary';
 
-// ==========================================
-// 🔹 活動花絮相簿資料區 (圖片卡片列表)
-// ==========================================
-// 💡 提示：只需填寫日期、標題、相簿連結，以及 Cloudinary 的封面圖片網址
-const albums = [
-  {
-    date: "2026.03.15",
-    title: "ICCT-Pacific 2026 活動照片",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-1.jpg", // 👈 將此處替換為您的相簿封面圖片網址
-    link: "#" // 👈 請填寫點擊後要前往的相簿連結 (例如 "/activities/icct-pacific-2026" 或 Google 相簿連結)
-  }
-];
----
+export async function GET() {
+  cloudinary.config({
+    cloud_name: 'dahniduay',
+    api_key: '371257267424889',
+    api_secret: 'lXOLsgktpVS2EgiBHwxp5p-5L_A',
+  });
+// test123
+  try {
+    const result = await cloudinary.search
+      .expression("resource_type:image")
+      .sort_by('created_at', 'desc')
+      .max_results(200)
+      .execute();
 
-<html lang="zh-TW" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/images/lab-logo.png" />
-  <title>活動花絮 | iCPS Lab 智慧網宇實體系統實驗室</title>
-</head>
-
-<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen">
-
-  <!-- 🔷 頂部導覽列 (Navbar) -->
-  <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
-      <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
-        <!-- 高科大 Logo -->
-        <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
-        </a>
-        <!-- 分隔線 -->
-        <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
-        <!-- 實驗室 Logo -->
-        <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
-        </a>
-      </div>
-
-      <!-- 右側導覽連結 -->
-      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-        <a href="/#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
-        <a href="/activities" class="text-blue-800 border-b-2 border-blue-800 pb-1">活動花絮</a>
-        <a href="/#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
-        <a href="/members" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">實驗室成員</a>
-      </div>
-    </div>
-  </nav>
-
-  <!-- 🔷 頁面標題區 -->
-  <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="relative z-10">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">活動花絮</h1>
-      <p class="text-slate-300 text-sm font-light tracking-wider uppercase">Activities & Albums</p>
-    </div>
-  </header>
-
-  <!-- 🔷 網站主體區域 (圖片相簿列表) -->
-  <main class="max-w-7xl mx-auto w-full px-6 py-16 relative z-20 flex-1">
-    
-    <!-- 回首頁按鈕與統計 -->
-    <div class="mb-8 border-b border-slate-200 pb-4 flex justify-between items-end">
-      <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-        返回首頁
-      </a>
-      <span class="text-sm font-medium text-slate-400">目前共收錄 {albums.length} 筆活動紀錄</span>
-    </div>
-
-    <!-- 相簿圖片網格 -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-      {albums.map((album) => (
-        <a href={album.link} target="_blank" rel="noopener noreferrer" class="group bg-white rounded-sm shadow-sm border border-slate-200 overflow-hidden hover:shadow-md hover:border-blue-400 transition-all duration-300 flex flex-col">
-          <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
-            <img 
-              src={album.cover} 
-              alt={album.title} 
-              class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-              onerror="this.src='https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=800&auto=format&fit=crop';" 
-            />
-            <div class="absolute inset-0 bg-blue-900/0 group-hover:bg-blue-900/30 transition-colors duration-300 flex items-center justify-center">
-              <div class="bg-white text-blue-700 p-3.5 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 transform scale-50 group-hover:scale-100 shadow-lg flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 ml-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-              </div>
-            </div>
-          </div>
-          
-          <div class="p-5 flex-1 flex flex-col bg-white">
-            <p class="text-xs text-slate-500 font-mono mb-2 flex items-center gap-1.5">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-              {album.date}
-            </p>
-            <h3 class="text-[15px] font-bold text-slate-800 leading-snug group-hover:text-blue-700 transition-colors">
-              {album.title}
-            </h3>
-          </div>
-        </a>
-      ))}
-    </div>
-  </main>
-
-  <!-- 🔷 頁尾 (Footer) -->
-  <footer class="bg-[#0f172a] py-16 mt-auto border-t border-slate-800 relative z-20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-      <div class="md:w-1/2">
-        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
-        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
-        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-          Intelligent Cyber-Physical Systems Laboratory <br/>
-          國立高雄科技大學 (NKUST)
-        </p>
-      </div>
-      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
-        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
-      </div>
-    </div>
-    
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-        <p class="text-xs text-slate-500 leading-normal">
-          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
-        </p>
-        <p class="text-xs text-slate-500 hidden sm:block">|</p>
-        <p class="text-xs text-slate-500">All rights reserved.</p>
-      </div>
-
-      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
-        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
-        <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 🔷 智慧訪客計數器 -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const initCounter = async () => {
-        const counterEl = document.getElementById('visitor-count');
-        if (!counterEl) return;
-
-        const namespace = 'icpslab_site';
-        const key = 'visits';
-        const localCountKey = 'icps_saved_count';
-        const lastVisitTimeKey = 'icps_last_visit_time';
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-
-        let currentCount = localStorage.getItem(localCountKey) || '------';
-        
-        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
-        const now = Date.now();
-        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
-        
-        try {
-          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          
-          if (!hasVisitedWithin24Hours) {
-            const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API 回應錯誤');
-            
-            const data = await response.json();
-            currentCount = String(data.count).padStart(6, '0');
-            
-            localStorage.setItem(lastVisitTimeKey, now.toString());
-            localStorage.setItem(localCountKey, currentCount);
-            counterEl.textContent = currentCount;
-            
-          } else {
-            try {
-              const response = await fetch(url);
-              if (response.ok) {
-                const data = await response.json();
-                currentCount = String(data.count).padStart(6, '0');
-                localStorage.setItem(localCountKey, currentCount);
-              }
-            } catch (e) {
-              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
-            }
-            counterEl.textContent = currentCount;
-          }
-          
-        } catch (error) {
-          console.error('計數器載入異常:', error);
-          counterEl.textContent = currentCount;
-        }
-      };
-
-      initCounter();
+    return new Response(JSON.stringify(result.resources), {
+      status: 200,
+      headers: {
+        'Content-Type': 'application/json',
+      },
     });
-  </script>
-
-</body>
-</html>
+  } catch (error) {
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+  }
+}
