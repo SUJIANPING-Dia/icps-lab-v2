@@ -4,7 +4,7 @@ import "../styles/global.css";
 // ==========================================
 // 🔹 實驗室成員資料區 (新增成員只需在這裡加入)
 // ==========================================
-// 👇 專任助理調整為 3 位，將原本單一的 desc 拆分為職稱 (title) 與多項工作職掌 (duties)
+// 👇 專任助理
 const assistants = [
   { 
     name: "林穎琪", 
@@ -32,10 +32,10 @@ const assistants = [
   }
 ];
 
-// 👇 博士班目前無成員，清空陣列
+// 👇 博士班
 const phds = [];
 
-// 👇 碩士生調整為 7 人
+// 👇 碩士生
 const masters = [
   { name: "賴穎寬", desc: "基於人工智慧低解析熱影像骨幹辨識技術之精神病患自我傷害行為照護系統", img: "/images/A1.jpg" },
   { name: "許庭瑄", desc: "基於ToF感測器之人體姿態日常行為辨識模型", img: "/images/A2.jpg" },
@@ -46,7 +46,7 @@ const masters = [
   { name: "鍾詩威", desc: "智慧型手術器械辨識與教育訓練平台", img: "/images/A7.jpg" }
 ];
 
-// 👇 大學部調整為 20 人
+// 👇 大學部
 const undergrads = [
   { name: "蔡一銘", desc: "AI銀髮族體適能健身系統" },
   { name: "林詩婷", desc: "AI銀髮族體適能健身系統" },
@@ -79,7 +79,16 @@ const undergrads = [
   { name: "佘秉穎", desc: "AI調料包缺陷辨識系統" },
 ];
 
-// 👇 外籍生目前無成員，清空陣列
+// 👇 🌟 自動將大學部成員依「專題題目」進行分組
+const groupedUndergrads = undergrads.reduce((groups, student) => {
+  if (!groups[student.desc]) {
+    groups[student.desc] = [];
+  }
+  groups[student.desc].push(student.name);
+  return groups;
+}, {});
+
+// 👇 外籍生
 const internationals = [];
 
 ---
@@ -141,7 +150,7 @@ const internationals = [];
 
     <div class="space-y-16">
       
-      <!-- 🔹 專任助理 (最上層 - 最大張圖卡) -->
+      <!-- 🔹 專任助理 -->
       <div>
         <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -215,7 +224,7 @@ const internationals = [];
         <!-- 頁籤內容區塊 -->
         <div class="min-h-[300px]">
           
-          <!-- [博士班] 內容 (中等圖卡) -->
+          <!-- [博士班] 內容 -->
           <div id="tab-phd" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             {phds.length > 0 ? (
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -241,7 +250,7 @@ const internationals = [];
             )}
           </div>
 
-          <!-- [碩士班] 內容 (中等圖卡：比大學部大，比助理小) -->
+          <!-- [碩士班] 內容 -->
           <div id="tab-master" class="tab-content block animate-[fadeIn_0.3s_ease-in-out]">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {masters.map((person) => (
@@ -256,21 +265,41 @@ const internationals = [];
             </div>
           </div>
 
-          <!-- [大學部專題生] 內容 (最小圖卡，無照片) -->
+          <!-- 🌟 [大學部專題生] 內容 (優化：依專題題目分組呈現) 🌟 -->
           <div id="tab-undergrad" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
-              {undergrads.map((person) => (
-                <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
-                  <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
-                    <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> {person.name}
-                  </h4>
-                  <p class="text-[11px] text-slate-500 leading-tight">專題：{person.desc}</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {Object.entries(groupedUndergrads).map(([topic, members]) => (
+                <div class="bg-white border border-slate-200 p-5 rounded-md hover:border-blue-400 hover:shadow-md transition duration-300 flex flex-col h-full">
+                  <!-- 卡片標題區：圖示 + 題目 -->
+                  <div class="flex items-start gap-3 mb-4 flex-1">
+                    <div class="bg-blue-50 p-2 rounded shrink-0">
+                      <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-800 text-[15px] leading-snug pt-0.5">{topic}</h4>
+                      <p class="text-[12px] text-slate-500 mt-1">專題小組 ({members.length} 人)</p>
+                    </div>
+                  </div>
+                  
+                  <!-- 卡片內容區：組員名單標籤 -->
+                  <div class="border-t border-slate-100 pt-4 mt-auto">
+                    <div class="flex flex-wrap gap-2">
+                      {members.map(name => (
+                        <span class="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 text-[13px] font-medium px-2.5 py-1 rounded-full hover:bg-slate-100 transition">
+                          <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                          {name}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          <!-- [外籍生] 內容 (比照碩博班中等圖卡) -->
+          <!-- [外籍生] 內容 -->
           <div id="tab-international" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             {internationals.length > 0 ? (
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -321,26 +350,20 @@ const internationals = [];
       </div>
     </div>
     
-    <!-- 👇 同步首頁的版權與累積造訪人數區塊 -->
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      
-      <!-- 左側：版權宣告 -->
       <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
         <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
         <p class="text-xs text-slate-500 hidden sm:block">|</p>
         <p class="text-xs text-slate-500">All rights reserved.</p>
       </div>
 
-      <!-- 右側：累積造訪人數區塊 -->
       <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <!-- 眼睛小圖示 -->
         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
         </svg>
         <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
-        <!-- 動態數字顯示區域 -->
         <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
       </div>
     </div>
@@ -355,23 +378,19 @@ const internationals = [];
 
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          // 移除所有按鈕的 active 樣式
           tabBtns.forEach(b => {
             b.classList.remove('border-blue-700', 'text-blue-700', 'active');
             b.classList.add('border-transparent', 'text-slate-500');
           });
 
-          // 為當前點擊的按鈕加上 active 樣式
           btn.classList.remove('border-transparent', 'text-slate-500');
           btn.classList.add('border-blue-700', 'text-blue-700', 'active');
 
-          // 隱藏所有頁籤內容
           tabContents.forEach(content => {
             content.classList.remove('block');
             content.classList.add('hidden');
           });
 
-          // 顯示對應的頁籤內容
           const targetId = btn.getAttribute('data-target');
           const targetContent = document.getElementById(targetId);
           if (targetContent) {
@@ -381,7 +400,7 @@ const internationals = [];
         });
       });
 
-      // --- 2. 智慧訪客計數器邏輯 (與首頁同步的 24小時防洗次數機制) ---
+      // --- 2. 智慧訪客計數器邏輯 ---
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
@@ -392,10 +411,8 @@ const internationals = [];
         const lastVisitTimeKey = 'icps_last_visit_time';
         const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
-        // 讀取備用的顯示數字
         let currentCount = localStorage.getItem(localCountKey) || '------';
         
-        // 讀取上次造訪時間並判斷是否在 24 小時內
         const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
         const now = Date.now();
         const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
@@ -404,20 +421,17 @@ const internationals = [];
           const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
           
           if (!hasVisitedWithin24Hours) {
-            // 情況 A：超過 24 小時未造訪，呼叫 /up 增加次數
             const response = await fetch(url + '/up');
             if (!response.ok) throw new Error('API 回應錯誤');
             
             const data = await response.json();
             currentCount = String(data.count).padStart(6, '0');
             
-            // 更新時間戳記與數字
             localStorage.setItem(lastVisitTimeKey, now.toString());
             localStorage.setItem(localCountKey, currentCount);
             counterEl.textContent = currentCount;
             
           } else {
-            // 情況 B：24 小時內已造訪過，只拉取最新數字不增加
             try {
               const response = await fetch(url);
               if (response.ok) {
