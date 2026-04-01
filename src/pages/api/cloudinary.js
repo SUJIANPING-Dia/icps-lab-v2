@@ -1,11 +1,11 @@
 import { v2 as cloudinary } from 'cloudinary';
 
 export async function GET() {
-  cloudinary.config({
-    cloud_name: 'dahniduay',
-    api_key: '371257267424889',
-    api_secret: 'lXOLsgktpVS2EgiBHwxp5p-5L_A',
-  });
+cloudinary.config({
+  cloud_name: import.meta.env.CLOUDINARY_CLOUD_NAME,
+  api_key: import.meta.env.CLOUDINARY_API_KEY,
+  api_secret: import.meta.env.CLOUDINARY_API_SECRET,
+});
 
   try {
     const result = await cloudinary.search
