@@ -296,16 +296,36 @@ import Videos from "../components/Videos.astro";
       </div>
     </div>
     
-    <!-- 👇 恢復原本的版權區塊 -->
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
-      <p class="text-xs text-slate-500">All rights reserved.</p>
+    <!-- 👇 新增的版權與累積造訪人數區塊 -->
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
+      
+      <!-- 左側：版權宣告 -->
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+        <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
+        <p class="text-xs text-slate-500 hidden sm:block">|</p>
+        <p class="text-xs text-slate-500">All rights reserved.</p>
+      </div>
+
+      <!-- 右側：累積造訪人數區塊 (改回純文字排版，搭配 JS 防洗次數) -->
+      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
+        <!-- 眼睛小圖示 -->
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-600 mx-1">|</span>
+        <!-- 動態數字顯示區域 -->
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">...</span>
+      </div>
+
     </div>
   </footer>
 
   <!-- 👇 控制封面輪播與按鈕的 JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // --- 1. 封面輪播邏輯 ---
       const images = document.querySelectorAll('.slider-img');
       const prevBtn = document.getElementById('prev-btn');
       const nextBtn = document.getElementById('next-btn');
@@ -373,6 +393,50 @@ import Videos from "../components/Videos.astro";
         if(prevBtn) prevBtn.style.display = 'none';
         if(nextBtn) nextBtn.style.display = 'none';
       }
+
+      // --- 2. 智慧訪客計數器邏輯 ---
+      const initCounter = async () => {
+        const counterEl = document.getElementById('visitor-count');
+        if (!counterEl) return;
+
+        // 移除命名空間的點 (.) 避免 API 判斷成檔案副檔名報錯
+        const namespace = 'icpslab_com';
+        const key = 'homepage_visits';
+        
+        // 檢查瀏覽器的 localStorage，確認該使用者是否已經造訪過
+        const hasVisited = localStorage.getItem('icps_has_visited');
+        
+        try {
+          let url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          
+          // 如果是第一次來，呼叫 /up 來把數字 +1，並寫入紀錄到 localStorage
+          if (!hasVisited) {
+            url += '/up';
+            localStorage.setItem('icps_has_visited', 'true');
+          }
+
+          // 獲取目前的最新數字 (包含剛剛 +1 後的結果)
+          const response = await fetch(url);
+          
+          // 加上錯誤處理：若非 2xx 回應，丟出錯誤
+          if (!response.ok) {
+            throw new Error(`API 伺服器錯誤: ${response.status}`);
+          }
+          
+          const data = await response.json();
+          
+          if(data && data.count !== undefined) {
+            // 將取得的數字補零至 6 位數（例如 5 -> 000005）
+            counterEl.textContent = String(data.count).padStart(6, '0');
+          }
+        } catch (error) {
+          console.error('計數器載入失敗', error);
+          counterEl.textContent = '------';
+        }
+      };
+
+      // 執行計數器
+      initCounter();
     });
   </script>
 
