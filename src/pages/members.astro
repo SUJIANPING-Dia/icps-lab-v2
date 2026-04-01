@@ -1,89 +1,20 @@
 ---
 import "../styles/global.css";
-
-// ==========================================
-// 🔹 實驗室成員資料區 (新增成員只需在這裡加入)
-// ==========================================
-// 👇 專任助理調整為 3 位，將原本單一的 desc 拆分為職稱 (title) 與多項工作職掌 (duties)
-const assistants = [
-  { 
-    name: "林穎琪", 
-    title: "專任經理",
-    duties: ["實驗室相關業務", "公部門計畫進度與經費管控", "產學合作進度管控", "勞動部計畫進度管控", "公文收發與行政庶務", "臨時交辦任務"], 
-    email: "yingchi2025@nkust.edu.tw", 
-    ext: "07-3814526 #15650", 
-    img: "/images/S1.JPG" 
-  },
-  { 
-    name: "孫婉怡", 
-    title: "專任資深經理",
-    duties: ["公部門計畫進度與經費管控", "協助執行勞動部「AI智慧製造產業人才培訓據點」計畫", "公文收發與行政庶務", "臨時交辦任務"], 
-    email: "avasun33@nkust.edu.tw", 
-    ext: "07-3814526 #15650", 
-    img: "/images/S2.JPG" 
-  },
-  { 
-    name: "邱于菁", 
-    title: "專任經理",
-    duties: ["勞動部「AI智慧製造產業人才培訓據點」計畫(聯絡窗口)", "公文收發與行政庶務", "臨時交辦任務"], 
-    email: "ycc0613@nkust.edu.tw", 
-    ext: "07-3814526 #15678", 
-    img: "/images/S3.jpg" 
-  }
-];
-
-// 👇 博士班目前無成員，清空陣列
-const phds = [];
-
-// 👇 碩士生調整為 7 人
-const masters = [
-  { name: "賴穎寬", desc: "基於人工智慧低解析熱影像骨幹辨識技術之精神病患自我傷害行為照護系統", img: "/images/A1.jpg" },
-  { name: "許庭瑄", desc: "基於ToF感測器之人體姿態日常行為辨識模型", img: "/images/A2.jpg" },
-  { name: "陳閔昱", desc: "中外耳病灶識別暨臨床診斷報告自動生成系統", img: "/images/A3.jpg" },
-  { name: "張鈞翔", desc: "精神病房隔離室病患之自我傷害行為辨識暨護理紀錄自動生成系統", img: "/images/A4.jpg" },
-  { name: "李家馨", desc: "基於熱影像與ToF感測器之翻身拍背系統", img: "/images/A5.jpg" },
-  { name: "陳冠廷", desc: "基於yolo物件辨識之舌肌復健遊戲平台", img: "/images/A6.jpg" },
-  { name: "鍾詩威", desc: "智慧型手術器械辨識與教育訓練平台", img: "/images/A7.jpg" }
-];
-
-// 👇 大學部調整為 20 人
-const undergrads = [
-  { name: "蔡一銘", desc: "FtMirror" },
-  { name: "林詩婷", desc: "FtMirror" },
-  { name: "許峻銘", desc: "FtMirror" },
-
-  { name: "王柏鑑", desc: "手術器械辨識" },
-  { name: "林傳興", desc: "手術器械辨識" },
-  { name: "林建宇", desc: "手術器械辨識" },
-
-  { name: "紀政佑", desc: "iReflex" },
-  { name: "李政華", desc: "iReflex" },
-  { name: "張德堯", desc: "iReflex" },
-  { name: "林竣宇", desc: "iReflex" },
-  { name: "梁書毓", desc: "iReflex" },
-
-  { name: "陳品勳", desc: "iMP Viewer" },
-  { name: "李沛琪", desc: "iMP Viewer" },
-  { name: "吳亮廷", desc: "iMP Viewer" },
-
-  { name: "謝修瑜", desc: "CUP周圍電容瑕疵辨識" },
-  { name: "楊宗翰", desc: "CUP周圍電容瑕疵辨識" },
-  { name: "丁維暘", desc: "CUP周圍電容瑕疵辨識" },
-  { name: "藍信安", desc: "CUP周圍電容瑕疵辨識" },
-  { name: "胡景翔", desc: "CUP周圍電容瑕疵辨識" }
-];
-
-// 👇 外籍生目前無成員，清空陣列
-const internationals = [];
-
+// 👇 移除了 Members 的匯入，只保留 News 和 Videos
+import News from "../components/News.astro";
+import Videos from "../components/Videos.astro";
 ---
 
 <html lang="zh-TW" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- 👇 網頁分頁的小圖示 -->
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
-  <title>實驗室成員 | iCPS Lab 智慧網宇實體系統實驗室</title>
+  
+  <!-- 標題列文字不支援HTML標籤，直接改為小寫i -->
+  <title>iCPS Lab | 智慧網宇實體系統實驗室 - 國立高雄科技大學</title>
 </head>
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
@@ -91,209 +22,259 @@ const internationals = [];
   <!-- 🔷 頂部導覽列 (Navbar) -->
   <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
+      
+      <!-- 學校/實驗室寬版 Logo 區塊 (修復手機版破版與分散問題) -->
+      <!-- 移除 w-full 與 justify-between，讓 Logo 自然靠左並排 -->
       <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
+        
         <!-- 高科大 Logo -->
         <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
+          <!-- 依靠高度自動縮放即可，移除多餘的 max-w 限制 -->
           <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
         </a>
-        <!-- 分隔線 -->
+        
+        <!-- 分隔線 (縮小間距保持精緻感) -->
         <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
+
         <!-- 實驗室 Logo -->
         <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
         </a>
+        
       </div>
 
       <!-- 右側導覽連結 -->
       <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
         <a href="/#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
         <a href="/#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
-        <a href="/members" class="text-blue-800 border-b-2 border-blue-800 pb-1">實驗室成員</a>
+        <a href="/#members" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">實驗室成員</a>
       </div>
     </div>
   </nav>
 
-  <!-- 🔷 頁面標題區 -->
-  <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="relative z-10">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">實驗室成員</h1>
-      <p class="text-slate-300 text-sm font-light tracking-wider uppercase">Laboratory Members</p>
+  <!-- 🔷 封面視覺 (Hero Section) - 修復下方空白與比例問題 -->
+  <!-- 廢棄固定高度，改用 aspect-ratio。手機使用 4:3 或 16:9，確保圖片自然縮放不嚴重裁切 -->
+  <header class="relative w-full bg-[#0f172a] overflow-hidden border-b-4 border-blue-700 aspect-[4/3] sm:aspect-[16/9] lg:aspect-[12/5]">
+    
+    <!-- 輪播圖片容器 (滿版背景) -->
+    <div id="hero-slider" class="absolute inset-0 w-full h-full z-10 group/slider">
+      <!-- object-cover 讓圖片完美填滿背景不變形 -->
+      <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-2.png" alt="實驗室背景 2" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      
+      <!-- 左右切換按鈕 -->
+      <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+        </svg>
+      </button>
+
+      <button id="next-btn" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- 手機版加一層底部漸層，確保文字能清晰顯示 (電腦版不需要) -->
+    <div class="absolute inset-0 z-10 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/20 to-transparent lg:hidden pointer-events-none"></div>
+
+    <!-- 文字內容區塊 (絕對定位覆蓋於圖片上方) -->
+    <div class="relative z-20 w-full h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-8 sm:pb-12 lg:pb-0 lg:justify-center pointer-events-none">
+      <!-- pointer-events-auto 讓文字和按鈕可以被選取 -->
+      <div id="hero-text" class="w-full text-center md:text-left transition-opacity duration-1000 ease-in-out opacity-100 pointer-events-auto">
+        <div class="inline-block px-3 py-1 mb-4 sm:mb-6 border border-slate-400 text-slate-200 text-[10px] sm:text-xs font-bold tracking-widest uppercase rounded bg-slate-900/50 backdrop-blur-md">
+          Intelligent Cyber-Physical Systems Laboratory
+        </div>
+        <!-- 調整手機版文字大小 -->
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-lg text-white">
+          <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em] mr-1">i</span>CPS Lab
+        </h1>
+        <p class="text-sm sm:text-lg lg:text-xl text-slate-100 font-light max-w-3xl leading-relaxed drop-shadow-md mx-auto md:mx-0">
+          致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究與產業應用落地。
+        </p>
+      </div>
     </div>
   </header>
 
   <!-- 🔷 網站主體區域 -->
-  <main class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
-
-    <!-- 回首頁按鈕 -->
-    <div class="mb-10">
-      <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-        返回首頁
-      </a>
-    </div>
-
-    <div class="space-y-16">
+  <main class="max-w-7xl mx-auto px-6 py-16 space-y-20 relative z-20">
+    <News />
+    
+    <!-- 👇 團隊成員區塊 -->
+    <section id="members" class="scroll-mt-24">
       
-      <!-- 🔹 專任助理 (最上層 - 最大張圖卡) -->
-      <div>
-        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {assistants.map((person) => (
-            <div class="bg-white border border-slate-200 p-5 flex flex-col sm:flex-row items-start gap-5 hover:shadow-md hover:border-blue-300 transition rounded-sm">
-              <img src={person.img} alt={person.name} class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-              
-              <div class="flex-1 w-full">
-                <div class="mb-4">
-                  <h4 class="font-bold text-slate-900 text-lg leading-tight">{person.name}</h4>
-                  <span class="inline-block mt-1.5 text-[11px] font-bold tracking-widest text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
-                    {person.title}
-                  </span>
-                </div>
-                
-                <div class="mb-4">
-                  <p class="text-xs font-bold text-slate-500 mb-2 flex items-center gap-1.5">
-                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
-                    主要工作職掌
-                  </p>
-                  <ul class="space-y-1.5">
-                    {person.duties.map(duty => (
-                      <li class="text-[13px] text-slate-600 flex items-start gap-2">
-                        <span class="text-blue-400 mt-[3px] text-[10px]">●</span>
-                        <span class="leading-snug">{duty}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div class="space-y-2 pt-4 border-t border-slate-100 text-[13px] text-slate-600">
-                  <p class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    <a href={`mailto:${person.email}`} class="hover:text-blue-600 truncate transition" title={person.email}>{person.email}</a>
-                  </p>
-                  <p class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                    校內分機：{person.ext}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+      <!-- 主標題：團隊成員 TEAM MEMBERS -->
+      <div class="border-b border-slate-800 pb-3 mb-10 flex items-end gap-3">
+        <div class="w-2.5 h-8 bg-[#3b5998]"></div>
+        <h2 class="text-2xl font-bold text-slate-900 leading-none">團隊成員</h2>
+        <span class="text-sm font-light text-[#8c9bb0] uppercase tracking-widest leading-none mb-0.5">TEAM MEMBERS</span>
       </div>
 
-      <hr class="border-slate-200" />
+      <!-- 副標題：指導教授 Principal Investigator -->
+      <div class="border-b-[3px] border-[#3b5998] pb-3 mb-6 flex items-end gap-3">
+        <div class="w-1 h-6 bg-slate-300"></div>
+        <h3 class="text-xl font-bold text-slate-800 leading-none">指導教授 Principal Investigator</h3>
+      </div>
 
-      <!-- 🔹 學生 (使用頁籤分類) -->
-      <div>
-        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">學生 Students</h3>
+      <!-- 👑 指導教授資訊卡片 -->
+      <div class="bg-white border border-slate-200 shadow-sm">
         
-        <!-- 頁籤選單 -->
-        <div class="border-b border-slate-200 mb-8 overflow-x-auto">
-          <nav class="flex space-x-2 md:space-x-8 min-w-max px-1" aria-label="Tabs">
-            <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-phd">
-              博士班 ({phds.length})
-            </button>
-            <button class="tab-btn border-blue-700 text-blue-700 active whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-master">
-              碩士班 ({masters.length})
-            </button>
-            <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-undergrad">
-              大學部 ({undergrads.length})
-            </button>
-            <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-international">
-              外籍生 ({internationals.length})
-            </button>
-          </nav>
+        <!-- 上半部：照片與基本資訊 -->
+        <div class="p-8 flex flex-col md:flex-row gap-8 lg:gap-12">
+          
+          <!-- 左側：照片 -->
+          <div class="w-56 shrink-0">
+            <img src="/images/professor.jpg" alt="張萬榮 教授" class="w-full h-auto object-cover border border-slate-200" onerror="this.src='/images/default-avatar.png';" />
+          </div>
+          
+          <!-- 右側：資訊 -->
+          <div class="flex-1">
+            
+            <!-- 姓名 -->
+            <div class="mb-4">
+              <h4 class="text-3xl font-bold text-slate-800 tracking-wider">
+                張萬榮 <span class="text-lg text-slate-500 font-normal ml-1">教授</span>
+              </h4>
+              <p class="text-[#8c9bb0] font-mono text-sm mt-2">Wan-Jung Chang, Ph.D.</p>
+            </div>
+            
+            <!-- 聯絡方式 -->
+            <div class="flex flex-wrap items-center gap-6 text-sm text-slate-600 mb-6">
+              <span class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                allenchang@nkust.edu.tw
+              </span>
+              <span class="flex items-center gap-2">
+                <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                校內分機：15672
+              </span>
+            </div>
+
+            <!-- 外部連結 -->
+            <div class="mb-8">
+              <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 transition">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                查看教授詳細資訊 (論文發表、研究計畫、產學合作等)
+              </a>
+            </div>
+
+            <!-- 分隔線 -->
+            <div class="w-full h-px bg-slate-100 mb-6"></div>
+
+            <!-- 學歷與所屬組別 (雙欄) -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <!-- 學歷 -->
+              <div>
+                <h5 class="text-xs text-[#94a3b8] mb-3 tracking-widest uppercase font-semibold">EDUCATION 學歷</h5>
+                <p class="text-sm text-slate-700 leading-relaxed">
+                  國立成功大學 電機工程研究所<br />
+                  電腦與網路組 博士
+                </p>
+              </div>
+              
+              <!-- 所屬組別 -->
+              <div>
+                <h5 class="text-xs text-[#94a3b8] mb-3 tracking-widest uppercase font-semibold">AFFILIATIONS 所屬組別</h5>
+                <div class="flex flex-wrap gap-2">
+                  <span class="border border-slate-200 bg-white text-slate-600 text-xs px-2.5 py-1">醫學工程組(合聘)</span>
+                  <span class="border border-slate-200 bg-white text-slate-600 text-xs px-2.5 py-1">醫學工程組</span>
+                  <span class="border border-slate-200 bg-white text-slate-600 text-xs px-2.5 py-1">AI資安組</span>
+                  <span class="border border-slate-200 bg-white text-slate-600 text-xs px-2.5 py-1">電信組</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-        <!-- 頁籤內容區塊 -->
-        <div class="min-h-[300px]">
+        <!-- 下半部：研究專長 -->
+        <div class="bg-[#f8fafc] border-t border-slate-100 p-8">
+          <h5 class="text-xs text-[#94a3b8] mb-6 tracking-widest uppercase font-semibold">RESEARCH INTERESTS 研究專長</h5>
           
-          <!-- [博士班] 內容 (中等圖卡) -->
-          <div id="tab-phd" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
-            {phds.length > 0 ? (
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {phds.map((person) => (
-                  <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm">
-                    <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-                    <div class="flex-1">
-                      <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
-                      <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.desc}</p>
-                    </div>
-                  </div>
-                ))}
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-x-12 gap-y-6">
+            
+            <!-- 專長 1 -->
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+              <div>
+                <div class="text-sm text-slate-700 font-medium mb-1">雲端與智慧物聯網系統</div>
+                <div class="text-[13px] text-[#94a3b8] font-mono">Cloud and AIoT Systems</div>
               </div>
-            ) : (
-              <div class="bg-slate-50 border-2 border-dashed border-slate-300 p-12 flex flex-col items-center justify-center text-center rounded-sm mx-auto max-w-3xl mt-4">
-                <span class="text-5xl mb-4">🎓</span>
-                <h4 class="text-xl font-bold text-slate-800 mb-3">目前無博士班成員</h4>
-                <p class="text-slate-500 text-base leading-relaxed">
-                  歡迎對雲端智慧物聯網系統、AI醫療或製造聯網等前瞻技術有興趣的菁英加入！<br/>
-                  <span class="text-blue-600 font-bold mt-3 inline-block bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">🔥 博士班熱烈招募中 🔥</span>
-                </p>
-              </div>
-            )}
-          </div>
-
-          <!-- [碩士班] 內容 (中等圖卡：比大學部大，比助理小) -->
-          <div id="tab-master" class="tab-content block animate-[fadeIn_0.3s_ease-in-out]">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {masters.map((person) => (
-                <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm">
-                  <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-                  <div class="flex-1">
-                    <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
-                    <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.desc}</p>
-                  </div>
-                </div>
-              ))}
             </div>
-          </div>
-
-          <!-- [大學部專題生] 內容 (最小圖卡，無照片) -->
-          <div id="tab-undergrad" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3">
-              {undergrads.map((person) => (
-                <div class="bg-white border border-slate-200 p-3 rounded-sm hover:border-blue-300 hover:shadow-sm transition cursor-default">
-                  <h4 class="font-bold text-slate-800 text-sm mb-1 flex items-center gap-2">
-                    <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> {person.name}
-                  </h4>
-                  <p class="text-[11px] text-slate-500 leading-tight">專題：{person.desc}</p>
-                </div>
-              ))}
+            
+            <!-- 專長 2 -->
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+              <div>
+                <div class="text-sm text-slate-700 font-medium mb-1">無線感測網路與高速網路系統</div>
+                <div class="text-[13px] text-[#94a3b8] font-mono">Wireless Sensor Networks & High-Speed Networks</div>
+              </div>
             </div>
-          </div>
 
-          <!-- [外籍生] 內容 (比照碩博班中等圖卡) -->
-          <div id="tab-international" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
-            {internationals.length > 0 ? (
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {internationals.map((person) => (
-                  <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm">
-                    <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-                    <div class="flex-1">
-                      <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
-                      <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed">{person.desc}</p>
-                    </div>
-                  </div>
-                ))}
+            <!-- 專長 3 -->
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+              <div>
+                <div class="text-sm text-slate-700 font-medium mb-1">人工智慧穿戴式裝置聯網系統</div>
+                <div class="text-[13px] text-[#94a3b8] font-mono">Wearable Devices IoT Systems</div>
               </div>
-            ) : (
-              <div class="bg-slate-50 border-2 border-dashed border-slate-300 p-12 flex flex-col items-center justify-center text-center rounded-sm mx-auto max-w-3xl mt-4">
-                <span class="text-5xl mb-4">🌍</span>
-                <h4 class="text-xl font-bold text-slate-800 mb-3">目前無外籍生 (No International Students Currently)</h4>
-                <p class="text-slate-500 text-base leading-relaxed">
-                  Welcome international students to join us! We focus on AIoT, Medical IoT, and Industrial IoT.<br/>
-                  <span class="text-blue-600 font-bold mt-3 inline-block bg-blue-50 px-4 py-1.5 rounded-full border border-blue-100">🔥 International Students Recruiting / 外籍生熱烈招募中 🔥</span>
-                </p>
-              </div>
-            )}
-          </div>
+            </div>
 
+            <!-- 專長 4 -->
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+              <div>
+                <div class="text-sm text-slate-700 font-medium mb-1">人工智慧醫療聯網系統</div>
+                <div class="text-[13px] text-[#94a3b8] font-mono">Artificial Intelligent Medical IoT (MIoT) Systems</div>
+              </div>
+            </div>
+
+            <!-- 專長 5 -->
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+              <div>
+                <div class="text-sm text-slate-700 font-medium mb-1">人工智慧製造聯網系統</div>
+                <div class="text-[13px] text-[#94a3b8] font-mono">Artificial Intelligent Industrial IoT (IIoT) Systems</div>
+              </div>
+            </div>
+
+            <!-- 專長 6 -->
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+              <div>
+                <div class="text-sm text-slate-700 font-medium mb-1">擴增實境聯網系統</div>
+                <div class="text-[13px] text-[#94a3b8] font-mono">Augmented Reality IoT (ARIoT) Systems</div>
+              </div>
+            </div>
+
+            <!-- 專長 7 -->
+            <div class="flex items-start gap-3">
+              <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+              <div>
+                <div class="text-sm text-slate-700 font-medium mb-1">人工智慧機器人技術</div>
+                <div class="text-[13px] text-[#94a3b8] font-mono">Artificial Intelligent Robotics</div>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
-    </div>
+      <!-- 前往完整名單的按鈕 (保持原樣) -->
+      <div class="flex justify-center mt-8">
+        <a href="/members" class="inline-flex items-center justify-center px-8 py-4 bg-slate-800 hover:bg-blue-700 text-white font-medium rounded-sm transition-all duration-300 shadow-sm hover:shadow-md group/btn">
+          查看其他實驗室成員
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+          </svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- 👇 影音專區 (移至最底部) -->
+    <Videos />
+
   </main>
 
   <!-- 🔷 頁尾 (Footer) -->
@@ -314,55 +295,144 @@ const internationals = [];
         <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
     </div>
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
-      <p class="text-xs text-slate-500">All rights reserved.</p>
+    
+    <!-- 👇 新增的版權與累積造訪人數區塊 -->
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
+      
+      <!-- 左側：版權宣告 -->
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+        <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
+        <p class="text-xs text-slate-500 hidden sm:block">|</p>
+        <p class="text-xs text-slate-500">All rights reserved.</p>
+      </div>
+
+      <!-- 右側：累積造訪人數區塊 (改回純文字排版，搭配 JS 防洗次數) -->
+      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
+        <!-- 眼睛小圖示 -->
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-600 mx-1">|</span>
+        <!-- 動態數字顯示區域 -->
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">...</span>
+      </div>
+
     </div>
   </footer>
 
-  <!-- 🔷 控制頁籤切換的 JavaScript -->
+  <!-- 👇 控制封面輪播、按鈕與計數器的 JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const tabBtns = document.querySelectorAll('.tab-btn');
-      const tabContents = document.querySelectorAll('.tab-content');
+      // --- 1. 封面輪播邏輯 ---
+      const images = document.querySelectorAll('.slider-img');
+      const prevBtn = document.getElementById('prev-btn');
+      const nextBtn = document.getElementById('next-btn');
+      const heroText = document.getElementById('hero-text'); 
+      
+      let currentIndex = 0;
+      let slideInterval;
 
-      tabBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          // 1. 移除所有按鈕的 active 樣式
-          tabBtns.forEach(b => {
-            b.classList.remove('border-blue-700', 'text-blue-700', 'active');
-            b.classList.add('border-transparent', 'text-slate-500');
-          });
+      if (images.length >= 2) {
+        const showImage = (index) => {
+          images[currentIndex].classList.remove('opacity-100');
+          images[currentIndex].classList.add('opacity-0');
 
-          // 2. 為當前點擊的按鈕加上 active 樣式
-          btn.classList.remove('border-transparent', 'text-slate-500');
-          btn.classList.add('border-blue-700', 'text-blue-700', 'active');
+          currentIndex = index;
 
-          // 3. 隱藏所有頁籤內容
-          tabContents.forEach(content => {
-            content.classList.remove('block');
-            content.classList.add('hidden');
-          });
+          images[currentIndex].classList.remove('opacity-0');
+          images[currentIndex].classList.add('opacity-100');
 
-          // 4. 顯示對應的頁籤內容
-          const targetId = btn.getAttribute('data-target');
-          const targetContent = document.getElementById(targetId);
-          if (targetContent) {
-            targetContent.classList.remove('hidden');
-            targetContent.classList.add('block');
+          if (heroText) {
+            if (currentIndex === 0) {
+              heroText.classList.remove('opacity-0', 'pointer-events-none');
+              heroText.classList.add('opacity-100');
+            } else {
+              heroText.classList.remove('opacity-100');
+              heroText.classList.add('opacity-0', 'pointer-events-none');
+            }
           }
-        });
-      });
+        };
+
+        const nextImage = () => {
+          const nextIndex = (currentIndex + 1) % images.length;
+          showImage(nextIndex);
+        };
+
+        const prevImage = () => {
+          const prevIndex = (currentIndex - 1 + images.length) % images.length;
+          showImage(prevIndex);
+        };
+
+        const startSlide = () => {
+          slideInterval = setInterval(nextImage, 10000); 
+        };
+
+        const resetSlide = () => {
+          clearInterval(slideInterval);
+          startSlide();
+        };
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            nextImage();
+            resetSlide();
+          });
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', () => {
+            prevImage();
+            resetSlide();
+          });
+        }
+
+        startSlide();
+      } else {
+        if(prevBtn) prevBtn.style.display = 'none';
+        if(nextBtn) nextBtn.style.display = 'none';
+      }
+
+      // --- 2. 智慧訪客計數器邏輯 ---
+      const initCounter = async () => {
+        const counterEl = document.getElementById('visitor-count');
+        if (!counterEl) return;
+
+        // 設定專屬的命名空間與計數器名稱
+        const namespace = 'icps-lab.com';
+        const key = 'homepage_visits';
+        
+        // 檢查瀏覽器的 localStorage，確認該使用者是否已經造訪過
+        const hasVisited = localStorage.getItem('icps_has_visited');
+        
+        try {
+          let url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          
+          // 如果是第一次來，呼叫 /up 來把數字 +1，並寫入紀錄到 localStorage
+          if (!hasVisited) {
+            url += '/up';
+            localStorage.setItem('icps_has_visited', 'true');
+          }
+
+          // 獲取目前的最新數字 (包含剛剛 +1 後的結果)
+          const response = await fetch(url);
+          const data = await response.json();
+          
+          if(data && data.count !== undefined) {
+            // 將取得的數字補零至 6 位數（例如 5 -> 000005）
+            counterEl.textContent = String(data.count).padStart(6, '0');
+          }
+        } catch (error) {
+          console.error('計數器載入失敗', error);
+          counterEl.textContent = '------';
+        }
+      };
+
+      // 執行計數器
+      initCounter();
     });
   </script>
-
-  <!-- 簡單的淡入動畫設定 -->
-  <style>
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
 
 </body>
 </html>

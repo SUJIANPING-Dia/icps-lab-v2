@@ -306,7 +306,7 @@ import Videos from "../components/Videos.astro";
         <p class="text-xs text-slate-500">All rights reserved.</p>
       </div>
 
-      <!-- 右側：累積造訪人數區塊 -->
+      <!-- 右側：累積造訪人數區塊 (改回純文字排版，搭配 JS 防洗次數) -->
       <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
         <!-- 眼睛小圖示 -->
         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -315,16 +315,17 @@ import Videos from "../components/Videos.astro";
         </svg>
         <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
-        <!-- 👇 換成 visitorbadge 服務 (不易被誤殺)，並加上 onerror 防破圖機制 -->
-        <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Ficps-lab.com&label=%20&labelColor=%231e293b&countColor=%233b82f6&style=flat" alt="計數器" class="h-4 rounded-[3px]" onerror="this.style.display='none';" />
+        <!-- 動態數字顯示區域 -->
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">...</span>
       </div>
 
     </div>
   </footer>
 
-  <!-- 👇 控制封面輪播與按鈕的 JavaScript -->
+  <!-- 👇 控制封面輪播、按鈕與計數器的 JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // --- 1. 封面輪播邏輯 ---
       const images = document.querySelectorAll('.slider-img');
       const prevBtn = document.getElementById('prev-btn');
       const nextBtn = document.getElementById('next-btn');
@@ -333,66 +334,103 @@ import Videos from "../components/Videos.astro";
       let currentIndex = 0;
       let slideInterval;
 
-      if (images.length < 2) {
+      if (images.length >= 2) {
+        const showImage = (index) => {
+          images[currentIndex].classList.remove('opacity-100');
+          images[currentIndex].classList.add('opacity-0');
+
+          currentIndex = index;
+
+          images[currentIndex].classList.remove('opacity-0');
+          images[currentIndex].classList.add('opacity-100');
+
+          if (heroText) {
+            if (currentIndex === 0) {
+              heroText.classList.remove('opacity-0', 'pointer-events-none');
+              heroText.classList.add('opacity-100');
+            } else {
+              heroText.classList.remove('opacity-100');
+              heroText.classList.add('opacity-0', 'pointer-events-none');
+            }
+          }
+        };
+
+        const nextImage = () => {
+          const nextIndex = (currentIndex + 1) % images.length;
+          showImage(nextIndex);
+        };
+
+        const prevImage = () => {
+          const prevIndex = (currentIndex - 1 + images.length) % images.length;
+          showImage(prevIndex);
+        };
+
+        const startSlide = () => {
+          slideInterval = setInterval(nextImage, 10000); 
+        };
+
+        const resetSlide = () => {
+          clearInterval(slideInterval);
+          startSlide();
+        };
+
+        if (nextBtn) {
+          nextBtn.addEventListener('click', () => {
+            nextImage();
+            resetSlide();
+          });
+        }
+
+        if (prevBtn) {
+          prevBtn.addEventListener('click', () => {
+            prevImage();
+            resetSlide();
+          });
+        }
+
+        startSlide();
+      } else {
         if(prevBtn) prevBtn.style.display = 'none';
         if(nextBtn) nextBtn.style.display = 'none';
-        return;
       }
 
-      const showImage = (index) => {
-        images[currentIndex].classList.remove('opacity-100');
-        images[currentIndex].classList.add('opacity-0');
+      // --- 2. 智慧訪客計數器邏輯 ---
+      const initCounter = async () => {
+        const counterEl = document.getElementById('visitor-count');
+        if (!counterEl) return;
 
-        currentIndex = index;
-
-        images[currentIndex].classList.remove('opacity-0');
-        images[currentIndex].classList.add('opacity-100');
-
-        if (heroText) {
-          if (currentIndex === 0) {
-            heroText.classList.remove('opacity-0', 'pointer-events-none');
-            heroText.classList.add('opacity-100');
-          } else {
-            heroText.classList.remove('opacity-100');
-            heroText.classList.add('opacity-0', 'pointer-events-none');
+        // 設定專屬的命名空間與計數器名稱
+        const namespace = 'icps-lab.com';
+        const key = 'homepage_visits';
+        
+        // 檢查瀏覽器的 localStorage，確認該使用者是否已經造訪過
+        const hasVisited = localStorage.getItem('icps_has_visited');
+        
+        try {
+          let url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          
+          // 如果是第一次來，呼叫 /up 來把數字 +1，並寫入紀錄到 localStorage
+          if (!hasVisited) {
+            url += '/up';
+            localStorage.setItem('icps_has_visited', 'true');
           }
+
+          // 獲取目前的最新數字 (包含剛剛 +1 後的結果)
+          const response = await fetch(url);
+          const data = await response.json();
+          
+          if(data && data.count !== undefined) {
+            // 將取得的數字補零至 6 位數（例如 5 -> 000005）
+            counterEl.textContent = String(data.count).padStart(6, '0');
+          }
+        } catch (error) {
+          console.error('計數器載入失敗', error);
+          counterEl.textContent = '------';
         }
       };
 
-      const nextImage = () => {
-        const nextIndex = (currentIndex + 1) % images.length;
-        showImage(nextIndex);
-      };
-
-      const prevImage = () => {
-        const prevIndex = (currentIndex - 1 + images.length) % images.length;
-        showImage(prevIndex);
-      };
-
-      const startSlide = () => {
-        slideInterval = setInterval(nextImage, 10000); 
-      };
-
-      const resetSlide = () => {
-        clearInterval(slideInterval);
-        startSlide();
-      };
-
-      if (nextBtn) {
-        nextBtn.addEventListener('click', () => {
-          nextImage();
-          resetSlide();
-        });
-      }
-
-      if (prevBtn) {
-        prevBtn.addEventListener('click', () => {
-          prevImage();
-          resetSlide();
-        });
-      }
-
-      startSlide();
+      // 執行計數器
+      initCounter();
     });
   </script>
 
