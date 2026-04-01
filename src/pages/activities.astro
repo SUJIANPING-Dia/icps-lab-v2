@@ -4,43 +4,13 @@ import "../styles/global.css";
 // ==========================================
 // 🔹 活動花絮相簿資料區 (圖片卡片列表)
 // ==========================================
-// 💡 提示：只需填寫日期、標題、外部相簿連結，以及 Cloudinary 的封面圖片網址
+// 💡 提示：只需填寫日期、標題、相簿連結，以及 Cloudinary 的封面圖片網址
 const albums = [
   {
     date: "2026.03.15",
-    title: "2026 智慧物聯網國際學術研討會暨成果展",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-1.jpg", // 👈 將此處替換為您的 Cloudinary 圖片網址
-    link: "#" // 👈 請填寫外部相簿連結 (例如 Google 雲端硬碟或 Google 相簿)
-  },
-  {
-    date: "2025.12.20",
-    title: "實驗室期末聚餐暨專題發表會",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-2.jpg",
-    link: "#"
-  },
-  {
-    date: "2025.10.05",
-    title: "全國創新創業競賽 榮獲特優獎",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-3.jpg",
-    link: "#"
-  },
-  {
-    date: "2025.08.12",
-    title: "工研院產學合作企業參訪",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/hero-bg-1.jpg", 
-    link: "#"
-  },
-  {
-    date: "2025.06.10",
-    title: "113學年度 畢業生撥穗與送舊聚餐",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/hero-bg-2.jpg", 
-    link: "#"
-  },
-  {
-    date: "2025.01.15",
-    title: "年度計畫期末審查暨迎新活動",
-    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-1.jpg", 
-    link: "#"
+    title: "ICCT-Pacific 2026 活動照片",
+    cover: "https://res.cloudinary.com/您的帳號/image/upload/v12345/activity-1.jpg", // 👈 將此處替換為您的相簿封面圖片網址
+    link: "#" // 👈 請填寫點擊後要前往的相簿連結 (例如 "/activities/icct-pacific-2026" 或 Google 相簿連結)
   }
 ];
 ---
@@ -134,27 +104,6 @@ const albums = [
         </a>
       ))}
     </div>
-
-    <!-- 🔷 ICCT-Pacific 2026 Cloudinary 相簿 -->
-    <section class="mt-16">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-6 border-b border-slate-200 pb-4">
-        <div>
-          <p class="text-xs uppercase tracking-[0.2em] text-blue-700 font-semibold mb-2">Cloudinary Album</p>
-          <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-wide">ICCT-Pacific 2026 活動照片</h2>
-          <p class="text-sm text-slate-500 mt-2">以下照片將由 Cloudinary 相簿自動載入顯示。</p>
-        </div>
-        <span id="cloudinary-count" class="text-sm font-medium text-slate-400">相簿載入中...</span>
-      </div>
-
-      <div id="cloudinary-loading" class="text-sm text-slate-500 mb-4">正在讀取相簿照片...</div>
-
-      <div id="cloudinary-error" class="hidden mb-4 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
-        相簿載入失敗，請稍後再試。
-      </div>
-
-      <div id="cloudinary-gallery" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5"></div>
-    </section>
-
   </main>
 
   <!-- 🔷 頁尾 (Footer) -->
@@ -196,62 +145,6 @@ const albums = [
       </div>
     </div>
   </footer>
-
-  <!-- 🔷 Cloudinary 相簿載入 -->
-  <script>
-    document.addEventListener("DOMContentLoaded", async () => {
-      const galleryEl = document.getElementById("cloudinary-gallery");
-      const loadingEl = document.getElementById("cloudinary-loading");
-      const errorEl = document.getElementById("cloudinary-error");
-      const countEl = document.getElementById("cloudinary-count");
-
-      if (!galleryEl || !loadingEl || !errorEl || !countEl) return;
-
-      try {
-        const response = await fetch("/api/cloudinary");
-
-        if (!response.ok) {
-          throw new Error("API 回應失敗");
-        }
-
-        const images = await response.json();
-
-        loadingEl.classList.add("hidden");
-
-        if (!Array.isArray(images) || images.length === 0) {
-          countEl.textContent = "目前尚無相簿照片";
-          galleryEl.innerHTML = `
-            <div class="col-span-full rounded-lg border border-slate-200 bg-white px-6 py-10 text-center text-sm text-slate-500">
-              目前尚未載入任何照片。
-            </div>
-          `;
-          return;
-        }
-
-        countEl.textContent = `目前共載入 ${images.length} 張照片`;
-
-        galleryEl.innerHTML = images.map((img) => `
-          <a href="${img.secure_url}" target="_blank" rel="noopener noreferrer" class="group block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-blue-300 transition-all duration-300">
-            <div class="relative aspect-[4/3] overflow-hidden bg-slate-100">
-              <img
-                src="${img.secure_url}"
-                alt="${img.public_id || "活動照片"}"
-                loading="lazy"
-                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-              />
-              <div class="absolute inset-0 bg-slate-900/0 group-hover:bg-slate-900/20 transition-colors duration-300"></div>
-            </div>
-          </a>
-        `).join("");
-
-      } catch (error) {
-        console.error("Cloudinary 相簿載入失敗:", error);
-        loadingEl.classList.add("hidden");
-        errorEl.classList.remove("hidden");
-        countEl.textContent = "相簿載入失敗";
-      }
-    });
-  </script>
 
   <!-- 🔷 智慧訪客計數器 -->
   <script>
