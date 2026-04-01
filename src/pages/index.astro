@@ -316,7 +316,7 @@ import Videos from "../components/Videos.astro";
         <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
         <!-- 動態數字顯示區域 -->
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">...</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
       </div>
 
     </div>
@@ -399,43 +399,54 @@ import Videos from "../components/Videos.astro";
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
 
-        // 移除命名空間的點 (.) 避免 API 判斷成檔案副檔名報錯
-        const namespace = 'icpslab_com';
-        const key = 'homepage_visits';
+        // 👇 換一組全新的命名空間與 local key，避免舊的錯誤資料干擾
+        const namespace = 'icpslab_tw';
+        const key = 'home_page_visits';
+        const localKey = 'icps_visited_v3';
         
-        // 檢查瀏覽器的 localStorage，確認該使用者是否已經造訪過
-        const hasVisited = localStorage.getItem('icps_has_visited');
+        const hasVisited = localStorage.getItem(localKey);
         
         try {
           let url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          
-          // 如果是第一次來，呼叫 /up 來把數字 +1，並寫入紀錄到 localStorage
-          if (!hasVisited) {
-            url += '/up';
-            localStorage.setItem('icps_has_visited', 'true');
-          }
+          let response;
 
-          // 獲取目前的最新數字 (包含剛剛 +1 後的結果)
-          const response = await fetch(url);
+          if (!hasVisited) {
+            // 新訪客：呼叫 /up 來增加次數
+            response = await fetch(url + '/up');
+            if (response.ok) {
+              localStorage.setItem(localKey, 'true');
+            }
+          } else {
+            // 舊訪客：純讀取，不增加次數
+            response = await fetch(url);
+            
+            // 🐛 【核心修復】：如果 API 回傳 404 (找不到資料)，代表伺服器端該計數器還沒建立，
+            // 但瀏覽器卻以為已經造訪過了。此時必須強制呼叫 /up 來建立計數器，否則會永遠卡在錯誤狀態！
+            if (response.status === 404) {
+              response = await fetch(url + '/up');
+              if (response.ok) {
+                localStorage.setItem(localKey, 'true');
+              }
+            }
+          }
           
-          // 加上錯誤處理：若非 2xx 回應，丟出錯誤
           if (!response.ok) {
-            throw new Error(`API 伺服器錯誤: ${response.status}`);
+            throw new Error(`伺服器錯誤: ${response.status}`);
           }
           
           const data = await response.json();
           
-          if(data && data.count !== undefined) {
-            // 將取得的數字補零至 6 位數（例如 5 -> 000005）
+          if(data && typeof data.count === 'number') {
             counterEl.textContent = String(data.count).padStart(6, '0');
+          } else {
+            throw new Error('資料格式不正確');
           }
         } catch (error) {
-          console.error('計數器載入失敗', error);
-          counterEl.textContent = '------';
+          console.error('計數器載入失敗 (可能被阻擋):', error);
+          counterEl.textContent = '載入失敗';
         }
       };
 
-      // 執行計數器
       initCounter();
     });
   </script>
