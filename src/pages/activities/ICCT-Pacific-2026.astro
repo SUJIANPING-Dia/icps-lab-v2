@@ -2,7 +2,7 @@
 const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME;
 const apiKey = import.meta.env.CLOUDINARY_API_KEY;
 const apiSecret = import.meta.env.CLOUDINARY_API_SECRET;
-
+<!-- rebuild -->
 const auth = Buffer.from(`${apiKey}:${apiSecret}`).toString('base64');
 
 const res = await fetch(
