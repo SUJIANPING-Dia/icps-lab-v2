@@ -32,21 +32,32 @@ const assistants = [
   }
 ];
 
-// 👇 博士班
+// 👇 博士班 (預留 summary 欄位供未來使用)
 const phds = [];
 
-// 👇 碩士生
+// 👇 碩士生 (新增 summary 欄位，可輸入約 50 字以內的研究介紹)
 const masters = [
-  { name: "賴穎寬", desc: "基於人工智慧低解析熱影像骨幹辨識技術之精神病患自我傷害行為照護系統", img: "/images/A1.jpg" },
-  { name: "許庭瑄", desc: "基於ToF感測器之人體姿態日常行為辨識模型", img: "/images/A2.jpg" },
-  { name: "陳閔昱", desc: "中外耳病灶識別暨臨床診斷報告自動生成系統", img: "/images/A3.jpg" },
-  { name: "張鈞翔", desc: "精神病房隔離室病患之自我傷害行為辨識暨護理紀錄自動生成系統", img: "/images/A4.jpg" },
-  { name: "李家馨", desc: "基於熱影像與ToF感測器之翻身拍背系統", img: "/images/A5.jpg" },
-  { name: "陳冠廷", desc: "基於yolo物件辨識之舌肌復健遊戲平台", img: "/images/A6.jpg" },
-  { name: "鍾詩威", desc: "智慧型手術器械辨識與教育訓練平台", img: "/images/A7.jpg" }
+  { name: "賴穎寬", desc: "基於人工智慧低解析熱影像骨幹辨識技術之精神病患自我傷害行為照護系統", summary: "請在此輸入約50字內的研究介紹。例如：本系統利用熱影像與AI技術，即時監測並預防精神病患的自我傷害行為，提升病房安全。", img: "/images/A1.jpg" },
+  { name: "許庭瑄", desc: "基於ToF感測器之人體姿態日常行為辨識模型", summary: "請在此輸入約50字內的研究介紹。說明如何利用ToF感測器捕捉深度資訊，建立精準的日常姿態與行為辨識模型。", img: "/images/A2.jpg" },
+  { name: "陳閔昱", desc: "中外耳病灶識別暨臨床診斷報告自動生成系統", summary: "請在此輸入約50字內的研究介紹。例如：透過影像辨識技術輔助醫師快速找出中外耳病灶，並自動生成標準化診斷報告。", img: "/images/A3.jpg" },
+  { name: "張鈞翔", desc: "精神病房隔離室病患之自我傷害行為辨識暨護理紀錄自動生成系統", summary: "請在此輸入約50字內的研究介紹。結合行為辨識技術與自然語言處理，自動記錄隔離室病患狀況，減輕護理人員負擔。", img: "/images/A4.jpg" },
+  { name: "李家馨", desc: "基於熱影像與ToF感測器之翻身拍背系統", summary: "請在此輸入約50字內的研究介紹。例如：整合熱影像與ToF感測技術，輔助長照機構精準掌握病患翻身拍背的時機與確實度。", img: "/images/A5.jpg" },
+  { name: "陳冠廷", desc: "基於yolo物件辨識之舌肌復健遊戲平台", summary: "請在此輸入約50字內的研究介紹。利用YOLO模型即時辨識舌部動作，並結合遊戲化介面，提高患者進行舌肌復健的意願。", img: "/images/A6.jpg" },
+  { name: "鍾詩威", desc: "智慧型手術器械辨識與教育訓練平台", summary: "請在此輸入約50字內的研究介紹。例如：開發手術器械的AI視覺辨識系統，提供護理人員及實習生更直觀的術前教育訓練。", img: "/images/A7.jpg"  },
 ];
 
-// 👇 大學部
+// 👇 大學部專題介紹 (對應下方的 desc 題目，可在此統一修改約 50 字的介紹)
+const undergradProjectSummaries = {
+  "AI銀髮族體適能健身系統": "請在此輸入約50字內的專題介紹。例如：針對銀髮族設計的AI體適能系統，透過姿態辨識評估動作正確性，提升居家運動安全。",
+  "AI手術器械辨識": "請在此輸入約50字內的專題介紹。說明系統如何利用影像辨識技術，於手術過程中即時且精準地辨識各類手術器械。",
+  "AI膝反射辨識系統": "請在此輸入約50字內的專題介紹。例如：透過AI視覺技術分析病患膝反射動作的幅度與反應時間，輔助醫師進行神經學檢查。",
+  "AI塑膠微粒辨識系統": "請在此輸入約50字內的專題介紹。例如：應用深度學習模型，自動辨識與分析水質樣本中的塑膠微粒數量與種類，提升環保檢測效率。",
+  "AI電容焊接瑕疵辨識": "請在此輸入約50字內的專題介紹。例如：導入機器視覺自動檢測產線上的電容焊接瑕疵，降低人工目檢漏檢率並提高生產良率。",
+  "AI豬隻健康辨識系統": "請在此輸入約50字內的專題介紹。例如：透過影像監測豬隻的日常活動與體態，及早發現異常狀況，協助養殖業者進行智慧化健康管理。",
+  "AI調料包缺陷辨識系統": "請在此輸入約50字內的專題介紹。例如：利用AI視覺檢測食品包裝產線的調料包是否漏液、封口不良或破損，確保產品出廠品質。"
+};
+
+// 👇 大學部成員名單
 const undergrads = [
   { name: "蔡一銘", desc: "AI銀髮族體適能健身系統" },
   { name: "林詩婷", desc: "AI銀髮族體適能健身系統" },
@@ -229,12 +240,20 @@ const internationals = [];
             {phds.length > 0 ? (
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {phds.map((person) => (
-                  <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm">
-                    <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-                    <div class="flex-1">
-                      <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
-                      <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.desc}</p>
+                  <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm flex-col h-full">
+                    <div class="flex items-start gap-4 w-full">
+                      <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
+                      <div class="flex-1">
+                        <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
+                        <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.desc}</p>
+                      </div>
                     </div>
+                    {/* 博士生研究介紹區塊 */}
+                    {person.summary && (
+                      <div class="w-full mt-3 bg-slate-50/70 border border-slate-100 p-3 rounded-md mt-auto">
+                        <p class="text-[12px] text-slate-500 leading-relaxed">{person.summary}</p>
+                      </div>
+                    )}
                   </div>
                 ))}
               </div>
@@ -254,24 +273,32 @@ const internationals = [];
           <div id="tab-master" class="tab-content block animate-[fadeIn_0.3s_ease-in-out]">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {masters.map((person) => (
-                <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm">
-                  <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-                  <div class="flex-1">
-                    <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
-                    <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.desc}</p>
+                <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm flex-col h-full">
+                  <div class="flex items-start gap-4 w-full">
+                    <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
+                    <div class="flex-1">
+                      <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
+                      <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.desc}</p>
+                    </div>
                   </div>
+                  {/* 碩士生研究介紹區塊 */}
+                  {person.summary && (
+                    <div class="w-full mt-4 bg-slate-50/80 border border-slate-100 p-3 rounded-md mt-auto">
+                      <p class="text-[13px] text-slate-500 leading-relaxed">{person.summary}</p>
+                    </div>
+                  )}
                 </div>
               ))}
             </div>
           </div>
 
-          <!-- 🌟 [大學部專題生] 內容 (優化：依專題題目分組呈現) 🌟 -->
+          <!-- 🌟 [大學部專題生] 內容 -->
           <div id="tab-undergrad" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
               {Object.entries(groupedUndergrads).map(([topic, members]) => (
                 <div class="bg-white border border-slate-200 p-5 rounded-md hover:border-blue-400 hover:shadow-md transition duration-300 flex flex-col h-full">
                   <!-- 卡片標題區：圖示 + 題目 -->
-                  <div class="flex items-start gap-3 mb-4 flex-1">
+                  <div class="flex items-start gap-3 mb-3 flex-1">
                     <div class="bg-blue-50 p-2 rounded shrink-0">
                       <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
@@ -283,6 +310,13 @@ const internationals = [];
                     </div>
                   </div>
                   
+                  <!-- 🌟 專題介紹文字區塊 -->
+                  <div class="mb-4 flex-1">
+                    <p class="text-[13.5px] text-slate-600 leading-relaxed">
+                      {undergradProjectSummaries[topic] || "尚無此專題的詳細介紹。"}
+                    </p>
+                  </div>
+
                   <!-- 卡片內容區：組員名單標籤 -->
                   <div class="border-t border-slate-100 pt-4 mt-auto">
                     <div class="flex flex-wrap gap-2">
