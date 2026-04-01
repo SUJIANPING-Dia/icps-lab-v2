@@ -46,6 +46,7 @@ import Videos from "../components/Videos.astro";
       <!-- 右側導覽連結 -->
       <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
         <a href="/#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
+        <a href="/#activities" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">活動花絮</a>
         <a href="/#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
         <a href="/#members" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">實驗室成員</a>
       </div>
@@ -261,7 +262,7 @@ import Videos from "../components/Videos.astro";
         </div>
       </div>
 
-      <!-- 前往完整名單的按鈕 (保持原樣) -->
+      <!-- 前往完整名單的按鈕 -->
       <div class="flex justify-center mt-8">
         <a href="/members" class="inline-flex items-center justify-center px-8 py-4 bg-slate-800 hover:bg-blue-700 text-white font-medium rounded-sm transition-all duration-300 shadow-sm hover:shadow-md group/btn">
           查看其他實驗室成員
@@ -269,6 +270,53 @@ import Videos from "../components/Videos.astro";
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
         </a>
+      </div>
+    </section>
+
+    <!-- 👇 活動花絮 (首頁簡化入口) -->
+    <section id="activities" class="scroll-mt-24">
+      
+      <!-- 主標題：活動花絮 ACTIVITIES & ALBUMS -->
+      <div class="border-b border-slate-800 pb-3 mb-10 flex items-end gap-3">
+        <div class="w-2.5 h-8 bg-[#3b5998]"></div>
+        <h2 class="text-2xl font-bold text-slate-900 leading-none">活動花絮</h2>
+        <span class="text-sm font-light text-[#8c9bb0] uppercase tracking-widest leading-none mb-0.5">ACTIVITIES & ALBUMS</span>
+      </div>
+
+      <!-- 活動花絮單一入口橫幅 (Banner) -->
+      <div class="relative w-full rounded-sm overflow-hidden shadow-sm h-[320px] sm:h-[360px] flex items-center justify-center group border border-slate-200">
+        
+        <!-- 背景圖片 (您可以將 src 替換為實際活動的合照) -->
+        <img src="/images/activity-banner.jpg" alt="活動花絮背景" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop';" />
+        
+        <!-- 深色漸層遮罩 (讓文字更清晰) -->
+        <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/90 transition-colors duration-500 group-hover:bg-slate-900/60"></div>
+        
+        <!-- 文字與按鈕內容區塊 -->
+        <div class="relative z-10 text-center px-6 max-w-2xl mx-auto flex flex-col items-center">
+          
+          <!-- 小裝飾線 -->
+          <div class="w-12 h-1 bg-blue-500 mb-6 rounded-full opacity-80"></div>
+          
+          <!-- 標題 -->
+          <h3 class="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 tracking-wider drop-shadow-md">
+            實驗室日常與活動紀錄
+          </h3>
+          
+          <!-- 描述說明 -->
+          <p class="text-sm sm:text-base text-slate-200 mb-10 leading-relaxed drop-shadow max-w-xl">
+            完整收錄我們參與國內外學術研討會、創新創業競賽、專題發表展，以及實驗室夥伴們溫馨聚餐與出遊的精彩瞬間。
+          </p>
+          
+          <!-- 前往相簿的按鈕 -->
+          <a href="/activities" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-sm transition-all duration-300 shadow-lg hover:shadow-blue-500/30 group/btn border border-blue-500/50">
+            前往活動相簿
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+            </svg>
+          </a>
+          
+        </div>
       </div>
     </section>
 
