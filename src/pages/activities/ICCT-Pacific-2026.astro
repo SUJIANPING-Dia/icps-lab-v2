@@ -8,18 +8,16 @@ let images = [];
 
 try {
   // 1. SSR Server-side Fetch
-  const res = await fetch('https://icps-lab.com/api/cloudinary');
-  const data = await res.json();
-  
-  // 2. 正確處理資料格式 (相容 Array 或 { resources: [...] } 格式)
-  const rawImages = Array.isArray(data) ? data : (data.resources || []);
+ const res = await fetch(new URL('/api/cloudinary', Astro.url));
+const data = await res.json();
 
-  // 3. 依據上傳時間排序 (由新到舊)
-  images = rawImages.sort((a, b) => {
-    const dateA = a.created_at ? new Date(a.created_at).getTime() : 0;
-    const dateB = b.created_at ? new Date(b.created_at).getTime() : 0;
-    return dateB - dateA;
-  });
+const rawImages = Array.isArray(data) ? data : (data.resources || []);
+
+images = rawImages.sort((a, b) => {
+  const dateA = a.created_at ? new Date(a.created_at).getTime() : 0;
+  const dateB = b.created_at ? new Date(b.created_at).getTime() : 0;
+  return dateB - dateA;
+});
 } catch (error) {
   console.error("載入圖片失敗:", error);
   // 若正式環境 API 暫時阻擋或出錯，維持空陣列以避免畫面崩潰
