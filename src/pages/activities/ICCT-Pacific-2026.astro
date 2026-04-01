@@ -1,5 +1,5 @@
 ---
-const data = await fetch('https://icps-lab.com/api/cloudinary')
+const data = await fetch(new URL('/api/cloudinary', Astro.url))
   .then(res => res.json());
 
 const images = Array.isArray(data) ? data : data.resources;
