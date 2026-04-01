@@ -314,37 +314,58 @@ const internationals = [];
         <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
     </div>
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
-      <p class="text-xs text-slate-500">All rights reserved.</p>
+    
+    <!-- 👇 同步首頁的版權與累積造訪人數區塊 -->
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
+      
+      <!-- 左側：版權宣告 -->
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+        <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
+        <p class="text-xs text-slate-500 hidden sm:block">|</p>
+        <p class="text-xs text-slate-500">All rights reserved.</p>
+      </div>
+
+      <!-- 右側：累積造訪人數區塊 -->
+      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
+        <!-- 眼睛小圖示 -->
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-600 mx-1">|</span>
+        <!-- 動態數字顯示區域 -->
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
+      </div>
     </div>
   </footer>
 
-  <!-- 🔷 控制頁籤切換的 JavaScript -->
+  <!-- 🔷 控制頁籤切換與計數器的 JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // --- 1. 頁籤切換邏輯 ---
       const tabBtns = document.querySelectorAll('.tab-btn');
       const tabContents = document.querySelectorAll('.tab-content');
 
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-          // 1. 移除所有按鈕的 active 樣式
+          // 移除所有按鈕的 active 樣式
           tabBtns.forEach(b => {
             b.classList.remove('border-blue-700', 'text-blue-700', 'active');
             b.classList.add('border-transparent', 'text-slate-500');
           });
 
-          // 2. 為當前點擊的按鈕加上 active 樣式
+          // 為當前點擊的按鈕加上 active 樣式
           btn.classList.remove('border-transparent', 'text-slate-500');
           btn.classList.add('border-blue-700', 'text-blue-700', 'active');
 
-          // 3. 隱藏所有頁籤內容
+          // 隱藏所有頁籤內容
           tabContents.forEach(content => {
             content.classList.remove('block');
             content.classList.add('hidden');
           });
 
-          // 4. 顯示對應的頁籤內容
+          // 顯示對應的頁籤內容
           const targetId = btn.getAttribute('data-target');
           const targetContent = document.getElementById(targetId);
           if (targetContent) {
@@ -353,6 +374,64 @@ const internationals = [];
           }
         });
       });
+
+      // --- 2. 智慧訪客計數器邏輯 (與首頁同步的 24小時防洗次數機制) ---
+      const initCounter = async () => {
+        const counterEl = document.getElementById('visitor-count');
+        if (!counterEl) return;
+
+        const namespace = 'icpslab_site';
+        const key = 'visits';
+        const localCountKey = 'icps_saved_count';
+        const lastVisitTimeKey = 'icps_last_visit_time';
+        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+
+        // 讀取備用的顯示數字
+        let currentCount = localStorage.getItem(localCountKey) || '------';
+        
+        // 讀取上次造訪時間並判斷是否在 24 小時內
+        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
+        const now = Date.now();
+        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
+        
+        try {
+          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          
+          if (!hasVisitedWithin24Hours) {
+            // 情況 A：超過 24 小時未造訪，呼叫 /up 增加次數
+            const response = await fetch(url + '/up');
+            if (!response.ok) throw new Error('API 回應錯誤');
+            
+            const data = await response.json();
+            currentCount = String(data.count).padStart(6, '0');
+            
+            // 更新時間戳記與數字
+            localStorage.setItem(lastVisitTimeKey, now.toString());
+            localStorage.setItem(localCountKey, currentCount);
+            counterEl.textContent = currentCount;
+            
+          } else {
+            // 情況 B：24 小時內已造訪過，只拉取最新數字不增加
+            try {
+              const response = await fetch(url);
+              if (response.ok) {
+                const data = await response.json();
+                currentCount = String(data.count).padStart(6, '0');
+                localStorage.setItem(localCountKey, currentCount);
+              }
+            } catch (e) {
+              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
+            }
+            counterEl.textContent = currentCount;
+          }
+          
+        } catch (error) {
+          console.error('計數器載入異常:', error);
+          counterEl.textContent = currentCount;
+        }
+      };
+
+      initCounter();
     });
   </script>
 
