@@ -6,7 +6,7 @@ cloudinary.config({
   api_secret: '你的API_SECRET',
 });
 
-export default async function handler(req, res) {
+export async function GET() {
   try {
     const result = await cloudinary.search
       .expression('folder="events/ICCT-Pacific 2026"')
@@ -14,8 +14,12 @@ export default async function handler(req, res) {
       .max_results(200)
       .execute();
 
-    res.status(200).json(result.resources);
+    return new Response(JSON.stringify(result.resources), {
+      status: 200,
+    });
   } catch (error) {
-    res.status(500).json({ error: error.message });
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+    });
   }
 }
