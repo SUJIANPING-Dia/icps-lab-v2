@@ -3,8 +3,7 @@ const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME;
 const apiKey = import.meta.env.CLOUDINARY_API_KEY;
 const apiSecret = import.meta.env.CLOUDINARY_API_SECRET;
 
-// 組 Basic Auth
-const auth = btoa(`${apiKey}:${apiSecret}`);
+const auth = Buffer.from(`${apiKey}:${apiSecret}`).toString('base64');
 
 const res = await fetch(
   `https://api.cloudinary.com/v1_1/${cloudName}/resources/image?type=upload&prefix=events/ICCT-Pacific 2026`,
@@ -27,7 +26,7 @@ const images = data.resources || [];
   <body style="background:#fff; padding:20px; font-family:sans-serif;">
 
     <h1 style="text-align:center; margin-bottom:30px;">
-      ICCT-Pacific 2026 活動照片
+      ICCT-Pacific 2026 活動照片123
     </h1>
 
     <div style="
