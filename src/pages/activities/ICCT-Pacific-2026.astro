@@ -1,233 +1,30 @@
 ---
-import "../styles/global.css";
-<h1>TEST 123</h1>
-// ==========================================
-// 🔹 伺服器端渲染 (SSR) 資料抓取區
-// ==========================================
-let images = [];
+const data = await fetch('https://icps-lab.com/api/cloudinary')
+  .then(res => res.json());
 
-try {
-  // 1. SSR Server-side Fetch
- const res = await fetch(new URL('/api/cloudinary', Astro.url));
-const data = await res.json();
-
-const rawImages = Array.isArray(data) ? data : (data.resources || []);
-
-images = rawImages.sort((a, b) => {
-  const dateA = a.created_at ? new Date(a.created_at).getTime() : 0;
-  const dateB = b.created_at ? new Date(b.created_at).getTime() : 0;
-  return dateB - dateA;
-});
-} catch (error) {
-  console.error("載入圖片失敗:", error);
-  // 若正式環境 API 暫時阻擋或出錯，維持空陣列以避免畫面崩潰
-  images = [];
-}
+const images = Array.isArray(data) ? data : data.resources;
 ---
 
-<html lang="zh-TW" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/images/lab-logo.png" />
-  <title>ICCT-Pacific 2026 照片集錦 | iCPS Lab</title>
-</head>
+<html>
+  <head>
+    <title>ICCT-Pacific 2026</title>
+  </head>
 
-<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen">
-  
-  <!-- 🔷 頂部導覽列 (Navbar) -->
-  <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
-      <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
-        <!-- 高科大 Logo -->
-        <a href="https://www.nkust.edu.tw/" target="_blank" rel="noopener noreferrer" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img 
-            src="/images/nkust-logo.png" 
-            alt="NKUST 國立高雄科技大學" 
-            class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" 
-            onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" 
-          />
-        </a>
-        <!-- 分隔線 -->
-        <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
-        <!-- 實驗室 Logo -->
-        <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img 
-            src="/images/sicp-logo.png" 
-            alt="iCPS Lab 智慧網宇實體系統實驗室" 
-            class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" 
-            onerror="this.style.display='none';" 
-          />
-        </a>
-      </div>
+  <body style="background:#fff; padding:20px;">
 
-      <!-- 右側導覽連結 -->
-      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-        <a href="/#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
-        <a href="/activities" class="text-blue-800 border-b-2 border-blue-800 pb-1">活動花絮</a>
-        <a href="/#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
-        <a href="/members" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">實驗室成員</a>
-      </div>
-    </div>
-  </nav>
+    <h1 style="text-align:center; margin-bottom:30px;">
+      ICCT-Pacific 2026 活動照片
+    </h1>
 
-  <!-- 🔷 頁面標題區 -->
-  <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="relative z-10">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">ICCT-Pacific 2026</h1>
-      <p class="text-slate-300 text-sm font-light tracking-wider uppercase">Event Gallery</p>
-    </div>
-  </header>
-
-  <!-- 🔷 網站主體區域 (相片集錦) -->
-  <main class="max-w-7xl mx-auto w-full px-6 py-16 relative z-20 flex-1">
-    
-    <!-- 返回按鈕與統計 -->
-    <div class="mb-8 border-b border-slate-200 pb-4 flex justify-between items-end">
-      <a href="/activities" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg>
-        返回活動列表
-      </a>
-      <span class="text-sm font-medium text-slate-400">目前共收錄 {images.length} 張照片</span>
+    <div style="
+      display:grid;
+      grid-template-columns: repeat(3,1fr);
+      gap:20px;
+    ">
+      {images?.map(img => (
+        <img src={img.secure_url} style="width:100%;" />
+      ))}
     </div>
 
-    <!-- 相片圖片網格 (完全依賴 SSR 輸出，無須 React Loading) -->
-    {images.length === 0 ? (
-      <div class="flex flex-col justify-center items-center h-48 text-slate-500 bg-slate-100/50 rounded-lg border border-dashed border-slate-300">
-        <svg class="w-12 h-12 mb-3 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-        <p>目前尚無照片，或資料載入中。</p>
-      </div>
-    ) : (
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {images.map((img, idx) => (
-          <div class="group relative rounded-md overflow-hidden shadow-sm border border-slate-200 hover:shadow-md hover:border-blue-400 transition-all duration-300 bg-slate-100 aspect-[4/3]">
-            <img
-              src={img.secure_url}
-              alt={`活動照片 ${idx + 1}`}
-              class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
-              loading="lazy"
-            />
-            
-            <!-- 滑鼠移上去時的黑色漸層遮罩 -->
-            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-              <div class="absolute bottom-4 left-4 flex flex-col">
-                <span class="text-white text-sm font-medium">Photo #{idx + 1}</span>
-                {img.created_at && (
-                  <span class="text-slate-300 text-xs mt-0.5">
-                    {new Date(img.created_at).toLocaleDateString('zh-TW')}
-                  </span>
-                )}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    )}
-  </main>
-
-  <!-- 🔷 頁尾 (Footer) -->
-  <footer class="bg-[#0f172a] py-16 mt-auto border-t border-slate-800 relative z-20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-      <div class="md:w-1/2">
-        <img 
-          src="/images/footer-logo.png" 
-          alt="iCPS Lab" 
-          class="h-14 md:h-20 w-auto mb-3 object-contain" 
-          onerror="this.style.display='none';" 
-        />
-        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
-        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-          Intelligent Cyber-Physical Systems Laboratory <br/>
-          國立高雄科技大學 (NKUST)
-        </p>
-      </div>
-      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
-        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
-      </div>
-    </div>
-    
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-        <p class="text-xs text-slate-500 leading-normal">
-          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
-        </p>
-        <p class="text-xs text-slate-500 hidden sm:block">|</p>
-        <p class="text-xs text-slate-500">All rights reserved.</p>
-      </div>
-
-      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
-        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
-        <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 🔷 智慧訪客計數器 (Vanilla JS) -->
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const initCounter = async () => {
-        const counterEl = document.getElementById('visitor-count');
-        if (!counterEl) return;
-
-        const namespace = 'icpslab_site';
-        const key = 'visits';
-        const localCountKey = 'icps_saved_count';
-        const lastVisitTimeKey = 'icps_last_visit_time';
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-
-        let currentCount = localStorage.getItem(localCountKey) || '------';
-        
-        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
-        const now = Date.now();
-        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
-        
-        try {
-          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          
-          if (!hasVisitedWithin24Hours) {
-            const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API 回應錯誤');
-            
-            const data = await response.json();
-            currentCount = String(data.count).padStart(6, '0');
-            
-            localStorage.setItem(lastVisitTimeKey, now.toString());
-            localStorage.setItem(localCountKey, currentCount);
-            counterEl.textContent = currentCount;
-            
-          } else {
-            try {
-              const response = await fetch(url);
-              if (response.ok) {
-                const data = await response.json();
-                currentCount = String(data.count).padStart(6, '0');
-                localStorage.setItem(localCountKey, currentCount);
-              }
-            } catch (e) {
-              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
-            }
-            counterEl.textContent = currentCount;
-          }
-        } catch (error) {
-          console.error('計數器載入異常:', error);
-          counterEl.textContent = currentCount;
-        }
-      };
-
-      initCounter();
-    });
-  </script>
-
-</body>
+  </body>
 </html>
