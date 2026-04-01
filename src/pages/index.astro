@@ -394,56 +394,64 @@ import Videos from "../components/Videos.astro";
         if(nextBtn) nextBtn.style.display = 'none';
       }
 
-      // --- 2. 智慧訪客計數器邏輯 ---
+      // --- 2. 智慧訪客計數器邏輯 (防洗次數 + 防破圖備用機制) ---
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
 
-        // 👇 換一組全新的命名空間與 local key，避免舊的錯誤資料干擾
-        const namespace = 'icpslab_tw';
-        const key = 'home_page_visits';
-        const localKey = 'icps_visited_v3';
+        const namespace = 'icpslab_site';
+        const key = 'visits';
+        const sessionKey = 'icps_session_visited';
+        const localCountKey = 'icps_saved_count';
+
+        // 🛡️ 核心修復：從 localStorage 讀取最後一次成功的數字當作備用
+        // 這樣即使 F5 時 API 壞掉或阻擋，也不會顯示錯誤，而是顯示原本的數字
+        let currentCount = localStorage.getItem(localCountKey) || '------';
         
-        const hasVisited = localStorage.getItem(localKey);
+        // 使用 sessionStorage 來判斷「這次瀏覽」是否已經算過人數 (F5 重新整理 sessionStorage 不會消失)
+        const hasVisitedThisSession = sessionStorage.getItem(sessionKey);
         
         try {
-          let url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          let response;
-
-          if (!hasVisited) {
-            // 新訪客：呼叫 /up 來增加次數
-            response = await fetch(url + '/up');
-            if (response.ok) {
-              localStorage.setItem(localKey, 'true');
-            }
-          } else {
-            // 舊訪客：純讀取，不增加次數
-            response = await fetch(url);
+          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          
+          if (!hasVisitedThisSession) {
+            // 🌟 情況 A：新連線 (新分頁或剛打開瀏覽器) -> 呼叫 /up 增加次數
+            const response = await fetch(url + '/up');
+            if (!response.ok) throw new Error('API 回應錯誤');
             
-            // 🐛 【核心修復】：如果 API 回傳 404 (找不到資料)，代表伺服器端該計數器還沒建立，
-            // 但瀏覽器卻以為已經造訪過了。此時必須強制呼叫 /up 來建立計數器，否則會永遠卡在錯誤狀態！
-            if (response.status === 404) {
-              response = await fetch(url + '/up');
-              if (response.ok) {
-                localStorage.setItem(localKey, 'true');
-              }
-            }
-          }
-          
-          if (!response.ok) {
-            throw new Error(`伺服器錯誤: ${response.status}`);
-          }
-          
-          const data = await response.json();
-          
-          if(data && typeof data.count === 'number') {
-            counterEl.textContent = String(data.count).padStart(6, '0');
+            const data = await response.json();
+            currentCount = String(data.count).padStart(6, '0');
+            
+            // 紀錄起來，避免 F5 再次增加
+            sessionStorage.setItem(sessionKey, 'true');
+            // 存入 localStorage 作為未來的備用顯示
+            localStorage.setItem(localCountKey, currentCount);
+            
+            counterEl.textContent = currentCount;
+            
           } else {
-            throw new Error('資料格式不正確');
+            // 🌟 情況 B：F5 重新整理 -> 嘗試獲取最新數字 (不增加)
+            try {
+              const response = await fetch(url);
+              if (response.ok) {
+                const data = await response.json();
+                currentCount = String(data.count).padStart(6, '0');
+                localStorage.setItem(localCountKey, currentCount);
+              }
+            } catch (e) {
+              // 如果 GET 方法被 API 伺服器阻擋，直接忽略錯誤
+              // 程式會自動繼續往下執行，套用 localStorage 裡存著的上一次數字
+              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
+            }
+            
+            // 無論 GET 成功與否，都確保 UI 有數字可以顯示
+            counterEl.textContent = currentCount;
           }
+          
         } catch (error) {
-          console.error('計數器載入失敗 (可能被阻擋):', error);
-          counterEl.textContent = '載入失敗';
+          console.error('計數器載入異常:', error);
+          // 發生任何預期外的錯誤時，顯示備用數字，徹底消滅「載入失敗」
+          counterEl.textContent = currentCount;
         }
       };
 
