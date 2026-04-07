@@ -8,7 +8,6 @@ export async function getStaticPaths() {
   const apiSecret = import.meta.env.CLOUDINARY_API_SECRET;
 
   try {
-    // 呼叫 Cloudinary Admin API 取得 events 資料夾下的所有子資料夾
     const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/folders/events`, {
       headers: {
         'Authorization': `Basic ${btoa(apiKey + ':' + apiSecret)}`
@@ -17,7 +16,6 @@ export async function getStaticPaths() {
     
     const result = await response.json();
     
-    // 如果有資料夾，就自動產生路徑，否則回傳一個空陣列防止錯誤
     if (result.folders && result.folders.length > 0) {
       return result.folders.map(folder => ({
         params: { id: folder.name }
@@ -47,7 +45,6 @@ try {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      // 這裡直接精確搜尋該相簿路徑
       expression: `folder="events/${id}"`, 
       sort_by: [{ created_at: 'desc' }],
       max_results: 500
@@ -56,9 +53,11 @@ try {
 
   const result = await response.json();
   if (result.resources) {
-    photos = result.resources.map(img => 
-      img.secure_url.replace('/upload/', '/upload/f_auto,q_auto/')
-    );
+    // 這裡我們產生兩種 URL：一個是列表用的縮圖 (thumb)，一個是放大用的原圖 (full)
+    photos = result.resources.map(img => ({
+      thumb: img.secure_url.replace('/upload/', '/upload/f_auto,q_auto,w_800/'),
+      full: img.secure_url.replace('/upload/', '/upload/f_auto,q_auto/')
+    }));
   }
 } catch (error) {
   console.error("讀取相簿照片失敗:", error);
@@ -71,6 +70,40 @@ try {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
   <title>{id} - 活動照片 | iCPS Lab 智慧網宇實體系統實驗室</title>
+  
+  <style>
+    /* 🔷 放大燈箱的 CSS 樣式 */
+    #lightbox-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      z-index: 9999;
+      cursor: zoom-out;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    #lightbox-image {
+      max-width: 100%;
+      max-height: 100%;
+      border-radius: 4px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+      transform: scale(0.9);
+      transition: transform 0.3s ease-out;
+      cursor: default;
+    }
+
+    #lightbox-overlay.active #lightbox-image {
+      transform: scale(1);
+    }
+    
+    /* 禁止滾動的輔助樣式 */
+    .no-scroll {
+      overflow: hidden !important;
+    }
+  </style>
 </head>
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
@@ -115,12 +148,18 @@ try {
       </a>
     </div>
 
-    <!-- 📷 網格顯示所有照片 -->
+    <!-- 📷 網格顯示所有照片 (加上點擊放大的標記) -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
       {photos.length > 0 ? (
-        photos.map((url) => (
-          <div class="aspect-[4/3] rounded-md overflow-hidden shadow-sm border border-slate-200 bg-white group">
-            <img src={url} alt="活動照片" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
+        photos.map((img) => (
+          <div class="aspect-[4/3] rounded-md overflow-hidden shadow-sm border border-slate-200 bg-white group cursor-zoom-in gallery-item">
+            <img 
+              src={img.thumb} 
+              data-full={img.full}
+              alt="活動照片" 
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 gallery-img" 
+              loading="lazy" 
+            />
           </div>
         ))
       ) : (
@@ -130,6 +169,11 @@ try {
       )}
     </div>
   </main>
+
+  <!-- 🔷 燈箱元件 (Lightbox Overlay) -->
+  <div id="lightbox-overlay" aria-hidden="true">
+    <img id="lightbox-image" src="" alt="放大照片" />
+  </div>
 
   <!-- 🔷 頁尾 (Footer) -->
   <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
@@ -163,9 +207,38 @@ try {
     </div>
   </footer>
 
-  <!-- 🔷 訪客計數器邏輯 (保持不變) -->
+  <!-- 🔷 燈箱互動邏輯與計數器 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      // 1. 燈箱放大邏輯
+      const overlay = document.getElementById('lightbox-overlay');
+      const lightboxImg = document.getElementById('lightbox-image');
+      const galleryImgs = document.querySelectorAll('.gallery-img');
+
+      if (overlay && lightboxImg) {
+        galleryImgs.forEach(img => {
+          img.addEventListener('click', () => {
+            const fullUrl = img.getAttribute('data-full');
+            if (fullUrl) {
+              lightboxImg.src = fullUrl;
+              overlay.style.display = 'flex';
+              setTimeout(() => overlay.classList.add('active'), 10);
+              document.body.classList.add('no-scroll');
+            }
+          });
+        });
+
+        overlay.addEventListener('click', () => {
+          overlay.classList.remove('active');
+          setTimeout(() => {
+            overlay.style.display = 'none';
+            lightboxImg.src = '';
+          }, 300);
+          document.body.classList.remove('no-scroll');
+        });
+      }
+
+      // 2. 訪客計數器邏輯
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
