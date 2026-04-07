@@ -61,9 +61,9 @@ import Videos from "../components/Videos.astro";
     <div id="hero-slider" class="absolute inset-0 w-full h-full z-10 group/slider">
       <!-- object-cover 讓圖片完美填滿背景不變形 -->
       <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
+	  <img src="/images/hero-bg-3.jpg" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
       <img src="/images/hero-bg-2.png" alt="實驗室背景 2" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-	  <img src="/images/hero-bg-3.png" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      
+	
       <!-- 左右切換按鈕 -->
       <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
@@ -93,7 +93,7 @@ import Videos from "../components/Videos.astro";
           <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em] mr-1">i</span>CPS Lab
         </h1>
         <p class="text-sm sm:text-lg lg:text-xl text-slate-100 font-light max-w-3xl leading-relaxed drop-shadow-md mx-auto md:mx-0">
-          致力於雲端與智慧物聯網系統 (AIoT)、人工智慧醫療與製造聯網等前瞻技術之學術研究與產業應用落地。
+          AI × Healthcare × Smart Manufacturing
         </p>
       </div>
     </div>
@@ -266,7 +266,7 @@ import Videos from "../components/Videos.astro";
       <!-- 前往完整名單的按鈕 -->
       <div class="flex justify-center mt-8">
         <a href="/members" class="inline-flex items-center justify-center px-8 py-4 bg-slate-800 hover:bg-blue-700 text-white font-medium rounded-sm transition-all duration-300 shadow-sm hover:shadow-md group/btn">
-          查看其他實驗室成員
+          查看所有實驗室成員
           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
           </svg>
