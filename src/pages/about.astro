@@ -38,37 +38,37 @@ import "../styles/global.css";
     </div>
   </nav>
 
-  <!-- 🔷 頁面標題區 (Hero Banner) -->
-  <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="relative z-10">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">關於 iCPS Lab</h1>
-      <p class="text-slate-300 text-sm font-light tracking-wider uppercase">About iCPS Laboratory</p>
+  <!-- 🔷 頁面標題區 (Hero Banner - 優化漸層與陰影) -->
+  <header class="bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-800 py-16 lg:py-20 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
+    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">關於 iCPS Lab</h1>
+      <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow">About iCPS Laboratory</p>
     </div>
   </header>
 
-  <!-- 🔷 網站主體區域 -->
-  <main class="flex-grow max-w-7xl mx-auto px-6 py-16 relative z-20 w-full">
+  <!-- 🔷 網站主體區域 (加入淡入動畫 class) -->
+  <main class="flex-grow max-w-7xl mx-auto px-6 py-16 relative z-20 w-full animate-fade-in-up">
 
     <!-- 回首頁按鈕 -->
     <div class="mb-10">
-      <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+      <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition-colors bg-white px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:shadow-md">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
         返回首頁
       </a>
     </div>
 
     <!-- 所有區塊的外層容器，控制垂直間距 -->
-    <div class="space-y-20">
+    <div class="space-y-24">
       
       <!-- 📌 區塊一：實驗室願景與核心精神 -->
       <section>
-        <div class="bg-white border-l-4 border-blue-800 p-8 lg:p-10 shadow-sm rounded-r-sm">
-          <h2 class="text-2xl font-bold text-slate-900 mb-4">我們不只寫程式，更解決真實世界的痛點。</h2>
-          <p class="text-slate-700 leading-relaxed text-lg mb-4">
+        <div class="bg-white border-l-[6px] border-blue-700 p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] rounded-r-xl">
+          <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-5 tracking-tight">我們不只寫程式，更解決真實世界的痛點。</h2>
+          <p class="text-slate-700 leading-relaxed text-lg mb-5 text-justify">
             <strong class="text-blue-800">iCPS Lab 智慧網宇實體系統實驗室</strong> 致力於在智慧網宇實體系統領域內之前瞻實務與學術研究。研究目標融合了人工智慧 (AI)、物聯網 (IoT)、延展實境 (XR) 等技術，並透過網路通訊與物理世界的交互，旨在開發出能夠智慧感測與分析之虛實系統解決方案。
           </p>
-          <p class="text-slate-600 leading-relaxed text-base">
+          <p class="text-slate-600 leading-relaxed text-base lg:text-lg text-justify">
             智慧網宇實體系統之研究範疇廣泛，主要涵蓋<strong class="text-slate-800">智慧交通系統、智能製造系統、照護醫療系統</strong>等領域。智慧網宇實體系統實驗室非常歡迎對此領域充滿熱忱的同學加入我們，共同開創智慧科技的新紀元。
           </p>
         </div>
@@ -76,18 +76,18 @@ import "../styles/global.css";
 
       <!-- 📌 區塊二：指導教授與實驗室領航 (左影片/右文字) -->
       <section>
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-1.5 h-6 bg-blue-800"></div>
-          <h3 class="text-2xl font-bold text-slate-800">指導教授領航 Principal Investigator</h3>
+        <div class="flex items-center gap-3 mb-10">
+          <div class="w-2 h-8 bg-blue-700 rounded-full"></div>
+          <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">指導教授領航 <span class="text-slate-400 font-light ml-2 text-xl lg:text-2xl">Principal Investigator</span></h3>
         </div>
         
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
-          <!-- 左側：YouTube 影片 (響應式 16:9 比例) -->
-          <div class="w-full aspect-video bg-slate-200 rounded-md shadow-md overflow-hidden border border-slate-300 relative group">
-            <!-- 👇 請將 src 替換為實際的 YouTube 嵌入連結 (Embed URL) -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <!-- 左側：YouTube 影片 (圓角與優化陰影) -->
+          <div class="w-full aspect-video bg-slate-200 rounded-2xl shadow-lg overflow-hidden border border-slate-200 relative group transition-shadow hover:shadow-xl duration-300">
+            <!-- 👇 請將 src 替換為實際的 YouTube 嵌入連結 -->
             <iframe 
               class="w-full h-full absolute inset-0"
-              src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=abcdefgh" 
+              src="https://www.youtube.com/watch?v=AZQONwyI5IE&list=PL_k9bFPONrNfXPh7cK_JZES1MpifA9_hh&index=2" 
               title="張萬榮教授實驗室介紹" 
               frameborder="0" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
@@ -95,104 +95,74 @@ import "../styles/global.css";
             </iframe>
           </div>
           
-<!-- 右側：教授理念與實驗室風格 -->
-<div class="flex flex-col justify-center h-full space-y-4">
-            <h4 class="text-xl font-bold text-slate-900">張萬榮 教授 <span class="text-sm font-normal text-slate-500 ml-2">Wan-Jung Chang, Ph.D.</span></h4>
+          <!-- 右側：教授理念與實驗室風格 -->
+          <div class="flex flex-col justify-center h-full space-y-5">
+            <h4 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">
+              張萬榮 教授 
+              <span class="text-base font-medium text-slate-500 ml-2 font-mono">Wan-Jung Chang, Ph.D.</span>
+            </h4>
             
-            <p class="text-slate-700 leading-relaxed font-medium text-justify">
+            <p class="text-slate-700 leading-relaxed font-semibold text-lg text-justify text-blue-900/90 bg-blue-50/50 p-4 rounded-lg border-l-4 border-blue-200">
               「工程教育的價值在於探索未知，並將科技回饋社會。我們期許團隊不僅掌握前瞻技術，更能解決臨床與產業的真實痛點。」
             </p>
             
-            <p class="text-slate-600 leading-relaxed text-sm text-justify">
+            <p class="text-slate-600 leading-relaxed text-sm lg:text-base text-justify">
               張教授帶領團隊深耕 AIoT 與邊緣運算，致力於在<strong class="text-slate-800">高雄科技大學電子工程系</strong>建構完善的培育環境。實驗室擁有互助融洽的團隊氛圍，鼓勵學生建立扎實的學理基礎，積極發表<strong class="text-slate-800">國內外頂尖研討會與期刊論文</strong>；同時帶領團隊參與各項<strong class="text-slate-800">創新創業競賽</strong>，將理論化為實務應用。
             </p>
 
-            <p class="text-slate-600 leading-relaxed text-sm text-justify">
-              iCPS Lab 每年熱烈招收具備熱忱的 <strong class="text-blue-700">博士、碩士及大學部專題生</strong>。我們回歸校園培育人才的初衷，透過嚴謹的學術訓練與產醫跨域交流，幫助你在這裡獲得兼具理論深度與研發實作的全面成長！
+            <p class="text-slate-600 leading-relaxed text-sm lg:text-base text-justify">
+              iCPS Lab 每年熱烈招收具備熱忱的 <strong class="text-blue-700 font-bold bg-blue-50 px-1.5 py-0.5 rounded">博士、碩士及大學部專題生</strong>。我們回歸校園培育人才的初衷，透過嚴謹的學術訓練與產醫跨域交流，幫助你在這裡獲得兼具理論深度與研發實作的全面成長！
             </p>
 
-            <div class="pt-3 border-t border-slate-100">
-              <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw"    target="_blank"
-   rel="noopener noreferrer"class="inline-flex items-center text-blue-600 font-bold hover:text-blue-800 transition group text-sm">
+            <div class="pt-4">
+              <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-white bg-slate-800 hover:bg-blue-700 font-medium px-5 py-2.5 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md group text-sm">
                 查看教授完整簡歷與研究專長
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 📌 區塊三：三大核心研究領域 -->
+      <!-- 📌 區塊三：三大核心研究領域 (微動效卡片設計) -->
       <section>
-        <div class="flex items-center gap-3 mb-8">
-          <div class="w-1.5 h-6 bg-blue-800"></div>
-          <h3 class="text-2xl font-bold text-slate-800">核心研究領域 Core Research Areas</h3>
+        <div class="flex items-center gap-3 mb-10">
+          <div class="w-2 h-8 bg-blue-700 rounded-full"></div>
+          <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">核心研究領域 <span class="text-slate-400 font-light ml-2 text-xl lg:text-2xl">Core Research Areas</span></h3>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="bg-white border border-slate-200 p-6 rounded-sm hover:shadow-md hover:border-blue-400 transition flex flex-col">
-            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 shrink-0">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- 卡片 1 -->
+          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+            <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
               <span class="text-2xl">🏥</span>
             </div>
-            <h4 class="font-bold text-slate-900 text-lg mb-2">照護醫療系統</h4>
-            <p class="text-sm text-slate-600 leading-relaxed mt-auto">
+            <h4 class="font-bold text-slate-900 text-xl mb-3">照護醫療系統</h4>
+            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
               開發基於熱影像、ToF感測器與骨幹辨識之輔助系統。涵蓋精神病房自傷預警、病患日常行為與翻身拍背辨識、耳病灶自動診斷，以及結合YOLO之舌肌復健與手術器械教育訓練平台。
             </p>
           </div>
 
-          <div class="bg-white border border-slate-200 p-6 rounded-sm hover:shadow-md hover:border-blue-400 transition flex flex-col">
-            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 shrink-0">
+          <!-- 卡片 2 -->
+          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+            <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
               <span class="text-2xl">🏭</span>
             </div>
-            <h4 class="font-bold text-slate-900 text-lg mb-2">智能製造系統</h4>
-            <p class="text-sm text-slate-600 leading-relaxed mt-auto">
+            <h4 class="font-bold text-slate-900 text-xl mb-3">智能製造系統</h4>
+            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
               運用 YOLO 深度學習與邊緣運算，開發自動化產線瑕疵檢測系統（如電容缺漏焊、包裝缺陷辨識），實現高精準度與低延遲的檢驗效能，提升工廠產線良率與生產效率。
             </p>
           </div>
 
-          <div class="bg-white border border-slate-200 p-6 rounded-sm hover:shadow-md hover:border-blue-400 transition flex flex-col">
-            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 shrink-0">
+          <!-- 卡片 3 -->
+          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+            <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm">
               <span class="text-2xl">🚗</span>
             </div>
-            <h4 class="font-bold text-slate-900 text-lg mb-2">智慧交通與網宇實體系統</h4>
-            <p class="text-sm text-slate-600 leading-relaxed mt-auto">
+            <h4 class="font-bold text-slate-900 text-xl mb-3">智慧交通與 XR 應用</h4>
+            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
               融合物聯網 (IoT) 與延展實境 (XR) 等技術，建立網路通訊與物理世界交互的智慧感測網路。應用範疇包含智慧交通、環境微塑膠監測等前瞻虛實系統解決方案。
             </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 📌 區塊四：實驗室資源與設備 -->
-      <section class="bg-slate-800 text-white p-8 lg:p-10 rounded-sm shadow-md relative overflow-hidden">
-        <!-- 裝飾用背景圖形 -->
-        <div class="absolute -right-10 -bottom-10 opacity-10">
-          <svg width="200" height="200" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12 2L2 22h20L12 2zm0 3.5l7.5 15h-15L12 5.5z"/></svg>
-        </div>
-        
-        <div class="relative z-10">
-          <div class="flex items-center gap-3 mb-8">
-            <div class="w-1.5 h-6 bg-blue-400"></div>
-            <h3 class="text-2xl font-bold">實驗室資源與設備 Lab Resources</h3>
-          </div>
-          
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-              <h4 class="text-blue-300 font-bold text-lg mb-3 flex items-center gap-2"><span class="text-xl">🖥️</span> 豐沛的運算資源</h4>
-              <ul class="space-y-2 text-slate-300 text-sm">
-                <li class="flex items-start gap-2"><span class="text-blue-400">✔</span> 內文自行填寫：高階 GPU 伺服器 (如 RTX 4090 / 3090)</li>
-                <li class="flex items-start gap-2"><span class="text-blue-400">✔</span> 內文自行填寫：個人獨立工作站與雙螢幕配置</li>
-                <li class="flex items-start gap-2"><span class="text-blue-400">✔</span> 內文自行填寫：充足的雲端儲存空間</li>
-              </ul>
-            </div>
-            
-            <div>
-              <h4 class="text-blue-300 font-bold text-lg mb-3 flex items-center gap-2"><span class="text-xl">🛠️</span> 軟硬體整合設備</h4>
-              <ul class="space-y-2 text-slate-300 text-sm">
-                <li class="flex items-start gap-2"><span class="text-blue-400">✔</span> 內文自行填寫：各類邊緣運算開發板 (NVIDIA Jetson 系列等)</li>
-                <li class="flex items-start gap-2"><span class="text-blue-400">✔</span> 內文自行填寫：高精度 ToF 感測器與熱影像儀器</li>
-                <li class="flex items-start gap-2"><span class="text-blue-400">✔</span> 內文自行填寫：3D 列印機與電路焊接實作設備</li>
-              </ul>
-            </div>
           </div>
         </div>
       </section>
@@ -239,6 +209,23 @@ import "../styles/global.css";
       </div>
     </div>
   </footer>
+
+  <!-- 🔷 自定義動畫樣式 -->
+  <style>
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s ease-out forwards;
+    }
+  </style>
 
   <!-- 🔷 智慧訪客計數器邏輯 -->
   <script>
