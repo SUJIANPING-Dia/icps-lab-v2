@@ -1,57 +1,5 @@
 ---
 import "../styles/global.css";
-
-let activities = [];
-
-try {
-  const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME;
-  const apiKey = import.meta.env.CLOUDINARY_API_KEY;
-  const apiSecret = import.meta.env.CLOUDINARY_API_SECRET;
-
-  const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/resources/search`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Basic ${btoa(apiKey + ':' + apiSecret)}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      expression: '', // 抓取全部照片，由前端進行篩選
-      with_field: 'context',
-      sort_by: [{ created_at: 'desc' }],
-      max_results: 500
-    })
-  });
-
-  const result = await response.json();
-
-  if (result.resources) {
-    const albumsMap = new Map();
-
-    result.resources.forEach(img => {
-      // 處理 Cloudinary 虛擬資料夾的問題
-      let folderPath = img.asset_folder || img.folder || "";
-
-      if (folderPath.startsWith('events/')) {
-        if (folderPath.endsWith('/')) folderPath = folderPath.slice(0, -1);
-        
-        const albumId = folderPath.split('/').pop();
-
-        if (albumId && albumId !== 'events' && !albumsMap.has(albumId)) {
-          albumsMap.set(albumId, {
-            id: albumId,
-            title: img.context?.custom?.title || albumId,
-            date: img.created_at.substring(0, 10).replace(/-/g, '.'),
-            img: img.secure_url.replace('/upload/', '/upload/f_auto,q_auto/')
-          });
-        }
-      }
-    });
-
-    activities = Array.from(albumsMap.values());
-  }
-} catch (error) {
-  console.error("Cloudinary API 獲取失敗:", error);
-}
 ---
 
 <html lang="zh-TW" class="scroll-smooth">
@@ -59,45 +7,51 @@ try {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
-  <title>活動花絮 | iCPS Lab 智慧網宇實體系統實驗室</title>
+  <title>關於實驗室 | iCPS Lab 智慧網宇實體系統實驗室</title>
 </head>
 
-<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
+<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen">
 
   <!-- 🔷 頂部導覽列 (Navbar) -->
   <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
       <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
+        <!-- 高科大 Logo -->
         <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
         </a>
+        <!-- 分隔線 -->
         <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
+        <!-- 實驗室 Logo -->
         <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
         </a>
       </div>
 
+      <!-- 右側導覽連結 (✅ 設定「關於 iCPS Lab」為目前所在頁面) -->
       <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
         <a href="/about" class="text-blue-800 border-b-2 border-blue-800 pb-1">關於 iCPS Lab</a>
         <a href="/#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
-        <a href="/activities" class="text-blue-800 border-b-2 border-blue-800 pb-1">活動花絮</a>
+        <a href="/#activities" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">活動花絮</a>
         <a href="/#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
         <a href="/members" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">實驗室成員</a>
       </div>
     </div>
   </nav>
 
-  <!-- 🔷 頁面標題區 -->
+  <!-- 🔷 頁面標題區 (Hero Banner) -->
   <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
     <div class="relative z-10">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">活動花絮</h1>
-      <p class="text-slate-300 text-sm font-light tracking-wider uppercase">Activities & Albums</p>
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">關於實驗室</h1>
+      <p class="text-slate-300 text-sm font-light tracking-wider uppercase">About iCPS Laboratory</p>
     </div>
   </header>
 
   <!-- 🔷 網站主體區域 -->
-  <main class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
+  <main class="flex-grow max-w-7xl mx-auto px-6 py-16 relative z-20 w-full">
+
+    <!-- 回首頁按鈕 -->
     <div class="mb-10">
       <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
@@ -105,32 +59,69 @@ try {
       </a>
     </div>
 
-    <!-- 📷 相簿網格區塊 -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {activities.map((item) => (
-        <a href={`/activities/${encodeURIComponent(item.id)}`} class="bg-white rounded-md border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 group flex flex-col cursor-pointer block">
-          <div class="relative aspect-[4/3] overflow-hidden bg-slate-100 shrink-0">
-            <img src={item.img} alt={item.title} class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" loading="lazy" />
-            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-bold px-3 py-1.5 rounded-sm shadow-sm flex items-center gap-1.5">
-              📅 {item.date}
+    <!-- 內容區塊 -->
+    <div class="space-y-12">
+      
+      <!-- 🔹 實驗室簡介 -->
+      <div>
+        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">實驗室簡介 Introduction</h3>
+        <div class="bg-white border border-slate-200 p-8 lg:p-10 shadow-sm rounded-sm">
+          <p class="text-slate-700 leading-relaxed text-lg mb-6">
+            歡迎來到 <strong class="text-blue-800">iCPS Lab 智慧網宇實體系統實驗室 (Intelligent Cyber-Physical Systems Laboratory)</strong>。
+            我們的研究團隊隸屬於國立高雄科技大學，致力於結合人工智慧 (AI)、醫療照護 (Healthcare) 與智慧製造 (Smart Manufacturing) 等前瞻技術，探索並解決現實世界中的複雜問題。
+          </p>
+          <p class="text-slate-700 leading-relaxed text-lg">
+            透過軟硬體整合、邊緣運算 (Edge Computing)、物聯網 (IoT) 與大數據分析，我們期望培育具備實務開發能力與創新思維的頂尖工程人才。同時，實驗室積極與醫療機構、產業界緊密合作，創造具備高度社會價值的技術應用與落地解決方案。
+          </p>
+        </div>
+      </div>
+
+      <!-- 🔹 核心研究領域 (採用卡片式排版) -->
+      <div>
+        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">核心研究領域 Core Research Areas</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- 領域 1 -->
+          <div class="bg-white border border-slate-200 p-6 rounded-sm hover:shadow-md hover:border-blue-400 transition flex flex-col h-full">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
             </div>
+            <h4 class="font-bold text-slate-900 text-lg mb-2">智慧醫療與照護系統</h4>
+            <p class="text-sm text-slate-600 leading-relaxed mt-auto">
+              開發基於熱影像、ToF 感測器與 AI 辨識技術之輔助系統，應用於病患自傷預警、行為辨識、手術器械辨識等醫療場域，提升照護品質與病患安全。
+            </p>
           </div>
 
-          <div class="p-6 flex flex-col items-center justify-center flex-1 text-center bg-white relative">
-            <h3 class="text-lg font-bold text-slate-800 mb-2 leading-snug group-hover:text-blue-700 transition-colors">
-              {item.title}
-            </h3>
-            <div class="mt-3 inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-400 group-hover:text-blue-600 transition-colors">
-              觀看相簿 →
+          <!-- 領域 2 -->
+          <div class="bg-white border border-slate-200 p-6 rounded-sm hover:shadow-md hover:border-blue-400 transition flex flex-col h-full">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
             </div>
+            <h4 class="font-bold text-slate-900 text-lg mb-2">AI 智慧製造與檢測</h4>
+            <p class="text-sm text-slate-600 leading-relaxed mt-auto">
+              利用 YOLO 等深度學習與邊緣運算技術，設計自動化生產線瑕疵檢測系統 (如電容焊接瑕疵、調味料包辨識等)，大幅提升產線良率並降低人工成本。
+            </p>
           </div>
-        </a>
-      ))}
+
+          <!-- 領域 3 -->
+          <div class="bg-white border border-slate-200 p-6 rounded-sm hover:shadow-md hover:border-blue-400 transition flex flex-col h-full">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4 shrink-0">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            </div>
+            <h4 class="font-bold text-slate-900 text-lg mb-2">雲端與物聯網系統 (AIoT)</h4>
+            <p class="text-sm text-slate-600 leading-relaxed mt-auto">
+              從終端感測器 (Sensor) 的資料擷取、無線傳輸，到雲端平台的整合分析，建構完整的物聯網生態系，應用於環境監測、畜牧業與健康體適能評估。
+            </p>
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </main>
 
   <!-- 🔷 頁尾 (Footer) -->
-  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
+  <footer class="bg-[#0f172a] py-16 mt-auto border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
         <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
@@ -183,20 +174,25 @@ try {
         const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
         let currentCount = localStorage.getItem(localCountKey) || '------';
+        
         const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
         const now = Date.now();
         const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
         
         try {
           const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          
           if (!hasVisitedWithin24Hours) {
             const response = await fetch(url + '/up');
             if (!response.ok) throw new Error('API 回應錯誤');
+            
             const data = await response.json();
             currentCount = String(data.count).padStart(6, '0');
+            
             localStorage.setItem(lastVisitTimeKey, now.toString());
             localStorage.setItem(localCountKey, currentCount);
             counterEl.textContent = currentCount;
+            
           } else {
             try {
               const response = await fetch(url);
@@ -206,11 +202,13 @@ try {
                 localStorage.setItem(localCountKey, currentCount);
               }
             } catch (e) {
-              console.warn('無法從伺服器獲取最新數字');
+              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
             }
             counterEl.textContent = currentCount;
           }
+          
         } catch (error) {
+          console.error('計數器載入異常:', error);
           counterEl.textContent = currentCount;
         }
       };
