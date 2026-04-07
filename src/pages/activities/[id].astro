@@ -1,7 +1,15 @@
 ---
-import "../styles/global.css";
+import "../../styles/global.css";
 
-let activities = [];
+// 如果未來有新增別的相簿資料夾，需要手動補在這裡 (例如: "2027-Party")，這是 SSG (靜態生成) 的需求
+export async function getStaticPaths() {
+  return [
+    { params: { id: "ICCT-Pacific 2026" } }
+  ];
+}
+
+const { id } = Astro.params; 
+let photos = [];
 
 try {
   const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME;
@@ -15,42 +23,23 @@ try {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      expression: '', // 抓取全部照片，由前端進行篩選
-      with_field: 'context',
+      expression: '', 
       sort_by: [{ created_at: 'desc' }],
       max_results: 500
     })
   });
 
   const result = await response.json();
-
   if (result.resources) {
-    const albumsMap = new Map();
-
-    result.resources.forEach(img => {
-      // 處理 Cloudinary 虛擬資料夾的問題
-      let folderPath = img.asset_folder || img.folder || "";
-
-      if (folderPath.startsWith('events/')) {
-        if (folderPath.endsWith('/')) folderPath = folderPath.slice(0, -1);
-        
-        const albumId = folderPath.split('/').pop();
-
-        if (albumId && albumId !== 'events' && !albumsMap.has(albumId)) {
-          albumsMap.set(albumId, {
-            id: albumId,
-            title: img.context?.custom?.title || albumId,
-            date: img.created_at.substring(0, 10).replace(/-/g, '.'),
-            img: img.secure_url.replace('/upload/', '/upload/f_auto,q_auto/')
-          });
-        }
-      }
+    const filteredResources = result.resources.filter(img => {
+      const path = img.asset_folder || img.folder || "";
+      return path === `events/${id}`;
     });
 
-    activities = Array.from(albumsMap.values());
+    photos = filteredResources.map(img => img.secure_url.replace('/upload/', '/upload/f_auto,q_auto/'));
   }
 } catch (error) {
-  console.error("Cloudinary API 獲取失敗:", error);
+  console.error("讀取相簿照片失敗:", error);
 }
 ---
 
@@ -59,7 +48,7 @@ try {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
-  <title>活動花絮 | iCPS Lab 智慧網宇實體系統實驗室</title>
+  <title>{id} - 活動照片 | iCPS Lab 智慧網宇實體系統實驗室</title>
 </head>
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
@@ -86,45 +75,35 @@ try {
     </div>
   </nav>
 
-  <!-- 🔷 頁面標題區 -->
+  <!-- 🔷 頁面標題區 (換成相簿名稱) -->
   <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="relative z-10">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">活動花絮</h1>
-      <p class="text-slate-300 text-sm font-light tracking-wider uppercase">Activities & Albums</p>
+    <div class="relative z-10 px-4">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">{id}</h1>
+      <p class="text-slate-300 text-sm font-light tracking-wider uppercase">Album Details</p>
     </div>
   </header>
 
   <!-- 🔷 網站主體區域 -->
   <main class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
     <div class="mb-10">
-      <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
+      <a href="/activities" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-        返回首頁
+        返回活動花絮清單
       </a>
     </div>
 
-    <!-- 📷 相簿網格區塊 -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      {activities.map((item) => (
-        <a href={`/activities/${encodeURIComponent(item.id)}`} class="bg-white rounded-md border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 group flex flex-col cursor-pointer block">
-          <div class="relative aspect-[4/3] overflow-hidden bg-slate-100 shrink-0">
-            <img src={item.img} alt={item.title} class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" loading="lazy" />
-            <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-bold px-3 py-1.5 rounded-sm shadow-sm flex items-center gap-1.5">
-              📅 {item.date}
-            </div>
+    <!-- 📷 網格顯示所有照片 -->
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+      {photos.length > 0 ? (
+        photos.map((url) => (
+          <div class="aspect-[4/3] rounded-md overflow-hidden shadow-sm border border-slate-200 bg-white group">
+            <img src={url} alt="活動照片" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
           </div>
-
-          <div class="p-6 flex flex-col items-center justify-center flex-1 text-center bg-white relative">
-            <h3 class="text-lg font-bold text-slate-800 mb-2 leading-snug group-hover:text-blue-700 transition-colors">
-              {item.title}
-            </h3>
-            <div class="mt-3 inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-400 group-hover:text-blue-600 transition-colors">
-              觀看相簿 →
-            </div>
-          </div>
-        </a>
-      ))}
+        ))
+      ) : (
+        <p class="text-slate-500 col-span-full text-center py-12">相片載入中，或該相簿尚無相片...</p>
+      )}
     </div>
   </main>
 

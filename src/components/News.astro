@@ -4,59 +4,6 @@
 // ==========================================
 const newsData = [
   {
-    date: "2026.03.31",
-    tag: "學術發表",
-    tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
-    title: "狂賀！實驗室大四同學赴日參加 2026 IEEE ICCT-Pacific 國際研討會，成功發表兩篇論文",
-    img: "/images/icct2026-group.jpg", // 替換為: 參加的同學與指導老師合照的照片
-    imgAlt: "實驗室師生於日本山口大學 ICCT-Pacific 2026 研討會現場合影",
-    content: `
-      <p class="text-base font-semibold text-slate-900 mb-4">
-        本實驗室大四專題生於 2026 年 3 月 29 日，前往日本山口大學（Yamaguchi University, Yoshida Campus, Yamaguchi, Japan），參加 <strong>2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)</strong> 國際研討會，並成功進行兩篇論文的口頭發表！
-      </p>
-
-      <p class="mb-6 text-slate-700">
-        本次發表的兩篇論文皆展現了實驗室在人工智慧與影像辨識技術上的扎實應用，從智慧農業的精準測量到智慧製造的自動化品質控管，深獲與會學者肯定。發表的兩篇論文題目與現場實況如下：
-      </p>
-
-      <div class="space-y-6">
-        <!-- 論文 1: PigView -->
-        <div class="border border-slate-200 bg-slate-50 rounded p-5 border-l-4 border-l-purple-500">
-          <h3 class="font-bold text-purple-800 mb-2 leading-tight">
-            📄 PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning
-          </h3>
-          <p class="text-slate-700 mb-4 text-sm">
-            本研究提出一套名為 PigView 的系統，利用人工智慧深度學習技術，透過最小邊界框來精準估測豬隻重量，期能為智慧農業帶來更高效、低接觸的飼養管理方案。
-          </p>
-          <div class="w-full bg-slate-200 rounded overflow-hidden flex justify-center items-center relative aspect-video border border-slate-200 mt-3">
-            <!-- 替換為: PIGVIEW報告的現場照片 -->
-            <img src="/images/icct2026-pigview.jpg" alt="PigView 論文發表實況" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';">
-            <span class="text-slate-500 font-medium z-0">[ PigView 報告現場照片 ]</span>
-          </div>
-        </div>
-
-        <!-- 論文 2: iNoodle -->
-        <div class="border border-slate-200 bg-slate-50 rounded p-5 border-l-4 border-l-purple-500">
-          <h3 class="font-bold text-purple-800 mb-2 leading-tight">
-            📄 iNoodle: An Artificial Intelligence Seasoning-Packet Recognition System Applied to Packaged Dried Noodle Production Line
-          </h3>
-          <p class="text-slate-700 mb-4 text-sm">
-            針對包裝乾麵生產線，團隊開發了 iNoodle 人工智慧調味包辨識系統，透過自動化影像辨識技術，提升生產線的品質控管與包裝效率，展現 AI 落地產線的實力。
-          </p>
-          <div class="w-full bg-slate-200 rounded overflow-hidden flex justify-center items-center relative aspect-video border border-slate-200 mt-3">
-            <!-- 替換為: INOODEL報告的現場照片 -->
-            <img src="/images/icct2026-inoodle.jpg" alt="iNoodle 論文發表實況" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';">
-            <span class="text-slate-500 font-medium z-0">[ iNoodle 報告現場照片 ]</span>
-          </div>
-        </div>
-      </div>
-
-      <p class="mt-6 text-slate-700">
-        這次遠赴日本參加國際研討會，對大四同學來說是非常難得且寶貴的經驗，不僅能將專題成果推向國際舞台，更能與各國學者進行學術交流，拓展國際視野。再次恭喜同學們順利完成發表！
-      </p>
-    `
-  },
-  {
     date: "2026.03.15",
     tag: "活動花絮",
     tagTheme: "text-emerald-800 bg-emerald-50 border-emerald-200",
@@ -186,8 +133,8 @@ const newsData = [
               <div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed space-y-5">
                 {item.img && (
                   <div class="w-full max-w-3xl aspect-[1477/1108] bg-slate-100 rounded border border-slate-200 overflow-hidden flex items-center justify-center relative mt-2">
-                    <img src={item.img} alt={item.imgAlt} class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';" />
-                    <span class="text-slate-400 font-medium z-0">[ {item.imgAlt} ]</span>
+                    <img src={item.img} alt={item.imgAlt} class="w-full h-full object-cover absolute inset-0" onerror="this.style.display='none';" />
+                    <span class="text-slate-400 font-medium">[ {item.imgAlt} ]</span>
                   </div>
                 )}
                 <div set:html={item.content}></div>
@@ -211,7 +158,7 @@ const newsData = [
         const icon = this.querySelector('.toggle-icon');
         const isExpanded = content.getAttribute('data-expanded') === 'true';
 
-        // 🟢 如果要展開當前項目，先收起所有其他已展開的項目
+        // 🟢 新增：如果要展開當前項目，先收起所有其他已展開的項目
         if (!isExpanded) {
           const allExpanded = document.querySelectorAll('#news-list [data-expanded="true"]');
           allExpanded.forEach(expandedContent => {
