@@ -131,9 +131,10 @@ const internationals = [];
         </a>
       </div>
 
-      <!-- 右側導覽連結 -->
+      <!-- 右側導覽連結 (✅ 已補上活動花絮，與首頁一致) -->
       <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
         <a href="/#news" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">最新消息</a>
+        <a href="/#activities" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">活動花絮</a>
         <a href="/#videos" class="hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">影音專區</a>
         <a href="/members" class="text-blue-800 border-b-2 border-blue-800 pb-1">實驗室成員</a>
       </div>
@@ -195,7 +196,7 @@ const internationals = [];
                 
                 <div class="space-y-2 pt-4 border-t border-slate-100 text-[13px] text-slate-600">
                   <p class="flex items-center gap-2">
-                    <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                    <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z"></path></svg>
                     <a href={`mailto:${person.email}`} class="hover:text-blue-600 truncate transition" title={person.email}>{person.email}</a>
                   </p>
                   <p class="flex items-center gap-2">
@@ -370,7 +371,6 @@ const internationals = [];
   <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
-        <!-- 調整為 h-14 md:h-20 以放大 Logo -->
         <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
         <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
         <p class="text-sm text-slate-400 leading-relaxed max-w-md">
@@ -388,7 +388,6 @@ const internationals = [];
     
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
       <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-        <!-- 這裡已經改回文字版本 -->
         <p class="text-xs text-slate-500 leading-normal">
           &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
         </p>
