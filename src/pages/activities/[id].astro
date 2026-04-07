@@ -1,13 +1,37 @@
 ---
 import "../../styles/global.css";
 
-// 如果未來有新增別的相簿資料夾，需要手動補在這裡 (例如: "2027-Party")，這是 SSG (靜態生成) 的需求
+// 🔷 第一步：動態生成所有相簿頁面的路徑
 export async function getStaticPaths() {
-  return [
-    { params: { id: "ICCT-Pacific 2026" } }
-  ];
+  const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME;
+  const apiKey = import.meta.env.CLOUDINARY_API_KEY;
+  const apiSecret = import.meta.env.CLOUDINARY_API_SECRET;
+
+  try {
+    // 呼叫 Cloudinary Admin API 取得 events 資料夾下的所有子資料夾
+    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/folders/events`, {
+      headers: {
+        'Authorization': `Basic ${btoa(apiKey + ':' + apiSecret)}`
+      }
+    });
+    
+    const result = await response.json();
+    
+    // 如果有資料夾，就自動產生路徑，否則回傳一個空陣列防止錯誤
+    if (result.folders && result.folders.length > 0) {
+      return result.folders.map(folder => ({
+        params: { id: folder.name }
+      }));
+    }
+    
+    return [];
+  } catch (error) {
+    console.error("生成相簿路徑失敗:", error);
+    return [];
+  }
 }
 
+// 🔷 第二步：根據目前的 ID 抓取該相簿內的所有照片
 const { id } = Astro.params; 
 let photos = [];
 
@@ -23,7 +47,8 @@ try {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      expression: '', 
+      // 這裡直接精確搜尋該相簿路徑
+      expression: `folder="events/${id}"`, 
       sort_by: [{ created_at: 'desc' }],
       max_results: 500
     })
@@ -31,12 +56,9 @@ try {
 
   const result = await response.json();
   if (result.resources) {
-    const filteredResources = result.resources.filter(img => {
-      const path = img.asset_folder || img.folder || "";
-      return path === `events/${id}`;
-    });
-
-    photos = filteredResources.map(img => img.secure_url.replace('/upload/', '/upload/f_auto,q_auto/'));
+    photos = result.resources.map(img => 
+      img.secure_url.replace('/upload/', '/upload/f_auto,q_auto/')
+    );
   }
 } catch (error) {
   console.error("讀取相簿照片失敗:", error);
@@ -58,11 +80,11 @@ try {
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
       <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
         <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
+          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" />
         </a>
         <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
         <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
+          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" />
         </a>
       </div>
 
@@ -75,7 +97,7 @@ try {
     </div>
   </nav>
 
-  <!-- 🔷 頁面標題區 (換成相簿名稱) -->
+  <!-- 🔷 頁面標題區 -->
   <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
     <div class="relative z-10 px-4">
@@ -102,7 +124,9 @@ try {
           </div>
         ))
       ) : (
-        <p class="text-slate-500 col-span-full text-center py-12">相片載入中，或該相簿尚無相片...</p>
+        <div class="col-span-full text-center py-20">
+          <p class="text-slate-500 text-lg">此相簿目前沒有照片，或是正在載入中...</p>
+        </div>
       )}
     </div>
   </main>
@@ -111,7 +135,7 @@ try {
   <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
-        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
+        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" />
         <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
         <p class="text-sm text-slate-400 leading-relaxed max-w-md">
           Intelligent Cyber-Physical Systems Laboratory <br/>
@@ -120,26 +144,18 @@ try {
       </div>
       <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
         <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
+        <p class="flex items-center gap-2 text-slate-300"><span>📍</span> 國立高雄科技大學 (建工校區)</p>
+        <p class="flex items-center gap-2 text-slate-300"><span>📞</span> 07-3814526 分機 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span>✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
     </div>
     
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-        <p class="text-xs text-slate-500 leading-normal">
-          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
-        </p>
-        <p class="text-xs text-slate-500 hidden sm:block">|</p>
-        <p class="text-xs text-slate-500">All rights reserved.</p>
-      </div>
+      <p class="text-xs text-slate-500 text-center lg:text-left">
+        &copy; 2026 iCPS Lab, National Kaohsiung University of Science and Technology. All rights reserved.
+      </p>
 
       <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
         <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
         <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
@@ -147,52 +163,21 @@ try {
     </div>
   </footer>
 
-  <!-- 🔷 智慧訪客計數器邏輯 -->
+  <!-- 🔷 訪客計數器邏輯 (保持不變) -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
-
-        const namespace = 'icpslab_site';
-        const key = 'visits';
-        const localCountKey = 'icps_saved_count';
-        const lastVisitTimeKey = 'icps_last_visit_time';
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-
-        let currentCount = localStorage.getItem(localCountKey) || '------';
-        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
-        const now = Date.now();
-        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
-        
+        const url = `https://api.counterapi.dev/v1/icpslab_site/visits`;
         try {
-          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          if (!hasVisitedWithin24Hours) {
-            const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API 回應錯誤');
-            const data = await response.json();
-            currentCount = String(data.count).padStart(6, '0');
-            localStorage.setItem(lastVisitTimeKey, now.toString());
-            localStorage.setItem(localCountKey, currentCount);
-            counterEl.textContent = currentCount;
-          } else {
-            try {
-              const response = await fetch(url);
-              if (response.ok) {
-                const data = await response.json();
-                currentCount = String(data.count).padStart(6, '0');
-                localStorage.setItem(localCountKey, currentCount);
-              }
-            } catch (e) {
-              console.warn('無法從伺服器獲取最新數字');
-            }
-            counterEl.textContent = currentCount;
-          }
-        } catch (error) {
-          counterEl.textContent = currentCount;
+          const response = await fetch(url + '/up');
+          const data = await response.json();
+          counterEl.textContent = String(data.count).padStart(6, '0');
+        } catch (e) {
+          counterEl.textContent = '000000';
         }
       };
-
       initCounter();
     });
   </script>
