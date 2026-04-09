@@ -81,102 +81,8 @@ import "../styles/global.css";
 
     <!-- 垂直間距容器 -->
     <div class="space-y-20">
-      
-      <!-- 📌 區塊一：實驗室願景 (破題：我們做什麼) -->
-      <section>
-        <div class="bg-white border-l-[6px] border-blue-700 p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] rounded-r-xl">
-          <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-5 tracking-tight">我們不只寫程式，更致力於解決真實世界的痛點。</h2>
-          <p class="text-slate-700 leading-relaxed text-lg mb-5 text-justify">
-            <strong class="text-blue-800">智慧網宇實體系統實驗室 (iCPS Lab)</strong> 專注於打破學術研究與產業實務的界線。我們深度融合人工智慧 (AI)、物聯網 (AIoT) 與延展實境 (XR) 技術，將前端的感測數據與後端的雲邊緣運算無縫接軌，打造具備高度智慧化、自動化的虛實整合解決方案。
-          </p>
-          <p class="text-slate-600 leading-relaxed text-base lg:text-lg text-justify">
-            從<strong class="text-slate-800">臨床醫療照護、高科技廠房的智能製造，到城市級的智慧交通系統</strong>，我們的技術皆已實際落地驗證。無論您是尋求技術突破的企業夥伴，還是渴望掌握前瞻科技的優秀學子，iCPS Lab 都是您實踐創新的最佳基地。
-          </p>
-        </div>
-      </section>
 
-      <!-- 📌 區塊二：雙向對話 (左邊對廠商，右邊對學生) -->
-      <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- 給企業與臨床單位 -->
-        <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-2xl shadow-lg relative overflow-hidden group">
-          <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-600 rounded-full opacity-20 group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-2xl">🤝</div>
-          <h3 class="text-2xl font-bold text-white mb-4">產醫跨域合作</h3>
-          <p class="text-slate-300 leading-relaxed mb-6 text-sm lg:text-base">
-            我們具備豐富的產學合作與臨床場域驗證經驗，能為企業與醫院提供客製化的技術評估與系統開發。從概念驗證 (PoC) 到系統整合，我們是您最可靠的技術大腦。
-          </p>
-          <ul class="text-slate-200 space-y-3 mb-8 text-sm">
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-400 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 臨床痛點 AI 輔助系統開發</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-400 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 智慧工廠產線自動化與瑕疵檢測</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-400 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 前瞻技術轉移與聯合技術研發</li>
-          </ul>
-          <a href="mailto:allenchang@nkust.edu.tw" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-medium px-5 py-2 rounded-lg transition-colors text-sm">
-            提案與洽詢合作 &rarr;
-          </a>
-        </div>
-
-        <!-- 給學生 -->
-        <div class="bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden group">
-          <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-6 text-2xl">🎓</div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-4">啟動研究生涯</h3>
-          <p class="text-slate-600 leading-relaxed mb-6 text-sm lg:text-base">
-            我們回歸校園培育人才的初衷，熱烈招收具備熱忱的博碩士與大學部專題生。在這裡，你將不會只讀紙上理論，而是真正動手將技術變成解決真實問題的產品。
-          </p>
-          <ul class="text-slate-700 space-y-3 mb-8 text-sm font-medium">
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-600 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 扎實訓練：從演算法開發到系統落地</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-600 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 國際視野：輔導發表國內外頂尖研討會與期刊</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-600 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 實戰履歷：帶領參與各大創新創業與黑客松競賽</li>
-          </ul>
-          <a href="/members" class="inline-block bg-white border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-medium px-5 py-1.5 rounded-lg transition-colors text-sm">
-            認識實驗室學長姐 &rarr;
-          </a>
-        </div>
-      </section>
-
-      <!-- 📌 區塊三：三大核心研究領域 (實力展示) -->
-      <section>
-        <div class="flex items-center gap-3 mb-10">
-          <div class="w-2 h-8 bg-blue-700 rounded-full"></div>
-          <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">核心領域與應用 <span class="text-slate-400 font-light ml-2 text-xl lg:text-2xl">Core Applications</span></h3>
-        </div>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- 照護醫療 -->
-          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
-            <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-red-500 group-hover:text-white transition-colors duration-300 shadow-sm">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
-            </div>
-            <h4 class="font-bold text-slate-900 text-xl mb-3">數位醫療與智慧照護</h4>
-            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
-              整合熱影像、ToF 感測器與 AI 骨幹辨識。成功應用於精神病房自傷預警、病患日常行為辨識、耳病灶自動診斷，並開發結合 YOLO 的舌肌復健與手術器械教育訓練 XR 平台，有效降低醫療人員負擔。
-            </p>
-          </div>
-
-          <!-- 智能製造 -->
-          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
-            <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300 shadow-sm">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            </div>
-            <h4 class="font-bold text-slate-900 text-xl mb-3">工業 4.0 智能製造</h4>
-            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
-              為工廠端導入 Edge AI 邊緣運算。針對電容缺漏焊、產品包裝缺陷等痛點，開發高精準度、低延遲的自動化產線瑕疵檢測系統，協助企業大幅提升產線良率與減少人力檢驗成本。
-            </p>
-          </div>
-
-          <!-- 智慧交通/XR -->
-          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
-            <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-            </div>
-            <h4 class="font-bold text-slate-900 text-xl mb-3">智慧交通與物聯網</h4>
-            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
-              佈建高可靠度的物聯網 (IoT) 感測網路，實現網路通訊與物理世界的雙向交互。應用包含城市級別的智慧交通監測、環境微塑膠監測等，為永續發展與智慧城市提供強大的技術後盾。
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 📌 區塊四：實驗室領航 (教授介紹 - 收尾並引導聯絡) -->
+      <!-- 📌 區塊一：實驗室領航 (教授介紹 - 移至最上方) -->
       <section>
         <div class="flex items-center gap-3 mb-10">
           <div class="w-2 h-8 bg-blue-700 rounded-full"></div>
@@ -217,6 +123,100 @@ import "../styles/global.css";
                 ✉️ 寄信聯繫教授
               </a>
             </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 📌 區塊二：實驗室願景 (我們做什麼) -->
+      <section>
+        <div class="bg-white border-l-[6px] border-blue-700 p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] rounded-r-xl">
+          <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-5 tracking-tight">我們不只寫程式，更致力於解決真實世界的痛點。</h2>
+          <p class="text-slate-700 leading-relaxed text-lg mb-5 text-justify">
+            <strong class="text-blue-800">智慧網宇實體系統實驗室 (iCPS Lab)</strong> 專注於打破學術研究與產業實務的界線。我們深度融合人工智慧 (AI)、物聯網 (AIoT) 與延展實境 (XR) 技術，將前端的感測數據與後端的雲邊緣運算無縫接軌，打造具備高度智慧化、自動化的虛實整合解決方案。
+          </p>
+          <p class="text-slate-600 leading-relaxed text-base lg:text-lg text-justify">
+            從<strong class="text-slate-800">臨床醫療照護、高科技廠房的智能製造，到城市級的智慧交通系統</strong>，我們的技術皆已實際落地驗證。無論您是尋求技術突破的企業夥伴，還是渴望掌握前瞻科技的優秀學子，iCPS Lab 都是您實踐創新的最佳基地。
+          </p>
+        </div>
+      </section>
+
+      <!-- 📌 區塊三：雙向對話 (左邊對廠商，右邊對學生) -->
+      <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- 給企業與臨床單位 -->
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-2xl shadow-lg relative overflow-hidden group">
+          <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-600 rounded-full opacity-20 group-hover:scale-150 transition-transform duration-700"></div>
+          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-2xl">🤝</div>
+          <h3 class="text-2xl font-bold text-white mb-4">產醫跨域合作</h3>
+          <p class="text-slate-300 leading-relaxed mb-6 text-sm lg:text-base">
+            我們具備豐富的產學合作與臨床場域驗證經驗，能為企業與醫院提供客製化的技術評估與系統開發。從概念驗證 (PoC) 到系統整合，我們是您最可靠的技術大腦。
+          </p>
+          <ul class="text-slate-200 space-y-3 mb-8 text-sm">
+            <li class="flex items-start"><svg class="w-5 h-5 text-blue-400 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 臨床痛點 AI 輔助系統開發</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-blue-400 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 智慧工廠產線自動化與瑕疵檢測</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-blue-400 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 前瞻技術轉移與聯合技術研發</li>
+          </ul>
+          <a href="mailto:allenchang@nkust.edu.tw" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-medium px-5 py-2 rounded-lg transition-colors text-sm">
+            提案與洽詢合作 &rarr;
+          </a>
+        </div>
+
+        <!-- 給學生 -->
+        <div class="bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden group">
+          <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-6 text-2xl">🎓</div>
+          <h3 class="text-2xl font-bold text-slate-900 mb-4">啟動研究生涯</h3>
+          <p class="text-slate-600 leading-relaxed mb-6 text-sm lg:text-base">
+            我們回歸校園培育人才的初衷，熱烈招收具備熱忱的博碩士與大學部專題生。在這裡，你將不會只讀紙上理論，而是真正動手將技術變成解決真實問題的產品。
+          </p>
+          <ul class="text-slate-700 space-y-3 mb-8 text-sm font-medium">
+            <li class="flex items-start"><svg class="w-5 h-5 text-blue-600 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 扎實訓練：從演算法開發到系統落地</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-blue-600 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 國際視野：輔導發表國內外頂尖研討會與期刊</li>
+            <li class="flex items-start"><svg class="w-5 h-5 text-blue-600 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 實戰履歷：帶領參與各大創新創業與黑客松競賽</li>
+          </ul>
+          <a href="/members" class="inline-block bg-white border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-medium px-5 py-1.5 rounded-lg transition-colors text-sm">
+            認識實驗室學長姐 &rarr;
+          </a>
+        </div>
+      </section>
+
+      <!-- 📌 區塊四：三大核心研究領域 (實力展示) -->
+      <section>
+        <div class="flex items-center gap-3 mb-10">
+          <div class="w-2 h-8 bg-blue-700 rounded-full"></div>
+          <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">核心領域與應用 <span class="text-slate-400 font-light ml-2 text-xl lg:text-2xl">Core Applications</span></h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- 照護醫療 -->
+          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+            <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-red-500 group-hover:text-white transition-colors duration-300 shadow-sm">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            </div>
+            <h4 class="font-bold text-slate-900 text-xl mb-3">數位醫療與智慧照護</h4>
+            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
+              整合熱影像、ToF 感測器與 AI 骨幹辨識。成功應用於精神病房自傷預警、病患日常行為辨識、耳病灶自動診斷，並開發結合 YOLO 的舌肌復健與手術器械教育訓練 XR 平台，有效降低醫療人員負擔。
+            </p>
+          </div>
+
+          <!-- 智能製造 -->
+          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+            <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300 shadow-sm">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            </div>
+            <h4 class="font-bold text-slate-900 text-xl mb-3">工業 4.0 智能製造</h4>
+            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
+              為工廠端導入 Edge AI 邊緣運算。針對電容缺漏焊、產品包裝缺陷等痛點，開發高精準度、低延遲的自動化產線瑕疵檢測系統，協助企業大幅提升產線良率與減少人力檢驗成本。
+            </p>
+          </div>
+
+          <!-- 智慧交通/XR -->
+          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+            <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm">
+              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h4 class="font-bold text-slate-900 text-xl mb-3">智慧交通與物聯網</h4>
+            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
+              佈建高可靠度的物聯網 (IoT) 感測網路，實現網路通訊與物理世界的雙向交互。應用包含城市級別的智慧交通監測、環境微塑膠監測等，為永續發展與智慧城市提供強大的技術後盾。
+            </p>
           </div>
         </div>
       </section>
