@@ -184,16 +184,14 @@ import "../styles/global.css";
         </div>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- 左側：YouTube 影片 -->
+          <!-- 左側：教授照片 -->
           <div class="w-full aspect-video bg-slate-200 rounded-2xl shadow-lg overflow-hidden border border-slate-200 relative group transition-shadow hover:shadow-xl duration-300">
-            <iframe 
-              class="w-full h-full absolute inset-0"
-              src="https://www.youtube.com/watch?v=lUAUZtNAAi0" 
-              title="張萬榮教授實驗室介紹" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
-            </iframe>
+            <img 
+              class="w-full h-full absolute inset-0 object-cover object-center" 
+              src="/images/professor-chang.png" 
+              alt="張萬榮 教授" 
+              onerror="this.src='https://via.placeholder.com/800x450?text=Professor+Chang';" 
+            />
           </div>
           
           <!-- 右側：教授理念 -->
