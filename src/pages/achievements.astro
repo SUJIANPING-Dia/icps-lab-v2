@@ -1,0 +1,2403 @@
+---
+import "../styles/global.css";
+
+// ==========================================
+// 🔹 學術成果與榮譽紀錄資料區
+// ==========================================
+const achievements = [
+  // ---------------- 【 1. 國際期刊論文 】 ----------------
+  {
+    section: "📚 學術發表", // 只在第一個分類顯示側邊欄群組標題
+    category: "國際期刊論文",
+    type: "publication",
+    description: "本實驗室發表於國際頂尖與高影響力期刊 (International Journals) 之研究成果。",
+    yearlyData: [
+      {
+        year: "2026",
+        items: [
+          {
+            title: "ChainEcho: A Cascaded Audio-sensing Relay Framework for Indoor IoT Beacon Applications",
+            authors: "Ming-Che Chen, Wun-Cian Lan, and Wan-Jung Chang",
+            venue: "IEEE Canadian Journal of Electrical and Computer Engineering, vol. 49, no. 2, pp. 198-214, Mar. 2026. (SCIE) (Corresponding Author), DOI10.1109/ICJECE.2026.3669155",
+            link: "https://doi.org/10.1109/ICJECE.2026.3669155"
+          },
+          {
+            title: "Continuous Ag Nanolayer/Interior network Formation on PU Fibers via alkali-enhanced process for Conductive Stretchable Strain Sensors",
+            authors: "Lien-Chiang Hung, Shiau-Wu Lai, Ming-Che Chen, Wan-Jung Chang, Yang-Kun Ou, and Ying-Nien Chou",
+            venue: "ACS Applied Polymer Materials, vol. 8, pp. 3906-3924, Mar. 2026. (SCIE), DOI10.1021/acsapm.5c03738.",
+            link: "https://doi.org/10.1021/acsapm.5c03738"
+          },
+          {
+            title: "Marking a New Phase of Growth: Highlights from the 2025 ICCE-Taiwan",
+            authors: "Wan-Jung Chang and Liang-Bi Chen",
+            venue: "IEEE Consumer Electronics Magazine, vol. 15, Issue. 4, pp. 1-2, Feb. 2026. (SCIE), DOI10.1109/MCE.2026.3667203",
+            link: "https://doi.org/10.1109/MCE.2026.3667203"
+          }
+        ]
+      },
+      {
+        year: "2025",
+        items: [
+          {
+            title: "Wearable Augmented Reality for Nystagmus Examination in Patients With Vertigo: Randomized Crossover Usability Study",
+            authors: "Ching-Nung Wu, Ming-Che Chen, Chien-Yan Chien, Hsiang-Han Chang, Sheng-Dean Luo, Chung-Feng Hwang, and Wan-Jung Chang",
+            venue: "Journal of Medical Internet Research (JMIR), vol. 27, pp. e75327, Nov. 2025. (SCIE), DOI10.2196/75327",
+            link: "https://doi.org/10.2196/75327"
+          },
+          {
+            title: "Smart Voiding Measurement: An AI And Thermal Imaging Solution For Home-Based Voiding Assessment",
+            authors: "Yu-Chen Chen, Hao-Wei Chen, Yung-Shun Juan, and Wan-Jung Chang",
+            venue: "The Journal of Urology, vol. 213, no. 5S, pp. e855, May. 2025. (SCI), DOI10.1097/01.JU.0001110020.31695.bf.18",
+            link: "https://doi.org/10.1097/01.JU.0001110020.31695.bf.18"
+          },
+          {
+            title: "GaitMirror: Design and Implementation of an Artificial Intelligence-Based Gait Recognition System for Evaluating the Effectiveness of Lower Limb Rehabilitation",
+            authors: "Ming-Che Chen, Jian-Ping Su, Yu-Lin Wang, Wan-Jung Chang",
+            venue: "IEEE Sensors Journal, vol. 25, no. 15, pp. 30118-30134, Aug. 2025. (SCI) (Corresponding Author), DOI10.1109/JSEN.2025.3577995",
+            link: "https://doi.org/10.1109/JSEN.2025.3577995"
+          },
+          {
+            title: "BedEye: A Bed Exit and Bedside Fall Warning System Based on Skeleton Recognition Technology for Elderly Patients",
+            authors: "Liang-Bi Chen, Wan-Jung Chang, and Tzu-Chin Yang",
+            venue: "IEEE Access, vol. 13, pp. 60403-60423, Apr. 2025. (SCI) (Corresponding Author), DOI10.1109/ACCESS.2025.3558004",
+            link: "https://doi.org/10.1109/ACCESS.2025.3558004"
+          },
+          {
+            title: "SmartPD: An AI-Enhanced System for Optimizing Home-Based Continuous Ambulatory Peritoneal Dialysis",
+            authors: "Ming-Che Chen, Ren-Guei Hsu, Hsin-Hsu Chou, Hsiag-Chun Chen, Jin-Yi Lin, Chi-Tze Lin, Neng-Yao You, Ming-Yi Li, Shu-Kai Li, Wei-Ren Zeng, Yang-Kun Ou, and Wan-Jung Chang",
+            venue: "IEEE Sensors Journal, vol. 25, no. 7, pp. 12303-12317, Apr. 2025. (SCI) (Corresponding Author), DOI10.1109/JSEN.2025.3531893",
+            link: "https://doi.org/10.1109/JSEN.2025.3531893"
+          }
+        ]
+      },
+      {
+        year: "2024",
+        items: [
+          {
+            title: "An Efficient Scalp Inspection and Diagnosis System Using Multiple Deep Learning-Based Modules Un système efficace d’inspection et de diagnostic du cuir chevelure utilisant plusieurs modules basés sur l’apprentissage profond",
+            authors: "Liang-Bi Chen, Wan-Jung Chang, Yi-Chan Chiu, Xiang-Rui Huang",
+            venue: "IEEE Canadian Journal of Electrical and Computer Engineering, vol. 47, no. 1, pp. 22-35, winter. 2024. (SCI, Q3, IF:1.9) (Corresponding Author), DOI10.1109/ICJECE.2024.3354291",
+            link: "https://doi.org/10.1109/ICJECE.2024.3354291"
+          }
+        ]
+      },
+      {
+        year: "2023",
+        items: [
+          {
+            title: "The Now and Future of ChatGPT and GPT in Psychiatry",
+            authors: "Szu-Wei Cheng, Chung-Wen Chang, Wan-Jung Chang, Hao-Wei Wang, Chih-Sung Liang, Taishiro Kishimoto, Jane Pei-Chen Chang, John S. Juo, and Kuan-Pin Su",
+            venue: "Psychiatry and Clinical Neurosciences, vol. 77, no. 11, pp. 592-596, Sep. 2023. (SCI, Q1, IF:12.145)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2021",
+        items: [
+          {
+            title: "iBuffet: An AIoT-Based Intelligent Calories Management System for Eating Buffet Meals with Calories Intake Control",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, I-Chen Lin, and Yang-Kun Ou",
+            venue: "IEEE Transactions on Consumer Electronics, vol. 64, no. 4, Nov. 2021. (SCI, IF:2.739)",
+            link: "#"
+          },
+          {
+            title: "A Pose Estimation-based Fall Detection Methodology Using Artificial Intelligence Edge Computing",
+            authors: "Wan-Jung Chang, Chia-Hao Hsu, and Liang-Bi Chen",
+            venue: "IEEE Access, vol.9, pp. 129965-129976, Sept. 2021. (SCI, IF:4.098)",
+            link: "#"
+          },
+          {
+            title: "An Artificial Intelligence Edge Computing-based Assistive System for Visually Impaired Pedestrian Safety at Zebra Crossings",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Cheng-You Sie, and Ching-Hsiang Yang",
+            venue: "IEEE Transactions on Consumer Electronics, Vol. 67, Issue. 1, pp. 3- 11, Feb. 2021. (SCI, IF:2.739)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2020",
+        items: [
+          {
+            title: "ScalpEye: A Deep Learning-Based Scalp Hair Inspection and Diagnosis System for Scalp Health",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Ming-Che Chen, Yi-Chan Chiu, and Jian-Yu Lin",
+            venue: "IEEE Access, Vol. 8, pp. 134826 – 134837, July 2020. (SCI, IF:4.098)",
+            link: "#"
+          },
+          {
+            title: "Design and Implementation of Intelligent Tape for Monitoring High-Price and Fragile Cargo Shipments During Transport Procedures",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, and Jian-Ping Su",
+            venue: "IEEE Sensors Journal, Vol. 20, Issue 23, pp. 14521 – 14533, Dec. 2020. (SCI, IF:3.076)",
+            link: "#"
+          },
+          {
+            title: "Design and Implementation of an Intelligent Assistive System for Visually Impaired People for Aerial Obstacle Avoidance and Fall Detection",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Ming-Che Chen, Jian-Ping Su, Cheng-You Sie, and Ching-Hsiang Yang",
+            venue: "IEEE Sensors Journal, Vol. 20, Issue. 17, pp. 10199 – 10210, Apr. 2020. (SCI, IF:3.076)",
+            link: "#"
+          },
+          {
+            title: "MedGlasses: A Wearable Smart-Glasses-Based Drug Pill Recognition System Using Deep Learning for Visually Impaired Chronic Patients",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Chia-Hao Hsu, Jheng-Hao Chen, Tzu-Chin Yang, and Cheng-Pei Lin",
+            venue: "IEEE Access, Vol. 8, pp. 17013 – 17024, Jan. 2020. (SCI, IF:4.098)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2019",
+        items: [
+          {
+            title: "DeepCrash: A Deep Learning-based Internet of Vehicles System for Head-on and Single-vehicle Accident Detection with Emergency Notification",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, and Ke-Yu Su",
+            venue: "IEEE Access, 2019. (SCI, IF:3.758)",
+            link: "#"
+          },
+          {
+            title: "A Deep Learning-based Intelligent Medicine Recognition System for Chronic Patients",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Chia-Hao Hsu, Cheng-Pei Lin, and Tzu-Chin Yang",
+            venue: "IEEE Access, March, 2019. (SCI, IF:3.758)",
+            link: "#"
+          },
+          {
+            title: "Design and Implementation of an Intelligent Motorcycle Helmet for Large Vehicle Approach Intimation",
+            authors: "Wan-Jung Chang, Liang-Bi Chen",
+            venue: "IEEE Sensors Journal, vol. 19, Issue. 10, May 2019. (SCI, IF:3.051)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2018",
+        items: [
+          {
+            title: "Design and Implementation of a Next-Generation Hybrid Internet of Vehicles Communication System for Driving Safety",
+            authors: "Fu-Liang Chang, Yuan-Hua Zhang, Liang-Bi Chen, Wei-Wen Hu, Chao-Tang Yu, and Wan-Jung Chang",
+            venue: "Journal of Communications, Dec. 2018. (EI)",
+            link: "#"
+          },
+          {
+            title: "Design and Implementation of a Drowsiness-Fatigue-Detection System Based on Wearable Smart Glasses to Increase Road Safety",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, and Yu-Zung Chiou",
+            venue: "IEEE Transactions on Consumer Electronics, Nov. 2018. (SCI, IF:2.083)",
+            link: "#"
+          },
+          {
+            title: "Development and Experimental Evaluation of Machine Learning Techniques for an Intelligent Hairy Scalp Detection System",
+            authors: "Wei-Chien Wang, Liang-Bi Chen, Wan-Jung Chang",
+            venue: "Applied Sciences, Jun. 2018. (SCI, IF:2.217) (Corresponding Author)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2017",
+        items: [
+          {
+            title: "Real-time monitoring via patch-type piezoelectric force sensors for Internet of Things based logistics",
+            authors: "Cheng-Hsin Chuang, Da-Huei Lee, Wan-Jung Chang, Wan-Ching Weng, Muhammad Omar Shaikh, and Chung-Lin Huang",
+            venue: "IEEE Sensors Journal, Apr. 2017. (SCI, IF: 1.889)",
+            link: "#"
+          },
+          {
+            title: "A Machine Vision Based Automatic Optical Inspection System for Measuring Drilling Quality of Printed Circuit Boards",
+            authors: "Wei-Chien Wang, Shang-Liang Chen, Liang-Bi Chen, Wan-Jung Chang",
+            venue: "IEEE Access, May. 2017. (SCI, IF:4.098) (Corresponding Author)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2016",
+        items: [
+          {
+            title: "WristEye: Wrist-Wearable Devices and a System for Supporting Elderly Computer Learners",
+            authors: "Liang-Bi Chen, Hong-Yuan Li, Wan-Jung Chang, Jing-Jou Tang, and Katherine Shu-Min Li",
+            venue: "IEEE Access, Apr. 2016. (SCI, IF:3.224) (Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "A Comprehensive Medicine Management System with Multiple Sources in a Nursing Home in Taiwan",
+            authors: "Liang-Bi Chen, Wan-Jung Chang, Kuen-Min Lee, Chi-Wei Huang, and Katherine Shu-Min Li",
+            venue: "IEICE Trans. on Information and System, June 2016. (SCI, IF:0.411) (Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "A Flexible Cooperation Scheme for Mitigating the Effect of Selfish Nodes over MANETs",
+            authors: "Wan-Jung Chang, Hong-Yuan Li, and Jing-Jou Tang",
+            venue: "Ad Hoc & Sensor Wireless Networks, Aug. 2016. (SCI, IF:1.034)",
+            link: "#"
+          }
+        ]
+      }
+    ]
+  },
+  // ---------------- 【 2. 國際研討會論文 】 ----------------
+  {
+    category: "國際研討會論文",
+    type: "publication",
+    description: "本實驗室發表於國際學術研討會 (International Conferences) 之研究成果，涵蓋 AI、IoT、智慧醫療與消費性電子技術。",
+    yearlyData: [
+      {
+        year: "2026",
+        items: [
+          {
+            title: "PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning",
+            authors: "Wan-Jung Chang, Wei-Yuan Shih, Bo-Yun Tsai, and Jian-Ping Su",
+            venue: "2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026), Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026.",
+            link: "#"
+          },
+          {
+            title: "Stretchable AgNP/AgNW Co-Deposited Conductive Fiber with PDMS Encapsulation for Patellar Tendon Reflex Strain Sensing",
+            authors: "Ying-Nien Chou, Po-Chun Huang, Kai-Sheng Hsieh, and Wan-Jung Chang",
+            venue: "2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026), Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026.",
+            link: "#"
+          },
+          {
+            title: "iNoodle: An Artificial Intelligence Seasoning-Packet Recognition System Applied to Packaged Dried Noodle Production Line",
+            authors: "Wan-Jung Chang, Ping-Ying She, Chia-Yu Wu, and Jian-Ping Su",
+            venue: "2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026), Yoshida, Yamaguchi, Japan, Mar. 28 - Mar. 30, 2026.",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2025",
+        items: [
+          {
+            title: "ToFPose: An Artificial Intelligence Human Skeleton Estimation Mechanism based on Two-Dimensional Time-of-Flight Imaging",
+            authors: "Ting-Hsuan Hsu, Wan-Jung Chang",
+            venue: "2025 IEEE The 14th Global Conference on Consumer Electronics (GCCE 2025), Osaka, Japan, Sep. 23 – Sep. 26, 2025. (EI)",
+            link: "#"
+          },
+          {
+            title: "An Augmented Reality-Based Nystagmus Detection System Utilizing Eye-Tracking Smart Glasses",
+            authors: "Ming-Che Chen, Ching-Nung Wu, Chien-Yan Chien, Hsiang-Han Chang, Wan-Jung Chang",
+            venue: "2025 IEEE International Conference on Consumer Electronic – Taiwan(ICCE-TW), Kaohsiung, Taiwan, July. 16-18, 2025.",
+            link: "#"
+          },
+          {
+            title: "FitMirror: an Artificial Intelligence Mirror System for Elderly Physical Fitness Diagnosis",
+            authors: "Wan-Jung Chang, Bo-Hao Liao, Chia-Fen Wang, Sheng-chieh Kang, Shao-jui Hung, Wei Cheng Huang",
+            venue: "2025 1st International Conference on Consumer Technology (ICCT-Pacific), Matsue, Japan, Mar. 29-31, 2025. (EI)",
+            link: "#"
+          },
+          {
+            title: "ARIS: An Artificial-Intelligence-Based Automatic Recognition and Inventory System for Surgical Instruments in Operating Rooms",
+            authors: "Wan-Jung Chang, Tzu-Chuan Hsu, Liang-Bi Chen, Ming-Che Chen, Yi-Jia Chen, Bo-Hao Liao, Chen-Wei Yang, Yan-Cheng Chang, Zheng-Yan Lee, Hsiu-Yen Huang, Hui-Chien Hung",
+            venue: "2025 IEEE International Conference on Consumer Electronics (ICCE 2025), Las Vegas, USA, Jan. 11 – 14, 2025. (EI)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2024",
+        items: [
+          {
+            title: "Leveraging Large Language Models with Retrieval Augmented Generation for an Interactive Slide Presentation System",
+            authors: "Ming-Che Chen, Ming-Shun Wang, Shang-Cian Wu, Min-Yu Lin, Chien-Yan Chien, Ren-Guei Hsu, Wan-Jung Chang, and Liang-Bi Chen",
+            venue: "The 9th International Conference On Consumer Electronics Asia (ICCE-Asia 2024), Danang, Vietnam, Nov. 3 – Nov. 6, 2024. (EI)",
+            link: "#"
+          },
+          {
+            title: "ThermalEye: A Low-Resolution Thermal-Imaging Based Artificial Intelligence Self-Harm Behavior Detection System in Psychiatric Seclusion Rooms",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Ming-Che Chen, Yi-Jia Chen, Jian-Ping Su, Bo-Hao Liao, Hsin-Hus Chou, and Pei-Ching Tsai",
+            venue: "2024 IEEE The 13th Global Conference on Consumer Electronics (GCCE 2024), Kokura, Japan, Oct. 29 – Nov. 1, 2024. (EI)",
+            link: "#"
+          },
+          {
+            title: "An Abnormal Behavior Recognition System for Bathrooms with Using Toilet Based on Thermal Image AI Edge Computing Technology",
+            authors: "Wan-Jung Chang, Jia-Hong Liu, Yi-Jia Chen, and Liang-Bi Chen",
+            venue: "16th International Conference on Genetic and Evolutionary Computing (ICGEC-2024), Miyazaki, Japan, Augst 28 – 29, 2024. (EI)",
+            link: "#"
+          },
+          {
+            title: "Comparing Artificial Intelligence-Based versus Conventional Endotracheal Tube Monitoring Systems in Clinical Practice",
+            authors: "Zu-Chun Lin, Malcolm Koo, Wan-Jung Chang, Hsiao-Chuen Chen, Bo-Hao Liao, Lu-Yen Tuan, Chun-Wei Liu",
+            venue: "Nursing Informatics Conference-Manchester, UK, July 28-31, 2024.",
+            link: "#"
+          },
+          {
+            title: "An Audio Frequency Modulation Wireless Communication-Based Access Control Management System",
+            authors: "Ming-Che Chen, Huai-Jhan Ke, Yi-Kai Fang, Wan-Jung Chang, and Liang-Bi Chen",
+            venue: "2024 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2024), Taichung, Taiwan, July 9 – 11, 2024. (EI)",
+            link: "#"
+          },
+          {
+            title: "An Unsupervised Machine Learning Scheme for Estimating Layer Thickness Ratio in Bilayer Thin Films",
+            authors: "Ming-Che Chen, Yi-Wen Chen, Min-Yu Lin, Wan-Jung Chang, and Ying-Nien Chou",
+            venue: "2024 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2024), Taichung, Taiwan, July 9 – 11, 2024. (EI)",
+            link: "#"
+          },
+          {
+            title: "EndoEye: A Marker-Based Artificial Intelligence Monitoring System for Endotracheal Tube Displacement",
+            authors: "Hsiao-Chuen Chen, Wan-Jung Chang, Zu-Chun Lin, Bo-Hao Liao, Chun-Wei Liu, Jian-Ping Su, and Lu-Yen Tuan",
+            venue: "2024 IEEE International Conference on Consumer Electronics (ICCE 2024), Las Vegas, USA, Jan. 5 – 8, 2024. (EI)",
+            link: "#"
+          },
+          {
+            title: "A2FinPose: An Artificial Intelligence and Augmented Reality-Based Interface of Head-mounted Near-Eye Displays Finger Gesture Recognition System for the Human-Machine",
+            authors: "Wan-Jung Chang, Pei-Yi Wu, Yi-Jia Chen, Jian-Ping Su, Shih-Hsiung Lee, and Ming-Che Chen",
+            venue: "2024 IEEE International Conference on Consumer Electronics (ICCE 2024), Las Vegas, USA, Jan. 5 – 8, 2024. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Gesture Control System Based on Augmented Reality and Eye Tracking Technologies for a 3D-Printed Prosthetic Arm",
+            authors: "Ming-Che Chen, Jia-Xiang Chen, Ren-Guei Hsu, Wan-Jung Chang, and Yang-Kun Ou",
+            venue: "2024 IEEE International Conference on Consumer Electronics (ICCE 2024), Las Vegas, USA, Jan. 5 – 8, 2024. (EI)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2023",
+        items: [
+          {
+            title: "iDrugLabeling: A Computer Vision-Based Automatic Medicine Training Data Labeling System",
+            authors: "Ming-Che Chen, Ming-Shun Wang, Jia-Xiang Chen, and Wan-Jung Chang",
+            venue: "2023 IEEE The 12th Global Conference on Consumer Electronics (GCCE 2023), Nara, Japan, Oct. 10 – 13, 2023. (EI)",
+            link: "#"
+          },
+          {
+            title: "A2Mirror: An Artificial Intelligent Mirror Therapy System Using Augmented Reality Smart Glasses for After Stroke Rehabilitate Upper Limb",
+            authors: "Wan-Jung Chang, Po-Heng Wen, Yu-Lin Wang, Jian-Ping Su, and Tsung-Ko Lin",
+            venue: "2023 IEEE The 12th Global Conference on Consumer Electronics (GCCE 2023), Nara, Japan, Oct. 10 – 13, 2023. (EI)",
+            link: "#"
+          },
+          {
+            title: "A2Fitness: An Artificial Intelligent Fitness Assistance System Using a Augmented Reality Smart Glasses for Elderly Health-Promotion",
+            authors: "Wan-Jung Chang, Hong-Wen Chen, Jian-Ping Su, Shu-Ching Liu, Yang-Kun Ou, Ming-Che Chen",
+            venue: "2023 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2023), PingTung, Taiwan, July 17 – 19, 2023. (EI)",
+            link: "#"
+          },
+          {
+            title: "iCAPD: A Deep Learning-Based Monitoring System for Continuous Ambulatory Peritoneal Dialysis",
+            authors: "Ming-Che Chen, Hsin-Hsu Chou, Hsiag-Chun Chen, Jin-Yi Lin, Ren-Guei Hsu, Jia-Xiang Chen, Yu-Tse Lee, Jung-Yao Zhuo, Wan-Jung Chang, Yang-Kun Ou",
+            venue: "2023 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2023), PingTung, Taiwan, July 17 – 19, 2023. (EI)",
+            link: "#"
+          },
+          {
+            title: "iMirror: An Intelligent Gait Recognition Mirror for Rehabilitation of Patients with Parkinson’s Disease",
+            authors: "Wan-Jung Chang, Jian-Ping Su, Wei-Zhu Zhuang, Wen-Cheng Kang, Ming-Che Chen, Shih-Hsiung Lee, Yang-Kun Ou, and Yu-Lin Wang",
+            venue: "2023 IEEE International Conference on Consumer Electronics (ICCE 2023), Las Vegas, USA, Jan. 6 – 8, 2023. (EI)",
+            link: "#"
+          },
+          {
+            title: "A PCBA Solder Joint Defects Inspection System Based on Deep Learning Technology",
+            authors: "Ming-Che Chen, Wan-Jung Chang, Zhen-Hao Chen, Chia-Hao Hsu, Yi-Chan Chiu, Jian-Ping Su, and Tsung-Sheng Cheng",
+            venue: "2023 IEEE International Conference on Consumer Electronics (ICCE 2023), Las Vegas, USA, Jan. 6 – 8, 2023. (EI)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2022",
+        items: [
+          {
+            title: "ThermalPose: A Real-Time 2D Human Recogintion System Using Thermal Imaging",
+            authors: "Wan-Jung Chang, Ming-Che Chen, Tsung-Sheng Cheng, Chia-Hao Hsu, Jian-Ping Su, Shih-Hsiung Lee, Yang-Kun Ou",
+            venue: "2022 IEEE The 11th Global Conference on Consumer Electronics(GCCE 2022), Osaka, Japan, Oct. 18 – 21, 2022. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Hair Volume Diagnosis System Using Deep Learning and Image Processing Techniques",
+            authors: "Ming-Che Chen, Ming-Shun Wang, Wan-Jung Chang, Tsung-Sheng Cheng",
+            venue: "2022 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2022), Taipei, Taiwan, July 6 – 8, 2022. (EI)",
+            link: "#"
+          },
+          {
+            title: "The Effect of Board Games on the Cognitive Decline of Elders with Dementia: Evidence from Electroencephalography (EEG) Signals",
+            authors: "Mai-Lun Chiu, Tsung-Sheng Cheng, Wan-Jung Chang, Hsiu-ling Hsu, Ching-Wei Kao, Jian-Ting Guo",
+            venue: "2022 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2022), Taipei, Taiwan, July 6 – 8, 2022. (EI)",
+            link: "#"
+          },
+          {
+            title: "Boosting Resnet18 for a Smart Glasses Input Module to Control a 3D Printed Prosthetic Arm",
+            authors: "Aaron Raymond See, Jolo Gerard Miel F. Tolentino, Bhuvanut Duangsasidhorn, Wan-Jung Chang, Yang-Kun Ou, and Ming-Che Chen",
+            venue: "2022 IEEE International Conference on Consumer Electronics (ICCE 2022), Las Vegas, USA, Jan. 7 – 9, 2022. (EI)",
+            link: "#"
+          },
+          {
+            title: "iVoiding: A Thermal-Image based Artificial Intelligence Dynamic Voiding Detection System",
+            authors: "Yu-Chen Chen, Jian-Ping Su, Cheng-Han Tsai, Ming-Che Chen, Wan-Jung Chang, and Wen-Jeng Wu",
+            venue: "2022 IEEE the 4th International Conference on Artificial Intelligence Information and Communication (ICAIIC 2019), Guam, USA, Feb. 21 – 24, 2022. (EI)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2021",
+        items: [
+          {
+            title: "ElderFit: A Physical Fitness Motion Detection System for Older Adults Based on Deep",
+            authors: "Wan-Jung Chang, Jian-Ping Su",
+            venue: "The 20th International Symposium on Advanced Technology(ISAT 20), Tokyo, Japan, Nov. 23 – 24, 2021.",
+            link: "#"
+          },
+          {
+            title: "iFitness: A Deep Learning-Based Physical Fitness Motion Detection System for Elderly People",
+            authors: "Wan-Jung Chang, Jian-Ping Su, Chia-Hao Chen, Shu-Ching Liu, Chih-Ching Chang, and Mei-Ling Tsai, Liang-Bi Chen",
+            venue: "2021 IEEE The 10th Global Conference on Consumer Electronics(GCCE 2021), Kyoto, Japan, Oct. 12 – 15, 2021. (EI)",
+            link: "#"
+          },
+          {
+            title: "Development of Artificial Intelligence Alert System for Bed Exit Detection and Fall Prevention Based on Care Needs of the Geriatric Ward",
+            authors: "Ya-Ting Ke, Lu-Yang Chiu, Jhi-Joung Wang, Wan-Jung Chang, Hui-Ying Chiang, Shu-Ching Ma, Chung-Feng Liu, Yang-Kun Ou",
+            venue: "2021 5th International Conference on Medical and Health Informatics (ICMHI 2021), Kyoto, Japan, May 14 – 16, 2021.",
+            link: "#"
+          },
+          {
+            title: "Glass-based fluorescent immunobiosensor used for urea albumin fast detection",
+            authors: "Lien-Chiang Hung, Zhi-You Lin, Ying-Nien Chou, and Wan-Jung Chang",
+            venue: "2021 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2021), Penghu, Taiwan, June 16 – 18, 2021. (EI)",
+            link: "#"
+          },
+          {
+            title: "An Interactive Modular System and Interface for Laerdal Little Anne Manikin in CPR Training",
+            authors: "Yang-Kun Ou, Wan-Jung Chang, and Tzu-Hsuan Lin",
+            venue: "2021 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2021), Penghu, Taiwan, June 16 – 18, 2021. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Hair Volume Diagnosis System Using Deep Learning and Image Processing Techniques",
+            authors: "Ming-Che Chen, Wan-Jung Chang, Yu-Xiang Xiao, Zi-Xuan Zhang, and Yi-Chan Chiu",
+            venue: "2021 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2021), Penghu, Taiwan, June 16 – 18, 2021. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Bed-Exit and Bedside Fall Warning System Based on Deep Learning Edge Computing Techniques",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Yang-Kun Ou, Aaron Raymond See, and Tzu-Chin Yang",
+            venue: "2021 IEEE 2nd Global Conference on Life Sciences and Technologies (LifeTech 2021), Nara, Japan, Mar. 9 – 11, 2021. (EI)",
+            link: "#"
+          },
+          {
+            title: "iBuffet: A Deep Learning-Based Intelligent Calories Management System for Eating Buffet Meals",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Yang-Kun Ou, Aaron Raymond See, and Jia-Hong Liu, Bo-Yang Shen, I-Chen Lin, and Yin-Hsin Tsai",
+            venue: "2021 IEEE International Conference on Consumer Electronics (ICCE 2021), Las Vegas, USA, Jan. 10 – 12, 2021. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Fall Risk Prediction System Based on 3D Space Human Skeleton Torso Images",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Jian-Ping Su, and Ming-Che Chen",
+            venue: "2021 IEEE International Conference on Consumer Electronics (ICCE 2021), Las Vegas, USA, Jan. 10 – 12, 2021. (EI)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2020",
+        items: [
+          {
+            title: "A Deep Learning-Based Intelligent Anti-Collision System for Car Door",
+            authors: "Wan-Jung Chang, Liang-Bi Chen, Ming-Che Chen, Jian-Yu Lin, Jian-Ping Su, Chia-Hao Hsu, and Yang-Kun Ou",
+            venue: "2020 IEEE The 9th Global Conference on Consumer Electronics(GCCE 2020), Kobe, Japan, Oct. 13 – 16, 2020. (EI)",
+            link: "#"
+          },
+          {
+            title: "An Intelligent Maintenance and Repair Informing System Using Machine Learning Techniques for Solar Power Generation Equipment",
+            authors: "Wan-Jung Chang, Ching-Hsiang Yang, Ming-Che Chen, Jian-Ping Su, and Liang-Bi Chen",
+            venue: "2020 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2020), Taoyuan, Taiwan, Sep. 28 – 30, 2020. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Wearable Devices-Based Home Sports Recording System for Health Management",
+            authors: "Wan-Jung Chang, Chia-Hao Hsu, Liang-Bi Chen, Jian-Ping Su, and Ming-Che Chen",
+            venue: "2020 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2020), Taoyuan, Taiwan, Sep. 28 – 30, 2020. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Mobile Device-Based Hairy Scalp Diagnosis System Using Deep Learning Techniques",
+            authors: "Wan-Jung Chang, Yi-Chan Chiu, Chia-Hao Hsu, Liang-Bi Chen, Ming-Che Chen, Yang-Kun Ou, and Qiu Chen",
+            venue: "2020 IEEE 2nd Global Conference on Life Sciences and Technologies (LifeTech 2020), Kyoto, Japan, Mar. 10 – 12, 2020. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "Live Demonstration: An Intelligent Scalp Diagnosis System Using Deep Learning for Scalp Healthcare",
+            authors: "Wan-Jung Chang, Jian-Ping Su, Liang-Bi Chen, Chia-Hao Hsu, Yi-Chan Chiu, and Ming-Che Chen",
+            venue: "2020 IEEE International Symposium on Circuit and Systems (ISCAS 2020), Seville, Spain, Oct. 10 – 21(Virtual), 2020. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "An AI Edge Computing Based Wearable Assistive Device for Visually Impaired People Zebra-Crossing Walking",
+            authors: "Wan-Jung Chang, Jian-Ping Su, Liang-Bi Chen, Ming-Che Chen, Chia-Hao Hsu, Ching-Hsiang Yang, Cheng-You Sie, and Cheng-Hsin Chuang",
+            venue: "2020 IEEE International Conference on Consumer Electronics (ICCE 2020), Las Vegas, USA, Jan. 4 – 6, 2020. (EI)(Corresponding Author)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2019",
+        items: [
+          {
+            title: "iCAP: An IoT-based Intelligent Liquid Waste Barrels Monitoring System",
+            authors: "Wan-Jung Chang, Jian-Ping Su, Liang-Bi Chen, Chia-Hao Hsu, Ming-Che Chen, Huang-Chih Chen and Chiu-Fa Lin",
+            venue: "2019 IEEE The 11th Computer Science and Electronic Engineering (CEEC 2019), University of Essex, UK, Sept. 18 – 20, 2019. (EI)",
+            link: "#"
+          },
+          {
+            title: "BodyTracker: A Deep Learning Based 3D Limb Trajectory Tracking System for Rehabilitation",
+            authors: "Wan-Jung Chang, Jian-Ping Su, Liang-Bi Chen, Chia-Hao Hsu, Cheng-Pei Lin, Tzu-Chin Yang, Ming-Che Chen, and Yang-Kun Ou",
+            venue: "2019 IEEE The 8th Global Conference on Consumer Electronics(GCCE 2019), Osaka, Japan, Oct. 15 – 18, 2019. (EI)",
+            link: "#"
+          },
+          {
+            title: "AudioNet: An Audio Frequency Based Wireless Communication Scheme for Wireless Personal Area Networks",
+            authors: "Wan-Jung Chang, Yun-Tsai Hsueh, Yu-Xiang Zeng, Liang-Bi Chen, Ming-Che Chen, and Chao-Tang Yu",
+            venue: "2019 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2019), Yilan, Taiwan, May 20 – 22, 2019. (EI)",
+            link: "#"
+          },
+          {
+            title: "A DC Power-Line Communication based In-Vehicle Safety Aided System for Rear Vehicles Road Safety",
+            authors: "Sheng-Xiu Lin, Yuan-Hua Zhang, Chao-Tang Yu, Wei-Wen Hu, Liang-Bi Chen, and Wan-Jung Chang",
+            venue: "2019 IEEE 1st Global Conference on Life Sciences and Technologies (LifeTech 2019), Osaka, Japan, Mar. 12 – 14, 2019. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Deep Learning Based Wearable Medicines Recognition System for Visually Impaired People",
+            authors: "Wan-Jung Chang, Yue-Xun Yu, Jhen-Hao Chen, Zhi-Yao Zhang, Sung-Jie Ko, Tsung-Han Yang, Chia-Hao Hsu, Liang-Bi Chen, and Ming-Che Chen",
+            venue: "2019 IEEE International Conference on Artificial Intelligence Circuits and Systems (IEEE AICAS 2019), Hsinchu, Taiwan, Mar. 18 – 20, 2019. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Deep Learning Facial Expression Recognition Based Scoring System for Restaurants",
+            authors: "Wan-Jung Chang, Miriam Schmelzer, Florian Kopp, Chia-Hao Hsu, Jian-Ping Su, Liang-Bi Chen, and Ming-Che Chen",
+            venue: "2019 IEEE the 1st International Conference on Artificial Intelligence Information and Communication (ICAIIC 2019), Okinawa, Japan, Feb. 11 – 13, 2019. (EI)",
+            link: "#"
+          },
+          {
+            title: "An Implementation of an Intelligent Assistance System for Visually Impaired/Blind People",
+            authors: "Liang-Bi Chen, Jian-Ping Su, Ming-Che Chen, Wan-Jung Chang, Ching-Hsiang Yang, and Cheng-You Sie",
+            venue: "2019 IEEE International Conference on Consumer Electronics (ICCE 2019), Las Vegas, USA, Jan. 11 – 13, 2019. (EI)(Corresponding Author)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2018",
+        items: [
+          {
+            title: "An Intelligent Scalp Inspection and Diagnosis System for Caring Hairy Scalp Health",
+            authors: "Jian-Ping Su, Liang-Bi Chen, Chia-Hao Hsu, Wei-Chien Wang, Wan-Jung Chang, Wei-Wen Hu, and Da-Huei Lee",
+            venue: "2018 IEEE The 7th Global Conference on Consumer Electronics(GCCE 2018), Nara, Japan, Oct. 9 – 12, 2018. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "An Implementation of Deep Learning Based IoV System for Traffic Accident Collisions Detection with an Emergency Alert Mechanism",
+            authors: "Liang-Bi Chen, Ke-Yu Su, Yu-Ching Mo, Wan-Jung Chang, Wei-Wen Hu, Jing-Jou Tang, and Chao-Tang Yu",
+            venue: "2018 IEEE International Conference on Consumer Electronics – Berlin (ICCE-Berlin 2018), Berlin, Germany, Sept. 2 – 5, 2018. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "An Intelligent Scalp Detection System for Caring Hair Scalp Health",
+            authors: "Jian-Ping Su, Chia-Hao Hsu, Liang-Bi Chen, Wan-Jung Chang, Wei-Wen Hu, and Da-Huei Lee",
+            venue: "2018 Taiwan and Japan Conference on Circuits and Systems (TJCAS 2018), Taichung, Taiwan, Aug. 1 – 3, 2018. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "IoT Based Smart Logistics for Real Time Monitoring of Shipping Condition",
+            authors: "Cheng-Hsin Chuang, Cheng-An Wang, Jian-Ping Su, Yu-Ching Mo, Yu-Xiang Zeng, Wan-Jung Chang, Liang-Bi Chen, Da-Huei Lee",
+            venue: "2018 International Conference on Mechatronic, Automobile, and Environmental Engineering (ICMAEE 2018), Chiang Mai, Thailand, July 7 – 9, 2018. (EI)",
+            link: "#"
+          },
+          {
+            title: "An In-Vehicle Infotainment Platform for Integrating Heterogeneous Networks Interconnection",
+            authors: "Ke-Yu Su, Yu-Ching Mo, Liang-Bi Chen, Wan-Jung Chang, Wei-Wen Hu",
+            venue: "2018 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2018), Taichung, Taiwan, May 19 – 21, 2018. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "An IoT-based Elderly Behavioral Difference Warning System",
+            authors: "Wu-Lin Chen, Liang-Bi Chen, Wan-Jung Chang",
+            venue: "2018 IEEE International Conference on Applied System Innovation (IEEE ICASI 2018), Tokyo, Japan, May. 13 – 17, 2018. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "A Band-Pass IR Light Photodetector for Wearable Intelligent Glasses in a Drowsiness-Fatigue-Detection System",
+            authors: "Liang-Bi Chen, Wan-Jung Chang, Wei-Wen Hu, Chun-Kai Wang, Da-Huei Lee, and Yu-Zung Chiou",
+            venue: "2018 IEEE International Conference on Consumer Electronics (ICCE 2018), Las Vegas, USA, Jan. 12 – 14, 2018. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "i-Helmet: An Intelligent Motorcycle Helmet for Rear Big Truck/Bus Intimation and Collision Avoidance",
+            authors: "Liang-Bi Chen, Wan-Jung Chang, Jian-Ping Su",
+            venue: "2018 IEEE International Conference on Consumer Electronics (ICCE 2018), Las Vegas, USA, Jan. 12 – 14, 2018. (EI)(Corresponding Author)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2017",
+        items: [
+          {
+            title: "An FFT-based High-Speed Spindle Monitoring System for Analyzing Vibrations",
+            authors: "Yu-Ching Mo, Ke-Yu Su, Wen-Bin Kang, Liang-Bi Chen, Wan-Jung Chang, and Yun-Hui Liu",
+            venue: "IEEE 2017 Eleventh International Conference on Sensing Technology(ICST 2017), Sydney, Australia, Dec. 4 – 6, 2017. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "A Portable Wireless Scalp Inspector and its Automatic Diagnosis System Based on Deep Learning Techniques",
+            authors: "Liang-Bi Chen, Chia-Hao Hsu, Jian-Ping Su, Wan-Jung Chang, Wei-Wen Hu, and Da-Huei Lee",
+            venue: "The 16th International Symposium on Advanced Technology (ISAT -16), Tokyo, Japan, Nov. 1 – 2, 2017. (Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "Development of the Next-Generation Internet of Vehicles Communication System for Driving Safety (I)",
+            authors: "Chao-Tang Yu, Liang-Bi Chen, Wei-Wen Hu, Wan-Jung Chang, Jing-Jou Tang, and Da-Huei Lee",
+            venue: "The 16th International Symposium on Advanced Technology (ISAT -16), Tokyo, Japan, Nov. 1 – 2, 2017.",
+            link: "#"
+          },
+          {
+            title: "An Implementation of an Automatic Adjustment Power Transfer Position Wireless Battery Charging System for Mobile Devices",
+            authors: "Yuan-Hua Zhang, Yi-Cheng Lin, Sheng-Xiu Lin, Wei-Zhe Gao, Liang-Bi Chen, Wan-Jung Chang, Wei-Wen Hu, Chao-Tang Yu",
+            venue: "2017 IEEE The 6th Global Conference on Consumer Electronics(GCCE 2017), Nagoya, Japan, Oct. 24 – 27, 2017. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "An Implementation of an In-Vehicle Power Line Communication System",
+            authors: "Yuan-Hua Zhang, Sheng-Xiu Lin, Liang-Bi Chen, Wan-Jung Chang, Wei-Wen Hu, Jing-Jou Tang, Chao-Tang Yu",
+            venue: "2017 IEEE The 6th Global Conference on Consumer Electronics(GCCE 2017), Nagoya, Japan, Oct. 24 – 27, 2017. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "A Cloud-based Monitoring and Analysis System for Diagnosing High-Speed Spindle Vibrations",
+            authors: "Yu-Ching Mo, Ke-Yu Su, Wen-Bin Kang, Liang-Bi Chen, Wan-Jung Chang, and Yun-Hui Liu",
+            venue: "2017 International Symposium on Novel and Sustainable Technology (2017 ISNST), Tainan, Taiwan, Oct. 19 – 20, 2017. (Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "A Vehicular Diagnostic System Based on LoRa Low Power Wide Area Networks",
+            authors: "Yu-Shang Chou, Yu-Ching Mo, Jian-Ping Su, Wan-Jung Chang, Liang-Bi Chen, Jing-Jou Tang, and Chao-Tang Yu",
+            venue: "2017 International Symposium on Novel and Sustainable Technology (2017 ISNST), Tainan, Taiwan, Oct. 19 – 20, 2017. (Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "A Real-time IoT-based Cargos Monitoring & Management System for Intelligent Logistics Eco-Systems",
+            authors: "Jian-Ping Su, Cheng-An Wang, Yu-Ching Mo, Yu-Xiang Zeng, Wan-Jung Chang, Liang-Bi Chen, Da-Huei Lee, and Cheng-Hsin Chuang",
+            venue: "2017 International Symposium on Novel and Sustainable Technology (2017 ISNST), Tainan, Taiwan, Oct. 19 – 20, 2017. (Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "Implementation of a Zigbee-based Wireless Router for Home Automation Systems",
+            authors: "Yi-Chiao Wu, Liang-Bi Chen, Wan-Jung Chang, Che-Ching Yang, and Chao-Tang Yu",
+            venue: "2017 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2017), Taipei, Taiwan, June. 12 – 14, 2017. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "Design of a Low-Cost Level-Triggered Zigbee Network Multi-Application Sensor in Smart Homes",
+            authors: "Wei-Hong Jhang, Liang-Bi Chen, Wan-Jung Chang, Che-Ching Yang, and Chao-Tang Yu",
+            venue: "2017 The 6th International Symposium on Next-Generation Electronics (ISNE 2017), Keelung, Taiwan, May. 23 – 25, 2017. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "i-Car System: A LoRa-based Low Power Wide Area Networks Vehicle Diagnostic System for Driving Safety",
+            authors: "Yu-Shang Chou, Yu-Ching Mo, Jian-Ping Su, Wan-Jung Chang, Liang-Bi Chen, Jing-Jou Tang, Chao-Tang Yu",
+            venue: "2017 IEEE International Conference on Applied System Innovation (IEEE ICASI 2017), Sapporo, Japan, May. 13 – 17, 2017. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "i-Logistics: An Intelligent Logistics System Based on Internet of Things",
+            authors: "Jian-Ping Su, Cheng-An Wang, Yu-Ching Mo, Yu-Xiang Zeng, Wan-Jung Chang, Liang-Bi Chen, Da-Huei Lee, Cheng-Hsin Chuang",
+            venue: "2017 IEEE International Conference on Applied System Innovation (IEEE ICASI 2017), Sapporo, Japan, May. 13 – 17, 2017. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "A Novel Hardware Architecture of CAN Applications",
+            authors: "Hong-Yuan Li, Jing-Jou Tang, Chao-Tang Yu, Wei-Wen Hu, Wan-Jung Chang, Da-Huei Lee, and Yung-Chi Chung",
+            venue: "2017 IEEE International Conference on Consumer Electronics (ICCE), Las Vegas, USA, Jan. 8 – 11, 2017. (EI)(Corresponding Author)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2016",
+        items: [
+          {
+            title: "A Wearable-Glasses-based Drowsiness-Fatigue-Detection System for Improving Road Safety",
+            authors: "Liang-Bi Chen, Wan-Jung Chang, Jian-Ping Su, Ji-Yi Ciou, Yi-Jhan Ciou, Cheng-Chin Kuo, Katherine Shu-Min Li",
+            venue: "2016 IEEE The 5th Global Conference on Consumer Electronics(GCCE 2016), Kyoto, Japan, Oct. 11 – 14, 2016. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "Web-based Online Cooperation Training Materials for Vocational High School’s Project-based Learning Courses",
+            authors: "Liang-Bi Chen, Tzu-Wei Wang, Chi-Tsai Yeh, Wan-Jung Chang, and Katherine Shu-Min Li",
+            venue: "2016 International Conference on Applied System Innovation (ICASI), Okinawa, Japan, May. 26 – 30, 2016. (Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "Design and Development of an Extendable Multi-Protocol Automotive Gateway",
+            authors: "Hong-Yuan Li, Liang-Bi Chen, Wan-Jung Chang, Jing-Jou Tang, and Katherine Shu-Min Li",
+            venue: "2016 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW 2016), Nantou, Taiwan, May. 24 – 25, 2016. (EI)(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "Real-time Monitoring via Patch-type Piezoelectric Force Sensors for Internet of Thing in Logistics",
+            authors: "Cheng-Hsin Chuang, Wan-Ching Weng, Wan-Jung Chang, and Da-Huei Lee",
+            venue: "2016 IEEE Internatioinal Conference on Nano/Micro Engineered and Molecular Systems (IEEE-NEMS 2016), Matsushima Bay, Japan, Apr. 17 – 20, 2016. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Novel Scheme for Modeling and Analyzing of FlexRay Communication Systems",
+            authors: "Wan-Jung Chang, Wei-Wen Hu",
+            venue: "2016 IEEE International Conference on Industrial Technology (ICIT2016), pp. 1186 – 1191, Taipei, Taiwan, Mar. 14 – 17, 2016. (EI)",
+            link: "#"
+          },
+          {
+            title: "A Real-Time Mobile Emergency Assistance System for Helping Deaf-Mute People/Elderly Singletons",
+            authors: "Liang-Bi Chen, Bo-Chuan Cheng, Wan-Jung Chang, Jing-Jou Tang, and Katherine Shu-Min Li",
+            venue: "2016 IEEE International Conference on Consumer Electronics (ICCE), pp. 524 – 525, Las Vegas, USA, Jan. 9 – 12, 2016. (EI)(Corresponding Author)",
+            link: "#"
+          }
+        ]
+      }
+    ]
+  },
+  // ---------------- 【 3. 國內研討會論文 】 ----------------
+  {
+    category: "國內研討會論文",
+    type: "publication",
+    description: "本實驗室發表於國內學術研討會之研究成果，涵蓋 AI、IoT、醫療資通訊與教學創新等領域。",
+    yearlyData: [
+      {
+        year: "2025",
+        items: [
+          {
+            title: "iEndo：氣管內管插管臥床病患之人工智慧躁動行為辨識系統",
+            authors: "張萬榮, 廖柏皓, 陳銘哲, 許庭瑄, 賴穎寬",
+            venue: "2025 TANET & NCS 臺灣網際網路研討會暨全國計算機會議，國立宜蘭大學，宜蘭縣，台灣，2025年10月22~24日。",
+            link: "#"
+          },
+          {
+            title: "Integrating AI with Microscopy for High-Throughput Analysis of Atmospheric Microplastics",
+            authors: "Thi-Hieu Le, Wan-Jung Chang, Lin-Chi Wang",
+            venue: "第32屆國際氣膠研討會—氣膠研究與人工智慧 (2025 ICAST—TWIN AI)，國立成功大學，台南市，台灣，2025年9月19~20日。",
+            link: "#"
+          },
+          {
+            title: "EndoView: An Artificial Intelligence Tube Displacement Monitoring System for Bedridden Patients Undergoing Endotracheal Intubation",
+            authors: "Hsiao-Chuen Chen, Zu-Chun Lin, Bo-Hao Lia, Chun-Wei Liu, and Wan-Jung Chang",
+            venue: "第三十八屆電腦視覺、圖學暨影像處理研討會 CVGIP2025，三峽大板根飯店，新北市，台灣，2025年8月24~26日。",
+            link: "#"
+          },
+          {
+            title: "運用擴增實境與眼動追縱技術之輕量化眼震偵測系統",
+            authors: "陳銘哲, 張翔翰, 吳靖農, 張萬榮",
+            venue: "第十五屆網路智能與應用研討會 NCWIA 2025，國立雲林科技大學，雲林縣，台灣，2025年7月11~12日。",
+            link: "#"
+          },
+          {
+            title: "FitMirror：用於銀髮族體適能診斷的人工智慧鏡像系統",
+            authors: "張萬榮, 廖柏皓, 紀政佑, 蔡一銘",
+            venue: "第十五屆網路智能與應用研討會 NCWIA 2025，國立雲林科技大學，雲林縣，台灣，2025年7月11~12日。",
+            link: "#"
+          },
+          {
+            title: "ThermalCare：基於人工智慧低解析熱影像骨幹辨識技術之精神病患自我傷害行為照護系統",
+            authors: "張萬榮, 賴穎寬, 陳翊嘉, 歐陽昆, 周信旭, 蔡佩靜",
+            venue: "第廿三屆離島資訊技術與應用研討會，國立澎湖科技大學，澎湖縣，台灣2025年5月23~25日。",
+            link: "#"
+          },
+          {
+            title: "ToFPose: 基於飛時測距感測器之人工智慧人體姿態骨幹辨識模型",
+            authors: "張萬榮, 許庭瑄",
+            venue: "第廿三屆離島資訊技術與應用研討會，國立澎湖科技大學，澎湖縣，台灣2025年5月23~25日。",
+            link: "#"
+          },
+          {
+            title: "iSD Viewer：SD 卡生產線之人工智慧彩噴印刷瑕疵檢測系統",
+            authors: "張萬榮, 王彥凱, 陳政廷, 吳嘉祐, 章世鴻",
+            venue: "第廿三屆離島資訊技術與應用研討會，國立澎湖科技大學，澎湖縣，台灣2025年5月23~25日。",
+            link: "#"
+          },
+          {
+            title: "iPiG：以最小邊界框資料集為基礎之人工智慧豬隻體重辨識系統",
+            authors: "張萬榮, 施為元, 蔡柏昀, 林永浚, 楊田浚",
+            venue: "第廿三屆離島資訊技術與應用研討會，國立澎湖科技大學，澎湖縣，台灣2025年5月23~25日。",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2024",
+        items: [
+          {
+            title: "iOP-外科手術室之人工智慧器械辨識暨盤點系統",
+            authors: "張萬榮、徐紫娟、陳良弼、陳銘哲、陳翊嘉、楊振煒、張顏丞、李政彥、洪慧倩、黃秀燕",
+            venue: "2024臺灣網際網路研討會，國立陽明交通大學，台北市，台灣2024年10月24~26日。",
+            link: "#"
+          },
+          {
+            title: "熱像之眼：應用於精神病房隔離室之人工智慧低解析熱影像自我傷害行為辨識系統",
+            authors: "張萬榮、陳銘哲、陳翊嘉、蘇健平、廖柏皓、周信旭、蔡佩靜",
+            venue: "第十四屆網路智能與應用研討會，國立雲林科技大學，雲林縣，台灣，2024年07月12~13日。",
+            link: "#"
+          },
+          {
+            title: "ToFPose：基於3D-ToF之人工智慧浴廁異常行為辨識技術",
+            authors: "陳銘哲、劉信宏、張萬榮",
+            venue: "第廿十廿屆離島資訊技術與應用研討會，國立金門大學，金門縣，台灣，2024年05月24~25日。",
+            link: "#"
+          },
+          {
+            title: "iTon：基於YOLOv7物件偵測技術之舌肌復健檢測系統",
+            authors: "陳銘哲、陳威豪、張萬榮、歐陽昆、陳閔昱、謝秧蓁",
+            venue: "第廿十廿屆離島資訊技術與應用研討會，國立金門大學，金門縣，台灣，2024年05月24~25日。",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2023",
+        items: [
+          {
+            title: "結合特徵擷取和深度學習技術之病房給藥藥品辨識系統實現",
+            authors: "張萬榮、鄭慎弘",
+            venue: "第廿十一屆離島資訊技術與應用研討會，國立宜蘭大學，宜蘭縣，台灣，2023年05月25~28日。",
+            link: "#"
+          },
+          {
+            title: "A2FinPose：根植於AI和AR技術之頭戴式近眼顯示設備人機介面手指手勢辨識技術",
+            authors: "張萬榮、吳培義",
+            venue: "第廿十一屆離島資訊技術與應用研討會，國立宜蘭大學，宜蘭縣，台灣，2023年05月25~28日。",
+            link: "#"
+          },
+          {
+            title: "A2Mirror：使用擴增實境智能眼鏡於中風後上肢復健之人工智慧鏡像治療系統",
+            authors: "張萬榮、溫博珩、王鈺霖、林琮格",
+            venue: "第廿十一屆離島資訊技術與應用研討會，國立宜蘭大學，宜蘭縣，台灣，2023年05月25~28日。",
+            link: "#"
+          },
+          {
+            title: "BathPose：以熱影像為基礎之人工智慧浴廁異常行為辨識技術",
+            authors: "張萬榮、劉家宏",
+            venue: "第廿十一屆離島資訊技術與應用研討會，國立宜蘭大學，宜蘭縣，台灣，2023年05月25~28日。",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2022",
+        items: [
+          {
+            title: "BabyPose：基於深度學習之嬰兒臥床姿態辨識技術",
+            authors: "張萬榮、吳振豪、蘇健平、許家豪",
+            venue: "第廿屆離島資訊技術與應用研討會，國立澎湖科技大學，澎湖縣，台灣，2022年05月27~29日。",
+            link: "#"
+          },
+          {
+            title: "THPose：基於熱影像之深度學習人體姿態辨識技術",
+            authors: "張萬榮、蔡承翰、蘇健平、許家豪",
+            venue: "第廿屆離島資訊技術與應用研討會，國立澎湖科技大學，澎湖縣，台灣，2022年05月27~29日。",
+            link: "#"
+          },
+          {
+            title: "AudioNet+：以聲音頻道為基礎之無線行動式聲學區域網路",
+            authors: "張萬榮、藍文謙、陳銘哲",
+            venue: "第廿屆離島資訊技術與應用研討會，國立澎湖科技大學，澎湖縣，台灣，2022年05月27~29日。",
+            link: "#"
+          },
+          {
+            title: "智慧環境粉塵監測與追蹤系統",
+            authors: "陳銘哲、張萬榮、方奕凱",
+            venue: "2022中華民國系統科學與工程研討會，國立中興大學，台中市，台灣，2022年05月26~29日。",
+            link: "#"
+          },
+          {
+            title: "基於深度學習之銀髮族體適能運動辨識系統",
+            authors: "張萬榮、蘇健平、劉書綮",
+            venue: "2022中華民國系統科學與工程研討會，國立中興大學，台中市，台灣，2022年05月26~29日。",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2021",
+        items: [
+          {
+            title: "基於深度學習技術之智慧PCBA銲點缺陷檢測系統",
+            authors: "張萬榮、陳振豪、劉信宏、黃泓翔、許智昇、吳衒新",
+            venue: "第十九屆離島資訊技術與應用研討會，國立金門大學，金門縣，台灣，2021年05月28~29日。",
+            link: "#"
+          },
+          {
+            title: "基於人工智慧邊緣運算技術之AI藥品辨識裝置",
+            authors: "張萬榮、林承沛、陳振豪、鄭慎弘、王家宏、徐吏憲、陳威豪、歐陽昆、陳銘哲",
+            venue: "第十九屆離島資訊技術與應用研討會，國立金門大學，金門縣，台灣，2021年05月28~29日。",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2020",
+        items: [
+          {
+            title: "G-PBL: 提升程式語言學習動機之遊戲式創新教學方法",
+            authors: "張萬榮、蘇健平",
+            venue: "2020教學實踐研究與素養導向教學研討會，南臺科技大學，臺南市，台灣，2020年11月03日。",
+            link: "#"
+          },
+          {
+            title: "運用機器學習之太陽能發電設備自動報修系統",
+            authors: "張萬榮、楊景翔、陳銘哲、蘇健平、陳良弼",
+            venue: "2020 第十八屆微電子技術發展與應用研討會，國立高雄科技大學，高雄市，台灣，2020年06月05日。(Corresponding Author)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2018",
+        items: [
+          {
+            title: "基於Sigfox低功耗廣域網路之疲勞瞌睡警示主動式智慧行車安全系統",
+            authors: "郭丞晉、莫玉青、陳良弼、張萬榮、邱裕中、余兆棠、唐經洲",
+            venue: "2019年台灣電信年會 (2019 National Symposium on Communication)，台中福容大飯店，台中市，台灣，2018年01月24 – 26日。(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "車載直流電力線通訊系統之實現",
+            authors: "張原華、陳良弼、林聖修、胡偉文、張萬榮、余兆棠",
+            venue: "2018年全國電信研討會 (2018 National Symposium on Communication)，淡水漁人馬頭福容大飯店，新北市，台灣，2018年01月25 – 27日。",
+            link: "#"
+          },
+          {
+            title: "整合異質網路通訊互聯之車載資通訊娛樂平台",
+            authors: "蘇科毓、莫玉青、陳良弼、胡偉文、張萬榮、唐經洲、余兆棠",
+            venue: "2018年全國電信研討會 (2018 National Symposium on Communication)，淡水漁人馬頭福容大飯店，新北市，台灣，2018年01月25 – 27日。(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "基於BLE三點室內定位之老人行為差異預警系統",
+            authors: "陳武麟、陳良弼、康文彬、葉燦宣、孫榛淋、呂宏侑、余振威、葉光庭、張萬榮",
+            venue: "2018年全國電信研討會 (2018 National Symposium on Communication)，淡水漁人馬頭福容大飯店，新北市，台灣，2018年01月25 – 27日。(Corresponding Author)",
+            link: "#"
+          }
+        ]
+      },
+      {
+        year: "2017",
+        items: [
+          {
+            title: "整合異質網路互聯之智能車載資通訊平台",
+            authors: "蘇科毓、莫玉青、 張萬榮、余兆棠、 唐經洲、胡偉文、陳良弼",
+            venue: "2017光電與通訊工程應用研討會 (2017 Conference on Photonics and Communications)，國立高雄應用科技大學，高雄市，台灣，2017年12月01日。",
+            link: "#"
+          },
+          {
+            title: "Design and Implementation of an IoT-Based Intelligent Logistics System",
+            authors: "Jian-Ping Su, Cheng-An Wang, Yu-Ching Mo, Yu-Xiang Zeng, Wan-Jung Chang, Liang-Bi Chen, Da-Huei Lee, and Cheng-Hsin Chuang",
+            venue: "2017超大型積體電路設計暨計算機輔助設計技術研討會 (VLSI Design/CAD Symposium)，屏東墾丁，屏東縣，台灣，2017年8月1 – 4日。(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "Design and Implementation of a Telematics Platform for Supporting Driving Safety",
+            authors: "Ke-Yu Su, Jian-Ping Su, Liang-Bi Chen, Hong-Yuan Li, Wan-Jung Chang, and Jing-Jou Tang",
+            venue: "2017超大型積體電路設計暨計算機輔助設計技術研討會 (VLSI Design/CAD Symposium)，屏東墾丁，屏東縣，台灣，2017年8月1 – 4日。(Corresponding Author)",
+            link: "#"
+          },
+          {
+            title: "Design and Implementation of a LoRa-based Low-Power WAN Vehicle Diagnostic System",
+            authors: "Yu-Shang Chou, Yu-Ching Mo, Jian-Ping Su, Wan-Jung Chang, Liang-Bi Chen, Jing-Jou Tang, and Chao-Tang Yu",
+            venue: "2017超大型積體電路設計暨計算機輔助設計技術研討會 (VLSI Design/CAD Symposium)，屏東墾丁，屏東縣，台灣，2017年8月1 – 4日。(Corresponding Author)",
+            link: "#"
+          }
+        ]
+      }
+    ]
+  },
+
+  // ---------------- 【 4. 學生榮譽 】 ----------------
+  {
+  section: "🏆 學生榮譽",
+  category: "競賽得獎 (Awards)",
+  type: "award",
+  description: "實驗室積極鼓勵學生參與各項全國性與國際性競賽，累積實戰經驗並屢獲佳績。",
+  yearlyData: [
+    {
+      year: "2026",
+      items: [
+        {
+          award: "佳作",
+          project: "iMP Viewer全自動微塑膠獵捕系統",
+          competition: "第二十一屆數位訊號處理創思設計競賽 軟體與嵌入式平台應用組",
+        },
+        {
+          award: "佳作",
+          project: "iCapa－基於人工智慧之主機板CPU周圍電容缺漏識",
+          competition: "第二十一屆數位訊號處理創思設計競賽 軟體與嵌入式平台應用組",
+        },
+        {
+          award: "第二名",
+          project: "FitMirror：基於人工智慧的老年人體適能診斷系統",
+          competition: "第二十一屆數位訊號處理創思設計競賽 健康照護應用組",
+        },
+        {
+          award: "佳作",
+          project: "iReflex-整合人工智慧影像識別與導電紗穿戴式護膝之神經膝反射偵測裝置",
+          competition: "第二十一屆數位訊號處理創思設計競賽 健康照護應用組",
+        }
+      ]
+    },
+    {
+      year: "2025",
+      items: [
+        {
+          award: "金牌獎",
+          project: "基於人工智慧之外科手術室器械自動識別與盤點系統",
+          competition: "2025 台灣創新技術博覽會發明競賽 發明競賽區",
+        },
+        {
+          award: "佳作",
+          project: "iSD Viewer－SD卡生產線之人工智慧彩噴印刷瑕疵檢測系統",
+          competition: "2025 跨域晶片設計應用創新專題實作競賽 智慧終端裝置組",
+        },
+        {
+          award: "佳作",
+          project: "SD卡印刷瑕疵AI檢測平台",
+          competition: "第二十一屆全國電子設計創意競賽",
+        },
+        {
+          award: "佳作",
+          project: "iPiG：人工智慧豬舍豬隻體重辨識系統",
+          competition: "第二十一屆全國電子設計創意競賽",
+        },
+        {
+          award: "佳作",
+          project: "iNoodle：應用於製麵工廠之醬料包AI智慧影像辨識系統",
+          competition: "第二十一屆全國電子設計創意競賽",
+        },
+        {
+          award: "IEEE Signal Processing Society (SPS) Tainan Chapter 特別獎",
+          project: "iNoodle：應用於製麵工廠之醬料包AI智慧影像辨識系統",
+          competition: "第二十一屆全國電子設計創意競賽",
+        },
+        {
+          award: "佳作",
+          project: "SD卡印刷瑕疵AI檢測平台",
+          competition: "第二十屆數位訊號處理創思設計競賽 軟體與嵌入式平台應用組",
+        },
+        {
+          award: "佳作",
+          project: "利用深度學習技術進行豬隻體重智能化監測",
+          competition: "第二十屆數位訊號處理創思設計競賽 軟體與嵌入式平台應用組",
+        },
+        {
+          award: "第三名",
+          project: "iNoodle－應用於製麵工廠之醬料包AI智慧影像辨識系統",
+          competition: "第二十屆數位訊號處理創思設計競賽 綠能與控制應用組",
+        }
+      ]
+    },
+    {
+      year: "2024",
+      items: [
+        {
+          award: "冠軍",
+          project: "EndoEye：AI監測，守護病患生命",
+          competition: "2024 EE創意挑戰賽 校園組",
+        },
+        {
+          award: "季軍",
+          project: "AR眼鏡用於中風後上肢復健鏡像治療系統",
+          competition: "2024 5G創新應用大賽 校園組",
+        },
+        {
+          award: "優勝",
+          project: "iOP-外科手術室之人工智慧器械辨識暨盤點系統",
+          competition: "2024通訊大賽 創新節能優化實作組",
+        },
+        {
+          award: "第一名",
+          project: "iOP-外科手術室之人工智慧器械辨識暨盤點系統",
+          competition: "2024全國大專院校資訊服務創新競賽 資訊應用組",
+        },
+        {
+          award: "銅獎",
+          project: "適用於外科手術式之人工智慧器械辨識系統",
+          competition: "2024智慧晶片系統應用創新專題實作競賽 智慧終端裝置組",
+        },
+        {
+          award: "第一名",
+          project: "人工智慧氣管內管內位移暨躁動警示系統",
+          competition: "第19屆戰國策全國創新創業競賽 創新創意組",
+        },
+        {
+          award: "金牌",
+          project: "Artificial Intelligence-base System for Recognition of Endotracheal Tube Displacement and Agitation in Intubated Patients",
+          competition: "2024瑞士日內瓦國際發明展",
+        },
+        {
+          award: "第二名",
+          project: "基於擴增實境智慧眼鏡之鏡像復健系統",
+          competition: "第20屆全國電子設計創意競賽 電子組",
+        },
+        {
+          award: "第一名",
+          project: "結合AR智慧眼鏡擴增實境之智慧護理推車",
+          competition: "第20屆全國電子設計創意競賽 資通組",
+        },
+        {
+          award: "第二名",
+          project: "低解析熱影像AI辨識精神病房預測攻擊性事件",
+          competition: "第十九屆數位訊號處理創思設計競賽 健康照護應用組",
+        }
+      ]
+    },
+    {
+      year: "2023",
+      items: [
+        {
+          award: "臨床新創獎",
+          project: "智能膳魔術師－數位恆溫腹膜透析液監控裝置",
+          competition: "2023第20屆國家新創獎",
+        },
+        {
+          award: "冠軍",
+          project: "基於3D-ToF之人工智慧跌倒辨識系統",
+          competition: "2023 Mobileheroes通訊大賽 聯網未來挑戰賽",
+        },
+        {
+          award: "亞軍",
+          project: "使用擴增實境智能眼鏡於中風後上肢復健之人工智慧鏡像治療系統",
+          competition: "2023 Mobileheroes通訊大賽 聯網未來挑戰賽",
+        },
+        {
+          award: "第一名",
+          project: "可攜式之人工智慧居家排尿檢測系統",
+          competition: "第28屆大專校院資訊應用服務創新競賽 資訊應用IP10組",
+        },
+        {
+          award: "第一名",
+          project: "次世代護理推車",
+          competition: "第28屆大專校院資訊應用服務創新競賽 資訊應用IP7組",
+        },
+        {
+          award: "最佳XR校園菁英獎第一名",
+          project: "智護匠心",
+          competition: "2023亞洲XR創新金點大賞",
+        },
+        {
+          award: "銅獎",
+          project: "ToFEye",
+          competition: "2023教育部智慧晶片系統應用創新專題實作競賽 智慧終端裝置組",
+        },
+        {
+          award: "佳作",
+          project: "人工智慧居家排尿健康評估系統",
+          competition: "2023教育部智慧晶片系統應用創新專題實作競賽 智慧健康組",
+        },
+        {
+          award: "研究創作獎",
+          project: "基於人工智慧熱影像之居家排尿檢測系",
+          competition: "國科會111年度大專生研究計畫",
+        },
+        {
+          award: "第一名",
+          project: "Ton UP 舌肌韻律互動訓練",
+          competition: "2023BioSTEM全國生醫創意競賽 大專組",
+        },
+        {
+          award: "第一名",
+          project: "Nurs+：次世代智慧護理推車",
+          competition: "2023年教育部全國技專院校學生實務專題製作競賽 資工通訊群",
+        },
+        {
+          award: "第一名",
+          project: "iCAPD智慧腹膜透析監控裝置",
+          competition: "第十八屆數位訊號處理創思設計競賽 健康照護應用組",
+        },
+        {
+          award: "第一名",
+          project: "Nurs+次世代護理推車",
+          competition: "第十八屆數位訊號處理創思設計競賽 AI人工智慧訊號處理應用組",
+        }
+      ]
+    },
+    {
+      year: "2022",
+      items: [
+        {
+          award: "優等(第四名)",
+          project: "iBed人工智慧熱影像虛擬照護床墊",
+          competition: "2022大專校院機電暨智慧創意實作競賽",
+        },
+        {
+          award: "第三名",
+          project: "iVoiding",
+          competition: "2022全國大專院校產學創新實作競賽 人工智慧及其應用組",
+        },
+        {
+          award: "第三名",
+          project: "AOI+",
+          competition: "2022全國大專院校產學創新實作競賽 機械及自動化組",
+        },
+        {
+          award: "佳作",
+          project: "智慧腹膜透析監控裝置",
+          competition: "2022第六屆慈悲科技創新競賽",
+        },
+        {
+          award: "佳作",
+          project: "iGAIT",
+          competition: "2022教育部智慧晶片系統應用創新專題實作競賽 智慧健康類組",
+        },
+        {
+          award: "第一名",
+          project: "iBed人工智慧熱影像虛擬照護床墊",
+          competition: "第十七屆數位訊號處理創思設計競賽 健康照護應用組",
+        },
+        {
+          award: "佳作",
+          project: "iVoiding",
+          competition: "第十七屆數位訊號處理創思設計競賽 健康照護應用組",
+        }
+      ]
+    },
+    {
+      year: "2021",
+      items: [
+        {
+          award: "佳作",
+          project: "i-Voiding",
+          competition: "2021無限次元智慧醫療競賽",
+        },
+        {
+          award: "智慧特別獎(佳作)",
+          project: "智慧眼鏡應用於長照巡房及遠距會診",
+          competition: "2021中華電信5G創新應用大賽",
+        },
+        {
+          award: "第一名",
+          project: "基於深度學習PCBA銲點缺陷檢測系統",
+          competition: "2021均豪全國大專院校智動化設備創作獎",
+        },
+        {
+          award: "佳作",
+          project: "AI防跌小夜燈",
+          competition: "2021均豪全國大專院校智動化設備創作獎",
+        },
+        {
+          award: "評審獎",
+          project: "EyesBed",
+          competition: "2021數位科技解決方案競賽 (出題單位：民生醫院)",
+        },
+        {
+          award: "第三名",
+          project: "促進長者健康之體適能健身鏡",
+          competition: "2021全國大專校院智慧創新暨跨域整合創作競賽 物聯網組",
+        },
+        {
+          award: "決選優勝獎(獎金40萬)",
+          project: "智慧眼鏡應用於長照巡房及遠距會診",
+          competition: "2021工業局AI+新銳選拔賽 (出題企業：佐臻股份有限公司)",
+        },
+        {
+          award: "學研新創獎",
+          project: "人工智慧義肢手臂",
+          competition: "2021第18屆國家新創獎",
+        },
+        {
+          award: "臨床新創獎",
+          project: "智慧防跌照明暨警示系統",
+          competition: "2021第18屆國家新創獎",
+        },
+        {
+          award: "第三名",
+          project: "Eyelight",
+          competition: "2021第五屆慈悲科技創新競賽",
+        },
+        {
+          award: "銅獎",
+          project: "The Armature Project",
+          competition: "2021 i2CreaTE Younger Inventor Award",
+        },
+        {
+          award: "金獎",
+          project: "NursMed+",
+          competition: "2021年教育部智慧晶片系統應用創新專題實作競賽 模客組智慧健康類",
+        },
+        {
+          award: "企業特別獎(佳作)",
+          project: "床前明月光",
+          competition: "2021年教育部智慧晶片系統應用創新專題實作競賽 創客組",
+        },
+        {
+          award: "創業傑出獎(200萬獎金)",
+          project: "AI Armature",
+          competition: "2021年科技部創新創業績力計畫(FITI)",
+        },
+        {
+          award: "第一名",
+          project: "基於深度學習之PCBA銲點缺陷檢測系統",
+          competition: "2021年教育部全國技專院校學生實務專題製作競賽 資工通訊群",
+        },
+        {
+          award: "銀獎",
+          project: "N+護理推車",
+          competition: "2021 育秀盃創意獎競賽 工業設計類",
+        },
+        {
+          award: "第一名",
+          project: "iMirror：AI體適能魔鏡",
+          competition: "第十六屆數位訊號處理創思設計競賽 健康照護應用組",
+        },
+        {
+          award: "佳作",
+          project: "HMed+",
+          competition: "第十六屆數位訊號處理創思設計競賽 軟體與嵌入式平臺應用組",
+        }
+      ]
+    },
+    {
+      year: "2020",
+      items: [
+        {
+          award: "銅獎",
+          project: "童話世界(Visual Land)",
+          competition: "2020美國國際設計獎(2020 Inernational Design Awards, IDA)",
+        },
+        {
+          award: "冠軍",
+          project: "MedHelper",
+          competition: "2020經濟部技術處搶鮮大賽 創新實作類",
+        },
+        {
+          award: "亞軍",
+          project: "BedVision",
+          competition: "2020經濟部技術處搶鮮大賽 創新實作類",
+        },
+        {
+          award: "季軍",
+          project: "基於深度學習應用於視障者輔助導引系統",
+          competition: "2020經濟部技術處搶鮮大賽 創新實作類",
+        },
+        {
+          award: "優選",
+          project: "PCB銲點瑕疵智慧視覺檢測系統",
+          competition: "2020經濟部技術處搶鮮大賽 創新實作類",
+        },
+        {
+          award: "亞軍",
+          project: "Visionary",
+          competition: "2020 Mobileheroes通訊大賽 聯網未來挑戰賽",
+        },
+        {
+          award: "校園菁英獎",
+          project: "iBuffet",
+          competition: "2020 Mobileheroes通訊大賽 聯網未來挑戰賽",
+        },
+        {
+          award: "銀獎",
+          project: "童話世界(Visual Land)",
+          competition: "2020美國國際設計傑出獎(2020 Inernational Design Excellence Awards, IDEA)",
+        },
+        {
+          award: "展翅台灣藍鵠獎(取前三名)",
+          project: "基於深度學習應用於視障者觀光導覽系統",
+          competition: "2020科技觀光得塔推進賽 未上線組",
+        },
+        {
+          award: "銅獎",
+          project: "Bedside Defender",
+          competition: "2020 Global Student Innovation Challenge &ndash; Rehabilitation Engineering and Assistive Technology (gSIC-REAT) Technology Category",
+        },
+        {
+          award: "醫療品質標章",
+          project: "以AI動態感測為基礎之防跌下床保護暨預警裝置",
+          competition: "2020 國家醫療品質獎 產業應用組",
+        },
+        {
+          award: "第二名",
+          project: "Eyewall",
+          competition: "2020 全國大專校院智慧創新暨跨域整合創作競賽 數位永續科技組",
+        },
+        {
+          award: "第三名",
+          project: "基於深度學習PCB瑕疵辨識系統",
+          competition: "2020 全國大專校院智慧創新暨跨域整合創作競賽 智慧機器組",
+        },
+        {
+          award: "第二名",
+          project: "Go-To-Guide",
+          competition: "2020第四屆慈悲科技創新競賽",
+        },
+        {
+          award: "金賞",
+          project: "基於人工智慧之無喉者發聲輔助系統",
+          competition: "2020 光寶創新獎 技術組",
+        },
+        {
+          award: "冠軍",
+          project: "go to guide 幫導盲",
+          competition: "2020 金門產業創新創意競賽",
+        },
+        {
+          award: "金獎",
+          project: "MedEye",
+          competition: "2020 第二屆智慧聯網專題實作競賽 智慧工業聯網應用組",
+        },
+        {
+          award: "銅獎",
+          project: "基於人工智慧邊緣運算之視障者行走障礙物警示系統",
+          competition: "2020第二十屆旺宏金矽獎 應用組",
+        },
+        {
+          award: "優選",
+          project: "go to guide 幫導盲",
+          competition: "2020第十五屆戰國策全國創新創業競賽 金門指定類金門產業組",
+        },
+        {
+          award: "季軍",
+          project: "MedEye",
+          competition: "2020第十五屆戰國策全國創新創業競賽 創新創意類創新創意組",
+        },
+        {
+          award: "合作夥伴默克特別獎",
+          project: "EyeWall",
+          competition: "2020 光寶創新獎",
+        },
+        {
+          award: "佳作",
+          project: "童話世界",
+          competition: "2020玩具與孕嬰用品創意設計競賽 玩具類",
+        },
+        {
+          award: "第一名",
+          project: "iFood：基於深度學習餐臺膳食管理系統",
+          competition: "第十五屆數位訊號處理創思設計競賽 健康照護應用組",
+        },
+        {
+          award: "第三名",
+          project: "MedEye",
+          competition: "第十五屆數位訊號處理創思設計競賽 軟體與嵌入式平臺應用組",
+        },
+        {
+          award: "第三名",
+          project: "go to guide 幫導盲",
+          competition: "第十五屆數位訊號處理創思設計競賽 TEMI物聯網應用組",
+        }
+      ]
+    },
+    {
+      year: "2019",
+      items: [
+        {
+          award: "冠軍",
+          project: "SmartGuide智慧導眼",
+          competition: "2019經濟部技術處搶鮮大賽 創新實作類",
+        },
+        {
+          award: "優選獎",
+          project: "Skyeye",
+          competition: "2019經濟部技術處搶鮮大賽 創新實作類",
+        },
+        {
+          award: "金牌獎",
+          project: "Skyeye",
+          competition: "2019高雄國際發明暨設計展(KIDE, 2015 Kaohsiung International Invention and Design EXPO)",
+        },
+        {
+          award: "第三名",
+          project: "天空之眼",
+          competition: "2019全國大專校院智慧創新暨跨領域整合創作競賽 數位永續科技組",
+        },
+        {
+          award: "第三名",
+          project: "防追撞車門之智慧聯網預警系統",
+          competition: "2019全國大專校院智慧創新暨跨領域整合創作競賽 物聯網組",
+        },
+        {
+          award: "第一名",
+          project: "SmartGuide智慧導眼",
+          competition: "2019第三屆慈悲科技創新競賽",
+        },
+        {
+          award: "優勝獎",
+          project: "防追撞車門之智慧聯網預警系統",
+          competition: "2019車用電子創新發明競賽",
+        },
+        {
+          award: "入選技術獎",
+          project: "基於人工智慧邊緣運算技術之跌倒偵測系統",
+          competition: "2019台灣創新技術博覽會發明競賽 發明競賽區",
+        },
+        {
+          award: "銀牌獎",
+          project: "視障者智慧輔具系統",
+          competition: "2019台灣創新技術博覽會發明競賽 專利競賽區",
+        },
+        {
+          award: "銀牌獎",
+          project: "智慧藥物辨識系統",
+          competition: "2019台灣創新技術博覽會發明競賽 專利競賽區",
+        },
+        {
+          award: "最佳潛力獎",
+          project: "SmartGuide",
+          competition: "2019 光寶創新獎 創新技術組",
+        },
+        {
+          award: "第一名",
+          project: "SmartGuide",
+          competition: "2019 長照與居家智慧應用科技設計國際競賽 一般設計組",
+        },
+        {
+          award: "第三名",
+          project: "MedBox",
+          competition: "2019 長照與居家智慧應用科技設計國際競賽 一般設計組",
+        },
+        {
+          award: "金獎",
+          project: "就視要簡單",
+          competition: "2019 第一屆智慧聯網專題實務競賽 智慧空間應用組",
+        },
+        {
+          award: "銀獎",
+          project: "視障者行走安全之智慧輔具聯網系統",
+          competition: "2019 第一屆智慧聯網專題實務競賽 智慧空間應用組",
+        },
+        {
+          award: "佳作",
+          project: "疲勞駕駛警示之異質性車內視聯網系統",
+          competition: "2019 第一屆智慧聯網專題實務競賽 車用電子或運輸應用組",
+        },
+        {
+          award: "銀獎",
+          project: "Panacea 治癒女神",
+          competition: "2019 育秀盃創意獎競賽 工業設計類",
+        },
+        {
+          award: "佳作",
+          project: "Touch & Clean",
+          competition: "2019 育秀盃創意獎競賽 工業設計類",
+        },
+        {
+          award: "第三名",
+          project: "基於深度學習之姿態辨識預警系統",
+          competition: "第十四屆數位訊號處理創思設計競賽 健康照護應用組",
+        },
+        {
+          award: "佳作",
+          project: "視障者藥物辨識輔具及其用藥安全平台",
+          competition: "第十四屆數位訊號處理創思設計競賽 物聯網應用組",
+        }
+      ]
+    },
+    {
+      year: "2018",
+      items: [
+        {
+          award: "季軍",
+          project: "藥視能幫盲",
+          competition: "2018經濟部技術處搶鮮大賽 創新實作類",
+        },
+        {
+          award: "優選獎",
+          project: "具疲勞瞌睡警示之主動式智慧行車安全系統",
+          competition: "2018經濟部技術處搶鮮大賽 創新實作類",
+        },
+        {
+          award: "優勝獎",
+          project: "Intelligent Scalp Detection System",
+          competition: "2018 無限次元智慧醫療競賽",
+        },
+        {
+          award: "校園菁英獎與UnaBiz/Sogfox專題獎",
+          project: "頑疲眼鏡",
+          competition: "2018 Mobileheroes通訊大賽 智慧聯網創新應用競賽組",
+        },
+        {
+          award: "第一名",
+          project: "具疲勞瞌睡警示之主動式智慧行車安全系統",
+          competition: "南臺科技大學2018年來恩盃校園三創競賽 創新創意類系統技術組",
+        },
+        {
+          award: "第三名",
+          project: "視障者藥物辨識輔具及用藥安全雲端平台",
+          competition: "南臺科技大學2018年來恩盃校園三創競賽 創新創意類系統技術組",
+        },
+        {
+          award: "第二名",
+          project: "Intelligent Scalp Detection System",
+          competition: "南臺科技大學2018年來恩盃校園三創競賽 創業實踐類",
+        },
+        {
+          award: "第三名",
+          project: "智慧藥物辨識系統",
+          competition: "南臺科技大學2018年來恩盃校園三創競賽 創業實踐類",
+        },
+        {
+          award: "佳作",
+          project: "智慧藥物辨識系統",
+          competition: "2018第23屆全國大專校院資訊應用服務創新競賽 物聯網裝置兩岸交流應用組",
+        },
+        {
+          award: "佳作",
+          project: "智慧藥物辨識系統",
+          competition: "2018第23屆全國大專校院資訊應用服務創新競賽 資訊技術應用組",
+        },
+        {
+          award: "第三名",
+          project: "視障者藥物辨識輔具及其雲端平台",
+          competition: "107全國微電腦應用系統設計創作競賽",
+        },
+        {
+          award: "佳作獎",
+          project: "疲勞駕駛警示系統",
+          competition: "107全國微電腦應用系統設計創作競賽",
+        },
+        {
+          award: "銀牌獎",
+          project: "頭皮檢測設備",
+          competition: "2018台灣創新技術博覽會發明競賽",
+        },
+        {
+          award: "佳作",
+          project: "主軸振動即時監測之物聯網系統應用",
+          competition: "2018旭泰科技論文獎 高速主軸創新應用實作類",
+        },
+        {
+          award: "銅獎",
+          project: "基於深度學習技術之智慧藥物辨識系統",
+          competition: "第十八屆旺宏金矽獎 應用組",
+        },
+        {
+          award: "佳作",
+          project: "Yee起來幫盲",
+          competition: "2018 育秀盃創意獎競賽",
+        },
+        {
+          award: "第一名",
+          project: "基於深度學習之智慧藥物辨識系統",
+          competition: "第十三屆數位訊號處理創思設計競賽 健康照護應用組",
+        }
+      ]
+    },
+    {
+      year: "2017",
+      items: [
+        {
+          award: "波蘭代表團銀牌獎與大會銅牌獎",
+          project: "ElderlyAngle",
+          competition: "2017高雄國際發明暨設計展(KIDE, 2017 Kaohsiung International Invention and Design EXPO)",
+        },
+        {
+          award: "佳作",
+          project: "視障者智慧輔具",
+          competition: "2017 Mobileheroes通訊大賽 聯發科技物聯網開發競賽組",
+        },
+        {
+          award: "佳作",
+          project: "銀髮族身心照護系統",
+          competition: "2017 Mobileheroes通訊大賽 智慧城市應用服務競賽組",
+        },
+        {
+          award: "佳作與企業獎",
+          project: "智慧車門安全鎖",
+          competition: "2017 Mobileheroes通訊大賽 智慧城市應用服務競賽組",
+        },
+        {
+          award: "第三名",
+          project: "智能頭皮檢測系統",
+          competition: "2017 Mobileheroes通訊大賽 智慧城市應用服務競賽組",
+        },
+        {
+          award: "第二名",
+          project: "長輩穿戴式健康監測裝置",
+          competition: "2017臺南智慧城市 Beacon 平臺創意應用挑戰賽",
+        },
+        {
+          award: "冠軍",
+          project: "iTape貨物自動化分流系統",
+          competition: "2017智慧聯網機器人創新設計與應用大賽",
+        },
+        {
+          award: "第一名",
+          project: "智能頭皮檢測系統",
+          competition: "2017第22屆全國大專校院資訊應用服務創新競賽 物聯網裝置兩岸交流應用組",
+        },
+        {
+          award: "第一名",
+          project: "智能頭皮檢測系統",
+          competition: "2017第22屆全國大專校院資訊應用服務創新競賽 資訊技術應用組",
+        },
+        {
+          award: "冠軍",
+          project: "智能頭皮檢測系統",
+          competition: "2017經濟部技術處搶鮮大賽 創業類",
+        },
+        {
+          award: "冠軍",
+          project: "Virtual Protector",
+          competition: "2017經濟部技術處搶鮮大賽 系統整合實作類",
+        },
+        {
+          award: "亞軍",
+          project: "智慧車門安全鎖",
+          competition: "2017經濟部技術處搶鮮大賽 系統整合實作類",
+        },
+        {
+          award: "佳作",
+          project: "工業級加速規之高速主軸應用於刀具振動現象線上監測與分析",
+          competition: "2017旭泰科技論文獎 高速主軸創新應用實作類",
+        },
+        {
+          award: "金牌獎",
+          project: "能警示後方大型車輛接近的安全帽安全警示裝置",
+          competition: "2017台北國際發明暨交技術易展 發明競賽",
+        },
+        {
+          award: "第三名",
+          project: "主軸醫生－高速主軸顫振分析系統",
+          competition: "2017年第二屆京台青年創新創業大賽",
+        },
+        {
+          award: "最佳創意獎",
+          project: "微察秋毫",
+          competition: "2017 全國isPLC創新創意競賽",
+        },
+        {
+          award: "最佳創意獎",
+          project: "震憾軸心",
+          competition: "2017 全國isPLC創新創意競賽",
+        },
+        {
+          award: "第一名",
+          project: "視障者的智慧輔具",
+          competition: "南臺科技大學2017 夢想起飛創意創新競賽",
+        },
+        {
+          award: "佳作",
+          project: "具頭皮狀態自動辨識功能之頭皮檢測儀器與其系統",
+          competition: "2017年全國技專院校學生實務專題製作競賽 資工通訊群",
+        },
+        {
+          award: "優勝獎",
+          project: "基於深度學習技術之可攜帶式無線頭皮狀態檢測儀器及其自動辨識診斷系統",
+          competition: "第十七屆旺宏金矽獎 應用組",
+        },
+        {
+          award: "第二名",
+          project: "主軸醫生",
+          competition: "第十二屆戰國策全國創新創業競賽 學生創業組",
+        },
+        {
+          award: "第三名",
+          project: "V-Protector視障者的智慧輔具",
+          competition: "第十二屆戰國策全國創新創業競賽 學生創新創意組",
+        },
+        {
+          award: "第一名",
+          project: "具頭皮狀態自動辨識功能之頭皮檢測儀器與其系統",
+          competition: "第十二屆數位訊號處理創思設計競賽 健康照護應用組 (本屆大會補助出國競賽隊伍)",
+        },
+        {
+          award: "佳作",
+          project: "如影隨行智慧安全帽",
+          competition: "第十二屆數位訊號處理創思設計競賽 軟體與嵌入式平台應用組",
+        }
+      ]
+    },
+    {
+      year: "2016",
+      items: [
+        {
+          award: "金牌",
+          project: "主軸醫生-高速主軸顫振分析系統",
+          competition: "2016智慧電子應用設計競賽 創意概念組(物聯網與智慧工廠應用)",
+        },
+        {
+          award: "佳作",
+          project: "智慧車門安全鎖",
+          competition: "2016智慧電子應用設計競賽 創意概念組(車用與運輸應用)",
+        },
+        {
+          award: "優勝(第五名)",
+          project: "iTape物流配送即時監測與管理系統",
+          competition: "2016松湖杯創新創業大賽 台灣區決賽",
+        },
+        {
+          award: "第二名",
+          project: "具頭皮狀態自動辨識功能之頭皮檢測儀器與其系統",
+          competition: "南臺科技大學2016第十九屆校慶學生專題競賽 電子工程組",
+        },
+        {
+          award: "第一名",
+          project: "iTape物流配送即時監測與管理系統",
+          competition: "南臺科技大學2016第七屆校園創業競賽 校園命題組",
+        },
+        {
+          award: "第二名",
+          project: "駕駛的天使之眼",
+          competition: "南臺科技大學2016第七屆校園創業競賽 校園命題組",
+        },
+        {
+          award: "第一名",
+          project: "震震有詞",
+          competition: "南臺科技大學2016第七屆校園創業競賽 新漢企業命題組",
+        },
+        {
+          award: "第一名",
+          project: "餘音繞樑",
+          competition: "南臺科技大學2016第七屆校園創業競賽 聲聯網企業命題組",
+        },
+        {
+          award: "冠軍",
+          project: "Intelligent Door",
+          competition: "2016車用電子創新發明競賽 創新理念組",
+        },
+        {
+          award: "亞軍",
+          project: "駕駛的天使之眼",
+          competition: "2016車用電子創新發明競賽 系統實作組",
+        },
+        {
+          award: "季軍",
+          project: "如影隨行智慧安全帽",
+          competition: "2016車用電子創新發明競賽 系統實作組",
+        },
+        {
+          award: "佳作",
+          project: "如影隨行智慧安全帽",
+          competition: "2016年全國大專院校智慧電子與資通應用創新創意競賽",
+        },
+        {
+          award: "第二名",
+          project: "如影隨行智慧安全帽",
+          competition: "2016第21屆全國大專校院資訊應用服務創新競賽 台達特別獎",
+        },
+        {
+          award: "佳作",
+          project: "如影隨行智慧安全帽",
+          competition: "2016第21屆全國大專校院資訊應用服務創新競賽 物聯網裝置兩岸交流應用組",
+        },
+        {
+          award: "佳作",
+          project: "如影隨行智慧安全帽",
+          competition: "2016第21屆全國大專校院資訊應用服務創新競賽 資訊技術應用組",
+        },
+        {
+          award: "佳作",
+          project: "頭頭視道-具頭皮狀態自動辨識功能之頭皮檢測儀器與其系統",
+          competition: "2016 第六屆健康＋科技大小創意創業競賽",
+        },
+        {
+          award: "二等獎(第二名)",
+          project: "iTape物流配送即時監測與管理系統",
+          competition: "2016 第五屆中國創新創業大賽港澳臺賽暨第三屆兩岸四地大學生創新創業大賽",
+        },
+        {
+          award: "佳作",
+          project: "具頭皮狀態自動辨識功能之頭皮檢測儀器與其系統",
+          competition: "2016萬潤創新創意競賽",
+        },
+        {
+          award: "佳作",
+          project: "鞋墊壓力測試平台",
+          competition: "2016萬潤創新創意競賽",
+        },
+        {
+          award: "佳作",
+          project: "駕駛的守護天使",
+          competition: "2016萬潤創新創意競賽",
+        },
+        {
+          award: "佳作",
+          project: "如影隨行智慧安全帽",
+          competition: "2016萬潤創新創意競賽",
+        },
+        {
+          award: "優良創意獎",
+          project: "根植於工業級加速規之高速主軸顫振現象線上監測與分析",
+          competition: "2016旭泰科技論文獎",
+        },
+        {
+          award: "優良創意獎",
+          project: "駕駛的天使之眼",
+          competition: "2016旭泰科技論文獎",
+        },
+        {
+          award: "銅牌獎",
+          project: "防止開車門時機車追撞之汽車後視鏡裝置",
+          competition: "2016台北國際發明暨交技術易展 發明競賽",
+        },
+        {
+          award: "第四名",
+          project: "iTape物流配送即時監測與管理系統",
+          competition: "2016年首屆京台青年創新創業大賽",
+        },
+        {
+          award: "入圍北京決賽(複賽第一名)",
+          project: "iTape物流配送即時監測與管理系統",
+          competition: "2016年首屆京台青年創新創業大賽",
+        },
+        {
+          award: "第二名",
+          project: "駕駛的天使之眼",
+          competition: "南臺科技大學2016 夢想起飛創意創新競賽",
+        },
+        {
+          award: "第一名",
+          project: "微震四方-精密設備即時監測與管理系統",
+          competition: "南臺科技大學2016專利研發成果加值競賽",
+        },
+        {
+          award: "佳作",
+          project: "iTape-根植於壓電薄膜感測器之智慧物流管理系統",
+          competition: "南臺科技大學2016專利研發成果加值競賽",
+        },
+        {
+          award: "佳作",
+          project: "汽車的診斷醫生",
+          competition: "第十一屆數位訊號處理創思設計競賽 軟體與嵌入式平臺應用組",
+        },
+        {
+          award: "優勝獎(第二名)",
+          project: "瞌睡看門狗",
+          competition: "教育部智慧電子整合人才培育－4C電子聯盟課程專題達人會暨全程成果發表會 車用電子組",
+        }
+      ]
+      }
+    ]
+  }
+];
+---
+
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="/images/lab-logo.png" />
+  <title>成果與榮譽 | iCPS Lab 智慧網宇實體系統實驗室</title>
+  <style>
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    .fade-in {
+      animation: fadeIn 0.3s ease-in-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
+
+  <!-- 🔷 頂部導覽列 (Navbar) -->
+  <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
+      <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
+        <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
+          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
+        </a>
+        <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
+        <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
+          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
+        </a>
+      </div>
+
+      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
+        <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>關於 iCPS Lab</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
+        </a>
+        <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>最新消息</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
+        </a>
+        <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>活動花絮</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
+        </a>
+        <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>影音專區</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
+        </a>
+        <a href="/achievements" class="group flex flex-col items-center text-blue-800 transition border-b-2 border-blue-800 pb-1">
+          <span>成果榮譽</span>
+          <span class="text-xs font-normal text-blue-600">Achievements</span>
+        </a>
+        <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>實驗室成員</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
+        </a>
+        <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>常見問題</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span>
+        </a>
+      </div>
+
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
+      <a href="/about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">關於 iCPS Lab</a>
+      <a href="/#news" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">最新消息</a>
+      <a href="/activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">活動花絮</a>
+      <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">影音專區</a>
+      <a href="/achievements" class="block px-6 py-4 text-blue-800 bg-blue-50 font-bold hover:bg-blue-100 border-b border-slate-100">成果與榮譽</a>
+      <a href="/members" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">實驗室成員</a>
+      <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
+    </div>
+  </nav>
+
+  <!-- 🔷 頁面標題區 -->
+  <header class="bg-[#0f172a] py-12 md:py-16 text-center border-b-4 border-blue-700 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+    <div class="relative z-10 px-4">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">成果與榮譽</h1>
+      <p class="text-slate-300 text-sm font-light tracking-wider uppercase mb-8">Achievements & Awards</p>
+      
+      <div class="max-w-2xl mx-auto relative group">
+        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+          <svg class="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </div>
+        <input 
+          type="text" 
+          id="search-input" 
+          class="block w-full pl-12 pr-10 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-slate-800 focus:placeholder-slate-400 transition-all duration-300 shadow-lg" 
+          placeholder="搜尋論文題目、獲獎專案或作者姓名... (例如：Deep Learning、2024)"
+        >
+        <button id="clear-search" class="absolute inset-y-0 right-0 pr-4 flex items-center hidden text-slate-400 hover:text-slate-600">
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- 🔷 網站主體區域 -->
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-20 min-h-[50vh]">
+
+    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
+      
+      <!-- 左側/上方 分類導覽列 (Tabs) -->
+      <aside class="w-full lg:w-1/4 shrink-0" id="sidebar">
+        <div class="lg:sticky lg:top-8">
+          
+          <div class="flex lg:flex-col overflow-x-auto lg:overflow-visible hide-scrollbar gap-2 pb-2 lg:pb-0" id="tabs-container">
+            {achievements.map((group, index) => {
+              // 計算該分類的總項目數量
+              const totalItems = group.yearlyData.reduce((sum, yearBlock) => sum + yearBlock.items.length, 0);
+              
+              return (
+                <>
+                  {group.section && (
+                    <div class={`${index !== 0 ? 'mt-6' : ''} mb-2 px-1 flex-shrink-0 lg:w-full`}>
+                      <h2 class="text-xs font-black text-slate-400 tracking-widest uppercase border-b border-slate-200 pb-2">
+                        {group.section}
+                      </h2>
+                    </div>
+                  )}
+                  <button 
+                    class={`tab-btn flex-shrink-0 lg:w-full text-left px-5 py-3 rounded-lg text-[15px] font-bold transition-all duration-200 border border-transparent 
+                    ${index === 0 
+                      ? 'bg-blue-600 text-white shadow-md' 
+                      : 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-800 border-slate-200'}`}
+                    data-target={`category-${index}`}
+                  >
+                    <div class="flex items-center justify-between">
+                      <span>{group.category}</span>
+                      <span class="hidden lg:inline-flex items-center justify-center bg-black/10 rounded-full w-6 h-6 text-xs ml-2 opacity-80 mix-blend-multiply text-current">
+                        {totalItems}
+                      </span>
+                    </div>
+                  </button>
+                </>
+              );
+            })}
+          </div>
+        </div>
+      </aside>
+
+      <!-- 右側/下方 內容區 -->
+      <section class="flex-1 w-full" id="content-area">
+        
+        <div id="no-results-msg" class="hidden text-center py-16 px-6 bg-white rounded-xl border border-dashed border-slate-300">
+          <svg class="mx-auto h-12 w-12 text-slate-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">找不到相關紀錄</h3>
+          <p class="text-slate-500">很抱歉，沒有找到符合您搜尋字詞的成果或獎項。請嘗試更換關鍵字。</p>
+        </div>
+
+        <div id="groups-container">
+          {achievements.map((group, groupIndex) => (
+            <div 
+              id={`category-${groupIndex}`} 
+              class={`category-group fade-in ${groupIndex === 0 ? 'block' : 'hidden'}`}
+            >
+              <div class="mb-10">
+                <h2 class="text-2xl font-extrabold text-slate-800 mb-3 flex items-center gap-3">
+                  <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
+                  {group.category}
+                </h2>
+                <p class="text-slate-500 text-[15px] pl-5">{group.description}</p>
+              </div>
+              
+              <div class="space-y-10">
+                {group.yearlyData.map((yearBlock) => (
+                  <div class="year-block">
+                    <!-- 年份標題 -->
+                    <div class="flex items-center gap-3 mb-5 border-b border-slate-200 pb-2">
+                      <span class="bg-slate-800 text-white px-3 py-1 rounded-md text-sm font-bold tracking-wider font-mono shadow-sm">
+                        {yearBlock.year}
+                      </span>
+                      <span class="text-slate-400 text-sm font-medium">({yearBlock.items.length} 篇)</span>
+                    </div>
+
+                    <!-- 該年份的項目列表 -->
+                    <div class="space-y-4">
+                      {yearBlock.items.map((item) => {
+                        const isPublication = group.type === "publication";
+                        // 把年份加入搜尋字串中，讓使用者輸入 "2024" 也能搜到
+                        const searchStr = isPublication 
+                          ? `${item.title} ${item.authors} ${item.venue} ${yearBlock.year}`.toLowerCase()
+                          : `${item.project} ${item.competition} ${item.students} ${item.award} ${yearBlock.year}`.toLowerCase();
+
+                        return (
+                          <div class="achievement-item bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm hover:border-blue-400 hover:shadow-md transition duration-300 p-5 sm:p-6"
+                               data-search={searchStr}>
+                            
+                            {isPublication ? (
+                              /* ----------- 論文卡片樣式 ----------- */
+                              <div class="flex flex-col sm:flex-row gap-4 justify-between items-start">
+                                <div>
+                                  <h3 class="text-lg font-bold text-slate-800 leading-snug mb-2 hover:text-blue-700 transition">
+                                    {item.title}
+                                  </h3>
+                                  <p class="text-slate-600 text-[15px] mb-1"><span class="font-semibold text-slate-500">Authors:</span> {item.authors}</p>
+                                  <p class="text-blue-700/80 text-sm font-medium italic"><span class="font-semibold text-slate-500 not-italic">Venue:</span> {item.venue}</p>
+                                </div>
+                                <a href={item.link} target="_blank" class="shrink-0 p-2.5 bg-blue-50 rounded-full text-blue-600 hover:bg-blue-600 hover:text-white transition-all group self-end sm:self-start" aria-label="查看論文">
+                                  <svg class="w-5 h-5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                                </a>
+                              </div>
+                            ) : (
+                              /* ----------- 獲獎卡片樣式 ----------- */
+                              <div class="relative pl-4 border-l-4 border-amber-400">
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                                  <span class="text-amber-600 font-extrabold tracking-wider text-[15px] flex items-center gap-1.5 bg-amber-50 px-2 py-0.5 rounded text-sm w-fit">
+                                    🏆 {item.award}
+                                  </span>
+                                </div>
+                                <h3 class="text-lg sm:text-xl font-bold text-slate-800 mb-1">{item.project}</h3>
+                                <p class="text-blue-700 font-semibold text-[15px] mb-4">{item.competition}</p>
+
+                                </div>
+                              </div>
+                            )}
+
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </section>
+    </div>
+
+  </main>
+
+  <!-- 🔷 頁尾 (Footer) -->
+  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
+      <div class="md:w-1/2">
+        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
+        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+          Intelligent Cyber-Physical Systems Laboratory <br/>
+          國立高雄科技大學 (NKUST)
+        </p>
+      </div>
+      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
+        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
+      </div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+        <p class="text-xs text-slate-500 leading-normal">
+          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
+        </p>
+        <p class="text-xs text-slate-500 hidden sm:block">|</p>
+        <p class="text-xs text-slate-500">All rights reserved.</p>
+      </div>
+
+      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-600 mx-1">|</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- 🔷 控制邏輯的 JavaScript -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // 1. 手機版選單控制
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+
+      if (mobileMenuBtn && mobileMenu && hamburgerIcon) {
+        mobileMenuBtn.addEventListener('click', () => {
+          mobileMenu.classList.toggle('hidden');
+          hamburgerIcon.setAttribute('d', mobileMenu.classList.contains('hidden') ? 'M4 6h16M4 12h16M4 18h16' : 'M6 18L18 6M6 6l12 12');
+        });
+      }
+
+      // 2. 側邊欄 Tab 切換功能
+      const tabBtns = document.querySelectorAll('.tab-btn');
+      const categoryGroups = document.querySelectorAll('.category-group');
+      let currentActiveTabTarget = 'category-0'; 
+
+      const switchTab = (targetId) => {
+        currentActiveTabTarget = targetId;
+        
+        // 更新按鈕樣式
+        tabBtns.forEach(btn => {
+          if (btn.getAttribute('data-target') === targetId) {
+            btn.className = "tab-btn flex-shrink-0 lg:w-full text-left px-5 py-3 rounded-lg text-[15px] font-bold transition-all duration-200 border border-transparent bg-blue-600 text-white shadow-md";
+          } else {
+            btn.className = "tab-btn flex-shrink-0 lg:w-full text-left px-5 py-3 rounded-lg text-[15px] font-bold transition-all duration-200 border border-transparent bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-800 border-slate-200";
+          }
+        });
+
+        // 更新內容區顯示
+        categoryGroups.forEach(group => {
+          if (group.id === targetId) {
+            group.classList.remove('hidden');
+            group.classList.remove('fade-in');
+            void group.offsetWidth; // 觸發重繪以重啟動畫
+            group.classList.add('fade-in');
+          } else {
+            group.classList.add('hidden');
+          }
+        });
+      };
+
+      tabBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          switchTab(btn.getAttribute('data-target'));
+          // 點擊分類時若有搜尋文字，則清除並重置
+          if(searchInput.value.trim() !== '') {
+             clearSearchBtn.click();
+          }
+        });
+      });
+
+      // 3. 搜尋過濾功能
+      const searchInput = document.getElementById('search-input');
+      const clearSearchBtn = document.getElementById('clear-search');
+      const noResultsMsg = document.getElementById('no-results-msg');
+      const sidebar = document.getElementById('sidebar');
+
+      const performSearch = (searchTerm) => {
+        searchTerm = searchTerm.toLowerCase().trim();
+        let hasAnyResult = false;
+
+        if (searchTerm === '') {
+          clearSearchBtn.classList.add('hidden');
+          sidebar.classList.remove('opacity-50', 'pointer-events-none'); 
+          noResultsMsg.classList.add('hidden');
+          
+          document.querySelectorAll('.year-block').forEach(block => block.classList.remove('hidden'));
+          document.querySelectorAll('.achievement-item').forEach(item => item.classList.remove('hidden'));
+          switchTab(currentActiveTabTarget); 
+          return;
+        }
+
+        clearSearchBtn.classList.remove('hidden');
+        sidebar.classList.add('opacity-50', 'pointer-events-none'); 
+
+        categoryGroups.forEach(group => {
+          let hasResultInGroup = false;
+          const yearBlocks = group.querySelectorAll('.year-block');
+          
+          yearBlocks.forEach(block => {
+            let hasResultInYear = false;
+            const items = block.querySelectorAll('.achievement-item');
+            
+            items.forEach(item => {
+              const searchData = item.getAttribute('data-search');
+              
+              if (searchData.includes(searchTerm)) {
+                item.classList.remove('hidden');
+                hasResultInYear = true;
+                hasResultInGroup = true;
+                hasAnyResult = true;
+              } else {
+                item.classList.add('hidden');
+              }
+            });
+
+            // 若該年份區塊內有符合結果，就顯示該年份標題區塊，否則隱藏整個年份區塊
+            if (hasResultInYear) {
+              block.classList.remove('hidden');
+            } else {
+              block.classList.add('hidden');
+            }
+          });
+
+          // 如果搜尋狀態下該群組有結果才顯示
+          if (hasResultInGroup) {
+            group.classList.remove('hidden');
+            group.classList.add('fade-in');
+          } else {
+            group.classList.add('hidden');
+          }
+        });
+
+        if (!hasAnyResult) {
+          noResultsMsg.classList.remove('hidden');
+        } else {
+          noResultsMsg.classList.add('hidden');
+        }
+      };
+
+      searchInput.addEventListener('input', (e) => {
+        performSearch(e.target.value);
+      });
+
+      clearSearchBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        searchInput.focus();
+        performSearch('');
+      });
+
+      // 4. 底部造訪人數計數器
+      const initCounter = async () => {
+        const counterEl = document.getElementById('visitor-count');
+        if (!counterEl) return;
+        counterEl.textContent = '1,234'; 
+      };
+      initCounter();
+
+    });
+  </script>
+
+</body>
+</html>
