@@ -76,38 +76,54 @@ try {
           <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
         </a>
       </div>
-<div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-  
-  <a href="/#about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>關於 iCPS Lab</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
-  </a>
 
-  <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>最新消息</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
-  </a>
+      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
+        <a href="/#about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>關於 iCPS Lab</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
+        </a>
 
-  <a href="/#activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>活動花絮</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
-  </a>
+        <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>最新消息</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
+        </a>
 
-  <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>影音專區</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
-  </a>
+        <a href="/#activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>活動花絮</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
+        </a>
 
-  <a href="/#members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>實驗室成員</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
-  </a>
-            <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+        <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>影音專區</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
+        </a>
+
+        <a href="/#members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>實驗室成員</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
+        </a>
+        <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
           <span>常見問題</span>
           <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span>
         </a>
+      </div>
 
-</div>
+      <!-- 手機版漢堡選單按鈕 (新增) -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- 手機版下拉選單 (新增) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
+      <a href="/#about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">關於 iCPS Lab</a>
+      <a href="/#news" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">最新消息</a>
+      <a href="/#activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">活動花絮</a>
+      <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">影音專區</a>
+      <a href="/#members" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">實驗室成員</a>
+      <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
     </div>
   </nav>
 
@@ -193,9 +209,37 @@ try {
     </div>
   </footer>
 
-  <!-- 🔷 智慧訪客計數器邏輯 -->
+  <!-- 🔷 智慧訪客計數器邏輯 與 手機導覽列邏輯 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      
+      // --- 1. 手機版導覽列 (漢堡選單) 邏輯 (新增) ---
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+
+      if (mobileMenuBtn && mobileMenu && hamburgerIcon) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            hamburgerIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+          } else {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+          }
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+          });
+        });
+      }
+
+      // --- 2. 智慧訪客計數器邏輯 (原封不動保留) ---
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
