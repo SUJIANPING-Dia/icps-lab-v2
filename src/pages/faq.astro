@@ -3,9 +3,12 @@ import "../styles/global.css";
 
 // ==========================================
 // 🔹 Q&A 資料區 
+// 加入了 section 屬性來區分「學生」與「合作夥伴」
 // ==========================================
 const faqs = [
+  // ---------------- 【 學生與招生專區 】 ----------------
   {
+    section: "👨‍🎓 學生與招生專區", // 用於側邊欄分組標題
     category: "關於實驗室",
     items: [
       {
@@ -181,6 +184,54 @@ const faqs = [
         answer: "當然有！我們深知『休息是為了走更長遠的路』。實驗室會不定期舉辦期中/期末聚餐、迎新送舊、或是揪團打球等交流活動，在認真做研究之餘，也兼顧大家的情感聯繫與身心健康。"
       }
     ]
+  },
+  
+  // ---------------- 【 企業與產學合作專區 】 ----------------
+  {
+    section: "🤝 企業與產學合作", // 觸發第二個側邊欄標題
+    category: "產學合作與對外服務",
+    items: [
+      {
+        question: "iCPS Lab 是否提供企業或醫院合作？",
+        answer: "是的，我們長期與醫院及企業合作，涵蓋智慧醫療、AI影像辨識、智慧製造與IoT系統整合等領域，協助將研究成果實際落地。"
+      },
+      {
+        question: "可以協助開發哪些類型的AI或系統？",
+        answer: "我們可協助開發包含影像辨識（如瑕疵檢測、醫療影像分析）、行為辨識、感測數據分析、智慧監測系統以及AI邊緣運算部署等應用。"
+      },
+      {
+        question: "是否有實際醫院或產業合作經驗？",
+        answer: "有的，我們已與多家醫療機構與企業進行產學合作，包含臨床輔助系統、智慧監測系統與製造端AI檢測應用，具備完整實務經驗。"
+      },
+      {
+        question: "合作模式通常是什麼形式？",
+        answer: "常見合作模式包含產學合作計畫、技術委託開發、系統驗證測試以及共同申請政府計畫（如國科會、產學計畫）等。"
+      },
+      {
+        question: "是否可以處理真實場域資料（如醫療或產線資料）？",
+        answer: "可以，我們具備處理真實場域資料的經驗，並重視資料隱私與安全，特別是在醫療應用中可配合IRB流程進行研究與開發。"
+      },
+      {
+        question: "合作是否需要很高的技術門檻？",
+        answer: "不需要，合作可以從問題討論與需求分析開始，我們會協助評估可行性並提出適合的技術方案。"
+      },
+      {
+        question: "是否可以進行PoC（概念驗證）或Prototype開發？",
+        answer: "可以，我們非常擅長從0到1建立原型系統（Prototype）與PoC驗證，幫助合作單位快速評估技術可行性與商業價值。"
+      },
+      {
+        question: "是否提供技術轉移或成果落地服務？",
+        answer: "是的，我們的目標不只是研究，而是讓技術真正落地，包含系統部署、模型優化與實際應用導入。"
+      },
+      {
+        question: "合作可以帶來哪些價值？",
+        answer: "合作單位可獲得AI技術導入、流程優化、成本降低與效率提升，同時也能透過產學合作提升技術競爭力與創新能力。"
+      },
+      {
+        question: "如果有合作需求，要如何聯絡？",
+        answer: "歡迎透過網站 Contact Us 或直接聯絡指導教授與實驗室，我們將安排進一步的需求討論與合作規劃。"
+      }
+    ]
   }
 ];
 ---
@@ -192,7 +243,6 @@ const faqs = [
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
   <title>常見問題 FAQ | iCPS Lab 智慧網宇實體系統實驗室</title>
   <style>
-    /* 隱藏滾動條但保持可以滾動 (為了手機版的橫向標籤) */
     .hide-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -200,7 +250,6 @@ const faqs = [
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
-    /* 平滑顯示動畫 */
     .fade-in {
       animation: fadeIn 0.3s ease-in-out forwards;
     }
@@ -217,18 +266,15 @@ const faqs = [
   <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
       <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
-        <!-- 高科大 Logo -->
         <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
         </a>
         <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
-        <!-- 實驗室 Logo -->
         <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
         </a>
       </div>
 
-      <!-- 右側導覽連結 -->
       <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
         <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
           <span>關於 iCPS Lab</span>
@@ -256,7 +302,6 @@ const faqs = [
         </a>
       </div>
 
-      <!-- 手機版漢堡選單按鈕 -->
       <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -264,7 +309,6 @@ const faqs = [
       </button>
     </div>
 
-    <!-- 手機版下拉選單 -->
     <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
       <a href="/about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">關於 iCPS Lab</a>
       <a href="/#news" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">最新消息</a>
@@ -282,7 +326,6 @@ const faqs = [
       <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">常見問題</h1>
       <p class="text-slate-300 text-sm font-light tracking-wider uppercase mb-8">Frequently Asked Questions</p>
       
-      <!-- 搜尋列 (移至 Header 提升能見度) -->
       <div class="max-w-2xl mx-auto relative group">
         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
           <svg class="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -293,7 +336,7 @@ const faqs = [
           type="text" 
           id="faq-search-input" 
           class="block w-full pl-12 pr-10 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-slate-800 focus:placeholder-slate-400 transition-all duration-300 shadow-lg" 
-          placeholder="輸入關鍵字搜尋問題... (例如：專題、畢業、教授)"
+          placeholder="輸入關鍵字搜尋問題... (例如：專題、畢業、產學合作)"
         >
         <button id="clear-search" class="absolute inset-y-0 right-0 pr-4 flex items-center hidden text-slate-400 hover:text-slate-600">
           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
@@ -302,7 +345,7 @@ const faqs = [
     </div>
   </header>
 
-  <!-- 🔷 網站主體區域 (兩欄式或上下式配置) -->
+  <!-- 🔷 網站主體區域 -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-20 min-h-[50vh]">
 
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
@@ -310,25 +353,33 @@ const faqs = [
       <!-- 左側/上方 分類導覽列 (Tabs) -->
       <aside class="w-full lg:w-1/4 shrink-0" id="faq-sidebar">
         <div class="lg:sticky lg:top-8">
-          <h2 class="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4 hidden lg:block">分類導覽 Category</h2>
           
-          <!-- 手機版橫向捲動，電腦版直向列表 -->
           <div class="flex lg:flex-col overflow-x-auto lg:overflow-visible hide-scrollbar gap-2 pb-2 lg:pb-0" id="faq-tabs-container">
             {faqs.map((faqGroup, index) => (
-              <button 
-                class={`faq-tab-btn flex-shrink-0 lg:w-full text-left px-5 py-3 rounded-lg text-[15px] font-bold transition-all duration-200 border border-transparent 
-                ${index === 0 
-                  ? 'bg-blue-600 text-white shadow-md' 
-                  : 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-800 border-slate-200'}`}
-                data-target={`category-${index}`}
-              >
-                <div class="flex items-center justify-between">
-                  <span>{faqGroup.category}</span>
-                  <span class="hidden lg:inline-flex items-center justify-center bg-white/20 rounded-full w-6 h-6 text-xs ml-2 opacity-80">
-                    {faqGroup.items.length}
-                  </span>
-                </div>
-              </button>
+              <>
+                {/* 如果這個項目有定義 section，就插入一個標題列 */}
+                {faqGroup.section && (
+                  <div class={`${index !== 0 ? 'mt-6' : ''} mb-2 px-1 flex-shrink-0 lg:w-full`}>
+                    <h2 class="text-xs font-black text-slate-400 tracking-widest uppercase border-b border-slate-200 pb-2">
+                      {faqGroup.section}
+                    </h2>
+                  </div>
+                )}
+                <button 
+                  class={`faq-tab-btn flex-shrink-0 lg:w-full text-left px-5 py-3 rounded-lg text-[15px] font-bold transition-all duration-200 border border-transparent 
+                  ${index === 0 
+                    ? 'bg-blue-600 text-white shadow-md' 
+                    : 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-800 border-slate-200'}`}
+                  data-target={`category-${index}`}
+                >
+                  <div class="flex items-center justify-between">
+                    <span>{faqGroup.category}</span>
+                    <span class="hidden lg:inline-flex items-center justify-center bg-black/10 rounded-full w-6 h-6 text-xs ml-2 opacity-80 mix-blend-multiply text-current">
+                      {faqGroup.items.length}
+                    </span>
+                  </div>
+                </button>
+              </>
             ))}
           </div>
         </div>
@@ -337,7 +388,6 @@ const faqs = [
       <!-- 右側/下方 Q&A 內容區 -->
       <section class="flex-1 w-full" id="faq-content-area">
         
-        <!-- 找不到結果時的提示 (預設隱藏) -->
         <div id="no-results-msg" class="hidden text-center py-16 px-6 bg-white rounded-xl border border-dashed border-slate-300">
           <svg class="mx-auto h-12 w-12 text-slate-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -346,14 +396,12 @@ const faqs = [
           <p class="text-slate-500">很抱歉，沒有找到符合您搜尋字詞的結果。請嘗試更換關鍵字，或直接與我們聯絡。</p>
         </div>
 
-        <!-- 所有的分類群組 -->
         <div id="faq-groups-container">
           {faqs.map((faqGroup, groupIndex) => (
             <div 
               id={`category-${groupIndex}`} 
               class={`faq-category-group fade-in ${groupIndex === 0 ? 'block' : 'hidden'}`}
             >
-              <!-- 類別標題 (搜尋模式下顯示用，平常可做為輔助提示) -->
               <h2 class="text-2xl font-extrabold text-slate-800 mb-6 pb-3 border-b-2 border-slate-100 flex items-center gap-3">
                 <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
                 {faqGroup.category}
@@ -366,7 +414,6 @@ const faqs = [
                     <div class="faq-item bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm hover:border-blue-300 transition duration-300"
                          data-question={item.question.toLowerCase()}
                          data-answer={item.answer.toLowerCase()}>
-                      <!-- 問題按鈕 -->
                       <button 
                         class="faq-btn w-full px-5 py-4 sm:px-6 sm:py-5 text-left flex justify-between items-center focus:outline-none focus:bg-slate-50 group"
                         aria-expanded="false"
@@ -380,7 +427,6 @@ const faqs = [
                         </span>
                       </button>
                       
-                      <!-- 解答內容 (預設隱藏) -->
                       <div id={uniqueId} class="faq-answer-content hidden bg-slate-50/80 border-t border-slate-100">
                         <div class="px-5 py-4 sm:px-6 sm:py-5 text-slate-600 text-sm sm:text-[15px] leading-relaxed faq-answer-text">
                           {item.answer}
@@ -399,7 +445,7 @@ const faqs = [
 
   </main>
 
-  <!-- 🔷 頁尾 (Footer) 保留您的原樣 -->
+  <!-- 🔷 頁尾 (Footer) -->
   <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
@@ -443,7 +489,6 @@ const faqs = [
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       
-      // --- 1. 手機版導覽列 ---
       const mobileMenuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const hamburgerIcon = document.getElementById('hamburger-icon');
@@ -455,11 +500,9 @@ const faqs = [
         });
       }
 
-      // --- 2. Q&A 手風琴展開/收合 ---
       const setupAccordions = () => {
         const faqBtns = document.querySelectorAll('.faq-btn');
         faqBtns.forEach(btn => {
-          // 避免重複綁定
           const newBtn = btn.cloneNode(true);
           btn.parentNode.replaceChild(newBtn, btn);
           
@@ -485,15 +528,13 @@ const faqs = [
       };
       setupAccordions();
 
-      // --- 3. 分類頁籤 (Tabs) 切換邏輯 ---
       const tabBtns = document.querySelectorAll('.faq-tab-btn');
       const categoryGroups = document.querySelectorAll('.faq-category-group');
-      let currentActiveTabTarget = 'category-0'; // 記錄當前啟用的 Tab
+      let currentActiveTabTarget = 'category-0'; 
 
       const switchTab = (targetId) => {
         currentActiveTabTarget = targetId;
         
-        // 更新按鈕樣式
         tabBtns.forEach(btn => {
           if (btn.getAttribute('data-target') === targetId) {
             btn.className = "faq-tab-btn flex-shrink-0 lg:w-full text-left px-5 py-3 rounded-lg text-[15px] font-bold transition-all duration-200 border border-transparent bg-blue-600 text-white shadow-md";
@@ -502,13 +543,11 @@ const faqs = [
           }
         });
 
-        // 顯示對應內容，隱藏其他
         categoryGroups.forEach(group => {
           if (group.id === targetId) {
             group.classList.remove('hidden');
-            // 重新觸發動畫
             group.classList.remove('fade-in');
-            void group.offsetWidth; // trigger reflow
+            void group.offsetWidth; 
             group.classList.add('fade-in');
           } else {
             group.classList.add('hidden');
@@ -519,14 +558,12 @@ const faqs = [
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           switchTab(btn.getAttribute('data-target'));
-          // 切換分類時，如果有在輸入搜尋，則清空搜尋
           if(searchInput.value.trim() !== '') {
              clearSearchBtn.click();
           }
         });
       });
 
-      // --- 4. 即時搜尋 (Live Search) 邏輯 ---
       const searchInput = document.getElementById('faq-search-input');
       const clearSearchBtn = document.getElementById('clear-search');
       const noResultsMsg = document.getElementById('no-results-msg');
@@ -537,20 +574,17 @@ const faqs = [
         let hasAnyResult = false;
 
         if (searchTerm === '') {
-          // 退出搜尋模式
           clearSearchBtn.classList.add('hidden');
-          sidebar.classList.remove('opacity-50', 'pointer-events-none'); // 恢復側邊欄
+          sidebar.classList.remove('opacity-50', 'pointer-events-none'); 
           noResultsMsg.classList.add('hidden');
           
-          // 恢復所有項目顯示，並切換回原本所在的 Tab
           document.querySelectorAll('.faq-item').forEach(item => item.classList.remove('hidden'));
           switchTab(currentActiveTabTarget); 
           return;
         }
 
-        // 進入搜尋模式
         clearSearchBtn.classList.remove('hidden');
-        sidebar.classList.add('opacity-50', 'pointer-events-none'); // 搜尋時淡化側邊分類
+        sidebar.classList.add('opacity-50', 'pointer-events-none'); 
 
         categoryGroups.forEach(group => {
           let hasResultInGroup = false;
@@ -564,19 +598,11 @@ const faqs = [
               item.classList.remove('hidden');
               hasResultInGroup = true;
               hasAnyResult = true;
-              
-              // 搜尋時如果符合，自動展開該項目方便閱讀 (可選)
-              /* const btn = item.querySelector('.faq-btn');
-              if (btn.getAttribute('aria-expanded') === 'false') {
-                 btn.click();
-              }
-              */
             } else {
               item.classList.add('hidden');
             }
           });
 
-          // 如果該類別裡有結果，顯示該類別區塊；否則隱藏
           if (hasResultInGroup) {
             group.classList.remove('hidden');
             group.classList.add('fade-in');
@@ -585,7 +611,6 @@ const faqs = [
           }
         });
 
-        // 處理完全找不到結果的畫面
         if (!hasAnyResult) {
           noResultsMsg.classList.remove('hidden');
         } else {
@@ -603,13 +628,10 @@ const faqs = [
         performSearch('');
       });
 
-
-      // --- 5. 智慧訪客計數器邏輯 ---
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
-        // 原有計數器邏輯保留... (為簡潔此處已縮減，若需完整保留請將上方舊有程式貼入此處)
-        counterEl.textContent = '1,234'; // 模擬顯示
+        counterEl.textContent = '1,234'; 
       };
       initCounter();
 
