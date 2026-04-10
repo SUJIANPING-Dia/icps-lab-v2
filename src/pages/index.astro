@@ -76,53 +76,58 @@ import Videos from "../components/Videos.astro";
     </div>
   </nav>
 
-  <!-- 🔷 封面視覺 (Hero Section) - 修復下方空白與比例問題 -->
-  <!-- 👇 【修改處】將原本的手機 aspect-[4/3] 改為更寬的 aspect-[16/9] 或 aspect-video，避免圖片左右兩側(包含文字)被嚴重裁切 -->
-  <header class="relative w-full bg-[#0f172a] overflow-hidden border-b-4 border-blue-700 aspect-[16/9] md:aspect-[21/9] lg:aspect-[12/5]">
+  <!-- 🔷 封面視覺 (Hero Section) - 徹底解決手機版裁切問題 -->
+  <!-- 👇 【核心修改】採用響應式架構：手機版為「上下分層」(flex-col)，電腦版為「滿版背景」(lg:block) -->
+  <header class="relative w-full bg-[#0f172a] border-b-4 border-blue-700 flex flex-col lg:block lg:aspect-[12/5] overflow-hidden">
     
-    <!-- 輪播圖片容器 (滿版背景) -->
-    <div id="hero-slider" class="absolute inset-0 w-full h-full z-10 group/slider">
+    <!-- 輪播圖片容器 -->
+    <!-- 手機版：給予寬版比例 (aspect-[16/9] 或 21:9) 完整展示橫幅，不使用 absolute -->
+    <!-- 電腦版：改為 absolute inset-0 作為全螢幕背景 -->
+    <div id="hero-slider" class="relative w-full aspect-[16/9] sm:aspect-[21/9] lg:absolute lg:inset-0 lg:aspect-auto lg:h-full z-10 group/slider shrink-0">
+      
       <!-- 
-        若希望「無論如何都絕對不要裁切到任何邊緣」，可考慮將 object-cover 替換為 `object-contain`，
-        但 object-contain 可能會讓圖片上下產生黑色留白。目前採用放寬 aspect 比例來保留全螢幕質感同時減少裁切。
+        【關鍵修復 - object-left】
+        將手機版強制對齊左側 (object-left)，確保您圖片中左邊的文字「正落地於...」絕對不會被裁切。
+        電腦版則維持置中 (lg:object-center)。
       -->
-      <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-3.jpg" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-4.png" alt="實驗室背景 4" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-2.png" alt="實驗室背景 2" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-3.jpg" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-4.png" alt="實驗室背景 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-2.png" alt="實驗室背景 2" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
     
       <!-- 左右切換按鈕 -->
-      <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
+      <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 sm:w-8 sm:h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
         </svg>
       </button>
-
-      <button id="next-btn" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/20 hover:bg-black/50 backdrop-blur-sm text-white/70 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 sm:w-8 sm:h-8">
+      <button id="next-btn" class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 sm:w-8 sm:h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
       </button>
     </div>
 
-    <!-- 手機版加一層底部漸層，確保文字能清晰顯示 (電腦版不需要) -->
-    <div class="absolute inset-0 z-10 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/20 to-transparent lg:hidden pointer-events-none"></div>
+    <!-- 電腦版專用：深色漸層，讓浮在圖片上的文字更清晰 (手機版已經上下分離，故隱藏) -->
+    <div class="hidden lg:block absolute inset-0 z-10 bg-gradient-to-t from-[#0f172a]/90 via-[#0f172a]/30 to-transparent pointer-events-none"></div>
 
-    <!-- 文字內容區塊 (絕對定位覆蓋於圖片上方) -->
-    <div class="relative z-20 w-full h-full max-w-7xl mx-auto px-6 flex flex-col justify-end pb-8 sm:pb-12 lg:pb-0 lg:justify-center pointer-events-none">
-      <!-- pointer-events-auto 讓文字和按鈕可以被選取 -->
+    <!-- 文字內容區塊 -->
+    <!-- 手機版：獨立於圖片下方的區塊 (relative)，擁有自己的 padding -->
+    <!-- 電腦版：絕對定位 (absolute) 浮貼於圖片上方 -->
+    <div class="relative lg:absolute lg:inset-0 z-20 w-full lg:h-full max-w-7xl mx-auto px-6 py-8 sm:py-10 lg:py-0 flex flex-col justify-center pointer-events-none">
+      
       <div id="hero-text" class="w-full text-center md:text-left transition-opacity duration-1000 ease-in-out opacity-100 pointer-events-auto">
-        <div class="inline-block px-3 py-1 mb-4 sm:mb-6 border border-slate-400 text-slate-200 text-[10px] sm:text-xs font-bold tracking-widest uppercase rounded bg-slate-900/50 backdrop-blur-md">
+        <div class="inline-block px-3 py-1 mb-4 sm:mb-6 border border-slate-500/50 text-slate-300 lg:text-slate-200 text-[10px] sm:text-xs font-bold tracking-widest uppercase rounded bg-slate-800/80 lg:bg-slate-900/50 backdrop-blur-md">
           Intelligent Cyber-Physical Systems Laboratory
         </div>
-        <!-- 調整手機版文字大小 -->
-        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-4 sm:mb-6 tracking-tight drop-shadow-lg text-white">
+        <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold mb-3 sm:mb-6 tracking-tight drop-shadow-lg text-white">
           <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em] mr-1">i</span>CPS Lab
         </h1>
-        <p class="text-sm sm:text-lg lg:text-xl text-slate-100 font-light max-w-3xl leading-relaxed drop-shadow-md mx-auto md:mx-0">
+        <p class="text-sm sm:text-lg lg:text-xl text-slate-300 lg:text-slate-100 font-light max-w-3xl leading-relaxed drop-shadow-md mx-auto md:mx-0">
           AI × Healthcare × Smart Manufacturing
         </p>
       </div>
+      
     </div>
   </header>
 
