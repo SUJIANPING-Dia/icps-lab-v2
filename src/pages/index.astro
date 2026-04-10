@@ -73,6 +73,24 @@ import Videos from "../components/Videos.astro";
   </a>
 
 </div>
+
+      <!-- 👇 新增的手機版漢堡選單按鈕 (只在手機版顯示) -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <!-- 預設為三條線 -->
+          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+
+    </div>
+
+    <!-- 👇 新增的手機版下拉選單 (預設隱藏，位於 navbar 正下方) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
+      <a href="/about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">關於 iCPS Lab</a>
+      <a href="/#news" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">最新消息</a>
+      <a href="/#activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">活動花絮</a>
+      <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">影音專區</a>
+      <a href="/#members" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">實驗室成員</a>
     </div>
   </nav>
 
@@ -403,6 +421,38 @@ import Videos from "../components/Videos.astro";
   <!-- 👇 控制封面輪播與按鈕的 JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      
+      // --- 0. 手機版導覽列 (漢堡選單) 邏輯 ---
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+
+      if (mobileMenuBtn && mobileMenu && hamburgerIcon) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          if (isHidden) {
+            // 打開選單
+            mobileMenu.classList.remove('hidden');
+            // 動態把三條線替換成 "X" 關閉圖示
+            hamburgerIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+          } else {
+            // 關閉選單
+            mobileMenu.classList.add('hidden');
+            // 替換回三條線
+            hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+          }
+        });
+
+        // 當點擊下拉選單內的任何連結時，自動收合選單
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+          });
+        });
+      }
+
       // --- 1. 封面輪播邏輯 ---
       const images = document.querySelectorAll('.slider-img');
       const prevBtn = document.getElementById('prev-btn');
