@@ -85,6 +85,7 @@ import Videos from "../components/Videos.astro";
       <!-- object-cover 讓圖片完美填滿背景不變形 -->
       <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
 	  <img src="/images/hero-bg-3.jpg" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+	    <img src="/images/hero-bg-4.png" alt="實驗室背景 4" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
       <img src="/images/hero-bg-2.png" alt="實驗室背景 2" class="slider-img absolute inset-0 w-full h-full object-cover object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
 	
       <!-- 左右切換按鈕 -->
@@ -439,7 +440,7 @@ import Videos from "../components/Videos.astro";
           const prevIndex = (currentIndex - 1 + images.length) % images.length;
           showImage(prevIndex);
         };
-
+		  <!-- 切換秒數(目前6秒) -->
         const startSlide = () => {
           slideInterval = setInterval(nextImage, 6000); 
         };
