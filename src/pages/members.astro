@@ -108,7 +108,7 @@ const undergradProjectSummaries = {
   "AI塑膠微粒辨識系統": "本專題運用YOLO深度學習技術，建立微塑膠顯微影像自動辨識系統，可精準分類多種型態並提升檢測效率，大幅降低人工判讀誤差，實現快速且標準化之環境監測。",
   "AI電容焊接瑕疵辨識": "本專題結合YOLO深度學習與邊緣運算技術，開發CPU周圍電容缺漏焊自動檢測系統，可快速精準辨識缺陷，降低人工誤判並提升產線效率與品質穩定性。",
   "AI豬隻健康辨識系統": "本專題結合YOLO與影像處理，開發豬隻體重量測系統，可快速精準量測體重，降低豬隻緊張情緒並提升飼養效率與作業安全。", 
-  "AI調料包缺陷辨識系統": "本專題為製麵工廠生產線設計的 AI 調味包辨識系統。本系統整合攝影鏡頭與 AI 邊緣運算技術，可即時檢測輸送帶上調味包的種類與數量。透過自動化取代傳統人工檢驗，能有效降低生產成本，並大幅提升出廠產品的檢測準確率與整體品質。 ", 
+  "AI調料包缺陷辨識系統": "本專題為製麵工廠生產線設計的 AI 調味包辨識系統。本系統整合攝影鏡頭與 AI 邊緣運算技術，可即時檢測輸送帶上調味包的種類與數量。透過自動化取代傳統人工檢驗，能有效降低生產成本，並大幅提升出廠產品的檢測準確率與整體品質。 ", 
 };
 
 // 👇 大學部成員名單
@@ -184,35 +184,51 @@ const internationals = [];
         </a>
       </div>
 
-      <!-- 右側導覽連結 (✅ 已補上活動花絮，與首頁一致) -->
-<div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-  
-  <a href="/#about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>關於 iCPS Lab</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
-  </a>
+      <!-- 右側導覽連結 -->
+      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
+        <a href="/#about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>關於 iCPS Lab</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
+        </a>
+        <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>最新消息</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
+        </a>
+        <a href="/#activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>活動花絮</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
+        </a>
+        <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>影音專區</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
+        </a>
+        <a href="/members" class="group flex flex-col items-center text-blue-800 transition border-b-2 border-blue-800 pb-1">
+          <span>實驗室成員</span>
+          <span class="text-xs font-normal text-blue-600">Members</span>
+        </a>
+                  <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>常見問題</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span>
+        </a>
+      </div>
 
-  <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>最新消息</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
-  </a>
+      <!-- 👇 新增的手機版漢堡選單按鈕 (只在手機版顯示) -->
+      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
 
-  <a href="/#activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>活動花絮</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
-  </a>
+    </div>
 
-  <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>影音專區</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
-  </a>
-
-  <a href="/#members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>實驗室成員</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
-  </a>
-
-</div>
+    <!-- 👇 新增的手機版下拉選單 (預設隱藏，位於 navbar 正下方) -->
+    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
+      <a href="/#about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">關於 iCPS Lab</a>
+      <a href="/#news" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">最新消息</a>
+      <a href="/#activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">活動花絮</a>
+      <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800 border-b border-slate-100">影音專區</a>
+      <a href="/members" class="block px-6 py-4 text-blue-800 bg-blue-50 font-bold hover:bg-blue-100">實驗室成員</a>
+      	  <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
     </div>
   </nav>
 
@@ -238,6 +254,157 @@ const internationals = [];
 
     <div class="space-y-16">
       
+      <!-- 🔹 指導教授 (新增區塊) -->
+      <div>
+        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-[#3b5998] pl-3">指導教授 Principal Investigator</h3>
+        
+        <!-- 👑 指導教授資訊卡片 (套用首頁設計) -->
+        <div class="bg-white border border-slate-200 shadow-sm rounded-sm">
+          
+          <!-- 上半部：照片與基本資訊 -->
+          <div class="p-6 md:p-8 flex flex-col md:flex-row gap-8 lg:gap-12">
+            
+            <!-- 左側：照片 -->
+            <div class="w-48 md:w-56 shrink-0 mx-auto md:mx-0">
+              <img src="/images/professor.jpg" alt="張萬榮 教授" class="w-full h-auto object-cover border border-slate-200" onerror="this.src='/images/default-avatar.png';" />
+            </div>
+            
+            <!-- 右側：資訊 -->
+            <div class="flex-1">
+              
+              <!-- 姓名 -->
+              <div class="mb-4 text-center md:text-left">
+                <h4 class="text-3xl font-bold text-slate-800 tracking-wider">
+                  張萬榮 <span class="text-lg text-slate-500 font-normal ml-1">教授</span>
+                </h4>
+                <p class="text-[#8c9bb0] font-mono text-sm mt-2">Wan-Jung Chang, Ph.D.</p>
+              </div>
+              
+              <!-- 聯絡方式 -->
+              <div class="flex flex-col sm:flex-row flex-wrap items-center md:items-start justify-center md:justify-start gap-4 sm:gap-6 text-sm text-slate-600 mb-6">
+                <span class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                  <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-600 transition">allenchang@nkust.edu.tw</a>
+                </span>
+                <span class="flex items-center gap-2">
+                  <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                  校內分機：15672
+                </span>
+              </div>
+
+              <!-- 外部連結 -->
+              <div class="mb-8 text-center md:text-left">
+                <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 transition">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                  查看教授詳細資訊 (論文發表、研究計畫、產學合作等)
+                </a>
+              </div>
+
+              <!-- 分隔線 -->
+              <div class="w-full h-px bg-slate-100 mb-6"></div>
+
+              <!-- 學歷與所屬組別 (雙欄) -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center sm:text-left">
+                <!-- 學歷 -->
+                <div>
+                  <h5 class="text-xs text-[#94a3b8] mb-3 tracking-widest uppercase font-semibold">EDUCATION 學歷</h5>
+                  <p class="text-sm text-slate-700 leading-relaxed">
+                    國立成功大學 電機工程研究所<br />
+                    電腦與網路組 博士
+                  </p>
+                </div>
+                
+                <!-- 所屬組別 -->
+                <div>
+                  <h5 class="text-xs text-[#94a3b8] mb-3 tracking-widest uppercase font-semibold">AFFILIATIONS 所屬組別</h5>
+                  <div class="flex flex-wrap justify-center sm:justify-start gap-2">
+                    <span class="border border-slate-200 bg-white text-slate-600 text-xs px-2.5 py-1">醫學工程組(合聘)</span>
+                    <span class="border border-slate-200 bg-white text-slate-600 text-xs px-2.5 py-1">醫學工程組</span>
+                    <span class="border border-slate-200 bg-white text-slate-600 text-xs px-2.5 py-1">AI資安組</span>
+                    <span class="border border-slate-200 bg-white text-slate-600 text-xs px-2.5 py-1">電信組</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- 下半部：研究專長 -->
+          <div class="bg-[#f8fafc] border-t border-slate-100 p-6 md:p-8">
+            <h5 class="text-xs text-[#94a3b8] mb-6 tracking-widest uppercase font-semibold text-center md:text-left">RESEARCH INTERESTS 研究專長</h5>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+              
+              <!-- 專長 1 -->
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+                <div>
+                  <div class="text-sm text-slate-700 font-medium mb-1">雲端與智慧物聯網系統</div>
+                  <div class="text-[13px] text-[#94a3b8] font-mono">Cloud and AIoT Systems</div>
+                </div>
+              </div>
+              
+              <!-- 專長 2 -->
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+                <div>
+                  <div class="text-sm text-slate-700 font-medium mb-1">無線感測網路與高速網路系統</div>
+                  <div class="text-[13px] text-[#94a3b8] font-mono">Wireless Sensor Networks & High-Speed Networks</div>
+                </div>
+              </div>
+
+              <!-- 專長 3 -->
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+                <div>
+                  <div class="text-sm text-slate-700 font-medium mb-1">人工智慧穿戴式裝置聯網系統</div>
+                  <div class="text-[13px] text-[#94a3b8] font-mono">Wearable Devices IoT Systems</div>
+                </div>
+              </div>
+
+              <!-- 專長 4 -->
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+                <div>
+                  <div class="text-sm text-slate-700 font-medium mb-1">人工智慧醫療聯網系統</div>
+                  <div class="text-[13px] text-[#94a3b8] font-mono">Artificial Intelligent Medical IoT (MIoT) Systems</div>
+                </div>
+              </div>
+
+              <!-- 專長 5 -->
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+                <div>
+                  <div class="text-sm text-slate-700 font-medium mb-1">人工智慧製造聯網系統</div>
+                  <div class="text-[13px] text-[#94a3b8] font-mono">Artificial Intelligent Industrial IoT (IIoT) Systems</div>
+                </div>
+              </div>
+
+              <!-- 專長 6 -->
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+                <div>
+                  <div class="text-sm text-slate-700 font-medium mb-1">擴增實境聯網系統</div>
+                  <div class="text-[13px] text-[#94a3b8] font-mono">Augmented Reality IoT (ARIoT) Systems</div>
+                </div>
+              </div>
+
+              <!-- 專長 7 -->
+              <div class="flex items-start gap-3">
+                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+                <div>
+                  <div class="text-sm text-slate-700 font-medium mb-1">人工智慧機器人技術</div>
+                  <div class="text-[13px] text-[#94a3b8] font-mono">Artificial Intelligent Robotics</div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <hr class="border-slate-200" />
+
       <!-- 🔹 專任助理 -->
       <div>
         <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
@@ -393,19 +560,19 @@ const internationals = [];
                     </div>
                     <div>
                       <h4 class="font-bold text-slate-800 text-[15px] leading-snug pt-0.5">{topic}</h4>
-                      <p class="text-[12px] text-slate-500 mt-1">專題小組 ({members.length} 人)</p>
+                      <p class="text-[12px] text-slate-500 mt-1">專題小組 ({(members as any[]).length} 人)</p>
                     </div>
                   </div>
                   
                   <div class="mb-4 flex-1">
                     <p class="text-[13.5px] text-slate-600 leading-relaxed">
-                      {undergradProjectSummaries[topic] || "尚無此專題的詳細介紹。"}
+                      {(undergradProjectSummaries as any)[topic] || "尚無此專題的詳細介紹。"}
                     </p>
                   </div>
 
                   <div class="border-t border-slate-100 pt-4 mt-auto">
                     <div class="flex flex-wrap gap-2">
-                      {members.map(name => (
+                      {(members as any[]).map(name => (
                         <span class="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 text-[13px] font-medium px-2.5 py-1 rounded-full hover:bg-slate-100 transition">
                           <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
                           {name}
@@ -524,9 +691,36 @@ const internationals = [];
     </div>
   </footer>
 
-  <!-- 🔷 控制頁籤切換與計數器的 JavaScript -->
+  <!-- 🔷 控制頁籤切換、計數器與手機導覽列的 JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
+      
+      // --- 0. 手機版導覽列 (漢堡選單) 邏輯 ---
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
+
+      if (mobileMenuBtn && mobileMenu && hamburgerIcon) {
+        mobileMenuBtn.addEventListener('click', () => {
+          const isHidden = mobileMenu.classList.contains('hidden');
+          if (isHidden) {
+            mobileMenu.classList.remove('hidden');
+            hamburgerIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+          } else {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+          }
+        });
+
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+          link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+          });
+        });
+      }
+
       // --- 1. 頁籤切換邏輯 ---
       const tabBtns = document.querySelectorAll('.tab-btn');
       const tabContents = document.querySelectorAll('.tab-content');
