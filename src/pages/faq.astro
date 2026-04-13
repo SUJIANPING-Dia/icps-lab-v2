@@ -670,7 +670,9 @@ const faqs = [
         </svg>
         <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">
+  載入中...
+</span>
       </div>
     </div>
   </footer>
@@ -818,12 +820,61 @@ const faqs = [
         performSearch('');
       });
 
-      const initCounter = async () => {
-        const counterEl = document.getElementById('visitor-count');
-        if (!counterEl) return;
-        counterEl.textContent = '1,234'; 
-      };
-      initCounter();
+// 找到 script 標籤內的 initCounter 並整段替換
+const initCounter = async () => {
+  const counterEl = document.getElementById('visitor-count');
+  if (!counterEl) return;
+
+  const namespace = 'icpslab_site';
+  const key = 'visits';
+  const localCountKey = 'icps_saved_count'; // 儲存上次看到的數字
+  const lastVisitTimeKey = 'icps_last_visit_time'; // 儲存上次造訪的時間
+  const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+
+  // 1. 先從本地取得舊數據（如果有），讓畫面上不至於空白
+  let currentCount = localStorage.getItem(localCountKey) || '000000';
+  const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
+  const now = Date.now();
+  
+  // 檢查 24 小時內是否來過
+  const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
+
+  try {
+    const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+
+    if (!hasVisitedWithin24Hours) {
+      // --- 情況 A：新訪客或已過 24 小時，執行增加 (+1) ---
+      const response = await fetch(url + '/up');
+      if (!response.ok) throw new Error('API Error');
+      const data = await response.json();
+      
+      // 格式化數字為 6 位數（如 000123）
+      currentCount = String(data.count).padStart(6, '0');
+      
+      // 更新本地紀錄
+      localStorage.setItem(lastVisitTimeKey, now.toString());
+      localStorage.setItem(localCountKey, currentCount);
+    } else {
+      // --- 情況 B：24 小時內回訪，僅讀取不增加 ---
+      const response = await fetch(url);
+      if (response.ok) {
+        const data = await response.json();
+        currentCount = String(data.count).padStart(6, '0');
+        localStorage.setItem(localCountKey, currentCount);
+      }
+    }
+    // 渲染到網頁上
+    counterEl.textContent = currentCount;
+
+  } catch (error) {
+    console.warn("計數器獲取失敗，顯示快取數值:", error);
+    // 發生錯誤（如網路斷掉）時，至少顯示 localStorage 存過的數字
+    counterEl.textContent = currentCount;
+  }
+};
+
+// 確保有呼叫它
+initCounter();
 
     });
   </script>
