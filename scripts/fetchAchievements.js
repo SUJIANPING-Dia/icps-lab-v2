@@ -14,7 +14,7 @@ async function scrapeData() {
     const html = response.data;
     const $ = cheerio.load(html);
     
-    console.log('✅ 抓取成功！開始執行深度資料探勘...');
+    console.log('✅ 抓取成功！開始執行進階金額過濾機制...');
 
     const finalData = [
       { section: "📚 學術發表", category: "國際期刊論文", type: "publication", description: "本實驗室發表於國際頂尖與高影響力期刊之研究成果。", yearlyData: [] },
@@ -63,42 +63,37 @@ async function scrapeData() {
             }
 
             if (actualCategoryIndex === 3) {
-               // 💡 【精準計畫探勘】
+               // 💡 【計畫金額邏輯優化】
                const titleMatch = rawText.match(/[『「"“](.*?)[』」"”]/);
                const projectTitle = titleMatch ? titleMatch[1] : rawText.split(/[，,]/)[0];
                
-               // 1. 抓取金額 (找包含元字眼且有數字的括號)
-               const amountMatch = rawText.match(/\(([\d,]+元)\)/);
-               const amount = amountMatch ? amountMatch[1] : "";
+               // 💰 修改點：優先抓取出現的第一組「數字+元」，並過濾掉複雜的內文
+               // 這樣即使後面有「含技轉金XXX元」，也會因為這條規則只抓最前面的總額
+               const amountMatch = rawText.match(/([\d,]+)元/);
+               const amount = amountMatch ? amountMatch[1] + "元" : "";
 
-               // 2. 抓取單位 (常見單位關鍵字)
                const agencies = ["國科會", "教育部", "經濟部", "科技部", "國防部", "內政部", "衛生福利部"];
                let agency = "合作機構";
                for (const a of agencies) {
-                   if (rawText.includes(a)) {
-                       agency = a;
-                       break;
-                   }
+                   if (rawText.includes(a)) { agency = a; break; }
                }
-               // 如果沒匹配到公部門，嘗試找公司名稱
                if (agency === "合作機構") {
                    const companyMatch = rawText.match(/([\u4e00-\u9fa5]{2,15}(?:公司|廠|醫院))/);
                    if (companyMatch) agency = companyMatch[1];
                }
 
-               // 3. 抓取計畫編號 (如果有)
                const codeMatch = rawText.match(/計畫編號\s*[：:]\s*([A-Za-z0-9\-\s]+)/);
                const code = codeMatch ? codeMatch[1].trim() : "";
 
                targetYearData.items.push({
-                   award: agency,       // 單位
-                   project: projectTitle, // 標題
-                   competition: code ? `計畫編號：${code}` : "專案計畫", // 編號
-                   amount: amount       // 💰 新增金額欄位
+                   award: agency,
+                   project: projectTitle,
+                   competition: code ? `計畫編號：${code}` : "專案計畫",
+                   amount: amount
                });
 
             } else if (actualCategoryIndex === 4) {
-               // 競賽切割 (維持之前的優化)
+               // 競賽處理...
                let awardText = "獎項";
                let projectText = rawText;
                let competitionText = "";
@@ -109,14 +104,10 @@ async function scrapeData() {
                const awardMatch = rawText.match(/榮獲(.*?)(?:[，,]|作品[：:])/);
                if (awardMatch) awardText = awardMatch[1].trim();
                
-               targetYearData.items.push({ 
-                   award: awardText.substring(0, 8), 
-                   project: projectText, 
-                   competition: competitionText 
-               });
+               targetYearData.items.push({ award: awardText.substring(0, 8), project: projectText, competition: competitionText });
 
             } else {
-               // 論文切割
+               // 論文處理...
                rawText = rawText.replace(/[“”「」『』]/g, '"');
                const parts = rawText.split('"');
                if (parts.length >= 3) {
@@ -135,7 +126,7 @@ async function scrapeData() {
 
     const filePath = path.resolve('./src/data/achievements.json');
     fs.writeFileSync(filePath, JSON.stringify(finalData, null, 2), 'utf-8');
-    console.log(`🎉 深度探勘完成！`);
+    console.log(`🎉 金額校正完成！`);
   } catch (error) { console.error('❌', error.message); }
 }
 
