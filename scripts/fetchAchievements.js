@@ -14,7 +14,7 @@ async function scrapeData() {
     const html = response.data;
     const $ = cheerio.load(html);
     
-    console.log('✅ 抓取成功！開始執行終極資料淨化...');
+    console.log('✅ 抓取成功！開始執行深度資料探勘...');
 
     const finalData = [
       { section: "📚 學術發表", category: "國際期刊論文", type: "publication", description: "本實驗室發表於國際頂尖與高影響力期刊之研究成果。", yearlyData: [] },
@@ -32,17 +32,11 @@ async function scrapeData() {
       const text = $(element).text().trim();
 
       if (text.length > 0 && text.length < 30) {
-        if (text.includes('榮譽') || text.includes('得獎') || text.includes('競賽') || text.includes('學生獲獎')) {
-          currentCategoryIndex = 4;
-        } else if (text.includes('計畫') || text.includes('產學')) {
-          currentCategoryIndex = 3;
-        } else if (text.includes('期刊論文') && !text.includes('研討會')) {
-          currentCategoryIndex = 0;
-        } else if (text.includes('國際研討會')) {
-          currentCategoryIndex = 1;
-        } else if (text.includes('國內研討會')) {
-          currentCategoryIndex = 2;
-        }
+        if (text.includes('榮譽') || text.includes('得獎') || text.includes('競賽')) currentCategoryIndex = 4;
+        else if (text.includes('計畫') || text.includes('產學')) currentCategoryIndex = 3;
+        else if (text.includes('期刊論文') && !text.includes('研討會')) currentCategoryIndex = 0;
+        else if (text.includes('國際研討會')) currentCategoryIndex = 1;
+        else if (text.includes('國內研討會')) currentCategoryIndex = 2;
       }
 
       if (tagName === 'h3' && currentCategoryIndex !== -1) {
@@ -55,15 +49,12 @@ async function scrapeData() {
             let rawText = $(liElem).text().trim();
             if (!rawText) return;
 
-            const isAward = rawText.includes('佳作') || rawText.includes('冠軍') || rawText.includes('亞軍') || 
-                            rawText.includes('季軍') || rawText.match(/第[一二三四五六七八九十]+名/) || 
-                            rawText.includes('金牌') || rawText.includes('銀牌') || rawText.includes('銅牌') || 
-                            rawText.includes('優勝') || rawText.includes('優等') || rawText.includes('新創獎') || rawText.includes('特別獎');
             const isProject = rawText.includes('計畫編號') || rawText.includes('計畫主持人') || rawText.includes('產學合作');
+            const isAward = !isProject && (rawText.includes('佳作') || rawText.includes('冠軍') || rawText.includes('第') && rawText.includes('名'));
 
             let actualCategoryIndex = currentCategoryIndex;
-            if (isAward) actualCategoryIndex = 4; 
-            else if (isProject) actualCategoryIndex = 3; 
+            if (isAward) actualCategoryIndex = 4;
+            else if (isProject) actualCategoryIndex = 3;
 
             let targetYearData = finalData[actualCategoryIndex].yearlyData.find(y => y.year === year);
             if (!targetYearData) {
@@ -71,94 +62,70 @@ async function scrapeData() {
                 finalData[actualCategoryIndex].yearlyData.push(targetYearData);
             }
 
-            if (actualCategoryIndex === 4) {
-               // 🏆 【精準萃取】得獎紀錄智慧切割
-               let awardText = "榮譽獎項";
-               let projectText = rawText;
-               let competitionText = "";
-
-               // 1. 抓取「作品名稱」 (找"作品："後面的字)
-               let projectMatch = rawText.match(/作品[：:]\s*[「『]?(.*?)[」』]?$/);
-               if (projectMatch) {
-                   projectText = projectMatch[1].trim();
-               }
-
-               // 2. 抓取「競賽名稱」 (找引號內，或是破折號前面的字)
-               let compMatch = rawText.match(/[『「](.*?)[』」](.*?)(?:[-－–—]+|榮獲)/);
-               if (compMatch) {
-                   competitionText = (compMatch[1] + " " + compMatch[2]).trim();
-               } else {
-                   let plainCompMatch = rawText.match(/^(?:指導學生參加)?(.*?)[-－–—]/);
-                   if (plainCompMatch) {
-                       competitionText = plainCompMatch[1].trim();
-                   }
-               }
-
-               // 3. 抓取「獎項」 (找"榮獲"後面的字)
-               let awardMatch = rawText.match(/榮獲(.*?)(?:[，,]|作品[：:])/);
-               if (awardMatch) {
-                   awardText = awardMatch[1].trim();
-               } else {
-                   let dashMatch = rawText.match(/[-－–—]\s*(.*?)[，,]\s*作品/);
-                   if (dashMatch) {
-                       awardText = dashMatch[1].trim();
-                   }
-               }
-
-               // 萬一完全不符合常見格式，做簡單的切割防呆
-               if (!projectMatch && competitionText === "" && awardText === "榮譽獎項") {
-                   const parts = rawText.split(/[,，、]/);
-                   if (parts.length >= 3) {
-                       awardText = parts[0].replace(/指導學生參加.*?[-－–—]\s*榮獲/, '').replace(/指導學生參加.*?[-－–—]\s*/, '').trim();
-                       projectText = parts[1].replace(/作品[：:]\s*/, '').replace(/^[「『]/, '').replace(/[」』]$/, '').trim();
-                       competitionText = parts.slice(2).join(',').trim();
-                   } else if (parts.length === 2) {
-                       awardText = parts[0].replace(/指導學生參加.*?[-－–—]\s*榮獲/, '').trim();
-                       projectText = parts[1].replace(/作品[：:]\s*/, '').replace(/^[「『]/, '').replace(/[」』]$/, '').trim();
-                   }
-               }
-
-               // 把殘留的破折號清乾淨
-               awardText = awardText.replace(/[-－–—]/g, '').trim();
+            if (actualCategoryIndex === 3) {
+               // 💡 【精準計畫探勘】
+               const titleMatch = rawText.match(/[『「"“](.*?)[』」"”]/);
+               const projectTitle = titleMatch ? titleMatch[1] : rawText.split(/[，,]/)[0];
                
-               // 防止太長破壞版面，如果真的切錯超過 8 個字，就只取前 6 個字加 ...
-               if(awardText.length > 8) {
-                   awardText = awardText.substring(0, 6) + '...';
+               // 1. 抓取金額 (找包含元字眼且有數字的括號)
+               const amountMatch = rawText.match(/\(([\d,]+元)\)/);
+               const amount = amountMatch ? amountMatch[1] : "";
+
+               // 2. 抓取單位 (常見單位關鍵字)
+               const agencies = ["國科會", "教育部", "經濟部", "科技部", "國防部", "內政部", "衛生福利部"];
+               let agency = "合作機構";
+               for (const a of agencies) {
+                   if (rawText.includes(a)) {
+                       agency = a;
+                       break;
+                   }
+               }
+               // 如果沒匹配到公部門，嘗試找公司名稱
+               if (agency === "合作機構") {
+                   const companyMatch = rawText.match(/([\u4e00-\u9fa5]{2,15}(?:公司|廠|醫院))/);
+                   if (companyMatch) agency = companyMatch[1];
                }
 
-               targetYearData.items.push({ 
-                   award: awardText || "獎項", 
-                   project: projectText || "無專案名稱", 
-                   competition: competitionText 
+               // 3. 抓取計畫編號 (如果有)
+               const codeMatch = rawText.match(/計畫編號\s*[：:]\s*([A-Za-z0-9\-\s]+)/);
+               const code = codeMatch ? codeMatch[1].trim() : "";
+
+               targetYearData.items.push({
+                   award: agency,       // 單位
+                   project: projectTitle, // 標題
+                   competition: code ? `計畫編號：${code}` : "專案計畫", // 編號
+                   amount: amount       // 💰 新增金額欄位
                });
 
-            } else if (actualCategoryIndex === 3) {
-               // 計畫切割
-               const titleMatch = rawText.match(/[『「"“](.*?)[』」"”]/);
-               const title = titleMatch ? titleMatch[1] : rawText.split(/[，,]/)[0] || rawText;
-               let details = rawText;
-               if (titleMatch) details = rawText.replace(titleMatch[0], '').trim();
-               details = details.replace(/^[，、,\-]+\s*/, '');
-               targetYearData.items.push({ award: "計畫/產學", project: title, competition: details });
+            } else if (actualCategoryIndex === 4) {
+               // 競賽切割 (維持之前的優化)
+               let awardText = "獎項";
+               let projectText = rawText;
+               let competitionText = "";
+               const projectMatch = rawText.match(/作品[：:]\s*[「『]?(.*?)[」』]?$/);
+               if (projectMatch) projectText = projectMatch[1].trim();
+               const compMatch = rawText.match(/[『「](.*?)[』」](.*?)(?:[-－]+|榮獲)/);
+               if (compMatch) competitionText = (compMatch[1] + " " + compMatch[2]).trim();
+               const awardMatch = rawText.match(/榮獲(.*?)(?:[，,]|作品[：:])/);
+               if (awardMatch) awardText = awardMatch[1].trim();
+               
+               targetYearData.items.push({ 
+                   award: awardText.substring(0, 8), 
+                   project: projectText, 
+                   competition: competitionText 
+               });
 
             } else {
                // 論文切割
                rawText = rawText.replace(/[“”「」『』]/g, '"');
                const parts = rawText.split('"');
                if (parts.length >= 3) {
-                   const authors = parts[0].replace(/,\s*$/, '').trim();
-                   const title = parts[1].trim();
-                   const venue = parts.slice(2).join('"').replace(/^[\s,]+/, '').trim();
-                   targetYearData.items.push({ title, authors, venue, link: "#" });
-               } else {
-                   const fallbackParts = rawText.split(/[,，]/);
-                   if(fallbackParts.length >= 2) {
-                       const authors = fallbackParts[0].trim();
-                       const title = fallbackParts.slice(1).join(',').trim();
-                       targetYearData.items.push({ title: title, authors: authors, venue: "", link: "#" });
-                   } else {
-                       targetYearData.items.push({ title: rawText, authors: "作者資訊", venue: "", link: "#" });
-                   }
+                   targetYearData.items.push({ 
+                       title: parts[1].trim(), 
+                       authors: parts[0].replace(/,\s*$/, '').trim(), 
+                       venue: parts.slice(2).join('"').replace(/^[\s,]+/, '').trim(), 
+                       link: "#" 
+                   });
                }
             }
           });
@@ -166,16 +133,10 @@ async function scrapeData() {
       }
     });
 
-    const dirPath = path.resolve('./src/data');
     const filePath = path.resolve('./src/data/achievements.json');
-    if (!fs.existsSync(dirPath)) fs.mkdirSync(dirPath, { recursive: true });
     fs.writeFileSync(filePath, JSON.stringify(finalData, null, 2), 'utf-8');
-    
-    console.log(`🎉 資料淨化完成！`);
-
-  } catch (error) {
-    console.error('❌ 抓取失敗：', error.message);
-  }
+    console.log(`🎉 深度探勘完成！`);
+  } catch (error) { console.error('❌', error.message); }
 }
 
 scrapeData();
