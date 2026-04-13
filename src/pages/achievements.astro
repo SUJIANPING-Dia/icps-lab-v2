@@ -441,12 +441,64 @@ import achievements from "../data/achievements.json";
         performSearch('');
       });
 
-      // 4. 底部造訪人數計數器
+      // 4. 智慧訪客計數器邏輯 (24小時內防洗次數 + 防破圖備用機制)
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
-        counterEl.textContent = '1,234'; 
+
+        const namespace = 'icpslab_site';
+        const key = 'visits';
+        const localCountKey = 'icps_saved_count';
+        const lastVisitTimeKey = 'icps_last_visit_time';
+        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000; // 24小時換算成毫秒
+
+        // 從 localStorage 讀取最後一次成功的數字當作備用
+        let currentCount = localStorage.getItem(localCountKey) || '------';
+        
+        // 讀取最後一次增加次數的時間，並取得當下時間
+        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
+        const now = Date.now();
+
+        // 判斷是否在 24 小時之內有造訪過
+        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
+        
+        try {
+          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          
+          if (!hasVisitedWithin24Hours) {
+            // 超過 24 小時未造訪，或是首次造訪 -> 呼叫 /up 增加次數
+            const response = await fetch(url + '/up');
+            if (!response.ok) throw new Error('API 回應錯誤');
+            
+            const data = await response.json();
+            currentCount = String(data.count).padStart(6, '0');
+            
+            // 紀錄當下時間，接下來 24 小時內都不會再增加
+            localStorage.setItem(lastVisitTimeKey, now.toString());
+            localStorage.setItem(localCountKey, currentCount);
+            counterEl.textContent = currentCount;
+            
+          } else {
+            // 24 小時內已造訪過 -> 嘗試獲取最新數字 (不增加)
+            try {
+              const response = await fetch(url);
+              if (response.ok) {
+                const data = await response.json();
+                currentCount = String(data.count).padStart(6, '0');
+                localStorage.setItem(localCountKey, currentCount);
+              }
+            } catch (e) {
+              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
+            }
+            counterEl.textContent = currentCount;
+          }
+          
+        } catch (error) {
+          console.error('計數器載入異常:', error);
+          counterEl.textContent = currentCount;
+        }
       };
+
       initCounter();
 
     });
