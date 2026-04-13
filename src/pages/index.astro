@@ -196,65 +196,67 @@ const totalAmountFormatted = totalAmountValue > 100000000
     </div>
   </header>
 
-  <!-- 🌟 實驗室里程碑數據統計區 (深色橫帶，銜接 Hero) -->
-  <section class="bg-[#0f172a] border-b border-slate-700/60">
-    <div class="max-w-7xl mx-auto px-6 py-0">
-      <div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-slate-700/60 divide-y lg:divide-y-0">
 
-        <!-- 國際期刊論文 -->
-        <div class="group flex flex-col sm:flex-row items-center sm:items-start gap-4 px-6 py-8 lg:px-10 transition-colors duration-300 hover:bg-white/[0.04]">
-          <div class="shrink-0 w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-lg group-hover:bg-blue-500/20 transition-colors duration-300">
-            📚
-          </div>
-          <div class="text-center sm:text-left">
-            <div class="text-3xl font-black text-white tabular-nums leading-none mb-1.5">{journalCount}</div>
-            <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.18em] leading-tight">國際期刊論文</div>
-            <div class="text-[9px] text-slate-600 mt-0.5 tracking-wider hidden sm:block">Journal Papers</div>
-          </div>
-        </div>
-
-        <!-- 國際研討會 -->
-        <div class="group flex flex-col sm:flex-row items-center sm:items-start gap-4 px-6 py-8 lg:px-10 transition-colors duration-300 hover:bg-white/[0.04]">
-          <div class="shrink-0 w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg group-hover:bg-indigo-500/20 transition-colors duration-300">
-            🌐
-          </div>
-          <div class="text-center sm:text-left">
-            <div class="text-3xl font-black text-white tabular-nums leading-none mb-1.5">{confCount}</div>
-            <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.18em] leading-tight">國際研討會</div>
-            <div class="text-[9px] text-slate-600 mt-0.5 tracking-wider hidden sm:block">Conferences</div>
-          </div>
-        </div>
-
-        <!-- 合作廠商/機構 -->
-        <div class="group flex flex-col sm:flex-row items-center sm:items-start gap-4 px-6 py-8 lg:px-10 transition-colors duration-300 hover:bg-white/[0.04]">
-          <div class="shrink-0 w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg group-hover:bg-emerald-500/20 transition-colors duration-300">
-            🤝
-          </div>
-          <div class="text-center sm:text-left">
-            <div class="text-3xl font-black text-white tabular-nums leading-none mb-1.5">{partnerCount}+</div>
-            <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.18em] leading-tight">合作廠商/機構</div>
-            <div class="text-[9px] text-slate-600 mt-0.5 tracking-wider hidden sm:block">Industry Partners</div>
-          </div>
-        </div>
-
-        <!-- 計畫總核定金額 -->
-        <div class="group flex flex-col sm:flex-row items-center sm:items-start gap-4 px-6 py-8 lg:px-10 transition-colors duration-300 hover:bg-white/[0.04]">
-          <div class="shrink-0 w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-lg group-hover:bg-amber-500/20 transition-colors duration-300">
-            💰
-          </div>
-          <div class="text-center sm:text-left">
-            <div class="text-3xl font-black text-white tabular-nums leading-none mb-1.5">{totalAmountFormatted}</div>
-            <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.18em] leading-tight">計畫總核定金額</div>
-            <div class="text-[9px] text-slate-600 mt-0.5 tracking-wider hidden sm:block">Total Grant Funding</div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <!-- 🔷 網站主體區域 -->
   <main class="max-w-7xl mx-auto px-6 py-16 space-y-20 relative z-20">
+
+    <!-- 🌟 實驗室里程碑數據統計區 -->
+    <section id="milestones" class="scroll-mt-24">
+
+      <!-- 主標題：與其他區塊格式完全一致 -->
+      <div class="border-b border-slate-800 pb-3 mb-10 flex items-end gap-3">
+        <div class="w-2.5 h-8 bg-[#3b5998]"></div>
+        <h2 class="text-2xl font-bold text-slate-900 leading-none">實驗室里程碑</h2>
+        <span class="text-sm font-light text-[#8c9bb0] uppercase tracking-widest leading-none mb-0.5">LAB MILESTONES</span>
+      </div>
+
+      <!-- 四格數據卡片 -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+
+        <!-- 國際期刊論文 -->
+        <div class="group bg-white border border-slate-200 hover:border-blue-400 transition-all duration-300 p-6 sm:p-8 flex flex-col items-center text-center hover:shadow-md">
+          <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center mb-5 text-2xl group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 border border-blue-100 group-hover:border-blue-600">
+            📚
+          </div>
+          <div class="text-4xl sm:text-5xl font-black text-slate-900 mb-2 tabular-nums">{journalCount}</div>
+          <div class="text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-snug mb-1">國際期刊論文</div>
+          <div class="text-[10px] text-slate-400 tracking-wider">Journal Papers</div>
+        </div>
+
+        <!-- 國際研討會 -->
+        <div class="group bg-white border border-slate-200 hover:border-indigo-400 transition-all duration-300 p-6 sm:p-8 flex flex-col items-center text-center hover:shadow-md">
+          <div class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center mb-5 text-2xl group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 border border-indigo-100 group-hover:border-indigo-600">
+            🌐
+          </div>
+          <div class="text-4xl sm:text-5xl font-black text-slate-900 mb-2 tabular-nums">{confCount}</div>
+          <div class="text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-snug mb-1">國際研討會</div>
+          <div class="text-[10px] text-slate-400 tracking-wider">Conferences</div>
+        </div>
+
+        <!-- 合作廠商/機構 -->
+        <div class="group bg-white border border-slate-200 hover:border-emerald-400 transition-all duration-300 p-6 sm:p-8 flex flex-col items-center text-center hover:shadow-md">
+          <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center mb-5 text-2xl group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 border border-emerald-100 group-hover:border-emerald-600">
+            🤝
+          </div>
+          <div class="text-4xl sm:text-5xl font-black text-slate-900 mb-2 tabular-nums">{partnerCount}+</div>
+          <div class="text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-snug mb-1">合作廠商/機構</div>
+          <div class="text-[10px] text-slate-400 tracking-wider">Industry Partners</div>
+        </div>
+
+        <!-- 計畫總核定金額 -->
+        <div class="group bg-white border border-slate-200 hover:border-amber-400 transition-all duration-300 p-6 sm:p-8 flex flex-col items-center text-center hover:shadow-md">
+          <div class="w-14 h-14 bg-amber-50 text-amber-600 rounded-xl flex items-center justify-center mb-5 text-2xl group-hover:bg-amber-600 group-hover:text-white transition-all duration-300 border border-amber-100 group-hover:border-amber-600">
+            💰
+          </div>
+          <div class="text-4xl sm:text-5xl font-black text-slate-900 mb-2 tabular-nums">{totalAmountFormatted}</div>
+          <div class="text-[11px] font-bold text-slate-500 uppercase tracking-[0.2em] leading-snug mb-1">計畫總核定金額</div>
+          <div class="text-[10px] text-slate-400 tracking-wider">Total Grant Funding</div>
+        </div>
+
+      </div>
+    </section>
+
     <News />
     
     <!-- 👇 團隊成員區塊 (100% 完整復原包含 7 項專長) -->
