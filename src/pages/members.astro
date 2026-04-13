@@ -230,23 +230,23 @@ const undergrads   = allStudents.filter(s => s.status === 'active' && s.degree =
 const internationals = allStudents.filter(s => s.status === 'active' && s.degree === 'international');
 const graduates    = allStudents.filter(s => s.status === 'graduated');
 
-// E. 碩士班：依入學年度分群（降冪）
+// E. 碩士班：依入學年度分群（升冪 → 入學越早=年級越高，排最上面）
 const mastersByYear = masters.reduce((map, student) => {
   const yr = student.enrollmentYear ?? 0;
   if (!map[yr]) map[yr] = [];
   map[yr].push(student);
   return map;
 }, {} as Record<number, typeof masters>);
-const sortedMasterYears = Object.keys(mastersByYear).map(Number).sort((a, b) => b - a);
+const sortedMasterYears = Object.keys(mastersByYear).map(Number).sort((a, b) => a - b);
 
-// E2. 博士班：依入學年度分群（降冪）
+// E2. 博士班：依入學年度分群（升冪 → 入學越早=年級越高，排最上面）
 const phdsByYear = phds.reduce((map, student) => {
   const yr = student.enrollmentYear ?? 0;
   if (!map[yr]) map[yr] = [];
   map[yr].push(student);
   return map;
 }, {} as Record<number, typeof phds>);
-const sortedPhdYears = Object.keys(phdsByYear).map(Number).sort((a, b) => b - a);
+const sortedPhdYears = Object.keys(phdsByYear).map(Number).sort((a, b) => a - b);
 
 // E3. 大學部：先依「入學年度」分群，再於各年度內依「專題」分群
 //    結構：{ 112: { "AI銀髮族...": [student, ...], ... }, 113: { ... } }
@@ -259,10 +259,10 @@ const undergradByYear = undergrads.reduce((yearMap, student) => {
   return yearMap;
 }, {} as Record<number, Record<string, typeof undergrads>>);
 
-// 入學年度由大到小降冪排列（最新的在最上面）
+// 入學年度由小到大升冪排列（入學越早=年級越高，排最上面）
 const sortedUndergradYears = Object.keys(undergradByYear)
   .map(Number)
-  .sort((a, b) => b - a);
+  .sort((a, b) => a - b);
 
 // F. 畢業生依畢業學年度分群（降冪）
 const groupedGraduates = graduates.reduce((groups, student) => {
