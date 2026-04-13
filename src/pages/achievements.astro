@@ -227,10 +227,16 @@ import achievements from "../data/achievements.json";
                         const isAward = group.type === "award";
                         const isProject = group.type === "project";
 
-                        // 搜尋用的文字串
+                        // 移除 "指導學生參加" 以及末尾的括號金額 (例如：(330,000元))
+                        const cleanProjectName = item.project
+                          ?.replace(/指導學生參加\s*/g, '')
+                          ?.replace(/\([\d,]+元\)/g, '')
+                          ?.trim() || "";
+
+                        // 搜尋用的文字串 (使用清理過的內容確保精準度)
                         const searchStr = isPublication 
                           ? `${item.title} ${item.authors} ${item.venue} ${yearBlock.year}`.toLowerCase()
-                          : `${item.project} ${yearBlock.year}`.toLowerCase();
+                          : `${cleanProjectName} ${yearBlock.year}`.toLowerCase();
 
                         return (
                           <div class="achievement-item" data-search={searchStr}>
@@ -256,7 +262,7 @@ import achievements from "../data/achievements.json";
                                 </div>
                                 <div class="flex-1 min-w-0">
                                   <div class="text-slate-700 font-bold leading-relaxed text-lg">
-                                    {item.project}
+                                    {cleanProjectName}
                                   </div>
                                   {item.amount && (
                                     <div class="mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-50 text-emerald-700 border border-emerald-100">
