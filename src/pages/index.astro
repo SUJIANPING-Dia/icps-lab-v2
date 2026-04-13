@@ -41,6 +41,10 @@ projectGroup?.yearlyData.forEach(year => {
 const totalAmountFormatted = totalAmountValue > 100000000 
   ? `${(totalAmountValue / 100000000).toFixed(1)} 億+` 
   : `${Math.floor(totalAmountValue / 10000)} 萬+`;
+
+// 5. 國內外競賽得獎數量
+const awardGroup = achievements.find(a => a.category && (a.category.includes("競賽") || a.category.includes("得獎") || a.category.includes("榮譽")));
+const awardCount = awardGroup ? awardGroup.yearlyData.reduce((sum, year) => sum + year.items.length, 0) : 0;
 ---
 
 <html lang="zh-TW" class="scroll-smooth">
@@ -196,8 +200,20 @@ const totalAmountFormatted = totalAmountValue > 100000000
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">實驗室里程碑</h2>
       </div>
 
-      <!-- 四格數據卡片 (優化圓角、懸浮效果與背景) -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      <!-- 五格數據卡片 (優化圓角、懸浮效果與背景，改為 md:grid-cols-3 lg:grid-cols-5) -->
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
+
+        <!-- 國內外競賽得獎 (移動到最前面) -->
+        <div class="group relative bg-white rounded-3xl border border-slate-100 p-6 sm:p-8 flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
+          <div class="absolute inset-0 bg-gradient-to-br from-rose-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          <div class="relative w-16 h-16 bg-rose-50/80 text-rose-600 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:bg-rose-600 group-hover:text-white transition-colors duration-300 shadow-sm group-hover:shadow-rose-200">
+            🏆
+          </div>
+          <!-- 👇 加入 whitespace-nowrap 防止折行 -->
+          <div class="relative text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums whitespace-nowrap">{awardCount}</div>
+          <div class="relative text-xs font-bold text-slate-600 uppercase tracking-widest mb-1">國內外競賽得獎 (件)</div>
+          <div class="relative text-[10px] text-slate-400 font-mono">Competition Awards</div>
+        </div>
 
         <!-- 國際期刊論文 -->
         <div class="group relative bg-white rounded-3xl border border-slate-100 p-6 sm:p-8 flex flex-col items-center text-center shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 overflow-hidden">
@@ -205,7 +221,7 @@ const totalAmountFormatted = totalAmountValue > 100000000
           <div class="relative w-16 h-16 bg-blue-50/80 text-blue-600 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 shadow-sm group-hover:shadow-blue-200">
             📚
           </div>
-          <div class="relative text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums">{journalCount}</div>
+          <div class="relative text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums whitespace-nowrap">{journalCount}</div>
           <div class="relative text-xs font-bold text-slate-600 uppercase tracking-widest mb-1">國際期刊論文 (篇)</div>
           <div class="relative text-[10px] text-slate-400 font-mono">Journal Papers</div>
         </div>
@@ -216,7 +232,7 @@ const totalAmountFormatted = totalAmountValue > 100000000
           <div class="relative w-16 h-16 bg-indigo-50/80 text-indigo-600 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300 shadow-sm group-hover:shadow-indigo-200">
             🌐
           </div>
-          <div class="relative text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums">{confCount}</div>
+          <div class="relative text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums whitespace-nowrap">{confCount}</div>
           <div class="relative text-xs font-bold text-slate-600 uppercase tracking-widest mb-1">國際研討會 (篇)</div>
           <div class="relative text-[10px] text-slate-400 font-mono">Conferences</div>
         </div>
@@ -227,7 +243,7 @@ const totalAmountFormatted = totalAmountValue > 100000000
           <div class="relative w-16 h-16 bg-emerald-50/80 text-emerald-600 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm group-hover:shadow-emerald-200">
             🤝
           </div>
-          <div class="relative text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums">{partnerCount}+</div>
+          <div class="relative text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums whitespace-nowrap">{partnerCount}+</div>
           <div class="relative text-xs font-bold text-slate-600 uppercase tracking-widest mb-1">產學合作廠商/機構</div>
           <div class="relative text-[10px] text-slate-400 font-mono">Industry Partners</div>
         </div>
@@ -238,7 +254,8 @@ const totalAmountFormatted = totalAmountValue > 100000000
           <div class="relative w-16 h-16 bg-amber-50/80 text-amber-600 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:bg-amber-600 group-hover:text-white transition-colors duration-300 shadow-sm group-hover:shadow-amber-200">
             💰
           </div>
-          <div class="relative text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums">{totalAmountFormatted}</div>
+          <!-- 👇 加入 whitespace-nowrap 防止折行 -->
+          <div class="relative text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums whitespace-nowrap">{totalAmountFormatted}</div>
           <div class="relative text-xs font-bold text-slate-600 uppercase tracking-widest mb-1">總執行計畫金額</div>
           <div class="relative text-[10px] text-slate-400 font-mono">Total Grant Funding</div>
         </div>
