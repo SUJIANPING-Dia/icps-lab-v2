@@ -193,87 +193,72 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
 
 
   <!-- 🔷 網站主體區域 -->
-  <main class="max-w-7xl mx-auto px-6 py-16 space-y-24 relative z-20">
+  <main class="max-w-7xl mx-auto px-6 py-16 space-y-32 relative z-20">
 
-    <!-- 🌟 實驗室里程碑數據統計區 (全新 Apple 風格亮色質感) -->
+    <!-- 🌟 實驗室里程碑數據統計區 (全新編輯排版風格 Editorial Layout) -->
     <section id="milestones" class="scroll-mt-24">
-      
-      <!-- 簡潔現代的置中主標題 -->
-      <div class="mb-12 flex flex-col items-center text-center">
-        <span class="inline-block px-4 py-1 bg-blue-50 text-blue-600 text-xs font-bold tracking-widest uppercase rounded-full mb-3 border border-blue-100 shadow-sm">Lab Milestones</span>
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">實驗室里程碑</h2>
-        <p class="mt-4 text-slate-500 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed">多年持續投入前瞻研究與產學合作，逐步累積研究成果，並致力於連結學術發展與實務應用</p>
-      </div>
-
-      <!-- 六格數據卡片 (使用 CSS Grid 網格排版，自動變成漂亮的 3x2 對齊) -->
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6">
-
-        <!-- 國內外競賽得獎 -->
-        <div class="group relative bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] border border-slate-100/80 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-rose-50 rounded-full blur-3xl opacity-50 -z-10 group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative w-14 h-14 bg-white shadow-sm ring-1 ring-slate-100 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:scale-110 transition-transform duration-300">
-            🏆
+      <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+        
+        <!-- 左側標題區 (在電腦版可隨畫面黏浮) -->
+        <div class="lg:w-1/3 flex flex-col items-start text-left shrink-0 lg:sticky lg:top-32">
+          <div class="inline-flex items-center gap-3 mb-5">
+            <div class="w-10 h-1 bg-blue-600 rounded-full opacity-80"></div>
+            <span class="text-blue-600 text-xs font-extrabold tracking-widest uppercase">Lab Milestones</span>
           </div>
-          <div class="text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums tracking-tight whitespace-nowrap">{awardCount}</div>
-          <div class="text-sm font-bold text-slate-600 mb-1">國內外競賽得獎 (件)</div>
-          <div class="text-[11px] text-slate-400 font-mono tracking-wider">Competition Awards</div>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-snug">
+            研究成果與<br class="hidden lg:block"/>學術影響力
+          </h2>
+          <p class="mt-6 text-slate-500 text-sm sm:text-base leading-relaxed max-w-md">
+            我們多年持續投入前瞻研究與產學合作，不拘泥於傳統框架，逐步累積豐碩的技術成果，並致力於連結學術發展與實務應用，創造實質的產業價值。
+          </p>
         </div>
 
-        <!-- 發明與新型專利 (新增) -->
-        <div class="group relative bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] border border-slate-100/80 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-cyan-50 rounded-full blur-3xl opacity-50 -z-10 group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative w-14 h-14 bg-white shadow-sm ring-1 ring-slate-100 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:scale-110 transition-transform duration-300">
-            💡
+        <!-- 右側數據區 (移除外框限制，利用排版呼吸感) -->
+        <div class="lg:w-2/3 w-full grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-14">
+          
+          <!-- 國內外競賽得獎 -->
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-rose-500 pl-5 transition-all duration-300 group cursor-default">
+            <div class="text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-rose-600 transition-colors duration-300 tracking-tight">{awardCount}</div>
+            <div class="text-sm font-bold text-slate-700">國內外競賽得獎 (件)</div>
+            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Awards</div>
           </div>
-          <div class="text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums tracking-tight whitespace-nowrap">{patentCount}</div>
-          <div class="text-sm font-bold text-slate-600 mb-1">獲得專利項目 (件)</div>
-          <div class="text-[11px] text-slate-400 font-mono tracking-wider">Patents</div>
-        </div>
 
-        <!-- 國際期刊論文 -->
-        <div class="group relative bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] border border-slate-100/80 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl opacity-50 -z-10 group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative w-14 h-14 bg-white shadow-sm ring-1 ring-slate-100 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:scale-110 transition-transform duration-300">
-            📚
+          <!-- 獲得專利項目 -->
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-cyan-500 pl-5 transition-all duration-300 group cursor-default">
+            <div class="text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-cyan-600 transition-colors duration-300 tracking-tight">{patentCount}</div>
+            <div class="text-sm font-bold text-slate-700">獲得專利項目 (件)</div>
+            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Patents</div>
           </div>
-          <div class="text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums tracking-tight whitespace-nowrap">{journalCount}</div>
-          <div class="text-sm font-bold text-slate-600 mb-1">國際期刊論文 (篇)</div>
-          <div class="text-[11px] text-slate-400 font-mono tracking-wider">Journal Papers</div>
-        </div>
 
-        <!-- 國際研討會 -->
-        <div class="group relative bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] border border-slate-100/80 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-50 rounded-full blur-3xl opacity-50 -z-10 group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative w-14 h-14 bg-white shadow-sm ring-1 ring-slate-100 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:scale-110 transition-transform duration-300">
-            🌐
+          <!-- 國際期刊論文 -->
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-blue-500 pl-5 transition-all duration-300 group cursor-default">
+            <div class="text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-blue-600 transition-colors duration-300 tracking-tight">{journalCount}</div>
+            <div class="text-sm font-bold text-slate-700">國際期刊論文 (篇)</div>
+            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Journal Papers</div>
           </div>
-          <div class="text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums tracking-tight whitespace-nowrap">{confCount}</div>
-          <div class="text-sm font-bold text-slate-600 mb-1">國際研討會 (篇)</div>
-          <div class="text-[11px] text-slate-400 font-mono tracking-wider">Conferences</div>
-        </div>
 
-        <!-- 合作廠商/機構 -->
-        <div class="group relative bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] border border-slate-100/80 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-50 rounded-full blur-3xl opacity-50 -z-10 group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative w-14 h-14 bg-white shadow-sm ring-1 ring-slate-100 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:scale-110 transition-transform duration-300">
-            🤝
+          <!-- 國際研討會 -->
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-indigo-500 pl-5 transition-all duration-300 group cursor-default">
+            <div class="text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-indigo-600 transition-colors duration-300 tracking-tight">{confCount}</div>
+            <div class="text-sm font-bold text-slate-700">國際研討會論文 (篇)</div>
+            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Conferences</div>
           </div>
-          <div class="text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums tracking-tight whitespace-nowrap">{partnerCount}+</div>
-          <div class="text-sm font-bold text-slate-600 mb-1">產學合作廠商 (間)</div>
-          <div class="text-[11px] text-slate-400 font-mono tracking-wider">Industry Partners</div>
-        </div>
 
-        <!-- 計畫總核定金額 -->
-        <div class="group relative bg-white rounded-[2rem] p-6 sm:p-8 flex flex-col items-center text-center shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_10px_40px_rgb(0,0,0,0.08)] border border-slate-100/80 hover:-translate-y-1 transition-all duration-500 overflow-hidden">
-          <div class="absolute top-0 right-0 w-32 h-32 bg-amber-50 rounded-full blur-3xl opacity-50 -z-10 group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="relative w-14 h-14 bg-white shadow-sm ring-1 ring-slate-100 rounded-2xl flex items-center justify-center mb-5 text-2xl group-hover:scale-110 transition-transform duration-300">
-            💰
+          <!-- 產學合作廠商 -->
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-emerald-500 pl-5 transition-all duration-300 group cursor-default">
+            <div class="text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-emerald-600 transition-colors duration-300 tracking-tight">{partnerCount}+</div>
+            <div class="text-sm font-bold text-slate-700">產學合作廠商 (間)</div>
+            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Partners</div>
           </div>
-          <div class="text-4xl sm:text-5xl font-black text-slate-800 mb-2 tabular-nums tracking-tight whitespace-nowrap">{totalAmountFormatted}</div>
-          <div class="text-sm font-bold text-slate-600 mb-1">總執行計畫金額 (元)</div>
-          <div class="text-[11px] text-slate-400 font-mono tracking-wider">Total Grant Funding</div>
-        </div>
 
+          <!-- 總執行計畫金額 -->
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-amber-500 pl-5 transition-all duration-300 group cursor-default">
+            <div class="text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-amber-600 transition-colors duration-300 tracking-tight">{totalAmountFormatted}</div>
+            <div class="text-sm font-bold text-slate-700">總執行計畫金額 (元)</div>
+            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Funding</div>
+          </div>
+
+        </div>
       </div>
     </section>
 
