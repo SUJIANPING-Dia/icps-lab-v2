@@ -2,9 +2,8 @@
 import "../styles/global.css";
 
 // ==========================================
-// 🔹 實驗室成員資料區 (新增成員只需在這裡加入)
+// 🌟 1. 專任助理資料
 // ==========================================
-// 👇 專任助理
 const assistants = [
    { 
     name: "孫婉怡", 
@@ -32,129 +31,248 @@ const assistants = [
   }
 ];
 
-// 👇 博士班 (預留 summary 欄位供未來使用)
-const phds = [];
+// ==========================================
+// 🌟 2. 實驗室成員單一資料池 (Single Source of Truth)
+// ==========================================
+//
+// ┌─────────────────────────────────────────────────────────────────┐
+// │  維護指南 (未來 10 年操作說明)                                    │
+// ├─────────────────────────────────────────────────────────────────┤
+// │  ➕ 新增學生：在陣列中新增一筆，status: "active"                  │
+// │                                                                 │
+// │  🎓 學生畢業：                                                   │
+// │    - status 改為 "graduated"                                     │
+// │    - 填入 graduationYear (畢業學年度，例如：113)                  │
+// │    - img / project / summary 保留不動                            │
+// │                                                                 │
+// │  ⬆️  升學 (大學→碩士 / 碩士→博士)：                              │
+// │    - 修改 degree 為新學制 ("master" 或 "phd")                    │
+// │    - 修改 enrollmentYear 為新學制的入學學年度                     │
+// │    - 其他欄位照常更新 (project、summary 可改為新研究題目)          │
+// │    - status 保持 "active" 不變                                   │
+// │                                                                 │
+// │  degree 值對照表：                                               │
+// │    "undergrad"    → 大學部                                       │
+// │    "master"       → 碩士班                                       │
+// │    "phd"          → 博士班                                       │
+// │    "international"→ 外籍生                                       │
+// │                                                                 │
+// │  status 值：                                                     │
+// │    "active"    → 在學                                           │
+// │    "graduated" → 已畢業 (自動移至畢業生頁籤)                     │
+// └─────────────────────────────────────────────────────────────────┘
 
-// 👇 碩士生 (只放在校生)
-// enrollment: 入學學年度
-// grade: 碩一 / 碩二
-const masters = [
+const allStudents = [
+
+  // ==============================================================
+  // 📘 碩士班 (在學)
+  // ==============================================================
   { 
     name: "賴穎寬", 
-    enrollment: 113,
-    grade: "碩二",
-    desc: "基於人工智慧低解析熱影像骨幹辨識技術之精神病患自我傷害行為照護系統", 
+    degree: "master", 
+    status: "active", 
+    enrollmentYear: 113,   // ← 碩士班入學學年度
+    graduationYear: null, 
+    project: "基於人工智慧低解析熱影像骨幹辨識技術之精神病患自我傷害行為照護系統", 
     summary: "本專題運用低解析熱影像與骨架辨識技術，建立自傷行為即時偵測系統，透過關節動態分析提升辨識準確性，兼顧隱私保護與醫療照護安全。", 
     img: "/images/A1.jpg" 
   },
   { 
     name: "許庭瑄", 
-    enrollment: 113,
-    grade: "碩二",
-    desc: "基於ToF感測器之人體姿態日常行為辨識模型", 
+    degree: "master", 
+    status: "active", 
+    enrollmentYear: 113, 
+    graduationYear: null, 
+    project: "基於ToF感測器之人體姿態日常行為辨識模型", 
     summary: "本研究以深度感測器(ToF Sensor)結合人體骨幹辨識模型，並加入時間序列模型進行連續動作識別，建立具有隱私保護的人體日常行為辨識系統。", 
     img: "/images/A2.jpg" 
   },
   { 
     name: "陳閔昱", 
-    enrollment: 114,
-    grade: "碩一",
-    desc: "中外耳病灶識別暨臨床診斷報告自動生成系統", 
-    summary: "本研究iEar智慧耳膜病灶辨識系統，結合目標偵測與影像分割技術，實現病灶定位與輪廓分析，提升診斷準確性並提供臨床即時決策輔助。",
+    degree: "master", 
+    status: "active", 
+    enrollmentYear: 114, 
+    graduationYear: null, 
+    project: "中外耳病灶識別暨臨床診斷報告自動生成系統", 
+    summary: "本研究iEar智慧耳膜病灶辨識系統，結合目標偵測與影像分割技術，實現病灶定位與輪廓分析，提升診斷準確性並提供臨床即時決策輔助。", 
     img: "/images/A3.jpg" 
   },
   { 
     name: "張鈞翔", 
-    enrollment: 114,
-    grade: "碩一",
-    desc: "精神病房隔離室病患之自我傷害行為辨識暨護理紀錄自動生成系統", 
-    summary: "本研究以低解析熱影像與人體骨架辨識技術，建立頭部自傷行為即時偵測系統，兼顧隱私保護與準確預警，提升精神醫療照護安全性與監測效率。",
+    degree: "master", 
+    status: "active", 
+    enrollmentYear: 114, 
+    graduationYear: null, 
+    project: "精神病房隔離室病患之自我傷害行為辨識暨護理紀錄自動生成系統", 
+    summary: "本研究以低解析熱影像與人體骨架辨識技術，建立頭部自傷行為即時偵測系統，兼顧隱私保護與準確預警，提升精神醫療照護安全性與監測效率。", 
     img: "/images/A4.jpg" 
   },
   { 
     name: "李家馨", 
-    enrollment: 114,
-    grade: "碩一",
-    desc: "基於熱影像與ToF感測器之翻身拍背系統", 
+    degree: "master", 
+    status: "active", 
+    enrollmentYear: 114, 
+    graduationYear: null, 
+    project: "基於熱影像與ToF感測器之翻身拍背系統", 
     summary: "本研究結合ToF感測與深度學習，建立護理行為辨識系統，透過YOLO與手部骨幹辨識翻身與拍背動作，判斷執行時機，提升照護品質與病患安全。", 
     img: "/images/A5.jpg" 
   },
   { 
     name: "陳冠廷", 
-    enrollment: 114,
-    grade: "碩一",
-    desc: "基於yolo物件辨識之舌肌復健遊戲平台", 
+    degree: "master", 
+    status: "active", 
+    enrollmentYear: 114, 
+    graduationYear: null, 
+    project: "基於yolo物件辨識之舌肌復健遊戲平台", 
     summary: "本研究建構reTon舌肌復健遊戲平台，結合YOLO物件辨識與追蹤技術，即時偵測舌頭運動並轉換為遊戲控制，提升復健互動性與訓練成效。", 
     img: "/images/A6.jpg" 
   },
   { 
     name: "鍾詩威", 
-    enrollment: 114,
-    grade: "碩一",
-    desc: "智慧型手術器械辨識與教育訓練平台", 
-    summary: "本專題結合YOLO物件辨識與創新演算法，建立手術器械智慧辨識與訓練平台，提升辨識準確性與視覺穩定性，並實現標準化醫學教育與客觀學習評估。",
-    img: "/images/A7.jpg"  
+    degree: "master", 
+    status: "active", 
+    enrollmentYear: 114, 
+    graduationYear: null, 
+    project: "智慧型手術器械辨識與教育訓練平台", 
+    summary: "本研究結合YOLO物件辨識與創新演算法，建立手術器械智慧辨識與訓練平台，提升辨識準確性與視覺穩定性，並實現標準化醫學教育與客觀學習評估。", 
+    img: "/images/A7.jpg" 
   },
+
+  // ==============================================================
+  // 📗 大學部 (在學)
+  // ==============================================================
+  // ── 112 學年度入學 ──────────────────────────────────────────
+
+  // 升學範例：若 蔡一銘 日後升碩士，只需將下面這筆改為：
+  //   degree: "master", enrollmentYear: 115（碩士入學年）
+  //   status: "active" 不變，project/summary 更新為碩士題目即可。
+
+  { name: "蔡一銘", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI銀髮族體適能健身系統", img: null },
+  { name: "林詩婷", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI銀髮族體適能健身系統", img: null },
+  { name: "許峻銘", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI銀髮族體適能健身系統", img: null },
+
+  { name: "王柏鑑", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI手術器械辨識", img: null },
+  { name: "林傳巽", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI手術器械辨識", img: null },
+  { name: "林建宇", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI手術器械辨識", img: null },
+
+  { name: "紀政佑", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
+  { name: "李政華", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
+  { name: "張德堯", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
+  { name: "林竣宇", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
+  { name: "梁書毓", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
+
+  { name: "陳品勳", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI塑膠微粒辨識系統", img: null },
+  { name: "李沛琪", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI塑膠微粒辨識系統", img: null },
+  { name: "吳亮廷", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI塑膠微粒辨識系統", img: null },
+
+  { name: "謝修瑜", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
+  { name: "楊宗翰", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
+  { name: "丁維暘", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
+  { name: "藍信安", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
+  { name: "胡景翔", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
+
+  { name: "蔡柏昀", degree: "undergrad", status: "active", enrollmentYear: 111, graduationYear: null, project: "AI豬隻健康辨識系統", img: null },
+  { name: "施為元", degree: "undergrad", status: "active", enrollmentYear: 111, graduationYear: null, project: "AI豬隻健康辨識系統", img: null },
+  
+  { name: "吳嘉祐", degree: "undergrad", status: "active", enrollmentYear: 111, graduationYear: null, project: "AI調料包缺陷辨識系統", img: null },
+  { name: "佘秉穎", degree: "undergrad", status: "active", enrollmentYear: 111, graduationYear: null, project: "AI調料包缺陷辨識系統", img: null },
+
+  // ── 113 學年度入學 (範例格式，供新生參考) ───────────────────────
+  // { name: "新生姓名", degree: "undergrad", status: "active", enrollmentYear: 113, graduationYear: null, project: "專題題目", img: null },
+
 ];
 
-// 👇 畢業生（目前空白）
-const graduates = [];
-
-// 👇 大學部專題介紹 (對應下方的 desc 題目，可在此統一修改約 50 字的介紹)
-const undergradProjectSummaries = {
+// ==========================================
+// 🌟 3. 大學部專題介紹 (依題目名稱對應)
+// ==========================================
+const undergradProjectSummaries: Record<string, string> = {
   "AI銀髮族體適能健身系統": "本專題結合多模型姿態辨識與單鏡頭3D定位技術，建構銀髮族體適能運動品質自動化評估系統，兼具高精準度與隱私保護，並有效降低人力成本。",
   "AI手術器械辨識": "本專題結合YOLO之手術器械辨識與LLM生成教學，提供護理新人即時識別與反饋，有效減輕臨床教學負擔並提升護理人員自學成效。", 
   "AI膝反射辨識系統": "本專題整合AI影像辨識與導電紗感測技術，開發膝反射自動量測系統，可即時分析多項關鍵指標，實現客觀量化評估，提升臨床診斷準確性與追蹤效率。",
   "AI塑膠微粒辨識系統": "本專題運用YOLO深度學習技術，建立微塑膠顯微影像自動辨識系統，可精準分類多種型態並提升檢測效率，大幅降低人工判讀誤差，實現快速且標準化之環境監測。",
   "AI電容焊接瑕疵辨識": "本專題結合YOLO深度學習與邊緣運算技術，開發CPU周圍電容缺漏焊自動檢測系統，可快速精準辨識缺陷，降低人工誤判並提升產線效率與品質穩定性。",
   "AI豬隻健康辨識系統": "本專題結合YOLO與影像處理，開發豬隻體重量測系統，可快速精準量測體重，降低豬隻緊張情緒並提升飼養效率與作業安全。", 
-  "AI調料包缺陷辨識系統": "本專題為製麵工廠生產線設計的 AI 調味包辨識系統。本系統整合攝影鏡頭與 AI 邊緣運算技術，可即時檢測輸送帶上調味包的種類與數量。透過自動化取代傳統人工檢驗，能有效降低生產成本，並大幅提升出廠產品的檢測準確率與整體品質。 ", 
+  "AI調料包缺陷辨識系統": "本專題為製麵工廠生產線設計的 AI 調味包辨識系統，整合攝影鏡頭與 AI 邊緣運算技術，可即時檢測輸送帶上調味包的種類與數量，透過自動化取代傳統人工檢驗，有效降低生產成本並大幅提升出廠產品的檢測準確率。", 
 };
 
-// 👇 大學部成員名單
-const undergrads = [
-  { name: "蔡一銘", desc: "AI銀髮族體適能健身系統" },
-  { name: "林詩婷", desc: "AI銀髮族體適能健身系統" },
-  { name: "許峻銘", desc: "AI銀髮族體適能健身系統" },
 
-  { name: "王柏鑑", desc: "AI手術器械辨識" },
-  { name: "林傳巽", desc: "AI手術器械辨識" },
-  { name: "林建宇", desc: "AI手術器械辨識" },
+// ==========================================
+// 🌟 4. 自動推算與資料分類引擎
+// ==========================================
 
-  { name: "紀政佑", desc: "AI膝反射辨識系統" },
-  { name: "李政華", desc: "AI膝反射辨識系統" },
-  { name: "張德堯", desc: "AI膝反射辨識系統" },
-  { name: "林竣宇", desc: "AI膝反射辨識系統" },
-  { name: "梁書毓", desc: "AI膝反射辨識系統" },
+// A. 當下學年度
+const today = new Date();
+let currentAcYear = today.getFullYear() - 1911; 
+if (today.getMonth() < 7) currentAcYear -= 1; 
 
-  { name: "陳品勳", desc: "AI塑膠微粒辨識系統" },
-  { name: "李沛琪", desc: "AI塑膠微粒辨識系統" },
-  { name: "吳亮廷", desc: "AI塑膠微粒辨識系統" },
+// B. 年級推算
+const zhNumbers = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九", "十"];
+function getGradeText(degree: string, enrollYear: number): string {
+  let diff = currentAcYear - enrollYear + 1;
+  if (diff < 1) diff = 1;
+  const numStr = zhNumbers[diff] ?? diff.toString();
+  if (degree === 'master') return diff > 2 ? `碩${diff} (延)` : `碩${numStr}`;
+  if (degree === 'phd') return diff > 4 ? `博${diff} (延)` : `博${numStr}`;
+  // 大學部：超過 4 年標記延修
+  return diff > 4 ? `${diff}年級 (延)` : `${numStr}年級`;
+}
 
-  { name: "謝修瑜", desc: "AI電容焊接瑕疵辨識" },
-  { name: "楊宗翰", desc: "AI電容焊接瑕疵辨識" },
-  { name: "丁維暘", desc: "AI電容焊接瑕疵辨識" },
-  { name: "藍信安", desc: "AI電容焊接瑕疵辨識" },
-  { name: "胡景翔", desc: "AI電容焊接瑕疵辨識" },
+// C. 大頭貼防呆
+function getAvatar(img: string | null | undefined, name: string): string {
+  if (img && img.trim() !== '') return img;
+  return `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=E2E8F0&color=475569&bold=true`;
+}
 
-  { name: "蔡柏昀", desc: "AI豬隻健康辨識系統" },
-  { name: "施為元", desc: "AI豬隻健康辨識系統" },
-  
-  { name: "吳嘉祐", desc: "AI調料包缺陷辨識系統" },
-  { name: "佘秉穎", desc: "AI調料包缺陷辨識系統" },
-];
+// D. 過濾與分群
+const phds         = allStudents.filter(s => s.status === 'active' && s.degree === 'phd');
+const masters      = allStudents.filter(s => s.status === 'active' && s.degree === 'master');
+const undergrads   = allStudents.filter(s => s.status === 'active' && s.degree === 'undergrad');
+const internationals = allStudents.filter(s => s.status === 'active' && s.degree === 'international');
+const graduates    = allStudents.filter(s => s.status === 'graduated');
 
-// 👇 🌟 自動將大學部成員依「專題題目」進行分組
-const groupedUndergrads = undergrads.reduce((groups, student) => {
-  if (!groups[student.desc]) {
-    groups[student.desc] = [];
-  }
-  groups[student.desc].push(student.name);
+// E. 碩士班：依入學年度分群（降冪）
+const mastersByYear = masters.reduce((map, student) => {
+  const yr = student.enrollmentYear ?? 0;
+  if (!map[yr]) map[yr] = [];
+  map[yr].push(student);
+  return map;
+}, {} as Record<number, typeof masters>);
+const sortedMasterYears = Object.keys(mastersByYear).map(Number).sort((a, b) => b - a);
+
+// E2. 博士班：依入學年度分群（降冪）
+const phdsByYear = phds.reduce((map, student) => {
+  const yr = student.enrollmentYear ?? 0;
+  if (!map[yr]) map[yr] = [];
+  map[yr].push(student);
+  return map;
+}, {} as Record<number, typeof phds>);
+const sortedPhdYears = Object.keys(phdsByYear).map(Number).sort((a, b) => b - a);
+
+// E3. 大學部：先依「入學年度」分群，再於各年度內依「專題」分群
+//    結構：{ 112: { "AI銀髮族...": [student, ...], ... }, 113: { ... } }
+const undergradByYear = undergrads.reduce((yearMap, student) => {
+  const yr = student.enrollmentYear ?? 0;
+  if (!yearMap[yr]) yearMap[yr] = {};
+  const projectName = student.project || '未分類專題';
+  if (!yearMap[yr][projectName]) yearMap[yr][projectName] = [];
+  yearMap[yr][projectName].push(student);
+  return yearMap;
+}, {} as Record<number, Record<string, typeof undergrads>>);
+
+// 入學年度由大到小降冪排列（最新的在最上面）
+const sortedUndergradYears = Object.keys(undergradByYear)
+  .map(Number)
+  .sort((a, b) => b - a);
+
+// F. 畢業生依畢業學年度分群（降冪）
+const groupedGraduates = graduates.reduce((groups, student) => {
+  const y = student.graduationYear ?? '未知年份';
+  const key = String(y);
+  if (!groups[key]) groups[key] = [];
+  groups[key].push(student);
   return groups;
-}, {});
-
-// 👇 外籍生
-const internationals = [];
+}, {} as Record<string, typeof graduates>);
+const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) - Number(a));
 
 ---
 
@@ -164,6 +282,13 @@ const internationals = [];
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
   <title>實驗室成員 | iCPS Lab 智慧網宇實體系統實驗室</title>
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(5px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in { animation: fadeIn 0.3s ease-in-out; }
+  </style>
 </head>
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
@@ -172,79 +297,58 @@ const internationals = [];
   <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
       <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
-        <!-- 高科大 Logo -->
         <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
         </a>
-        <!-- 分隔線 -->
         <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
-        <!-- 實驗室 Logo -->
         <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
         </a>
       </div>
 
-      <!-- 右側導覽連結 -->
-<div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-    <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>首頁</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span>
-  </a>
-  <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>關於 iCPS Lab</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
-  </a>
-
-  <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>最新消息</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
-  </a>
-
-  <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>活動花絮</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
-  </a>
-
-  <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>影音專區</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
-  </a>
-
-          <a href="/achievements"  class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>成果榮譽</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Achievements</span>
+      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
+        <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>首頁</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span>
         </a>
-
-  <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>實驗室成員</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
-  </a>
-          <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>常見問題</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span>
+        <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>關於 iCPS Lab</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
         </a>
+        <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>最新消息</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
+        </a>
+        <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>活動花絮</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
+        </a>
+        <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>影音專區</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
+        </a>
+        <a href="/achievements" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>成果榮譽</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Achievements</span>
+        </a>
+        <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>實驗室成員</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
+        </a>
+        <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>常見問題</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span>
+        </a>
+      </div>
 
-</div>
-
-      <!-- 👇 新增的手機版漢堡選單按鈕 (只在手機版顯示) -->
       <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
-
     </div>
 
-    <!-- 👇 新增的手機版下拉選單 (預設隱藏，位於 navbar 正下方) -->
     <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
-	  <a href="/" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">首頁</a>
+      <a href="/" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">首頁</a>
       <a href="/about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">關於 iCPS Lab</a>
-      <a href="/#news"class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">最新消息</a>
+      <a href="/#news" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">最新消息</a>
       <a href="/activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">活動花絮</a>
       <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">影音專區</a>
-	  <a href="/achievements" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">成果與榮譽</a>
+      <a href="/achievements" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">成果與榮譽</a>
       <a href="/members" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">實驗室成員</a>
-	  <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
+      <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
     </div>
   </nav>
 
@@ -257,10 +361,9 @@ const internationals = [];
     </div>
   </header>
 
-  <!-- 🔷 網站主體區域 -->
+  <!-- 🔷 主體 -->
   <main class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
 
-    <!-- 回首頁按鈕 -->
     <div class="mb-10">
       <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
@@ -269,34 +372,22 @@ const internationals = [];
     </div>
 
     <div class="space-y-16">
-      
-      <!-- 🔹 指導教授 (新增區塊) -->
+
+      <!-- 🔹 指導教授 -->
       <div>
         <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-[#3b5998] pl-3">指導教授 Principal Investigator</h3>
-        
-        <!-- 👑 指導教授資訊卡片 (套用首頁設計) -->
         <div class="bg-white border border-slate-200 shadow-sm rounded-sm">
-          
-          <!-- 上半部：照片與基本資訊 -->
           <div class="p-6 md:p-8 flex flex-col md:flex-row gap-8 lg:gap-12">
-            
-            <!-- 左側：照片 -->
             <div class="w-48 md:w-56 shrink-0 mx-auto md:mx-0">
               <img src="/images/professor.jpg" alt="張萬榮 教授" class="w-full h-auto object-cover border border-slate-200" onerror="this.src='/images/default-avatar.png';" />
             </div>
-            
-            <!-- 右側：資訊 -->
             <div class="flex-1">
-              
-              <!-- 姓名 -->
               <div class="mb-4 text-center md:text-left">
                 <h4 class="text-3xl font-bold text-slate-800 tracking-wider">
                   張萬榮 <span class="text-lg text-slate-500 font-normal ml-1">教授</span>
                 </h4>
                 <p class="text-[#8c9bb0] font-mono text-sm mt-2">Wan-Jung Chang, Ph.D.</p>
               </div>
-              
-              <!-- 聯絡方式 -->
               <div class="flex flex-col sm:flex-row flex-wrap items-center md:items-start justify-center md:justify-start gap-4 sm:gap-6 text-sm text-slate-600 mb-6">
                 <span class="flex items-center gap-2">
                   <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -307,30 +398,18 @@ const internationals = [];
                   校內分機：15672
                 </span>
               </div>
-
-              <!-- 外部連結 -->
               <div class="mb-8 text-center md:text-left">
                 <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 text-sm text-blue-600 hover:text-blue-800 transition">
                   <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                   查看教授詳細資訊 (論文發表、研究計畫、產學合作等)
                 </a>
               </div>
-
-              <!-- 分隔線 -->
               <div class="w-full h-px bg-slate-100 mb-6"></div>
-
-              <!-- 學歷與所屬組別 (雙欄) -->
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center sm:text-left">
-                <!-- 學歷 -->
                 <div>
                   <h5 class="text-xs text-[#94a3b8] mb-3 tracking-widest uppercase font-semibold">EDUCATION 學歷</h5>
-                  <p class="text-sm text-slate-700 leading-relaxed">
-                    國立成功大學 電機工程研究所<br />
-                    電腦與網路組 博士
-                  </p>
+                  <p class="text-sm text-slate-700 leading-relaxed">國立成功大學 電機工程研究所<br />電腦與網路組 博士</p>
                 </div>
-                
-                <!-- 所屬組別 -->
                 <div>
                   <h5 class="text-xs text-[#94a3b8] mb-3 tracking-widest uppercase font-semibold">AFFILIATIONS 所屬組別</h5>
                   <div class="flex flex-wrap justify-center sm:justify-start gap-2">
@@ -341,79 +420,28 @@ const internationals = [];
                   </div>
                 </div>
               </div>
-
             </div>
           </div>
-
-          <!-- 下半部：研究專長 -->
           <div class="bg-[#f8fafc] border-t border-slate-100 p-6 md:p-8">
             <h5 class="text-xs text-[#94a3b8] mb-6 tracking-widest uppercase font-semibold text-center md:text-left">RESEARCH INTERESTS 研究專長</h5>
-            
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-              
-              <!-- 專長 1 -->
-              <div class="flex items-start gap-3">
-                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
-                <div>
-                  <div class="text-sm text-slate-700 font-medium mb-1">雲端與智慧物聯網系統</div>
-                  <div class="text-[13px] text-[#94a3b8] font-mono">Cloud and AIoT Systems</div>
+              {[
+                ["雲端與智慧物聯網系統", "Cloud and AIoT Systems"],
+                ["無線感測網路與高速網路系統", "Wireless Sensor Networks & High-Speed Networks"],
+                ["人工智慧穿戴式裝置聯網系統", "Wearable Devices IoT Systems"],
+                ["人工智慧醫療聯網系統", "Artificial Intelligent Medical IoT (MIoT) Systems"],
+                ["人工智慧製造聯網系統", "Artificial Intelligent Industrial IoT (IIoT) Systems"],
+                ["擴增實境聯網系統", "Augmented Reality IoT (ARIoT) Systems"],
+                ["人工智慧機器人技術", "Artificial Intelligent Robotics"],
+              ].map(([zh, en]) => (
+                <div class="flex items-start gap-3">
+                  <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
+                  <div>
+                    <div class="text-sm text-slate-700 font-medium mb-1">{zh}</div>
+                    <div class="text-[13px] text-[#94a3b8] font-mono">{en}</div>
+                  </div>
                 </div>
-              </div>
-              
-              <!-- 專長 2 -->
-              <div class="flex items-start gap-3">
-                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
-                <div>
-                  <div class="text-sm text-slate-700 font-medium mb-1">無線感測網路與高速網路系統</div>
-                  <div class="text-[13px] text-[#94a3b8] font-mono">Wireless Sensor Networks & High-Speed Networks</div>
-                </div>
-              </div>
-
-              <!-- 專長 3 -->
-              <div class="flex items-start gap-3">
-                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
-                <div>
-                  <div class="text-sm text-slate-700 font-medium mb-1">人工智慧穿戴式裝置聯網系統</div>
-                  <div class="text-[13px] text-[#94a3b8] font-mono">Wearable Devices IoT Systems</div>
-                </div>
-              </div>
-
-              <!-- 專長 4 -->
-              <div class="flex items-start gap-3">
-                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
-                <div>
-                  <div class="text-sm text-slate-700 font-medium mb-1">人工智慧醫療聯網系統</div>
-                  <div class="text-[13px] text-[#94a3b8] font-mono">Artificial Intelligent Medical IoT (MIoT) Systems</div>
-                </div>
-              </div>
-
-              <!-- 專長 5 -->
-              <div class="flex items-start gap-3">
-                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
-                <div>
-                  <div class="text-sm text-slate-700 font-medium mb-1">人工智慧製造聯網系統</div>
-                  <div class="text-[13px] text-[#94a3b8] font-mono">Artificial Intelligent Industrial IoT (IIoT) Systems</div>
-                </div>
-              </div>
-
-              <!-- 專長 6 -->
-              <div class="flex items-start gap-3">
-                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
-                <div>
-                  <div class="text-sm text-slate-700 font-medium mb-1">擴增實境聯網系統</div>
-                  <div class="text-[13px] text-[#94a3b8] font-mono">Augmented Reality IoT (ARIoT) Systems</div>
-                </div>
-              </div>
-
-              <!-- 專長 7 -->
-              <div class="flex items-start gap-3">
-                <div class="w-1.5 h-1.5 bg-[#3b5998] mt-1.5 shrink-0"></div>
-                <div>
-                  <div class="text-sm text-slate-700 font-medium mb-1">人工智慧機器人技術</div>
-                  <div class="text-[13px] text-[#94a3b8] font-mono">Artificial Intelligent Robotics</div>
-                </div>
-              </div>
-
+              ))}
             </div>
           </div>
         </div>
@@ -427,16 +455,12 @@ const internationals = [];
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {assistants.map((person) => (
             <div class="bg-white border border-slate-200 p-5 flex flex-col sm:flex-row items-start gap-5 hover:shadow-md hover:border-blue-300 transition rounded-sm">
-              <img src={person.img} alt={person.name} class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-              
+              <img src={getAvatar(person.img, person.name)} alt={person.name} class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
               <div class="flex-1 w-full">
                 <div class="mb-4">
                   <h4 class="font-bold text-slate-900 text-lg leading-tight">{person.name}</h4>
-                  <span class="inline-block mt-1.5 text-[11px] font-bold tracking-widest text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
-                    {person.title}
-                  </span>
+                  <span class="inline-block mt-1.5 text-[11px] font-bold tracking-widest text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">{person.title}</span>
                 </div>
-                
                 <div class="mb-4">
                   <p class="text-xs font-bold text-slate-500 mb-2 flex items-center gap-1.5">
                     <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>
@@ -451,7 +475,6 @@ const internationals = [];
                     ))}
                   </ul>
                 </div>
-                
                 <div class="space-y-2 pt-4 border-t border-slate-100 text-[13px] text-slate-600">
                   <p class="flex items-center gap-2">
                     <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z"></path></svg>
@@ -470,10 +493,15 @@ const internationals = [];
 
       <hr class="border-slate-200" />
 
-      <!-- 🔹 學生 (使用頁籤分類) -->
+      <!-- 🔹 學生 -->
       <div>
-        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">學生 Students</h3>
-        
+        <div class="flex items-end justify-between mb-6">
+          <h3 class="text-xl font-bold text-slate-800 border-l-4 border-slate-300 pl-3">學生 Students</h3>
+          <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 shadow-sm hidden sm:block">
+            目前為 {currentAcYear} 學年度
+          </span>
+        </div>
+
         <!-- 頁籤選單 -->
         <div class="border-b border-slate-200 mb-8 overflow-x-auto">
           <nav class="flex space-x-2 md:space-x-8 min-w-max px-1" aria-label="Tabs">
@@ -490,32 +518,52 @@ const internationals = [];
               外籍生 ({internationals.length})
             </button>
             <button class="tab-btn border-transparent text-slate-500 hover:text-slate-700 hover:border-slate-300 whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base transition-colors duration-200" data-target="tab-graduate">
-              畢業生 ({graduates.length})
+              歷屆畢業生 ({graduates.length})
             </button>
           </nav>
         </div>
 
-        <!-- 頁籤內容區塊 -->
+        <!-- 頁籤內容 -->
         <div class="min-h-[300px]">
-          
-          <!-- [博士班] 內容 -->
-          <div id="tab-phd" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
+
+          <!-- ═══ 博士班 (依入學年度分群) ═══ -->
+          <div id="tab-phd" class="tab-content hidden animate-fade-in">
             {phds.length > 0 ? (
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {phds.map((person) => (
-                  <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm flex-col h-full">
-                    <div class="flex items-start gap-4 w-full">
-                      <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-                      <div class="flex-1">
-                        <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
-                        <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.desc}</p>
-                      </div>
+              <div class="space-y-10">
+                {sortedPhdYears.map((year) => (
+                  <div>
+                    <div class="flex items-center gap-3 mb-5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-purple-500 shrink-0"></span>
+                      <h4 class="text-lg font-bold text-slate-700">{year} 學年度入學</h4>
+                      <span class="text-xs font-bold text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-100">
+                        {getGradeText('phd', year)}
+                      </span>
+                      <span class="text-xs text-slate-400 font-mono bg-slate-100 px-2 py-0.5 rounded">
+                        {phdsByYear[year].length} 人
+                      </span>
                     </div>
-                    {person.summary && (
-                      <div class="w-full mt-3 bg-slate-50/70 border border-slate-100 p-3 rounded-md mt-auto">
-                        <p class="text-[12px] text-slate-500 leading-relaxed">{person.summary}</p>
-                      </div>
-                    )}
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pl-5 border-l-2 border-slate-200">
+                      {phdsByYear[year].map((person) => (
+                        <div class="bg-white border border-slate-200 p-5 flex flex-col h-full hover:shadow-md hover:border-purple-300 transition rounded-sm">
+                          <div class="flex items-start gap-4 w-full">
+                            <img src={getAvatar(person.img, person.name)} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
+                            <div class="flex-1">
+                              <div class="flex items-center gap-2 flex-wrap mb-1.5">
+                                <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
+                                <span class="text-[11px] font-bold tracking-wide text-purple-700 bg-purple-50 px-2 py-0.5 rounded border border-purple-100">{getGradeText('phd', person.enrollmentYear)}</span>
+                                <span class="text-[11px] font-bold tracking-wide text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">{person.enrollmentYear} 入學</span>
+                              </div>
+                              <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed"><span class="font-semibold text-slate-700">研究題目：</span>{person.project}</p>
+                            </div>
+                          </div>
+                          {person.summary && (
+                            <div class="w-full mt-3 bg-slate-50/70 border border-slate-100 p-3 rounded-md mt-auto">
+                              <p class="text-[12px] text-slate-500 leading-relaxed">{person.summary}</p>
+                            </div>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 ))}
               </div>
@@ -531,86 +579,140 @@ const internationals = [];
             )}
           </div>
 
-          <!-- [碩士班] 內容 -->
-          <div id="tab-master" class="tab-content block animate-[fadeIn_0.3s_ease-in-out]">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {masters.map((person) => (
-                <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm flex-col h-full">
-                  <div class="flex items-start gap-4 w-full">
-                    <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-                    <div class="flex-1">
-                      <div class="flex items-center gap-2 flex-wrap mb-1.5">
-                        <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
-                        <span class="inline-block text-[11px] font-bold tracking-wide text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
-                          {person.grade}
-                        </span>
-                        <span class="inline-block text-[11px] font-bold tracking-wide text-slate-600 bg-slate-100 px-2 py-0.5 rounded border border-slate-200">
-                          {person.enrollment} 學年度入學
-                        </span>
-                      </div>
-                      <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed">
-                        <span class="font-semibold text-slate-700">研究題目：</span>{person.desc}
-                      </p>
+          <!-- ═══ 碩士班 (依入學年度分群) ═══ -->
+          <div id="tab-master" class="tab-content block animate-fade-in">
+            {masters.length > 0 ? (
+              <div class="space-y-10">
+                {sortedMasterYears.map((year) => (
+                  <div>
+                    <div class="flex items-center gap-3 mb-5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
+                      <h4 class="text-lg font-bold text-slate-700">{year} 學年度入學</h4>
+                      <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                        {getGradeText('master', year)}
+                      </span>
+                      <span class="text-xs text-slate-400 font-mono bg-slate-100 px-2 py-0.5 rounded">
+                        {mastersByYear[year].length} 人
+                      </span>
                     </div>
-                  </div>
-                  {person.summary && (
-                    <div class="w-full mt-4 bg-slate-50/80 border border-slate-100 p-3 rounded-md mt-auto">
-                      <p class="text-[13px] text-slate-500 leading-relaxed">{person.summary}</p>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <!-- 🌟 [大學部專題生] 內容 -->
-          <div id="tab-undergrad" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {Object.entries(groupedUndergrads).map(([topic, members]) => (
-                <div class="bg-white border border-slate-200 p-5 rounded-md hover:border-blue-400 hover:shadow-md transition duration-300 flex flex-col h-full">
-                  <div class="flex items-start gap-3 mb-3 flex-1">
-                    <div class="bg-blue-50 p-2 rounded shrink-0">
-                      <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 class="font-bold text-slate-800 text-[15px] leading-snug pt-0.5">{topic}</h4>
-                      <p class="text-[12px] text-slate-500 mt-1">專題小組 ({(members as any[]).length} 人)</p>
-                    </div>
-                  </div>
-                  
-                  <div class="mb-4 flex-1">
-                    <p class="text-[13.5px] text-slate-600 leading-relaxed">
-                      {(undergradProjectSummaries as any)[topic] || "尚無此專題的詳細介紹。"}
-                    </p>
-                  </div>
-
-                  <div class="border-t border-slate-100 pt-4 mt-auto">
-                    <div class="flex flex-wrap gap-2">
-                      {(members as any[]).map(name => (
-                        <span class="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 text-[13px] font-medium px-2.5 py-1 rounded-full hover:bg-slate-100 transition">
-                          <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                          {name}
-                        </span>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pl-5 border-l-2 border-slate-200">
+                      {mastersByYear[year].map((person) => (
+                        <div class="bg-white border border-slate-200 p-5 flex flex-col h-full hover:shadow-md hover:border-blue-300 transition rounded-sm">
+                          <div class="flex items-start gap-4 w-full">
+                            <img src={getAvatar(person.img, person.name)} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
+                            <div class="flex-1">
+                              <div class="flex items-center gap-2 flex-wrap mb-1.5">
+                                <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
+                                <span class="text-[11px] font-bold tracking-wide text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">{getGradeText('master', person.enrollmentYear)}</span>
+                              </div>
+                              <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed">
+                                <span class="font-semibold text-slate-700">研究題目：</span>{person.project}
+                              </p>
+                            </div>
+                          </div>
+                          {person.summary && (
+                            <div class="w-full mt-4 bg-slate-50/80 border border-slate-100 p-3 rounded-md mt-auto">
+                              <p class="text-[13px] text-slate-500 leading-relaxed">{person.summary}</p>
+                            </div>
+                          )}
+                        </div>
                       ))}
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div class="bg-slate-50 border-2 border-dashed border-slate-300 p-12 flex flex-col items-center justify-center text-center rounded-sm mx-auto max-w-3xl mt-4">
+                <span class="text-5xl mb-4">🎓</span>
+                <h4 class="text-xl font-bold text-slate-800 mb-3">目前無碩士班成員</h4>
+              </div>
+            )}
           </div>
 
-          <!-- [外籍生] 內容 -->
-          <div id="tab-international" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
+          <!-- ═══ 大學部 (依入學年度 → 再依專題分群) ═══ -->
+          <div id="tab-undergrad" class="tab-content hidden animate-fade-in">
+            {undergrads.length > 0 ? (
+              <div class="space-y-10">
+                {sortedUndergradYears.map((year) => {
+                  // 計算此入學年度對應的預計畢業學年
+                  const expectedGradYear = year + 3; // 大學部 4 年制，第 4 年畢業
+                  const projectsInYear = undergradByYear[year];
+
+                  return (
+                    <div>
+                      {/* 年度標題列 */}
+                      <div class="flex items-center gap-3 mb-5">
+                        <div class="flex items-center gap-2">
+                          <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
+                          <h4 class="text-lg font-bold text-slate-700">
+                            {year} 學年度入學
+                          </h4>
+                        </div>
+                        <span class="text-xs text-slate-400 font-mono bg-slate-100 px-2 py-0.5 rounded">
+                          預計 {expectedGradYear} 學年度畢業
+                        </span>
+                        <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded border border-blue-100">
+                          {getGradeText('undergrad', year)}
+                        </span>
+                      </div>
+
+                      {/* 此年度的各專題卡片 */}
+                      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pl-5 border-l-2 border-slate-200">
+                        {Object.entries(projectsInYear).map(([topic, members]) => (
+                          <div class="bg-white border border-slate-200 p-5 rounded-md hover:border-blue-400 hover:shadow-md transition duration-300 flex flex-col h-full">
+                            <div class="flex items-start gap-3 mb-3">
+                              <div class="bg-blue-50 p-2 rounded shrink-0">
+                                <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                </svg>
+                              </div>
+                              <div>
+                                <h5 class="font-bold text-slate-800 text-[15px] leading-snug pt-0.5">{topic}</h5>
+                                <p class="text-[12px] text-slate-500 mt-1">專題小組 ({(members as any[]).length} 人)</p>
+                              </div>
+                            </div>
+
+                            <div class="mb-4 flex-1">
+                              <p class="text-[13.5px] text-slate-600 leading-relaxed">
+                                {undergradProjectSummaries[topic] || "尚無此專題的詳細介紹。"}
+                              </p>
+                            </div>
+
+                            <div class="border-t border-slate-100 pt-4 mt-auto">
+                              <div class="flex flex-wrap gap-2">
+                                {(members as any[]).map((m: any) => (
+                                  <span class="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 text-[13px] font-medium px-2.5 py-1 rounded-full hover:bg-slate-100 transition">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
+                                    {m.name}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div class="bg-slate-50 border-2 border-dashed border-slate-300 p-12 flex flex-col items-center justify-center text-center rounded-sm mx-auto max-w-3xl mt-4">
+                <span class="text-5xl mb-4">🎓</span>
+                <h4 class="text-xl font-bold text-slate-800 mb-3">目前無大學部成員</h4>
+              </div>
+            )}
+          </div>
+
+          <!-- ═══ 外籍生 ═══ -->
+          <div id="tab-international" class="tab-content hidden animate-fade-in">
             {internationals.length > 0 ? (
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {internationals.map((person) => (
                   <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm">
-                    <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
+                    <img src={getAvatar(person.img, person.name)} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
                     <div class="flex-1">
                       <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
-                      <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed">{person.desc}</p>
+                      <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed">{person.project}</p>
                     </div>
                   </div>
                 ))}
@@ -627,26 +729,33 @@ const internationals = [];
             )}
           </div>
 
-          <!-- [畢業生] 內容 -->
-          <div id="tab-graduate" class="tab-content hidden animate-[fadeIn_0.3s_ease-in-out]">
+          <!-- ═══ 歷屆畢業生 ═══ -->
+          <div id="tab-graduate" class="tab-content hidden animate-fade-in">
             {graduates.length > 0 ? (
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                {graduates.map((person) => (
-                  <div class="bg-white border border-slate-200 p-5 flex items-start gap-4 hover:shadow-md hover:border-blue-300 transition rounded-sm flex-col h-full">
-                    <div class="flex items-start gap-4 w-full">
-                      <img src={person.img} alt={person.name} class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
-                      <div class="flex-1">
-                        <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
-                        <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed">
-                          <span class="font-semibold text-slate-700">研究題目：</span>{person.desc}
-                        </p>
-                      </div>
+              <div class="space-y-10">
+                {sortedGradYears.map((year) => (
+                  <div>
+                    <h4 class="text-lg font-bold text-slate-700 mb-4 flex items-center gap-2">
+                      <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                      {year === '未知年份' ? year : `${year} 學年度畢業`}
+                      <span class="text-sm font-normal text-slate-400">({groupedGraduates[year].length}人)</span>
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                      {groupedGraduates[year].map((person) => (
+                        <div class="bg-white border border-slate-200 p-4 flex items-center gap-4 rounded-sm hover:border-slate-300 transition">
+                          <img src={getAvatar(person.img, person.name)} alt={person.name} class="w-12 h-12 rounded-full object-cover border border-slate-200" onerror="this.src='/images/default-avatar.png';" />
+                          <div>
+                            <h5 class="font-bold text-slate-800">
+                              {person.name}
+                              <span class="text-[11px] font-normal text-slate-500 ml-1 border border-slate-200 px-1.5 py-0.5 rounded">
+                                {person.degree === 'master' ? '碩士' : person.degree === 'phd' ? '博士' : '大學部'}
+                              </span>
+                            </h5>
+                            <p class="text-[12px] text-slate-500 mt-1 truncate max-w-[180px]" title={person.project}>{person.project || '無論文紀錄'}</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
-                    {person.summary && (
-                      <div class="w-full mt-4 bg-slate-50/80 border border-slate-100 p-3 rounded-md mt-auto">
-                        <p class="text-[13px] text-slate-500 leading-relaxed">{person.summary}</p>
-                      </div>
-                    )}
                   </div>
                 ))}
               </div>
@@ -655,7 +764,7 @@ const internationals = [];
                 <span class="text-5xl mb-4">🎓</span>
                 <h4 class="text-xl font-bold text-slate-800 mb-3">目前尚無畢業生資料</h4>
                 <p class="text-slate-500 text-base leading-relaxed">
-                  待第一屆學生畢業後，將於此處展示歷屆畢業生名單。
+                  系統將於學生畢業時，自動將紀錄彙整至此，並依年度展示。
                 </p>
               </div>
             )}
@@ -667,7 +776,7 @@ const internationals = [];
     </div>
   </main>
 
-  <!-- 🔷 頁尾 (Footer) -->
+  <!-- 🔷 頁尾 -->
   <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
@@ -685,7 +794,6 @@ const internationals = [];
         <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
     </div>
-    
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
       <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
         <p class="text-xs text-slate-500 leading-normal">
@@ -694,7 +802,6 @@ const internationals = [];
         <p class="text-xs text-slate-500 hidden sm:block">|</p>
         <p class="text-xs text-slate-500">All rights reserved.</p>
       </div>
-
       <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -707,29 +814,23 @@ const internationals = [];
     </div>
   </footer>
 
-  <!-- 🔷 控制頁籤切換、計數器與手機導覽列的 JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      
-      // --- 0. 手機版導覽列 (漢堡選單) 邏輯 ---
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const hamburgerIcon = document.getElementById('hamburger-icon');
 
+      // --- 手機版漢堡選單 ---
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu    = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
       if (mobileMenuBtn && mobileMenu && hamburgerIcon) {
         mobileMenuBtn.addEventListener('click', () => {
           const isHidden = mobileMenu.classList.contains('hidden');
-          if (isHidden) {
-            mobileMenu.classList.remove('hidden');
-            hamburgerIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-          } else {
-            mobileMenu.classList.add('hidden');
-            hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-          }
+          mobileMenu.classList.toggle('hidden', !isHidden);
+          hamburgerIcon.setAttribute('d', isHidden
+            ? 'M6 18L18 6M6 6l12 12'
+            : 'M4 6h16M4 12h16M4 18h16'
+          );
         });
-
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
+        mobileMenu.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
             hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
@@ -737,96 +838,55 @@ const internationals = [];
         });
       }
 
-      // --- 1. 頁籤切換邏輯 ---
-      const tabBtns = document.querySelectorAll('.tab-btn');
+      // --- 頁籤切換 ---
+      const tabBtns     = document.querySelectorAll('.tab-btn');
       const tabContents = document.querySelectorAll('.tab-content');
-
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           tabBtns.forEach(b => {
             b.classList.remove('border-blue-700', 'text-blue-700', 'active');
             b.classList.add('border-transparent', 'text-slate-500');
           });
-
           btn.classList.remove('border-transparent', 'text-slate-500');
           btn.classList.add('border-blue-700', 'text-blue-700', 'active');
 
-          tabContents.forEach(content => {
-            content.classList.remove('block');
-            content.classList.add('hidden');
-          });
-
-          const targetId = btn.getAttribute('data-target');
-          const targetContent = document.getElementById(targetId);
-          if (targetContent) {
-            targetContent.classList.remove('hidden');
-            targetContent.classList.add('block');
-          }
+          tabContents.forEach(c => { c.classList.remove('block'); c.classList.add('hidden'); });
+          const target = document.getElementById(btn.getAttribute('data-target') ?? '');
+          if (target) { target.classList.remove('hidden'); target.classList.add('block'); }
         });
       });
 
-      // --- 2. 智慧訪客計數器邏輯 ---
+      // --- 訪客計數器 ---
       const initCounter = async () => {
-        const counterEl = document.getElementById('visitor-count');
-        if (!counterEl) return;
-
-        const namespace = 'icpslab_site';
-        const key = 'visits';
-        const localCountKey = 'icps_saved_count';
-        const lastVisitTimeKey = 'icps_last_visit_time';
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-
-        let currentCount = localStorage.getItem(localCountKey) || '------';
-        
-        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
+        const el = document.getElementById('visitor-count');
+        if (!el) return;
+        const namespace = 'icpslab_site', key = 'visits';
+        const localCountKey = 'icps_saved_count', lastVisitKey = 'icps_last_visit_time';
+        const TTL = 24 * 60 * 60 * 1000;
+        let current = localStorage.getItem(localCountKey) ?? '------';
+        const lastVisit = localStorage.getItem(lastVisitKey);
         const now = Date.now();
-        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
-        
         try {
-          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          
-          if (!hasVisitedWithin24Hours) {
-            const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API 回應錯誤');
-            
-            const data = await response.json();
-            currentCount = String(data.count).padStart(6, '0');
-            
-            localStorage.setItem(lastVisitTimeKey, now.toString());
-            localStorage.setItem(localCountKey, currentCount);
-            counterEl.textContent = currentCount;
-            
+          const base = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          if (!lastVisit || now - parseInt(lastVisit, 10) >= TTL) {
+            const r = await fetch(base + '/up');
+            if (!r.ok) throw new Error();
+            const d = await r.json();
+            current = String(d.count).padStart(6, '0');
+            localStorage.setItem(lastVisitKey, now.toString());
+            localStorage.setItem(localCountKey, current);
           } else {
             try {
-              const response = await fetch(url);
-              if (response.ok) {
-                const data = await response.json();
-                currentCount = String(data.count).padStart(6, '0');
-                localStorage.setItem(localCountKey, currentCount);
-              }
-            } catch (e) {
-              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
-            }
-            counterEl.textContent = currentCount;
+              const r = await fetch(base);
+              if (r.ok) { const d = await r.json(); current = String(d.count).padStart(6, '0'); localStorage.setItem(localCountKey, current); }
+            } catch { /* 使用本地暫存 */ }
           }
-          
-        } catch (error) {
-          console.error('計數器載入異常:', error);
-          counterEl.textContent = currentCount;
-        }
+        } catch { /* 靜默失敗 */ }
+        el.textContent = current;
       };
-
       initCounter();
     });
   </script>
-
-  <!-- 簡單的淡入動畫設定 -->
-  <style>
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
 
 </body>
 </html>
