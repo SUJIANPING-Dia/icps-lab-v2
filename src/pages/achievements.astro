@@ -32,7 +32,6 @@ import achievements from "../data/achievements.json";
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
 
-  <!-- 🔷 頂部導覽列 (Navbar) -->
   <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
       <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
@@ -99,7 +98,6 @@ import achievements from "../data/achievements.json";
     </div>
   </nav>
 
-  <!-- 🔷 頁面標題區 -->
   <header class="bg-[#0f172a] py-12 md:py-16 text-center border-b-4 border-blue-700 relative overflow-hidden">
     <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
     <div class="relative z-10 px-4">
@@ -125,12 +123,10 @@ import achievements from "../data/achievements.json";
     </div>
   </header>
 
-  <!-- 🔷 網站主體區域 -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-20 min-h-[50vh]">
 
     <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
       
-      <!-- 左側/上方 分類導覽列 (Tabs) -->
       <aside class="w-full lg:w-1/4 shrink-0" id="sidebar">
         <div class="lg:sticky lg:top-8">
           
@@ -169,7 +165,6 @@ import achievements from "../data/achievements.json";
         </div>
       </aside>
 
-      <!-- 右側/下方 內容區 -->
       <section class="flex-1 w-full" id="content-area">
         
         <div id="no-results-msg" class="hidden text-center py-16 px-6 bg-white rounded-xl border border-dashed border-slate-300">
@@ -197,7 +192,6 @@ import achievements from "../data/achievements.json";
               <div class="space-y-6">
                 {group.yearlyData.map((yearBlock, yearIndex) => (
                   <div class="year-block bg-white rounded-xl border border-slate-100 overflow-hidden shadow-sm">
-                    <!-- 年份標題 (改為可點擊的摺疊按鈕) -->
                     <button 
                       class="year-toggle-btn w-full flex items-center justify-between px-5 py-4 bg-slate-50/50 hover:bg-slate-100 transition-colors group"
                       data-target={`year-content-${groupIndex}-${yearIndex}`}
@@ -216,24 +210,25 @@ import achievements from "../data/achievements.json";
                       </svg>
                     </button>
 
-                    <!-- 該年份的項目列表 -->
                     <div 
                       id={`year-content-${groupIndex}-${yearIndex}`} 
                       class={`year-content p-5 space-y-4 border-t border-slate-100 ${yearIndex === 0 ? '' : 'hidden'}`}
                     >
                     {yearBlock.items.map((item) => {
-                        // 判斷目前這個分類的類型
+                        // 判斷目前這個分類的類型 (新增 isPatent)
                         const isPublication = group.type === "publication";
                         const isAward = group.type === "award";
                         const isProject = group.type === "project";
+                        const isPatent = group.type === "patent"; 
 
-                        // 移除 "指導學生參加" 以及末尾的括號金額 (例如：(330,000元))
-                        const cleanProjectName = item.project
-                          ?.replace(/指導學生參加\s*/g, '')
-                          ?.replace(/\([\d,]+元\)/g, '')
-                          ?.trim() || "";
+                        // 優先使用 content，若無則降級使用 project 欄位，並過濾掉不必要的文字
+                        const rawContent = item.content || item.project || "";
+                        const cleanProjectName = rawContent
+                          .replace(/指導學生參加\s*/g, '')
+                          .replace(/\([\d,]+元\)/g, '')
+                          .trim();
 
-                        // 搜尋用的文字串 (使用清理過的內容確保精準度)
+                        // 搜尋用的文字串
                         const searchStr = isPublication 
                           ? `${item.title} ${item.authors} ${item.venue} ${yearBlock.year}`.toLowerCase()
                           : `${cleanProjectName} ${yearBlock.year}`.toLowerCase();
@@ -255,10 +250,10 @@ import achievements from "../data/achievements.json";
                               </div>
 
                             ) : (
-                              /* ----------- 2. 獲獎紀錄與研究計畫樣式 (最簡資料版) ----------- */
+                              /* ----------- 2. 獲獎、計畫與專利樣式 (最簡資料版) ----------- */
                               <div class="flex items-start gap-5 p-5 rounded-xl bg-white border border-slate-200 hover:border-blue-400 hover:shadow-lg transition duration-300 group">
                                 <div class="flex flex-col items-center justify-center shrink-0 w-12 h-12 bg-slate-50 rounded-lg border border-slate-100 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
-                                  <span class="text-2xl">{isAward ? "🏆" : "💡"}</span>
+                                  <span class="text-2xl">{isAward ? "🏆" : isPatent ? "📜" : "💡"}</span>
                                 </div>
                                 <div class="flex-1 min-w-0">
                                   <div class="text-slate-700 font-bold leading-relaxed text-lg">
@@ -289,7 +284,6 @@ import achievements from "../data/achievements.json";
 
   </main>
 
-  <!-- 🔷 頁尾 (Footer) -->
   <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
@@ -329,7 +323,6 @@ import achievements from "../data/achievements.json";
     </div>
   </footer>
 
-  <!-- 🔷 控制邏輯的 JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       
