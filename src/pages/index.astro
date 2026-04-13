@@ -3,6 +3,44 @@ import "../styles/global.css";
 // 👇 移除了 Members 的匯入，只保留 News 和 Videos
 import News from "../components/News.astro";
 import Videos from "../components/Videos.astro";
+// 🌟 讀取成就資料，用於自動計算首頁統計數據
+import achievements from "../data/achievements.json";
+
+// --- 📊 數據自動統計邏輯 (基於 achievements.json) ---
+
+// 1. 國際期刊數量
+const journalGroup = achievements.find(a => a.category && a.category.includes("國際期刊"));
+const journalCount = journalGroup ? journalGroup.yearlyData.reduce((sum, year) => sum + year.items.length, 0) : 0;
+
+// 2. 國際研討會數量
+const confGroup = achievements.find(a => a.category && a.category.includes("國際研討會"));
+const confCount = confGroup ? confGroup.yearlyData.reduce((sum, year) => sum + year.items.length, 0) : 0;
+
+// 3. 合作廠商數量 (從計畫描述中提取不重複的公司/醫院/機構名稱)
+const projectGroup = achievements.find(a => a.type === "project");
+const partners = new Set();
+projectGroup?.yearlyData.forEach(year => {
+  year.items.forEach(item => {
+    // 匹配包含「公司」、「企業」、「醫院」、「中心」、「學會」、「局」等關鍵字
+    const match = item.project?.match(/([^,，、\s『「]+(?:公司|企業|醫院|中心|學會|局))/);
+    if (match) partners.add(match[1].trim());
+  });
+});
+const partnerCount = partners.size || 40; 
+
+// 4. 計畫總金額彙整
+let totalAmountValue = 0;
+projectGroup?.yearlyData.forEach(year => {
+  year.items.forEach(item => {
+    // 將 "1,200,000元" 轉換為數字
+    const num = parseInt(item.amount?.replace(/[^0-9]/g, '') || "0");
+    totalAmountValue += num;
+  });
+});
+// 格式化顯示 (例如: 1.2 億+)
+const totalAmountFormatted = totalAmountValue > 100000000 
+  ? `${(totalAmountValue / 100000000).toFixed(1)} 億+` 
+  : `${Math.floor(totalAmountValue / 10000)} 萬+`;
 ---
 
 <html lang="zh-TW" class="scroll-smooth">
@@ -30,7 +68,12 @@ import Videos from "../components/Videos.astro";
         <!-- 高科大 Logo -->
         <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <!-- 依靠高度自動縮放即可，移除多餘的 max-w 限制 -->
-          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
+          <img 
+            src="/images/nkust-logo.png" 
+            alt="NKUST 國立高雄科技大學" 
+            class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" 
+            onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" 
+          />
         </a>
         
         <!-- 分隔線 (縮小間距保持精緻感) -->
@@ -38,58 +81,60 @@ import Videos from "../components/Videos.astro";
 
         <!-- 實驗室 Logo -->
         <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
+          <img 
+            src="/images/sicp-logo.png" 
+            alt="iCPS Lab 智慧網宇實體系統實驗室" 
+            class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" 
+            onerror="this.style.display='none';" 
+          />
         </a>
         
       </div>
 
       <!-- 右側導覽連結 -->
+      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
+        <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>首頁</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span>
+        </a>
+        <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>關於 iCPS Lab</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
+        </a>
 
-<div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-    <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>首頁</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span>
-  </a>
-  <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>關於 iCPS Lab</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
-  </a>
+        <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>最新消息</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
+        </a>
 
-  <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>最新消息</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
-  </a>
+        <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>活動花絮</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
+        </a>
 
-  <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>活動花絮</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
-  </a>
+        <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>影音專區</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
+        </a>
 
-  <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>影音專區</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
-  </a>
-
-          <a href="/achievements"  class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+        <a href="/achievements" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
           <span>成果榮譽</span>
           <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Achievements</span>
         </a>
 
-  <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>實驗室成員</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
-  </a>
-          <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+        <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>實驗室成員</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
+        </a>
+        <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
           <span>常見問題</span>
           <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span>
         </a>
-
-</div>
+      </div>
 
       <!-- 👇 新增的手機版漢堡選單按鈕 (只在手機版顯示) -->
       <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <!-- 預設為三條線 -->
           <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
@@ -98,26 +143,22 @@ import Videos from "../components/Videos.astro";
 
     <!-- 👇 新增的手機版下拉選單 (預設隱藏，位於 navbar 正下方) -->
     <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
-	  <a href="/" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">首頁</a>
+      <a href="/" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">首頁</a>
       <a href="/about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">關於 iCPS Lab</a>
       <a href="/#news"class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">最新消息</a>
       <a href="/activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">活動花絮</a>
       <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">影音專區</a>
-	  <a href="/achievements" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">成果與榮譽</a>
+      <a href="/achievements" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">成果與榮譽</a>
       <a href="/members" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">實驗室成員</a>
-	  <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
+      <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
     </div>
   </nav>
 
-  <!-- 🔷 封面視覺 (Hero Section) - 最終完美修復方案 -->
-  <!-- 👇 【修改處】捨棄 flex-col，改回原本的滿版堆疊，高度完全由 aspect 比例決定 -->
+  <!-- 🔷 封面視覺 (Hero Section) -->
   <header class="relative w-full bg-[#0f172a] overflow-hidden border-b-4 border-blue-700 aspect-[16/9] sm:aspect-[21/9] lg:aspect-[12/5]">
     
     <!-- 輪播圖片容器 (滿版背景) -->
     <div id="hero-slider" class="absolute inset-0 w-full h-full z-10 group/slider">
-      <!-- 
-        【關鍵設定】保持 object-left，確保圖片中左邊的內建文字不會被裁掉。
-      -->
       <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
       <img src="/images/hero-bg-3.jpg" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
       <img src="/images/hero-bg-4.png" alt="實驗室背景 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
@@ -136,13 +177,11 @@ import Videos from "../components/Videos.astro";
       </button>
     </div>
 
-    <!-- 漸層遮罩：避免某些背景圖太亮導致 HTML 文字看不清 -->
+    <!-- 漸層遮罩 -->
     <div class="absolute inset-0 z-10 bg-gradient-to-t from-[#0f172a]/80 via-[#0f172a]/20 to-transparent pointer-events-none"></div>
 
     <!-- 文字內容區塊 -->
-    <!-- 👇 【重要】改為 absolute 浮動定位。這樣文字消失時就不會留下黑色空白區塊 -->
     <div class="absolute inset-0 z-20 w-full h-full max-w-7xl mx-auto px-6 py-6 sm:py-10 flex flex-col justify-end lg:justify-center pointer-events-none">
-      
       <div id="hero-text" class="w-full text-center md:text-left transition-opacity duration-1000 ease-in-out opacity-100 pointer-events-auto">
         <div class="inline-block px-3 py-1 mb-2 sm:mb-6 border border-slate-500/50 text-slate-200 text-[10px] sm:text-xs font-bold tracking-widest uppercase rounded bg-slate-900/50 backdrop-blur-md">
           Intelligent Cyber-Physical Systems Laboratory
@@ -154,15 +193,71 @@ import Videos from "../components/Videos.astro";
           AI × Healthcare × Smart Manufacturing
         </p>
       </div>
-      
     </div>
   </header>
+
+  <!-- 🌟 實驗室里程碑數據統計區 (深色橫帶，銜接 Hero) -->
+  <section class="bg-[#0f172a] border-b border-slate-700/60">
+    <div class="max-w-7xl mx-auto px-6 py-0">
+      <div class="grid grid-cols-2 lg:grid-cols-4 divide-x divide-slate-700/60 divide-y lg:divide-y-0">
+
+        <!-- 國際期刊論文 -->
+        <div class="group flex flex-col sm:flex-row items-center sm:items-start gap-4 px-6 py-8 lg:px-10 transition-colors duration-300 hover:bg-white/[0.04]">
+          <div class="shrink-0 w-10 h-10 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-lg group-hover:bg-blue-500/20 transition-colors duration-300">
+            📚
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="text-3xl font-black text-white tabular-nums leading-none mb-1.5">{journalCount}</div>
+            <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.18em] leading-tight">國際期刊論文</div>
+            <div class="text-[9px] text-slate-600 mt-0.5 tracking-wider hidden sm:block">Journal Papers</div>
+          </div>
+        </div>
+
+        <!-- 國際研討會 -->
+        <div class="group flex flex-col sm:flex-row items-center sm:items-start gap-4 px-6 py-8 lg:px-10 transition-colors duration-300 hover:bg-white/[0.04]">
+          <div class="shrink-0 w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-lg group-hover:bg-indigo-500/20 transition-colors duration-300">
+            🌐
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="text-3xl font-black text-white tabular-nums leading-none mb-1.5">{confCount}</div>
+            <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.18em] leading-tight">國際研討會</div>
+            <div class="text-[9px] text-slate-600 mt-0.5 tracking-wider hidden sm:block">Conferences</div>
+          </div>
+        </div>
+
+        <!-- 合作廠商/機構 -->
+        <div class="group flex flex-col sm:flex-row items-center sm:items-start gap-4 px-6 py-8 lg:px-10 transition-colors duration-300 hover:bg-white/[0.04]">
+          <div class="shrink-0 w-10 h-10 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-lg group-hover:bg-emerald-500/20 transition-colors duration-300">
+            🤝
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="text-3xl font-black text-white tabular-nums leading-none mb-1.5">{partnerCount}+</div>
+            <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.18em] leading-tight">合作廠商/機構</div>
+            <div class="text-[9px] text-slate-600 mt-0.5 tracking-wider hidden sm:block">Industry Partners</div>
+          </div>
+        </div>
+
+        <!-- 計畫總核定金額 -->
+        <div class="group flex flex-col sm:flex-row items-center sm:items-start gap-4 px-6 py-8 lg:px-10 transition-colors duration-300 hover:bg-white/[0.04]">
+          <div class="shrink-0 w-10 h-10 rounded-lg bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-lg group-hover:bg-amber-500/20 transition-colors duration-300">
+            💰
+          </div>
+          <div class="text-center sm:text-left">
+            <div class="text-3xl font-black text-white tabular-nums leading-none mb-1.5">{totalAmountFormatted}</div>
+            <div class="text-[10px] font-semibold text-slate-400 uppercase tracking-[0.18em] leading-tight">計畫總核定金額</div>
+            <div class="text-[9px] text-slate-600 mt-0.5 tracking-wider hidden sm:block">Total Grant Funding</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 
   <!-- 🔷 網站主體區域 -->
   <main class="max-w-7xl mx-auto px-6 py-16 space-y-20 relative z-20">
     <News />
     
-    <!-- 👇 團隊成員區塊 -->
+    <!-- 👇 團隊成員區塊 (100% 完整復原包含 7 項專長) -->
     <section id="members" class="scroll-mt-24">
       
       <!-- 主標題：團隊成員 TEAM MEMBERS -->
@@ -249,7 +344,7 @@ import Videos from "../components/Videos.astro";
           </div>
         </div>
 
-        <!-- 下半部：研究專長 -->
+        <!-- 下半部：研究專長 (完全復原 7 項) -->
         <div class="bg-[#f8fafc] border-t border-slate-100 p-8">
           <h5 class="text-xs text-[#94a3b8] mb-6 tracking-widest uppercase font-semibold">RESEARCH INTERESTS 研究專長</h5>
           
@@ -346,10 +441,10 @@ import Videos from "../components/Videos.astro";
       <!-- 活動花絮單一入口橫幅 (Banner) -->
       <div class="relative w-full rounded-sm overflow-hidden shadow-sm h-[320px] sm:h-[360px] flex items-center justify-center group border border-slate-200">
         
-        <!-- 背景圖片 (您可以將 src 替換為實際活動的合照) -->
+        <!-- 背景圖片 -->
         <img src="/images/activity-banner.jpg" alt="活動花絮背景" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop';" />
         
-        <!-- 深色漸層遮罩 (讓文字更清晰) -->
+        <!-- 深色漸層遮罩 -->
         <div class="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/90 transition-colors duration-500 group-hover:bg-slate-900/60"></div>
         
         <!-- 文字與按鈕內容區塊 -->
@@ -369,7 +464,7 @@ import Videos from "../components/Videos.astro";
           </p>
           
           <!-- 前往相簿的按鈕 -->
-          <a href="/activities" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-sm transition-all duration-300 shadow-lg hover:shadow-blue-500/30 group/btn border border-blue-500/50">
+          <a href="/activities" class="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-50 text-white font-bold rounded-sm transition-all duration-300 shadow-lg hover:shadow-blue-500/30 group/btn border border-blue-500/50">
             前往活動相簿
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2 transition-transform group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
@@ -389,7 +484,6 @@ import Videos from "../components/Videos.astro";
   <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
-        <!-- 調整為 h-14 md:h-20 以放大 Logo -->
         <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
         <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
         <p class="text-sm text-slate-400 leading-relaxed max-w-md">
@@ -405,10 +499,7 @@ import Videos from "../components/Videos.astro";
       </div>
     </div>
     
-    <!-- 👇 新增的版權與累積造訪人數區塊 -->
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      
-      <!-- 左側：版權宣告 -->
       <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
         <p class="text-xs text-slate-500 leading-normal">
           &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
@@ -417,23 +508,19 @@ import Videos from "../components/Videos.astro";
         <p class="text-xs text-slate-500">All rights reserved.</p>
       </div>
 
-      <!-- 右側：累積造訪人數區塊 (改回純文字排版，搭配 JS 防洗次數) -->
       <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <!-- 眼睛小圖示 -->
         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
         </svg>
         <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
-        <!-- 動態數字顯示區域 -->
         <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
       </div>
 
     </div>
   </footer>
 
-  <!-- 👇 控制封面輪播與按鈕的 JavaScript -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       
@@ -446,19 +533,14 @@ import Videos from "../components/Videos.astro";
         mobileMenuBtn.addEventListener('click', () => {
           const isHidden = mobileMenu.classList.contains('hidden');
           if (isHidden) {
-            // 打開選單
             mobileMenu.classList.remove('hidden');
-            // 動態把三條線替換成 "X" 關閉圖示
             hamburgerIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
           } else {
-            // 關閉選單
             mobileMenu.classList.add('hidden');
-            // 替換回三條線
             hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
           }
         });
 
-        // 當點擊下拉選單內的任何連結時，自動收合選單
         const mobileLinks = mobileMenu.querySelectorAll('a');
         mobileLinks.forEach(link => {
           link.addEventListener('click', () => {
@@ -498,47 +580,18 @@ import Videos from "../components/Videos.astro";
           }
         };
 
-        const nextImage = () => {
-          const nextIndex = (currentIndex + 1) % images.length;
-          showImage(nextIndex);
-        };
-
-        const prevImage = () => {
-          const prevIndex = (currentIndex - 1 + images.length) % images.length;
-          showImage(prevIndex);
-        };
+        const nextImage = () => { showImage((currentIndex + 1) % images.length); };
+        const prevImage = () => { showImage((currentIndex - 1 + images.length) % images.length); };
         
-        // 切換秒數(目前6秒)
-        const startSlide = () => {
-          slideInterval = setInterval(nextImage, 6000); 
-        };
+        const startSlide = () => { slideInterval = setInterval(nextImage, 6000); };
+        const resetSlide = () => { clearInterval(slideInterval); startSlide(); };
 
-        const resetSlide = () => {
-          clearInterval(slideInterval);
-          startSlide();
-        };
-
-        if (nextBtn) {
-          nextBtn.addEventListener('click', () => {
-            nextImage();
-            resetSlide();
-          });
-        }
-
-        if (prevBtn) {
-          prevBtn.addEventListener('click', () => {
-            prevImage();
-            resetSlide();
-          });
-        }
-
+        if (nextBtn) { nextBtn.addEventListener('click', () => { nextImage(); resetSlide(); }); }
+        if (prevBtn) { prevBtn.addEventListener('click', () => { prevImage(); resetSlide(); }); }
         startSlide();
-      } else {
-        if(prevBtn) prevBtn.style.display = 'none';
-        if(nextBtn) nextBtn.style.display = 'none';
       }
 
-      // --- 2. 智慧訪客計數器邏輯 (24小時內防洗次數 + 防破圖備用機制) ---
+      // --- 2. 智慧訪客計數器邏輯 ---
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
@@ -546,40 +599,24 @@ import Videos from "../components/Videos.astro";
         const namespace = 'icpslab_site';
         const key = 'visits';
         const localCountKey = 'icps_saved_count';
-        // 新增這兩個常數用來計算 24 小時
         const lastVisitTimeKey = 'icps_last_visit_time';
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000; // 24小時換算成毫秒
+        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
 
-        // 🛡️ 核心修復：從 localStorage 讀取最後一次成功的數字當作備用
         let currentCount = localStorage.getItem(localCountKey) || '------';
-        
-        // 讀取最後一次增加次數的時間，並取得當下時間
         const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
         const now = Date.now();
-
-        // 判斷是否在 24 小時之內有造訪過 (有紀錄時間，且當下時間扣除上次時間小於 24 小時)
         const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
         
         try {
           const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          
           if (!hasVisitedWithin24Hours) {
-            // 🌟 情況 A：超過 24 小時未造訪，或是首次造訪 -> 呼叫 /up 增加次數
             const response = await fetch(url + '/up');
             if (!response.ok) throw new Error('API 回應錯誤');
-            
             const data = await response.json();
             currentCount = String(data.count).padStart(6, '0');
-            
-            // 紀錄當下時間，接下來 24 小時內都不會再增加
             localStorage.setItem(lastVisitTimeKey, now.toString());
-            // 存入 localStorage 作為未來的備用顯示
             localStorage.setItem(localCountKey, currentCount);
-            
-            counterEl.textContent = currentCount;
-            
           } else {
-            // 🌟 情況 B：24 小時內已造訪過 (例如 F5 重新整理、關閉重開等) -> 嘗試獲取最新數字 (不增加)
             try {
               const response = await fetch(url);
               if (response.ok) {
@@ -587,19 +624,10 @@ import Videos from "../components/Videos.astro";
                 currentCount = String(data.count).padStart(6, '0');
                 localStorage.setItem(localCountKey, currentCount);
               }
-            } catch (e) {
-              // 如果 GET 方法被 API 伺服器阻擋，直接忽略錯誤
-              // 程式會自動繼續往下執行，套用 localStorage 裡存著的上一次數字
-              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
-            }
-            
-            // 無論 GET 成功與否，都確保 UI 有數字可以顯示
-            counterEl.textContent = currentCount;
+            } catch (e) {}
           }
-          
+          counterEl.textContent = currentCount;
         } catch (error) {
-          console.error('計數器載入異常:', error);
-          // 發生任何預期外的錯誤時，顯示備用數字，徹底消滅「載入失敗」
           counterEl.textContent = currentCount;
         }
       };
