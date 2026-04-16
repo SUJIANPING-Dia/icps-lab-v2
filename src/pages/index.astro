@@ -40,9 +40,11 @@ projectGroup?.yearlyData.forEach(year => {
 
 // 格式化顯示 (拆分為純數字與後綴，方便前端動畫使用)
 const isBillion = totalAmountValue > 100000000;
-const amountNum = isBillion ? (totalAmountValue / 100000000).toFixed(1) : Math.floor(totalAmountValue / 10000);
+// 修改為保留兩位小數
+const amountNum = isBillion ? (totalAmountValue / 100000000).toFixed(2) : Math.floor(totalAmountValue / 10000);
 const amountSuffix = isBillion ? " 億+" : " 萬+";
-const amountDecimals = isBillion ? 1 : 0; // 是否需要保留小數點
+// 讓前端動畫知道要跳到小數點後兩位
+const amountDecimals = isBillion ? 2 : 0; 
 
 // 5. 國內外競賽得獎數量
 const awardGroup = achievements.find(a => a.category && (a.category.includes("競賽") || a.category.includes("得獎") || a.category.includes("榮譽")));
@@ -253,7 +255,8 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
 
           <!-- 總執行計畫金額 -->
           <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-amber-500 pl-5 transition-all duration-300 group cursor-default">
-            <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-amber-600 transition-colors duration-300 tracking-tight" data-target={amountNum} data-suffix={amountSuffix} data-decimals={amountDecimals}>0</div>
+            <!-- 調整此處的字體大小 (例如: 從 sm:text-5xl 改為 sm:text-4xl，並確保 whitespace-nowrap) -->
+            <div class="counter-anim text-3xl sm:text-4xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-amber-600 transition-colors duration-300 tracking-tight" data-target={amountNum} data-suffix={amountSuffix} data-decimals={amountDecimals}>0</div>
             <div class="text-sm font-bold text-slate-700">總執行計畫金額 (元)</div>
             <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Funding</div>
           </div>
