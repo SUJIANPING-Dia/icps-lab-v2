@@ -28,48 +28,42 @@ import "../styles/global.css";
       </div>
 
       <!-- 右側導覽連結 -->
-  <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-    <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>首頁</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span>
-  </a>
-  <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>關於 iCPS Lab</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
-  </a>
-
-  <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>最新消息</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
-  </a>
-
-  <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>活動花絮</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
-  </a>
-
-  <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>影音專區</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
-  </a>
-
-          <a href="/achievements"  class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
+        <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>首頁</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span>
+        </a>
+        <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>關於 iCPS Lab</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
+        </a>
+        <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>最新消息</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
+        </a>
+        <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>活動花絮</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
+        </a>
+        <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>影音專區</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
+        </a>
+        <a href="/achievements"  class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
           <span>成果榮譽</span>
           <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Achievements</span>
         </a>
-
-  <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>實驗室成員</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
-  </a>
-          <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+        <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
+          <span>實驗室成員</span>
+          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
+        </a>
+        <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
           <span>常見問題</span>
           <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span>
         </a>
+      </div>
 
-</div>
-
-      <!-- 手機版漢堡選單按鈕 (新增) -->
+      <!-- 手機版漢堡選單按鈕 -->
       <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -77,33 +71,33 @@ import "../styles/global.css";
       </button>
     </div>
 
-    <!-- 手機版下拉選單 (新增) -->
+    <!-- 手機版下拉選單 -->
     <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
-	  <a href="/" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">首頁</a>
+      <a href="/" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">首頁</a>
       <a href="/about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">關於 iCPS Lab</a>
       <a href="/#news"class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">最新消息</a>
       <a href="/activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">活動花絮</a>
       <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">影音專區</a>
-	  <a href="/achievements" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">成果與榮譽</a>
+      <a href="/achievements" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">成果與榮譽</a>
       <a href="/members" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">實驗室成員</a>
-	  <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
+      <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
     </div>
   </nav>
 
   <!-- 🔷 頁面標題區 (Hero Banner) -->
   <header class="bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-800 py-16 lg:py-20 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
     <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="relative z-10 max-w-3xl mx-auto px-4">
+    <div class="relative z-10 max-w-3xl mx-auto px-4 reveal-scale">
       <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">關於 iCPS Lab</h1>
       <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow">Intelligent Cyber-Physical Systems Laboratory</p>
     </div>
   </header>
 
   <!-- 🔷 網站主體區域 -->
-  <main class="flex-grow max-w-7xl mx-auto px-6 py-16 relative z-20 w-full animate-fade-in-up">
+  <main class="flex-grow max-w-7xl mx-auto px-6 py-16 relative z-20 w-full overflow-hidden">
 
     <!-- 回首頁按鈕 -->
-    <div class="mb-10">
+    <div class="mb-10 reveal-left">
       <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition-colors bg-white px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:shadow-md">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
         返回首頁
@@ -111,18 +105,18 @@ import "../styles/global.css";
     </div>
 
     <!-- 垂直間距容器 -->
-    <div class="space-y-20">
+    <div class="space-y-24">
 
-      <!-- 📌 區塊一：實驗室領航 (教授介紹 - 移至最上方) -->
+      <!-- 📌 區塊一：實驗室領航 (教授介紹) -->
       <section>
-        <div class="flex items-center gap-3 mb-10">
+        <div class="flex items-center gap-3 mb-10 reveal-up">
           <div class="w-2 h-8 bg-blue-700 rounded-full"></div>
           <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">實驗室領航 <span class="text-slate-400 font-light ml-2 text-xl lg:text-2xl">Principal Investigator</span></h3>
         </div>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- 左側：教授照片 -->
-          <div class="w-full aspect-video bg-slate-200 rounded-2xl shadow-lg overflow-hidden border border-slate-200 relative group transition-shadow hover:shadow-xl duration-300">
+          <!-- 左側：教授照片 (左側滑入) -->
+          <div class="w-full aspect-video bg-slate-200 rounded-2xl shadow-lg overflow-hidden border border-slate-200 relative group transition-shadow hover:shadow-xl duration-300 reveal-left">
             <img 
               class="w-full h-full absolute inset-0 object-cover object-center" 
               src="/images/professor-chang.png" 
@@ -131,8 +125,8 @@ import "../styles/global.css";
             />
           </div>
           
-          <!-- 右側：教授理念 -->
-          <div class="flex flex-col justify-center h-full space-y-5">
+          <!-- 右側：教授理念 (右側滑入) -->
+          <div class="flex flex-col justify-center h-full space-y-5 reveal-right">
             <h4 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">
               張萬榮 教授 
               <span class="text-base font-medium text-slate-500 ml-2 font-mono">Wan-Jung Chang, Ph.D.</span>
@@ -160,7 +154,7 @@ import "../styles/global.css";
       
       <!-- 📌 區塊二：實驗室願景 (我們做什麼) -->
       <section>
-        <div class="bg-white border-l-[6px] border-blue-700 p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] rounded-r-xl">
+        <div class="bg-white border-l-[6px] border-blue-700 p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] rounded-r-xl reveal-scale">
           <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-5 tracking-tight">我們不只寫程式，更致力於解決真實世界的痛點。</h2>
           <p class="text-slate-700 leading-relaxed text-lg mb-5 text-justify">
             <strong class="text-blue-800">智慧網宇實體系統實驗室 (iCPS Lab)</strong> 專注於打破學術研究與產業實務的界線。我們深度融合人工智慧 (AI)、物聯網 (AIoT) 與延展實境 (XR) 技術，將前端的感測數據與後端的雲邊緣運算無縫接軌，打造具備高度智慧化、自動化的虛實整合解決方案。
@@ -174,7 +168,7 @@ import "../styles/global.css";
       <!-- 📌 區塊三：雙向對話 (左邊對廠商，右邊對學生) -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <!-- 給企業與臨床單位 -->
-        <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-2xl shadow-lg relative overflow-hidden group">
+        <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-2xl shadow-lg relative overflow-hidden group reveal-up">
           <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-600 rounded-full opacity-20 group-hover:scale-150 transition-transform duration-700"></div>
           <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-2xl">🤝</div>
           <h3 class="text-2xl font-bold text-white mb-4">產醫跨域合作</h3>
@@ -192,7 +186,7 @@ import "../styles/global.css";
         </div>
 
         <!-- 給學生 -->
-        <div class="bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden group">
+        <div class="bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden group reveal-up delay-200">
           <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-6 text-2xl">🎓</div>
           <h3 class="text-2xl font-bold text-slate-900 mb-4">啟動研究生涯</h3>
           <p class="text-slate-600 leading-relaxed mb-6 text-sm lg:text-base">
@@ -211,14 +205,14 @@ import "../styles/global.css";
 
       <!-- 📌 區塊四：三大核心研究領域 (實力展示) -->
       <section>
-        <div class="flex items-center gap-3 mb-10">
+        <div class="flex items-center gap-3 mb-10 reveal-up">
           <div class="w-2 h-8 bg-blue-700 rounded-full"></div>
           <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">核心領域與應用 <span class="text-slate-400 font-light ml-2 text-xl lg:text-2xl">Core Applications</span></h3>
         </div>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- 照護醫療 -->
-          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group reveal-up delay-100">
             <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-red-500 group-hover:text-white transition-colors duration-300 shadow-sm">
               <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
             </div>
@@ -229,7 +223,7 @@ import "../styles/global.css";
           </div>
 
           <!-- 智能製造 -->
-          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group reveal-up delay-200">
             <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300 shadow-sm">
               <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
             </div>
@@ -240,7 +234,7 @@ import "../styles/global.css";
           </div>
 
           <!-- 智慧交通/XR -->
-          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group">
+          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group reveal-up delay-300">
             <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm">
               <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             </div>
@@ -295,28 +289,47 @@ import "../styles/global.css";
     </div>
   </footer>
 
-  <!-- 🔷 自定義動畫樣式 -->
+  <!-- 🔷 自定義滾動觸發動畫樣式 (Scroll Reveal) -->
   <style>
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    /* 移除一開始全頁面進場的動畫，改由 JS 觸發 */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
-    .animate-fade-in-up {
-      animation: fadeInUp 0.6s ease-out forwards;
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
     }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.95);
+      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+    
+    /* 觸發後的狀態 */
+    .reveal-active {
+      opacity: 1;
+      transform: translate(0, 0) scale(1);
+    }
+
+    /* 延遲動畫效果 (製造階梯式進場) */
+    .delay-100 { transition-delay: 100ms; }
+    .delay-200 { transition-delay: 200ms; }
+    .delay-300 { transition-delay: 300ms; }
   </style>
 
-  <!-- 🔷 智慧訪客計數器與手機導覽列邏輯 -->
+  <!-- 🔷 智慧訪客計數器、手機導覽列與滾動動畫邏輯 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       
-      // --- 0. 手機版導覽列 (漢堡選單) 邏輯 (新增) ---
+      // --- 0. 手機版導覽列 (漢堡選單) 邏輯 ---
       const mobileMenuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const hamburgerIcon = document.getElementById('hamburger-icon');
@@ -342,7 +355,7 @@ import "../styles/global.css";
         });
       }
 
-      // --- 1. 智慧訪客計數器邏輯 (保留原樣) ---
+      // --- 1. 智慧訪客計數器邏輯 ---
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
@@ -394,6 +407,28 @@ import "../styles/global.css";
       };
 
       initCounter();
+
+      // --- 2. 滾動觸發動畫 (Scroll Reveal) 邏輯 ---
+      const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale');
+      
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          // 當元素進入畫面 (可視範圍大於 15%)
+          if (entry.isIntersecting) {
+            entry.target.classList.add('reveal-active');
+            // 觸發後即取消觀察，讓動畫只跑一次，避免上下滾動時重複閃爍
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        threshold: 0.15, // 元素露出 15% 時觸發
+        rootMargin: "0px 0px -50px 0px" // 稍微提早一點點觸發
+      });
+
+      // 將所有帶有動畫 class 的元素加入觀察清單
+      revealElements.forEach(el => revealObserver.observe(el));
+
     });
   </script>
 
