@@ -292,136 +292,97 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
       <News />
     </div>
     
-    <!-- 👇 團隊成員區塊 -->
+    <!-- 👇 團隊成員區塊 (專業櫥窗版) -->
     <section id="members" class="scroll-mt-24">
       
-      <!-- 標題 (向上滑入) -->
+      <!-- 區塊標題 -->
       <div class="mb-10 flex flex-col items-start" data-reveal="up">
-        <span class="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold tracking-widest uppercase rounded-full mb-3 border border-blue-100">Team Members</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">團隊成員</h2>
+        <div class="inline-flex items-center gap-3 mb-3">
+          <div class="w-8 h-1 bg-blue-600 rounded-full opacity-80"></div>
+          <span class="text-blue-600 text-xs font-extrabold tracking-widest uppercase">Our People</span>
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">領導與團隊</h2>
+        <p class="mt-4 text-slate-500 text-sm sm:text-base max-w-2xl">
+          由張萬榮教授帶領，結合跨領域的頂尖研究人才，我們致力於將前瞻的 AIoT 技術轉化為解決真實世界問題的創新應用。
+        </p>
       </div>
 
-      <!-- 👑 指導教授資訊卡片 (向上滑入，延遲一點點) -->
-      <div class="bg-white rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden" data-reveal="up" style="transition-delay: 150ms;">
+      <!-- 雙拼卡片佈局 (Grid) -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
         
-        <!-- 上半部：照片與基本資訊 -->
-        <div class="p-8 sm:p-10 flex flex-col md:flex-row gap-8 lg:gap-12 relative">
+        <!-- 🧑‍🏫 左側：PI 負責人卡片 (佔 7 格) -->
+        <div class="lg:col-span-7 bg-white rounded-[2rem] border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 sm:p-10 relative overflow-hidden group" data-reveal="up" style="transition-delay: 100ms;">
+          <!-- 背景裝飾 -->
+          <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50/50 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/3"></div>
           
-          <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50 -z-10 -translate-y-1/2 translate-x-1/3"></div>
-
-          <!-- 左側：照片 -->
-          <div class="w-48 sm:w-56 shrink-0 mx-auto md:mx-0">
-            <div class="rounded-3xl overflow-hidden shadow-md ring-1 ring-slate-900/5 bg-white">
-              <img src="/images/professor.jpg" alt="張萬榮 教授" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-500" onerror="this.src='/images/default-avatar.png';" />
-            </div>
-          </div>
-          
-          <!-- 右側：資訊 -->
-          <div class="flex-1 flex flex-col justify-center">
-            
-            <div class="mb-2">
-              <div class="inline-block px-2.5 py-1 bg-blue-600 text-white text-[11px] font-bold tracking-widest uppercase rounded-lg mb-3">Principal Investigator</div>
-            </div>
-
-            <div class="mb-5">
-              <h4 class="text-3xl sm:text-4xl font-black text-slate-800 tracking-wide">
-                張萬榮 <span class="text-xl text-slate-500 font-medium ml-1">教授</span>
-              </h4>
-              <p class="text-[#8c9bb0] font-mono text-sm mt-1">Wan-Jung Chang, Ph.D.</p>
-            </div>
-            
-            <div class="flex flex-wrap items-center gap-5 text-sm text-slate-600 mb-6 bg-slate-50 px-5 py-3 rounded-2xl w-fit border border-slate-100">
-              <span class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                allenchang@nkust.edu.tw
-              </span>
-              <span class="hidden sm:block w-1 h-1 rounded-full bg-slate-300"></span>
-              <span class="flex items-center gap-2">
-                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
-                校內分機：15672
-              </span>
-            </div>
-
-            <div class="flex flex-col sm:flex-row gap-8 sm:gap-12 mt-2">
-              <div>
-                <h5 class="text-xs text-[#94a3b8] mb-2 tracking-widest uppercase font-semibold">學歷 Education</h5>
-                <p class="text-sm text-slate-700 font-medium">
-                  國立成功大學 電機工程研究所 <br/> <span class="text-slate-500 font-normal">電腦與網路組 博士</span>
-                </p>
+          <div class="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
+            <!-- 教授照片 (強調專業感) -->
+            <div class="w-32 sm:w-40 shrink-0">
+              <div class="rounded-2xl overflow-hidden shadow-md ring-1 ring-slate-900/5 aspect-[4/5]">
+                <img src="/images/professor.png" alt="張萬榮 教授" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/default-avatar.png';" />
               </div>
+            </div>
+            
+            <!-- 教授核心資訊 -->
+            <div class="flex-1">
+              <div class="inline-block px-3 py-1 bg-slate-900 text-white text-[10px] font-bold tracking-widest uppercase rounded-full mb-4">
+                Principal Investigator
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-black text-slate-800 mb-1">
+                張萬榮 <span class="text-lg text-slate-500 font-medium ml-1">教授</span>
+              </h3>
+              <p class="text-blue-600 font-medium text-sm mb-5">Wan-Jung Chang, Ph.D.</p>
               
-              <div>
-                <h5 class="text-xs text-[#94a3b8] mb-2 tracking-widest uppercase font-semibold">所屬組別 Affiliations</h5>
-                <div class="flex flex-wrap gap-2">
-                  <span class="bg-white border border-slate-200 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm">醫學工程組(合聘)</span>
-                  <span class="bg-white border border-slate-200 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm">醫學工程組</span>
-                  <span class="bg-white border border-slate-200 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm">AI資安組</span>
-                  <span class="bg-white border border-slate-200 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm">電信組</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-8">
-              <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-medium transition group">
-                <span class="border-b border-transparent group-hover:border-blue-800 transition-colors">查看教授詳細資訊 (論文發表、研究計畫等)</span>
-                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              <!-- 核心引言/願景 (取代條列式學歷) -->
+              <blockquote class="text-slate-600 text-sm leading-relaxed border-l-[3px] border-blue-400 pl-4 mb-6 italic">
+                「做研究不能只停留在實驗室，我們專注於 AI 與醫護、製造的跨域整合，培育具備實戰能力的系統級人才。」
+              </blockquote>
+              
+              <!-- 乾淨的引導按鈕 -->
+              <a href="/members#professor" class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-blue-700 transition-colors group/link">
+                查看教授學術履歷與研究專長
+                <svg class="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
               </a>
             </div>
-
           </div>
         </div>
 
-        <!-- 下半部：研究專長 -->
-        <div class="bg-slate-50/80 border-t border-slate-100 p-8 sm:px-10 py-8">
-          <h5 class="text-xs text-[#94a3b8] mb-5 tracking-widest uppercase font-bold">研究專長 Research Interests</h5>
+        <!-- 👨‍🎓 右側：學生團隊卡片 (佔 5 格) -->
+        <div class="lg:col-span-5 bg-gradient-to-br from-slate-800 to-slate-900 rounded-[2rem] border border-slate-700 shadow-xl p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between group cursor-pointer" onclick="window.location.href='/members'" data-reveal="up" style="transition-delay: 200ms;">
           
-          <div class="flex flex-wrap gap-3">
-            <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
-              <span class="text-sm font-bold text-slate-700">雲端與智慧物聯網系統</span>
-              <span class="text-[11px] text-slate-400 font-mono mt-0.5">Cloud and AIoT Systems</span>
+          <!-- 背景影像 (放一張實驗室大合照並加上暗色遮罩) -->
+          <img src="/images/team-group.jpg" alt="實驗室團隊" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay group-hover:opacity-30 group-hover:scale-105 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop';" />
+          
+          <div class="relative z-10">
+            <div class="inline-block px-3 py-1 bg-white/10 text-white backdrop-blur-sm text-[10px] font-bold tracking-widest uppercase rounded-full border border-white/20 mb-4">
+              Our Researchers
+            </div>
+            <h3 class="text-2xl sm:text-3xl font-black text-white mb-2">堅強的研究團隊</h3>
+            <p class="text-slate-300 text-sm leading-relaxed mb-8">
+              包含專案經理、博士後研究員、博/碩士班及大學部專題生，組成充滿熱情與創新能量的實戰團隊。
+            </p>
+          </div>
+
+          <!-- 底部資訊與互動 -->
+          <div class="relative z-10 flex items-end justify-between mt-auto">
+            <!-- 虛擬的頭像交疊 (示意團隊人數) -->
+            <div class="flex -space-x-3">
+              <div class="w-10 h-10 rounded-full border-2 border-slate-800 bg-slate-300"></div>
+              <div class="w-10 h-10 rounded-full border-2 border-slate-800 bg-slate-400"></div>
+              <div class="w-10 h-10 rounded-full border-2 border-slate-800 bg-slate-500"></div>
+              <div class="w-10 h-10 rounded-full border-2 border-slate-800 bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
+                20+
+              </div>
             </div>
             
-            <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
-              <span class="text-sm font-bold text-slate-700">無線感測網路與高速網路系統</span>
-              <span class="text-[11px] text-slate-400 font-mono mt-0.5">WSN & High-Speed Networks</span>
-            </div>
-
-            <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
-              <span class="text-sm font-bold text-slate-700">人工智慧穿戴式裝置聯網系統</span>
-              <span class="text-[11px] text-slate-400 font-mono mt-0.5">Wearable Devices IoT</span>
-            </div>
-
-            <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
-              <span class="text-sm font-bold text-slate-700">人工智慧醫療聯網系統</span>
-              <span class="text-[11px] text-slate-400 font-mono mt-0.5">Medical IoT (MIoT)</span>
-            </div>
-
-            <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
-              <span class="text-sm font-bold text-slate-700">人工智慧製造聯網系統</span>
-              <span class="text-[11px] text-slate-400 font-mono mt-0.5">Industrial IoT (IIoT)</span>
-            </div>
-
-            <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
-              <span class="text-sm font-bold text-slate-700">擴增實境聯網系統</span>
-              <span class="text-[11px] text-slate-400 font-mono mt-0.5">Augmented Reality IoT</span>
-            </div>
-
-            <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
-              <span class="text-sm font-bold text-slate-700">人工智慧機器人技術</span>
-              <span class="text-[11px] text-slate-400 font-mono mt-0.5">AI Robotics</span>
+            <!-- 圓形箭頭按鈕 -->
+            <div class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center group-hover:-rotate-45 transition-transform duration-300">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
             </div>
           </div>
-        </div>
-      </div>
 
-      <!-- 前往完整名單的按鈕 (加上向上滑入動畫) -->
-      <div class="flex justify-center mt-10" data-reveal="up" style="transition-delay: 250ms;">
-        <a href="/members" class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 hover:bg-blue-600 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 group">
-          查看所有實驗室成員
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-          </svg>
-        </a>
+        </div>
+
       </div>
     </section>
 
