@@ -36,30 +36,30 @@ const assistants = [
 // ==========================================
 //
 // ┌─────────────────────────────────────────────────────────────────┐
-// │  維護指南 (未來 10 年操作說明)                                    │
+// │  維護指南 (未來 10 年操作說明)                                  │
 // ├─────────────────────────────────────────────────────────────────┤
 // │  ➕ 新增學生：在陣列中新增一筆，status: "active"                  │
 // │                                                                 │
-// │  🎓 學生畢業：                                                   │
-// │    - status 改為 "graduated"                                     │
+// │  🎓 學生畢業：                                                  │
+// │    - status 改為 "graduated"                                    │
 // │    - 填入 graduationYear (畢業學年度，例如：113)                  │
-// │    - img / project / summary 保留不動                            │
+// │    - img / project / summary 保留不動                             │
 // │                                                                 │
-// │  ⬆️  升學 (大學→碩士 / 碩士→博士)：                              │
-// │    - 修改 degree 為新學制 ("master" 或 "phd")                    │
+// │  ⬆️  升學 (大學→碩士 / 碩士→博士)：                               │
+// │    - 修改 degree 為新學制 ("master" 或 "phd")                   │
 // │    - 修改 enrollmentYear 為新學制的入學學年度                     │
-// │    - 其他欄位照常更新 (project、summary 可改為新研究題目)          │
-// │    - status 保持 "active" 不變                                   │
+// │    - 其他欄位照常更新 (project、summary 可改為新研究題目)           │
+// │    - status 保持 "active" 不變                                  │
 // │                                                                 │
-// │  degree 值對照表：                                               │
-// │    "undergrad"    → 大學部                                       │
-// │    "master"       → 碩士班                                       │
-// │    "phd"          → 博士班                                       │
-// │    "international"→ 外籍生                                       │
+// │  degree 值對照表：                                              │
+// │    "undergrad"    → 大學部                                      │
+// │    "master"       → 碩士班                                      │
+// │    "phd"          → 博士班                                      │
+// │    "international"→ 外籍生                                      │
 // │                                                                 │
-// │  status 值：                                                     │
+// │  status 值：                                                    │
 // │    "active"    → 在學                                           │
-// │    "graduated" → 已畢業 (自動移至畢業生頁籤)                     │
+// │    "graduated" → 已畢業 (自動移至畢業生頁籤)                      │
 // └─────────────────────────────────────────────────────────────────┘
 
 const allStudents = [
@@ -282,7 +282,23 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
   <title>實驗室成員 | iCPS Lab 智慧網宇實體系統實驗室</title>
-  <style>
+  <style is:global>
+    /* ✨ 滾動觸發動畫 (Scroll Reveal) 核心 CSS */
+    [data-reveal] {
+      opacity: 0;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    [data-reveal="up"] { transform: translateY(40px); }
+    [data-reveal="left"] { transform: translateX(-40px); }
+    [data-reveal="right"] { transform: translateX(40px); }
+    [data-reveal="zoom"] { transform: scale(0.95); }
+
+    [data-reveal].is-revealed {
+      opacity: 1;
+      transform: translate(0) scale(1);
+    }
+
+    /* 頁籤切換的淡入效果 */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(5px); }
       to { opacity: 1; transform: translateY(0); }
@@ -353,18 +369,20 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
   </nav>
 
   <!-- 🔷 頁面標題區 -->
-  <header class="bg-[#0f172a] py-14 text-center border-b-4 border-blue-700 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="relative z-10">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">實驗室成員</h1>
-      <p class="text-slate-300 text-sm font-light tracking-wider uppercase">Laboratory Members</p>
+</nav>
+
+  <header class="bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-800 py-16 lg:py-20 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
+    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+    <div class="relative z-10 max-w-3xl mx-auto px-4" data-reveal="zoom">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">實驗室成員</h1>
+      <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow">Laboratory Members</p>
     </div>
   </header>
 
   <!-- 🔷 主體 -->
   <main class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
 
-    <div class="mb-10">
+    <div class="mb-10" data-reveal="right">
       <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
         返回首頁
@@ -374,7 +392,7 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
     <div class="space-y-16">
 
       <!-- 🔹 指導教授 -->
-      <div>
+      <div data-reveal="up">
         <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-[#3b5998] pl-3">指導教授 Principal Investigator</h3>
         <div class="bg-white border border-slate-200 shadow-sm rounded-sm">
           <div class="p-6 md:p-8 flex flex-col md:flex-row gap-8 lg:gap-12">
@@ -451,10 +469,10 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
 
       <!-- 🔹 專任助理 -->
       <div>
-        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3">專任助理 Research Assistants</h3>
+        <h3 class="text-xl font-bold text-slate-800 mb-6 border-l-4 border-slate-300 pl-3" data-reveal="right">專任助理 Research Assistants</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {assistants.map((person) => (
-            <div class="bg-white border border-slate-200 p-5 flex flex-col sm:flex-row items-start gap-5 hover:shadow-md hover:border-blue-300 transition rounded-sm">
+          {assistants.map((person, index) => (
+            <div class="bg-white border border-slate-200 p-5 flex flex-col sm:flex-row items-start gap-5 hover:shadow-md hover:border-blue-300 transition rounded-sm" data-reveal="up" style={`transition-delay: ${index * 100}ms;`}>
               <img src={getAvatar(person.img, person.name)} alt={person.name} class="w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover bg-slate-100 border border-slate-200 shrink-0 mt-1" onerror="this.src='/images/default-avatar.png';" />
               <div class="flex-1 w-full">
                 <div class="mb-4">
@@ -494,7 +512,7 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
       <hr class="border-slate-200" />
 
       <!-- 🔹 學生 -->
-      <div>
+      <div data-reveal="up">
         <div class="flex items-end justify-between mb-6">
           <h3 class="text-xl font-bold text-slate-800 border-l-4 border-slate-300 pl-3">學生 Students</h3>
           <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 shadow-sm hidden sm:block">
@@ -885,6 +903,23 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
         el.textContent = current;
       };
       initCounter();
+
+      // --- ✨ 滾動觸發動畫 (Scroll Reveal) 邏輯 ---
+      const revealElements = document.querySelectorAll('[data-reveal]');
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-revealed');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        rootMargin: '0px 0px -10% 0px', 
+        threshold: 0.1
+      });
+      revealElements.forEach(el => revealObserver.observe(el));
+
     });
   </script>
 

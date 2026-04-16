@@ -510,11 +510,25 @@ const faqs = [
   </nav>
 
   <!-- 🔷 頁面標題區 -->
-  <header class="bg-[#0f172a] py-12 md:py-16 text-center border-b-4 border-blue-700 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="relative z-10 px-4">
-      <h1 class="text-3xl md:text-4xl font-extrabold text-white tracking-widest mb-3">常見問題</h1>
-      <p class="text-slate-300 text-sm font-light tracking-wider uppercase mb-8">Frequently Asked Questions</p>
+<style>
+    /* 專屬於頂部 Banner 的載入動畫 */
+    @keyframes heroZoom {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-hero-zoom {
+      /* 0.8秒的動畫時間，使用平滑的貝茲曲線 */
+      animation: heroZoom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+
+  <header class="bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-800 py-16 lg:py-20 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
+    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+    
+    <div class="relative z-10 w-full px-4 animate-hero-zoom">
+      
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">常見問題</h1>
+      <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow mb-8">Frequently Asked Questions</p>
       
       <div class="max-w-2xl mx-auto relative group">
         <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -532,9 +546,9 @@ const faqs = [
           <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
       </div>
+
     </div>
   </header>
-
   <!-- 🔷 網站主體區域 -->
   <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-20 min-h-[50vh]">
 
