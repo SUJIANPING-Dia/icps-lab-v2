@@ -65,6 +65,29 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
   
   <!-- 標題列文字不支援HTML標籤，直接改為小寫i -->
   <title>iCPS Lab | 智慧網宇實體系統實驗室 - 國立高雄科技大學</title>
+
+  <!-- ✨ 新增：滾動觸發動畫 (Scroll Reveal) 的核心 CSS -->
+  <style is:global>
+    /* 初始隱藏狀態設定 */
+    [data-reveal] {
+      opacity: 0;
+      /* 使用貝茲曲線讓動畫更有彈性與質感 */
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    /* 各種方向的初始位移設定 */
+    [data-reveal="up"] { transform: translateY(40px); }
+    [data-reveal="down"] { transform: translateY(-40px); }
+    [data-reveal="left"] { transform: translateX(-40px); }
+    [data-reveal="right"] { transform: translateX(40px); }
+    [data-reveal="zoom"] { transform: scale(0.95); }
+
+    /* 當 JS 加上 .is-revealed 類別時，回歸原本狀態 */
+    [data-reveal].is-revealed {
+      opacity: 1;
+      transform: translate(0) scale(1);
+    }
+  </style>
 </head>
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
@@ -157,7 +180,7 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
     </div>
   </nav>
 
-  <!-- 🔷 封面視覺 (Hero Section) -->
+  <!-- 🔷 封面視覺 (Hero Section) - 封面保持自動載入，不加滾動動畫 -->
   <header class="relative w-full bg-[#0f172a] overflow-hidden border-b-4 border-blue-700 aspect-[16/9] sm:aspect-[21/9] lg:aspect-[12/5]">
     <div id="hero-slider" class="absolute inset-0 w-full h-full z-10 group/slider">
       <img src="/images/hero-bg-1.png" alt="實驗室背景 1" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=2070&auto=format&fit=crop';" />
@@ -197,12 +220,12 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
   <!-- 🔷 網站主體區域 -->
   <main class="max-w-7xl mx-auto px-6 py-16 space-y-32 relative z-20">
 
-    <!-- 🌟 實驗室里程碑數據統計區 (全新編輯排版風格 + 數字動畫) -->
+    <!-- 🌟 實驗室里程碑數據統計區 -->
     <section id="milestones" class="scroll-mt-24">
       <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
         
-        <!-- 左側標題區 -->
-        <div class="lg:w-1/3 flex flex-col items-start text-left shrink-0 lg:sticky lg:top-32">
+        <!-- 左側標題區 (設定由左方滑入) -->
+        <div class="lg:w-1/3 flex flex-col items-start text-left shrink-0 lg:sticky lg:top-32" data-reveal="left">
           <div class="inline-flex items-center gap-3 mb-5">
             <div class="w-10 h-1 bg-blue-600 rounded-full opacity-80"></div>
             <span class="text-blue-600 text-xs font-extrabold tracking-widest uppercase">Lab Milestones</span>
@@ -215,47 +238,46 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
           </p>
         </div>
 
-        <!-- 右側數據區 -->
+        <!-- 右側數據區 (設定每個項目由下方滑入，並給予階梯式延遲) -->
         <div class="lg:w-2/3 w-full grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-14">
           
           <!-- 國內外競賽得獎 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-rose-500 pl-5 transition-all duration-300 group cursor-default">
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-rose-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 0ms;">
             <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-rose-600 transition-colors duration-300 tracking-tight" data-target={awardCount}>0</div>
             <div class="text-sm font-bold text-slate-700">國內外競賽得獎 (件)</div>
             <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Awards</div>
           </div>
 
           <!-- 獲得專利項目 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-cyan-500 pl-5 transition-all duration-300 group cursor-default">
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-cyan-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 100ms;">
             <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-cyan-600 transition-colors duration-300 tracking-tight" data-target={patentCount}>0</div>
             <div class="text-sm font-bold text-slate-700">獲得專利項目 (件)</div>
             <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Patents</div>
           </div>
 
           <!-- 國際期刊論文 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-blue-500 pl-5 transition-all duration-300 group cursor-default">
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-blue-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 200ms;">
             <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-blue-600 transition-colors duration-300 tracking-tight" data-target={journalCount}>0</div>
             <div class="text-sm font-bold text-slate-700">國際期刊論文 (篇)</div>
             <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Journal Papers</div>
           </div>
 
           <!-- 國際研討會 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-indigo-500 pl-5 transition-all duration-300 group cursor-default">
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-indigo-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 300ms;">
             <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-indigo-600 transition-colors duration-300 tracking-tight" data-target={confCount}>0</div>
             <div class="text-sm font-bold text-slate-700">國際研討會論文 (篇)</div>
             <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Conferences</div>
           </div>
 
           <!-- 產學合作廠商 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-emerald-500 pl-5 transition-all duration-300 group cursor-default">
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-emerald-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 400ms;">
             <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-emerald-600 transition-colors duration-300 tracking-tight" data-target={partnerCount} data-suffix="+">0</div>
             <div class="text-sm font-bold text-slate-700">產學合作廠商 (間)</div>
             <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Partners</div>
           </div>
 
           <!-- 總執行計畫金額 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-amber-500 pl-5 transition-all duration-300 group cursor-default">
-            <!-- 調整此處的字體大小 (例如: 從 sm:text-5xl 改為 sm:text-4xl，並確保 whitespace-nowrap) -->
+          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-amber-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 500ms;">
             <div class="counter-anim text-3xl sm:text-4xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-amber-600 transition-colors duration-300 tracking-tight" data-target={amountNum} data-suffix={amountSuffix} data-decimals={amountDecimals}>0</div>
             <div class="text-sm font-bold text-slate-700">總執行計畫金額 (元)</div>
             <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Funding</div>
@@ -265,24 +287,26 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
       </div>
     </section>
 
-    <News />
+    <!-- 將外部元件包裝在動畫容器中 -->
+    <div data-reveal="up">
+      <News />
+    </div>
     
     <!-- 👇 團隊成員區塊 -->
     <section id="members" class="scroll-mt-24">
       
-      <!-- 現代化主標題 -->
-      <div class="mb-10 flex flex-col items-start">
+      <!-- 標題 (向上滑入) -->
+      <div class="mb-10 flex flex-col items-start" data-reveal="up">
         <span class="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold tracking-widest uppercase rounded-full mb-3 border border-blue-100">Team Members</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">團隊成員</h2>
       </div>
 
-      <!-- 👑 指導教授資訊卡片 -->
-      <div class="bg-white rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden">
+      <!-- 👑 指導教授資訊卡片 (向上滑入，延遲一點點) -->
+      <div class="bg-white rounded-[2rem] border border-slate-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden" data-reveal="up" style="transition-delay: 150ms;">
         
         <!-- 上半部：照片與基本資訊 -->
         <div class="p-8 sm:p-10 flex flex-col md:flex-row gap-8 lg:gap-12 relative">
           
-          <!-- 背景裝飾點綴 -->
           <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50 rounded-full blur-3xl opacity-50 -z-10 -translate-y-1/2 translate-x-1/3"></div>
 
           <!-- 左側：照片 -->
@@ -299,7 +323,6 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
               <div class="inline-block px-2.5 py-1 bg-blue-600 text-white text-[11px] font-bold tracking-widest uppercase rounded-lg mb-3">Principal Investigator</div>
             </div>
 
-            <!-- 姓名 -->
             <div class="mb-5">
               <h4 class="text-3xl sm:text-4xl font-black text-slate-800 tracking-wide">
                 張萬榮 <span class="text-xl text-slate-500 font-medium ml-1">教授</span>
@@ -307,7 +330,6 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
               <p class="text-[#8c9bb0] font-mono text-sm mt-1">Wan-Jung Chang, Ph.D.</p>
             </div>
             
-            <!-- 聯絡方式 -->
             <div class="flex flex-wrap items-center gap-5 text-sm text-slate-600 mb-6 bg-slate-50 px-5 py-3 rounded-2xl w-fit border border-slate-100">
               <span class="flex items-center gap-2">
                 <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
@@ -320,7 +342,6 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
               </span>
             </div>
 
-            <!-- 學歷與所屬組別 -->
             <div class="flex flex-col sm:flex-row gap-8 sm:gap-12 mt-2">
               <div>
                 <h5 class="text-xs text-[#94a3b8] mb-2 tracking-widest uppercase font-semibold">學歷 Education</h5>
@@ -340,7 +361,6 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
               </div>
             </div>
 
-            <!-- 外部連結 -->
             <div class="mt-8">
               <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-sm text-blue-600 hover:text-blue-800 font-medium transition group">
                 <span class="border-b border-transparent group-hover:border-blue-800 transition-colors">查看教授詳細資訊 (論文發表、研究計畫等)</span>
@@ -356,55 +376,46 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
           <h5 class="text-xs text-[#94a3b8] mb-5 tracking-widest uppercase font-bold">研究專長 Research Interests</h5>
           
           <div class="flex flex-wrap gap-3">
-            
-            <!-- 專長 1 -->
             <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
               <span class="text-sm font-bold text-slate-700">雲端與智慧物聯網系統</span>
               <span class="text-[11px] text-slate-400 font-mono mt-0.5">Cloud and AIoT Systems</span>
             </div>
             
-            <!-- 專長 2 -->
             <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
               <span class="text-sm font-bold text-slate-700">無線感測網路與高速網路系統</span>
               <span class="text-[11px] text-slate-400 font-mono mt-0.5">WSN & High-Speed Networks</span>
             </div>
 
-            <!-- 專長 3 -->
             <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
               <span class="text-sm font-bold text-slate-700">人工智慧穿戴式裝置聯網系統</span>
               <span class="text-[11px] text-slate-400 font-mono mt-0.5">Wearable Devices IoT</span>
             </div>
 
-            <!-- 專長 4 -->
             <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
               <span class="text-sm font-bold text-slate-700">人工智慧醫療聯網系統</span>
               <span class="text-[11px] text-slate-400 font-mono mt-0.5">Medical IoT (MIoT)</span>
             </div>
 
-            <!-- 專長 5 -->
             <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
               <span class="text-sm font-bold text-slate-700">人工智慧製造聯網系統</span>
               <span class="text-[11px] text-slate-400 font-mono mt-0.5">Industrial IoT (IIoT)</span>
             </div>
 
-            <!-- 專長 6 -->
             <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
               <span class="text-sm font-bold text-slate-700">擴增實境聯網系統</span>
               <span class="text-[11px] text-slate-400 font-mono mt-0.5">Augmented Reality IoT</span>
             </div>
 
-            <!-- 專長 7 -->
             <div class="inline-flex flex-col px-4 py-2 bg-white border border-slate-200/80 rounded-2xl hover:border-blue-300 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-300">
               <span class="text-sm font-bold text-slate-700">人工智慧機器人技術</span>
               <span class="text-[11px] text-slate-400 font-mono mt-0.5">AI Robotics</span>
             </div>
-
           </div>
         </div>
       </div>
 
-      <!-- 前往完整名單的按鈕 -->
-      <div class="flex justify-center mt-10">
+      <!-- 前往完整名單的按鈕 (加上向上滑入動畫) -->
+      <div class="flex justify-center mt-10" data-reveal="up" style="transition-delay: 250ms;">
         <a href="/members" class="inline-flex items-center justify-center px-8 py-3.5 bg-slate-900 hover:bg-blue-600 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 group">
           查看所有實驗室成員
           <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -417,38 +428,31 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
     <!-- 👇 活動花絮 -->
     <section id="activities" class="scroll-mt-24">
       
-      <!-- 現代化主標題 -->
-      <div class="mb-10 flex flex-col items-start">
+      <!-- 標題 (向上滑入) -->
+      <div class="mb-10 flex flex-col items-start" data-reveal="up">
         <span class="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold tracking-widest uppercase rounded-full mb-3 border border-blue-100">Activities & Albums</span>
         <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">活動花絮</h2>
       </div>
 
-      <!-- 活動花絮單一入口橫幅 (Banner) -->
-      <div class="relative w-full rounded-3xl overflow-hidden shadow-xl h-[360px] sm:h-[420px] flex items-center justify-center group">
+      <!-- 活動橫幅 (採用縮放浮現效果 Zoom-in) -->
+      <div class="relative w-full rounded-3xl overflow-hidden shadow-xl h-[360px] sm:h-[420px] flex items-center justify-center group" data-reveal="zoom" style="transition-delay: 100ms;">
         
-        <!-- 背景圖片 (懸浮時微放大) -->
         <img src="/images/activity-banner.jpg" alt="活動花絮背景" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop';" />
         
-        <!-- 深色漸層遮罩 (懸浮時微變色) -->
         <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/50 transition-colors duration-500"></div>
         
-        <!-- 內部玻璃質感卡片 -->
         <div class="relative z-10 text-center px-8 py-10 max-w-2xl mx-auto flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-[2rem] shadow-2xl transform transition-transform duration-500 group-hover:-translate-y-2 m-4">
           
-          <!-- 小裝飾點 -->
           <div class="w-10 h-1 bg-blue-400 mb-6 rounded-full opacity-80"></div>
           
-          <!-- 標題 -->
           <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-4 tracking-wider drop-shadow-md">
             實驗室日常與活動紀錄
           </h3>
           
-          <!-- 描述說明 -->
           <p class="text-sm sm:text-base text-slate-100 mb-8 leading-relaxed drop-shadow max-w-lg">
             完整收錄我們參與國內外學術研討會、創新創業競賽、專題發表展，以及實驗室夥伴們溫馨聚餐與出遊的精彩瞬間。
           </p>
           
-          <!-- 前往相簿的按鈕 -->
           <a href="/activities" class="inline-flex items-center justify-center px-8 py-3.5 bg-blue-600 hover:bg-white hover:text-blue-700 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-white/20 group/btn border border-blue-500/50 hover:border-white">
             前往活動相簿
             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -460,8 +464,10 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
       </div>
     </section>
 
-    <!-- 👇 影音專區 -->
-    <Videos />
+    <!-- 將影音專區也包裝在動畫容器中 -->
+    <div data-reveal="up">
+      <Videos />
+    </div>
 
   </main>
 
@@ -621,7 +627,7 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
 
       // --- 3. 數字跳動動畫 (Counter Animation) ---
       const counters = document.querySelectorAll('.counter-anim');
-      const animationDuration = 2000; // 動畫總時長設定為 2 秒 (可自行微調)
+      const animationDuration = 2000;
 
       const animateCounter = (counter) => {
         const target = parseFloat(counter.getAttribute('data-target'));
@@ -633,7 +639,6 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
           if (!startTime) startTime = currentTime;
           const progress = Math.min((currentTime - startTime) / animationDuration, 1);
           
-          // 使用 easeOut 緩動函數，讓數字跳動「先快後慢」，視覺上更有質感
           const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
           const currentNum = (easeProgress * target).toFixed(decimals);
 
@@ -642,7 +647,6 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
           if (progress < 1) {
             window.requestAnimationFrame(step);
           } else {
-            // 確保最後停在精準的目標數字
             counter.innerText = target.toFixed(decimals) + suffix;
           }
         };
@@ -650,19 +654,39 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
         window.requestAnimationFrame(step);
       };
 
-      // 使用 IntersectionObserver 讓元素滑入畫面內時才觸發動畫
       const counterObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             animateCounter(entry.target);
-            observer.unobserve(entry.target); // 動畫跑完後就取消觀察，避免每次上下滑動都重新觸發
+            observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.3 }); // 只要該區塊露出 30% 就開始跑動畫
+      }, { threshold: 0.3 });
 
       counters.forEach(counter => {
         counterObserver.observe(counter);
       });
+
+      // --- ✨ 4. 新增：滾動觸發動畫 (Scroll Reveal) 邏輯 ---
+      const revealElements = document.querySelectorAll('[data-reveal]');
+      
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            // 當元素進入畫面，加上 .is-revealed 類別觸發 CSS 動畫
+            entry.target.classList.add('is-revealed');
+            // 觸發一次後就取消觀察，確保動畫只在第一次滾到時播放
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        root: null,
+        // 設定觸發邊界：元素進入視窗底部上方 10% 左右時才觸發，看起來比較自然
+        rootMargin: '0px 0px -10% 0px', 
+        threshold: 0.1
+      });
+
+      revealElements.forEach(el => revealObserver.observe(el));
 
     });
   </script>
