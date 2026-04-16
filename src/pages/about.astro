@@ -8,74 +8,46 @@ import "../styles/global.css";
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
   <title>關於實驗室 | iCPS Lab 智慧網宇實體系統實驗室</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen">
 
-  <!-- 🔷 頂部導覽列 (Navbar) -->
+  <!-- ============================================================ -->
+  <!-- 🔒 導覽列：原版不動                                          -->
+  <!-- ============================================================ -->
   <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
       <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
-        <!-- 高科大 Logo -->
         <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
         </a>
         <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
-        <!-- 實驗室 Logo -->
         <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
           <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
         </a>
       </div>
-
-      <!-- 右側導覽連結 -->
       <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-        <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>首頁</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span>
-        </a>
-        <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>關於 iCPS Lab</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
-        </a>
-        <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>最新消息</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
-        </a>
-        <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>活動花絮</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
-        </a>
-        <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>影音專區</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
-        </a>
-        <a href="/achievements"  class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>成果榮譽</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Achievements</span>
-        </a>
-        <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>實驗室成員</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
-        </a>
-        <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>常見問題</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span>
-        </a>
+        <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>首頁</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span></a>
+        <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>關於 iCPS Lab</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span></a>
+        <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>最新消息</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span></a>
+        <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>活動花絮</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span></a>
+        <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>影音專區</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span></a>
+        <a href="/achievements" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>成果榮譽</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Achievements</span></a>
+        <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>實驗室成員</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span></a>
+        <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>常見問題</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span></a>
       </div>
-
-      <!-- 手機版漢堡選單按鈕 -->
       <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
         <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
         </svg>
       </button>
     </div>
-
-    <!-- 手機版下拉選單 -->
     <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
       <a href="/" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">首頁</a>
       <a href="/about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">關於 iCPS Lab</a>
-      <a href="/#news"class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">最新消息</a>
+      <a href="/#news" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">最新消息</a>
       <a href="/activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">活動花絮</a>
       <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">影音專區</a>
       <a href="/achievements" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">成果與榮譽</a>
@@ -84,164 +56,295 @@ import "../styles/global.css";
     </div>
   </nav>
 
-  <!-- 🔷 頁面標題區 (Hero Banner) -->
-  <header class="bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-800 py-16 lg:py-20 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
-    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="relative z-10 max-w-3xl mx-auto px-4 reveal-scale">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">關於 iCPS Lab</h1>
-      <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow">Intelligent Cyber-Physical Systems Laboratory</p>
+  <!-- ============================================================ -->
+  <!-- ✨ 頁面標題區 (Hero Banner) — 升級版                         -->
+  <!-- ============================================================ -->
+  <header class="hero-banner relative py-20 lg:py-28 text-center border-b-[5px] border-blue-700 overflow-hidden">
+    <!-- 動態幾何背景 canvas -->
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+    
+    <!-- 漸層底色層 -->
+    <div class="absolute inset-0 bg-gradient-to-br from-slate-950 via-[#0a1628] to-slate-900 z-0"></div>
+    
+    <!-- 藍色光暈 -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-blue-600/20 rounded-full blur-[80px] z-[1] pointer-events-none"></div>
+    <div class="absolute bottom-0 left-0 w-[300px] h-[200px] bg-blue-800/15 rounded-full blur-[60px] z-[1] pointer-events-none"></div>
+    
+    <!-- 標題內容 -->
+    <div class="relative z-10 max-w-3xl mx-auto px-4">
+      <div class="hero-badge inline-flex items-center gap-2 bg-white/5 border border-white/10 text-blue-300 text-xs font-medium tracking-[0.2em] uppercase px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm">
+        <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+        Intelligent Cyber-Physical Systems Laboratory
+      </div>
+      <h1 class="hero-title text-4xl md:text-6xl font-black text-white tracking-tight mb-4 leading-tight drop-shadow-xl">
+        關於 <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300">iCPS Lab</span>
+      </h1>
+      <p class="hero-sub text-slate-400 text-sm md:text-base font-medium tracking-[0.25em] uppercase mt-2">
+        Bridging Technology &amp; Real-World Impact
+      </p>
     </div>
   </header>
 
-  <!-- 🔷 網站主體區域 -->
+  <!-- ============================================================ -->
+  <!-- ✨ 網站主體區域 — 升級版                                     -->
+  <!-- ============================================================ -->
   <main class="flex-grow max-w-7xl mx-auto px-6 py-16 relative z-20 w-full overflow-hidden">
 
     <!-- 回首頁按鈕 -->
-    <div class="mb-10 reveal-left">
-      <a href="/" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition-colors bg-white px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:shadow-md">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+    <div class="mb-12 rv rv-left">
+      <a href="/" class="inline-flex items-center text-sm font-semibold text-slate-500 hover:text-blue-700 transition-all duration-200 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:shadow-md hover:-translate-x-0.5 group">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1.5 transition-transform duration-200 group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
         返回首頁
       </a>
     </div>
 
     <!-- 垂直間距容器 -->
-    <div class="space-y-24">
+    <div class="space-y-28">
 
-      <!-- 📌 區塊一：實驗室領航 (教授介紹) -->
+      <!-- =========================================================== -->
+      <!-- 📌 區塊一：教授介紹                                         -->
+      <!-- =========================================================== -->
       <section>
-        <div class="flex items-center gap-3 mb-10 reveal-up">
-          <div class="w-2 h-8 bg-blue-700 rounded-full"></div>
-          <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">實驗室領航 <span class="text-slate-400 font-light ml-2 text-xl lg:text-2xl">Principal Investigator</span></h3>
+        <div class="section-label flex items-center gap-3 mb-12 rv rv-up">
+          <div class="w-1.5 h-8 bg-gradient-to-b from-blue-500 to-blue-700 rounded-full"></div>
+          <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">
+            實驗室領航
+            <span class="text-slate-400 font-light ml-3 text-xl lg:text-2xl">Principal Investigator</span>
+          </h3>
         </div>
         
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <!-- 左側：教授照片 (左側滑入) -->
-          <div class="w-full aspect-video bg-slate-200 rounded-2xl shadow-lg overflow-hidden border border-slate-200 relative group transition-shadow hover:shadow-xl duration-300 reveal-left">
-            <img 
-              class="w-full h-full absolute inset-0 object-cover object-center" 
-              src="/images/professor-chang.png" 
-              alt="張萬榮 教授" 
-              onerror="this.src='https://via.placeholder.com/800x450?text=Professor+Chang';" 
-            />
+          <!-- 左側：教授照片 -->
+          <div class="prof-img-wrap rv rv-left">
+            <div class="relative w-full aspect-video rounded-2xl overflow-hidden shadow-2xl border border-slate-200/80 group">
+              <img 
+                class="w-full h-full absolute inset-0 object-cover object-center transition-transform duration-700 group-hover:scale-105" 
+                src="/images/professor-chang.png" 
+                alt="張萬榮 教授" 
+                onerror="this.src='https://via.placeholder.com/800x450?text=Professor+Chang';" 
+              />
+              <!-- 底部漸層遮罩 -->
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <!-- 浮動標籤 -->
+              <div class="absolute bottom-4 left-4 right-4 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-2 group-hover:translate-y-0">
+                <span class="inline-block bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-bold px-3 py-1 rounded-full shadow">iCPS Lab Principal Investigator</span>
+              </div>
+            </div>
           </div>
           
-          <!-- 右側：教授理念 (右側滑入) -->
-          <div class="flex flex-col justify-center h-full space-y-5 reveal-right">
-            <h4 class="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-3">
-              張萬榮 教授 
-              <span class="text-base font-medium text-slate-500 ml-2 font-mono">Wan-Jung Chang, Ph.D.</span>
-            </h4>
+          <!-- 右側：教授理念 -->
+          <div class="flex flex-col justify-center h-full space-y-6 rv rv-right">
+            <div>
+              <h4 class="text-2xl font-bold text-slate-900 pb-3 border-b border-slate-100">
+                張萬榮 教授 
+                <span class="text-base font-normal text-slate-400 ml-2 font-mono">Wan-Jung Chang, Ph.D.</span>
+              </h4>
+            </div>
             
-            <p class="text-slate-700 leading-relaxed font-semibold text-lg text-justify text-blue-900/90 bg-blue-50/50 p-4 rounded-lg border-l-4 border-blue-200">
-              「工程教育的價值在於探索未知，並將科技回饋社會。我們期許團隊不僅掌握前瞻技術，更能為臨床與產業提出切實可行的解方。」
-            </p>
+            <!-- 引言區塊 -->
+            <blockquote class="relative pl-5 border-l-4 border-blue-500 bg-gradient-to-r from-blue-50 to-transparent py-4 pr-4 rounded-r-lg">
+              <div class="absolute -top-2 -left-1 text-blue-200 text-5xl font-serif leading-none select-none">"</div>
+              <p class="text-slate-700 leading-relaxed font-medium text-base lg:text-lg text-justify relative z-10">
+                工程教育的價值在於探索未知，並將科技回饋社會。我們期許團隊不僅掌握前瞻技術，更能為臨床與產業提出切實可行的解方。
+              </p>
+            </blockquote>
             
             <p class="text-slate-600 leading-relaxed text-sm lg:text-base text-justify">
-              張教授深耕 AIoT 與邊緣運算多年，在<strong class="text-slate-800">高科大電子工程系</strong>建構了高度跨域協作的研究環境。對外，積極橋接醫療院所與科技大廠的資源；對內，則致力於營造互助融洽的團隊氛圍，引導學生在紮實的學理基礎上，將創意化為實體應用。
+              張教授深耕 AIoT 與邊緣運算多年，在<strong class="text-slate-800">高科大電子工程系</strong>建構了高度跨域協作的研究環境。對外積極橋接醫療院所與科技大廠；對內致力於營造互助融洽的團隊氛圍，引導學生在紮實學理基礎上，將創意化為實體應用。
             </p>
 
-            <div class="pt-4 flex flex-wrap gap-4">
-              <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-white bg-slate-800 hover:bg-blue-700 font-medium px-5 py-2.5 rounded-lg transition-all duration-300 shadow-sm hover:shadow-md text-sm">
-                查看教授完整簡歷
+            <div class="pt-2 flex flex-wrap gap-3">
+              <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" 
+                 class="btn-primary inline-flex items-center gap-2 text-white bg-slate-900 hover:bg-blue-700 font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 shadow-sm hover:shadow-blue-700/30 hover:shadow-lg text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+                查看完整簡歷
               </a>
-              <a href="mailto:allenchang@nkust.edu.tw" class="inline-flex items-center text-slate-700 bg-white border border-slate-300 hover:bg-slate-50 hover:text-blue-700 font-medium px-5 py-2.5 rounded-lg transition-all duration-300 shadow-sm text-sm">
-                ✉️ 寄信聯繫教授
+              <a href="mailto:allenchang@nkust.edu.tw" 
+                 class="btn-secondary inline-flex items-center gap-2 text-slate-700 bg-white border border-slate-200 hover:border-blue-300 hover:text-blue-700 hover:bg-blue-50 font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 shadow-sm text-sm">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2v10a2 2 0 002 2z"/></svg>
+                寄信聯繫教授
               </a>
             </div>
           </div>
         </div>
       </section>
-      
-      <!-- 📌 區塊二：實驗室願景 (我們做什麼) -->
-      <section>
-        <div class="bg-white border-l-[6px] border-blue-700 p-8 lg:p-12 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] rounded-r-xl reveal-scale">
-          <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 mb-5 tracking-tight">我們不只寫程式，更致力於解決真實世界的痛點。</h2>
-          <p class="text-slate-700 leading-relaxed text-lg mb-5 text-justify">
-            <strong class="text-blue-800">智慧網宇實體系統實驗室 (iCPS Lab)</strong> 專注於打破學術研究與產業實務的界線。我們深度融合人工智慧 (AI)、物聯網 (AIoT) 與延展實境 (XR) 技術，將前端的感測數據與後端的雲邊緣運算無縫接軌，打造具備高度智慧化、自動化的虛實整合解決方案。
-          </p>
-          <p class="text-slate-600 leading-relaxed text-base lg:text-lg text-justify">
-            從<strong class="text-slate-800">臨床醫療照護、高科技廠房的智能製造，到城市級的智慧交通系統</strong>，我們的技術皆已實際落地驗證。無論您是尋求技術突破的企業夥伴，還是渴望掌握前瞻科技的優秀學子，iCPS Lab 都是您實踐創新的最佳基地。
-          </p>
+
+      <!-- =========================================================== -->
+      <!-- 📌 區塊二：願景                                             -->
+      <!-- =========================================================== -->
+      <section class="space-y-10">
+        <!-- 願景區塊 -->
+        <div class="vision-block relative bg-white rounded-2xl overflow-hidden shadow-sm rv rv-up">
+          <!-- 左側藍色裝飾條 -->
+          <div class="absolute left-0 top-0 bottom-0 w-1.5 bg-gradient-to-b from-blue-500 via-blue-700 to-blue-900 rounded-l-2xl"></div>
+          <div class="p-8 lg:p-12 pl-10 lg:pl-14">
+            <div class="flex items-start gap-4 mb-5">
+              <div class="w-10 h-10 bg-blue-50 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                <svg class="w-5 h-5 text-blue-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+              </div>
+              <h2 class="text-2xl lg:text-3xl font-bold text-slate-900 leading-snug tracking-tight">
+                我們不只寫程式，<br class="hidden sm:block"/>更致力於解決真實世界的痛點。
+              </h2>
+            </div>
+            <p class="text-slate-700 leading-relaxed text-base lg:text-lg mb-4 text-justify">
+              <strong class="text-blue-800">智慧網宇實體系統實驗室 (iCPS Lab)</strong> 專注於打破學術研究與產業實務的界線。我們深度融合人工智慧 (AI)、物聯網 (AIoT) 與延展實境 (XR) 技術，將前端的感測數據與後端的雲邊緣運算無縫接軌，打造具備高度智慧化、自動化的虛實整合解決方案。
+            </p>
+            <p class="text-slate-500 leading-relaxed text-sm lg:text-base text-justify">
+              從<strong class="text-slate-700">臨床醫療照護、高科技廠房的智能製造，到城市級的智慧交通系統</strong>，我們的技術皆已實際落地驗證。無論您是尋求技術突破的企業夥伴，還是渴望掌握前瞻科技的優秀學子，iCPS Lab 都是您實踐創新的最佳基地。
+            </p>
+          </div>
         </div>
       </section>
 
-      <!-- 📌 區塊三：雙向對話 (左邊對廠商，右邊對學生) -->
+      <!-- =========================================================== -->
+      <!-- 📌 區塊三：雙向對話                                         -->
+      <!-- =========================================================== -->
       <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- 給企業與臨床單位 -->
-        <div class="bg-gradient-to-br from-slate-900 to-slate-800 p-8 rounded-2xl shadow-lg relative overflow-hidden group reveal-up">
-          <div class="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 bg-blue-600 rounded-full opacity-20 group-hover:scale-150 transition-transform duration-700"></div>
-          <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-2xl">🤝</div>
-          <h3 class="text-2xl font-bold text-white mb-4">產醫跨域合作</h3>
-          <p class="text-slate-300 leading-relaxed mb-6 text-sm lg:text-base">
-            我們具備豐富的產學合作與臨床場域驗證經驗，能為企業與醫院提供客製化的技術評估與系統開發。從概念驗證 (PoC) 到系統整合，我們是您最可靠的技術大腦。
-          </p>
-          <ul class="text-slate-200 space-y-3 mb-8 text-sm">
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-400 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 臨床痛點 AI 輔助系統開發</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-400 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 智慧工廠產線自動化與瑕疵檢測</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-400 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 前瞻技術轉移與聯合技術研發</li>
-          </ul>
-          <a href="mailto:allenchang@nkust.edu.tw" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-medium px-5 py-2 rounded-lg transition-colors text-sm">
-            提案與洽詢合作 &rarr;
-          </a>
+        <!-- 產醫合作 (深色) -->
+        <div class="collab-card relative bg-gradient-to-br from-slate-900 to-[#0a1628] p-8 rounded-2xl shadow-xl overflow-hidden group rv rv-up">
+          <!-- 裝飾圓 -->
+          <div class="absolute -top-10 -right-10 w-40 h-40 bg-blue-600/20 rounded-full blur-2xl group-hover:bg-blue-500/30 transition-colors duration-700"></div>
+          <div class="absolute bottom-0 left-0 w-32 h-32 bg-cyan-500/10 rounded-full blur-2xl"></div>
+          
+          <div class="relative z-10">
+            <div class="w-12 h-12 bg-blue-500/20 border border-blue-400/30 rounded-xl flex items-center justify-center mb-6 text-2xl group-hover:bg-blue-500/30 transition-colors">🤝</div>
+            <h3 class="text-2xl font-bold text-white mb-3">產醫跨域合作</h3>
+            <div class="w-10 h-0.5 bg-blue-500 rounded mb-5 group-hover:w-20 transition-all duration-500"></div>
+            <p class="text-slate-300 leading-relaxed mb-6 text-sm lg:text-base">
+              我們具備豐富的產學合作與臨床場域驗證經驗，能為企業與醫院提供客製化的技術評估與系統開發。從概念驗證 (PoC) 到系統整合，我們是您最可靠的技術大腦。
+            </p>
+            <ul class="text-slate-300 space-y-3 mb-8 text-sm">
+              <li class="flex items-center gap-2.5">
+                <span class="w-5 h-5 bg-blue-500/20 border border-blue-400/40 rounded-full flex items-center justify-center shrink-0">
+                  <svg class="w-3 h-3 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </span>
+                臨床痛點 AI 輔助系統開發
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-5 h-5 bg-blue-500/20 border border-blue-400/40 rounded-full flex items-center justify-center shrink-0">
+                  <svg class="w-3 h-3 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </span>
+                智慧工廠產線自動化與瑕疵檢測
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-5 h-5 bg-blue-500/20 border border-blue-400/40 rounded-full flex items-center justify-center shrink-0">
+                  <svg class="w-3 h-3 text-blue-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </span>
+                前瞻技術轉移與聯合技術研發
+              </li>
+            </ul>
+            <a href="mailto:allenchang@nkust.edu.tw" 
+               class="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 text-sm shadow-lg shadow-blue-900/40 hover:shadow-blue-600/40 hover:-translate-y-0.5">
+              提案與洽詢合作
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
         </div>
 
-        <!-- 給學生 -->
-        <div class="bg-gradient-to-br from-blue-50 to-white border border-blue-100 p-8 rounded-2xl shadow-sm hover:shadow-lg transition-shadow relative overflow-hidden group reveal-up delay-200">
-          <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-6 text-2xl">🎓</div>
-          <h3 class="text-2xl font-bold text-slate-900 mb-4">啟動研究生涯</h3>
-          <p class="text-slate-600 leading-relaxed mb-6 text-sm lg:text-base">
-            我們回歸校園培育人才的初衷，熱烈招收具備熱忱的博碩士與大學部專題生。在這裡，你將不會只讀紙上理論，而是真正動手將技術變成解決真實問題的產品。
-          </p>
-          <ul class="text-slate-700 space-y-3 mb-8 text-sm font-medium">
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-600 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 扎實訓練：從演算法開發到系統落地</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-600 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 國際視野：輔導發表國內外頂尖研討會與期刊</li>
-            <li class="flex items-start"><svg class="w-5 h-5 text-blue-600 mr-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg> 實戰履歷：帶領參與各大創新創業與黑客松競賽</li>
-          </ul>
-          <a href="/members" class="inline-block bg-white border-2 border-slate-900 text-slate-900 hover:bg-slate-900 hover:text-white font-medium px-5 py-1.5 rounded-lg transition-colors text-sm">
-            認識實驗室學長姐 &rarr;
-          </a>
+        <!-- 給學生 (淺色) -->
+        <div class="student-card relative bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl overflow-hidden group rv rv-up rv-delay-200">
+          <!-- 裝飾幾何 -->
+          <div class="absolute top-0 right-0 w-40 h-40 bg-blue-50 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-blue-100 transition-colors duration-500"></div>
+          
+          <div class="relative z-10">
+            <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center mb-6 text-2xl group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">🎓</div>
+            <h3 class="text-2xl font-bold text-slate-900 mb-3">啟動研究生涯</h3>
+            <div class="w-10 h-0.5 bg-blue-200 rounded mb-5 group-hover:w-20 group-hover:bg-blue-500 transition-all duration-500"></div>
+            <p class="text-slate-600 leading-relaxed mb-6 text-sm lg:text-base">
+              我們熱烈招收具備熱忱的博碩士與大學部專題生。在這裡，你將不只讀紙上理論，而是真正動手將技術變成解決真實問題的產品。
+            </p>
+            <ul class="text-slate-700 space-y-3 mb-8 text-sm font-medium">
+              <li class="flex items-center gap-2.5">
+                <span class="w-5 h-5 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-blue-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </span>
+                扎實訓練：從演算法開發到系統落地
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-5 h-5 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-blue-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </span>
+                國際視野：輔導發表國內外頂尖研討會與期刊
+              </li>
+              <li class="flex items-center gap-2.5">
+                <span class="w-5 h-5 bg-blue-50 border border-blue-200 rounded-full flex items-center justify-center shrink-0 group-hover:bg-blue-600 group-hover:border-blue-600 transition-colors duration-300">
+                  <svg class="w-3 h-3 text-blue-600 group-hover:text-white transition-colors" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                </span>
+                實戰履歷：帶領參與各大創新創業與黑客松競賽
+              </li>
+            </ul>
+            <a href="/members" 
+               class="inline-flex items-center gap-2 bg-slate-900 text-white hover:bg-blue-700 font-semibold px-5 py-2.5 rounded-lg transition-all duration-300 text-sm hover:-translate-y-0.5 shadow-sm hover:shadow-lg">
+              認識實驗室學長姐
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+            </a>
+          </div>
         </div>
       </section>
 
-      <!-- 📌 區塊四：三大核心研究領域 (實力展示) -->
+      <!-- =========================================================== -->
+      <!-- 📌 區塊四：三大核心研究領域                                  -->
+      <!-- =========================================================== -->
       <section>
-        <div class="flex items-center gap-3 mb-10 reveal-up">
-          <div class="w-2 h-8 bg-blue-700 rounded-full"></div>
-          <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">核心領域與應用 <span class="text-slate-400 font-light ml-2 text-xl lg:text-2xl">Core Applications</span></h3>
+        <div class="flex items-center gap-3 mb-12 rv rv-up">
+          <div class="w-1.5 h-8 bg-gradient-to-b from-blue-500 to-blue-700 rounded-full"></div>
+          <h3 class="text-2xl lg:text-3xl font-bold text-slate-800 tracking-tight">
+            核心領域與應用
+            <span class="text-slate-400 font-light ml-3 text-xl lg:text-2xl">Core Applications</span>
+          </h3>
         </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- 照護醫療 -->
-          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group reveal-up delay-100">
-            <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-red-500 group-hover:text-white transition-colors duration-300 shadow-sm">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- 數位醫療 -->
+          <div class="core-card bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-400 flex flex-col group rv rv-up rv-delay-100 relative overflow-hidden">
+            <!-- 背景裝飾 -->
+            <div class="absolute inset-0 bg-gradient-to-br from-red-50/0 to-red-50/0 group-hover:from-red-50/60 group-hover:to-transparent transition-all duration-500 rounded-2xl"></div>
+            <div class="absolute top-0 right-0 w-24 h-24 bg-red-100/30 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
+            
+            <div class="relative z-10 flex flex-col flex-1">
+              <div class="w-14 h-14 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-red-500 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-red-200">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+              </div>
+              <h4 class="font-bold text-slate-900 text-xl mb-2">數位醫療與智慧照護</h4>
+              <div class="w-8 h-0.5 bg-red-300 rounded mb-4 group-hover:w-16 group-hover:bg-red-500 transition-all duration-500"></div>
+              <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
+                整合熱影像、ToF 感測器與 AI 骨幹辨識。成功應用於精神病房自傷預警、病患日常行為辨識、耳病灶自動診斷，並開發結合 YOLO 的舌肌復健與手術器械教育訓練 XR 平台，有效降低醫療人員負擔。
+              </p>
             </div>
-            <h4 class="font-bold text-slate-900 text-xl mb-3">數位醫療與智慧照護</h4>
-            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
-              整合熱影像、ToF 感測器與 AI 骨幹辨識。成功應用於精神病房自傷預警、病患日常行為辨識、耳病灶自動診斷，並開發結合 YOLO 的舌肌復健與手術器械教育訓練 XR 平台，有效降低醫療人員負擔。
-            </p>
           </div>
 
           <!-- 智能製造 -->
-          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group reveal-up delay-200">
-            <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-colors duration-300 shadow-sm">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+          <div class="core-card bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-400 flex flex-col group rv rv-up rv-delay-200 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-amber-50/0 to-amber-50/0 group-hover:from-amber-50/60 group-hover:to-transparent transition-all duration-500 rounded-2xl"></div>
+            <div class="absolute top-0 right-0 w-24 h-24 bg-amber-100/30 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
+            
+            <div class="relative z-10 flex flex-col flex-1">
+              <div class="w-14 h-14 bg-amber-50 text-amber-500 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-amber-500 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-amber-200">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              </div>
+              <h4 class="font-bold text-slate-900 text-xl mb-2">工業 4.0 智能製造</h4>
+              <div class="w-8 h-0.5 bg-amber-300 rounded mb-4 group-hover:w-16 group-hover:bg-amber-500 transition-all duration-500"></div>
+              <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
+                為工廠端導入 Edge AI 邊緣運算。針對電容缺漏焊、產品包裝缺陷等痛點，開發高精準度、低延遲的自動化產線瑕疵檢測系統，協助企業大幅提升產線良率與減少人力檢驗成本。
+              </p>
             </div>
-            <h4 class="font-bold text-slate-900 text-xl mb-3">工業 4.0 智能製造</h4>
-            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
-              為工廠端導入 Edge AI 邊緣運算。針對電容缺漏焊、產品包裝缺陷等痛點，開發高精準度、低延遲的自動化產線瑕疵檢測系統，協助企業大幅提升產線良率與減少人力檢驗成本。
-            </p>
           </div>
 
-          <!-- 智慧交通/XR -->
-          <div class="bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col group reveal-up delay-300">
-            <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-colors duration-300 shadow-sm">
-              <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+          <!-- 智慧交通 -->
+          <div class="core-card bg-white border border-slate-100 p-8 rounded-2xl shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-400 flex flex-col group rv rv-up rv-delay-300 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-emerald-50/0 to-emerald-50/0 group-hover:from-emerald-50/60 group-hover:to-transparent transition-all duration-500 rounded-2xl"></div>
+            <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-100/30 rounded-full -translate-y-1/2 translate-x-1/2 group-hover:scale-150 transition-transform duration-700"></div>
+            
+            <div class="relative z-10 flex flex-col flex-1">
+              <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 shrink-0 group-hover:bg-emerald-600 group-hover:text-white transition-all duration-300 shadow-sm group-hover:shadow-lg group-hover:shadow-emerald-200">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+              </div>
+              <h4 class="font-bold text-slate-900 text-xl mb-2">智慧交通與物聯網</h4>
+              <div class="w-8 h-0.5 bg-emerald-300 rounded mb-4 group-hover:w-16 group-hover:bg-emerald-500 transition-all duration-500"></div>
+              <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
+                佈建高可靠度的物聯網 (IoT) 感測網路，實現網路通訊與物理世界的雙向交互。應用包含城市級別的智慧交通監測、環境微塑膠監測等，為永續發展與智慧城市提供強大的技術後盾。
+              </p>
             </div>
-            <h4 class="font-bold text-slate-900 text-xl mb-3">智慧交通與物聯網</h4>
-            <p class="text-sm lg:text-base text-slate-600 leading-relaxed mt-auto text-justify">
-              佈建高可靠度的物聯網 (IoT) 感測網路，實現網路通訊與物理世界的雙向交互。應用包含城市級別的智慧交通監測、環境微塑膠監測等，為永續發展與智慧城市提供強大的技術後盾。
-            </p>
           </div>
         </div>
       </section>
@@ -249,7 +352,9 @@ import "../styles/global.css";
     </div>
   </main>
 
-  <!-- 🔷 頁尾 (Footer) -->
+  <!-- ============================================================ -->
+  <!-- 🔒 頁尾：原版不動                                            -->
+  <!-- ============================================================ -->
   <footer class="bg-[#0f172a] py-16 mt-auto border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
@@ -267,7 +372,6 @@ import "../styles/global.css";
         <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
     </div>
-    
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
       <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
         <p class="text-xs text-slate-500 leading-normal">
@@ -276,7 +380,6 @@ import "../styles/global.css";
         <p class="text-xs text-slate-500 hidden sm:block">|</p>
         <p class="text-xs text-slate-500">All rights reserved.</p>
       </div>
-
       <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -289,65 +392,70 @@ import "../styles/global.css";
     </div>
   </footer>
 
-  <!-- 🔷 自定義滾動觸發動畫樣式 (Scroll Reveal) -->
+  <!-- ============================================================ -->
+  <!-- ✨ 樣式系統                                                  -->
+  <!-- ============================================================ -->
   <style>
-    /* 移除一開始全頁面進場的動畫，改由 JS 觸發 */
-    .reveal-up {
-      opacity: 0;
-      transform: translateY(40px);
-      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* ── Hero Banner ── */
+    .hero-banner {
+      background: #0a1628;
     }
-    .reveal-left {
+    .hero-badge {
       opacity: 0;
-      transform: translateX(-40px);
-      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: translateY(12px);
+      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.1s forwards;
     }
-    .reveal-right {
+    .hero-title {
       opacity: 0;
-      transform: translateX(40px);
-      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: translateY(16px);
+      animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s forwards;
     }
-    .reveal-scale {
+    .hero-sub {
       opacity: 0;
-      transform: scale(0.95);
-      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+      transform: translateY(12px);
+      animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.45s forwards;
     }
-    
-    /* 觸發後的狀態 */
-    .reveal-active {
-      opacity: 1;
-      transform: translate(0, 0) scale(1);
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
     }
 
-    /* 延遲動畫效果 (製造階梯式進場) */
-    .delay-100 { transition-delay: 100ms; }
-    .delay-200 { transition-delay: 200ms; }
-    .delay-300 { transition-delay: 300ms; }
+    /* ── Scroll Reveal 系統 ── */
+    .rv { opacity: 0; transition: opacity 0.75s cubic-bezier(0.22, 1, 0.36, 1), transform 0.75s cubic-bezier(0.22, 1, 0.36, 1); }
+    .rv-up    { transform: translateY(36px); }
+    .rv-left  { transform: translateX(-36px); }
+    .rv-right { transform: translateX(36px); }
+    .rv-scale { transform: scale(0.96); }
+    .rv.is-visible { opacity: 1; transform: translate(0,0) scale(1); }
+
+    /* 延遲 */
+    .rv-delay-100 { transition-delay: 0.1s; }
+    .rv-delay-200 { transition-delay: 0.2s; }
+    .rv-delay-300 { transition-delay: 0.3s; }
+
+    /* ── 按鈕點擊回饋 ── */
+    .btn-primary:active, .btn-secondary:active { transform: scale(0.97); }
+
+    /* ── 卡片統一圓角 ── */
+    .core-card { cursor: default; }
   </style>
 
-  <!-- 🔷 智慧訪客計數器、手機導覽列與滾動動畫邏輯 -->
+  <!-- ============================================================ -->
+  <!-- ✨ JavaScript                                                -->
+  <!-- ============================================================ -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      
-      // --- 0. 手機版導覽列 (漢堡選單) 邏輯 ---
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const hamburgerIcon = document.getElementById('hamburger-icon');
 
+      // ── 0. 手機選單 ──
+      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+      const mobileMenu    = document.getElementById('mobile-menu');
+      const hamburgerIcon = document.getElementById('hamburger-icon');
       if (mobileMenuBtn && mobileMenu && hamburgerIcon) {
         mobileMenuBtn.addEventListener('click', () => {
           const isHidden = mobileMenu.classList.contains('hidden');
-          if (isHidden) {
-            mobileMenu.classList.remove('hidden');
-            hamburgerIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12');
-          } else {
-            mobileMenu.classList.add('hidden');
-            hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-          }
+          mobileMenu.classList.toggle('hidden', !isHidden);
+          hamburgerIcon.setAttribute('d', isHidden ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16');
         });
-
-        const mobileLinks = mobileMenu.querySelectorAll('a');
-        mobileLinks.forEach(link => {
+        mobileMenu.querySelectorAll('a').forEach(link => {
           link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
             hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
@@ -355,80 +463,116 @@ import "../styles/global.css";
         });
       }
 
-      // --- 1. 智慧訪客計數器邏輯 ---
+      // ── 1. 訪客計數器 ──
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
-
-        const namespace = 'icpslab_site';
-        const key = 'visits';
-        const localCountKey = 'icps_saved_count';
-        const lastVisitTimeKey = 'icps_last_visit_time';
+        const namespace = 'icpslab_site', key = 'visits';
+        const localCountKey = 'icps_saved_count', lastVisitTimeKey = 'icps_last_visit_time';
         const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-
         let currentCount = localStorage.getItem(localCountKey) || '------';
-        
         const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
         const now = Date.now();
         const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
-        
         try {
           const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          
           if (!hasVisitedWithin24Hours) {
             const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API 回應錯誤');
-            
+            if (!response.ok) throw new Error('API error');
             const data = await response.json();
             currentCount = String(data.count).padStart(6, '0');
-            
             localStorage.setItem(lastVisitTimeKey, now.toString());
             localStorage.setItem(localCountKey, currentCount);
-            counterEl.textContent = currentCount;
-            
           } else {
             try {
-              const response = await fetch(url);
-              if (response.ok) {
-                const data = await response.json();
-                currentCount = String(data.count).padStart(6, '0');
+              const r = await fetch(url);
+              if (r.ok) {
+                const d = await r.json();
+                currentCount = String(d.count).padStart(6, '0');
                 localStorage.setItem(localCountKey, currentCount);
               }
-            } catch (e) {
-              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
-            }
-            counterEl.textContent = currentCount;
+            } catch {}
           }
-          
-        } catch (error) {
-          console.error('計數器載入異常:', error);
-          counterEl.textContent = currentCount;
-        }
+        } catch {}
+        counterEl.textContent = currentCount;
       };
-
       initCounter();
 
-      // --- 2. 滾動觸發動畫 (Scroll Reveal) 邏輯 ---
-      const revealElements = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale');
-      
-      const revealObserver = new IntersectionObserver((entries, observer) => {
+      // ── 2. Scroll Reveal (IntersectionObserver) ──
+      const revealEls = document.querySelectorAll('.rv');
+      const revealObserver = new IntersectionObserver((entries, obs) => {
         entries.forEach(entry => {
-          // 當元素進入畫面 (可視範圍大於 15%)
           if (entry.isIntersecting) {
-            entry.target.classList.add('reveal-active');
-            // 觸發後即取消觀察，讓動畫只跑一次，避免上下滾動時重複閃爍
-            observer.unobserve(entry.target);
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
           }
         });
-      }, {
-        root: null,
-        threshold: 0.15, // 元素露出 15% 時觸發
-        rootMargin: "0px 0px -50px 0px" // 稍微提早一點點觸發
-      });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(el => revealObserver.observe(el));
 
-      // 將所有帶有動畫 class 的元素加入觀察清單
-      revealElements.forEach(el => revealObserver.observe(el));
+      // ── 3. Hero Canvas 粒子動畫 ──
+      const canvas = document.getElementById('hero-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let W, H, particles;
 
+      const resize = () => {
+        W = canvas.width  = canvas.offsetWidth;
+        H = canvas.height = canvas.offsetHeight;
+      };
+      resize();
+      window.addEventListener('resize', resize);
+
+      // 產生粒子
+      const PARTICLE_COUNT = 55;
+      particles = Array.from({ length: PARTICLE_COUNT }, () => ({
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 1.5 + 0.5,
+        alpha: Math.random() * 0.5 + 0.1,
+      }));
+
+      const CONNECT_DIST = 110;
+
+      const loop = () => {
+        ctx.clearRect(0, 0, W, H);
+        // 更新位置
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0) p.x = W;
+          if (p.x > W) p.x = 0;
+          if (p.y < 0) p.y = H;
+          if (p.y > H) p.y = 0;
+        });
+        // 畫連線
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < CONNECT_DIST) {
+              const opacity = (1 - dist / CONNECT_DIST) * 0.18;
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(96, 165, 250, ${opacity})`;
+              ctx.lineWidth = 0.8;
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.stroke();
+            }
+          }
+        }
+        // 畫粒子
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(147, 197, 253, ${p.alpha})`;
+          ctx.fill();
+        });
+        requestAnimationFrame(loop);
+      };
+      loop();
     });
   </script>
 
