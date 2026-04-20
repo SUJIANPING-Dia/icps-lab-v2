@@ -276,7 +276,8 @@ const sortedNewsData = [...newsData].sort((a, b) => {
       {/* 🌟 這裡改為映射 sortedNewsData 而不是原本的 newsData */}
       {sortedNewsData.map((item) => (
         <li class="group news-item">
-          <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
+          {/* 🌟 根據 isPinned 動態加入灰底背景色與 hover 效果 */}
+          <button class={`news-toggle-btn w-full text-left transition-colors flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none ${item.isPinned ? 'bg-slate-50 hover:bg-slate-100' : 'bg-transparent hover:bg-slate-50'}`}>
             <div class="flex flex-col md:flex-row md:items-center gap-4">
               {/* 🌟 左側寬度改用 md:w-[17rem]，以容納新增的置頂標籤 */}
               <div class="flex items-center gap-3 shrink-0 md:w-[17rem]">
@@ -289,12 +290,14 @@ const sortedNewsData = [...newsData].sort((a, b) => {
                   </span>
                 )}
               </div>
-              <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">{item.title}</span>
+              {/* 🌟 根據 isPinned 動態加入粗體 (font-bold) */}
+              <span class={`transition group-hover:text-blue-700 ${item.isPinned ? 'text-slate-900 font-bold' : 'text-slate-800 font-medium'}`}>{item.title}</span>
             </div>
             <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
           
-          <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
+          {/* 🌟 展開時也延續置頂文章的灰底顏色 */}
+          <div style="grid-template-rows: 0fr;" data-expanded="false" class={`grid transition-[grid-template-rows] duration-300 ease-in-out ${item.isPinned ? 'bg-slate-50' : 'bg-transparent'}`}>
             <div class="overflow-hidden">
               <div class="px-6 pb-6 md:pl-[19rem] text-slate-700 text-sm leading-relaxed space-y-5">
                 {item.img && (
