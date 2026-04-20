@@ -4,6 +4,46 @@
 // ==========================================
 const newsData = [
   {
+    date: "2026.04.17", // 依據貼文日期設定
+    tag: "競賽佳績",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "狂賀！實驗室團隊入圍「2026年全國技專校院學生實務專題製作競賽」決賽",
+    img: "/images/competition-shortlist.png", // 屆時請替換為你的入圍名單照片路徑
+    imgAlt: "全國技專校院實務專題競賽入圍名單",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        狂賀！ICPS Lab 專題團隊傳來捷報，成功晉級教育部主辦之「2026年全國技專校院學生實務專題製作競賽暨成果展」決賽！
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次參賽作品在競爭激烈的「資工通訊群」中脫穎而出，成為全國僅有的八組決賽隊伍之一。除了肯定同學們這段時間的努力與心血，也特別感謝林志學教授的共同用心指導。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">🏆 競賽殊榮</h3>
+          <p class="text-slate-700">
+            「全國技專校院學生實務專題製作競賽」為技職體系年度指標性賽事，團隊能擠進「資工通訊群」全國僅八個名額的窄門，充分展現了實驗室堅強的實作與研發能力。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">🎯 決賽展望與備戰</h3>
+          <p class="text-slate-700">
+            全國決賽將於 5 月 14 日盛大登場。特別的是，本次高科大共有三組優秀隊伍入圍同群集決賽，即將上演頂尖對決的「網內互打」。團隊將持續精進作品，期盼在決賽中再創佳績、為校爭光！
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">🤝 特別感謝</h3>
+          <p class="text-slate-700">
+            專題成果得以完美呈現，特別感謝指導教授們的傾囊相授與林志學教授的共同指導，帶領學生將理論轉化為具體的實務應用。
+          </p>
+        </div>
+      </div>
+    `
+},
+  {
     date: "2026.03.31",
     tag: "學術發表",
     tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
@@ -212,12 +252,12 @@ content: `
           <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
             <div class="overflow-hidden">
               <div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed space-y-5">
-                {item.img && (
-                  <div class="w-full max-w-3xl aspect-[1477/1108] bg-slate-100 rounded border border-slate-200 overflow-hidden flex items-center justify-center relative mt-2">
-                    <img src={item.img} alt={item.imgAlt} class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';" />
-                    <span class="text-slate-400 font-medium z-0">[ {item.imgAlt} ]</span>
-                  </div>
-                )}
+{item.img && (
+  <div class="w-full max-w-3xl mx-auto bg-slate-100 rounded border border-slate-200 overflow-hidden relative mt-2 flex items-center justify-center min-h-[120px]">
+    <span class="absolute text-slate-400 font-medium z-0">[ {item.imgAlt} ]</span>
+    <img src={item.img} alt={item.imgAlt} class="w-full h-auto relative z-10 block" onerror="this.style.display='none';" />
+  </div>
+)}
                 <div set:html={item.content}></div>
               </div>
             </div>
