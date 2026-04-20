@@ -3,13 +3,12 @@
 // 🔹 最新消息資料區 (新增公告只需在這裡加入)
 // ==========================================
 const newsData = [
-  
   {
-    date: "2026.04.17", // 依據貼文日期設定
+    date: "2026.04.17", 
     tag: "競賽佳績",
     tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
     title: "狂賀！實驗室團隊入圍「2026年全國技專校院學生實務專題製作競賽」決賽",
-    img: "/images/competition-shortlist.png", // 屆時請替換為你的入圍名單照片路徑
+    img: "/images/competition-shortlist.png", 
     imgAlt: "全國技專校院實務專題競賽入圍名單",
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
@@ -43,13 +42,13 @@ const newsData = [
         </div>
       </div>
     `
-},
-{
+  },
+  {
     date: "2026.04.16",
     tag: "專利核准",
     tagTheme: "text-rose-800 bg-rose-50 border-rose-200",
     title: "捷報！實驗室榮獲第一件日本發明專利「舌部追蹤方法及其舌肌復健系統」",
-    img: "/images/japan-patent-certificate.jpg", // 記得將專利證書照片上傳並更改路徑
+    img: "/images/japan-patent-certificate.jpg", 
     imgAlt: "日本發明專利特許證",
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
@@ -82,7 +81,7 @@ const newsData = [
     tag: "學術發表",
     tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
     title: "狂賀！實驗室大四同學赴日參加 2026 IEEE ICCT-Pacific 國際研討會，成功發表兩篇論文",
-    img: "/images/icct2026-group.jpg", // 替換為: 參加的同學與指導老師合照的照片
+    img: "/images/icct2026-group.jpg",
     imgAlt: "實驗室師生於日本山口大學 ICCT-Pacific 2026 研討會現場合影",
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
@@ -94,7 +93,6 @@ const newsData = [
       </p>
 
       <div class="space-y-6">
-        <!-- 論文 1: PigView -->
         <div class="border border-slate-200 bg-slate-50 rounded p-5 border-l-4 border-l-purple-500">
           <h3 class="font-bold text-purple-800 mb-2 leading-tight">
             📄 PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning
@@ -103,13 +101,11 @@ const newsData = [
             本研究提出一套名為 PigView 的系統，利用人工智慧深度學習技術，透過最小邊界框來精準估測豬隻重量，期能為智慧農業帶來更高效、低接觸的飼養管理方案。
           </p>
           <div class="w-full bg-slate-200 rounded overflow-hidden flex justify-center items-center relative aspect-video border border-slate-200 mt-3">
-            <!-- 替換為: PIGVIEW報告的現場照片 -->
             <img src="/images/icct2026-pigview.jpg" alt="PigView 論文發表實況" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';">
             <span class="text-slate-500 font-medium z-0">[ PigView 報告現場照片 ]</span>
           </div>
         </div>
 
-        <!-- 論文 2: iNoodle -->
         <div class="border border-slate-200 bg-slate-50 rounded p-5 border-l-4 border-l-purple-500">
           <h3 class="font-bold text-purple-800 mb-2 leading-tight">
             📄 iNoodle: An Artificial Intelligence Seasoning-Packet Recognition System Applied to Packaged Dried Noodle Production Line
@@ -118,7 +114,6 @@ const newsData = [
             針對包裝乾麵生產線，團隊開發了 iNoodle 人工智慧調味包辨識系統，透過自動化影像辨識技術，提升生產線的品質控管與包裝效率，展現 AI 落地產線的實力。
           </p>
           <div class="w-full bg-slate-200 rounded overflow-hidden flex justify-center items-center relative aspect-video border border-slate-200 mt-3">
-            <!-- 替換為: INOODEL報告的現場照片 -->
             <img src="/images/icct2026-inoodle.jpg" alt="iNoodle 論文發表實況" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';">
             <span class="text-slate-500 font-medium z-0">[ iNoodle 報告現場照片 ]</span>
           </div>
@@ -200,63 +195,71 @@ const newsData = [
     `
   },
   {
-date: "2026.02.15",
-tag: "招生資訊",
-tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
-title: "【115學年度】熱烈招收新進碩士生與專題生，歡迎加入 ICPS Lab 研究團隊！",
-img: "",
-imgAlt: "",
-content: `
-  <p class="text-base font-bold text-slate-900 mb-4">
-    歡迎具備電機、資工、醫工或相關科系背景，且對軟硬體整合充滿熱忱的同學加入我們！
-  </p>
+    isPinned: true, // 🌟 新增這一行：只要設定為 true 就可以將此新聞置頂！
+    date: "2026.02.15",
+    tag: "招生資訊",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "【115學年度】熱烈招收新進碩士生與專題生，歡迎加入 ICPS Lab 研究團隊！",
+    img: "",
+    imgAlt: "",
+    content: `
+      <p class="text-base font-bold text-slate-900 mb-4">
+        歡迎具備電機、資工、醫工或相關科系背景，且對軟硬體整合充滿熱忱的同學加入我們！
+      </p>
 
-  <div class="mb-4">
-    <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">🔬 實驗室重點研究方向：</h4>
-    <p>
-      在本實驗室，你將有機會參與大型產學合作計畫，並將演算法實際落地於產業場域。
-      我們目前的研究涵蓋：智慧物聯網 (AIoT) 與邊緣運算、醫療影像分析與穿戴式生理訊號辨識、
-      以及智慧製造與擴增實境 (AR) 協作系統。
-    </p>
-  </div>
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">🔬 實驗室重點研究方向：</h4>
+        <p>
+          在本實驗室，你將有機會參與大型產學合作計畫，並將演算法實際落地於產業場域。
+          我們目前的研究涵蓋：智慧物聯網 (AIoT) 與邊緣運算、醫療影像分析與穿戴式生理訊號辨識、
+          以及智慧製造與擴增實境 (AR) 協作系統。
+        </p>
+      </div>
 
-  <div class="mb-4">
-    <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">💡 我們能提供給你：</h4>
-    <ul class="list-disc list-inside space-y-1 pl-2 text-slate-700">
-      <li>依參與計畫表現，提供<span class="font-bold text-amber-700">優渥的每月計畫津貼</span>。</li>
-      <li>豐富的硬體資源：多台高階 GPU 伺服器、AR/VR 設備、多元感測器與開發板。</li>
-      <li>扎實的實作訓練與產學接軌經驗，大幅提升畢業後的就業競爭力。</li>
-      <li>融洽的實驗室氛圍與不定期聚餐活動。</li>
-    </ul>
-  </div>
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">💡 我們能提供給你：</h4>
+        <ul class="list-disc list-inside space-y-1 pl-2 text-slate-700">
+          <li>依參與計畫表現，提供<span class="font-bold text-amber-700">優渥的每月計畫津貼</span>。</li>
+          <li>豐富的硬體資源：多台高階 GPU 伺服器、AR/VR 設備、多元感測器與開發板。</li>
+          <li>扎實的實作訓練與產學接軌經驗，大幅提升畢業後的就業競爭力。</li>
+          <li>融洽的實驗室氛圍與不定期聚餐活動。</li>
+        </ul>
+      </div>
 
-  <div class="bg-blue-50 p-4 rounded border border-blue-100 mb-4">
-    <h4 class="font-bold text-slate-900 mb-2">📩 面談報名方式：</h4>
-    <p>
-      意者請將您的 
-      <strong class="text-blue-700">1. 個人簡歷</strong>、
-      <strong class="text-blue-700">2. 歷年成績單</strong> 與 
-      <strong class="text-blue-700">3. 專題報告或相關作品(若有)</strong> 
-      寄至張教授信箱：
-      <a href="mailto:allenchang@nkust.edu.tw" class="text-blue-600 hover:underline">
-        allenchang@nkust.edu.tw
-      </a>
-    </p>
-    <p class="text-xs text-slate-500 mt-2">
-      ※ 信件主旨請註明：「[加入實驗室] 姓名 - 欲報考碩士班/專題生」，我們收到後將盡快與您安排實驗室參觀與面談時間！
-    </p>
-  </div>
+      <div class="bg-blue-50 p-4 rounded border border-blue-100 mb-4">
+        <h4 class="font-bold text-slate-900 mb-2">📩 面談報名方式：</h4>
+        <p>
+          意者請將您的 
+          <strong class="text-blue-700">1. 個人簡歷</strong>、
+          <strong class="text-blue-700">2. 歷年成績單</strong> 與 
+          <strong class="text-blue-700">3. 專題報告或相關作品(若有)</strong> 
+          寄至張教授信箱：
+          <a href="mailto:allenchang@nkust.edu.tw" class="text-blue-600 hover:underline">
+            allenchang@nkust.edu.tw
+          </a>
+        </p>
+        <p class="text-xs text-slate-500 mt-2">
+          ※ 信件主旨請註明：「[加入實驗室] 姓名 - 欲報考碩士班/專題生」，我們收到後將盡快與您安排實驗室參觀與面談時間！
+        </p>
+      </div>
 
-  <div class="text-sm text-slate-600">
-    👉 若對實驗室生活、研究內容或申請流程有其他疑問，
-    歡迎參考我們的常見問題：
-    <a href="https://icps-lab.com/faq" target="_blank" class="text-blue-600 hover:underline font-medium">
-      ICPS Lab FAQ
-    </a>
-  </div>
-`
+      <div class="text-sm text-slate-600">
+        👉 若對實驗室生活、研究內容或申請流程有其他疑問，
+        歡迎參考我們的常見問題：
+        <a href="https://icps-lab.com/faq" target="_blank" class="text-blue-600 hover:underline font-medium">
+          ICPS Lab FAQ
+        </a>
+      </div>
+    `
   }
 ];
+
+// 🌟 新增這段排序邏輯：自動將 isPinned 為 true 的新聞排到最前面，其餘保持原順序
+const sortedNewsData = [...newsData].sort((a, b) => {
+  if (a.isPinned && !b.isPinned) return -1;
+  if (!a.isPinned && b.isPinned) return 1;
+  return 0;
+});
 ---
 
 <section id="news" class="scroll-mt-12">
@@ -270,13 +273,21 @@ content: `
 
   <div class="bg-white border border-slate-200 rounded-sm shadow-sm">
     <ul id="news-list" class="divide-y divide-slate-100">
-      {newsData.map((item) => (
+      {/* 🌟 這裡改為映射 sortedNewsData 而不是原本的 newsData */}
+      {sortedNewsData.map((item) => (
         <li class="group news-item">
           <button class="news-toggle-btn w-full text-left transition-colors hover:bg-slate-50 flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none">
             <div class="flex flex-col md:flex-row md:items-center gap-4">
-              <div class="flex items-center gap-4 md:w-56 shrink-0">
+              {/* 🌟 左側寬度改用 md:w-[17rem]，以容納新增的置頂標籤 */}
+              <div class="flex items-center gap-3 shrink-0 md:w-[17rem]">
                 <span class="text-slate-500 font-mono text-sm tracking-tight">{item.date}</span>
-                <span class={`px-2.5 py-1 text-xs font-medium rounded-sm border ${item.tagTheme}`}>{item.tag}</span>
+                <span class={`px-2.5 py-1 text-xs font-medium rounded-sm border shrink-0 ${item.tagTheme}`}>{item.tag}</span>
+                {/* 🌟 新增：如果設定為置頂，就顯示置頂徽章 */}
+                {item.isPinned && (
+                  <span class="px-2 py-0.5 text-[11px] font-bold text-red-600 bg-red-50 border border-red-200 rounded shrink-0 flex items-center gap-1 shadow-sm">
+                    📌 置頂
+                  </span>
+                )}
               </div>
               <span class="text-slate-800 font-medium group-hover:text-blue-700 transition">{item.title}</span>
             </div>
@@ -285,13 +296,13 @@ content: `
           
           <div style="grid-template-rows: 0fr;" data-expanded="false" class="grid transition-[grid-template-rows] duration-300 ease-in-out">
             <div class="overflow-hidden">
-              <div class="px-6 pb-6 md:pl-[16.5rem] text-slate-700 text-sm leading-relaxed space-y-5">
-{item.img && (
-  <div class="w-full max-w-3xl mx-auto bg-slate-100 rounded border border-slate-200 overflow-hidden relative mt-2 flex items-center justify-center min-h-[120px]">
-    <span class="absolute text-slate-400 font-medium z-0">[ {item.imgAlt} ]</span>
-    <img src={item.img} alt={item.imgAlt} class="w-full h-auto relative z-10 block" onerror="this.style.display='none';" />
-  </div>
-)}
+              <div class="px-6 pb-6 md:pl-[19rem] text-slate-700 text-sm leading-relaxed space-y-5">
+                {item.img && (
+                  <div class="w-full max-w-3xl mx-auto bg-slate-100 rounded border border-slate-200 overflow-hidden relative mt-2 flex items-center justify-center min-h-[120px]">
+                    <span class="absolute text-slate-400 font-medium z-0">[ {item.imgAlt} ]</span>
+                    <img src={item.img} alt={item.imgAlt} class="w-full h-auto relative z-10 block" onerror="this.style.display='none';" />
+                  </div>
+                )}
                 <div set:html={item.content}></div>
               </div>
             </div>
