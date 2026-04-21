@@ -17,7 +17,7 @@ try {
     body: JSON.stringify({
       expression: '', // 抓取全部照片，由前端進行篩選
       with_field: 'context',
-      sort_by: [{ created_at: 'asc' }],
+      sort_by: [{ created_at: 'desc' }],
       max_results: 500
     })
   });
