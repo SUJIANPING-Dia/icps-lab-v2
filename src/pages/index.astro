@@ -183,13 +183,12 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
   <!-- 🔷 封面視覺 (Hero Section) - 封面保持自動載入，不加滾動動畫 -->
   <header class="relative w-full bg-[#0f172a] overflow-hidden border-b-4 border-blue-700 aspect-[16/9] sm:aspect-[21/9] lg:aspect-[12/5]">
     <div id="hero-slider" class="absolute inset-0 w-full h-full z-10 group/slider">
-      <!-- 已經移除 hero-bg-1.png，並將 hero-bg-3.jpg 的 opacity 改為 100 -->
-      <img src="/images/hero-bg-5.png" alt="實驗室背景 5" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <!-- 調整順序，背景 5 和 6 先出現，並設定背景 5 為預設顯示 -->
+      <img src="/images/hero-bg-5.png" alt="實驗室背景 5" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
       <img src="/images/hero-bg-6.png" alt="實驗室背景 6" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-3.jpg" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-3.jpg" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
       <img src="/images/hero-bg-4.png" alt="實驗室背景 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      
-    
+     
       <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 sm:w-8 sm:h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -201,9 +200,6 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
         </svg>
       </button>
     </div>
-
-    <!-- 已經移除深色漸層遮罩層 -->
-    <!-- 已經移除文字區塊 -->
 
   </header>
 
@@ -496,8 +492,6 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
       const images = document.querySelectorAll('.slider-img');
       const prevBtn = document.getElementById('prev-btn');
       const nextBtn = document.getElementById('next-btn');
-      // 由於我們移除了 hero-text，所以這行可以留著但不做操作
-      const heroText = document.getElementById('hero-text'); 
       
       let currentIndex = 0;
       let slideInterval;
@@ -511,17 +505,6 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
 
           images[currentIndex].classList.remove('opacity-0');
           images[currentIndex].classList.add('opacity-100');
-          
-          // 原本控制文字透明度的邏輯保留，由於 HTML 中已移除 heroText，所以這段不會報錯
-          if (heroText) {
-            if (currentIndex === 0) {
-              heroText.classList.remove('opacity-0', 'pointer-events-none');
-              heroText.classList.add('opacity-100');
-            } else {
-              heroText.classList.remove('opacity-100');
-              heroText.classList.add('opacity-0', 'pointer-events-none');
-            }
-          }
         };
 
         const nextImage = () => { showImage((currentIndex + 1) % images.length); };
