@@ -624,13 +624,6 @@ const posters = [
     <!-- 圖片容器 (點擊背景關閉) -->
     <div class="relative w-full max-w-5xl max-h-full flex flex-col items-center justify-center" onclick="closePosterModal()">
       <div class="relative w-full max-h-[85vh] flex justify-center" onclick="event.stopPropagation()">
-        <!-- 下載連結 -->
-        <a id="poster-download" href="#" target="_blank" class="absolute -top-12 right-0 inline-flex items-center text-white/70 hover:text-white text-sm font-bold transition-colors">
-          下載原檔 (PDF)
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-4 h-4 ml-1">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-          </svg>
-        </a>
         <!-- 高畫質海報圖 -->
         <img id="modal-image" src="" alt="Poster View" class="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300" />
       </div>
@@ -695,12 +688,8 @@ const posters = [
       const modal = document.getElementById('poster-modal');
       const modalImage = document.getElementById('modal-image');
       const modalTitle = document.getElementById('modal-title');
-      const modalDownload = document.getElementById('poster-download');
       
-      if (modal && modalImage && modalTitle && modalDownload) {
-        // 更新圖片、標題與下載連結 (假設高畫質圖為 JPG，原檔為同名 PDF)
-        // 為了展示方便，這裡下載連結我們先用圖片路徑取代或假設路徑
-        const pdfLink = fullSrc.replace(/\.(jpg|png|jpeg)$/i, '.pdf');
+      if (modal && modalImage && modalTitle) {
         
         modalImage.src = fullSrc;
         // 如果載入高畫質圖片失敗，就顯示原來的縮圖
@@ -709,7 +698,6 @@ const posters = [
         };
         
         modalTitle.textContent = title;
-        modalDownload.href = pdfLink;
         
         // 顯示 Modal
         modal.classList.remove('opacity-0', 'pointer-events-none');
