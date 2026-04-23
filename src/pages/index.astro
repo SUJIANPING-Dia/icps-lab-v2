@@ -54,12 +54,19 @@ const awardCount = awardGroup ? awardGroup.yearlyData.reduce((sum, year) => sum 
 const patentGroup = achievements.find(a => a.category && (a.category.includes("專利") || a.category.includes("Patent")));
 const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => sum + year.items.length, 0) : 0;
 
-// 🖼️ 7. 實驗室海報作品清單 (更新為截圖中的真實資料)
+// 🖼️ 7. 實驗室海報作品清單 (擴充為 10 個作品測試捲軸佈局)
 const posters = [
   { id: 1, title: "PigView", category: "Smart Farming", desc: "AI 豬隻體重估測系統", thumb: "/images/pigview-full.png", full: "/images/pigview-full.png" },
   { id: 2, title: "iEar", category: "Healthcare AI", desc: "AI 智慧中耳炎診斷系統", thumb: "/images/iear-full.png", full: "/images/iear-full.png" },
   { id: 3, title: "iNoodle", category: "Smart Manufacturing", desc: "泡麵調味包 AI 辨識系統", thumb: "/images/inoodle-full.png", full: "/images/inoodle-full.png" },
-  { id: 4, title: "ToFPose", category: "Healthcare AI", desc: "具隱私保護之飛時測距骨架估測", thumb: "/images/tofpose-full.png", full: "/images/tofpose-full.png" }
+  { id: 4, title: "ToFPose", category: "Healthcare AI", desc: "具隱私保護之飛時測距骨架估測", thumb: "/images/tofpose-full.png", full: "/images/tofpose-full.png" },
+  // 👇 模擬未來新增的作品
+  { id: 5, title: "SleepGuard", category: "Healthcare AI", desc: "非接觸式睡眠呼吸監測", thumb: "https://images.unsplash.com/photo-1511295742362-92c96b12a806?q=80&w=800&auto=format&fit=crop", full: "https://images.unsplash.com/photo-1511295742362-92c96b12a806?q=80&w=1600&auto=format&fit=crop" },
+  { id: 6, title: "DronePatrol", category: "Smart City", desc: "無人機自動巡防與熱影像辨識", thumb: "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?q=80&w=800&auto=format&fit=crop", full: "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?q=80&w=1600&auto=format&fit=crop" },
+  { id: 7, title: "AgriDrone", category: "Smart Farming", desc: "農用無人機精準噴灑規劃", thumb: "https://images.unsplash.com/photo-1628187841198-d216d26d83dc?q=80&w=800&auto=format&fit=crop", full: "https://images.unsplash.com/photo-1628187841198-d216d26d83dc?q=80&w=1600&auto=format&fit=crop" },
+  { id: 8, title: "FactoryEye", category: "IIoT", desc: "工業產線高精密瑕疵檢測", thumb: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=800&auto=format&fit=crop", full: "https://images.unsplash.com/photo-1565514020179-026b92b84bb6?q=80&w=1600&auto=format&fit=crop" },
+  { id: 9, title: "AquaAI", category: "Smart Aquaculture", desc: "智慧水產養殖水質監控與預測", thumb: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?q=80&w=800&auto=format&fit=crop", full: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?q=80&w=1600&auto=format&fit=crop" },
+  { id: 10, title: "MedTrack", category: "Healthcare AI", desc: "醫療器材 AI 追蹤與庫存管理", thumb: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=800&auto=format&fit=crop", full: "https://images.unsplash.com/photo-1516549655169-df83a0774514?q=80&w=1600&auto=format&fit=crop" }
 ];
 ---
 
@@ -74,7 +81,7 @@ const posters = [
   <!-- 標題列文字不支援HTML標籤，直接改為小寫i -->
   <title>iCPS Lab | 智慧網宇實體系統實驗室 - 國立高雄科技大學</title>
 
-  <!-- ✨ 新增：滾動觸發動畫與燈箱效果的 CSS -->
+  <!-- ✨ 新增：滾動觸發動畫、隱藏卷軸等共用 CSS -->
   <style is:global>
     /* 初始隱藏狀態設定 */
     [data-reveal] {
@@ -99,6 +106,32 @@ const posters = [
     /* 鎖定背景滾動 */
     body.modal-open {
       overflow: hidden;
+    }
+
+    /* 隱藏水平滾動條但保留功能 (針對行動版選擇器) */
+    .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+    }
+    .scrollbar-hide {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+
+    /* 🌟 全新新增：右側選單的垂直自訂精緻滾動條 (電腦版用) */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9; /* Tailwind slate-100 */
+      border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1; /* Tailwind slate-300 */
+      border-radius: 8px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8; /* Tailwind slate-400 */
     }
   </style>
 </head>
@@ -385,10 +418,10 @@ const posters = [
       </div>
     </section>
 
-    <!-- 🚀 全新加入：亮點研究海報牆 (進階：高低錯落 + 畫廊懸浮特效) -->
+    <!-- 🚀 全新加入：亮點研究 (垂直獨立滾動 Scrollable Sidebar 版) -->
     <section id="featured-works" class="scroll-mt-24">
       <!-- 區塊標題 -->
-      <div class="flex flex-col items-center text-center mb-6 lg:mb-16" data-reveal="up">
+      <div class="flex flex-col items-center text-center mb-10 lg:mb-14" data-reveal="up">
         <div class="inline-flex items-center gap-3 mb-3">
           <div class="w-8 h-1 bg-green-600 rounded-full opacity-80"></div>
           <span class="text-green-600 text-xs font-extrabold tracking-widest uppercase">Featured Systems</span>
@@ -396,57 +429,104 @@ const posters = [
         </div>
         <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">實驗室亮點作品</h2>
         <p class="mt-4 text-slate-500 text-sm sm:text-base max-w-2xl">
-          從智慧農業到醫療照護，點擊海報以觀看我們最具代表性的 AIoT 跨域整合系統與實作成果。
+          從智慧農業到醫療照護，點選右側清單查看我們最具代表性的 AIoT 跨域整合系統與實作成果。
         </p>
       </div>
 
-      <!-- 網格容器 (Grid) 改為錯落有致的瀑布/階梯式排版 -->
-      <!-- 增加上下的 padding 以容納高低差的 margin，並加上 items-start 避免網格強迫拉伸高度產生白邊 -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-6 px-2 lg:px-0 pt-4 pb-16 items-start" data-reveal="up" style="transition-delay: 100ms;">
-        {posters.map((poster, index) => (
+      <!-- 🌟 改進的 Hero + 獨立滾動 Selector 佈局容器 (使用 Grid 鎖定高度) -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8" data-reveal="up" style="transition-delay: 100ms;">
+        
+        <!-- 🎥 左側：Hero 大圖展示區 (佔比 2/3) -->
+        <div class="lg:col-span-2 w-full">
+          <!-- aspect-[16/9] 會自然撐出這個區域的高度 -->
           <div 
-            class={`relative group rounded-[2rem] p-3 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.06)] border border-slate-100 cursor-pointer transition-all duration-500 hover:shadow-[0_20px_40px_rgb(0,0,0,0.12)] hover:-translate-y-4 ${index % 2 !== 0 ? 'lg:mt-16' : 'lg:-mt-8'}`}
-            data-poster-full={poster.full}
-            data-poster-title={poster.title}
+            id="hero-container"
+            class="relative group rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgb(0,0,0,0.1)] border border-slate-100 bg-slate-900 w-full aspect-[16/9] cursor-pointer"
+            data-poster-full={posters[0].full}
+            data-poster-title={posters[0].title}
             onclick="openPosterModal(this)"
           >
-            <!-- 內部圖片容器 (移除強制比例，讓海報完整呈現不被裁切) -->
-            <div class="relative overflow-hidden rounded-2xl w-full bg-slate-50">
-              <img 
-                src={poster.thumb} 
-                alt={poster.title} 
-                class="w-full h-auto transform group-hover:scale-110 transition-transform duration-700 ease-out" 
-                onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=800&auto=format&fit=crop';`}
-              />
+            <!-- 主視覺大圖 (預設為陣列第 0 項) -->
+            <img 
+              id="hero-img"
+              src={posters[0].thumb} 
+              alt={posters[0].title} 
+              class="absolute inset-0 w-full h-full object-cover opacity-85 transition-transform duration-700 group-hover:scale-105" 
+              onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=1200&auto=format&fit=crop';`}
+            />
+            
+            <!-- 文字浮層遮罩 -->
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/30 to-transparent flex flex-col justify-end p-6 sm:p-10 pointer-events-none">
               
-              <!-- 懸浮遮罩 (Hover Overlay) 改為置中對齊且較輕盈的毛玻璃效果 -->
-              <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-center items-center p-6 text-center">
-                
-                <!-- 分類標籤 -->
-                <span class="inline-block px-3 py-1 bg-white/20 text-white backdrop-blur-md text-[10px] font-bold tracking-widest uppercase rounded-full mb-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                  {poster.category}
-                </span>
-                
-                <!-- 標題 -->
-                <h3 class="text-white font-black text-2xl md:text-3xl tracking-wide transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75 drop-shadow-md">
-                  {poster.title}
-                </h3>
-                
-                <!-- 描述 -->
-                <p class="text-slate-200 text-sm mt-3 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100 font-medium">
-                  {poster.desc}
-                </p>
-                
-                <!-- 放大檢視按鈕 (圓形) -->
-                <div class="mt-6 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 delay-150 shadow-lg shadow-blue-600/30">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
-                  </svg>
-                </div>
+              <span id="hero-category" class="inline-block px-3 py-1 bg-blue-600/90 text-white backdrop-blur-md text-[10px] sm:text-xs font-bold tracking-widest uppercase rounded-full mb-3 sm:mb-4 w-max border border-white/20 shadow-md transition-all duration-300">
+                {posters[0].category}
+              </span>
+              
+              <h3 id="hero-title" class="text-white font-black text-3xl sm:text-4xl lg:text-5xl tracking-wide drop-shadow-xl mb-2 sm:mb-3 transition-all duration-300">
+                {posters[0].title}
+              </h3>
+              
+              <p id="hero-desc" class="text-slate-200 text-sm sm:text-base lg:text-lg font-medium drop-shadow-md max-w-xl transition-all duration-300">
+                {posters[0].desc}
+              </p>
+              
+              <!-- 放大檢視互動按鈕 -->
+              <div class="absolute top-6 right-6 sm:top-10 sm:right-10 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 delay-100 shadow-xl border border-white/30">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+                </svg>
               </div>
             </div>
           </div>
-        ))}
+        </div>
+
+        <!-- 🎛️ 右側：Selector 獨立滾動清單 (佔比 1/3) -->
+        <!-- lg:relative 讓內部的 absolute 可以對齊這個格子的高度 -->
+        <div class="lg:col-span-1 relative h-[120px] sm:h-[140px] lg:h-auto">
+          
+          <!-- lg:absolute lg:inset-0 能讓這個 div 的高度完美貼齊左側 Hero 的高度，並開啟內部滾動 lg:overflow-y-auto -->
+          <div class="absolute inset-0 lg:absolute lg:inset-0 w-full flex flex-row lg:flex-col gap-3 lg:gap-4 overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto custom-scrollbar snap-x snap-mandatory lg:snap-none lg:pr-3 pb-4 lg:pb-0">
+            {posters.map((poster, index) => (
+              <button 
+                class={`selector-btn text-left flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start
+                  ${index === 0 ? 'bg-blue-50 ring-2 ring-blue-500 shadow-md' : 'bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 shadow-sm'}
+                `}
+                data-index={index}
+                data-thumb={poster.thumb}
+                data-full={poster.full}
+                data-title={poster.title}
+                data-category={poster.category}
+                data-desc={poster.desc}
+                onclick="selectPoster(this)"
+              >
+                <!-- 縮圖容器 (16:9) -->
+                <div class="w-24 h-[54px] sm:w-32 sm:h-[72px] lg:w-28 lg:h-[63px] shrink-0 rounded-xl overflow-hidden shadow-inner border border-slate-200 bg-slate-100 relative">
+                  <img 
+                    src={poster.thumb} 
+                    alt={poster.title} 
+                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500" 
+                    onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=400&auto=format&fit=crop';`}
+                  />
+                </div>
+                
+                <!-- 資訊文字 -->
+                <div class="flex-1 min-w-0 py-1">
+                  <div class="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-1 truncate">
+                    {poster.category}
+                  </div>
+                  <div class="text-slate-900 font-extrabold text-sm sm:text-base truncate leading-tight mb-1">
+                    {poster.title}
+                  </div>
+                  <div class="text-slate-500 text-xs sm:text-sm truncate">
+                    {poster.desc}
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+
+        </div>
+
       </div>
     </section>
 
@@ -564,6 +644,54 @@ const posters = [
   </div>
 
   <script>
+    // --- 🎯 Hero + Selector 切換邏輯 ---
+    window.selectPoster = function(btn) {
+      // 1. 取得按鈕上綁定的資料
+      const thumbSrc = btn.getAttribute('data-thumb');
+      const fullSrc = btn.getAttribute('data-full');
+      const title = btn.getAttribute('data-title');
+      const category = btn.getAttribute('data-category');
+      const desc = btn.getAttribute('data-desc');
+
+      // 2. 獲取需要更新的 Hero 元素
+      const heroImg = document.getElementById('hero-img');
+      const heroCategory = document.getElementById('hero-category');
+      const heroTitle = document.getElementById('hero-title');
+      const heroDesc = document.getElementById('hero-desc');
+      const heroContainer = document.getElementById('hero-container');
+
+      // 為了畫面流暢，做一點微弱的淡入淡出動畫重置
+      heroImg.style.opacity = '0.5';
+      
+      setTimeout(() => {
+        // 更新內容
+        heroImg.src = thumbSrc;
+        heroCategory.innerText = category;
+        heroTitle.innerText = title;
+        heroDesc.innerText = desc;
+        
+        // 更新燈箱需要抓取的屬性
+        heroContainer.setAttribute('data-poster-full', fullSrc);
+        heroContainer.setAttribute('data-poster-title', title);
+        
+        heroImg.style.opacity = '0.85';
+      }, 150);
+
+      // 3. 更新側邊欄按鈕的選中狀態 (Active State)
+      document.querySelectorAll('.selector-btn').forEach(b => {
+        b.classList.remove('bg-blue-50', 'ring-2', 'ring-blue-500', 'shadow-md');
+        b.classList.add('bg-white', 'border-slate-200', 'hover:bg-slate-50', 'hover:border-slate-300', 'shadow-sm');
+        // 內部的圖片容器移除高亮
+        b.querySelector('img').classList.remove('scale-105');
+      });
+
+      // 幫點擊的按鈕加上高亮
+      btn.classList.add('bg-blue-50', 'ring-2', 'ring-blue-500', 'shadow-md');
+      btn.classList.remove('bg-white', 'border-slate-200', 'hover:bg-slate-50', 'hover:border-slate-300', 'shadow-sm');
+      btn.querySelector('img').classList.add('scale-105');
+    };
+
+
     // --- 🖼️ 海報燈箱 (Modal) 互動邏輯 ---
     window.openPosterModal = function(element) {
       const fullSrc = element.getAttribute('data-poster-full');
@@ -582,7 +710,7 @@ const posters = [
         modalImage.src = fullSrc;
         // 如果載入高畫質圖片失敗，就顯示原來的縮圖
         modalImage.onerror = function() {
-          this.src = element.querySelector('img').src;
+          this.src = element.querySelector('img').src || element.getAttribute('src');
         };
         
         modalTitle.textContent = title;
