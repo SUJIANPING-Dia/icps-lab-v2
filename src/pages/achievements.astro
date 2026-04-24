@@ -1,6 +1,20 @@
 ---
 import "../styles/global.css";
 import achievements from "../data/achievements.json";
+
+const achievementStats = achievements.map((group) => ({
+  category: group.category,
+  type: group.type,
+  count: group.yearlyData.reduce((sum, yearBlock) => sum + yearBlock.items.length, 0),
+}));
+
+const totalRecords = achievementStats.reduce((sum, item) => sum + item.count, 0);
+const publicationCount = achievementStats.filter(item => item.type === "publication").reduce((sum, item) => sum + item.count, 0);
+const awardCount = achievementStats.filter(item => item.type === "award").reduce((sum, item) => sum + item.count, 0);
+const projectCount = achievementStats.filter(item => item.type === "project").reduce((sum, item) => sum + item.count, 0);
+const patentCount = achievementStats.filter(item => item.type === "patent").reduce((sum, item) => sum + item.count, 0);
+const allYears = achievements.flatMap(group => group.yearlyData.map(yearBlock => Number(yearBlock.year)).filter(Boolean));
+const latestYear = allYears.length ? Math.max(...allYears) : "—";
 ---
 
 <html lang="zh-TW" class="scroll-smooth">
@@ -9,30 +23,23 @@ import achievements from "../data/achievements.json";
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="/images/lab-logo.png" />
   <title>成果與榮譽 | iCPS Lab 智慧網宇實體系統實驗室</title>
-  <style>
-    .hide-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-    .hide-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .fade-in {
-      animation: fadeIn 0.3s ease-in-out forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(5px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .rotate-180 {
-      transform: rotate(180deg);
-    }
+
+  <style is:global>
+    .hide-scrollbar::-webkit-scrollbar{display:none}.hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+    [data-rv]{opacity:0;transition:opacity .72s cubic-bezier(.22,1,.36,1),transform .72s cubic-bezier(.22,1,.36,1)}
+    [data-rv="up"]{transform:translateY(26px)}[data-rv="left"]{transform:translateX(-26px)}[data-rv="zoom"]{transform:scale(.97)}
+    [data-rv].rv-visible{opacity:1;transform:translate(0,0) scale(1)}
+    .fade-in{animation:fadeIn .36s cubic-bezier(.22,1,.36,1) both}@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes heroRise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}.hero-rise{opacity:0;animation:heroRise .75s cubic-bezier(.22,1,.36,1) forwards}.hero-rise.delay-1{animation-delay:.1s}.hero-rise.delay-2{animation-delay:.22s}.hero-rise.delay-3{animation-delay:.34s}
+    .category-group{display:none}.category-group.is-active{display:block}.rotate-180{transform:rotate(180deg)}
+    .achievement-card{transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s ease,border-color .25s ease,background .25s ease}
+    .achievement-card:hover{transform:translateY(-3px);border-color:rgba(37,99,235,.35);box-shadow:0 18px 42px -28px rgba(15,23,42,.45),0 10px 28px -22px rgba(37,99,235,.35)}
+    .tab-btn.is-active .tab-count{background:rgba(255,255,255,.18);color:white}.year-content{overflow:hidden}
   </style>
+
 </head>
-
 <body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
-
-  <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
+<nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
       <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
         <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
@@ -98,207 +105,130 @@ import achievements from "../data/achievements.json";
     </div>
   </nav>
 
-<style>
-    /* 專屬於頂部 Banner 的載入動畫 (若您已將此段放到 global.css 中，可省略這裡的 <style>) */
-    @keyframes heroZoom {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .animate-hero-zoom {
-      animation: heroZoom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-  </style>
-
-  <header class="bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-800 py-16 lg:py-20 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
-    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    
-    <div class="relative z-10 w-full px-4 animate-hero-zoom">
-      
-      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">成果與榮譽</h1>
-      <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow mb-8">Achievements & Awards</p>
-      
-      <div class="max-w-2xl mx-auto relative group">
-        <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-          <svg class="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+  <header class="relative overflow-hidden border-b border-blue-900/20 bg-[#081426]">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(59,130,246,.32),transparent_34%),radial-gradient(circle_at_78%_25%,rgba(14,165,233,.22),transparent_30%),linear-gradient(135deg,#0f172a_0%,#0b1d35_52%,#082f49_100%)]"></div>
+    <div class="absolute inset-0 opacity-[0.08] bg-[linear-gradient(to_right,#fff_1px,transparent_1px),linear-gradient(to_bottom,#fff_1px,transparent_1px)] bg-[size:48px_48px]"></div>
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-16 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7 text-white">
+          <a href="/" class="hero-rise delay-1 inline-flex items-center gap-2 mb-8 px-4 py-2 rounded-full bg-white/8 border border-white/10 text-blue-100 text-sm font-bold backdrop-blur-md hover:bg-white/12 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            返回首頁
+          </a>
+          <div class="hero-rise delay-1 inline-flex items-center gap-3 mb-5"><span class="w-10 h-1 rounded-full bg-blue-400"></span><span class="text-blue-200 text-xs font-black tracking-[0.26em] uppercase">Achievements Directory</span></div>
+          <h1 class="hero-rise delay-2 text-4xl md:text-6xl font-black tracking-tight leading-tight mb-5">成果與榮譽</h1>
+          <p class="hero-rise delay-3 max-w-2xl text-blue-100/80 text-base md:text-lg leading-relaxed">彙整實驗室論文發表、競賽得獎、產學計畫與專利成果，透過分類與搜尋快速掌握研究累積與技術落地成果。</p>
         </div>
-        <input 
-          type="text" 
-          id="search-input" 
-          class="block w-full pl-12 pr-10 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl text-white placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white focus:text-slate-800 focus:placeholder-slate-400 transition-all duration-300 shadow-lg" 
-          placeholder="搜尋論文題目、獲獎專案或作者姓名... (例如：Deep Learning、2024)"
-        >
-        <button id="clear-search" class="absolute inset-y-0 right-0 pr-4 flex items-center hidden text-slate-400 hover:text-slate-600">
-          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
-        </button>
+        <div class="lg:col-span-5 hero-rise delay-3">
+          <div class="rounded-[2rem] bg-white/10 border border-white/15 backdrop-blur-xl p-5 shadow-2xl shadow-blue-950/30">
+            <div class="grid grid-cols-2 gap-3">
+              <div class="rounded-2xl bg-white/90 border border-white/60 p-5 shadow-sm"><div class="text-3xl font-black text-slate-900 tabular-nums">{totalRecords}</div><div class="mt-1 text-[11px] font-bold tracking-[0.16em] uppercase text-slate-500">Records</div></div>
+              <div class="rounded-2xl bg-white/90 border border-white/60 p-5 shadow-sm"><div class="text-3xl font-black text-blue-700 tabular-nums">{publicationCount}</div><div class="mt-1 text-[11px] font-bold tracking-[0.16em] uppercase text-slate-500">Publications</div></div>
+              <div class="rounded-2xl bg-white/90 border border-white/60 p-5 shadow-sm"><div class="text-3xl font-black text-amber-600 tabular-nums">{awardCount}</div><div class="mt-1 text-[11px] font-bold tracking-[0.16em] uppercase text-slate-500">Awards</div></div>
+              <div class="rounded-2xl bg-white/90 border border-white/60 p-5 shadow-sm"><div class="text-3xl font-black text-slate-900 tabular-nums">{latestYear}</div><div class="mt-1 text-[11px] font-bold tracking-[0.16em] uppercase text-slate-500">Latest Year</div></div>
+            </div>
+          </div>
+        </div>
       </div>
-
+      <div class="hero-rise delay-3 mt-10 max-w-4xl relative group">
+        <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none"><svg class="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></div>
+        <input type="text" id="search-input" class="block w-full pl-14 pr-12 py-4 bg-white text-slate-900 placeholder-slate-400 border border-white/40 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-400/30 focus:border-blue-300 transition-all duration-300 shadow-xl shadow-slate-950/20" placeholder="搜尋論文題目、作者、獲獎專案、年度或合作計畫...">
+        <button id="clear-search" class="absolute inset-y-0 right-0 pr-5 flex items-center hidden text-slate-400 hover:text-slate-700 transition" aria-label="清除搜尋"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
+      </div>
     </div>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 py-12 relative z-20 min-h-[50vh]">
 
-    <div class="flex flex-col lg:flex-row gap-8 lg:gap-12">
-      
-      <aside class="w-full lg:w-1/4 shrink-0" id="sidebar">
-        <div class="lg:sticky lg:top-8">
-          
-          <div class="flex lg:flex-col overflow-x-auto lg:overflow-visible hide-scrollbar gap-2 pb-2 lg:pb-0" id="tabs-container">
-            {achievements.map((group, index) => {
-              // 計算該分類的總項目數量
-              const totalItems = group.yearlyData.reduce((sum, yearBlock) => sum + yearBlock.items.length, 0);
-              
-              return (
-                <>
-                  {group.section && (
-                    <div class={`${index !== 0 ? 'mt-6' : ''} mb-2 px-1 flex-shrink-0 lg:w-full`}>
-                      <h2 class="text-xs font-black text-slate-400 tracking-widest uppercase border-b border-slate-200 pb-2">
-                        {group.section}
-                      </h2>
-                    </div>
-                  )}
-                  <button 
-                    class={`tab-btn flex-shrink-0 lg:w-full text-left px-5 py-3 rounded-lg text-[15px] font-bold transition-all duration-200 border border-transparent 
-                    ${index === 0 
-                      ? 'bg-blue-600 text-white shadow-md' 
-                      : 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-800 border-slate-200'}`}
-                    data-target={`category-${index}`}
-                  >
-                    <div class="flex items-center justify-between">
-                      <span>{group.category}</span>
-                      <span class="hidden lg:inline-flex items-center justify-center bg-black/10 rounded-full w-6 h-6 text-xs ml-2 opacity-80 mix-blend-multiply text-current">
-                        {totalItems}
-                      </span>
-                    </div>
-                  </button>
-                </>
-              );
-            })}
-          </div>
-        </div>
-      </aside>
-
-      <section class="flex-1 w-full" id="content-area">
-        
-        <div id="no-results-msg" class="hidden text-center py-16 px-6 bg-white rounded-xl border border-dashed border-slate-300">
-          <svg class="mx-auto h-12 w-12 text-slate-300 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          <h3 class="text-lg font-bold text-slate-800 mb-2">找不到相關紀錄</h3>
-          <p class="text-slate-500">很抱歉，沒有找到符合您搜尋字詞的成果或獎項。請嘗試更換關鍵字。</p>
-        </div>
-
-        <div id="groups-container">
-          {achievements.map((group, groupIndex) => (
-            <div 
-              id={`category-${groupIndex}`} 
-              class={`category-group fade-in ${groupIndex === 0 ? 'block' : 'hidden'}`}
-            >
-              <div class="mb-10">
-                <h2 class="text-2xl font-extrabold text-slate-800 mb-3 flex items-center gap-3">
-                  <span class="w-2 h-6 bg-blue-600 rounded-full"></span>
-                  {group.category}
-                </h2>
-                <p class="text-slate-500 text-[15px] pl-5">{group.description}</p>
-              </div>
-              
-              <div class="space-y-6">
-                {group.yearlyData.map((yearBlock, yearIndex) => (
-                  <div class="year-block bg-white rounded-xl border border-slate-100 overflow-hidden shadow-sm">
-                    <button 
-                      class="year-toggle-btn w-full flex items-center justify-between px-5 py-4 bg-slate-50/50 hover:bg-slate-100 transition-colors group"
-                      data-target={`year-content-${groupIndex}-${yearIndex}`}
-                    >
-                      <div class="flex items-center gap-3">
-                        <span class="bg-slate-800 text-white px-3 py-1 rounded-md text-sm font-bold tracking-wider font-mono shadow-sm group-hover:bg-blue-600 transition-colors">
-                          {yearBlock.year}
-                        </span>
-                        <span class="text-slate-400 text-sm font-medium group-hover:text-slate-600 transition-colors">({yearBlock.items.length} 篇)</span>
-                      </div>
-                      <svg 
-                        class={`w-5 h-5 text-slate-400 transition-transform duration-300 ${yearIndex === 0 ? 'rotate-180' : ''}`} 
-                        fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                      >
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                      </svg>
-                    </button>
-
-                    <div 
-                      id={`year-content-${groupIndex}-${yearIndex}`} 
-                      class={`year-content p-5 space-y-4 border-t border-slate-100 ${yearIndex === 0 ? '' : 'hidden'}`}
-                    >
-                    {yearBlock.items.map((item) => {
-                        // 判斷目前這個分類的類型 (新增 isPatent)
-                        const isPublication = group.type === "publication";
-                        const isAward = group.type === "award";
-                        const isProject = group.type === "project";
-                        const isPatent = group.type === "patent"; 
-
-                        // 優先使用 content，若無則降級使用 project 欄位，並過濾掉不必要的文字
-                        const rawContent = item.content || item.project || "";
-                        const cleanProjectName = rawContent
-                          .replace(/指導學生參加\s*/g, '')
-                          .replace(/\([\d,]+元\)/g, '')
-                          .trim();
-
-                        // 搜尋用的文字串
-                        const searchStr = isPublication 
-                          ? `${item.title} ${item.authors} ${item.venue} ${yearBlock.year}`.toLowerCase()
-                          : `${cleanProjectName} ${yearBlock.year}`.toLowerCase();
-
-                        return (
-                          <div class="achievement-item" data-search={searchStr}>
-                            
-                            {isPublication ? (
-                              /* ----------- 1. 論文卡片樣式 ----------- */
-                              <div class="flex flex-col sm:flex-row gap-4 justify-between items-start bg-white border border-slate-200 rounded-lg p-5 hover:border-blue-400 hover:shadow-md transition duration-300">
-                                <div class="flex-1">
-                                  <h3 class="text-lg font-bold text-slate-800 leading-snug mb-2 hover:text-blue-700 transition">{item.title}</h3>
-                                  <p class="text-slate-600 text-[15px] mb-1"><span class="font-semibold text-slate-500">Authors:</span> {item.authors}</p>
-                                  <p class="text-blue-700/80 text-sm font-medium italic"><span class="font-semibold text-slate-500 not-italic">Venue:</span> {item.venue}</p>
-                                </div>
-                                <a href={item.link} target="_blank" class="shrink-0 p-2.5 bg-blue-50 rounded-full text-blue-600 hover:bg-blue-600 hover:text-white transition-all group self-end sm:self-start">
-                                  <svg class="w-5 h-5 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
-                                </a>
-                              </div>
-
-                            ) : (
-                              /* ----------- 2. 獲獎、計畫與專利樣式 (最簡資料版) ----------- */
-                              <div class="flex items-start gap-5 p-5 rounded-xl bg-white border border-slate-200 hover:border-blue-400 hover:shadow-lg transition duration-300 group">
-                                <div class="flex flex-col items-center justify-center shrink-0 w-12 h-12 bg-slate-50 rounded-lg border border-slate-100 group-hover:bg-blue-50 group-hover:border-blue-100 transition-colors">
-                                  <span class="text-2xl">{isAward ? "🏆" : isPatent ? "📜" : "💡"}</span>
-                                </div>
-                                <div class="flex-1 min-w-0">
-                                  <div class="text-slate-700 font-bold leading-relaxed text-lg">
-                                    {cleanProjectName}
-                                  </div>
-                                  {item.amount && (
-                                    <div class="mt-2 inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-50 text-emerald-700 border border-emerald-100">
-                                      核定金額：{item.amount}
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            )}
-
-                          </div>
-                        );
-                      })}
-                    </div>
-                  </div>
-                ))}
+  <main class="relative z-20 bg-gradient-to-br from-slate-50 via-white to-blue-50/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+        <aside class="lg:col-span-3" id="sidebar" data-rv="left">
+          <div class="lg:sticky lg:top-8 space-y-5">
+            <div class="rounded-3xl bg-white/90 border border-slate-200 shadow-sm p-4">
+              <div class="px-2 pb-3 mb-3 border-b border-slate-100"><div class="text-xs font-black tracking-[0.18em] text-blue-600 uppercase">Browse by Category</div><div class="text-sm text-slate-500 mt-1">依成果類型快速篩選</div></div>
+              <div class="flex lg:flex-col overflow-x-auto lg:overflow-visible hide-scrollbar gap-2 pb-1 lg:pb-0" id="tabs-container">
+                {achievements.map((group, index) => {
+                  const totalItems = group.yearlyData.reduce((sum, yearBlock) => sum + yearBlock.items.length, 0);
+                  return (
+                    <>
+                      {group.section && (<div class={`${index !== 0 ? 'lg:mt-5' : ''} px-1 flex-shrink-0 lg:w-full hidden lg:block`}><h2 class="text-[11px] font-black text-slate-400 tracking-widest uppercase border-b border-slate-100 pb-2">{group.section}</h2></div>)}
+                      <button class={`tab-btn flex-shrink-0 lg:w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-200 border ${index === 0 ? 'is-active bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-600/20' : 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-800 border-slate-200'}`} data-target={`category-${index}`}>
+                        <div class="flex items-center justify-between gap-4"><span class="whitespace-nowrap lg:whitespace-normal">{group.category}</span><span class="tab-count inline-flex items-center justify-center rounded-full min-w-7 h-7 px-2 text-xs bg-slate-100 text-slate-500">{totalItems}</span></div>
+                      </button>
+                    </>
+                  );
+                })}
               </div>
             </div>
-          ))}
-        </div>
-
-      </section>
+            <div class="hidden lg:block rounded-3xl bg-slate-900 text-white p-5 overflow-hidden relative">
+              <div class="absolute -right-10 -top-10 w-32 h-32 bg-blue-500/20 rounded-full blur-2xl"></div>
+              <div class="relative z-10"><div class="text-xs font-black tracking-[0.18em] text-blue-300 uppercase mb-3">Summary</div><div class="grid grid-cols-2 gap-3 text-center"><div class="rounded-2xl bg-white/8 border border-white/10 p-3"><div class="text-xl font-black">{projectCount}</div><div class="text-[10px] text-slate-400 uppercase">Projects</div></div><div class="rounded-2xl bg-white/8 border border-white/10 p-3"><div class="text-xl font-black">{patentCount}</div><div class="text-[10px] text-slate-400 uppercase">Patents</div></div></div></div>
+            </div>
+          </div>
+        </aside>
+        <section class="lg:col-span-9" id="content-area" data-rv="up">
+          <div id="no-results-msg" class="hidden text-center py-16 px-6 bg-white rounded-3xl border border-dashed border-slate-300 shadow-sm"><div class="mx-auto w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4"><svg class="h-8 w-8 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div><h3 class="text-lg font-bold text-slate-800 mb-2">找不到相關紀錄</h3><p class="text-slate-500">請嘗試更換關鍵字，或改用年度、作者、專案名稱搜尋。</p></div>
+          <div id="groups-container">
+            {achievements.map((group, groupIndex) => (
+              <div id={`category-${groupIndex}`} class={`category-group fade-in ${groupIndex === 0 ? 'is-active' : ''}`}>
+                <div class="mb-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm p-6 lg:p-8 overflow-hidden relative">
+                  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-cyan-400 to-transparent"></div>
+                  <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+                    <div><div class="inline-flex items-center gap-2 text-blue-600 text-xs font-black tracking-[0.18em] uppercase mb-3"><span class="w-8 h-1 bg-blue-600 rounded-full"></span>Achievement Category</div><h2 class="text-2xl lg:text-3xl font-black text-slate-900 tracking-tight">{group.category}</h2><p class="text-slate-500 text-sm lg:text-base mt-3 max-w-2xl leading-relaxed">{group.description}</p></div>
+                    <div class="shrink-0 inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-50 text-blue-700 border border-blue-100 text-sm font-bold">{group.yearlyData.reduce((sum, yearBlock) => sum + yearBlock.items.length, 0)} 筆紀錄</div>
+                  </div>
+                </div>
+                <div class="space-y-5">
+                  {group.yearlyData.map((yearBlock, yearIndex) => (
+                    <div class="year-block bg-white rounded-[1.5rem] border border-slate-200 overflow-hidden shadow-sm">
+                      <button class="year-toggle-btn w-full flex items-center justify-between px-5 sm:px-6 py-4 bg-white hover:bg-slate-50 transition-colors group" data-target={`year-content-${groupIndex}-${yearIndex}`}>
+                        <div class="flex items-center gap-3 min-w-0"><span class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-slate-900 text-white text-sm font-black tracking-wider font-mono shadow-sm group-hover:bg-blue-600 transition-colors shrink-0">{yearBlock.year}</span><div class="text-left min-w-0"><div class="text-slate-900 font-black">{yearBlock.year} 年度成果</div><div class="text-slate-400 text-xs font-bold tracking-widest uppercase mt-0.5">{yearBlock.items.length} records</div></div></div>
+                        <svg class={`w-5 h-5 text-slate-400 transition-transform duration-300 ${yearIndex === 0 ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                      </button>
+                      <div id={`year-content-${groupIndex}-${yearIndex}`} class={`year-content px-5 sm:px-6 pb-5 space-y-4 border-t border-slate-100 ${yearIndex === 0 ? 'pt-5' : 'hidden pt-5'}`}>
+                        {yearBlock.items.map((item) => {
+                          const isPublication = group.type === "publication";
+                          const isAward = group.type === "award";
+                          const isProject = group.type === "project";
+                          const isPatent = group.type === "patent";
+                          const rawContent = item.content || item.project || "";
+                          const cleanProjectName = rawContent.replace(/指導學生參加\s*/g, '').replace(/\([\d,]+元\)/g, '').trim();
+                          const titleText = isPublication ? (item.title || '') : cleanProjectName;
+                          const metaText = isPublication ? `${item.authors || ''} ${item.venue || ''}` : `${item.amount || ''}`;
+                          const searchStr = `${titleText} ${metaText} ${yearBlock.year} ${group.category}`.toLowerCase();
+                          return (
+                            <div class="achievement-item" data-search={searchStr}>
+                              {isPublication ? (
+                                <article class="achievement-card bg-white border border-slate-200 rounded-2xl p-5 lg:p-6">
+                                  <div class="flex flex-col sm:flex-row gap-5 justify-between items-start">
+                                    <div class="min-w-0 flex-1"><div class="inline-flex items-center gap-2 mb-3 text-[11px] font-black tracking-widest uppercase text-blue-700 bg-blue-50 border border-blue-100 px-2.5 py-1 rounded-full">Publication</div><h3 class="text-lg lg:text-xl font-black text-slate-900 leading-snug mb-3 hover:text-blue-700 transition-colors">{item.title}</h3><p class="text-slate-600 text-sm leading-relaxed mb-2"><span class="font-bold text-slate-500">Authors：</span>{item.authors}</p><p class="text-blue-700/80 text-sm font-medium italic"><span class="font-bold text-slate-500 not-italic">Venue：</span>{item.venue}</p></div>
+                                    {item.link && (<a href={item.link} target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-2 px-4 py-2.5 bg-slate-900 text-white rounded-full text-sm font-bold hover:bg-blue-600 transition-all shadow-sm">View<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg></a>)}
+                                  </div>
+                                </article>
+                              ) : (
+                                <article class="achievement-card bg-white border border-slate-200 rounded-2xl p-5 lg:p-6">
+                                  <div class="flex items-start gap-4">
+                                    <div class={`flex items-center justify-center shrink-0 w-12 h-12 rounded-2xl border ${isAward ? 'bg-amber-50 border-amber-100' : isPatent ? 'bg-violet-50 border-violet-100' : 'bg-emerald-50 border-emerald-100'}`}><span class="text-2xl">{isAward ? "🏆" : isPatent ? "📜" : "💡"}</span></div>
+                                    <div class="flex-1 min-w-0"><div class="flex flex-wrap items-center gap-2 mb-2"><span class={`text-[11px] font-black tracking-widest uppercase px-2.5 py-1 rounded-full border ${isAward ? 'text-amber-700 bg-amber-50 border-amber-100' : isPatent ? 'text-violet-700 bg-violet-50 border-violet-100' : 'text-emerald-700 bg-emerald-50 border-emerald-100'}`}>{isAward ? "Award" : isPatent ? "Patent" : "Project"}</span><span class="text-[11px] font-bold text-slate-400 bg-slate-100 px-2 py-1 rounded-full">{yearBlock.year}</span></div><h3 class="text-base lg:text-lg text-slate-900 font-black leading-relaxed">{cleanProjectName}</h3>{item.amount && (<div class="mt-3 inline-flex items-center px-3 py-1 rounded-full text-xs font-black bg-emerald-50 text-emerald-700 border border-emerald-100">核定金額：{item.amount}</div>)}</div>
+                                  </div>
+                                </article>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
-
   </main>
 
-  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
+<footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
         <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
@@ -339,182 +269,142 @@ import achievements from "../data/achievements.json";
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      
-      // 1. 手機版選單控制
       const mobileMenuBtn = document.getElementById('mobile-menu-btn');
       const mobileMenu = document.getElementById('mobile-menu');
       const hamburgerIcon = document.getElementById('hamburger-icon');
-
       if (mobileMenuBtn && mobileMenu && hamburgerIcon) {
         mobileMenuBtn.addEventListener('click', () => {
-          mobileMenu.classList.toggle('hidden');
-          hamburgerIcon.setAttribute('d', mobileMenu.classList.contains('hidden') ? 'M4 6h16M4 12h16M4 18h16' : 'M6 18L18 6M6 6l12 12');
+          const isHidden = mobileMenu.classList.contains('hidden');
+          mobileMenu.classList.toggle('hidden', !isHidden);
+          hamburgerIcon.setAttribute('d', isHidden ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16');
         });
+        mobileMenu.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        }));
       }
 
-      // 2. 側邊欄 Tab 切換功能
       const tabBtns = document.querySelectorAll('.tab-btn');
       const categoryGroups = document.querySelectorAll('.category-group');
-      let currentActiveTabTarget = 'category-0'; 
+      const searchInput = document.getElementById('search-input');
+      const clearSearchBtn = document.getElementById('clear-search');
+      const noResultsMsg = document.getElementById('no-results-msg');
+      const sidebar = document.getElementById('sidebar');
+      let currentActiveTabTarget = 'category-0';
+
+      const setTabActiveStyle = (targetId) => {
+        tabBtns.forEach(btn => {
+          const active = btn.getAttribute('data-target') === targetId;
+          btn.classList.toggle('is-active', active);
+          btn.classList.toggle('bg-blue-600', active);
+          btn.classList.toggle('text-white', active);
+          btn.classList.toggle('border-blue-600', active);
+          btn.classList.toggle('shadow-lg', active);
+          btn.classList.toggle('shadow-blue-600/20', active);
+          btn.classList.toggle('bg-white', !active);
+          btn.classList.toggle('text-slate-600', !active);
+          btn.classList.toggle('border-slate-200', !active);
+        });
+      };
 
       const switchTab = (targetId) => {
+        if (!targetId) return;
         currentActiveTabTarget = targetId;
-        
-        // 更新按鈕樣式
-        tabBtns.forEach(btn => {
-          if (btn.getAttribute('data-target') === targetId) {
-            btn.className = "tab-btn flex-shrink-0 lg:w-full text-left px-5 py-3 rounded-lg text-[15px] font-bold transition-all duration-200 border border-transparent bg-blue-600 text-white shadow-md";
-          } else {
-            btn.className = "tab-btn flex-shrink-0 lg:w-full text-left px-5 py-3 rounded-lg text-[15px] font-bold transition-all duration-200 border border-transparent bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-800 border-slate-200";
-          }
-        });
-
-        // 更新內容區顯示
+        setTabActiveStyle(targetId);
         categoryGroups.forEach(group => {
-          if (group.id === targetId) {
-            group.classList.remove('hidden');
-            group.classList.remove('fade-in');
-            void group.offsetWidth; // 觸發重繪以重啟動畫
-            group.classList.add('fade-in');
-          } else {
-            group.classList.add('hidden');
-          }
+          const active = group.id === targetId;
+          group.classList.toggle('is-active', active);
+          group.classList.toggle('fade-in', active);
         });
       };
 
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+          if (searchInput && searchInput.value.trim() !== '' && clearSearchBtn) clearSearchBtn.click();
           switchTab(btn.getAttribute('data-target'));
-          // 點擊分類時若有搜尋文字，則清除並重置
-          if(searchInput.value.trim() !== '') {
-             clearSearchBtn.click();
-          }
         });
       });
-
-      // 3. 搜尋過濾功能
-      const searchInput = document.getElementById('search-input');
-      const clearSearchBtn = document.getElementById('clear-search');
-      const noResultsMsg = document.getElementById('no-results-msg');
-      const sidebar = document.getElementById('sidebar');
 
       const performSearch = (searchTerm) => {
         searchTerm = searchTerm.toLowerCase().trim();
         let hasAnyResult = false;
-
+        if (!searchInput || !clearSearchBtn || !noResultsMsg || !sidebar) return;
         if (searchTerm === '') {
           clearSearchBtn.classList.add('hidden');
-          sidebar.classList.remove('opacity-50', 'pointer-events-none'); 
+          sidebar.classList.remove('opacity-50', 'pointer-events-none');
           noResultsMsg.classList.add('hidden');
-          
           document.querySelectorAll('.year-block').forEach(block => block.classList.remove('hidden'));
           document.querySelectorAll('.achievement-item').forEach(item => item.classList.remove('hidden'));
-          switchTab(currentActiveTabTarget); 
+          switchTab(currentActiveTabTarget);
           return;
         }
-
         clearSearchBtn.classList.remove('hidden');
-        sidebar.classList.add('opacity-50', 'pointer-events-none'); 
-
+        sidebar.classList.add('opacity-50', 'pointer-events-none');
         categoryGroups.forEach(group => {
           let hasResultInGroup = false;
           const yearBlocks = group.querySelectorAll('.year-block');
-          
           yearBlocks.forEach(block => {
             let hasResultInYear = false;
             const items = block.querySelectorAll('.achievement-item');
-            
             items.forEach(item => {
-              const searchData = item.getAttribute('data-search');
-              
-              if (searchData.includes(searchTerm)) {
-                item.classList.remove('hidden');
-                hasResultInYear = true;
-                hasResultInGroup = true;
-                hasAnyResult = true;
-              } else {
-                item.classList.add('hidden');
-              }
+              const searchData = item.getAttribute('data-search') || '';
+              const matched = searchData.includes(searchTerm);
+              item.classList.toggle('hidden', !matched);
+              if (matched) { hasResultInYear = true; hasResultInGroup = true; hasAnyResult = true; }
             });
-
-            // 若該年份區塊內有符合結果，就顯示該年份標題區塊，否則隱藏整個年份區塊
+            block.classList.toggle('hidden', !hasResultInYear);
             if (hasResultInYear) {
-              block.classList.remove('hidden');
-              // 搜尋模式下強制展開符合結果的年份
               const content = block.querySelector('.year-content');
-              const icon = block.querySelector('svg');
-              content.classList.remove('hidden');
-              icon.classList.add('rotate-180');
-            } else {
-              block.classList.add('hidden');
+              const icon = block.querySelector('.year-toggle-btn svg');
+              if (content) content.classList.remove('hidden');
+              if (icon) icon.classList.add('rotate-180');
             }
           });
-
-          // 如果搜尋狀態下該群組有結果才顯示
-          if (hasResultInGroup) {
-            group.classList.remove('hidden');
-            group.classList.add('fade-in');
-          } else {
-            group.classList.add('hidden');
-          }
+          group.classList.toggle('is-active', hasResultInGroup);
+          group.classList.toggle('fade-in', hasResultInGroup);
         });
-
-        if (!hasAnyResult) {
-          noResultsMsg.classList.remove('hidden');
-        } else {
-          noResultsMsg.classList.add('hidden');
-        }
+        noResultsMsg.classList.toggle('hidden', hasAnyResult);
       };
 
-      searchInput.addEventListener('input', (e) => {
-        performSearch(e.target.value);
+      if (searchInput) searchInput.addEventListener('input', (e) => performSearch(e.target.value));
+      if (clearSearchBtn && searchInput) clearSearchBtn.addEventListener('click', () => { searchInput.value = ''; searchInput.focus(); performSearch(''); });
+
+      document.querySelectorAll('.year-toggle-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const targetId = btn.getAttribute('data-target');
+          const content = targetId ? document.getElementById(targetId) : null;
+          const icon = btn.querySelector('svg');
+          if (!content) return;
+          const shouldHide = !content.classList.contains('hidden');
+          content.classList.toggle('hidden', shouldHide);
+          if (icon) icon.classList.toggle('rotate-180', !shouldHide);
+        });
       });
 
-      clearSearchBtn.addEventListener('click', () => {
-        searchInput.value = '';
-        searchInput.focus();
-        performSearch('');
-      });
+      const revealObs = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('rv-visible'); obs.unobserve(entry.target); } });
+      }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('[data-rv]').forEach(el => revealObs.observe(el));
 
-      // 4. 智慧訪客計數器邏輯 (24小時內防洗次數 + 防破圖備用機制)
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
         if (!counterEl) return;
-
-        const namespace = 'icpslab_site';
-        const key = 'visits';
-        const localCountKey = 'icps_saved_count';
-        const lastVisitTimeKey = 'icps_last_visit_time';
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000; // 24小時換算成毫秒
-
-        // 從 localStorage 讀取最後一次成功的數字當作備用
+        const namespace = 'icpslab_site', key = 'visits', localCountKey = 'icps_saved_count', lastVisitTimeKey = 'icps_last_visit_time';
+        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
         let currentCount = localStorage.getItem(localCountKey) || '------';
-        
-        // 讀取最後一次增加次數的時間，並取得當下時間
         const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
         const now = Date.now();
-
-        // 判斷是否在 24 小時之內有造訪過
         const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
-        
         try {
           const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          
           if (!hasVisitedWithin24Hours) {
-            // 超過 24 小時未造訪，或是首次造訪 -> 呼叫 /up 增加次數
             const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API 回應錯誤');
-            
+            if (!response.ok) throw new Error('API response error');
             const data = await response.json();
             currentCount = String(data.count).padStart(6, '0');
-            
-            // 紀錄當下時間，接下來 24 小時內都不會再增加
             localStorage.setItem(lastVisitTimeKey, now.toString());
             localStorage.setItem(localCountKey, currentCount);
-            counterEl.textContent = currentCount;
-            
           } else {
-            // 24 小時內已造訪過 -> 嘗試獲取最新數字 (不增加)
             try {
               const response = await fetch(url);
               if (response.ok) {
@@ -522,38 +412,14 @@ import achievements from "../data/achievements.json";
                 currentCount = String(data.count).padStart(6, '0');
                 localStorage.setItem(localCountKey, currentCount);
               }
-            } catch (e) {
-              console.warn('無法從伺服器獲取最新數字，已切換為本地暫存值');
-            }
-            counterEl.textContent = currentCount;
+            } catch (e) {}
           }
-          
+          counterEl.textContent = currentCount;
         } catch (error) {
-          console.error('計數器載入異常:', error);
           counterEl.textContent = currentCount;
         }
       };
-
       initCounter();
-
-      // 5. 年份摺疊切換邏輯
-      const yearToggleBtns = document.querySelectorAll('.year-toggle-btn');
-      yearToggleBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-          const targetId = btn.getAttribute('data-target');
-          const content = document.getElementById(targetId);
-          const icon = btn.querySelector('svg');
-          
-          if (content.classList.contains('hidden')) {
-            content.classList.remove('hidden');
-            icon.classList.add('rotate-180');
-          } else {
-            content.classList.add('hidden');
-            icon.classList.remove('rotate-180');
-          }
-        });
-      });
-
     });
   </script>
 
