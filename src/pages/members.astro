@@ -130,6 +130,11 @@ const groupedGraduates = graduates.reduce((groups, student) => {
   return groups;
 }, {} as Record<string, typeof graduates>);
 const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) - Number(a));
+
+// --- UI summary only: does not change enrollment / graduation / grade rules ---
+const activeStudentCount = phds.length + masters.length + undergrads.length + internationals.length;
+const totalMemberCount = 1 + assistants.length + activeStudentCount;
+
 ---
 
 <html lang="zh-TW" class="scroll-smooth">
@@ -254,6 +259,168 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
       height: 1px;
       background: linear-gradient(to right, #e2e8f0, transparent);
     }
+
+
+    /* =====================================================
+       UIUX Refresh — content presentation only
+       不影響 currentAcYear / getGradeText / 升學畢業分組規則
+    ===================================================== */
+    :root {
+      --icps-blue: #2563eb;
+      --icps-blue-dark: #1e3a8a;
+      --icps-ink: #0f172a;
+      --icps-soft: #f8fafc;
+    }
+
+    .page-shell {
+      background:
+        radial-gradient(circle at 12% 0%, rgba(37, 99, 235, 0.10), transparent 30%),
+        radial-gradient(circle at 90% 18%, rgba(14, 165, 233, 0.10), transparent 28%),
+        linear-gradient(180deg, #f8fafc 0%, #ffffff 42%, #f8fafc 100%);
+    }
+
+    .content-panel {
+      position: relative;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      box-shadow: 0 24px 70px -45px rgba(15, 23, 42, 0.35);
+      backdrop-filter: blur(16px);
+    }
+
+    .content-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 4px;
+      background: linear-gradient(90deg, #1d4ed8, #38bdf8, #93c5fd);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      color: #2563eb;
+      font-weight: 900;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 0.55rem;
+    }
+    .section-kicker::before {
+      content: '';
+      width: 2rem;
+      height: 0.18rem;
+      border-radius: 999px;
+      background: currentColor;
+      opacity: .85;
+    }
+
+    .quick-nav {
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(226, 232, 240, 0.9);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 18px 50px -35px rgba(15, 23, 42, 0.35);
+    }
+    .quick-link {
+      transition: all .22s cubic-bezier(.22,1,.36,1);
+    }
+    .quick-link:hover {
+      transform: translateY(-1px);
+      background: #eff6ff;
+      color: #1d4ed8;
+    }
+
+    .metric-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(226, 232, 240, .85);
+      background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(248,250,252,.86));
+      box-shadow: 0 10px 30px -25px rgba(15, 23, 42, .35);
+    }
+    .metric-card::after {
+      content: '';
+      position: absolute;
+      right: -1.2rem;
+      top: -1.2rem;
+      width: 4.2rem;
+      height: 4.2rem;
+      border-radius: 999px;
+      background: rgba(37, 99, 235, .08);
+    }
+
+    .profile-panel {
+      border-radius: 1.75rem;
+      background: linear-gradient(135deg, rgba(255,255,255,.96), rgba(248,250,252,.92));
+      border: 1px solid rgba(226,232,240,.95);
+      box-shadow: 0 24px 80px -50px rgba(15,23,42,.4);
+    }
+
+    .member-card, .project-card, .assistant-card {
+      border-radius: 1.35rem !important;
+      background: rgba(255,255,255,.96) !important;
+      box-shadow: 0 10px 35px -30px rgba(15,23,42,.32);
+    }
+    .member-card:hover, .project-card:hover, .assistant-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 22px 55px -36px rgba(29,78,216,.45), 0 8px 22px -18px rgba(15,23,42,.28);
+      border-color: #93c5fd !important;
+    }
+
+    .student-tabs-wrap {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      border: 1px solid rgba(226,232,240,.92);
+      background: rgba(255,255,255,.88);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 18px 45px -35px rgba(15,23,42,.32);
+      border-radius: 1.25rem;
+      padding: .45rem;
+      margin-bottom: 2rem;
+    }
+    .student-tabs-wrap nav { gap: .35rem; }
+    .student-tabs-wrap .tab-btn {
+      border-bottom: 0 !important;
+      border-radius: 1rem;
+      padding: .8rem 1rem;
+    }
+    .student-tabs-wrap .tab-btn::after { display: none; }
+    .student-tabs-wrap .tab-active-style {
+      background: #eff6ff;
+      box-shadow: inset 0 0 0 1px #bfdbfe;
+    }
+
+    .year-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .55rem .8rem;
+      border-radius: 999px;
+      background: white;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 6px 20px -18px rgba(15,23,42,.4);
+    }
+
+    .avatar-frame {
+      background: linear-gradient(135deg, #dbeafe, #f8fafc);
+      padding: 3px;
+      box-shadow: 0 10px 28px -22px rgba(15,23,42,.45);
+    }
+
+    @media (max-width: 768px) {
+      .section-heading { align-items: flex-start; flex-direction: column; }
+      .student-tabs-wrap { top: 0; border-radius: 1rem; }
+    }
+
   </style>
 </head>
 
@@ -304,8 +471,10 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
   <!-- =============================================================== -->
   <!-- 🔒 Hero Banner — 不動                                          -->
   <!-- =============================================================== -->
-  <header class="bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-800 py-16 lg:py-20 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
+  <header class="bg-gradient-to-br from-slate-950 via-[#0b1b35] to-slate-900 py-16 lg:py-24 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
     <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
+    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[720px] h-[260px] bg-blue-500/20 rounded-full blur-[90px] pointer-events-none"></div>
+    <div class="absolute bottom-0 right-0 w-[360px] h-[180px] bg-cyan-400/10 rounded-full blur-[70px] pointer-events-none"></div>
     <div class="relative z-10 max-w-3xl mx-auto px-4" data-rv="zoom">
       <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">實驗室成員</h1>
       <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow">Laboratory Members</p>
@@ -315,31 +484,69 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
   <!-- =============================================================== -->
   <!-- ✨ 主體 — 升級動畫                                              -->
   <!-- =============================================================== -->
-  <main class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
+  <main class="page-shell relative z-20 min-h-screen overflow-hidden">
+    <div class="absolute top-0 left-0 w-72 h-72 bg-blue-100/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/3 pointer-events-none"></div>
+    <div class="absolute top-[35rem] right-0 w-96 h-96 bg-cyan-100/40 rounded-full blur-3xl translate-x-1/2 pointer-events-none"></div>
 
-    <!-- 返回首頁 -->
-    <div class="mb-10" data-rv="left">
-      <a href="/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-blue-700 transition-all duration-200 bg-white px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:shadow-md hover:-translate-x-0.5 group">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-        返回首頁
-      </a>
-    </div>
+    <div class="max-w-7xl mx-auto px-6 py-12 lg:py-16 relative z-10">
+      <!-- 返回首頁 -->
+      <div class="mb-8" data-rv="left">
+        <a href="/" class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-500 hover:text-blue-700 transition-all duration-200 bg-white/90 px-4 py-2 rounded-full shadow-sm border border-slate-200 hover:shadow-md hover:-translate-x-0.5 group backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transition-transform duration-200 group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+          返回首頁
+        </a>
+      </div>
 
-    <div class="space-y-16">
+      <!-- 成員總覽 -->
+      <section class="content-panel rounded-[2rem] p-6 sm:p-8 lg:p-10 mb-8" data-rv="up">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-6">
+            <div class="section-kicker">Members Overview</div>
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+              成員總覽
+            </h2>
+            <p class="mt-4 text-sm sm:text-base text-slate-500 leading-relaxed max-w-xl">
+              指導教授、專任助理、碩博士生、大學部專題生與歷屆畢業生名單。
+            </p>
+          </div>
+          <div class="lg:col-span-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <div class="metric-card rounded-2xl p-4"><div class="text-3xl font-black text-slate-900">{totalMemberCount}</div><div class="text-xs font-bold text-slate-500 tracking-widest uppercase mt-1">Members</div></div>
+            <div class="metric-card rounded-2xl p-4"><div class="text-3xl font-black text-blue-700">{activeStudentCount}</div><div class="text-xs font-bold text-slate-500 tracking-widest uppercase mt-1">Students</div></div>
+            <div class="metric-card rounded-2xl p-4"><div class="text-3xl font-black text-slate-900">{assistants.length}</div><div class="text-xs font-bold text-slate-500 tracking-widest uppercase mt-1">Assistants</div></div>
+            <div class="metric-card rounded-2xl p-4"><div class="text-3xl font-black text-slate-900">{currentAcYear}</div><div class="text-xs font-bold text-slate-500 tracking-widest uppercase mt-1">Academic Year</div></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="quick-nav sticky top-0 z-20 rounded-2xl px-3 py-3 mb-14 overflow-x-auto" data-rv="fade">
+        <div class="flex min-w-max gap-2 text-sm font-bold">
+          <a href="#professor" class="quick-link px-4 py-2 rounded-xl text-slate-600">指導教授</a>
+          <a href="#assistants" class="quick-link px-4 py-2 rounded-xl text-slate-600">專任助理</a>
+          <a href="#students" class="quick-link px-4 py-2 rounded-xl text-slate-600">學生名單</a>
+          <a href="#tab-master" class="quick-link px-4 py-2 rounded-xl text-slate-600">碩士班</a>
+          <a href="#tab-undergrad" class="quick-link px-4 py-2 rounded-xl text-slate-600">大學部</a>
+          <a href="#tab-graduate" class="quick-link px-4 py-2 rounded-xl text-slate-600">歷屆畢業生</a>
+        </div>
+      </div>
+
+      <div class="space-y-20">
 
       <!-- ══════════════════════════════════════════════════════════ -->
       <!-- 🔹 指導教授                                               -->
       <!-- ══════════════════════════════════════════════════════════ -->
-      <div data-rv="up">
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-1.5 h-7 bg-gradient-to-b from-blue-500 to-blue-800 rounded-full"></div>
-          <h3 class="text-xl font-bold text-slate-800">指導教授 <span class="text-slate-400 font-light ml-1 text-base">Principal Investigator</span></h3>
+      <div id="professor" class="scroll-mt-32" data-rv="up">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Principal Investigator</div>
+            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">指導教授</h3>
+          </div>
+          <span class="hidden sm:inline-flex text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1.5 rounded-full border border-blue-100">Professor Profile</span>
         </div>
 
-        <div class="bg-white border border-slate-200 shadow-sm rounded-xl overflow-hidden">
+        <div class="profile-panel overflow-hidden">
           <div class="p-6 md:p-8 flex flex-col md:flex-row gap-8 lg:gap-12">
             <!-- 教授照片 -->
-            <div class="w-48 md:w-56 shrink-0 mx-auto md:mx-0 overflow-hidden rounded-lg border border-slate-200">
+            <div class="avatar-frame w-48 md:w-56 shrink-0 mx-auto md:mx-0 overflow-hidden rounded-2xl border border-slate-200">
               <img src="/images/professor.png" alt="張萬榮 教授"
                    class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
                    onerror="this.src='/images/default-avatar.png';" />
@@ -417,10 +624,13 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
       <!-- ══════════════════════════════════════════════════════════ -->
       <!-- 🔹 專任助理                                               -->
       <!-- ══════════════════════════════════════════════════════════ -->
-      <div>
-        <div class="flex items-center gap-3 mb-6" data-rv="right">
-          <div class="w-1.5 h-7 bg-gradient-to-b from-slate-300 to-slate-400 rounded-full"></div>
-          <h3 class="text-xl font-bold text-slate-800">專任助理 <span class="text-slate-400 font-light ml-1 text-base">Research Assistants</span></h3>
+      <div id="assistants" class="scroll-mt-32">
+        <div class="section-heading" data-rv="right">
+          <div>
+            <div class="section-kicker">Research Assistants</div>
+            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">專任助理</h3>
+          </div>
+          <span class="hidden sm:inline-flex text-xs font-bold text-slate-600 bg-white px-3 py-1.5 rounded-full border border-slate-200">行政與計畫執行支援</span>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {assistants.map((person, index) => (
@@ -475,20 +685,20 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
       <!-- ══════════════════════════════════════════════════════════ -->
       <!-- 🔹 學生                                                   -->
       <!-- ══════════════════════════════════════════════════════════ -->
-      <div data-rv="up">
-        <div class="flex items-center justify-between mb-6">
-          <div class="flex items-center gap-3">
-            <div class="w-1.5 h-7 bg-gradient-to-b from-slate-300 to-slate-400 rounded-full"></div>
-            <h3 class="text-xl font-bold text-slate-800">學生 <span class="text-slate-400 font-light ml-1 text-base">Students</span></h3>
+      <div id="students" class="scroll-mt-32" data-rv="up">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">Students</div>
+            <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">學生名單</h3>
           </div>
-          <span class="text-xs font-bold text-blue-700 bg-blue-50 px-3 py-1 rounded-full border border-blue-100 shadow-sm hidden sm:block">
+          <span class="year-chip text-xs font-bold text-blue-700 hidden sm:inline-flex">
             {currentAcYear} 學年度
           </span>
         </div>
 
         <!-- 頁籤列 -->
-        <div class="border-b border-slate-200 mb-8 overflow-x-auto">
-          <nav class="flex space-x-1 md:space-x-2 min-w-max px-1" aria-label="Tabs">
+        <div class="student-tabs-wrap overflow-x-auto">
+          <nav class="flex min-w-max px-1" aria-label="Tabs">
             {[
               { id: 'tab-phd',           label: '博士班',     count: phds.length },
               { id: 'tab-master',        label: '碩士班',     count: masters.length, defaultActive: true },
@@ -744,6 +954,7 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
         </div>
       </div>
 
+      </div>
     </div>
   </main>
 
@@ -838,6 +1049,23 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
                 el.classList.add('rv-visible');
               }
             });
+          }
+        });
+      });
+
+
+
+      // ── Quick nav：點到隱藏頁籤區塊時，同步切換頁籤 ──
+      document.querySelectorAll('.quick-nav a[href^="#tab-"]').forEach(link => {
+        link.addEventListener('click', (event) => {
+          const id = link.getAttribute('href')?.replace('#', '');
+          const targetBtn = id ? document.querySelector(`.tab-btn[data-target="${id}"]`) : null;
+          if (targetBtn instanceof HTMLElement) {
+            event.preventDefault();
+            targetBtn.click();
+            setTimeout(() => {
+              document.getElementById('students')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 20);
           }
         });
       });
