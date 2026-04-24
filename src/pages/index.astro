@@ -245,331 +245,359 @@ const posters = [
 
   </header>
 
-  <!-- 🔷 網站主體區域 -->
-  <main class="max-w-7xl mx-auto px-6 py-16 space-y-20 md:space-y-32 relative z-20">
+  <!-- 🔷 網站主體區域｜UI/UX Optimized Content Only -->
+  <main class="relative z-20 overflow-hidden">
 
-    <!-- 🌟 實驗室里程碑數據統計區 -->
-    <section id="milestones" class="scroll-mt-24">
-      <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-        
-        <!-- 左側標題區 (設定由左方滑入) -->
-        <div class="lg:w-1/3 flex flex-col items-start text-left shrink-0 lg:sticky lg:top-32" data-reveal="left">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <div class="w-10 h-1 bg-blue-600 rounded-full opacity-80"></div>
-            <span class="text-blue-600 text-xs font-extrabold tracking-widest uppercase">Lab Milestones</span>
+    <!-- 背景氛圍，不影響最上方 Hero 與最下方 Footer -->
+    <div class="pointer-events-none absolute inset-0 -z-10">
+      <div class="absolute left-1/2 top-20 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-blue-100/50 blur-3xl"></div>
+      <div class="absolute right-[-10%] top-[42rem] h-[420px] w-[420px] rounded-full bg-cyan-100/50 blur-3xl"></div>
+      <div class="absolute left-[-12%] bottom-[32rem] h-[480px] w-[480px] rounded-full bg-indigo-100/40 blur-3xl"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 py-14 sm:py-18 lg:py-24 space-y-16 md:space-y-24 lg:space-y-28">
+
+      <!-- 🌟 實驗室定位導引：讓使用者先理解 iCPS 做什麼 -->
+      <section class="scroll-mt-24" data-reveal="up">
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+          <div class="lg:col-span-7 rounded-[2rem] bg-white/80 backdrop-blur-xl border border-white shadow-[0_20px_70px_rgba(15,23,42,0.08)] p-7 sm:p-10 relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+            <div class="relative z-10">
+              <div class="inline-flex items-center gap-3 mb-5">
+                <span class="h-2 w-2 rounded-full bg-blue-600 animate-pulse"></span>
+                <span class="text-blue-700 text-xs font-black tracking-[0.22em] uppercase">Intelligent Cyber-Physical Systems Lab</span>
+              </div>
+              <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+                以 AIoT 連結感測、資料與決策，打造可落地的智慧系統。
+              </h1>
+              <p class="mt-6 text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
+                iCPS Lab 聚焦智慧醫療、智慧製造與智慧農業，從資料擷取、AI 模型、邊緣運算到系統整合，讓研究成果真正進入應用場域。
+              </p>
+              <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                <a href="#featured-works" class="inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-slate-950 text-white text-sm font-bold shadow-lg shadow-slate-900/15 hover:bg-blue-700 hover:-translate-y-0.5 transition-all duration-300">
+                  查看亮點作品
+                  <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </a>
+                <a href="/achievements" class="inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-white text-slate-800 text-sm font-bold border border-slate-200 hover:border-blue-300 hover:text-blue-700 hover:-translate-y-0.5 transition-all duration-300">
+                  成果與榮譽
+                </a>
+              </div>
+            </div>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight leading-snug">
-            研究成果與<br class="hidden lg:block"/>學術影響力
-          </h2>
-          <p class="mt-6 text-slate-500 text-sm sm:text-base leading-relaxed max-w-md">
-            我們多年持續投入前瞻研究與產學合作，不拘泥於傳統框架，逐步累積豐碩的技術成果，並致力於連結學術發展與實務應用，創造實質的產業價值。
+
+          <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+            <a href="#featured-works" class="group rounded-[1.5rem] bg-slate-950 p-5 sm:p-6 text-white min-h-[150px] relative overflow-hidden hover:-translate-y-1 transition-all duration-300 shadow-xl shadow-slate-900/10" data-reveal="up" style="transition-delay: 80ms;">
+              <div class="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-blue-500/30 blur-2xl group-hover:bg-blue-400/40 transition"></div>
+              <div class="relative z-10 flex h-full flex-col justify-between">
+                <span class="text-xs font-bold text-blue-200 tracking-widest uppercase">Systems</span>
+                <div>
+                  <div class="text-3xl font-black">5+</div>
+                  <div class="mt-1 text-sm text-slate-300">代表性 AIoT 作品</div>
+                </div>
+              </div>
+            </a>
+            <a href="/members" class="group rounded-[1.5rem] bg-white p-5 sm:p-6 min-h-[150px] border border-slate-200 hover:border-cyan-300 hover:-translate-y-1 transition-all duration-300 shadow-lg shadow-slate-900/5" data-reveal="up" style="transition-delay: 140ms;">
+              <div class="flex h-full flex-col justify-between">
+                <span class="text-xs font-black text-cyan-600 tracking-widest uppercase">Team</span>
+                <div>
+                  <div class="text-3xl font-black text-slate-950">20+</div>
+                  <div class="mt-1 text-sm text-slate-500">跨域研究成員</div>
+                </div>
+              </div>
+            </a>
+            <a href="#news" class="group col-span-2 rounded-[1.5rem] bg-gradient-to-br from-blue-50 to-white p-5 sm:p-6 border border-blue-100 hover:-translate-y-1 transition-all duration-300 shadow-lg shadow-blue-900/5" data-reveal="up" style="transition-delay: 200ms;">
+              <div class="flex items-center justify-between gap-4">
+                <div>
+                  <span class="text-xs font-black text-blue-700 tracking-widest uppercase">Latest Updates</span>
+                  <h3 class="mt-2 text-xl font-black text-slate-900">快速掌握最新消息與研究動態</h3>
+                  <p class="mt-2 text-sm text-slate-500">活動、成果、論文與實驗室重要公告集中呈現。</p>
+                </div>
+                <div class="w-11 h-11 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-sm group-hover:translate-x-1 transition-transform">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- 🌟 實驗室里程碑數據統計區｜改為高質感數據儀表板 -->
+      <section id="milestones" class="scroll-mt-24">
+        <div class="rounded-[2.25rem] bg-white/85 backdrop-blur-xl border border-white shadow-[0_24px_80px_rgba(15,23,42,0.08)] overflow-hidden">
+          <div class="grid lg:grid-cols-12">
+            <div class="lg:col-span-4 p-8 sm:p-10 lg:p-12 bg-slate-950 text-white relative overflow-hidden" data-reveal="left">
+              <div class="absolute right-[-5rem] top-[-5rem] h-64 w-64 rounded-full bg-blue-500/30 blur-3xl"></div>
+              <div class="absolute left-[-4rem] bottom-[-4rem] h-52 w-52 rounded-full bg-cyan-500/20 blur-3xl"></div>
+              <div class="relative z-10 lg:sticky lg:top-32">
+                <div class="inline-flex items-center gap-3 mb-6">
+                  <div class="w-10 h-1 bg-blue-400 rounded-full"></div>
+                  <span class="text-blue-200 text-xs font-black tracking-widest uppercase">Lab Milestones</span>
+                </div>
+                <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-snug">
+                  研究成果與<br/>學術影響力
+                </h2>
+                <p class="mt-6 text-slate-300 text-sm sm:text-base leading-relaxed">
+                  以可驗證的成果累積實驗室能量，橫跨競賽、專利、論文、產學合作與大型計畫執行。
+                </p>
+                <a href="/achievements" class="mt-8 inline-flex items-center text-sm font-bold text-white/90 hover:text-blue-200 transition-colors group/link">
+                  查看完整成果
+                  <svg class="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+                </a>
+              </div>
+            </div>
+
+            <div class="lg:col-span-8 p-6 sm:p-8 lg:p-10">
+              <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+                <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-rose-200 hover:shadow-xl hover:shadow-rose-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 0ms;">
+                  <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Awards</span><span class="w-9 h-9 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center">🏆</span></div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={awardCount}>0</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">國內外競賽得獎</div>
+                </div>
+
+                <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 80ms;">
+                  <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Patents</span><span class="w-9 h-9 rounded-full bg-cyan-50 text-cyan-600 flex items-center justify-center">💡</span></div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={patentCount}>0</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">獲得專利項目</div>
+                </div>
+
+                <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 160ms;">
+                  <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Journals</span><span class="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">📄</span></div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={journalCount}>0</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">國際期刊論文</div>
+                </div>
+
+                <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 240ms;">
+                  <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Conferences</span><span class="w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center">🌐</span></div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={confCount}>0</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">國際研討會論文</div>
+                </div>
+
+                <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 320ms;">
+                  <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Partners</span><span class="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">🤝</span></div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={partnerCount} data-suffix="+">0</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">產學合作廠商</div>
+                </div>
+
+                <div class="group rounded-[1.5rem] border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-6 hover:shadow-xl hover:shadow-amber-900/10 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 400ms;">
+                  <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-amber-600 tracking-widest uppercase">Funding</span><span class="w-9 h-9 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center">↗</span></div>
+                  <div class="counter-anim text-3xl sm:text-4xl font-black text-slate-950 tabular-nums tracking-tight whitespace-nowrap" data-target={amountNum} data-suffix={amountSuffix} data-decimals={amountDecimals}>0</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">總執行計畫金額</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- News 外部元件：保留功能，改善視覺容器與錨點 -->
+      <section id="news" class="scroll-mt-24" data-reveal="up">
+        <div class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-black tracking-widest uppercase border border-blue-100">Newsroom</span>
+            <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">最新消息</h2>
+          </div>
+          <p class="text-sm text-slate-500 max-w-md sm:text-right">將重要公告、成果發表與活動資訊集中整理，讓訪客能快速掌握實驗室近況。</p>
+        </div>
+        <div class="rounded-[2rem] bg-white/85 backdrop-blur-xl border border-white shadow-[0_18px_60px_rgba(15,23,42,0.07)] p-4 sm:p-6 lg:p-8 overflow-hidden">
+          <News />
+        </div>
+      </section>
+
+      <!-- 👇 團隊成員區塊｜專業品牌形象 + 明確導流 -->
+      <section id="members" class="scroll-mt-24">
+        <div class="mb-9 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5" data-reveal="up">
+          <div>
+            <div class="inline-flex items-center gap-3 mb-3">
+              <div class="w-8 h-1 bg-blue-600 rounded-full"></div>
+              <span class="text-blue-700 text-xs font-black tracking-widest uppercase">Our People</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">領導與團隊</h2>
+            <p class="mt-4 text-slate-500 text-sm sm:text-base max-w-2xl leading-relaxed">
+              由張萬榮教授帶領，整合專案經理、博士後研究員與博碩士人才，形成兼具研究、開發與落地驗證能力的跨域團隊。
+            </p>
+          </div>
+          <a href="/members" class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-blue-700 transition group/link">
+            查看所有成員
+            <svg class="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+          <div class="lg:col-span-7 rounded-[2rem] bg-white border border-slate-200/80 shadow-[0_18px_60px_rgba(15,23,42,0.07)] p-7 sm:p-9 lg:p-10 relative overflow-hidden group" data-reveal="up" style="transition-delay: 100ms;">
+            <div class="absolute top-0 right-0 w-72 h-72 bg-blue-50 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+            <div class="relative z-10 flex flex-col sm:flex-row gap-8 items-start sm:items-center">
+              <div class="w-32 sm:w-44 shrink-0">
+                <div class="rounded-[1.5rem] overflow-hidden shadow-xl shadow-slate-900/10 ring-1 ring-slate-900/5 aspect-[4/5] bg-slate-100">
+                  <img src="/images/professor.png" alt="張萬榮 教授" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/default-avatar.png';" />
+                </div>
+              </div>
+              <div class="flex-1">
+                <div class="inline-flex items-center gap-2 px-3 py-1 bg-slate-950 text-white text-[10px] font-black tracking-widest uppercase rounded-full mb-4">
+                  <span class="h-1.5 w-1.5 rounded-full bg-blue-300"></span>
+                  Principal Investigator
+                </div>
+                <h3 class="text-2xl sm:text-3xl font-black text-slate-950 mb-1">張萬榮 <span class="text-lg text-slate-500 font-semibold ml-1">教授</span></h3>
+                <p class="text-blue-700 font-semibold text-sm mb-5">Wan-Jung Chang, Ph.D.</p>
+                <blockquote class="text-slate-600 text-sm sm:text-base leading-relaxed border-l-[3px] border-blue-500 pl-4 mb-6">
+                  「我們專注於 AI 與醫護、製造、農業場域的跨域整合，讓學生不只會做模型，更能完成可運作、可驗證、可推廣的系統。」
+                </blockquote>
+                <div class="flex flex-wrap gap-2 mb-7">
+                  <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold">AIoT</span>
+                  <span class="px-3 py-1 rounded-full bg-cyan-50 text-cyan-700 text-xs font-bold">Healthcare AI</span>
+                  <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold">Smart Manufacturing</span>
+                </div>
+                <a href="/members#professor" class="inline-flex items-center text-sm font-black text-slate-950 hover:text-blue-700 transition-colors group/link">
+                  查看教授學術履歷與研究專長
+                  <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <a href="/members" class="lg:col-span-5 rounded-[2rem] bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 shadow-2xl shadow-slate-900/15 p-7 sm:p-9 lg:p-10 relative overflow-hidden flex flex-col min-h-[360px] group" data-reveal="up" style="transition-delay: 200ms;">
+            <img src="/images/team-group.jpg" alt="實驗室團隊" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay group-hover:opacity-35 group-hover:scale-105 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop';" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-900/20"></div>
+            <div class="relative z-10 flex h-full flex-col justify-between">
+              <div>
+                <div class="inline-block px-3 py-1 bg-white/10 text-white backdrop-blur-sm text-[10px] font-black tracking-widest uppercase rounded-full border border-white/20 mb-4">Our Researchers</div>
+                <h3 class="text-2xl sm:text-3xl font-black text-white mb-3">堅強的研究團隊</h3>
+                <p class="text-slate-300 text-sm leading-relaxed max-w-md">跨年級、跨專長協作，從研究設計、資料處理、模型開發到系統實作，累積完整的專案實戰能力。</p>
+              </div>
+              <div class="flex items-end justify-between mt-10">
+                <div>
+                  <div class="flex -space-x-3 mb-3">
+                    <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-300"></div>
+                    <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-400"></div>
+                    <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-slate-500"></div>
+                    <div class="w-10 h-10 rounded-full border-2 border-slate-900 bg-blue-600 flex items-center justify-center text-white text-xs font-black">20+</div>
+                  </div>
+                  <span class="text-xs font-bold text-slate-400">Research members</span>
+                </div>
+                <div class="w-12 h-12 rounded-full bg-white text-slate-950 flex items-center justify-center group-hover:-rotate-45 group-hover:scale-110 transition-all duration-300">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <!-- 🚀 亮點研究｜改為更像產品展示頁的 Hero + Selector -->
+      <section id="featured-works" class="scroll-mt-24">
+        <div class="flex flex-col items-center text-center mb-10 lg:mb-14" data-reveal="up">
+          <div class="inline-flex items-center gap-3 mb-3">
+            <div class="w-8 h-1 bg-emerald-600 rounded-full"></div>
+            <span class="text-emerald-700 text-xs font-black tracking-widest uppercase">Featured Systems</span>
+            <div class="w-8 h-1 bg-emerald-600 rounded-full"></div>
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">實驗室亮點作品</h2>
+          <p class="mt-4 text-slate-500 text-sm sm:text-base max-w-2xl leading-relaxed">
+            以代表性系統作品呈現實驗室技術能量，讓訪客能用最短時間理解每個研究的應用場域與價值。
           </p>
         </div>
 
-        <!-- 右側數據區 (設定每個項目由下方滑入，並給予階梯式延遲) -->
-        <div class="lg:w-2/3 w-full grid grid-cols-2 sm:grid-cols-3 gap-x-8 gap-y-14">
-          
-          <!-- 國內外競賽得獎 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-rose-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 0ms;">
-            <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-rose-600 transition-colors duration-300 tracking-tight" data-target={awardCount}>0</div>
-            <div class="text-sm font-bold text-slate-700">國內外競賽得獎 (件)</div>
-            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Awards</div>
-          </div>
-
-          <!-- 獲得專利項目 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-cyan-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 100ms;">
-            <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-cyan-600 transition-colors duration-300 tracking-tight" data-target={patentCount}>0</div>
-            <div class="text-sm font-bold text-slate-700">獲得專利項目 (件)</div>
-            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Patents</div>
-          </div>
-
-          <!-- 國際期刊論文 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-blue-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 200ms;">
-            <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-blue-600 transition-colors duration-300 tracking-tight" data-target={journalCount}>0</div>
-            <div class="text-sm font-bold text-slate-700">國際期刊論文 (篇)</div>
-            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Journal Papers</div>
-          </div>
-
-          <!-- 國際研討會 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-indigo-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 300ms;">
-            <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-indigo-600 transition-colors duration-300 tracking-tight" data-target={confCount}>0</div>
-            <div class="text-sm font-bold text-slate-700">國際研討會論文 (篇)</div>
-            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Conferences</div>
-          </div>
-
-          <!-- 產學合作廠商 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-emerald-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 400ms;">
-            <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-emerald-600 transition-colors duration-300 tracking-tight" data-target={partnerCount} data-suffix="+">0</div>
-            <div class="text-sm font-bold text-slate-700">產學合作廠商 (間)</div>
-            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Partners</div>
-          </div>
-
-          <!-- 總執行計畫金額 -->
-          <div class="flex flex-col border-l-[3px] border-slate-200 hover:border-amber-500 pl-5 transition-all duration-300 group cursor-default" data-reveal="up" style="transition-delay: 500ms;">
-            <div class="counter-anim text-3xl sm:text-4xl font-black text-slate-800 tabular-nums whitespace-nowrap mb-2 group-hover:text-amber-600 transition-colors duration-300 tracking-tight" data-target={amountNum} data-suffix={amountSuffix} data-decimals={amountDecimals}>0</div>
-            <div class="text-sm font-bold text-slate-700">總執行計畫金額 (元)</div>
-            <div class="text-[10px] text-slate-400 font-mono tracking-widest mt-1 uppercase">Funding</div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- 將外部元件包裝在動畫容器中 -->
-    <div data-reveal="up">
-      <News />
-    </div>
-    
-    <!-- 👇 團隊成員區塊 (專業櫥窗版) -->
-    <section id="members" class="scroll-mt-24">
-      
-      <!-- 區塊標題 -->
-      <div class="mb-8 flex flex-col items-start" data-reveal="up">
-        <div class="inline-flex items-center gap-3 mb-3">
-          <div class="w-8 h-1 bg-blue-600 rounded-full opacity-80"></div>
-          <span class="text-blue-600 text-xs font-extrabold tracking-widest uppercase">Our People</span>
-        </div>
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">領導與團隊</h2>
-        <p class="mt-4 text-slate-500 text-sm sm:text-base max-w-2xl">
-          由張萬榮教授帶領，結合跨領域的頂尖研究人才，我們致力於將前瞻的 AIoT 技術轉化為解決真實世界問題的創新應用。
-        </p>
-      </div>
-
-      <!-- 雙拼卡片佈局 (Grid) -->
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
-        
-        <!-- 🧑‍🏫 左側：PI 負責人卡片 (佔 7 格) -->
-        <div class="lg:col-span-7 bg-white rounded-[2rem] border border-slate-200/60 shadow-[0_8px_30px_rgb(0,0,0,0.04)] p-8 sm:p-10 relative overflow-hidden group" data-reveal="up" style="transition-delay: 100ms;">
-          <!-- 背景裝飾 -->
-          <div class="absolute top-0 right-0 w-64 h-64 bg-blue-50/50 rounded-full blur-3xl -z-10 translate-x-1/3 -translate-y-1/3"></div>
-          
-          <div class="flex flex-col sm:flex-row gap-8 items-start sm:items-center">
-            <!-- 教授照片 (強調專業感) -->
-            <div class="w-32 sm:w-40 shrink-0">
-              <div class="rounded-2xl overflow-hidden shadow-md ring-1 ring-slate-900/5 aspect-[4/5]">
-                <img src="/images/professor.png" alt="張萬榮 教授" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/default-avatar.png';" />
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch" data-reveal="up" style="transition-delay: 100ms;">
+          <div class="lg:col-span-8 w-full">
+            <div 
+              id="hero-container"
+              class="relative group rounded-[2.25rem] overflow-hidden shadow-[0_28px_80px_rgba(15,23,42,0.18)] border border-white bg-slate-900 w-full aspect-[16/9] cursor-pointer"
+              data-poster-full={posters[0].full}
+              data-poster-title={posters[0].title}
+              onclick="openPosterModal(this)"
+            >
+              <img 
+                id="hero-img"
+                src={posters[0].thumb} 
+                alt={posters[0].title} 
+                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" 
+                onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=1200&auto=format&fit=crop';`}
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-transparent"></div>
+              <div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-12 pointer-events-none">
+                <span id="hero-category" class="inline-block px-3 py-1 bg-white/15 text-white backdrop-blur-md text-[10px] sm:text-xs font-black tracking-widest uppercase rounded-full mb-4 border border-white/20 shadow-md transition-all duration-300">{posters[0].category}</span>
+                <h3 id="hero-title" class="text-white font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight drop-shadow-xl mb-3 transition-all duration-300">{posters[0].title}</h3>
+                <p id="hero-desc" class="text-slate-200 text-sm sm:text-base lg:text-lg font-medium drop-shadow-md max-w-xl transition-all duration-300">{posters[0].desc}</p>
+              </div>
+              <div class="absolute top-6 right-6 sm:top-10 sm:right-10 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transform scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 shadow-xl border border-white/30">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" /></svg>
               </div>
             </div>
-            
-            <!-- 教授核心資訊 -->
-            <div class="flex-1">
-              <div class="inline-block px-3 py-1 bg-slate-900 text-white text-[10px] font-bold tracking-widest uppercase rounded-full mb-4">
-                Principal Investigator
-              </div>
-              <h3 class="text-2xl sm:text-3xl font-black text-slate-800 mb-1">
-                張萬榮 <span class="text-lg text-slate-500 font-medium ml-1">教授</span>
-              </h3>
-              <p class="text-blue-600 font-medium text-sm mb-5">Wan-Jung Chang, Ph.D.</p>
-              
-              <!-- 核心引言/願景 (取代條列式學歷) -->
-              <blockquote class="text-slate-600 text-sm leading-relaxed border-l-[3px] border-blue-400 pl-4 mb-6 italic">
-                「做研究不能只停留在實驗室，我們專注於 AI 與醫護、製造的跨域整合，培育具備實戰能力的系統級人才。」
-              </blockquote>
-              
-              <!-- 乾淨的引導按鈕 -->
-              <a href="/members#professor" class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-blue-700 transition-colors group/link">
-                查看教授學術履歷與研究專長
-                <svg class="w-4 h-4 ml-1 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </div>
+
+          <div class="lg:col-span-4 relative h-[132px] sm:h-[150px] lg:h-auto">
+            <div class="absolute inset-0 w-full flex flex-row lg:flex-col gap-3 lg:gap-4 overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto custom-scrollbar snap-x snap-mandatory lg:snap-none lg:pr-3 pb-4 lg:pb-0">
+              {posters.map((poster, index) => (
+                <button 
+                  class={`selector-btn text-left flex items-center gap-4 p-3.5 rounded-[1.25rem] transition-all duration-300 min-w-[290px] sm:min-w-[340px] lg:min-w-0 snap-start group/selector
+                    ${index === 0 ? 'bg-slate-950 text-white ring-2 ring-blue-500 shadow-xl shadow-slate-900/15' : 'bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 hover:border-blue-200 shadow-sm hover:shadow-lg'}
+                  `}
+                  data-index={index}
+                  data-thumb={poster.thumb}
+                  data-full={poster.full}
+                  data-title={poster.title}
+                  data-category={poster.category}
+                  data-desc={poster.desc}
+                  onclick="selectPoster(this)"
+                >
+                  <div class="w-24 h-[54px] sm:w-32 sm:h-[72px] lg:w-28 lg:h-[63px] shrink-0 rounded-xl overflow-hidden shadow-inner border border-white/20 bg-slate-100 relative">
+                    <img src={poster.thumb} alt={poster.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/selector:scale-105" onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=400&auto=format&fit=crop';`} />
+                  </div>
+                  <div class="flex-1 min-w-0 py-1">
+                    <div class={`text-[10px] font-black uppercase tracking-widest mb-1 truncate ${index === 0 ? 'text-blue-200' : 'text-blue-600'}`}>{poster.category}</div>
+                    <div class="font-black text-sm sm:text-base truncate leading-tight mb-1">{poster.title}</div>
+                    <div class={`text-xs sm:text-sm truncate ${index === 0 ? 'text-slate-300' : 'text-slate-500'}`}>{poster.desc}</div>
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 👇 活動花絮｜更高級的 Banner CTA -->
+      <section id="activities" class="scroll-mt-24">
+        <div class="mb-9 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5" data-reveal="up">
+          <div>
+            <span class="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 text-xs font-black tracking-widest uppercase rounded-full mb-3 border border-blue-100">Activities & Albums</span>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">活動花絮</h2>
+          </div>
+          <p class="text-sm text-slate-500 max-w-md lg:text-right">用照片與紀錄補足研究之外的團隊溫度，建立更完整的實驗室品牌印象。</p>
+        </div>
+
+        <div class="relative w-full rounded-[2.25rem] overflow-hidden shadow-[0_28px_80px_rgba(15,23,42,0.16)] h-[380px] sm:h-[460px] flex items-center justify-center group" data-reveal="zoom" style="transition-delay: 100ms;">
+          <img src="/images/activity-banner.jpg" alt="活動花絮背景" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop';" />
+          <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/45 to-slate-900/20 group-hover:from-slate-950/85 transition-colors duration-500"></div>
+          <div class="relative z-10 w-full px-6 sm:px-10 lg:px-14">
+            <div class="max-w-xl bg-white/12 backdrop-blur-xl border border-white/20 rounded-[2rem] shadow-2xl p-7 sm:p-10 transform transition-transform duration-500 group-hover:-translate-y-1">
+              <div class="w-10 h-1 bg-blue-300 mb-6 rounded-full"></div>
+              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-4 tracking-tight drop-shadow-md">實驗室日常與活動紀錄</h3>
+              <p class="text-sm sm:text-base text-slate-100 mb-8 leading-relaxed drop-shadow">
+                收錄國內外學術研討會、創新競賽、專題發表、實驗室聚餐與團隊活動，讓訪客看見研究背後的真實團隊文化。
+              </p>
+              <a href="/activities" class="inline-flex items-center justify-center px-7 py-3.5 bg-white text-slate-950 hover:bg-blue-600 hover:text-white text-sm font-black rounded-full transition-all duration-300 shadow-lg group/btn">
+                前往活動相簿
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </a>
             </div>
           </div>
         </div>
+      </section>
 
-        <!-- 👨‍🎓 右側：學生團隊卡片 (佔 5 格) -->
-        <div class="lg:col-span-5 bg-gradient-to-br from-slate-800 to-slate-900 rounded-[2rem] border border-slate-700 shadow-xl p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between group cursor-pointer" onclick="window.location.href='/members'" data-reveal="up" style="transition-delay: 200ms;">
-          
-          <!-- 背景影像 (放一張實驗室大合照並加上暗色遮罩) -->
-          <img src="/images/team-group.jpg" alt="實驗室團隊" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay group-hover:opacity-30 group-hover:scale-105 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop';" />
-          
-          <div class="relative z-10">
-            <div class="inline-block px-3 py-1 bg-white/10 text-white backdrop-blur-sm text-[10px] font-bold tracking-widest uppercase rounded-full border border-white/20 mb-4">
-              Our Researchers
-            </div>
-            <h3 class="text-2xl sm:text-3xl font-black text-white mb-2">堅強的研究團隊</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-8">
-              包含專案經理、博士後研究員、博/碩士班及大學部專題生，組成充滿熱情與創新能量的實戰團隊。
-            </p>
+      <!-- Videos 外部元件：保留功能，改善視覺容器 -->
+      <section id="videos" class="scroll-mt-24" data-reveal="up">
+        <div class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+          <div>
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-black tracking-widest uppercase border border-indigo-100">Media</span>
+            <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">影音專區</h2>
           </div>
-
-          <!-- 底部資訊與互動 -->
-          <div class="relative z-10 flex items-end justify-between mt-auto">
-            <!-- 虛擬的頭像交疊 (示意團隊人數) -->
-            <div class="flex -space-x-3">
-              <div class="w-10 h-10 rounded-full border-2 border-slate-800 bg-slate-300"></div>
-              <div class="w-10 h-10 rounded-full border-2 border-slate-800 bg-slate-400"></div>
-              <div class="w-10 h-10 rounded-full border-2 border-slate-800 bg-slate-500"></div>
-              <div class="w-10 h-10 rounded-full border-2 border-slate-800 bg-blue-600 flex items-center justify-center text-white text-xs font-bold">
-                20+
-              </div>
-            </div>
-            
-            <!-- 圓形箭頭按鈕 -->
-            <div class="w-10 h-10 rounded-full bg-white text-slate-900 flex items-center justify-center group-hover:-rotate-45 transition-transform duration-300">
-              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-            </div>
-          </div>
-
+          <p class="text-sm text-slate-500 max-w-md sm:text-right">用影片降低研究理解門檻，讓訪客更快看懂系統功能與應用場景。</p>
         </div>
-
-      </div>
-    </section>
-
-    <!-- 🚀 全新加入：亮點研究 (垂直獨立滾動 Scrollable Sidebar 版) -->
-    <section id="featured-works" class="scroll-mt-24">
-      <!-- 區塊標題 -->
-      <div class="flex flex-col items-center text-center mb-10 lg:mb-14" data-reveal="up">
-        <div class="inline-flex items-center gap-3 mb-3">
-          <div class="w-8 h-1 bg-green-600 rounded-full opacity-80"></div>
-          <span class="text-green-600 text-xs font-extrabold tracking-widest uppercase">Featured Systems</span>
-          <div class="w-8 h-1 bg-green-600 rounded-full opacity-80"></div>
+        <div class="rounded-[2rem] bg-white/85 backdrop-blur-xl border border-white shadow-[0_18px_60px_rgba(15,23,42,0.07)] p-4 sm:p-6 lg:p-8 overflow-hidden">
+          <Videos />
         </div>
-        <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">實驗室亮點作品</h2>
-        <p class="mt-4 text-slate-500 text-sm sm:text-base max-w-2xl">
-          從智慧農業到醫療照護，點選右側清單查看我們最具代表性的 AIoT 跨域整合系統與實作成果。
-        </p>
-      </div>
+      </section>
 
-      <!-- 🌟 改進的 Hero + 獨立滾動 Selector 佈局容器 (使用 Grid 鎖定高度) -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8" data-reveal="up" style="transition-delay: 100ms;">
-        
-        <!-- 🎥 左側：Hero 大圖展示區 (佔比 2/3) -->
-        <div class="lg:col-span-2 w-full">
-          <!-- aspect-[16/9] 會自然撐出這個區域的高度 -->
-          <div 
-            id="hero-container"
-            class="relative group rounded-[2rem] overflow-hidden shadow-[0_20px_50px_rgb(0,0,0,0.1)] border border-slate-100 bg-slate-900 w-full aspect-[16/9] cursor-pointer"
-            data-poster-full={posters[0].full}
-            data-poster-title={posters[0].title}
-            onclick="openPosterModal(this)"
-          >
-            <!-- 主視覺大圖 (預設為陣列第 0 項) -->
-            <img 
-              id="hero-img"
-              src={posters[0].thumb} 
-              alt={posters[0].title} 
-              class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
-              onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=1200&auto=format&fit=crop';`}
-            />
-            
-            <!-- 文字浮層遮罩 -->
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-slate-900/10 to-transparent flex flex-col justify-end p-6 sm:p-10 pointer-events-none">
-              
-              <span id="hero-category" class="inline-block px-3 py-1 bg-blue-600/90 text-white backdrop-blur-md text-[10px] sm:text-xs font-bold tracking-widest uppercase rounded-full mb-3 sm:mb-4 w-max border border-white/20 shadow-md transition-all duration-300">
-                {posters[0].category}
-              </span>
-              
-              <h3 id="hero-title" class="text-white font-black text-3xl sm:text-4xl lg:text-5xl tracking-wide drop-shadow-xl mb-2 sm:mb-3 transition-all duration-300">
-                {posters[0].title}
-              </h3>
-              
-              <p id="hero-desc" class="text-slate-200 text-sm sm:text-base lg:text-lg font-medium drop-shadow-md max-w-xl transition-all duration-300">
-                {posters[0].desc}
-              </p>
-              
-              <!-- 放大檢視互動按鈕 -->
-              <div class="absolute top-6 right-6 sm:top-10 sm:right-10 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transform scale-50 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 delay-100 shadow-xl border border-white/30">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6">
-                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- 🎛️ 右側：Selector 獨立滾動清單 (佔比 1/3) -->
-        <!-- lg:relative 讓內部的 absolute 可以對齊這個格子的高度 -->
-        <div class="lg:col-span-1 relative h-[120px] sm:h-[140px] lg:h-auto">
-          
-          <!-- lg:absolute lg:inset-0 能讓這個 div 的高度完美貼齊左側 Hero 的高度，並開啟內部滾動 lg:overflow-y-auto -->
-          <div class="absolute inset-0 lg:absolute lg:inset-0 w-full flex flex-row lg:flex-col gap-3 lg:gap-4 overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto custom-scrollbar snap-x snap-mandatory lg:snap-none lg:pr-3 pb-4 lg:pb-0">
-            {posters.map((poster, index) => (
-              <button 
-                class={`selector-btn text-left flex items-center gap-4 p-3 rounded-2xl transition-all duration-300 min-w-[280px] sm:min-w-[320px] lg:min-w-0 snap-start
-                  ${index === 0 ? 'bg-blue-50 ring-2 ring-blue-500 shadow-md' : 'bg-white border border-slate-200 hover:bg-slate-50 hover:border-slate-300 shadow-sm'}
-                `}
-                data-index={index}
-                data-thumb={poster.thumb}
-                data-full={poster.full}
-                data-title={poster.title}
-                data-category={poster.category}
-                data-desc={poster.desc}
-                onclick="selectPoster(this)"
-              >
-                <!-- 縮圖容器 (16:9) -->
-                <div class="w-24 h-[54px] sm:w-32 sm:h-[72px] lg:w-28 lg:h-[63px] shrink-0 rounded-xl overflow-hidden shadow-inner border border-slate-200 bg-slate-100 relative">
-                  <img 
-                    src={poster.thumb} 
-                    alt={poster.title} 
-                    class="absolute inset-0 w-full h-full object-cover transition-transform duration-500" 
-                    onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=400&auto=format&fit=crop';`}
-                  />
-                </div>
-                
-                <!-- 資訊文字 -->
-                <div class="flex-1 min-w-0 py-1">
-                  <div class="text-[10px] font-bold text-blue-600 uppercase tracking-widest mb-1 truncate">
-                    {poster.category}
-                  </div>
-                  <div class="text-slate-900 font-extrabold text-sm sm:text-base truncate leading-tight mb-1">
-                    {poster.title}
-                  </div>
-                  <div class="text-slate-500 text-xs sm:text-sm truncate">
-                    {poster.desc}
-                  </div>
-                </div>
-              </button>
-            ))}
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- 👇 活動花絮 -->
-    <section id="activities" class="scroll-mt-24">
-      
-      <!-- 標題 (向上滑入) -->
-      <div class="mb-10 flex flex-col items-start" data-reveal="up">
-        <span class="inline-block px-3 py-1 bg-blue-50 text-blue-600 text-xs font-bold tracking-widest uppercase rounded-full mb-3 border border-blue-100">Activities & Albums</span>
-        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">活動花絮</h2>
-      </div>
-
-      <!-- 活動橫幅 (採用縮放浮現效果 Zoom-in) -->
-      <div class="relative w-full rounded-3xl overflow-hidden shadow-xl h-[360px] sm:h-[420px] flex items-center justify-center group" data-reveal="zoom" style="transition-delay: 100ms;">
-        
-        <img src="/images/activity-banner.jpg" alt="活動花絮背景" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop';" />
-        
-        <div class="absolute inset-0 bg-slate-900/40 group-hover:bg-slate-900/50 transition-colors duration-500"></div>
-        
-        <div class="relative z-10 text-center px-8 py-10 max-w-2xl mx-auto flex flex-col items-center bg-white/10 backdrop-blur-md border border-white/20 rounded-[2rem] shadow-2xl transform transition-transform duration-500 group-hover:-translate-y-2 m-4">
-          
-          <div class="w-10 h-1 bg-blue-400 mb-6 rounded-full opacity-80"></div>
-          
-          <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-4 tracking-wider drop-shadow-md">
-            實驗室日常與活動紀錄
-          </h3>
-          
-          <p class="text-sm sm:text-base text-slate-100 mb-8 leading-relaxed drop-shadow max-w-lg">
-            完整收錄我們參與國內外學術研討會、創新創業競賽、專題發表展，以及實驗室夥伴們溫馨聚餐與出遊的精彩瞬間。
-          </p>
-          
-          <a href="/activities" class="inline-flex items-center justify-center px-8 py-3.5 bg-blue-600 hover:bg-white hover:text-blue-700 text-white text-sm font-bold rounded-full transition-all duration-300 shadow-lg hover:shadow-white/20 group/btn border border-blue-500/50 hover:border-white">
-            前往活動相簿
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-            </svg>
-          </a>
-          
-        </div>
-      </div>
-    </section>
-
-    <!-- 將影音專區也包裝在動畫容器中 -->
-    <div data-reveal="up">
-      <Videos />
     </div>
-
   </main>
 
   <!-- 🔷 頁尾 (Footer) -->
@@ -635,49 +663,49 @@ const posters = [
   <script>
     // --- 🎯 Hero + Selector 切換邏輯 ---
     window.selectPoster = function(btn) {
-      // 1. 取得按鈕上綁定的資料
       const thumbSrc = btn.getAttribute('data-thumb');
       const fullSrc = btn.getAttribute('data-full');
       const title = btn.getAttribute('data-title');
       const category = btn.getAttribute('data-category');
       const desc = btn.getAttribute('data-desc');
 
-      // 2. 獲取需要更新的 Hero 元素
       const heroImg = document.getElementById('hero-img');
       const heroCategory = document.getElementById('hero-category');
       const heroTitle = document.getElementById('hero-title');
       const heroDesc = document.getElementById('hero-desc');
       const heroContainer = document.getElementById('hero-container');
 
-      // 為了畫面流暢，做一點微弱的淡入淡出動畫重置
-      heroImg.style.opacity = '0.5';
-      
+      if (!heroImg || !heroCategory || !heroTitle || !heroDesc || !heroContainer) return;
+
+      heroImg.style.opacity = '0.35';
+      heroImg.style.transform = 'scale(1.015)';
+
       setTimeout(() => {
-        // 更新內容
         heroImg.src = thumbSrc;
         heroCategory.innerText = category;
         heroTitle.innerText = title;
         heroDesc.innerText = desc;
-        
-        // 更新燈箱需要抓取的屬性
         heroContainer.setAttribute('data-poster-full', fullSrc);
         heroContainer.setAttribute('data-poster-title', title);
-        
         heroImg.style.opacity = '1';
-      }, 150);
+        heroImg.style.transform = '';
+      }, 160);
 
-      // 3. 更新側邊欄按鈕的選中狀態 (Active State)
       document.querySelectorAll('.selector-btn').forEach(b => {
-        b.classList.remove('bg-blue-50', 'ring-2', 'ring-blue-500', 'shadow-md');
-        b.classList.add('bg-white', 'border-slate-200', 'hover:bg-slate-50', 'hover:border-slate-300', 'shadow-sm');
-        // 內部的圖片容器移除高亮
-        b.querySelector('img').classList.remove('scale-105');
+        b.classList.remove('bg-slate-950', 'text-white', 'ring-2', 'ring-blue-500', 'shadow-xl', 'shadow-slate-900/15');
+        b.classList.add('bg-white', 'text-slate-900', 'border', 'border-slate-200', 'hover:bg-slate-50', 'hover:border-blue-200', 'shadow-sm', 'hover:shadow-lg');
+        const meta = b.querySelector('.text-blue-200');
+        const descText = b.querySelector('.text-slate-300');
+        if (meta) { meta.classList.remove('text-blue-200'); meta.classList.add('text-blue-600'); }
+        if (descText) { descText.classList.remove('text-slate-300'); descText.classList.add('text-slate-500'); }
       });
 
-      // 幫點擊的按鈕加上高亮
-      btn.classList.add('bg-blue-50', 'ring-2', 'ring-blue-500', 'shadow-md');
-      btn.classList.remove('bg-white', 'border-slate-200', 'hover:bg-slate-50', 'hover:border-slate-300', 'shadow-sm');
-      btn.querySelector('img').classList.add('scale-105');
+      btn.classList.add('bg-slate-950', 'text-white', 'ring-2', 'ring-blue-500', 'shadow-xl', 'shadow-slate-900/15');
+      btn.classList.remove('bg-white', 'text-slate-900', 'border', 'border-slate-200', 'hover:bg-slate-50', 'hover:border-blue-200', 'shadow-sm', 'hover:shadow-lg');
+      const activeMeta = btn.querySelector('.text-blue-600');
+      const activeDesc = btn.querySelector('.text-slate-500');
+      if (activeMeta) { activeMeta.classList.remove('text-blue-600'); activeMeta.classList.add('text-blue-200'); }
+      if (activeDesc) { activeDesc.classList.remove('text-slate-500'); activeDesc.classList.add('text-slate-300'); }
     };
 
 
