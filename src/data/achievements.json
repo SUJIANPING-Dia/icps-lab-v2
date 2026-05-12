@@ -9,6 +9,11 @@
         "year": "2026",
         "items": [
           {
+            "title": "PoseMirror：基於人工智慧之人體姿態與步態辨識系統設計與實現用於下肢復健評估",
+            "authors": "張萬榮, 蘇健平, 陳銘哲 ,",
+            "venue": ",影像與識別, vol. 32, no. 1, pp. 43-83, 五月. 2026."
+          },
+          {
             "title": "ChainEcho: A Cascaded Audio-sensing Relay Framework for Indoor IoT Beacon Applications",
             "authors": "Ming-Che Chen, Wun-Cian Lan, and Wan-Jung Chang,",
             "venue": ", in IEEE Canadian Journal of Electrical and Computer Engineering, vol. 49, no. 2, pp. 198-214, Mar. 2026. (SCIE) (Corresponding Author), DOI10.1109/ICJECE.2026.3669155"
