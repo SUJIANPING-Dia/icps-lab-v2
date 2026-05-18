@@ -3,6 +3,88 @@
 // 🔹 最新消息資料區 (新增公告只需在這裡加入)
 // ==========================================
 const newsData = [
+  {
+    date: "2026.05.14", 
+    tag: "展覽動態",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "iCPS Lab 雙作品參展「2026 台灣輔具暨長期照護大展」，展現 AI 智慧照護研發能量",
+    img: "/images/exhibition-atlife.jpg", 
+    imgAlt: "2026台灣輔具暨長期照護大展參展合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        2026 年 5 月 14 日至 17 日，iCPS Lab 團隊前往台北世貿南港展覽館，參與年度長照盛會「2026 台灣輔具暨長期照護大展」。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次展期中，實驗室於國立高雄科技大學（NKUST）「智慧照護科技」主題攤位上，盛大展出兩項深耕已久的 AI 照護科技作品，分別對應「智慧照護安全」與「智慧照護復能」兩大長照關鍵核心，期盼透過 AI 技術解決高齡化社會的實務需求。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">🛡️ 智慧照護安全：ToFEye 系統</h3>
+          <p class="text-slate-700">
+            <strong>「ToFEye 基於3D飛時測距之AI浴廁異常姿態辨識系統」</strong><br>
+            針對高風險的浴廁空間，本系統採用具備「去識別化」特性的 3D ToF 感測器，能在完全保護病患與長者隱私的前提下，透過 AI 邊緣運算即時偵測跌倒或異常姿態。一旦發生意外即可迅速通報，為居家與醫療機構的浴廁安全提供強力後盾。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">💪 智慧照護復能：FitMirror 系統</h3>
+          <p class="text-slate-700">
+            <strong>「FitMirror AI銀髮族體適能運動品質檢測系統」</strong><br>
+            專為高齡者復健與日常運動設計，系統結合 AI 影像辨識技術，能精準捕捉並分析長者的運動骨架與姿態。除了引導正確的動作以提升運動品質，更能有效防範因姿勢錯誤造成的二次運動傷害，讓長輩們動得安心又健康。
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">👋 現場交流與展出</h3>
+          <p class="text-slate-700">
+            團隊同學與指導老師皆於展會現場親自為參觀民眾及產學界先進進行系統解說與實機展示。感謝大家對實驗室作品的肯定與回饋，未來我們也將持續在 AI 智慧醫療與照護領域投入研發量能！
+          </p>
+        </div>
+      </div>
+    `
+  },
+ {
+    date: "2026.05.18", 
+    tag: "競賽佳績",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "狂賀！實驗室團隊勇奪「2026年全國技專校院學生實務專題製作競賽」全國第二名",
+    img: "/images/competition-second-place.jpg", 
+    imgAlt: "2026全國技專院校實務專題實作競賽頒獎典禮合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        決賽捷報！由教育部主辦之「2026全國技專院校實務專題實作競賽暨成果展」為期兩天的競賽與展覽圓滿落幕，恭喜 iCPS Lab 大三專題同學們勇奪「資工通訊群」全國第二名的殊榮！
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次獲獎作品為「中外耳病灶識別暨臨床診斷報告自動生成系統」。團隊在競爭極度激烈的資工通訊群中，從全國超過 200 件報名作品裡過關斬將、脫穎而出，展現了極高的研發量能與實作潛力。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">💡 獲獎作品簡介：iEarᴸᴹ 智慧耳科診療平台</h3>
+          <p class="text-slate-700">
+            本作品（iEarᴸᴹ）是一個整合人工智慧與擴增實境技術的診療與串流直播教育平台。系統透過 <strong>AI 影像識別（實例分割技術）</strong> 精準辨識中外耳病灶輪廓，並結合 <strong>RAG 醫學知識庫與 LLM 大語言模型</strong>，自動生成具備臨床可信度的診斷報告。同時，藉由串聯 NVIDIA 邊緣運算與佐臻 AR 智慧眼鏡，實現低延遲的醫療影像同步串流。這不僅能減輕醫師文書負擔，還能讓實習醫師與主治醫師透過 AR 眼鏡「共享視角」，大幅提升臨床協作與醫學教學效率，目前該系統亦已導入高雄長庚醫院進行臨床驗證。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">🏆 專題亮點與殊榮</h3>
+          <p class="text-slate-700">
+            能夠在全國頂尖作品中榮獲第二名，充分展現了實驗室在跨領域醫療科技應用的研發深度。系統成功整合了硬體穿戴裝置與先進的 AI 模型，為臨床診斷與醫學教學提供了極具潛力的智慧化解決方案。
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">🤝 特別感謝</h3>
+          <p class="text-slate-700">
+            專題能獲得如此佳績，除了高科大電子工程系的栽培，更要謝謝林志學老師的共同用心指導。同時，特別感謝高雄長庚醫院 吳靖農醫師 在臨床資料蒐集上給予的大力協助，讓系統的開發得以貼近最真實的醫療實務需求。
+          </p>
+        </div>
+      </div>
+    `
+  },
  {
     date: "2026.05.12", 
     tag: "媒體報導",
