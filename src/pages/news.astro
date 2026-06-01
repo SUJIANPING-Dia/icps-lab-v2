@@ -1,0 +1,50 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+import News from "../components/News.astro";
+
+const title = "最新消息 | iCPS Lab";
+const description = "查看 iCPS Lab 最新消息、研究成果、活動紀錄、競賽與媒體報導。";
+const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900";
+---
+
+<BaseLayout title={title} description={description} bodyClass={bodyClass}>
+  <Navbar activePath="/news" />
+
+  <main class="min-h-screen">
+    <section class="bg-slate-950 text-white border-b border-slate-800">
+      <div class="max-w-7xl mx-auto px-6 py-16 sm:py-20">
+        <div class="max-w-3xl">
+          <p class="text-blue-300 text-xs font-black tracking-[0.22em] uppercase mb-4">News & Announcements</p>
+          <h1 class="text-4xl sm:text-5xl font-black tracking-tight">最新消息</h1>
+          <p class="mt-5 text-slate-300 text-base sm:text-lg leading-relaxed">
+            彙整 iCPS Lab 的研究發表、競賽成果、活動紀錄、媒體報導與實驗室公告。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-12 sm:py-16">
+      <News />
+    </section>
+  </main>
+
+  <footer class="bg-[#0f172a] py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-8">
+      <div>
+        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-16 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
+        <p class="text-sm text-blue-400 font-medium mb-3">智能感知與控制系統實驗室</p>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Intelligent Cyber-Physical Systems Laboratory<br />
+          國立高雄科技大學
+        </p>
+      </div>
+      <div class="text-sm space-y-3 md:text-right">
+        <h2 class="text-white font-semibold tracking-wide uppercase text-xs">Contact Us</h2>
+        <p class="text-slate-300">國立高雄科技大學 建工校區</p>
+        <p class="text-slate-300">07-3814526 #15672</p>
+        <a href="mailto:allenchang@nkust.edu.tw" class="text-slate-300 hover:text-blue-400 transition">allenchang@nkust.edu.tw</a>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
