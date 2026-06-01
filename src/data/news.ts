@@ -1,5 +1,6 @@
 export type NewsItem = {
   isPinned?: boolean;
+  slug: string;
   date: string;
   tag: string;
   tagTheme: string;
@@ -11,6 +12,7 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-itaoi-honorable-mention",
     date: "2026.05.30",
     tag: "學術發表",
     tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
@@ -55,6 +57,7 @@ export const newsData: NewsItem[] = [
     `
   },
   {
+    slug: "2026-neihu-vocational-school-visit",
     date: "2026.05.21", 
     tag: "交流參訪",
     tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
@@ -93,6 +96,7 @@ export const newsData: NewsItem[] = [
     `
  },
   {
+    slug: "2026-atlife-expo-ai-care",
     date: "2026.05.14", 
     tag: "展覽動態",
     tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
@@ -135,6 +139,7 @@ export const newsData: NewsItem[] = [
     `
   },
  {
+    slug: "2026-student-project-competition-second-place",
     date: "2026.05.18", 
     tag: "競賽佳績",
     tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
@@ -175,6 +180,7 @@ export const newsData: NewsItem[] = [
     `
   },
  {
+    slug: "2026-ustv-ai-smart-glasses-report",
     date: "2026.05.12", 
     tag: "媒體報導",
     tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
@@ -233,6 +239,7 @@ export const newsData: NewsItem[] = [
     `
  },
   {
+    slug: "2026-ustv-ar-glasses-tof-interview",
     date: "2026.04.21", 
     tag: "媒體報導",
     tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
@@ -267,6 +274,7 @@ export const newsData: NewsItem[] = [
     `
  },
  {
+    slug: "2026-student-project-competition-finalist",
     date: "2026.04.17", 
     tag: "競賽佳績",
     tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
@@ -307,6 +315,7 @@ export const newsData: NewsItem[] = [
     `
   },
   {
+    slug: "2026-japan-patent-tongue-rehabilitation",
     date: "2026.04.16",
     tag: "專利核准",
     tagTheme: "text-rose-800 bg-rose-50 border-rose-200",
@@ -340,6 +349,7 @@ export const newsData: NewsItem[] = [
     `
   },
   {
+    slug: "2026-icct-pacific-papers",
     date: "2026.03.31",
     tag: "學術發表",
     tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
@@ -389,6 +399,7 @@ export const newsData: NewsItem[] = [
     `
   },
   {
+    slug: "2026-dsp-competition-celebration",
     date: "2026.03.15",
     tag: "活動花絮",
     tagTheme: "text-emerald-800 bg-emerald-50 border-emerald-200",
@@ -418,6 +429,7 @@ export const newsData: NewsItem[] = [
     `
   },
   {
+    slug: "2026-website-launch",
     date: "2026.03.01",
     tag: "系統公告",
     tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
@@ -459,6 +471,7 @@ export const newsData: NewsItem[] = [
   },
   {
     isPinned: true, // 🌟 新增這一行：只要設定為 true 就可以將此新聞置頂！
+    slug: "2026-master-student-recruitment",
     date: "2026.03.01",
     tag: "招生資訊",
     tagTheme: "text-amber-800 bg-amber-50 border-amber-200",

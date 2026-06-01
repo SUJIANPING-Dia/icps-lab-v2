@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+import { newsData, type NewsItem } from "../../data/news";
+
+export function getStaticPaths() {
+  return newsData.map((item) => ({
+    params: { slug: item.slug },
+    props: { item },
+  }));
+}
+
+const { item } = Astro.props as { item: NewsItem };
+const title = `${item.title} | iCPS Lab`;
+const description = `${item.date} - ${item.title}`;
+const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900";
+---
+
+<BaseLayout title={title} description={description} bodyClass={bodyClass}>
+  <Navbar activePath="/news" />
+
+  <main class="min-h-screen">
+    <article class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
+      <a href="/news" class="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-900 transition mb-8">
+        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+        </svg>
+        返回最新消息
+      </a>
+
+      <header class="rounded-[2rem] bg-white border border-slate-200 shadow-sm overflow-hidden">
+        {item.img && (
+          <div class="bg-slate-100 border-b border-slate-200">
+            <img src={item.img} alt={item.imgAlt} class="w-full h-auto block" loading="lazy" onerror="this.style.display='none';" />
+          </div>
+        )}
+        <div class="p-6 sm:p-8 lg:p-10">
+          <div class="flex flex-wrap items-center gap-3 mb-5">
+            <time class="text-slate-500 font-mono text-sm tracking-tight">{item.date}</time>
+            <span class={`px-2.5 py-1 text-xs font-medium rounded-sm border ${item.tagTheme}`}>{item.tag}</span>
+            {item.isPinned && (
+              <span class="px-2 py-0.5 text-[11px] font-bold text-red-600 bg-red-50 border border-red-200 rounded">
+                置頂
+              </span>
+            )}
+          </div>
+          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+            {item.title}
+          </h1>
+        </div>
+      </header>
+
+      <section class="mt-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm p-6 sm:p-8 lg:p-10 text-slate-700 text-base leading-relaxed space-y-5">
+        <div set:html={item.content}></div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="bg-[#0f172a] py-12 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-8">
+      <div>
+        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-16 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
+        <p class="text-sm text-blue-400 font-medium mb-3">智能感知與控制系統實驗室</p>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          Intelligent Cyber-Physical Systems Laboratory<br />
+          國立高雄科技大學
+        </p>
+      </div>
+      <div class="text-sm space-y-3 md:text-right">
+        <h2 class="text-white font-semibold tracking-wide uppercase text-xs">Contact Us</h2>
+        <p class="text-slate-300">國立高雄科技大學 建工校區</p>
+        <p class="text-slate-300">07-3814526 #15672</p>
+        <a href="mailto:allenchang@nkust.edu.tw" class="text-slate-300 hover:text-blue-400 transition">allenchang@nkust.edu.tw</a>
+      </div>
+    </div>
+  </footer>
+</BaseLayout>
