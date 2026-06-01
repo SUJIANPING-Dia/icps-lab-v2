@@ -111,11 +111,21 @@ Never modify unrelated files just because they are nearby.
 - If refactoring, centralize Cloudinary album/folder fetching into a shared utility.
 - Handle missing credentials and API failures gracefully.
 - Do not change Cloudinary folder conventions without explicit user approval. Current convention expects event albums under `events/...`.
+- Adding or updating Cloudinary activity albums usually does not require website code changes.
+- Because Astro generates activity pages during build, Cloudinary-only updates require a Vercel redeploy before production reflects the latest albums/photos.
+- Vercel Deploy Hook URLs must never be written to Git-tracked files and must never be displayed in full.
+- The Vercel Deploy Hook URL should exist only as local environment variable `VERCEL_DEPLOY_HOOK_URL`.
+- Only QA Release Agent may trigger Cloudinary-related Vercel redeploys, and only after the user explicitly says Cloudinary upload/update is complete and asks to redeploy.
+- If `VERCEL_DEPLOY_HOOK_URL` is missing, stop and report. Do not guess or store the hook URL.
 
 ## Script Execution Rules
 
-- Do not run `scripts/fetchAchievements.js` unless the user explicitly asks.
+- Do not run `scripts/fetchAchievements.js` unless the user explicitly asks or the scheduled GitHub Actions achievements sync harness is executing.
 - That script writes to `src/data/achievements.json`; inspect diffs after running it.
+- The scheduled achievements sync harness may only commit and push `src/data/achievements.json`.
+- If `scripts/fetchAchievements.js` changes any other file, the harness must fail before build, commit, or push.
+- The scheduled achievements sync harness must run a build before committing and pushing.
+- Scheduled achievements sync must not use force push, Cloudinary flows, or Vercel Deploy Hook.
 - Do not run destructive shell commands.
 - Do not delete or regenerate `dist`, `.astro`, or `node_modules` as part of ordinary maintenance.
 - Use `npm run build` for verification after code changes when allowed.
@@ -128,6 +138,50 @@ Never modify unrelated files just because they are nearby.
 - Build production site: `npm run build`
 - Preview production build: `npm run preview`
 - Astro CLI passthrough: `npm run astro -- --help`
+
+## Site Manager and Agent Routing
+
+All maintenance tasks are controlled by Site Manager Agent by default. Site Manager Agent must identify the task type, choose the correct specialized agent, confirm file scope, and decide whether QA Release Agent is needed.
+
+Every response must begin with this block:
+
+```text
+【執行 Agent】
+總控：Site Manager Agent
+實作：<Agent Name>
+階段：<Planning / Editing / Build / Commit / Merge / Push / Review>
+狀態：<Ready / In Progress / Blocked / Done>
+```
+
+Routing rules:
+
+- News tasks: use News Agent (`.codex/agents/news.toml`) and read `docs/agents/NEWS_AGENT.md`.
+- FAQ tasks: use FAQ Agent (`.codex/agents/faq.toml`) and read `docs/agents/FAQ_AGENT.md`.
+- Members tasks: use Members Agent (`.codex/agents/members.toml`) and read `docs/agents/MEMBERS_AGENT.md`.
+- Achievements tasks: use Achievements Agent (`.codex/agents/achievements.toml`) and read `docs/agents/ACHIEVEMENTS_AGENT.md`.
+- Achievements scheduled sync tasks: use Achievements Agent and GitHub Actions harness rules in `docs/harness/ACHIEVEMENTS_SYNC.md`; QA Release Agent validates build, commit message, diff scope, and push target.
+- Activities or Cloudinary album tasks: use Activities Agent (`.codex/agents/activities.toml`) and read `docs/agents/ACTIVITIES_AGENT.md`.
+- Build, diff, merge, push, or release tasks: use QA Release Agent (`.codex/agents/qa-release.toml`) and read `docs/agents/QA_RELEASE_AGENT.md`.
+- Cloudinary album/photo refresh or redeploy tasks: route to Activities Agent first, then QA Release Agent must follow `docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md`.
+- Agent framework or routing documentation tasks may be handled by Site Manager Agent.
+
+Content modification tasks must not be performed by a default or general agent. They must be routed through the matching specialized agent first.
+
+Build, merge, push, and release tasks must use QA Release Agent. Any task involving a production push must follow QA Release Agent flow.
+
+If a task type is unclear, ask the user before choosing an agent or editing files. Do not guess.
+
+If `.codex/agents/*.toml`, `docs/harness/*.md`, or an agent playbook conflicts with this `AGENTS.md`, this `AGENTS.md` has the highest priority.
+
+For lightweight routing, response protocol, release, and file-scope checks, consult:
+
+- `docs/harness/AGENT_ROUTING.md`
+- `docs/harness/RESPONSE_PROTOCOL.md`
+- `docs/harness/RELEASE_CHECKLIST.md`
+- `docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md`
+- `docs/harness/ACHIEVEMENTS_SYNC.md`
+- `docs/harness/CONTENT_UPDATE_FLOW.md`
+- `docs/harness/FILE_SCOPE_RULES.md`
 
 ## Working Rules for Codex
 

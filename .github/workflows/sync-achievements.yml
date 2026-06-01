@@ -1,0 +1,83 @@
+name: Sync Achievements Data
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Runs at 00:07 Asia/Taipei (UTC+8). Avoid top-of-hour schedules to reduce GitHub Actions delay.
+    - cron: "7 16 * * *"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sync-achievements-data
+  cancel-in-progress: false
+
+jobs:
+  sync-achievements:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Fetch achievements data
+        run: node scripts/fetchAchievements.js
+
+      - name: Check achievements diff scope
+        id: diff
+        shell: bash
+        run: |
+          if git diff --quiet; then
+            echo "No achievements changes"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+          echo "Changed files:"
+          git diff --name-only
+
+          unexpected_files="$(git diff --name-only | grep -vx 'src/data/achievements.json' || true)"
+          if [ -n "$unexpected_files" ]; then
+            echo "Unexpected files changed. Only src/data/achievements.json is allowed." >&2
+            echo "$unexpected_files" >&2
+            exit 1
+          fi
+
+      - name: Build site
+        if: steps.diff.outputs.changed == 'true'
+        run: npm run build
+
+      - name: Commit achievements data
+        if: steps.diff.outputs.changed == 'true'
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/achievements.json
+
+          staged_files="$(git diff --cached --name-only)"
+          if [ "$staged_files" != "src/data/achievements.json" ]; then
+            echo "Unexpected staged files. Only src/data/achievements.json is allowed." >&2
+            echo "$staged_files" >&2
+            exit 1
+          fi
+
+          git commit -m "Sync achievements data"
+
+      - name: Push to main
+        if: steps.diff.outputs.changed == 'true'
+        run: git push origin HEAD:main
