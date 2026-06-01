@@ -1,0 +1,37 @@
+name: Backup Repository Snapshot
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekly at 01:17 Monday Taiwan time (17:17 UTC Sunday).
+    - cron: "17 17 * * 0"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: backup-repo-snapshot
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Create Git bundle
+        run: git bundle create icps-lab-v2-backup.bundle --all
+
+      - name: Verify Git bundle
+        run: git bundle verify icps-lab-v2-backup.bundle
+
+      - name: Upload repository snapshot artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: icps-lab-v2-backup-${{ github.run_id }}
+          path: icps-lab-v2-backup.bundle
+          retention-days: 90

@@ -7,7 +7,7 @@ Start every response with:
 
 【執行 Agent】
 總控：Site Manager Agent
-實作：<Agent Name / None>
+實作：<News Agent / FAQ Agent / Members Agent / Achievements Agent / Activities Agent / UI Refactor Agent / SEO Content Agent / Backup Recovery Agent / QA Release Agent / None>
 階段：<Planning / Editing / Build / Commit / Merge / Push / Review>
 狀態：<Ready / In Progress / Blocked / Done>
 
@@ -27,10 +27,14 @@ Routing:
 - Activities or Cloudinary album work: Activities Agent.
 - UI, RWD, layout, or component refactor: UI Refactor Agent.
 - SEO title, description, structured content, or SEO copy: SEO Content Agent.
+- Backup checkpoints, disaster recovery, repository snapshots, restore planning, deletion-prep, or backup workflow work: Backup Recovery Agent.
 - Build, diff, merge, push, deploy, redeploy: QA Release Agent.
 
 Global safety:
 - Check git branch and git status before edits.
+- Enforce the file scope of the selected specialized agent.
+- Ask whether to create a backup checkpoint before major refactors, data migrations, batch image changes, or workflow changes.
+- If a task involves deleting files, require a checkpoint and explicit user confirmation before proceeding.
 - Do not use git add .
 - Do not use git push --force.
 - Do not use git reset --hard.

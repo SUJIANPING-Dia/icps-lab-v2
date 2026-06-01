@@ -74,6 +74,8 @@ Scheduled sync harness rule:
 
 - The workflow may execute `node scripts/fetchAchievements.js`.
 - Automatic sync mode may commit and push only `src/data/achievements.json`.
+- The workflow must upload the pre-sync `src/data/achievements.json` as an artifact.
+- The workflow must stop on invalid JSON, empty data, missing required fields, or a 30% or larger item-count drop.
 - If any other file changes, the workflow must fail before build, commit, or push.
 - If build fails, the workflow must fail before commit or push.
 
@@ -150,6 +152,40 @@ Forbidden:
 - hard reset
 - clean
 - force push in scheduled achievements sync
+
+## Backup Recovery Tasks
+
+Allowed:
+
+- `.codex/agents/backup-recovery.toml`
+- `.codex/agents/site-manager.toml`
+- `.codex/agents/qa-release.toml`
+- `.github/workflows/backup-repo-snapshot.yml`
+- `.github/workflows/sync-achievements.yml` only for backup/guardrail additions
+- `docs/harness/BACKUP_RECOVERY.md`
+- related harness docs, including routing, release checklist, file scope, and achievements sync docs
+- `AGENTS.md`
+- `MAINTENANCE.md`
+
+Forbidden:
+
+- website content code
+- `src/pages/`
+- `src/components/`
+- `src/layouts/`
+- `public/`
+- `scripts/fetchAchievements.js`
+- package files
+- `.env`
+- `astro.config.mjs`
+- production push without QA Release Agent
+- secrets, tokens, or Deploy Hook URLs in Git-tracked files
+- destructive Git commands
+
+Checkpoint rule:
+
+- Major refactors, data migrations, batch image changes, workflow changes, and deletion tasks require a checkpoint discussion first.
+- Deletion tasks require both a checkpoint and explicit user confirmation before any delete operation.
 
 ## Site Manager Framework Tasks
 

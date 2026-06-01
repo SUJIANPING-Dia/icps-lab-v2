@@ -1,6 +1,6 @@
 # Achievements Sync Harness
 
-This harness keeps `src/data/achievements.json` synchronized automatically.
+This harness keeps `src/data/achievements.json` synchronized automatically while protecting production from bad scraper output.
 
 ## Schedule
 
@@ -40,27 +40,33 @@ Permissions:
 1. Checkout `main`.
 2. Setup Node.js.
 3. Run `npm ci`.
-4. Run `node scripts/fetchAchievements.js`.
-5. Check the Git diff.
-6. If there are no changes, output `No achievements changes` and end.
-7. If there are changes, verify the only changed file is `src/data/achievements.json`.
-8. If any other file changed, fail and stop.
-9. Run `npm run build`.
-10. If build succeeds, commit with `Sync achievements data`.
-11. Push back to `main`.
-12. Vercel deploys automatically because `main` receives a new commit.
+4. Upload the current `src/data/achievements.json` as a GitHub Actions artifact.
+5. Inspect the current achievements data and count existing achievement items.
+6. Run `node scripts/fetchAchievements.js`.
+7. Validate the updated JSON.
+8. Check the Git diff.
+9. If there are no changes, output `No achievements changes` and end.
+10. If there are changes, verify the only changed file is `src/data/achievements.json`.
+11. If any other file changed, fail and stop.
+12. Run `npm run build`.
+13. If build succeeds, commit with `Sync achievements data`.
+14. Push back to `main`.
+15. Vercel deploys automatically because `main` receives a new commit.
 
-## Safety Conditions
+## Bad-Data Guardrails
 
 The workflow must stop without commit or push when:
 
 - `scripts/fetchAchievements.js` fails.
+- The current or updated `src/data/achievements.json` is invalid JSON.
+- The updated achievements root is not a non-empty array.
+- The updated data has zero achievement items.
+- A group is missing `category`, `description`, or non-empty `yearlyData`.
+- A year block is missing `year` or `items`.
+- An achievement item is missing `title`.
+- The total achievement item count drops by 30% or more compared with the pre-sync file.
 - The diff includes files other than `src/data/achievements.json`.
 - `npm run build` fails.
-- `src/data/achievements.json` becomes empty.
-- JSON parsing fails.
-- Required fields are missing from generated records.
-- The total achievement record count drops sharply compared with the previous committed file.
 - Git commit fails.
 - Git push fails.
 
@@ -73,16 +79,15 @@ The workflow must not:
 - trigger a Vercel Deploy Hook
 - write secrets to files
 
-## Data Guardrails To Implement Or Verify
+## Artifact Backup
 
-The scheduled sync workflow should protect against bad scraper output. Before commit/push, verify:
+Before running the scraper, the workflow uploads the current `src/data/achievements.json` as:
 
-- The generated file is valid JSON.
-- The generated data is not empty.
-- Required fields are present for every record used by the site.
-- The record count does not drop sharply from the previous version.
+```text
+achievements-json-before-sync-<run_id>
+```
 
-If any guardrail fails, the workflow should fail and leave `main` unchanged.
+This artifact is intended for quick recovery from a bad sync run. Long-term recovery should still rely on Git history and normal release commits.
 
 ## Manual Trigger
 

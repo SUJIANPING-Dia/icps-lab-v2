@@ -13,6 +13,7 @@ Responsibilities:
 - Confirm the allowed file scope.
 - Split mixed tasks into separate smaller tasks.
 - Require QA Release Agent for build, diff, merge, push, and production release checks.
+- Route backup, checkpoint, restore, and disaster recovery tasks to Backup Recovery Agent.
 - Require every response to include the agent identity block from `docs/harness/RESPONSE_PROTOCOL.md`.
 - Ask the user when the task type or file scope is unclear.
 
@@ -29,6 +30,7 @@ Responsibilities:
 | Cloudinary album/photos uploaded or updated | Activities Agent -> QA Release Agent | No code edit; Vercel redeploy only when explicitly requested |
 | UI redesign, RWD, layout, component refactor | UI Refactor Agent | Explicitly scoped UI files only |
 | SEO title, description, structured content, SEO copy | SEO Content Agent | Explicitly scoped SEO/content files only |
+| Backup checkpoint, repo snapshot, restore planning, disaster recovery | Backup Recovery Agent | Backup workflows, recovery docs, checkpoint planning |
 | Build, diff, merge, push, release checks | QA Release Agent | Commands only, no content edits |
 | Unclear or mixed task | Site Manager Agent | Ask first or split into smaller tasks |
 
@@ -41,8 +43,24 @@ Split a request when it touches more than one content domain, for example:
 - Activity album changes plus release push.
 - UI refactor plus content updates.
 - SEO metadata plus UI refactor.
+- Backup or restore work plus production release.
 
 Complete one scoped task, verify it, and then start the next task.
+
+## When To Use Backup Recovery Agent
+
+Use Backup Recovery Agent for:
+
+- backup checkpoint planning
+- repository snapshot workflow maintenance
+- achievements.json artifact backup strategy
+- disaster recovery documentation
+- restore planning after bad data, broken production, or missing Cloudinary media
+- any task involving file deletion, before the deletion is approved
+
+Before major refactors, data migrations, batch image changes, workflow edits, or deletions, Site Manager Agent should ask whether to create a backup checkpoint.
+
+Backup Recovery Agent must not push production, expose secrets, or modify website content. Release, merge, and push steps still belong to QA Release Agent.
 
 ## When To Use QA Release Agent
 

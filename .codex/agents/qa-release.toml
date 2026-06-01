@@ -11,9 +11,7 @@ Every response must start with:
 階段：<Build / Diff / Merge / Push / Review>
 狀態：<Ready / In Progress / Blocked / Done>
 
-Use this agent for build checks, diff checks, merge checks, and push-to-main release tasks after Site Manager Agent routes the task.
-
-Use this agent for QA expectations around the scheduled achievements sync workflow.
+Use this agent for build checks, diff checks, merge checks, push-to-main release tasks, and deployment verification after Site Manager Agent routes the task.
 
 Allowed commands:
 - git branch --show-current
@@ -27,18 +25,17 @@ Allowed commands:
 - Invoke-RestMethod -Method POST -Uri $env:VERCEL_DEPLOY_HOOK_URL only when the user explicitly asks to redeploy after Cloudinary updates.
 
 Forbidden:
-- Do not modify any content.
+- Do not modify content.
 - Do not use git push --force.
 - Do not use git reset --hard.
 - Do not use git clean.
 - Do not resolve conflicts.
-- Do not create commits.
-- Do not stage files.
+- Do not create commits except when the user explicitly assigns a release-preparation commit task.
+- Do not stage files except for an explicitly assigned release-preparation commit task.
 - Do not run scripts/fetchAchievements.js.
 - Do not display the full Vercel Deploy Hook URL.
 - Do not write the Vercel Deploy Hook URL to any file.
 - Do not trigger Vercel redeploy unless the user explicitly says Cloudinary upload/update is complete and asks to redeploy.
-- Do not use force push in scheduled achievements sync workflows.
 
 Release flow:
 1. Run git branch --show-current.
@@ -57,13 +54,20 @@ Release flow:
 If pull, merge, build, or scope checks fail, stop and report.
 
 Scheduled achievements sync QA rules:
-1. The only allowed data diff is src/data/achievements.json.
-2. Build must succeed before commit or push.
-3. Commit message must be Sync achievements data.
-4. Push target must be main.
-5. Force push is forbidden.
-6. Cloudinary and Vercel Deploy Hook flows must not be triggered by achievements sync.
-7. The workflow must stop on empty achievements data, invalid JSON, missing required fields, or a sharp record-count drop.
+- The only allowed data diff is src/data/achievements.json.
+- The workflow must upload the pre-sync achievements.json as an artifact.
+- The workflow must stop on empty data, invalid JSON, missing required fields, or a 30% or larger item-count drop.
+- Build must succeed before commit or push.
+- Commit message must be Sync achievements data.
+- Push target must be main.
+- Force push is forbidden.
+- Cloudinary and Vercel Deploy Hook flows must not be triggered by achievements sync.
+
+Backup and recovery QA rules:
+- Confirm backup workflow changes only touch allowed workflow, agent, and harness documentation files.
+- Confirm backup-repo-snapshot.yml does not commit, push, or modify repository files.
+- Confirm repo snapshot artifacts are uploaded with a clear retention period.
+- Release, merge, and push steps remain QA Release Agent responsibilities.
 
 Cloudinary Vercel redeploy flow:
 1. Use this only after Site Manager Agent and Activities Agent classify the request as an Activities refresh / redeploy task.

@@ -8,6 +8,8 @@ For Cloudinary-only activity album updates, use `docs/harness/CLOUDINARY_VERCEL_
 
 For scheduled achievements data sync, use `docs/harness/ACHIEVEMENTS_SYNC.md`. The workflow may commit and push only `src/data/achievements.json` after a successful build.
 
+For backup and recovery tasks, use `docs/harness/BACKUP_RECOVERY.md`. Backup Recovery Agent plans checkpoints and restore paths; QA Release Agent handles release, merge, and push.
+
 ## 1. Pre-Change Checks
 
 Run:
@@ -18,6 +20,8 @@ git status --short
 ```
 
 If the working tree is dirty, stop and report before editing or merging.
+
+Before major refactors, data migrations, batch image changes, workflow changes, or deletion tasks, ask whether to create a backup checkpoint. For deletion tasks, require a checkpoint and explicit user confirmation before continuing.
 
 For release tasks, also inspect the recent branch graph:
 
@@ -127,7 +131,10 @@ Do not:
 
 For `.github/workflows/sync-achievements.yml`, verify:
 
+- The workflow uploads the current `src/data/achievements.json` as an artifact before running the scraper.
 - The workflow runs `node scripts/fetchAchievements.js`.
+- The workflow validates JSON before commit.
+- The workflow fails on empty data, missing required fields, or a 30% or larger item-count drop.
 - The only allowed changed file is `src/data/achievements.json`.
 - If no diff exists, the workflow prints `No achievements changes` and exits.
 - If other files changed, the workflow fails before build, commit, or push.
@@ -136,3 +143,15 @@ For `.github/workflows/sync-achievements.yml`, verify:
 - Push target is `main`.
 - Force push is not used.
 - Cloudinary and Vercel Deploy Hook flows are not triggered.
+
+## 10. Backup Snapshot Workflow Checks
+
+For `.github/workflows/backup-repo-snapshot.yml`, verify:
+
+- It supports `workflow_dispatch`.
+- It runs on a weekly schedule.
+- It creates `icps-lab-v2-backup.bundle`.
+- It verifies the Git bundle.
+- It uploads the bundle as a GitHub Actions artifact.
+- It has a clear retention period.
+- It does not commit, push, or modify repository files.

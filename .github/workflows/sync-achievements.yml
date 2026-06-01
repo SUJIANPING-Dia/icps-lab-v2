@@ -33,8 +33,122 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Backup current achievements data
+        uses: actions/upload-artifact@v4
+        with:
+          name: achievements-json-before-sync-${{ github.run_id }}
+          path: src/data/achievements.json
+          retention-days: 30
+
+      - name: Inspect current achievements data
+        id: before
+        shell: bash
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          function fail(message) {
+            console.error(message);
+            process.exit(1);
+          }
+
+          function countItems(groups) {
+            return groups.reduce((total, group) => {
+              const yearlyData = Array.isArray(group.yearlyData) ? group.yearlyData : [];
+              return total + yearlyData.reduce((yearTotal, block) => {
+                return yearTotal + (Array.isArray(block.items) ? block.items.length : 0);
+              }, 0);
+            }, 0);
+          }
+
+          let data;
+          try {
+            data = JSON.parse(fs.readFileSync('src/data/achievements.json', 'utf8'));
+          } catch (error) {
+            fail(`Current achievements data is invalid JSON: ${error.message}`);
+          }
+
+          if (!Array.isArray(data) || data.length === 0) {
+            fail('Current achievements data is empty or not an array.');
+          }
+
+          const count = countItems(data);
+          if (count === 0) {
+            fail('Current achievements data has no achievement items.');
+          }
+
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `count=${count}\n`);
+          console.log(`Current achievements item count: ${count}`);
+          NODE
+
       - name: Fetch achievements data
         run: node scripts/fetchAchievements.js
+
+      - name: Validate achievements data
+        shell: bash
+        env:
+          BEFORE_COUNT: ${{ steps.before.outputs.count }}
+        run: |
+          node <<'NODE'
+          const fs = require('fs');
+
+          function fail(message) {
+            console.error(message);
+            process.exit(1);
+          }
+
+          function assertString(value, label) {
+            if (typeof value !== 'string' || value.trim() === '') {
+              fail(`${label} is missing or empty.`);
+            }
+          }
+
+          let data;
+          try {
+            data = JSON.parse(fs.readFileSync('src/data/achievements.json', 'utf8'));
+          } catch (error) {
+            fail(`Updated achievements data is invalid JSON: ${error.message}`);
+          }
+
+          if (!Array.isArray(data) || data.length === 0) {
+            fail('Updated achievements data is empty or not an array.');
+          }
+
+          let itemCount = 0;
+
+          data.forEach((group, groupIndex) => {
+            assertString(group.category, `Group ${groupIndex + 1} category`);
+            assertString(group.description, `Group ${groupIndex + 1} description`);
+
+            if (!Array.isArray(group.yearlyData) || group.yearlyData.length === 0) {
+              fail(`Group ${groupIndex + 1} yearlyData is missing or empty.`);
+            }
+
+            group.yearlyData.forEach((yearBlock, yearIndex) => {
+              assertString(String(yearBlock.year ?? ''), `Group ${groupIndex + 1} year block ${yearIndex + 1} year`);
+
+              if (!Array.isArray(yearBlock.items)) {
+                fail(`Group ${groupIndex + 1} year block ${yearIndex + 1} items is not an array.`);
+              }
+
+              yearBlock.items.forEach((item, itemIndex) => {
+                assertString(item.title, `Group ${groupIndex + 1} year block ${yearIndex + 1} item ${itemIndex + 1} title`);
+                itemCount += 1;
+              });
+            });
+          });
+
+          if (itemCount === 0) {
+            fail('Updated achievements data has no achievement items.');
+          }
+
+          const beforeCount = Number(process.env.BEFORE_COUNT || 0);
+          if (beforeCount > 0 && itemCount <= beforeCount * 0.7) {
+            fail(`Updated achievements item count dropped by 30% or more: before=${beforeCount}, after=${itemCount}.`);
+          }
+
+          console.log(`Achievements item count before=${beforeCount}, after=${itemCount}.`);
+          NODE
 
       - name: Check achievements diff scope
         id: diff
