@@ -26,6 +26,7 @@ Responsibilities:
 | Add, edit, remove, or reorder members | Members Agent | `src/pages/members.astro`, optional user-provided photos |
 | Add or update achievements data | Achievements Agent | `src/data/achievements.json` |
 | Scheduled achievements data sync | Achievements Agent -> QA Release Agent | GitHub Actions harness; only `src/data/achievements.json` may be auto-committed |
+| Achievements sync report storage or local report sync | Achievements Agent -> Backup Recovery Agent | Reports branch `automation-reports`, ignored local `reports/` folder |
 | Maintain activity albums or activity pages | Activities Agent | Cloudinary first; code only when explicitly requested |
 | Cloudinary album/photos uploaded or updated | Activities Agent -> QA Release Agent | No code edit; Vercel redeploy only when explicitly requested |
 | UI redesign, RWD, layout, component refactor | UI Refactor Agent | Explicitly scoped UI files only |

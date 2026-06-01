@@ -82,9 +82,11 @@ jobs:
           NODE
 
       - name: Fetch achievements data
+        id: fetch
         run: node scripts/fetchAchievements.js
 
       - name: Validate achievements data
+        id: validate
         shell: bash
         env:
           BEFORE_COUNT: ${{ steps.before.outputs.count }}
@@ -148,21 +150,24 @@ jobs:
           }
 
           console.log(`Achievements item count before=${beforeCount}, after=${itemCount}.`);
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `count=${itemCount}\n`);
           NODE
 
       - name: Check achievements diff scope
-        id: diff
+        id: check_diff
         shell: bash
         run: |
           if git diff --quiet; then
             echo "No achievements changes"
             echo "changed=false" >> "$GITHUB_OUTPUT"
+            : > "$RUNNER_TEMP/achievements-changed-files.txt"
             exit 0
           fi
 
           echo "changed=true" >> "$GITHUB_OUTPUT"
           echo "Changed files:"
           git diff --name-only
+          git diff --name-only > "$RUNNER_TEMP/achievements-changed-files.txt"
 
           unexpected_files="$(git diff --name-only | grep -vx 'src/data/achievements.json' || true)"
           if [ -n "$unexpected_files" ]; then
@@ -172,11 +177,13 @@ jobs:
           fi
 
       - name: Build site
-        if: steps.diff.outputs.changed == 'true'
+        id: build_site
+        if: steps.check_diff.outputs.changed == 'true'
         run: npm run build
 
       - name: Commit achievements data
-        if: steps.diff.outputs.changed == 'true'
+        id: commit_data
+        if: steps.check_diff.outputs.changed == 'true'
         shell: bash
         run: |
           git config user.name "github-actions[bot]"
@@ -191,7 +198,196 @@ jobs:
           fi
 
           git commit -m "Sync achievements data"
+          echo "commit_hash=$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
 
       - name: Push to main
-        if: steps.diff.outputs.changed == 'true'
+        id: push_main
+        if: steps.check_diff.outputs.changed == 'true'
         run: git push origin HEAD:main
+
+      - name: Generate sync report
+        if: always()
+        shell: bash
+        env:
+          BEFORE_COUNT: ${{ steps.before.outputs.count || 'unknown' }}
+          AFTER_COUNT: ${{ steps.validate.outputs.count || 'unknown' }}
+          CHANGED: ${{ steps.check_diff.outputs.changed || 'unknown' }}
+          COMMIT_HASH: ${{ steps.commit_data.outputs.commit_hash || '' }}
+          BEFORE_OUTCOME: ${{ steps.before.outcome }}
+          FETCH_OUTCOME: ${{ steps.fetch.outcome }}
+          VALIDATE_OUTCOME: ${{ steps.validate.outcome }}
+          DIFF_OUTCOME: ${{ steps.check_diff.outcome }}
+          BUILD_OUTCOME: ${{ steps.build_site.outcome }}
+          COMMIT_OUTCOME: ${{ steps.commit_data.outcome }}
+          PUSH_MAIN_OUTCOME: ${{ steps.push_main.outcome }}
+        run: |
+          set -euo pipefail
+
+          report_date="$(TZ=Asia/Taipei date +'%Y-%m-%d')"
+          report_time="$(TZ=Asia/Taipei date +'%Y-%m-%d %H:%M:%S %Z')"
+          report_dir=".automation-report/achievements-sync"
+          mkdir -p "$report_dir"
+
+          status="Failed"
+          action_taken="Workflow stopped before completion."
+          follow_up="Yes"
+
+          if [ "$BEFORE_OUTCOME" != "success" ]; then
+            status="Failed"
+            action_taken="Pre-sync achievements data inspection failed."
+          elif [ "$FETCH_OUTCOME" != "success" ]; then
+            status="Failed"
+            action_taken="Scraper execution failed."
+          elif [ "$VALIDATE_OUTCOME" != "success" ]; then
+            status="Blocked"
+            action_taken="Updated achievements data failed validation."
+          elif [ "$DIFF_OUTCOME" != "success" ]; then
+            status="Blocked"
+            action_taken="Diff scope check failed."
+          elif [ "$CHANGED" = "false" ]; then
+            status="No changes"
+            action_taken="No achievements changes detected. No build, commit, or push was needed."
+            follow_up="No"
+          elif [ "$BUILD_OUTCOME" != "success" ]; then
+            status="Failed"
+            action_taken="Build failed. No commit or push was made."
+          elif [ "$COMMIT_OUTCOME" != "success" ]; then
+            status="Failed"
+            action_taken="Commit failed. No push was made."
+          elif [ "$PUSH_MAIN_OUTCOME" != "success" ]; then
+            status="Failed"
+            action_taken="Push to main failed."
+          else
+            status="Success"
+            action_taken="Achievements data changed, build passed, commit was pushed to main."
+            follow_up="No"
+          fi
+
+          changed_files="None"
+          if [ -s "$RUNNER_TEMP/achievements-changed-files.txt" ]; then
+            changed_files="$(sed ':a;N;$!ba;s/\n/, /g' "$RUNNER_TEMP/achievements-changed-files.txt")"
+          fi
+
+          workflow_url="${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          report_md="$report_dir/${report_date}.md"
+          latest_md="$report_dir/latest.md"
+          report_json="$report_dir/${report_date}.json"
+          latest_json="$report_dir/latest.json"
+
+          cat > "$report_md" <<REPORT
+          # Achievements Sync Report - ${report_date}
+
+          ## Summary
+
+          - Status: ${status}
+          - Trigger: ${GITHUB_EVENT_NAME}
+          - Report Time: ${report_time}
+          - Workflow Run: ${workflow_url}
+          - Commit Created: $([ -n "$COMMIT_HASH" ] && echo "Yes" || echo "No")
+          - Commit Hash: ${COMMIT_HASH:-None}
+          - Pushed To Main: $([ "$PUSH_MAIN_OUTCOME" = "success" ] && echo "Yes" || echo "No")
+
+          ## Data Check
+
+          - Before Count: ${BEFORE_COUNT}
+          - After Count: ${AFTER_COUNT}
+          - Achievements Changed: ${CHANGED}
+
+          ## File Scope
+
+          - Changed Files: ${changed_files}
+          - Allowed Scope: $([ "$DIFF_OUTCOME" = "success" ] && echo "Yes" || echo "No")
+
+          ## Build
+
+          - Build Result: ${BUILD_OUTCOME}
+
+          ## Action Taken
+
+          ${action_taken}
+
+          ## Follow Up
+
+          - Human Follow-up Needed: ${follow_up}
+          REPORT
+
+          cp "$report_md" "$latest_md"
+
+          REPORT_DATE="$report_date" \
+          REPORT_STATUS="$status" \
+          REPORT_TIME="$report_time" \
+          WORKFLOW_URL="$workflow_url" \
+          CHANGED_FILES="$changed_files" \
+          ACTION_TAKEN="$action_taken" \
+          FOLLOW_UP="$follow_up" \
+          REPORT_JSON="$report_json" \
+          LATEST_JSON="$latest_json" \
+          node <<'NODE'
+          const fs = require('fs');
+          const report = {
+            date: process.env.REPORT_DATE,
+            status: process.env.REPORT_STATUS,
+            trigger: process.env.GITHUB_EVENT_NAME,
+            report_time_taipei: process.env.REPORT_TIME,
+            workflow_run: process.env.WORKFLOW_URL,
+            before_count: process.env.BEFORE_COUNT,
+            after_count: process.env.AFTER_COUNT,
+            achievements_changed: process.env.CHANGED,
+            changed_files: process.env.CHANGED_FILES === 'None' ? [] : process.env.CHANGED_FILES.split(', '),
+            build_result: process.env.BUILD_OUTCOME,
+            commit_created: Boolean(process.env.COMMIT_HASH),
+            commit_hash: process.env.COMMIT_HASH || null,
+            pushed_to_main: process.env.PUSH_MAIN_OUTCOME === 'success',
+            action_taken: process.env.ACTION_TAKEN,
+            human_follow_up_needed: process.env.FOLLOW_UP === 'Yes'
+          };
+          fs.writeFileSync(process.env.REPORT_JSON, `${JSON.stringify(report, null, 2)}\n`);
+          fs.copyFileSync(process.env.REPORT_JSON, process.env.LATEST_JSON);
+          NODE
+
+      - name: Publish sync report to automation-reports
+        if: always()
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+
+          report_date="$(TZ=Asia/Taipei date +'%Y-%m-%d')"
+          report_repo="$RUNNER_TEMP/automation-reports-branch"
+          mkdir -p "$report_repo"
+
+          git -C "$report_repo" init
+          git -C "$report_repo" config user.name "github-actions[bot]"
+          git -C "$report_repo" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "$report_repo" remote add origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          if git -C "$report_repo" ls-remote --exit-code --heads origin automation-reports >/dev/null 2>&1; then
+            git -C "$report_repo" fetch --depth=1 origin automation-reports
+            git -C "$report_repo" checkout -B automation-reports FETCH_HEAD
+          else
+            git -C "$report_repo" checkout --orphan automation-reports
+          fi
+
+          if [ ! -f "$report_repo/README.md" ]; then
+            cat > "$report_repo/README.md" <<'REPORTS'
+          # Automation Reports
+
+          This branch stores automation reports generated by GitHub Actions.
+
+          These reports are separate from `main` so routine report updates do not trigger website deployments.
+          REPORTS
+          fi
+
+          mkdir -p "$report_repo/achievements-sync"
+          cp .automation-report/achievements-sync/* "$report_repo/achievements-sync/"
+
+          git -C "$report_repo" add README.md achievements-sync
+
+          if git -C "$report_repo" diff --cached --quiet; then
+            echo "No automation report changes to publish."
+            exit 0
+          fi
+
+          git -C "$report_repo" commit -m "Add achievements sync report ${report_date}"
+          git -C "$report_repo" push origin HEAD:automation-reports

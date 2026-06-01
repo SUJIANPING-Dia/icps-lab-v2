@@ -59,6 +59,8 @@ Allowed:
 - `src/data/achievements.json`
 - `.github/workflows/sync-achievements.yml` only for achievements sync harness tasks
 - `docs/harness/ACHIEVEMENTS_SYNC.md` only for achievements sync documentation tasks
+- `scripts/sync-achievements-reports.ps1` only for local achievements report sync tasks
+- `.gitignore` only to keep local `reports/` out of Git
 
 Forbidden:
 
@@ -74,6 +76,8 @@ Scheduled sync harness rule:
 
 - The workflow may execute `node scripts/fetchAchievements.js`.
 - Automatic sync mode may commit and push only `src/data/achievements.json`.
+- Automatic sync reports must be pushed to `automation-reports`, not `main`.
+- Local copies of reports must stay in the ignored `reports/` folder.
 - The workflow must upload the pre-sync `src/data/achievements.json` as an artifact.
 - The workflow must stop on invalid JSON, empty data, missing required fields, or a 30% or larger item-count drop.
 - If any other file changes, the workflow must fail before build, commit, or push.

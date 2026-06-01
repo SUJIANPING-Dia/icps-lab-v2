@@ -22,6 +22,12 @@ This harness defines the backup and recovery model for the ICPS Lab Astro websit
 - This preserves the pre-sync data even if the scraper later fails or produces bad output.
 - Artifact retention is intentionally limited; use Git history for long-term recovery.
 
+### Achievements Sync Reports
+
+- `.github/workflows/sync-achievements.yml` writes a report for every daily sync run.
+- Reports are committed to the separate `automation-reports` branch, not to `main`.
+- This keeps success, no-change, blocked, and failed run notes available without triggering Vercel deployments.
+
 ### Vercel Rollback
 
 - If production breaks after a pushed commit, use Vercel's deployment history to roll back to a previous successful deployment.
@@ -79,6 +85,16 @@ If the scheduled achievements sync writes bad data:
 7. Release through QA Release Agent.
 
 The sync workflow must fail before commit/push when JSON is invalid, data is empty, required fields are missing, the item count drops by 30% or more, build fails, or the diff includes files outside `src/data/achievements.json`.
+
+Daily sync reports should still be published to `automation-reports` even when the data sync fails or is blocked.
+
+To copy reports into the local ignored `reports/` folder:
+
+```powershell
+.\scripts\sync-achievements-reports.ps1
+```
+
+Use `reports/achievements-sync/latest.md` for the most recent result.
 
 ## Cloudinary Deleted Images Flow
 

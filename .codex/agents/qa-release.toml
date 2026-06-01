@@ -57,6 +57,8 @@ Scheduled achievements sync QA rules:
 - The only allowed data diff is src/data/achievements.json.
 - The workflow must upload the pre-sync achievements.json as an artifact.
 - The workflow must stop on empty data, invalid JSON, missing required fields, or a 30% or larger item-count drop.
+- The workflow must publish run reports to automation-reports, not to main.
+- Report-only commits must not trigger Vercel deployments.
 - Build must succeed before commit or push.
 - Commit message must be Sync achievements data.
 - Push target must be main.

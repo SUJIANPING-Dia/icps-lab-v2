@@ -52,6 +52,8 @@ Permissions:
 13. If build succeeds, commit with `Sync achievements data`.
 14. Push back to `main`.
 15. Vercel deploys automatically because `main` receives a new commit.
+16. Generate a daily sync report, even when the run has no changes, is blocked, or fails.
+17. Push the report files to the independent `automation-reports` branch so report updates do not trigger Vercel deployments.
 
 ## Bad-Data Guardrails
 
@@ -78,6 +80,46 @@ The workflow must not:
 - run Cloudinary flows
 - trigger a Vercel Deploy Hook
 - write secrets to files
+
+## Daily Local Report Flow
+
+The workflow writes simple daily reports to the `automation-reports` branch, not to `main`.
+
+Report files:
+
+```text
+achievements-sync/YYYY-MM-DD.md
+achievements-sync/YYYY-MM-DD.json
+achievements-sync/latest.md
+achievements-sync/latest.json
+```
+
+The report records:
+
+- sync status: `Success`, `No changes`, `Failed`, or `Blocked`
+- trigger type
+- workflow run URL
+- before and after item counts
+- changed files
+- build result
+- commit hash when a `Sync achievements data` commit was created
+- whether human follow-up is needed
+
+Because the reports live on `automation-reports`, they do not create `main` commits and do not trigger Vercel deployments.
+
+To copy the latest reports into the local repository folder, run:
+
+```powershell
+.\scripts\sync-achievements-reports.ps1
+```
+
+The script syncs report files into:
+
+```text
+reports/
+```
+
+The local `reports/` folder is ignored by Git. It is for local reading only.
 
 ## Artifact Backup
 

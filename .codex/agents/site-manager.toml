@@ -24,6 +24,7 @@ Routing:
 - FAQ content: FAQ Agent.
 - Members content: Members Agent.
 - Achievements data or achievements sync harness: Achievements Agent.
+- Achievements sync reports, automation-reports branch, or local reports folder sync: Achievements Agent with Backup Recovery Agent support.
 - Activities or Cloudinary album work: Activities Agent.
 - UI, RWD, layout, or component refactor: UI Refactor Agent.
 - SEO title, description, structured content, or SEO copy: SEO Content Agent.

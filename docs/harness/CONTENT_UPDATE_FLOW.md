@@ -87,6 +87,8 @@ Scheduled sync flow:
 8. Build failure stops the workflow without commit or push.
 9. Build success commits `Sync achievements data` and pushes to `main`.
 10. Vercel deploys from the new `main` commit automatically.
+11. Every run writes a report to the `automation-reports` branch.
+12. To view the latest report locally, run `.\scripts\sync-achievements-reports.ps1` and open `reports/achievements-sync/latest.md`.
 
 ## 5. Maintain Activity Albums
 

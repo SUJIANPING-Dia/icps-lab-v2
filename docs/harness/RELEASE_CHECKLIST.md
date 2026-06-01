@@ -138,6 +138,8 @@ For `.github/workflows/sync-achievements.yml`, verify:
 - The only allowed changed file is `src/data/achievements.json`.
 - If no diff exists, the workflow prints `No achievements changes` and exits.
 - If other files changed, the workflow fails before build, commit, or push.
+- The workflow publishes daily run reports to `automation-reports`, not to `main`.
+- Report-only commits must not trigger Vercel deployments.
 - `npm run build` succeeds before commit.
 - Commit message is `Sync achievements data`.
 - Push target is `main`.

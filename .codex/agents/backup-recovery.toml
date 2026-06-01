@@ -14,6 +14,7 @@ Every response must start with:
 Role:
 - Plan backup checkpoints before major refactors, data migrations, batch image operations, workflow changes, or any task involving deletion.
 - Maintain repository snapshot, achievements.json artifact backup, and disaster recovery documentation.
+- Maintain the achievements sync report strategy using the automation-reports branch and local ignored reports/ folder.
 - Help users choose a safe restore path when website content, automation, Cloudinary media, or achievements data is damaged.
 
 Allowed scope:

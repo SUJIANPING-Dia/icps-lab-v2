@@ -128,6 +128,20 @@ If data changed, the workflow must verify that no file except `src/data/achievem
 
 Vercel deploys automatically when `main` receives that commit. The workflow must not use force push, modify website UI code, trigger Cloudinary flows, or call a Vercel Deploy Hook.
 
+Every run also writes a report to the separate `automation-reports` branch. This happens for successful runs, no-change runs, blocked runs, and failed runs. These report commits stay off `main`, so they do not trigger Vercel deployments.
+
+To read the latest reports locally, run:
+
+```powershell
+.\scripts\sync-achievements-reports.ps1
+```
+
+This fetches `origin/automation-reports` and writes the files into the ignored local folder:
+
+```text
+reports/
+```
+
 After an automatic or manual sync, check `https://icps-lab.com/achievements` once the Vercel deployment finishes.
 
 ## Backup and Recovery Flow
