@@ -17,61 +17,183 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 ---
 
 <BaseLayout title={title} description={description} bodyClass={bodyClass}>
+  <Fragment slot="head">
+    <style is:global>
+      .news-detail-content > div > :first-child {
+        margin-top: 0;
+      }
+
+      .news-detail-content img {
+        border-radius: 1.25rem;
+      }
+    </style>
+  </Fragment>
+
   <Navbar activePath="/news" />
 
-  <main class="min-h-screen">
-    <article class="max-w-5xl mx-auto px-6 py-12 sm:py-16">
-      <a href="/news" class="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-900 transition mb-8">
-        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-        </svg>
-        返回最新消息
-      </a>
+  <main class="min-h-screen relative overflow-hidden">
+    <section class="relative overflow-hidden bg-slate-950 text-white border-b border-slate-800">
+      <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute -left-24 top-16 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl"></div>
+        <div class="absolute right-[-8rem] bottom-[-8rem] h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"></div>
+      </div>
 
-      <header class="rounded-[2rem] bg-white border border-slate-200 shadow-sm overflow-hidden">
-        {item.img && (
-          <div class="bg-slate-100 border-b border-slate-200">
-            <img src={item.img} alt={item.imgAlt} class="w-full h-auto block" loading="lazy" onerror="this.style.display='none';" />
+      <div class="relative max-w-7xl mx-auto px-6 py-12 sm:py-16 lg:py-20">
+        <a href="/news" class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-bold text-blue-100 backdrop-blur transition hover:bg-white/15 hover:text-white mb-8">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          返回最新消息
+        </a>
+
+        <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div class="lg:col-span-7">
+            <div class="flex flex-wrap items-center gap-3 mb-6">
+              <time class="text-blue-200 font-mono text-sm tracking-tight">{item.date}</time>
+              <span class={`px-2.5 py-1 text-xs font-bold rounded-sm border bg-white ${item.tagTheme}`}>{item.tag}</span>
+              {item.isPinned && (
+                <span class="px-2 py-0.5 text-[11px] font-bold text-red-200 bg-red-500/15 border border-red-300/30 rounded">
+                  置頂
+                </span>
+              )}
+            </div>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
+              {item.title}
+            </h1>
+            <p class="mt-6 text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
+              iCPS Lab 最新消息與研究動態
+            </p>
           </div>
-        )}
-        <div class="p-6 sm:p-8 lg:p-10">
-          <div class="flex flex-wrap items-center gap-3 mb-5">
-            <time class="text-slate-500 font-mono text-sm tracking-tight">{item.date}</time>
-            <span class={`px-2.5 py-1 text-xs font-medium rounded-sm border ${item.tagTheme}`}>{item.tag}</span>
-            {item.isPinned && (
-              <span class="px-2 py-0.5 text-[11px] font-bold text-red-600 bg-red-50 border border-red-200 rounded">
-                置頂
-              </span>
-            )}
-          </div>
-          <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-            {item.title}
-          </h1>
+
+          {item.img && (
+            <div class="lg:col-span-5">
+              <div class="relative overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 p-3 shadow-2xl shadow-blue-950/30 backdrop-blur-xl">
+                <img src={item.img} alt={item.imgAlt} class="w-full aspect-[16/10] object-cover rounded-[1.5rem] bg-slate-800" loading="lazy" onerror="this.style.display='none';" />
+                {item.imgAlt && (
+                  <p class="px-2 pt-3 text-xs leading-relaxed text-slate-300">
+                    {item.imgAlt}
+                  </p>
+                )}
+              </div>
+            </div>
+          )}
         </div>
-      </header>
+      </div>
+    </section>
 
-      <section class="mt-8 rounded-[2rem] bg-white border border-slate-200 shadow-sm p-6 sm:p-8 lg:p-10 text-slate-700 text-base leading-relaxed space-y-5">
-        <div set:html={item.content}></div>
-      </section>
+    <article class="max-w-7xl mx-auto px-6 py-12 sm:py-16">
+      <div class="grid lg:grid-cols-12 gap-8 lg:gap-10">
+        <aside class="lg:col-span-3">
+          <div class="lg:sticky lg:top-28 rounded-[1.5rem] bg-white border border-slate-200/80 p-6 shadow-sm">
+            <p class="text-xs font-black tracking-[0.18em] text-blue-700 uppercase mb-4">News Detail</p>
+            <dl class="space-y-4 text-sm">
+              <div>
+                <dt class="text-slate-400 font-bold mb-1">日期</dt>
+                <dd class="text-slate-800 font-mono">{item.date}</dd>
+              </div>
+              <div>
+                <dt class="text-slate-400 font-bold mb-1">分類</dt>
+                <dd>
+                  <span class={`inline-flex px-2.5 py-1 text-xs font-medium rounded-sm border ${item.tagTheme}`}>{item.tag}</span>
+                </dd>
+              </div>
+            </dl>
+            <a href="/news" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-700">
+              回到新聞列表
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </a>
+          </div>
+        </aside>
+
+        <section class="lg:col-span-9">
+          <div class="news-detail-content rounded-[2rem] bg-white border border-slate-200/80 shadow-sm p-6 sm:p-8 lg:p-10 text-slate-700 text-base leading-relaxed space-y-5">
+            {!item.img && (
+              <div class="mb-8 rounded-[1.5rem] bg-slate-50 border border-slate-200 p-6">
+                <p class="text-sm font-bold text-slate-500">iCPS Lab News</p>
+                <p class="mt-2 text-slate-700">{item.title}</p>
+              </div>
+            )}
+            <div set:html={item.content}></div>
+          </div>
+        </section>
+      </div>
     </article>
   </main>
 
-  <footer class="bg-[#0f172a] py-12 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-8">
-      <div>
-        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-16 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
-        <p class="text-sm text-blue-400 font-medium mb-3">智能感知與控制系統實驗室</p>
-        <p class="text-sm text-slate-400 leading-relaxed">
-          Intelligent Cyber-Physical Systems Laboratory<br />
-          國立高雄科技大學
+  <footer class="bg-[#0f172a] py-16 mt-auto border-t border-slate-800 relative z-20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
+      <div class="md:w-1/2">
+        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
+        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+          Intelligent Cyber-Physical Systems Laboratory <br/>
+          國立高雄科技大學 (NKUST)
         </p>
       </div>
-      <div class="text-sm space-y-3 md:text-right">
-        <h2 class="text-white font-semibold tracking-wide uppercase text-xs">Contact Us</h2>
-        <p class="text-slate-300">國立高雄科技大學 建工校區</p>
-        <p class="text-slate-300">07-3814526 #15672</p>
-        <a href="mailto:allenchang@nkust.edu.tw" class="text-slate-300 hover:text-blue-400 transition">allenchang@nkust.edu.tw</a>
+      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
+        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+        <p class="text-xs text-slate-500 leading-normal">
+          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
+        </p>
+        <p class="text-xs text-slate-500 hidden sm:block">|</p>
+        <p class="text-xs text-slate-500">All rights reserved.</p>
+      </div>
+      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-600 mx-1">|</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
       </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const initCounter = async () => {
+        const counterEl = document.getElementById('visitor-count');
+        if (!counterEl) return;
+        const namespace = 'icpslab_site', key = 'visits';
+        const localCountKey = 'icps_saved_count', lastVisitTimeKey = 'icps_last_visit_time';
+        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+        let currentCount = localStorage.getItem(localCountKey) || '------';
+        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
+        const now = Date.now();
+        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
+        try {
+          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          if (!hasVisitedWithin24Hours) {
+            const response = await fetch(url + '/up');
+            if (!response.ok) throw new Error('API error');
+            const data = await response.json();
+            currentCount = String(data.count).padStart(6, '0');
+            localStorage.setItem(lastVisitTimeKey, now.toString());
+            localStorage.setItem(localCountKey, currentCount);
+          } else {
+            try {
+              const r = await fetch(url);
+              if (r.ok) {
+                const d = await r.json();
+                currentCount = String(d.count).padStart(6, '0');
+                localStorage.setItem(localCountKey, currentCount);
+              }
+            } catch {}
+          }
+        } catch {}
+        counterEl.textContent = currentCount;
+      };
+      initCounter();
+    });
+  </script>
 </BaseLayout>
