@@ -97,6 +97,40 @@ Forbidden:
 - layout files
 - Navbar
 
+## UI Refactor Tasks
+
+Allowed:
+
+- Only UI files explicitly named by the user.
+- Typical future scopes may include `src/layouts/`, `src/components/`, `src/pages/`, or `src/styles/`.
+
+Forbidden:
+
+- content facts and records
+- `src/data/achievements.json`
+- news/FAQ/members data edits unless separately routed
+- Cloudinary API logic
+- `scripts/fetchAchievements.js`
+- `.env`
+- package files
+
+## SEO Content Tasks
+
+Allowed:
+
+- Only SEO/content files explicitly named by the user.
+- Typical future scopes may include page metadata, BaseLayout metadata props, or future `src/data/seo.*`.
+
+Forbidden:
+
+- functional JavaScript logic
+- routing behavior
+- Cloudinary API logic
+- scraper logic
+- invented claims, awards, people, dates, or metrics
+- `.env`
+- package files
+
 ## QA Release Tasks
 
 Allowed:
@@ -134,6 +168,10 @@ Forbidden:
 - generated output
 - dependency files
 - environment files
+
+## Long-Term Data Migration Note
+
+News, FAQ, and Members are still embedded in `.astro` files. Long-term maintenance would improve if they are gradually migrated to `src/data/`, but that migration must be a separate explicit task. Do not perform data migration during ordinary content updates.
 
 ## Out-of-Scope Rule
 

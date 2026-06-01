@@ -126,3 +126,41 @@ Use QA Release Agent for release work after a content commit exists:
 4. Check `origin/main...HEAD` diff.
 5. Run `npm.cmd run build`.
 6. Push `origin main` only when requested.
+
+## 7. UI Refactor Flow
+
+Use:
+
+- `.codex/agents/ui-refactor.toml`
+
+Flow:
+
+1. Site Manager Agent confirms this is a UI, RWD, layout, or component refactor task.
+2. Scope the exact files before editing.
+3. Preserve content data and facts.
+4. Run `npm.cmd run build`.
+5. Recommend mobile/browser checks for affected pages.
+
+## 8. SEO Content Flow
+
+Use:
+
+- `.codex/agents/seo-content.toml`
+
+Flow:
+
+1. Site Manager Agent confirms this is an SEO title, description, structured content, or SEO copy task.
+2. Scope the exact pages or metadata files before editing.
+3. Preserve functional logic and factual accuracy.
+4. Run `npm.cmd run build`.
+5. Report changed metadata/copy and any pages that should be checked after deployment.
+
+## 9. Long-Term Data Migration
+
+News, FAQ, and Members are still embedded in `.astro` files. Future data migration candidates:
+
+- `src/components/News.astro` -> `src/data/news.*`
+- `src/pages/faq.astro` -> `src/data/faq.*`
+- `src/pages/members.astro` -> `src/data/members.*`
+
+Do not perform these migrations during ordinary content updates. Treat each migration as a separate UI/data refactor task.

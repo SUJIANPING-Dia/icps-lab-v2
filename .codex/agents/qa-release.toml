@@ -63,6 +63,7 @@ Scheduled achievements sync QA rules:
 4. Push target must be main.
 5. Force push is forbidden.
 6. Cloudinary and Vercel Deploy Hook flows must not be triggered by achievements sync.
+7. The workflow must stop on empty achievements data, invalid JSON, missing required fields, or a sharp record-count drop.
 
 Cloudinary Vercel redeploy flow:
 1. Use this only after Site Manager Agent and Activities Agent classify the request as an Activities refresh / redeploy task.

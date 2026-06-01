@@ -24,6 +24,8 @@ This document is the human-readable maintenance guide for the iCPS Lab Astro web
 - Members agent config: `.codex/agents/members.toml`
 - Achievements agent config: `.codex/agents/achievements.toml`
 - Activities agent config: `.codex/agents/activities.toml`
+- UI Refactor agent config: `.codex/agents/ui-refactor.toml`
+- SEO Content agent config: `.codex/agents/seo-content.toml`
 - QA Release agent config: `.codex/agents/qa-release.toml`
 
 - News updates: `docs/agents/NEWS_AGENT.md`
@@ -38,6 +40,7 @@ If the task type is unclear, Site Manager Agent must ask the user before choosin
 ## Lightweight Harness Documents
 
 - Agent routing: `docs/harness/AGENT_ROUTING.md`
+- Agent architecture: `docs/harness/AGENTS_ARCHITECTURE.md`
 - Response protocol: `docs/harness/RESPONSE_PROTOCOL.md`
 - Release checklist: `docs/harness/RELEASE_CHECKLIST.md`
 - Cloudinary Vercel redeploy workflow: `docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md`
@@ -117,6 +120,16 @@ If data changed, the workflow must verify that no file except `src/data/achievem
 Vercel deploys automatically when `main` receives that commit. The workflow must not use force push, modify website UI code, trigger Cloudinary flows, or call a Vercel Deploy Hook.
 
 After an automatic or manual sync, check `https://icps-lab.com/achievements` once the Vercel deployment finishes.
+
+## Long-Term Content Data Plan
+
+The following content is still embedded in Astro files:
+
+- News: `src/components/News.astro`
+- FAQ: `src/pages/faq.astro`
+- Members: `src/pages/members.astro`
+
+For long-term maintenance, migrate these into `src/data/` gradually in separate explicit tasks. Do not combine data migration with routine content updates.
 
 ## Files That Usually Need Extra Care
 

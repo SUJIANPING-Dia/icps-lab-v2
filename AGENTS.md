@@ -161,6 +161,8 @@ Routing rules:
 - Achievements tasks: use Achievements Agent (`.codex/agents/achievements.toml`) and read `docs/agents/ACHIEVEMENTS_AGENT.md`.
 - Achievements scheduled sync tasks: use Achievements Agent and GitHub Actions harness rules in `docs/harness/ACHIEVEMENTS_SYNC.md`; QA Release Agent validates build, commit message, diff scope, and push target.
 - Activities or Cloudinary album tasks: use Activities Agent (`.codex/agents/activities.toml`) and read `docs/agents/ACTIVITIES_AGENT.md`.
+- UI redesign, RWD, layout, or component refactor tasks: use UI Refactor Agent (`.codex/agents/ui-refactor.toml`).
+- SEO title, description, structured content, or SEO copy tasks: use SEO Content Agent (`.codex/agents/seo-content.toml`).
 - Build, diff, merge, push, or release tasks: use QA Release Agent (`.codex/agents/qa-release.toml`) and read `docs/agents/QA_RELEASE_AGENT.md`.
 - Cloudinary album/photo refresh or redeploy tasks: route to Activities Agent first, then QA Release Agent must follow `docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md`.
 - Agent framework or routing documentation tasks may be handled by Site Manager Agent.
@@ -182,6 +184,11 @@ For lightweight routing, response protocol, release, and file-scope checks, cons
 - `docs/harness/ACHIEVEMENTS_SYNC.md`
 - `docs/harness/CONTENT_UPDATE_FLOW.md`
 - `docs/harness/FILE_SCOPE_RULES.md`
+- `docs/harness/AGENTS_ARCHITECTURE.md`
+
+## Long-Term Content Structure
+
+News, FAQ, and Members are currently maintained inside `.astro` files. Long-term maintenance would be easier if they are gradually migrated to `src/data/`, but this must be done only as an explicit data migration/refactor task. Do not migrate content during ordinary content updates.
 
 ## Working Rules for Codex
 

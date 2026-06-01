@@ -51,6 +51,10 @@ Rules:
 - Do not edit scripts/fetchAchievements.js unless the user explicitly asks to modify the scraper.
 - If the automatic sync diff includes files outside src/data/achievements.json, do not commit or push.
 - If build fails during automatic sync, do not commit or push.
+- Automatic sync must stop if achievements.json is empty.
+- Automatic sync must stop if achievement count drops sharply from the previous version.
+- Automatic sync must stop if JSON is invalid.
+- Automatic sync must stop if required fields are missing.
 - After edits, run npm.cmd run build.
 - Confirm the diff only includes src/data/achievements.json before staging.
 

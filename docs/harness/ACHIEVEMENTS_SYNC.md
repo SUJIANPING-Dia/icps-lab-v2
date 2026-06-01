@@ -57,6 +57,10 @@ The workflow must stop without commit or push when:
 - `scripts/fetchAchievements.js` fails.
 - The diff includes files other than `src/data/achievements.json`.
 - `npm run build` fails.
+- `src/data/achievements.json` becomes empty.
+- JSON parsing fails.
+- Required fields are missing from generated records.
+- The total achievement record count drops sharply compared with the previous committed file.
 - Git commit fails.
 - Git push fails.
 
@@ -68,6 +72,17 @@ The workflow must not:
 - run Cloudinary flows
 - trigger a Vercel Deploy Hook
 - write secrets to files
+
+## Data Guardrails To Implement Or Verify
+
+The scheduled sync workflow should protect against bad scraper output. Before commit/push, verify:
+
+- The generated file is valid JSON.
+- The generated data is not empty.
+- Required fields are present for every record used by the site.
+- The record count does not drop sharply from the previous version.
+
+If any guardrail fails, the workflow should fail and leave `main` unchanged.
 
 ## Manual Trigger
 

@@ -27,6 +27,8 @@ Responsibilities:
 | Scheduled achievements data sync | Achievements Agent -> QA Release Agent | GitHub Actions harness; only `src/data/achievements.json` may be auto-committed |
 | Maintain activity albums or activity pages | Activities Agent | Cloudinary first; code only when explicitly requested |
 | Cloudinary album/photos uploaded or updated | Activities Agent -> QA Release Agent | No code edit; Vercel redeploy only when explicitly requested |
+| UI redesign, RWD, layout, component refactor | UI Refactor Agent | Explicitly scoped UI files only |
+| SEO title, description, structured content, SEO copy | SEO Content Agent | Explicitly scoped SEO/content files only |
 | Build, diff, merge, push, release checks | QA Release Agent | Commands only, no content edits |
 | Unclear or mixed task | Site Manager Agent | Ask first or split into smaller tasks |
 
@@ -38,6 +40,7 @@ Split a request when it touches more than one content domain, for example:
 - Members plus achievements updates.
 - Activity album changes plus release push.
 - UI refactor plus content updates.
+- SEO metadata plus UI refactor.
 
 Complete one scoped task, verify it, and then start the next task.
 
