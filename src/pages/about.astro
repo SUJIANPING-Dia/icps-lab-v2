@@ -1,60 +1,22 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
+
+const title = "關於實驗室 | iCPS Lab 智慧網宇實體系統實驗室";
+const description = "iCPS Lab 智慧網宇實體系統實驗室介紹、研究方向與合作資訊。";
+const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen overflow-x-hidden";
 ---
 
-<html lang="zh-TW" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/images/lab-logo.png" />
-  <title>關於實驗室 | iCPS Lab 智慧網宇實體系統實驗室</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
-</head>
-
-<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen overflow-x-hidden">
+<BaseLayout title={title} description={description} bodyClass={bodyClass}>
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+  </Fragment>
 
   <!-- ============================================================ -->
-  <!-- 🔒 導覽列：原版不動                                          -->
+  <!-- 🔒 導覽列：共用元件                                          -->
   <!-- ============================================================ -->
-  <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
-      <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
-        <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
-        </a>
-        <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
-        <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
-        </a>
-      </div>
-      <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-        <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>首頁</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span></a>
-        <a href="/about" class="group flex flex-col items-center text-blue-800 transition border-b-2 border-blue-800 pb-1"><span>關於 iCPS Lab</span><span class="text-xs font-normal text-blue-600">About</span></a>
-        <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>最新消息</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span></a>
-        <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>活動花絮</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span></a>
-        <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>影音專區</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span></a>
-        <a href="/achievements" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>成果榮譽</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Achievements</span></a>
-        <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>實驗室成員</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span></a>
-        <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1"><span>常見問題</span><span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span></a>
-      </div>
-      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
-      <a href="/" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">首頁</a>
-      <a href="/about" class="block px-6 py-4 text-blue-800 font-bold bg-blue-50">關於 iCPS Lab</a>
-      <a href="/#news" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">最新消息</a>
-      <a href="/activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">活動花絮</a>
-      <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">影音專區</a>
-      <a href="/achievements" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">成果與榮譽</a>
-      <a href="/members" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">實驗室成員</a>
-      <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
-    </div>
-  </nav>
+  <Navbar activePath="/about" />
 
   <!-- ============================================================ -->
   <!-- ✨ 頁面 Hero：內容重新設計                                    -->
@@ -503,24 +465,6 @@ import "../styles/global.css";
   <script>
     document.addEventListener("DOMContentLoaded", () => {
 
-      // ── 0. 手機選單 ──
-      const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-      const mobileMenu = document.getElementById('mobile-menu');
-      const hamburgerIcon = document.getElementById('hamburger-icon');
-      if (mobileMenuBtn && mobileMenu && hamburgerIcon) {
-        mobileMenuBtn.addEventListener('click', () => {
-          const isHidden = mobileMenu.classList.contains('hidden');
-          mobileMenu.classList.toggle('hidden', !isHidden);
-          hamburgerIcon.setAttribute('d', isHidden ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16');
-        });
-        mobileMenu.querySelectorAll('a').forEach(link => {
-          link.addEventListener('click', () => {
-            mobileMenu.classList.add('hidden');
-            hamburgerIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
-          });
-        });
-      }
-
       // ── 1. 訪客計數器 ──
       const initCounter = async () => {
         const counterEl = document.getElementById('visitor-count');
@@ -660,5 +604,4 @@ import "../styles/global.css";
     });
   </script>
 
-</body>
-</html>
+</BaseLayout>

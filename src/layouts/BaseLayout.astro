@@ -1,0 +1,32 @@
+---
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description?: string;
+  bodyClass?: string;
+  htmlClass?: string;
+}
+
+const {
+  title,
+  description,
+  htmlClass = "scroll-smooth",
+  bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative",
+} = Astro.props;
+---
+
+<html lang="zh-TW" class={htmlClass}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/lab-logo.png" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <slot name="head" />
+  </head>
+
+  <body class={bodyClass}>
+    <slot />
+  </body>
+</html>
