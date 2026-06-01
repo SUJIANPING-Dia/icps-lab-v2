@@ -1,0 +1,518 @@
+export type NewsItem = {
+  isPinned?: boolean;
+  date: string;
+  tag: string;
+  tagTheme: string;
+  title: string;
+  img: string;
+  imgAlt: string;
+  content: string;
+};
+
+export const newsData: NewsItem[] = [
+  {
+    date: "2026.05.30",
+    tag: "學術發表",
+    tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
+    title: "狂賀！iCPS Lab 團隊於 ITAOI 2026 榮獲佳作論文獎",
+    img: "/images/itaoi-2026-team.jpg",
+    imgAlt: "iCPS Lab 團隊於 ITAOI 2026 會場合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        iCPS Lab 團隊參與第二十四屆離島資訊技術與應用研討會（ITAOI 2026），本次共帶領 12 位碩士班與大學部專題生發表五篇論文，並以論文 <strong>「FitSense：整合手部與身體骨幹姿態辨識之銀髮族體適能運動評估系統」</strong> 榮獲 <strong>Honorable Mention Award（佳作論文獎）</strong>。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        ITAOI 2026 於 2026 年 5 月 29 日至 31 日在國立彰化師範大學寶山校區舉行。今年大會共收到 403 篇投稿，iCPS Lab 很榮幸能在眾多研究成果中獲得肯定，也感謝同學們的努力與跨校教授的指導。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-purple-500 pl-4">
+          <h3 class="font-semibold text-purple-700 mb-2">得獎論文與團隊成員</h3>
+          <p class="text-slate-700 mb-2">
+            本次獲獎論文聚焦於銀髮族體適能運動評估，整合手部與身體骨幹姿態辨識技術，期望提供更智慧且易於應用的健康評估輔助工具。
+          </p>
+          <div class="my-4 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+            <img src="/images/itaoi-2026-award.jpg" alt="ITAOI 2026 Honorable Mention Award 獎狀" class="w-full h-auto block" loading="lazy" onerror="this.style.display='none';">
+            <p class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+              圖：FitSense 論文榮獲 ITAOI 2026 Honorable Mention Award（佳作論文獎），肯定團隊在智慧照護與姿態辨識應用上的研究成果。
+            </p>
+          </div>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>論文題目：</strong>FitSense：整合手部與身體骨幹姿態辨識之銀髮族體適能運動評估系統</li>
+            <li><strong>獲獎學生：</strong>張萬榮、蔡一銘、蘇健平</li>
+            <li><strong>合作教授：</strong>國立中山大學陳嬿今教授、李佳倫教授</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">持續推動跨校合作與智慧照護研究</h3>
+          <p class="text-slate-700">
+            感謝各位同學在研究、投稿與發表過程中的投入，也感謝跨校合作教授的指導與支持。iCPS Lab 將持續深耕 AI、姿態辨識與智慧照護相關研究，讓技術成果走向更具實用價值的應用場域。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
+    date: "2026.05.21", 
+    tag: "交流參訪",
+    tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
+    title: "台北市立內湖高工電子科蒞臨參訪，iCPS Lab 展示 AI 跨域應用成果",
+    img: "/images/visit-neihu-vs.jpg", 
+    imgAlt: "內湖高工師生參訪實驗室合影與體驗實況",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        今日，台北市立內湖高級工業職業學校（內湖高工）電子科師生團隊蒞臨國立高雄科技大學電子工程系（建工校區）進行參訪，iCPS Lab 非常榮幸代表系上接待，並展出近期的重點研究成果。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        為了讓參訪的高中職同學們能親身感受人工智慧的魅力與實際應用，實驗室團隊特別安排了豐富的實機展示環節，讓同學們在聽取技術解說之餘，也能親自上陣體驗各項前瞻的 AI 代表性作品。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-purple-500 pl-4">
+          <h3 class="font-semibold text-purple-700 mb-2">✨ 豐富的 AI 實作展示陣容</h3>
+          <p class="text-slate-700 mb-2">
+            本次參訪活動中，團隊帶領同學們輪流體驗了實驗室在智慧照護與智慧醫療領域的研發結晶，包含：
+          </p>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>AI 體適能檢測：</strong> 結合視覺辨識分析動作姿態，體驗智慧化的運動引導。</li>
+            <li><strong>AI 醫學影像病灶識別：</strong> 展現 AI 影像辨識在臨床醫療輔助上的精準度與應用潛力。</li>
+            <li><strong>AI 照護安全偵測：</strong> 透過去識別化感測技術，了解如何兼顧隱私與高齡居家防護。</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">🎓 結語與展望</h3>
+          <p class="text-slate-700">
+            看到同學們在體驗過程中充滿好奇與熱情，正是我們持續落實科技教育的動力。如同我們粉專所說：「選高科大電子系就對了啦！」期盼透過本次交流，能激發高中職學子對科技領域的嚮往，也歡迎未來有更多優秀人才加入高科大電子系與 iCPS Lab 的行列。
+          </p>
+        </div>
+      </div>
+    `
+ },
+  {
+    date: "2026.05.14", 
+    tag: "展覽動態",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "iCPS Lab 雙作品參展「2026 台灣輔具暨長期照護大展」，展現 AI 智慧照護研發能量",
+    img: "/images/exhibition-atlife.jpg", 
+    imgAlt: "2026台灣輔具暨長期照護大展參展合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        2026 年 5 月 14 日至 17 日，iCPS Lab 團隊前往台北世貿南港展覽館，參與年度長照盛會「2026 台灣輔具暨長期照護大展」。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次展期中，實驗室於國立高雄科技大學（NKUST）「智慧照護科技」主題攤位上，盛大展出兩項深耕已久的 AI 照護科技作品，分別對應「智慧照護安全」與「智慧照護復能」兩大長照關鍵核心，期盼透過 AI 技術解決高齡化社會的實務需求。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">🛡️ 智慧照護安全：ToFEye 系統</h3>
+          <p class="text-slate-700">
+            <strong>「ToFEye 基於3D飛時測距之AI浴廁異常姿態辨識系統」</strong><br>
+            針對高風險的浴廁空間，本系統採用具備「去識別化」特性的 3D ToF 感測器，能在完全保護病患與長者隱私的前提下，透過 AI 邊緣運算即時偵測跌倒或異常姿態。一旦發生意外即可迅速通報，為居家與醫療機構的浴廁安全提供強力後盾。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">💪 智慧照護復能：FitMirror 系統</h3>
+          <p class="text-slate-700">
+            <strong>「FitMirror AI銀髮族體適能運動品質檢測系統」</strong><br>
+            專為高齡者復健與日常運動設計，系統結合 AI 影像辨識技術，能精準捕捉並分析長者的運動骨架與姿態。除了引導正確的動作以提升運動品質，更能有效防範因姿勢錯誤造成的二次運動傷害，讓長輩們動得安心又健康。
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">👋 現場交流與展出</h3>
+          <p class="text-slate-700">
+            團隊同學與指導老師皆於展會現場親自為參觀民眾及產學界先進進行系統解說與實機展示。感謝大家對實驗室作品的肯定與回饋，未來我們也將持續在 AI 智慧醫療與照護領域投入研發量能！
+          </p>
+        </div>
+      </div>
+    `
+  },
+ {
+    date: "2026.05.18", 
+    tag: "競賽佳績",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "狂賀！實驗室團隊勇奪「2026年全國技專校院學生實務專題製作競賽」全國第二名",
+    img: "/images/competition-second-place.jpg", 
+    imgAlt: "2026全國技專院校實務專題實作競賽頒獎典禮合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        決賽捷報！由教育部主辦之「2026全國技專院校實務專題實作競賽暨成果展」為期兩天的競賽與展覽圓滿落幕，恭喜 iCPS Lab 大三專題同學們勇奪「資工通訊群」全國第二名的殊榮！
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次獲獎作品為「中外耳病灶識別暨臨床診斷報告自動生成系統」。團隊在競爭極度激烈的資工通訊群中，從全國超過 200 件報名作品裡過關斬將、脫穎而出，展現了極高的研發量能與實作潛力。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">💡 獲獎作品簡介：iEarᴸᴹ 智慧耳科診療平台</h3>
+          <p class="text-slate-700">
+            本作品（iEarᴸᴹ）是一個整合人工智慧與擴增實境技術的診療與串流直播教育平台。系統透過 <strong>AI 影像識別（實例分割技術）</strong> 精準辨識中外耳病灶輪廓，並結合 <strong>RAG 醫學知識庫與 LLM 大語言模型</strong>，自動生成具備臨床可信度的診斷報告。同時，藉由串聯 NVIDIA 邊緣運算與佐臻 AR 智慧眼鏡，實現低延遲的醫療影像同步串流。這不僅能減輕醫師文書負擔，還能讓實習醫師與主治醫師透過 AR 眼鏡「共享視角」，大幅提升臨床協作與醫學教學效率，目前該系統亦已導入高雄長庚醫院進行臨床驗證。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">🏆 專題亮點與殊榮</h3>
+          <p class="text-slate-700">
+            能夠在全國頂尖作品中榮獲第二名，充分展現了實驗室在跨領域醫療科技應用的研發深度。系統成功整合了硬體穿戴裝置與先進的 AI 模型，為臨床診斷與醫學教學提供了極具潛力的智慧化解決方案。
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">🤝 特別感謝</h3>
+          <p class="text-slate-700">
+            專題能獲得如此佳績，除了高科大電子工程系的栽培，更要謝謝林志學老師的共同用心指導。同時，特別感謝高雄長庚醫院 吳靖農醫師 在臨床資料蒐集上給予的大力協助，讓系統的開發得以貼近最真實的醫療實務需求。
+          </p>
+        </div>
+      </div>
+    `
+  },
+ {
+    date: "2026.05.12", 
+    tag: "媒體報導",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "非凡新聞專題報導：AI智慧眼鏡化身「電子導盲犬」！解析ToF感測與多模態技術突破",
+    img: "", 
+    imgAlt: "",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        正式報導影片上線！非凡新聞台日前蒞臨高科大 iCPS Lab（智慧網宇實體系統實驗室）進行深度專題採訪，由張萬榮教授帶領團隊展示最新研發的「AI 智慧眼鏡」技術。看前瞻科技如何結合先進感測器，化身視障朋友的「電子導盲犬」，落實大學社會責任並為醫療照護領域帶來革命性的改變。
+      </p>
+
+      <div class="relative w-full mb-6 overflow-hidden rounded-lg shadow-md" style="padding-top: 56.25%;">
+        <iframe 
+          class="absolute top-0 left-0 w-full h-full"
+          src="https://www.youtube.com/embed/FYVEmAv1t38" 
+          title="YouTube video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">🦮 核心功能：視障族群的「電子導盲犬」</h3>
+          <p class="text-slate-700">
+            長久以來，視障人士多半仰賴導盲杖或導盲犬，但在反應速度、精準度與便利性上仍有侷限。本實驗室將 AI 眼鏡結合<strong>「多模態大模型」</strong>，能透過影像辨識即時分析前方障礙物，並將環境資訊<strong>「轉換成聲音」</strong>，讓視障者透過聽覺掌握路況。未來發展更朝向空間即時互動與第一視角影像串流邁進。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">👁️‍🗨️ 突破性的空間感測技術</h3>
+          <p class="text-slate-700 mb-2">
+            這項技術的視覺系統超越了傳統平面影像，主要整合以下核心技術，讓系統能全面且精準地理解周遭環境：
+          </p>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>紅外線相機：</strong>專門用來捕捉環境中的影像暗部與細節。</li>
+            <li><strong>飛時測距雷達（ToF）與深度感測：</strong>主動向環境發射紅外線訊號，利用訊號反彈時間差描繪出不同深度的圖像，藉此精準測量物體的距離與立體深度。</li>
+          </ul>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">🖐️ 手勢與空間控制延伸應用</h3>
+          <p class="text-slate-700">
+            當這套高精度的感測技術應用在 AR 或智慧眼鏡上時，除了探測外部環境，同時也能精準偵測使用者的<strong>手部移動與手勢</strong>。這讓系統得以實現對不同虛擬物件的操作與空間移動控制，充分展現實驗室在軟硬體系統整合上的研發實力。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4 bg-blue-50/50 p-3 rounded-r-lg">
+          <h3 class="font-semibold text-blue-800 mb-2">🚀 總結與未來展望：落實智慧照護與系統落地</h3>
+          <p class="text-slate-700">
+            透過本次非凡新聞的報導，充分展現了 iCPS Lab <strong>「不只做 AI 模型，更打造可運作、可落地系統」</strong> 的核心精神。從 ToF 深度感測到多模態大模型的跨域整合，這款 AI 智慧眼鏡不僅是視障導航技術的一大突破，相關感測技術未來也將持續推廣至智慧醫療與遠端照護等場域，讓學術研究成果真正走入應用、造福社會。歡迎對前瞻虛實整合系統有熱忱的學子與產學夥伴加入及洽談合作！
+          </p>
+        </div>
+      </div>
+    `
+ },
+  {
+    date: "2026.04.21", 
+    tag: "媒體報導",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "非凡新聞台專訪！聚焦實驗室「AR智慧眼鏡」與「ToF感測技術」研究成果",
+    img: "/images/media-ustv-interview.jpg", 
+    imgAlt: "非凡電視台記者至實驗室進行採訪",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        感謝非凡電視台（非凡新聞台）蒞臨高科大建工校區電子工程系 ICPS Lab 進行專題採訪！
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        今日非凡新聞台記者團隊特別來到實驗室，針對我們近期的重點研究成果進行深度報導。同學們在鏡頭前大方操作展示，展現了平時扎實的實作心血，準備好要在電視上亮相啦！
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">🔬 採訪核心技術與應用</h3>
+          <p class="text-slate-700">
+            本次採訪主要聚焦於實驗室的兩項前瞻技術：<strong>「AR智慧眼鏡」</strong>與<strong>「ToF感測技術」</strong>。報導深入探討了團隊如何將這些技術實際落地，應用於<strong>「視障朋友行走安全」</strong>輔助以及<strong>「醫療照護」</strong>等兩大重要領域，展現科技結合人文關懷的實用價值。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">📺 播出資訊預告</h3>
+          <p class="text-slate-700">
+            精彩的專題採訪內容預計將於 <strong>五月中旬</strong> 在非凡新聞台正式播出。屆時歡迎大家鎖定頻道，一起見證實驗室師生團隊的研究成果與專業展現！
+          </p>
+        </div>
+
+      </div>
+    `
+ },
+ {
+    date: "2026.04.17", 
+    tag: "競賽佳績",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "狂賀！實驗室團隊入圍「2026年全國技專校院學生實務專題製作競賽」決賽",
+    img: "/images/competition-shortlist.png", 
+    imgAlt: "全國技專校院實務專題競賽入圍名單",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        狂賀！ICPS Lab 專題團隊傳來捷報，成功晉級教育部主辦之「2026年全國技專校院學生實務專題製作競賽暨成果展」決賽！
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次競賽全國總報名件數高達 1,167 件，最終僅 137 件入圍決賽。我們的參賽作品在競爭激烈的「C.資工通訊群」共 83 件報名作品中脫穎而出，成為全國僅有的 8 組決賽隊伍之一。除了肯定同學們這段時間的努力與心血，也特別感謝林志學教授的共同用心指導。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">🏆 競賽殊榮</h3>
+          <p class="text-slate-700">
+            「全國技專校院學生實務專題製作競賽」為技職體系年度指標性賽事，團隊能從同群 83 件作品中擠進「資工通訊群」全國僅八個名額的窄門（錄取率不到 10%），充分展現了實驗室堅強的實作與研發能力。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">🎯 決賽展望與備戰</h3>
+          <p class="text-slate-700">
+            全國決賽將於 5 月 14 日盛大登場。特別的是，本次高科大共有三組優秀隊伍入圍同群集決賽，即將上演頂尖對決的「網內互打」。團隊將持續精進作品，期盼在決賽中再創佳績、為校爭光！
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">🤝 特別感謝</h3>
+          <p class="text-slate-700">
+            專題成果得以完美呈現，特別感謝指導教授們的傾囊相授與林志學教授的共同指導，帶領學生將理論轉化為具體的實務應用。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
+    date: "2026.04.16",
+    tag: "專利核准",
+    tagTheme: "text-rose-800 bg-rose-50 border-rose-200",
+    title: "捷報！實驗室榮獲第一件日本發明專利「舌部追蹤方法及其舌肌復健系統」",
+    img: "/images/japan-patent-certificate.jpg", 
+    imgAlt: "日本發明專利特許證",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        ICPS Lab 迎來重大突破，榮獲實驗室第一件「日本發明專利」！本項專利名稱為「舌部追蹤方法及其舌肌復健系統」（舌部追跡法とその舌筋リハビリテーションシステム）。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本系統結合了跨領域的專業技術與人因工程設計，旨在提供更完善且具互動性的復健體驗，為智慧醫療與復健科技再添一筆重要成果。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-rose-500 pl-4">
+          <h3 class="font-semibold text-rose-700 mb-2">🤝 跨域團隊合作</h3>
+          <p class="text-slate-700">
+            這項專利的誕生，特別感謝<strong>高雄醫學大學</strong>研究團隊的共同努力。同時，也深謝<strong>歐陽昆教授</strong>在系統實作過程中，針對使用者人因工程，提供了專業的互動遊戲腳本與畫面設計，讓復健系統更貼近使用者需求。
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">🏫 感謝學校鼎力支持</h3>
+          <p class="text-slate-700">
+            國際專利的申請與維護需要龐大的資源，特別感謝學校（國立高雄科技大學）提供了本專利申請與後續維護的「全額補助」，讓實驗室的研發成果得以順利取得國際專利保護，躍上國際舞台。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
+    date: "2026.03.31",
+    tag: "學術發表",
+    tagTheme: "text-purple-800 bg-purple-50 border-purple-200",
+    title: "狂賀！實驗室大四同學赴日參加 2026 IEEE ICCT-Pacific 國際研討會，成功發表兩篇論文",
+    img: "/images/icct2026-group.jpg",
+    imgAlt: "實驗室師生於日本山口大學 ICCT-Pacific 2026 研討會現場合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        本實驗室大四專題生於 2026 年 3 月 29 日，前往日本山口大學（Yamaguchi University, Yoshida Campus, Yamaguchi, Japan），參加 <strong>2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)</strong> 國際研討會，並成功進行兩篇論文的口頭發表！
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次發表的兩篇論文皆展現了實驗室在人工智慧與影像辨識技術上的扎實應用，從智慧農業的精準測量到智慧製造的自動化品質控管，深獲與會學者肯定。發表的兩篇論文題目與現場實況如下：
+      </p>
+
+      <div class="space-y-6">
+        <div class="border border-slate-200 bg-slate-50 rounded p-5 border-l-4 border-l-purple-500">
+          <h3 class="font-bold text-purple-800 mb-2 leading-tight">
+            📄 PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning
+          </h3>
+          <p class="text-slate-700 mb-4 text-sm">
+            本研究提出一套名為 PigView 的系統，利用人工智慧深度學習技術，透過最小邊界框來精準估測豬隻重量，期能為智慧農業帶來更高效、低接觸的飼養管理方案。
+          </p>
+          <div class="w-full bg-slate-200 rounded overflow-hidden flex justify-center items-center relative aspect-video border border-slate-200 mt-3">
+            <img src="/images/icct2026-pigview.jpg" alt="PigView 論文發表實況" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';">
+            <span class="text-slate-500 font-medium z-0">[ PigView 報告現場照片 ]</span>
+          </div>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-5 border-l-4 border-l-purple-500">
+          <h3 class="font-bold text-purple-800 mb-2 leading-tight">
+            📄 iNoodle: An Artificial Intelligence Seasoning-Packet Recognition System Applied to Packaged Dried Noodle Production Line
+          </h3>
+          <p class="text-slate-700 mb-4 text-sm">
+            針對包裝乾麵生產線，團隊開發了 iNoodle 人工智慧調味包辨識系統，透過自動化影像辨識技術，提升生產線的品質控管與包裝效率，展現 AI 落地產線的實力。
+          </p>
+          <div class="w-full bg-slate-200 rounded overflow-hidden flex justify-center items-center relative aspect-video border border-slate-200 mt-3">
+            <img src="/images/icct2026-inoodle.jpg" alt="iNoodle 論文發表實況" class="w-full h-full object-cover absolute inset-0 z-10" onerror="this.style.display='none';">
+            <span class="text-slate-500 font-medium z-0">[ iNoodle 報告現場照片 ]</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-6 text-slate-700">
+        這次遠赴日本參加國際研討會，對大四同學來說是非常難得且寶貴的經驗，不僅能將專題成果推向國際舞台，更能與各國學者進行學術交流，拓展國際視野。再次恭喜同學們順利完成發表！
+      </p>
+    `
+  },
+  {
+    date: "2026.03.15",
+    tag: "活動花絮",
+    tagTheme: "text-emerald-800 bg-emerald-50 border-emerald-200",
+    title: "實驗室慶功聚餐！狂賀「第21屆數位訊號處理創思設計競賽」榮獲一亞三佳作",
+    img: "/images/momo-paradise-dinner.jpg",
+    imgAlt: "ICPS Lab 實驗室成員於 MO-MO-PARADISE 慶功聚餐大合照",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        為了慶祝實驗室團隊在「第21屆數位訊號處理創思設計競賽」中取得優異成績，張教授特別舉辦了慶功聚餐，慰勞大家這段時間備賽的辛勞！
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        在此次競賽中，ICPS Lab 團隊展現了扎實的研發實力與創新思維，一舉斬獲了<strong>一個第二名（亞軍）</strong>以及<strong>三個佳作</strong>的亮眼殊榮。這份佳績不僅是對參賽同學們技術能力的肯定，更是實驗室全體成員互相支持、共同努力的成果。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border border-slate-200 bg-slate-50 rounded p-4 border-l-4 border-l-emerald-500">
+          <h3 class="font-semibold text-emerald-800 mb-2">🥩 歡聚壽喜燒：共享榮耀與傳承經驗</h3>
+          <p class="text-slate-700 mb-2">
+            賽後，大家帶著輕鬆愉快的心情一同前往 MO-MO-PARADISE 享用豐盛的壽喜燒。席間氣氛熱絡，參賽團隊熱情分享了從發想、實作到最終上場比賽的甘苦談與寶貴經驗。
+          </p>
+          <p class="text-slate-700">
+            這次的小聚餐不僅讓平時埋首於研究的大家得以放鬆身心，也讓實驗室成員間的感情更加緊密。吃飽喝足後，我們將帶著滿滿的動力回到實驗室，期許未來 ICPS Lab 能持續突破自我，在各項挑戰中再創佳績！
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
+    date: "2026.03.01",
+    tag: "系統公告",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "ICPS Lab 官方網站正式上線",
+    img: "/images/news-placeholder.jpg",
+    imgAlt: "實驗室大合照",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        ICPS Lab 智慧網宇實體系統實驗室官方網站正式啟用。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本網站將作為實驗室對外資訊與交流平台，提供成員介紹與最新消息更新。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">📡 平台內容</h3>
+          <p class="text-slate-700">
+            提供實驗室成員資訊與最新動態，讓訪客能快速了解 ICPS Lab 的研究團隊與發展。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">🧪 研究領域</h3>
+          <p class="text-slate-700">
+            涵蓋人工智慧物聯網（AIoT）、邊緣運算及智慧應用等相關研究方向。
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">📢 後續更新</h3>
+          <p class="text-slate-700">
+            未來將持續於本站發布實驗室最新消息與相關資訊，歡迎定期關注。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
+    isPinned: true, // 🌟 新增這一行：只要設定為 true 就可以將此新聞置頂！
+    date: "2026.03.01",
+    tag: "招生資訊",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "【115學年度】熱烈招收新進碩士生與專題生，歡迎加入 iCPS Lab 研究團隊！",
+    img: "",
+    imgAlt: "",
+    content: `
+      <p class="text-base font-bold text-slate-900 mb-4">
+        歡迎具備電機、資工、醫工或相關科系背景，且對軟硬體整合充滿熱忱的同學加入我們！
+      </p>
+
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">🔬 實驗室重點研究方向：</h4>
+        <p>
+          在本實驗室，你將有機會參與大型產學合作計畫，並將演算法實際落地於產業場域。
+          我們目前的研究涵蓋：智慧物聯網 (AIoT) 與邊緣運算、醫療影像分析與穿戴式生理訊號辨識、
+          以及智慧製造與擴增實境 (AR) 協作系統。
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">💡 我們能提供給你：</h4>
+        <ul class="list-disc list-inside space-y-1 pl-2 text-slate-700">
+          <li>依參與計畫表現，提供<span class="font-bold text-amber-700">優渥的每月計畫津貼</span>。</li>
+          <li>豐富的硬體資源：多台高階 GPU 伺服器、AR/VR 設備、多元感測器與開發板。</li>
+          <li>扎實的實作訓練與產學接軌經驗，大幅提升畢業後的就業競爭力。</li>
+          <li>融洽的實驗室氛圍與不定期聚餐活動。</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 p-4 rounded border border-blue-100 mb-4">
+        <h4 class="font-bold text-slate-900 mb-2">📩 面談報名方式：</h4>
+        <p>
+          意者請將您的 
+          <strong class="text-blue-700">1. 個人簡歷</strong>、
+          <strong class="text-blue-700">2. 歷年成績單</strong> 與 
+          <strong class="text-blue-700">3. 專題報告或相關作品(若有)</strong> 
+          寄至張教授信箱：
+          <a href="mailto:allenchang@nkust.edu.tw" class="text-blue-600 hover:underline">
+            allenchang@nkust.edu.tw
+          </a>
+        </p>
+        <p class="text-xs text-slate-500 mt-2">
+          ※ 信件主旨請註明：「[加入實驗室] 姓名 - 欲報考碩士班/專題生」，我們收到後將盡快與您安排實驗室參觀與面談時間！
+        </p>
+      </div>
+
+      <div class="text-sm text-slate-600">
+        👉 若對實驗室生活、研究內容或申請流程有其他疑問，
+        歡迎參考我們的常見問題：
+        <a href="https://icps-lab.com/faq" target="_blank" class="text-blue-600 hover:underline font-medium">
+          ICPS Lab FAQ
+        </a>
+      </div>
+    `
+  }
+];
