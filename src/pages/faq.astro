@@ -1,5 +1,6 @@
 ---
-import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Navbar from "../components/Navbar.astro";
 
 // ==========================================
 // 🔹 Q&A 資料區 
@@ -413,97 +414,25 @@ const totalFaqItems = faqs.reduce((sum, group) => sum + group.items.length, 0);
 const cooperationIndex = faqs.findIndex(group => group.section === "🤝 企業與產學合作");
 const studentFaqItems = faqs.filter((_, index) => cooperationIndex === -1 || index < cooperationIndex).reduce((sum, group) => sum + group.items.length, 0);
 const partnerFaqItems = faqs.filter((_, index) => cooperationIndex !== -1 && index >= cooperationIndex).reduce((sum, group) => sum + group.items.length, 0);
+const title = "常見問題 FAQ | iCPS Lab 智慧網宇實體系統實驗室";
+const description = "整理學生加入、專題研究、碩博士培育、實驗室資源與產學合作等常見問題。";
+const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative";
 ---
 
-<html lang="zh-TW" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/png" href="/images/lab-logo.png" />
-  <title>常見問題 FAQ | iCPS Lab 智慧網宇實體系統實驗室</title>
-  <style is:global>
+<BaseLayout title={title} description={description} bodyClass={bodyClass}>
+  <Fragment slot="head">
+    <style is:global>
     .hide-scrollbar::-webkit-scrollbar{display:none}.hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
     [data-reveal]{opacity:0;transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
     [data-reveal="up"]{transform:translateY(28px)}[data-reveal="left"]{transform:translateX(-28px)}[data-reveal="zoom"]{transform:scale(.97)}[data-reveal].is-visible{opacity:1;transform:translate(0,0) scale(1)}
     .faq-category-group{display:none}.faq-category-group.is-active{display:block;animation:faqPanelIn .38s cubic-bezier(.22,1,.36,1) both}@keyframes faqPanelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     .faq-answer-content{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s cubic-bezier(.22,1,.36,1),opacity .25s ease}.faq-item.is-open .faq-answer-content{max-height:580px;opacity:1}.faq-item.is-open .faq-icon{transform:rotate(45deg)}.faq-item.is-open{border-color:#bfdbfe;box-shadow:0 18px 45px -32px rgba(37,99,235,.55)}
     .faq-tab-btn.is-active{background:linear-gradient(135deg,#1d4ed8,#0f172a);color:#fff;border-color:transparent;box-shadow:0 16px 35px -22px rgba(37,99,235,.8)}.faq-tab-btn.is-active .tab-count{background:rgba(255,255,255,.16);color:#fff}.faq-tab-btn.is-active .tab-dot{background:#93c5fd}
-  </style>
-</head>
-<body class="bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative">
+    </style>
+  </Fragment>
 
   <!-- 🔷 頂部導覽列 (Navbar) -->
-  <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
-      <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
-        <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/nkust-logo.png" alt="NKUST 國立高雄科技大學" class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain" onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';" />
-        </a>
-        <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
-        <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
-          <img src="/images/sicp-logo.png" alt="iCPS Lab 智慧網宇實體系統實驗室" class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain" onerror="this.style.display='none';" />
-        </a>
-      </div>
-
-<div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
-    <a href="/" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>首頁</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Home</span>
-  </a>
-  <a href="/about" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>關於 iCPS Lab</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">About</span>
-  </a>
-
-  <a href="/#news" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>最新消息</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">News</span>
-  </a>
-
-  <a href="/activities" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>活動花絮</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Events</span>
-  </a>
-
-  <a href="/#videos" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>影音專區</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Media</span>
-  </a>
-
-          <a href="/achievements"  class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>成果榮譽</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Achievements</span>
-        </a>
-
-  <a href="/members" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-    <span>實驗室成員</span>
-    <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">Members</span>
-  </a>
-          <a href="/faq" class="group flex flex-col items-center hover:text-blue-800 transition border-b-2 border-transparent hover:border-blue-800 pb-1">
-          <span>常見問題</span>
-          <span class="text-xs font-normal text-slate-400 group-hover:text-blue-600">FAQ</span>
-        </a>
-
-</div>
-
-      <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
-        <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-
-    <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
-	  <a href="/" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">首頁</a>
-      <a href="/about" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">關於 iCPS Lab</a>
-      <a href="/#news"class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">最新消息</a>
-      <a href="/activities" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">活動花絮</a>
-      <a href="/#videos" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">影音專區</a>
-	  <a href="/achievements" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">成果與榮譽</a>
-      <a href="/members" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">實驗室成員</a>
-	  <a href="/faq" class="block px-6 py-4 text-slate-600 font-bold hover:bg-slate-50 hover:text-blue-800">常見問題</a>
-    </div>
-  </nav>
+  <Navbar activePath="/faq" />
 
   <header class="relative overflow-hidden border-b border-blue-900/10 bg-slate-950">
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,.28),transparent_34%),radial-gradient(circle_at_78%_18%,rgba(14,165,233,.18),transparent_30%),linear-gradient(135deg,#020617_0%,#0f172a_48%,#0b2a4a_100%)]"></div>
@@ -580,7 +509,6 @@ const partnerFaqItems = faqs.filter((_, index) => cooperationIndex !== -1 && ind
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const mobileMenuBtn=document.getElementById('mobile-menu-btn'),mobileMenu=document.getElementById('mobile-menu'),hamburgerIcon=document.getElementById('hamburger-icon');if(mobileMenuBtn&&mobileMenu&&hamburgerIcon){mobileMenuBtn.addEventListener('click',()=>{mobileMenu.classList.toggle('hidden');hamburgerIcon.setAttribute('d',mobileMenu.classList.contains('hidden')?'M4 6h16M4 12h16M4 18h16':'M6 18L18 6M6 6l12 12')});mobileMenu.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{mobileMenu.classList.add('hidden');hamburgerIcon.setAttribute('d','M4 6h16M4 12h16M4 18h16')}))}
       const tabBtns=Array.from(document.querySelectorAll('.faq-tab-btn')),categoryGroups=Array.from(document.querySelectorAll('.faq-category-group')),searchInput=document.getElementById('faq-search-input'),clearSearchBtn=document.getElementById('clear-search'),searchResetInline=document.getElementById('search-reset-inline'),noResultsMsg=document.getElementById('no-results-msg'),sidebar=document.getElementById('faq-sidebar'),searchState=document.getElementById('search-state'),searchCount=document.getElementById('search-count'),searchKeyword=document.getElementById('search-keyword');let currentActiveTabTarget='category-0';
       const closeAllInGroup=(group)=>{group.querySelectorAll('.faq-item.is-open').forEach(item=>{item.classList.remove('is-open');const btn=item.querySelector('.faq-btn');if(btn)btn.setAttribute('aria-expanded','false')})};const switchTab=(targetId)=>{currentActiveTabTarget=targetId;tabBtns.forEach(btn=>btn.classList.toggle('is-active',btn.getAttribute('data-target')===targetId));categoryGroups.forEach(group=>{group.classList.toggle('is-active',group.id===targetId);if(group.id!==targetId)closeAllInGroup(group)})};
       tabBtns.forEach(btn=>btn.addEventListener('click',()=>{if(searchInput&&searchInput.value.trim()!=='')resetSearch(false);switchTab(btn.getAttribute('data-target'));window.scrollTo({top:document.querySelector('main').offsetTop-20,behavior:'smooth'})}));document.querySelectorAll('.faq-btn').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.faq-item'),group=btn.closest('.faq-category-group'),willOpen=!item.classList.contains('is-open');if(group)closeAllInGroup(group);item.classList.toggle('is-open',willOpen);btn.setAttribute('aria-expanded',willOpen?'true':'false')}));
@@ -591,5 +519,4 @@ const partnerFaqItems = faqs.filter((_, index) => cooperationIndex !== -1 && ind
       const initCounter=async()=>{const counterEl=document.getElementById('visitor-count');if(!counterEl)return;const namespace='icpslab_site',key='visits',localCountKey='icps_saved_count',lastVisitTimeKey='icps_last_visit_time',TTL=86400000;let currentCount=localStorage.getItem(localCountKey)||'000000';const lastVisitTime=localStorage.getItem(lastVisitTimeKey),now=Date.now(),visited=lastVisitTime&&(now-parseInt(lastVisitTime,10)<TTL);try{const url='https://api.counterapi.dev/v1/'+namespace+'/'+key;const response=await fetch(visited?url:url+'/up');if(!response.ok)throw new Error('API Error');const data=await response.json();currentCount=String(data.count).padStart(6,'0');if(!visited)localStorage.setItem(lastVisitTimeKey,now.toString());localStorage.setItem(localCountKey,currentCount)}catch(error){}counterEl.textContent=currentCount};initCounter();
     });
   </script>
-</body>
-</html>
+</BaseLayout>
