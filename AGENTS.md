@@ -150,7 +150,8 @@ If `.codex/agents/*.toml`, `docs/harness/*.md`, or an agent playbook conflicts w
 - The scheduled achievements sync harness may only commit and push `src/data/achievements.json`.
 - If `scripts/fetchAchievements.js` changes any other file, the harness must fail before build, commit, or push.
 - The scheduled achievements sync harness must upload a pre-sync artifact, validate JSON, block empty data, block missing required fields, block a 30% or larger item-count drop, and run a build before committing and pushing.
-- The scheduled achievements sync harness must generate a report for every run and push it to the separate `automation-reports` branch, not to `main`.
+- The scheduled achievements sync harness must generate report files for every run and push them to the separate `automation-reports` branch, not to `main`.
+- Achievements sync reports must include both daily summary files and unique per-run files so manual GitHub `workflow_dispatch` runs are preserved locally after report sync.
 - Local sync reports may be copied into the ignored `reports/` folder with `scripts/sync-achievements-reports.ps1`.
 - Scheduled achievements sync must not use force push, Cloudinary flows, or Vercel Deploy Hook.
 - Do not run destructive shell commands.

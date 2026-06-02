@@ -37,6 +37,8 @@ try {
 
   Write-Host "Automation reports synced to: $destinationPath"
   Write-Host "Latest report: $(Join-Path $destinationPath 'achievements-sync\latest.md')"
+  Write-Host "Latest run report: $(Join-Path $destinationPath 'achievements-sync\runs\latest-run.md')"
+  Write-Host "All run reports: $(Join-Path $destinationPath 'achievements-sync\runs')"
 }
 finally {
   Pop-Location

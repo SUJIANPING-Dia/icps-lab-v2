@@ -55,7 +55,8 @@ Rules:
 - Automatic sync must stop if achievement count drops sharply from the previous version.
 - Automatic sync must stop if JSON is invalid.
 - Automatic sync must stop if required fields are missing.
-- Automatic sync must generate a daily report for every run, including success, no changes, blocked, and failed runs.
+- Automatic sync must generate report files for every run, including success, no changes, blocked, and failed runs.
+- Automatic sync must keep both daily summary reports and unique per-run reports so manual workflow_dispatch runs are preserved.
 - Automatic sync reports must be pushed to the separate automation-reports branch, not to main.
 - Local report sync uses scripts/sync-achievements-reports.ps1 to copy reports into the ignored reports/ folder.
 - After edits, run npm.cmd run build.

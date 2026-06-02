@@ -128,7 +128,9 @@ If data changed, the workflow must verify that no file except `src/data/achievem
 
 Vercel deploys automatically when `main` receives that commit. The workflow must not use force push, modify website UI code, trigger Cloudinary flows, or call a Vercel Deploy Hook.
 
-Every run also writes a report to the separate `automation-reports` branch. This happens for successful runs, no-change runs, blocked runs, and failed runs. These report commits stay off `main`, so they do not trigger Vercel deployments.
+Every run also writes reports to the separate `automation-reports` branch. This happens for successful runs, no-change runs, blocked runs, and failed runs. These report commits stay off `main`, so they do not trigger Vercel deployments.
+
+The workflow keeps both daily summary files and unique per-run files. Manual GitHub `Run workflow` executions are saved under `achievements-sync/runs/` with the run id and attempt number, so multiple runs on the same date do not overwrite each other.
 
 To read the latest reports locally, run:
 
@@ -141,6 +143,8 @@ This fetches `origin/automation-reports` and writes the files into the ignored l
 ```text
 reports/
 ```
+
+Open `reports/achievements-sync/latest.md` for the latest daily summary, or `reports/achievements-sync/runs/latest-run.md` for the most recent individual run. All individual run reports are stored under `reports/achievements-sync/runs/`.
 
 After an automatic or manual sync, check `https://icps-lab.com/achievements` once the Vercel deployment finishes.
 

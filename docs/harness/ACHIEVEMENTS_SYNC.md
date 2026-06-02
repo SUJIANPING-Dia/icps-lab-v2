@@ -83,11 +83,11 @@ The workflow must not:
 - trigger a Vercel Deploy Hook
 - write secrets to files
 
-## Daily Local Report Flow
+## Local Report Flow
 
-The workflow writes simple daily reports to the `automation-reports` branch, not to `main`.
+The workflow writes reports to the `automation-reports` branch, not to `main`.
 
-Report files:
+Daily summary files:
 
 ```text
 achievements-sync/YYYY-MM-DD.md
@@ -96,10 +96,22 @@ achievements-sync/latest.md
 achievements-sync/latest.json
 ```
 
+Per-run files:
+
+```text
+achievements-sync/runs/YYYY-MM-DD-<trigger>-<run_id>-attempt-<attempt>.md
+achievements-sync/runs/YYYY-MM-DD-<trigger>-<run_id>-attempt-<attempt>.json
+achievements-sync/runs/latest-run.md
+achievements-sync/runs/latest-run.json
+```
+
+The daily summary files may be overwritten by later runs on the same date. The per-run files are unique, so manual GitHub `Run workflow` executions are preserved separately from scheduled executions.
+
 The report records:
 
 - sync status: `Success`, `No changes`, `Failed`, or `Blocked`
 - trigger type
+- GitHub run id and run attempt
 - workflow run URL
 - before and after item counts
 - changed files
@@ -119,6 +131,14 @@ The script syncs report files into:
 
 ```text
 reports/
+```
+
+Useful local files:
+
+```text
+reports/achievements-sync/latest.md
+reports/achievements-sync/runs/latest-run.md
+reports/achievements-sync/runs/
 ```
 
 The local `reports/` folder is ignored by Git. It is for local reading only.
@@ -142,6 +162,8 @@ To run manually:
 3. Select `Sync Achievements Data`.
 4. Choose `Run workflow`.
 5. Run it on `main`.
+
+After the manual run finishes, run the local sync script to copy that run's report into `reports/achievements-sync/runs/`.
 
 ## Production Check
 

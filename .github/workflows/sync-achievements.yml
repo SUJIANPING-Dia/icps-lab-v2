@@ -305,6 +305,13 @@ jobs:
           latest_md="$report_dir/latest.md"
           report_json="$report_dir/${report_date}.json"
           latest_json="$report_dir/latest.json"
+          run_report_dir="$report_dir/runs"
+          run_report_base="${report_date}-${GITHUB_EVENT_NAME}-${GITHUB_RUN_ID}-attempt-${GITHUB_RUN_ATTEMPT}"
+          run_report_md="$run_report_dir/${run_report_base}.md"
+          run_report_json="$run_report_dir/${run_report_base}.json"
+          latest_run_md="$run_report_dir/latest-run.md"
+          latest_run_json="$run_report_dir/latest-run.json"
+          mkdir -p "$run_report_dir"
 
           cat > "$report_md" <<REPORT
           # Achievements Sync Report - ${report_date}
@@ -344,6 +351,8 @@ jobs:
           REPORT
 
           cp "$report_md" "$latest_md"
+          cp "$report_md" "$run_report_md"
+          cp "$report_md" "$latest_run_md"
 
           REPORT_DATE="$report_date" \
           REPORT_STATUS="$status" \
@@ -354,12 +363,16 @@ jobs:
           FOLLOW_UP="$follow_up" \
           REPORT_JSON="$report_json" \
           LATEST_JSON="$latest_json" \
+          RUN_REPORT_JSON="$run_report_json" \
+          LATEST_RUN_JSON="$latest_run_json" \
           node <<'NODE'
           const fs = require('fs');
           const report = {
             date: process.env.REPORT_DATE,
             status: process.env.REPORT_STATUS,
             trigger: process.env.GITHUB_EVENT_NAME,
+            run_id: process.env.GITHUB_RUN_ID,
+            run_attempt: process.env.GITHUB_RUN_ATTEMPT,
             report_time_taipei: process.env.REPORT_TIME,
             workflow_run: process.env.WORKFLOW_URL,
             before_count: process.env.BEFORE_COUNT,
@@ -375,6 +388,8 @@ jobs:
           };
           fs.writeFileSync(process.env.REPORT_JSON, `${JSON.stringify(report, null, 2)}\n`);
           fs.copyFileSync(process.env.REPORT_JSON, process.env.LATEST_JSON);
+          fs.copyFileSync(process.env.REPORT_JSON, process.env.RUN_REPORT_JSON);
+          fs.copyFileSync(process.env.REPORT_JSON, process.env.LATEST_RUN_JSON);
           NODE
 
       - name: Publish sync report to automation-reports
@@ -412,7 +427,7 @@ jobs:
           fi
 
           mkdir -p "$report_repo/achievements-sync"
-          cp .automation-report/achievements-sync/* "$report_repo/achievements-sync/"
+          cp -R .automation-report/achievements-sync/. "$report_repo/achievements-sync/"
 
           git -C "$report_repo" add README.md achievements-sync
 
@@ -421,5 +436,5 @@ jobs:
             exit 0
           fi
 
-          git -C "$report_repo" commit -m "Add achievements sync report ${report_date}"
+          git -C "$report_repo" commit -m "Add achievements sync report ${report_date} run ${GITHUB_RUN_ID}"
           git -C "$report_repo" push origin HEAD:automation-reports
