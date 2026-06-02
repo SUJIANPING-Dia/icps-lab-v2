@@ -65,7 +65,9 @@ The workflow must stop without commit or push when:
 - The updated data has zero achievement items.
 - A group is missing `category`, `description`, or non-empty `yearlyData`.
 - A year block is missing `year` or `items`.
-- An achievement item is missing `title`.
+- A `publication` item is missing `title`.
+- A `project` item is missing both `project` and `content`.
+- An `award` or `patent` item is missing all recognizable content fields: `content`, `title`, and `project`.
 - The total achievement item count drops by 30% or more compared with the pre-sync file.
 - The diff includes files other than `src/data/achievements.json`.
 - `npm run build` fails.

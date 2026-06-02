@@ -105,6 +105,38 @@ jobs:
             }
           }
 
+          function hasText(value) {
+            return typeof value === 'string' && value.trim() !== '';
+          }
+
+          function assertAchievementItem(item, group, groupIndex, yearIndex, itemIndex) {
+            const label = `Group ${groupIndex + 1} year block ${yearIndex + 1} item ${itemIndex + 1}`;
+            const type = group.type || 'unknown';
+
+            if (type === 'publication') {
+              assertString(item.title, `${label} title`);
+              return;
+            }
+
+            if (type === 'project') {
+              if (!hasText(item.project) && !hasText(item.content)) {
+                fail(`${label} project/content is missing or empty.`);
+              }
+              return;
+            }
+
+            if (type === 'award' || type === 'patent') {
+              if (!hasText(item.content) && !hasText(item.title) && !hasText(item.project)) {
+                fail(`${label} content/title/project is missing or empty.`);
+              }
+              return;
+            }
+
+            if (!hasText(item.title) && !hasText(item.content) && !hasText(item.project)) {
+              fail(`${label} recognizable content is missing or empty.`);
+            }
+          }
+
           let data;
           try {
             data = JSON.parse(fs.readFileSync('src/data/achievements.json', 'utf8'));
@@ -134,7 +166,7 @@ jobs:
               }
 
               yearBlock.items.forEach((item, itemIndex) => {
-                assertString(item.title, `Group ${groupIndex + 1} year block ${yearIndex + 1} item ${itemIndex + 1} title`);
+                assertAchievementItem(item, group, groupIndex, yearIndex, itemIndex);
                 itemCount += 1;
               });
             });
