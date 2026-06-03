@@ -28,20 +28,12 @@ export const newsData: NewsItem[] = [
         本次研討會以醫學教育與 AI 時代的醫師養成為核心，總計共有 72 篇論文參與發表與評選。iCPS Lab 很榮幸能在眾多醫療與教學單位的研究成果中脫穎而出，並成為本次佳作名單中 <strong>唯一非醫院獲獎單位</strong>，展現工程技術跨入醫學教育場域的應用潛力。
       </p>
 
-      <div class="grid gap-4 md:grid-cols-2 mb-6">
-        <figure class="overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
-          <img src="/images/icme-2026-award-screen.jpg" alt="2026 醫學教育國際研討會佳作得獎名單" class="w-full h-auto block" loading="lazy">
-          <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
-            圖：2026 醫學教育國際研討會得獎名單，iCPS Lab 榮獲佳作，為本次佳作名單中唯一非醫院獲獎單位。
-          </figcaption>
-        </figure>
-        <figure class="overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
-          <img src="/images/icme-2026-award-poster.jpg" alt="AI輔助手術器械辨識教學系統研究海報" class="w-full h-auto block" loading="lazy">
-          <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
-            圖：得獎作品「AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐」研究海報。
-          </figcaption>
-        </figure>
-      </div>
+      <figure class="max-w-xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/icme-2026-award-poster.jpg" alt="AI輔助手術器械辨識教學系統研究海報" class="w-full h-auto block" loading="lazy">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：得獎作品「AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐」研究海報。
+        </figcaption>
+      </figure>
 
       <div class="space-y-6">
         <div class="border-l-4 border-amber-500 pl-4">
