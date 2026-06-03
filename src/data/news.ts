@@ -12,6 +12,46 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-icme-ai-surgical-instrument-award",
+    date: "2026.06.03",
+    tag: "競賽佳績",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "iCPS Lab 於 2026 醫學教育國際研討會榮獲佳作，為唯一非醫院獲獎單位",
+    img: "/images/news-placeholder.jpg",
+    imgAlt: "iCPS Lab 於 2026 醫學教育國際研討會榮獲佳作",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        iCPS Lab 團隊於 2026 年 6 月 3 日前往高雄醫學大學參與 <strong>2026 醫學教育國際研討會</strong>，以作品 <strong>「AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐」</strong> 榮獲 <strong>佳作</strong> 肯定。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次研討會以醫學教育與 AI 時代的醫師養成為核心，總計共有 72 篇論文參與發表與評選。iCPS Lab 很榮幸能在眾多醫療與教學單位的研究成果中脫穎而出，並成為本次佳作名單中 <strong>唯一非醫院獲獎單位</strong>，展現工程技術跨入醫學教育場域的應用潛力。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">得獎作品重點</h3>
+          <p class="text-slate-700 mb-2">
+            本次獲獎作品聚焦於手術器械辨識教學，透過 AI 輔助系統協助護理教育訓練，讓學習者能更有效率地熟悉器械特徵、使用情境與操作流程，進一步支援勝任能力導向教育（Competency-Based Education）的實務落實。
+          </p>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>作品題目：</strong>AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐</li>
+            <li><strong>獲獎獎項：</strong>2026 醫學教育國際研討會 佳作</li>
+            <li><strong>獲獎單位：</strong>國立高雄科技大學電子工程系 iCPS Lab</li>
+            <li><strong>合作場域：</strong>臺安醫院</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">跨域合作的肯定</h3>
+          <p class="text-slate-700">
+            這次獲獎不僅是對系統設計與研究成果的肯定，也代表 AI、智慧感測與醫學教育之間的跨域合作具備實際落地價值。未來 iCPS Lab 將持續推動智慧醫療、AI 教學輔助與臨床教育科技相關研究，讓工程研發能更貼近醫療現場與教學需求。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-itaoi-honorable-mention",
     date: "2026.05.30",
     tag: "學術發表",
