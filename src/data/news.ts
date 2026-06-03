@@ -16,22 +16,22 @@ export const newsData: NewsItem[] = [
     date: "2026.06.03",
     tag: "競賽佳績",
     tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
-    title: "iCPS Lab 於 2026 醫學教育國際研討會榮獲佳作，為唯一非醫院獲獎單位",
+    title: "iCPS Lab 於 2026 醫學教育研討會獲選傑出海報論文，為唯一非醫院獲獎團隊",
     img: "/images/icme-2026-award-ceremony.jpg",
-    imgAlt: "iCPS Lab 團隊於 2026 醫學教育國際研討會獲佳作合影",
+    imgAlt: "iCPS Lab 團隊於 2026 醫學教育研討會獲選傑出海報論文合影",
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
-        iCPS Lab 團隊於 2026 年 6 月 3 日前往高雄醫學大學參與 <strong>2026 醫學教育國際研討會</strong>，以作品 <strong>「AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐」</strong> 榮獲 <strong>佳作</strong> 肯定。
+        iCPS Lab 團隊首次投稿由高雄醫學大學主辦的 <strong>2026 醫學教育研討會</strong>，以作品 <strong>「AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐」</strong> 獲選 <strong>Excellent Poster Submission（傑出海報論文）</strong>，很高興獲得大會委員的肯定。
       </p>
 
       <p class="mb-6 text-slate-700">
-        本次研討會以醫學教育與 AI 時代的醫師養成為核心，總計共有 72 篇論文參與發表與評選。iCPS Lab 很榮幸能在眾多醫療與教學單位的研究成果中獲得肯定，並成為本次獲獎名單中 <strong>唯一非醫院獲獎單位</strong>，展現工程技術跨入醫學教育與護理訓練場域的實作能量。
+        本次大會共收到 72 篇 Poster 稿件，其中 52 篇接受發表，最後選出 6 篇 Excellent Poster Submission。iCPS Lab 為本次 <strong>唯一獲獎的非醫院研究團隊</strong>，謝謝團隊同學的努力，也感謝合作場域在研究與驗證過程中的支持。
       </p>
 
       <figure class="max-w-2xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
-        <img src="/images/icme-2026-award-certificate.jpg" alt="2026 醫學教育國際研討會佳作獎狀" class="w-full h-auto block" loading="lazy">
+        <img src="/images/icme-2026-award-certificate.jpg" alt="2026 醫學教育研討會 Excellent Poster Submission 獎狀" class="w-full h-auto block" loading="lazy">
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
-          圖：iCPS Lab 以「AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐」榮獲 2026 醫學教育國際研討會佳作。
+          圖：iCPS Lab 以「AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐」獲選 Excellent Poster Submission（傑出海報論文）。
         </figcaption>
       </figure>
 
@@ -39,13 +39,13 @@ export const newsData: NewsItem[] = [
         <div class="border-l-4 border-amber-500 pl-4">
           <h3 class="font-semibold text-amber-700 mb-2">作品亮點</h3>
           <p class="text-slate-700 mb-2">
-            本次獲獎作品聚焦於手術器械辨識教學，透過 AI 輔助系統協助護理教育訓練，讓學習者能更有效率地熟悉器械特徵、使用情境與操作流程，進一步支援勝任能力導向教育（Competency-Based Education）的實務落實。
+            本篇論文與台北臺安醫院護理部合作，開發可用來協助外科手術房新進護理師進行手術器械辨識訓練的 AI 教育系統。系統除了可望大幅降低資深護理師的教學時間，也能縮短新進護理師熟悉器械辨識與流程訓練的學習時間。
           </p>
           <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
             <li><strong>作品題目：</strong>AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐</li>
-            <li><strong>獲獎獎項：</strong>2026 醫學教育國際研討會 佳作</li>
+            <li><strong>獲獎獎項：</strong>Excellent Poster Submission（傑出海報論文）</li>
             <li><strong>獲獎單位：</strong>國立高雄科技大學電子工程系 iCPS Lab</li>
-            <li><strong>合作場域：</strong>臺安醫院</li>
+            <li><strong>合作場域：</strong>台北臺安醫院護理部</li>
           </ul>
         </div>
 
