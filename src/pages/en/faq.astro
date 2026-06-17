@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+
+const title = "FAQ | iCPS Lab";
+const description = "English FAQ for prospective students and collaborators interested in iCPS Lab.";
+const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen overflow-x-hidden";
+
+const faqs = [
+  {
+    question: "What does iCPS Lab focus on?",
+    answer: "iCPS Lab focuses on AIoT, edge AI, smart healthcare, smart manufacturing, and deployable cyber-physical systems. The lab emphasizes real-world problems, prototype validation, and field deployment."
+  },
+  {
+    question: "Do I need a strong AI background before joining?",
+    answer: "A strong background is helpful but not the only requirement. Students are expected to learn programming, signal processing, embedded systems, machine learning, and system integration through project-based research."
+  },
+  {
+    question: "Are student names and project names translated in the English site?",
+    answer: "Not always. The English site uses selective localization. Personal names, formal project titles, paper titles, awards, and activity album names may remain in their original language to avoid inaccurate translation."
+  },
+  {
+    question: "What kind of projects can students work on?",
+    answer: "Students may work on AI-assisted healthcare systems, sensing platforms, edge computing prototypes, computer vision applications, XR training systems, and interdisciplinary collaborations with hospitals or industry partners."
+  },
+  {
+    question: "How can prospective students contact the lab?",
+    answer: "Prospective students can review the Chinese FAQ and member pages for detailed local information, then contact Professor Wan-Jung Chang by email when they have clear research interests."
+  },
+  {
+    question: "Is the English website complete?",
+    answer: "The English version is being expanded step by step. The current English pages provide a usable overview, while detailed content pages will be localized gradually."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} bodyClass={bodyClass} lang="en">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  </Fragment>
+
+  <Navbar activePath="/en/faq" lang="en" />
+
+  <main class="flex-grow">
+    <section class="bg-slate-950 text-white">
+      <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24">
+        <p class="text-blue-300 font-black tracking-[0.28em] uppercase text-xs sm:text-sm mb-5">FAQ</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl">Questions for future students and collaborators.</h1>
+        <p class="mt-6 text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl">
+          This English FAQ gives a concise overview. Some formal names and detailed local information remain in Chinese to preserve accuracy.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-5xl mx-auto px-6 py-16 lg:py-20">
+      <div class="space-y-4">
+        {faqs.map((item) => (
+          <article class="bg-white border border-slate-200/70 rounded-[1.5rem] p-6 shadow-sm">
+            <h2 class="text-lg sm:text-xl font-black text-slate-950 mb-3">{item.question}</h2>
+            <p class="text-slate-600 leading-relaxed">{item.answer}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="mt-10 bg-blue-50 border border-blue-100 rounded-[1.5rem] p-6">
+        <h2 class="text-blue-950 font-black text-xl mb-3">Need more detailed local information?</h2>
+        <p class="text-slate-700 leading-relaxed mb-5">
+          The Chinese FAQ contains more detailed information for local students. You can switch back to the Chinese version at any time.
+        </p>
+        <a href="/faq" class="inline-flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-bold px-5 py-3 rounded-full transition">View Chinese FAQ</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

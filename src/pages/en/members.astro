@@ -1,0 +1,101 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Navbar from "../../components/Navbar.astro";
+
+const title = "Members | iCPS Lab";
+const description = "English overview of iCPS Lab members, team structure, and student training culture.";
+const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen overflow-x-hidden";
+
+const groups = [
+  {
+    title: "Principal Investigator",
+    description: "Professor Wan-Jung Chang leads the lab and guides students in AIoT, edge AI, healthcare systems, and interdisciplinary system design."
+  },
+  {
+    title: "Graduate Students",
+    description: "Graduate students develop research projects, prototypes, publications, competitions, and collaborations with clinical or industry partners."
+  },
+  {
+    title: "Undergraduate Project Students",
+    description: "Undergraduate students join project teams to learn AI, sensing, embedded systems, interface design, and applied engineering practices."
+  },
+  {
+    title: "Collaborative Teams",
+    description: "The lab works with hospitals, care institutions, schools, and industry partners to validate AI systems in practical environments."
+  }
+];
+---
+
+<BaseLayout title={title} description={description} bodyClass={bodyClass} lang="en">
+  <Fragment slot="head">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  </Fragment>
+
+  <Navbar activePath="/en/members" lang="en" />
+
+  <main class="flex-grow">
+    <section class="bg-slate-950 text-white">
+      <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24">
+        <p class="text-blue-300 font-black tracking-[0.28em] uppercase text-xs sm:text-sm mb-5">Members</p>
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl">A project-driven research team for intelligent systems.</h1>
+        <p class="mt-6 text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl">
+          The English member page introduces the lab structure and training culture. Personal names remain in their original form to keep identity and records accurate.
+        </p>
+      </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-6 py-16 lg:py-20 space-y-14">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+        <div class="lg:col-span-5">
+          <div class="relative h-full min-h-[420px] rounded-[2.25rem] overflow-hidden bg-slate-900 shadow-2xl">
+            <img src="/images/professor-chang.png" alt="Professor Wan-Jung Chang" class="absolute inset-0 w-full h-full object-cover" onerror="this.src='/images/professor.png';" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+            <div class="absolute left-6 right-6 bottom-6">
+              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 text-white text-[11px] font-bold tracking-widest uppercase backdrop-blur border border-white/20 mb-4">Principal Investigator</div>
+              <h2 class="text-white text-3xl font-black">張萬榮 教授</h2>
+              <p class="text-blue-200 mt-1 font-medium">Wan-Jung Chang, Ph.D.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="h-full bg-white border border-slate-200/70 rounded-[2.25rem] p-8 sm:p-10 lg:p-12 shadow-sm">
+            <p class="text-blue-600 text-xs font-black tracking-[0.25em] uppercase mb-5">Team Culture</p>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight mb-6">Learning by building systems that respond to real needs.</h2>
+            <p class="text-slate-600 leading-relaxed mb-7">
+              iCPS Lab students work across electronics, AI, sensing, embedded deployment, and domain collaboration. The goal is not only to complete a project, but also to understand how research decisions affect real users and field constraints.
+            </p>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
+                <div class="text-slate-900 font-black">Project-based</div>
+                <div class="text-xs text-slate-500 mt-1">Students learn through implementation and validation.</div>
+              </div>
+              <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
+                <div class="text-slate-900 font-black">Interdisciplinary</div>
+                <div class="text-xs text-slate-500 mt-1">Research connects engineering with healthcare and industry.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        {groups.map((group) => (
+          <article class="bg-white border border-slate-200/70 rounded-[1.5rem] p-6 shadow-sm">
+            <h2 class="text-slate-950 font-black text-xl mb-3">{group.title}</h2>
+            <p class="text-slate-600 text-sm leading-relaxed">{group.description}</p>
+          </article>
+        ))}
+      </div>
+
+      <div class="bg-blue-50 border border-blue-100 rounded-[1.5rem] p-6 sm:p-8">
+        <h2 class="text-blue-950 font-black text-2xl mb-3">Full member records remain on the Chinese page.</h2>
+        <p class="text-slate-700 leading-relaxed mb-5">
+          This English page is a first-stage overview. The detailed member list, student names, project titles, and local academic information are currently maintained in the Chinese member page.
+        </p>
+        <a href="/members" class="inline-flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-bold px-5 py-3 rounded-full transition">View Chinese Member List</a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

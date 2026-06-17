@@ -8,14 +8,14 @@ const { activePath = Astro.url.pathname, lang = "zh" } = Astro.props;
 const isEnglish = lang === "en";
 
 const links = [
-  { href: "/", label: "首頁", english: "Home", match: "/" },
+  { href: "/", enHref: "/en", label: "首頁", english: "Home", match: "/", enMatch: "/en" },
   { href: "/about", enHref: "/en/about", label: "關於 iCPS Lab", english: "About", match: "/about", enMatch: "/en/about" },
   { href: "/news", label: "最新消息", english: "News", match: "/news" },
   { href: "/activities", label: "活動花絮", english: "Events", match: "/activities" },
   { href: "/videos", label: "影音專區", english: "Media", match: "/videos" },
   { href: "/achievements", label: "成果榮譽", english: "Achievements", match: "/achievements" },
-  { href: "/members", label: "實驗室成員", english: "Members", match: "/members" },
-  { href: "/faq", label: "常見問題", english: "FAQ", match: "/faq" },
+  { href: "/members", enHref: "/en/members", label: "實驗室成員", english: "Members", match: "/members", enMatch: "/en/members" },
+  { href: "/faq", enHref: "/en/faq", label: "常見問題", english: "FAQ", match: "/faq", enMatch: "/en/faq" },
 ];
 
 const getHref = (link: typeof links[number]) => isEnglish && "enHref" in link && link.enHref ? link.enHref : link.href;
@@ -25,11 +25,20 @@ const getSecondaryLabel = (link: typeof links[number]) => isEnglish ? link.label
 
 const isActive = (match: string) => {
   if (match === "/") return activePath === "/";
+  if (match === "/en") return activePath === "/en";
   return activePath === match || activePath.startsWith(`${match}/`);
 };
 
-const zhHref = activePath === "/en/about" ? "/about" : activePath.startsWith("/en/") ? "/" : activePath;
-const enHref = activePath === "/about" || activePath === "/en/about" ? "/en/about" : "/en/about";
+const normalizedPath = activePath.replace(/\/$/, "") || "/";
+const languagePairs = [
+  { zh: "/", en: "/en" },
+  { zh: "/about", en: "/en/about" },
+  { zh: "/members", en: "/en/members" },
+  { zh: "/faq", en: "/en/faq" },
+];
+const currentPair = languagePairs.find((pair) => pair.zh === normalizedPath || pair.en === normalizedPath);
+const zhHref = currentPair ? currentPair.zh : activePath.startsWith("/en/") ? "/" : activePath;
+const enHref = currentPair ? currentPair.en : "/en";
 ---
 
 <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">

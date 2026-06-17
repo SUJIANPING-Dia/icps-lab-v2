@@ -7,7 +7,7 @@ This document is the human-readable maintenance guide for the iCPS Lab Astro web
 - Astro static site with Tailwind CSS.
 - Shared page shell: `src/layouts/BaseLayout.astro`.
 - Shared global navigation: `src/components/Navbar.astro`.
-- English prototype route: `src/pages/en/about.astro`.
+- English prototype routes: `src/pages/en/index.astro`, `src/pages/en/about.astro`, `src/pages/en/members.astro`, `src/pages/en/faq.astro`.
 - Achievements data: `src/data/achievements.json`.
 - Achievements sync: `.github/workflows/sync-achievements.yml` runs the scraper daily.
 - Repository snapshot backups: `.github/workflows/backup-repo-snapshot.yml` creates a weekly Git bundle artifact.
