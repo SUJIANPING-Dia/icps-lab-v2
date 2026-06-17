@@ -2,74 +2,521 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 
-const title = "FAQ | iCPS Lab";
-const description = "English FAQ for prospective students and collaborators interested in iCPS Lab.";
-const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen overflow-x-hidden";
-
+// ==========================================
+// 🔹 Q&A 資料區 
+// 加入了 section 屬性來區分「學生」與「合作夥伴」
+// ==========================================
 const faqs = [
+  // ---------------- 【 學生與招生專區 】 ----------------
   {
-    question: "What does iCPS Lab focus on?",
-    answer: "iCPS Lab focuses on AIoT, edge AI, smart healthcare, smart manufacturing, and deployable cyber-physical systems. The lab emphasizes real-world problems, prototype validation, and field deployment."
+    section: "👨‍🎓 學生與招生專區", // 用於側邊欄分組標題
+    category: "關於實驗室",
+    items: [
+      {
+        question: "iCPS Lab 主要的研究領域與核心技術是什麼？",
+        answer: "iCPS Lab（Intelligent Cyber-Physical Systems Laboratory，智慧網宇實體系統實驗室）的核心聚焦於『AI 人工智慧』、『智慧醫療（Healthcare AI）』與『智慧製造（Smart Manufacturing）』。我們致力於將物聯網（IoT）、邊緣運算（Edge Computing）與深度學習（Deep Learning）技術完美整合，並將研究成果實際落地應用於醫院臨床與工業製造場域，解決真實世界的問題。"
+      },
+      {
+        question: "實驗室的指導教授是誰？研究方向偏向哪裡？",
+        answer: "本實驗室由張萬榮教授帶領。教授的研究專長與實驗室發展方向高度契合，深度涵蓋 AIoT（智慧物聯網）、MIoT（智慧醫療聯網）與 IIoT（智慧製造聯網）。我們不僅做演算法研究，更重視系統的軟硬體整合與實際應用。"
+      },
+      {
+        question: "教授的指導風格如何？會不會很難溝通？",
+        answer: "張教授的指導風格屬於『方向引導與實作並重』。教授會給予明確的研究大方向與豐沛的資源，同時保留很大的彈性讓學生自由發揮。教授非常重視學生的實作能力與落地成果，且樂於溝通討論，非常適合渴望真正學到紮實技術、累積實戰經驗的學生。"
+      },
+      {
+        question: "實驗室的內部氣氛與學長姐相處狀況如何？",
+        answer: "實驗室整體氛圍是『認真專注但不壓迫』。我們非常重視團隊合作與知識傳承，學長姐與學弟妹之間會互相技術支援、共同解決 Bug。這裡沒有死氣沉沉的學長學弟制，取而代之的是互相交流、共同成長的溫暖環境。"
+      },
+      {
+        question: "實驗室的確切地點在哪裡？",
+        answer: "實驗室位於國立高雄科技大學建工校區的資訊工業大樓8樓。"
+      }
+    ]
   },
   {
-    question: "Do I need a strong AI background before joining?",
-    answer: "A strong background is helpful but not the only requirement. Students are expected to learn programming, signal processing, embedded systems, machine learning, and system integration through project-based research."
+    category: "招生與加入",
+    items: [
+      {
+        question: "實驗室目前還有在招收新生嗎？",
+        answer: "是的，我們隨時歡迎優秀的人才！我們持續招募具備熱忱的博士生、碩士生與大學部專題生。同時，我們具備國際化的研究環境，也非常歡迎國際學生（International Students）的加入。"
+      },
+      {
+        question: "如果我過去沒有 AI 或物聯網的相關背景，還可以加入嗎？",
+        answer: "完全沒問題！我們更看重的是你的『學習意願』與『積極度』。只要你具備基礎的程式邏輯觀念，實驗室會提供完整的培訓計畫與學長姐帶領機制，幫助你穩紮穩打地跨入全新領域。"
+      },
+      {
+        question: "加入實驗室需要精通哪些程式語言？",
+        answer: "我們主要以 Python 作為 AI 開發的核心語言。如果你熟悉 Python，會上手得非常快；若具備 C/C++ 或其他程式語言基礎也十分加分（特別是在 IoT 邊緣裝置開發上）。但這些都不是硬性門檻，只要肯學，進來再培養絕對來得及。"
+      },
+      {
+        question: "我需要先自己學會機器學習（Machine Learning）才能找教授面談嗎？",
+        answer: "不需要有壓力，你不必是 AI 專家才能加入我們。我們會從基礎的演算法概念開始帶你實作，只要你帶著一顆不怕挑戰、願意解決問題的心，就能在這裡逐步成為 AI 領域的專業人才。"
+      }
+    ]
   },
   {
-    question: "Are student names and project names translated in the English site?",
-    answer: "Not always. The English site uses selective localization. Personal names, formal project titles, paper titles, awards, and activity album names may remain in their original language to avoid inaccurate translation."
+    category: "大學部專題",
+    items: [
+      {
+        question: "大學部專題生進入實驗室可以做些什麼？",
+        answer: "專題生可以接觸到業界最前沿的技術！你可以選擇『AI 視覺辨識』、『智慧醫療系統開發』或『IoT 邊緣裝置實作』等方向。我們極度鼓勵專題生將研究化為『可實際展示的雛形系統（Prototype）』，這對未來推甄或求職都是極大的加分亮點。"
+      },
+      {
+        question: "專題題目是教授直接指定，還是可以自己決定？",
+        answer: "兩者皆可。如果你還沒有明確方向，教授與學長姐會提供具發展性的題目供你選擇；如果你已經有感興趣的 Idea，也非常歡迎提出來與教授討論，我們會協助你將其調整為可行且具深度的專題題目。"
+      },
+      {
+        question: "實驗室的專題會不會很難？怕自己做不出來。",
+        answer: "難度會根據你的個人基礎進行『客製化調整』。我們的目標是讓你在『稍微跳一下才抓得到』的合理挑戰範圍內成長，過程中若卡關，學長姐都會從旁協助，不用擔心成為專題孤兒。"
+      },
+      {
+        question: "做專題會花費很多時間，導致影響到日常課業嗎？",
+        answer: "我們秉持『學生本業優先』的原則。只要你懂得妥善進行時間管理、維持穩定的進度產出，通常都能輕鬆兼顧課業成績與專題表現。期中、期末考週也會給予彈性的調整空間。"
+      },
+      {
+      question: "我沒有做過專題，會不會跟不上？",
+      answer: "完全不用擔心。我們更重視的是學習態度而不是起點。實驗室有完整的新手培訓與學長姐帶領機制，會從基礎一步一步帶你上手，即使從零開始也能穩定成長。"
+    },
+    {
+      question: "專題最後可以做出什麼程度的成果？",
+      answer: "我們鼓勵專題不只是報告，而是做出「可以展示的系統 Prototype」。包含完整功能、操作介面甚至實際應用場景，讓你的成果具有實戰價值。"
+    },
+    {
+      question: "專題成果可以用來推甄或找工作嗎？",
+      answer: "非常加分。完整的專題系統、GitHub作品與Demo展示，都是推甄與面試時的強力武器，能讓你在眾多競爭者中脫穎而出。"
+    },
+    {
+      question: "專題會做成完整系統還是只是報告？",
+      answer: "我們以「系統實作導向」為主，不只是寫報告，而是從資料處理、模型設計到前後端整合，打造一個真正能運作的完整系統。"
+    },
+    {
+      question: "有機會參加比賽或發表嗎？",
+      answer: "有的！我們會鼓勵並協助學生參加相關競賽或學術發表，將專題成果提升到更高層次，同時累積寶貴的經驗與履歷亮點。"
+    },
+    {
+      question: "專題過程中會有人帶嗎？還是要自己摸索？",
+      answer: "不會讓你孤軍奮戰。除了教授指導外，學長姐也會提供技術支援與經驗分享，讓你在學習過程中少走很多彎路。"
+    },
+    {
+      question: "專題是個人還是團隊進行？",
+      answer: "我們的專題皆採團隊合作形式，模擬真實業界開發模式。你不只會寫程式，還會學到如何與他人分工、整合系統與解決問題，這些都是未來進入科技產業最關鍵的能力。"
+    },
+    {
+      question: "一週大概需要花多少時間在專題上？",
+      answer: "依進度不同而有所差異，一般來說每週投入約6～12小時即可穩定推進。重點在於持續累積，而不是短期爆量投入。"
+    },
+    {
+      question: "如果我同時有打工，還能兼顧嗎？",
+      answer: "可以的。只要時間規劃得當，大多數學生都能兼顧課業、專題與打工。我們也會提供彈性安排，讓你找到平衡。"
+    },
+    {
+      question: "專題有機會接觸真實醫院或企業資料嗎？",
+      answer: "有機會。透過產學合作，你有可能接觸到真實場域資料，例如醫療影像或產線數據，讓專題更貼近實務應用。"
+    },
+    {
+      question: "專題有機會發展成產品或創業嗎？",
+      answer: "有潛力。我們鼓勵將專題深化為可應用的系統，若具備商業價值，也有機會延伸為產品或創業方向。"
+    },
+    {
+      question: "如果專題做不出來怎麼辦？",
+      answer: "我們會在過程中提供持續的技術協助與方向調整，確保你能逐步完成成果。重點不是一次成功，而是在過程中學會解決問題的能力。"
+    },
+    {
+      question: "專題會只做模型，還是包含完整系統開發？",
+      answer: "不只模型。我們強調從AI模型到系統整合的完整流程，包含資料處理、模型訓練、部署與應用展示，培養真正的實作能力。"
+    }
+    ]
   },
   {
-    question: "What kind of projects can students work on?",
-    answer: "Students may work on AI-assisted healthcare systems, sensing platforms, edge computing prototypes, computer vision applications, XR training systems, and interdisciplinary collaborations with hospitals or industry partners."
+    category: "碩士生相關",
+    items: [
+      {
+        question: "碩士生畢業門檻高嗎？一定要發表論文才能畢業嗎？",
+        answer: "我們強烈鼓勵學生將優秀的研究成果投稿至國內外研討會或期刊，這對你未來的履歷大有益處。但教授也會根據每位學生的職涯目標（如：想去業界當工程師、或想繼續深造）來彈性調整要求與畢業標準。"
+      },
+      {
+        question: "一般來說，碩士生多久可以順利畢業？",
+        answer: "只要你維持正常的研究進度、定期與教授咪聽（Meeting）回報狀況，絕大多數的學生都能在正常年限（約兩年）內順利取得學位畢業，不留人是我們的原則。"
+      },
+      {
+        question: "實驗室有規定『核心工時』或強制打卡嗎？",
+        answer: "我們採取『責任制與時間彈性』的管理方式，沒有硬性的打卡規定。我們重視的是你的『研究進度與產出品質』，而不是你在實驗室座位上待了多久。只要能如期交出成果，時間安排完全由你做主。"
+      },
+      {
+        question: "我是跨考生／程式底子弱，進來後 Coding 壓力會不會大到崩潰？",
+        answer: "不可否認會有一定的技術挑戰期，畢竟我們是實作型實驗室。但請放心，實驗室累積了豐富的 Codebase 與學習資源，且學長姐與老師都會親切地進行 Code Review 與指導，只要你不逃避，一定能順利渡過陣痛期。"
+      },
+      {
+        question: "老師會不會實行微管理（Micro-management）、盯進度盯得很緊？",
+        answer: "教授的風格是『信任與授權』。會提供關鍵的指導與大方向，並根據學生的自律程度調整關心頻率，絕不進行令人窒息的微管理，給予學生充分的自主發揮空間。"
+      },
+      {
+      question: "碩士期間通常會參與幾個研究或專案？",
+      answer: "依個人進度與能力而定，一般會專注於1～2個主要研究或產學專案。我們鼓勵把一個題目做深做完整，而不是同時分散在多個專案上。"
+    },
+    {
+      question: "碩士生需要自己想題目，還是老師會提供？",
+      answer: "兩者皆可。教授會提供具發展性的研究方向與題目，若你有自己的想法，也非常歡迎提出討論，我們會協助調整為可行且具研究價值的題目。"
+    },
+    {
+      question: "平常多久會跟老師 meeting 一次？",
+      answer: "通常每週或每兩週會有固定 meeting，依研究進度彈性調整。透過定期討論，可以確保方向正確並持續推進研究。"
+    },
+    {
+      question: "碩士生之間會有合作還是各做各的？",
+      answer: "多數情況會有合作與交流。不同專題之間常會共享技術與資源，也可能在系統開發或專案中分工合作，提升整體效率與成果品質。"
+    },
+    {
+      question: "實驗室有提供薪資或獎助金嗎？",
+      answer: "有的。我們設有獎學金制度，依學生的能力與表現進行彈性給予。只要願意投入並展現成果，通常都能獲得相對應的回饋。"
+    },
+    {
+      question: "碩士生有機會參與產學計畫嗎？",
+      answer: "有的。實驗室與多家企業與醫院合作，碩士生有機會參與實際專案，接觸真實需求與場域資料，累積寶貴的實戰經驗。"
+    },
+    {
+      question: "碩士生有機會參加國際研討會嗎？",
+      answer: "有機會。若研究成果達到一定水準，實驗室會鼓勵並支持投稿國際研討會，並提供相關資源與經費補助。"
+    },
+    {
+      question: "從這個實驗室畢業後，通常會去哪裡？",
+      answer: "多數畢業生進入科技產業，如半導體、AI、新創公司等，擔任軟體、演算法或系統工程師；也有部分學生選擇繼續攻讀博士，發展學術研究。"
+    },
+    {
+      question: "對想繼續讀博士的人，有支持嗎？",
+      answer: "非常支持。教授會協助規劃研究方向、論文發表與申請策略，並提供推薦與資源，幫助學生順利銜接國內外博士班。"
+    },
+    {
+      question: "這個實驗室的優勢是什麼？（vs 其他lab）",
+      answer: "我們擁有完整的研究支援體系，包含學長姐、博士後研究員與教授親自指導，讓你在技術與研究上都有人帶、有方向。同時由專職助理處理行政事務，讓你能專心投入研究，快速累積真正的實戰能力。"
+    },
+      
+    ]
   },
   {
-    question: "How can prospective students contact the lab?",
-    answer: "Prospective students can review the Chinese FAQ and member pages for detailed local information, then contact Professor Wan-Jung Chang by email when they have clear research interests."
+    category: "博士生相關",
+    items: [
+      {
+        question: "博士生在研究題目的選擇上自由度高嗎？",
+        answer: "非常高。博士生被視為獨立的研究者，具備高度自主性。教授會以合作者的角色與你探討前瞻技術，支持你發展專屬的獨特研究領域與長遠的學術藍圖。"
+      },
+      {
+        question: "實驗室是否支持博士生參與國際學術發表？",
+        answer: "絕對支持且極力鼓勵。針對高品質的國際頂級期刊（Top Journals）與旗艦級研討會（Conferences），實驗室會提供豐沛的學術資源與經費補助，成為你邁向國際學術舞台的最強後盾。"
+      },
+      {
+        question: "在就讀期間，是否有機會參與國際合作或交流？",
+        answer: "有的！視當前執行的研究計畫與題目而定，博士生將有極大機會與國外頂尖大學或跨國企業進行技術交流、合作計畫，甚至爭取短期出國交換的機會。"
+      },
+    {
+      question: "博士生需要發表幾篇論文才能畢業？",
+      answer: "依照高科大博士班畢業門檻，需達到論文點數要求。本實驗室不額外設立限制，會依學生研究進度與品質協助規劃發表策略。"
+    },
+    {
+      question: "主要投稿的期刊或會議層級為何？",
+      answer: "以國際期刊與學術研討會為主，涵蓋AI、智慧醫療與智慧製造等領域，並鼓勵挑戰具影響力的國際期刊與指標性會議。"
+    },
+    {
+      question: "實驗室是否有投稿國際頂級期刊的經驗？",
+      answer: "有的。本實驗室長期累積多篇國際期刊與研討會發表經驗，包含具影響力的期刊與高品質會議，具備完整投稿與審稿應對經驗。"
+    },
+    {
+      question: "博士生有機會擔任第一作者嗎？",
+      answer: "有的。博士生通常為研究主導者，具備擔任第一作者的機會，並負責核心研究內容與論文撰寫。"
+    },
+    {
+      question: "論文寫作會有指導與協助嗎？",
+      answer: "當然。教授與團隊會提供完整的寫作指導，包含論文架構、內容撰寫與投稿策略，協助提升論文品質與接受率。"
+    },
+    {
+      question: "博士生有提供獎學金或經費支持嗎？",
+      answer: "有的。全職博士生可獲得獎學金或相關經費支持，讓學生能專心投入研究與學術發展。"
+    },
+    {
+      question: "是否有機會出國參加國際會議？",
+      answer: "有的。當研究成果達到投稿標準時，實驗室會鼓勵參與國際會議，並提供相關經費補助，拓展國際視野。"
+    },
+    {
+      question: "是否有博士後或研究團隊支援？",
+      answer: "有的。實驗室具備博士後研究員與完整研究團隊，能提供技術支援、經驗傳承與研究討論環境。"
+    },
+    {
+      question: "博士畢業後的出路有哪些？",
+      answer: "畢業生可進入學界（大學教職、研究機構）或產業界（AI、半導體、系統開發等高階研發職位），具備良好的發展潛力與競爭力。"
+    }
+
+    ]
   },
   {
-    question: "Is the English website complete?",
-    answer: "The English version is being expanded step by step. The current English pages provide a usable overview, while detailed content pages will be localized gradually."
+    category: "產學與發展",
+    items: [
+      {
+        question: "實驗室是否有產學合作的專案？能接觸到業界嗎？",
+        answer: "這是我們最大的優勢之一！實驗室接軌大量醫院與知名企業的產學計畫。學生不只是在做模擬數據，而是實際參與業界專案，開發能真正上線使用的系統，提早累積厚實的實戰經驗。"
+      },
+      {
+        question: "研究過程中可以接觸到真實場域的 Data 嗎？",
+        answer: "可以。透過產學合作，你將擁有極難取得的『真實場域數據（Real-world Data）』，例如醫院的臨床影像數據、或工廠產線的即時感測資料。這將使你的研究與業界需求無縫接軌。"
+      },
+      {
+        question: "從 iCPS Lab 畢業後的出路與就業發展好嗎？",
+        answer: "發展非常優異。畢業生多數進入一線科技大廠（如：半導體業、系統廠）、新創 AI 企業擔任演算法工程師、軟體工程師或韌體工程師；部分對學術有熱忱的學生則選擇繼續留在國內外頂尖大學攻讀博士學位。"
+      }
+    ]
+  },
+  {
+    category: "技術與學習",
+    items: [
+      {
+        question: "在實驗室中會學到、用到哪些核心技術？",
+        answer: "技術棧十分廣泛且實用，包含：程式開發（Python, C/C++）、深度學習框架（PyTorch）、電腦視覺（如 YOLO 系列、影像處理技術）、IoT 感測器資料收集、邊緣運算（Edge AI）部署，以及前後端系統整合。"
+      },
+      {
+        question: "實驗室有沒有針對新手的教學或培訓機制？",
+        answer: "我們有非常成熟的新手 Onboarding 機制。包含歷屆傳承下來的完整教學文件、實作演練任務，以及『學長姐一對一帶領』的師徒制，幫助你快速掌握開發工具與研究方法。"
+      },
+      {
+        question: "如果我是完全的『程式小白』，真的可以順利存活嗎？",
+        answer: "只要你具備『解決問題的決心』與『不怕犯錯的勇氣』，絕對可以！很多優秀的學長姐一開始也是從零起步。重點在於願意花時間練習、不懂就大膽提問，實驗室的每個人都很樂意幫助你成長。"
+      }
+    ]
+  },
+  {
+    category: "設備與資源",
+    items: [
+      {
+        question: "實驗室的硬體設備與運算資源充足嗎？",
+        answer: "非常頂級且充足！為了支撐龐大的 AI 運算，我們配備了多台搭載 RTX 3090 / 4090 的高階 GPU 伺服器。在端側設備上，有豐富的 NVIDIA Jetson 邊緣運算裝置、ToF 深度感測器、熱影像儀與各類 IoT 模組供學生實作測試。"
+      },
+      {
+        question: "出國參加研討會或發表論文，有經費補助嗎？",
+        answer: "有的！只要你的論文被優質的學術會議或期刊接受，實驗室與學校通常會全力支持，提供包含會議註冊費、機票與住宿等差旅補助，鼓勵學生拓展國際視野。"
+      }
+    ]
+  },
+  {
+    category: "其他常見問題",
+    items: [
+      {
+        question: "大家常說理工實驗室很『爆肝』，這裡會嗎？",
+        answer: "在專案死線（Deadline）或論文投稿前夕，無可避免會稍微忙碌。但我們極度反對『無效的長時間加班』與『瞎忙』。只要你平時效率夠高、進度有顧好，完全可以準時下班去運動或享受生活。"
+      },
+      {
+        question: "真的可以準時畢業嗎？會不會被惡意留人？",
+        answer: "實驗室絕對不會無故留人。只要你按部就班完成指導教授規定的進度與畢業門檻，歷年來絕大多數的學生都是準時戴上畢業帽的。"
+      },
+      {
+        question: "如果進來後發現研究方向跟預期不同，可以更換嗎？",
+        answer: "我們保有很大的彈性。如果你在初期摸索後，發現對另一個題目更有熱忱，隨時可以跟教授約時間討論，教授會評估可行性並協助你平滑地轉換研究軌道。"
+      },
+      {
+        question: "實驗室平常除了做研究，會有聚餐或休閒活動嗎？",
+        answer: "當然有！我們深知『休息是為了走更長遠的路』。實驗室會不定期舉辦期中/期末聚餐、迎新送舊、或是揪團打球等交流活動，在認真做研究之餘，也兼顧大家的情感聯繫與身心健康。"
+      },
+          {
+      question: "進實驗室後會不會壓力很大？",
+      answer: "多少會有一定的挑戰，但我們有完整的團隊支援與學長姐協助，不會讓你孤軍奮戰。重點是讓你在可承受的範圍內成長，而不是被壓力壓垮。"
+    },
+    {
+      question: "實驗室氣氛會不會很嚴肅或很競爭？",
+      answer: "不會。整體氛圍偏輕鬆且合作導向，大家會互相幫忙、一起解決問題，也會有聚餐與交流活動，是認真但不壓迫的環境。"
+    },
+    {
+      question: "平常需要待在實驗室很長時間嗎？",
+      answer: "不需要。我們採彈性時間管理，重視的是成果而不是待的時間長短。不過研究生會有自己的專屬座位，方便進行研究與討論。"
+    },
+    {
+      question: "會不會很孤單，沒人可以問問題？",
+      answer: "不會。實驗室有學長姐、博士後與團隊支援，遇到問題都可以隨時討論與求助，整體環境是鼓勵交流與互助的。"
+    },
+    {
+      question: "需要很強的數學或程式能力嗎？",
+      answer: "不需要一開始就很強。我們更看重學習態度與解決問題的能力，只要願意學習，實驗室會提供資源與指導幫助你成長。"
+    },
+    {
+      question: "會不會只是幫老師做研究？",
+      answer: "不會。我們重視學生的參與與成長，研究過程中你會實際參與系統開發與問題解決，累積的是屬於你自己的能力與經驗。"
+    },
+    {
+      question: "這裡學到的技能在業界用得到嗎？",
+      answer: "可以。我們強調實作與系統整合，包含AI模型、系統開發與實際應用，這些都是業界高度需求的核心技能。"
+    },
+    {
+      question: "這個實驗室適合什麼樣的人？",
+      answer: "適合願意學習、主動解決問題、對技術有興趣的人。如果你希望在研究過程中真正學到實戰能力，這裡會很適合你。"
+    },
+    {
+      question: "不適合什麼樣的人？",
+      answer: "如果不太願意投入時間學習，或希望完全被動等待指派任務，可能會比較不適合。我們重視主動性與成長意願。"
+    },
+    {
+      question: "如果只是想順順畢業，適合來嗎？",
+      answer: "可以，但比較不建議，你可能會錯過很多成長機會。我們希望提供的環境更適合希望提升技術能力與累積實戰經驗的學生。"
+    },
+    {
+      question: "如果很想學技術，這裡適合嗎？",
+      answer: "非常適合。我們強調實作導向與系統開發，能讓你從基礎一路累積到具備實戰能力，對未來求職或進階研究都有很大幫助。"
+    }
+    ]
+  },
+  
+  // ---------------- 【 企業與產學合作專區 】 ----------------
+  {
+    section: "🤝 企業與產學合作", // 觸發第二個側邊欄標題
+    category: "產學合作與對外服務",
+    items: [
+      {
+        question: "iCPS Lab 是否提供企業或醫院合作？",
+        answer: "是的，我們長期與醫院及企業合作，涵蓋智慧醫療、AI影像辨識、智慧製造與IoT系統整合等領域，協助將研究成果實際落地。"
+      },
+      {
+        question: "可以協助開發哪些類型的AI或系統？",
+        answer: "我們可協助開發包含影像辨識（如瑕疵檢測、醫療影像分析）、行為辨識、感測數據分析、智慧監測系統以及AI邊緣運算部署等應用。"
+      },
+      {
+        question: "是否有實際醫院或產業合作經驗？",
+        answer: "有的，我們已與多家醫療機構與企業進行產學合作，包含臨床輔助系統、智慧監測系統與製造端AI檢測應用，具備完整實務經驗。"
+      },
+      {
+        question: "合作模式通常是什麼形式？",
+        answer: "常見合作模式包含產學合作計畫、技術委託開發、系統驗證測試以及共同申請政府計畫（如國科會、產學計畫）等。"
+      },
+      {
+        question: "是否可以處理真實場域資料（如醫療或產線資料）？",
+        answer: "可以，我們具備處理真實場域資料的經驗，並重視資料隱私與安全，特別是在醫療應用中可配合IRB流程進行研究與開發。"
+      },
+      {
+        question: "合作是否需要很高的技術門檻？",
+        answer: "不需要，合作可以從問題討論與需求分析開始，我們會協助評估可行性並提出適合的技術方案。"
+      },
+      {
+        question: "是否可以進行PoC（概念驗證）或Prototype開發？",
+        answer: "可以，我們非常擅長從0到1建立原型系統（Prototype）與PoC驗證，幫助合作單位快速評估技術可行性與商業價值。"
+      },
+      {
+        question: "是否提供技術轉移或成果落地服務？",
+        answer: "是的，我們的目標不只是研究，而是讓技術真正落地，包含系統部署、模型優化與實際應用導入。"
+      },
+      {
+        question: "合作可以帶來哪些價值？",
+        answer: "合作單位可獲得AI技術導入、流程優化、成本降低與效率提升，同時也能透過產學合作提升技術競爭力與創新能力。"
+      },
+      {
+        question: "如果有合作需求，要如何聯絡？",
+        answer: "歡迎透過網站 Contact Us 或直接聯絡指導教授與實驗室，我們將安排進一步的需求討論與合作規劃。"
+      }
+    ]
   }
 ];
+
+const totalFaqItems = faqs.reduce((sum, group) => sum + group.items.length, 0);
+const cooperationIndex = faqs.findIndex(group => group.section === "🤝 企業與產學合作");
+const studentFaqItems = faqs.filter((_, index) => cooperationIndex === -1 || index < cooperationIndex).reduce((sum, group) => sum + group.items.length, 0);
+const partnerFaqItems = faqs.filter((_, index) => cooperationIndex !== -1 && index >= cooperationIndex).reduce((sum, group) => sum + group.items.length, 0);
+const title = "FAQ | iCPS Lab";
+const description = "Frequently asked questions about joining iCPS Lab, student research, graduate training, lab resources, and collaboration.";
+const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative";
 ---
 
 <BaseLayout title={title} description={description} bodyClass={bodyClass} lang="en">
   <Fragment slot="head">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style is:global>
+    .hide-scrollbar::-webkit-scrollbar{display:none}.hide-scrollbar{-ms-overflow-style:none;scrollbar-width:none}
+    [data-reveal]{opacity:0;transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+    [data-reveal="up"]{transform:translateY(28px)}[data-reveal="left"]{transform:translateX(-28px)}[data-reveal="zoom"]{transform:scale(.97)}[data-reveal].is-visible{opacity:1;transform:translate(0,0) scale(1)}
+    .faq-category-group{display:none}.faq-category-group.is-active{display:block;animation:faqPanelIn .38s cubic-bezier(.22,1,.36,1) both}@keyframes faqPanelIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+    .faq-answer-content{max-height:0;overflow:hidden;opacity:0;transition:max-height .35s cubic-bezier(.22,1,.36,1),opacity .25s ease}.faq-item.is-open .faq-answer-content{max-height:580px;opacity:1}.faq-item.is-open .faq-icon{transform:rotate(45deg)}.faq-item.is-open{border-color:#bfdbfe;box-shadow:0 18px 45px -32px rgba(37,99,235,.55)}
+    .faq-tab-btn.is-active{background:linear-gradient(135deg,#1d4ed8,#0f172a);color:#fff;border-color:transparent;box-shadow:0 16px 35px -22px rgba(37,99,235,.8)}.faq-tab-btn.is-active .tab-count{background:rgba(255,255,255,.16);color:#fff}.faq-tab-btn.is-active .tab-dot{background:#93c5fd}
+    </style>
   </Fragment>
 
+  <!-- 🔷 頂部導覽列 (Navbar) -->
   <Navbar activePath="/en/faq" lang="en" />
 
-  <main class="flex-grow">
-    <section class="bg-slate-950 text-white">
-      <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24">
-        <p class="text-blue-300 font-black tracking-[0.28em] uppercase text-xs sm:text-sm mb-5">FAQ</p>
-        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight max-w-4xl">Questions for future students and collaborators.</h1>
-        <p class="mt-6 text-slate-300 text-base sm:text-lg leading-relaxed max-w-3xl">
-          This English FAQ gives a concise overview. Some formal names and detailed local information remain in Chinese to preserve accuracy.
+  <header class="relative overflow-hidden border-b border-blue-900/10 bg-slate-950">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,.28),transparent_34%),radial-gradient(circle_at_78%_18%,rgba(14,165,233,.18),transparent_30%),linear-gradient(135deg,#020617_0%,#0f172a_48%,#0b2a4a_100%)]"></div>
+    <div class="absolute inset-0 opacity-[0.08] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:44px_44px]"></div>
+    <div class="relative max-w-7xl mx-auto px-6 py-16 lg:py-20">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-7" data-reveal="up">
+          <a href="/en" class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-blue-200/90 bg-white/8 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md hover:bg-white/12 transition mb-7"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to Home</a>
+          <div class="inline-flex items-center gap-3 mb-4"><span class="w-9 h-1 bg-blue-400 rounded-full"></span><span class="text-blue-200 text-xs font-black tracking-[0.24em] uppercase">FAQ Center</span></div>
+          <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight mb-5">常見問題<br class="hidden sm:block" />快速查詢</h1>
+          <p class="text-slate-300 text-base md:text-lg leading-relaxed max-w-2xl">整理學生加入、專題研究、碩博士培育、實驗室資源與產學合作等常見問題，協助你更快找到需要的資訊。</p>
+        </div>
+        <div class="lg:col-span-5" data-reveal="zoom" style="transition-delay:120ms;">
+          <div class="rounded-[2rem] border border-white/15 bg-white/10 backdrop-blur-xl p-5 shadow-2xl shadow-blue-950/30">
+            <div class="relative group"><div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><svg class="h-5 w-5 text-blue-200 group-focus-within:text-blue-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></div><input type="text" id="faq-search-input" class="block w-full pl-12 pr-11 py-4 bg-white text-slate-900 placeholder-slate-400 border border-white/20 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/25 focus:border-blue-300 transition-all duration-300 shadow-lg" placeholder="搜尋：專題、畢業、獎學金、產學合作..." /><button id="clear-search" class="absolute inset-y-0 right-0 pr-4 flex items-center hidden text-slate-400 hover:text-slate-700" aria-label="清除搜尋"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button></div>
+            <div class="grid grid-cols-3 gap-3 mt-4"><div class="rounded-2xl bg-white/10 border border-white/10 p-4 text-white"><div class="text-2xl font-black tabular-nums">{totalFaqItems}</div><div class="text-[10px] tracking-widest uppercase text-blue-100 mt-1">Questions</div></div><div class="rounded-2xl bg-white/10 border border-white/10 p-4 text-white"><div class="text-2xl font-black tabular-nums">{faqs.length}</div><div class="text-[10px] tracking-widest uppercase text-blue-100 mt-1">Categories</div></div><div class="rounded-2xl bg-white/10 border border-white/10 p-4 text-white"><div class="text-2xl font-black tabular-nums">2</div><div class="text-[10px] tracking-widest uppercase text-blue-100 mt-1">Audiences</div></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-20"><div class="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-blue-50/80 to-transparent pointer-events-none"></div><div class="relative max-w-7xl mx-auto px-6 py-12 lg:py-16 min-h-[55vh]"><div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+    <aside class="lg:col-span-4 xl:col-span-3" id="faq-sidebar" data-reveal="left"><div class="lg:sticky lg:top-8 space-y-4"><div class="bg-white/90 backdrop-blur rounded-[1.5rem] border border-slate-200 shadow-sm p-4"><div class="flex items-center justify-between mb-4 px-1"><div><h2 class="text-sm font-black text-slate-900 tracking-wide">問題分類</h2><p class="text-xs text-slate-500 mt-1">選擇主題瀏覽 FAQ</p></div><span class="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-100 px-2 py-1 rounded-full">{faqs.length}</span></div><div class="flex lg:flex-col overflow-x-auto lg:overflow-visible hide-scrollbar gap-2 pb-1 lg:pb-0" id="faq-tabs-container">
+      {faqs.map((faqGroup, index) => (<>{faqGroup.section && (<div class={`${index !== 0 ? 'lg:mt-5' : ''} hidden lg:flex items-center gap-2 px-2 py-2`}><span class="text-xs font-black text-slate-400 tracking-widest uppercase">{faqGroup.section}</span></div>)}<button class={`faq-tab-btn ${index === 0 ? 'is-active' : ''} flex-shrink-0 lg:w-full min-w-[190px] lg:min-w-0 text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-250 border border-slate-200 bg-white text-slate-700 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-800`} data-target={`category-${index}`}><div class="flex items-center gap-3"><span class="tab-dot w-2 h-2 rounded-full bg-slate-300 shrink-0"></span><span class="flex-1 truncate">{faqGroup.category}</span><span class="tab-count inline-flex items-center justify-center bg-slate-100 text-slate-500 rounded-full min-w-6 h-6 px-2 text-xs">{faqGroup.items.length}</span></div></button></>))}
+    </div></div><div class="hidden lg:block rounded-[1.5rem] bg-slate-900 text-white p-5 overflow-hidden relative"><div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-blue-500/20 blur-2xl"></div><div class="relative"><div class="text-xs font-black text-blue-200 tracking-widest uppercase mb-2">Need more help?</div><p class="text-sm text-slate-300 leading-relaxed mb-4">找不到想問的內容，可直接聯絡實驗室窗口。</p><a href="mailto:allenchang@nkust.edu.tw" class="inline-flex items-center gap-2 text-sm font-bold bg-white text-slate-900 hover:bg-blue-50 px-4 py-2.5 rounded-xl transition">聯絡我們<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a></div></div></div></aside>
+
+    <section class="lg:col-span-8 xl:col-span-9" id="faq-content-area" data-reveal="up" style="transition-delay:120ms;"><div id="search-state" class="hidden mb-6 rounded-[1.5rem] border border-blue-100 bg-blue-50 px-5 py-4 text-sm text-blue-900"><div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3"><div>搜尋結果：<span id="search-count" class="font-black">0</span> 筆符合「<span id="search-keyword" class="font-black"></span>」</div><button id="search-reset-inline" class="text-blue-700 font-bold hover:text-blue-900 text-left sm:text-right">清除搜尋</button></div></div><div id="no-results-msg" class="hidden text-center py-16 px-6 bg-white rounded-[1.5rem] border border-dashed border-slate-300 shadow-sm"><h3 class="text-xl font-black text-slate-800 mb-2">找不到相關問題</h3><p class="text-slate-500 text-sm sm:text-base leading-relaxed">請嘗試更換關鍵字，或直接與我們聯絡。</p></div><div id="faq-groups-container">
+      {faqs.map((faqGroup, groupIndex) => (<div id={`category-${groupIndex}`} class={`faq-category-group ${groupIndex === 0 ? 'is-active' : ''}`}><div class="mb-6"><div class="inline-flex items-center gap-3 mb-3"><span class="w-9 h-1 bg-blue-600 rounded-full"></span><span class="text-blue-700 text-xs font-black tracking-widest uppercase">FAQ Category</span></div><div class="flex flex-col md:flex-row md:items-end justify-between gap-3"><div><h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">{faqGroup.category}</h2><p class="text-sm text-slate-500 mt-2">共 {faqGroup.items.length} 個常見問題</p></div><button class="open-all-btn inline-flex items-center gap-2 text-sm font-bold text-blue-700 bg-white border border-blue-100 hover:bg-blue-50 px-4 py-2.5 rounded-full transition shadow-sm" data-group={`category-${groupIndex}`}>展開本分類<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg></button></div></div><div class="space-y-3">{faqGroup.items.map((item, itemIndex) => {const uniqueId = `faq-${groupIndex}-${itemIndex}`;return (<div class="faq-item bg-white border border-slate-200 rounded-[1.25rem] overflow-hidden shadow-sm transition-all duration-300" data-question={item.question.toLowerCase()} data-answer={item.answer.toLowerCase()}><button class="faq-btn w-full px-5 py-4 sm:px-6 sm:py-5 text-left flex justify-between gap-5 items-start focus:outline-none group hover:bg-slate-50 transition" aria-expanded="false" aria-controls={uniqueId}><div class="flex items-start gap-4 min-w-0"><span class="hidden sm:inline-flex w-8 h-8 rounded-xl bg-blue-50 text-blue-700 items-center justify-center text-xs font-black shrink-0 mt-[-2px]">Q</span><span class="font-black text-slate-800 text-[15px] sm:text-base group-hover:text-blue-700 transition leading-relaxed faq-question-text">{item.question}</span></div><span class="faq-icon w-9 h-9 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300 shrink-0 flex items-center justify-center"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path></svg></span></button><div id={uniqueId} class="faq-answer-content bg-gradient-to-b from-slate-50 to-white border-t border-slate-100"><div class="px-5 py-5 sm:px-6 sm:py-6 text-slate-600 text-sm sm:text-[15px] leading-loose faq-answer-text flex gap-4"><span class="hidden sm:inline-flex w-8 h-8 rounded-xl bg-slate-900 text-white items-center justify-center text-xs font-black shrink-0">A</span><span>{item.answer}</span></div></div></div>);})}</div></div>))}
+    </div></section>
+  </div></div></main>
+
+  <!-- 🔷 頁尾 (Footer) -->
+  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
+      <div class="md:w-1/2">
+        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
+        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+          Intelligent Cyber-Physical Systems Laboratory <br/>
+          國立高雄科技大學 (NKUST)
         </p>
       </div>
-    </section>
-
-    <section class="max-w-5xl mx-auto px-6 py-16 lg:py-20">
-      <div class="space-y-4">
-        {faqs.map((item) => (
-          <article class="bg-white border border-slate-200/70 rounded-[1.5rem] p-6 shadow-sm">
-            <h2 class="text-lg sm:text-xl font-black text-slate-950 mb-3">{item.question}</h2>
-            <p class="text-slate-600 leading-relaxed">{item.answer}</p>
-          </article>
-        ))}
+      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
+        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
-
-      <div class="mt-10 bg-blue-50 border border-blue-100 rounded-[1.5rem] p-6">
-        <h2 class="text-blue-950 font-black text-xl mb-3">Need more detailed local information?</h2>
-        <p class="text-slate-700 leading-relaxed mb-5">
-          The Chinese FAQ contains more detailed information for local students. You can switch back to the Chinese version at any time.
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+        <p class="text-xs text-slate-500 leading-normal">
+          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
         </p>
-        <a href="/faq" class="inline-flex items-center justify-center bg-blue-700 hover:bg-blue-800 text-white font-bold px-5 py-3 rounded-full transition">View Chinese FAQ</a>
+        <p class="text-xs text-slate-500 hidden sm:block">|</p>
+        <p class="text-xs text-slate-500">All rights reserved.</p>
       </div>
-    </section>
-  </main>
+
+      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-600 mx-1">|</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">
+  載入中...
+</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const tabBtns=Array.from(document.querySelectorAll('.faq-tab-btn')),categoryGroups=Array.from(document.querySelectorAll('.faq-category-group')),searchInput=document.getElementById('faq-search-input'),clearSearchBtn=document.getElementById('clear-search'),searchResetInline=document.getElementById('search-reset-inline'),noResultsMsg=document.getElementById('no-results-msg'),sidebar=document.getElementById('faq-sidebar'),searchState=document.getElementById('search-state'),searchCount=document.getElementById('search-count'),searchKeyword=document.getElementById('search-keyword');let currentActiveTabTarget='category-0';
+      const closeAllInGroup=(group)=>{group.querySelectorAll('.faq-item.is-open').forEach(item=>{item.classList.remove('is-open');const btn=item.querySelector('.faq-btn');if(btn)btn.setAttribute('aria-expanded','false')})};const switchTab=(targetId)=>{currentActiveTabTarget=targetId;tabBtns.forEach(btn=>btn.classList.toggle('is-active',btn.getAttribute('data-target')===targetId));categoryGroups.forEach(group=>{group.classList.toggle('is-active',group.id===targetId);if(group.id!==targetId)closeAllInGroup(group)})};
+      tabBtns.forEach(btn=>btn.addEventListener('click',()=>{if(searchInput&&searchInput.value.trim()!=='')resetSearch(false);switchTab(btn.getAttribute('data-target'));window.scrollTo({top:document.querySelector('main').offsetTop-20,behavior:'smooth'})}));document.querySelectorAll('.faq-btn').forEach(btn=>btn.addEventListener('click',()=>{const item=btn.closest('.faq-item'),group=btn.closest('.faq-category-group'),willOpen=!item.classList.contains('is-open');if(group)closeAllInGroup(group);item.classList.toggle('is-open',willOpen);btn.setAttribute('aria-expanded',willOpen?'true':'false')}));
+      document.querySelectorAll('.open-all-btn').forEach(btn=>btn.addEventListener('click',()=>{const group=document.getElementById(btn.getAttribute('data-group'));if(!group)return;const items=Array.from(group.querySelectorAll('.faq-item:not(.hidden)'));const shouldOpen=items.some(item=>!item.classList.contains('is-open'));items.forEach(item=>{item.classList.toggle('is-open',shouldOpen);const faqBtn=item.querySelector('.faq-btn');if(faqBtn)faqBtn.setAttribute('aria-expanded',shouldOpen?'true':'false')});btn.childNodes[0].textContent=shouldOpen?'收合本分類':'展開本分類'}));
+      const performSearch=(term)=>{const searchTerm=term.toLowerCase().trim();let resultCount=0;if(searchTerm===''){resetSearch(false);return}clearSearchBtn.classList.remove('hidden');searchState.classList.remove('hidden');sidebar.classList.add('opacity-60');noResultsMsg.classList.add('hidden');searchKeyword.textContent=searchTerm;categoryGroups.forEach(group=>{let hasResultInGroup=false;group.querySelectorAll('.faq-item').forEach(item=>{const q=item.getAttribute('data-question')||'',a=item.getAttribute('data-answer')||'',matched=q.includes(searchTerm)||a.includes(searchTerm);item.classList.toggle('hidden',!matched);item.classList.remove('is-open');const btn=item.querySelector('.faq-btn');if(btn)btn.setAttribute('aria-expanded','false');if(matched){hasResultInGroup=true;resultCount+=1}});group.classList.toggle('is-active',hasResultInGroup)});searchCount.textContent=String(resultCount);noResultsMsg.classList.toggle('hidden',resultCount!==0)};
+      function resetSearch(keepFocus=true){if(searchInput)searchInput.value='';clearSearchBtn.classList.add('hidden');searchState.classList.add('hidden');noResultsMsg.classList.add('hidden');sidebar.classList.remove('opacity-60');document.querySelectorAll('.faq-item').forEach(item=>{item.classList.remove('hidden','is-open');const btn=item.querySelector('.faq-btn');if(btn)btn.setAttribute('aria-expanded','false')});switchTab(currentActiveTabTarget);if(keepFocus&&searchInput)searchInput.focus()}if(searchInput)searchInput.addEventListener('input',e=>performSearch(e.target.value));if(clearSearchBtn)clearSearchBtn.addEventListener('click',()=>resetSearch(true));if(searchResetInline)searchResetInline.addEventListener('click',()=>resetSearch(true));
+      const revealObs=new IntersectionObserver((entries,obs)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');obs.unobserve(entry.target)}})},{threshold:.12,rootMargin:'0px 0px -50px 0px'});document.querySelectorAll('[data-reveal]').forEach(el=>revealObs.observe(el));
+      const initCounter=async()=>{const counterEl=document.getElementById('visitor-count');if(!counterEl)return;const namespace='icpslab_site',key='visits',localCountKey='icps_saved_count',lastVisitTimeKey='icps_last_visit_time',TTL=86400000;let currentCount=localStorage.getItem(localCountKey)||'000000';const lastVisitTime=localStorage.getItem(lastVisitTimeKey),now=Date.now(),visited=lastVisitTime&&(now-parseInt(lastVisitTime,10)<TTL);try{const url='https://api.counterapi.dev/v1/'+namespace+'/'+key;const response=await fetch(visited?url:url+'/up');if(!response.ok)throw new Error('API Error');const data=await response.json();currentCount=String(data.count).padStart(6,'0');if(!visited)localStorage.setItem(lastVisitTimeKey,now.toString());localStorage.setItem(localCountKey,currentCount)}catch(error){}counterEl.textContent=currentCount};initCounter();
+    });
+  </script>
 </BaseLayout>

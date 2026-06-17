@@ -2,8 +2,8 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 
-const title = "About iCPS Lab | Intelligent Cyber-Physical Systems Lab";
-const description = "An English prototype page introducing iCPS Lab research focus, system-building approach, collaboration fields, and student training.";
+const title = "About iCPS Lab | Intelligent Cyber-Physical Systems Laboratory";
+const description = "Introduction to iCPS Lab, research directions, system-building approach, training, and collaboration fields.";
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative flex flex-col min-h-screen overflow-x-hidden";
 ---
 
@@ -13,193 +13,595 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
   </Fragment>
 
+  <!-- ============================================================ -->
+  <!-- 🔒 導覽列：共用元件                                          -->
+  <!-- ============================================================ -->
   <Navbar activePath="/en/about" lang="en" />
 
-  <header class="relative overflow-hidden bg-slate-950 border-b border-slate-800">
+  <!-- ============================================================ -->
+  <!-- ✨ 頁面 Hero：內容重新設計                                    -->
+  <!-- ============================================================ -->
+  <header class="relative min-h-[520px] lg:min-h-[600px] overflow-hidden bg-slate-950 border-b border-slate-800">
+    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full opacity-80 pointer-events-none"></canvas>
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(37,99,235,0.28),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(14,165,233,0.18),transparent_34%),linear-gradient(135deg,#020617_0%,#0f172a_52%,#071327_100%)]"></div>
     <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:56px_56px] opacity-30"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#f8fafc] to-transparent"></div>
+    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f8fafc] to-transparent"></div>
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:py-28">
+    <div class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-28 lg:pt-24 lg:pb-36">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-        <div class="lg:col-span-7">
-          <a href="/about" class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-blue-200 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md mb-8 hover:bg-white/10 transition">
-            View Chinese Version
+        <div class="lg:col-span-7 rv rv-left">
+          <a href="/en" class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-blue-200 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md mb-8 hover:bg-white/10 transition">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
+            Back to Home
           </a>
           <p class="text-blue-300 font-black tracking-[0.28em] uppercase text-xs sm:text-sm mb-4">About iCPS Lab</p>
           <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.05]">
-            Building AI systems<br />
-            that work in the <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-200 to-white">real world</span>.
+            把 AI 研究，<br />
+            做成能被現場使用的<span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-200 to-white">系統</span>。
           </h1>
           <p class="mt-7 text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-            The Intelligent Cyber-Physical Systems Lab focuses on AIoT, edge computing, smart healthcare, and smart manufacturing. We connect sensing, AI modeling, and deployment to build systems that address real field needs.
+            智慧網宇實體系統實驗室聚焦 AIoT、邊緣運算、智慧醫療與智慧製造，從資料感測、模型設計到系統落地，打造能回應真實痛點的跨域解決方案。
           </p>
           <div class="mt-9 flex flex-col sm:flex-row gap-3">
             <a href="#mission" class="inline-flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 rounded-full shadow-lg shadow-blue-950/30 transition hover:-translate-y-0.5">
-              Explore the Lab
+              了解研究定位
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
             </a>
             <a href="mailto:allenchang@nkust.edu.tw" class="inline-flex justify-center items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold px-6 py-3 rounded-full border border-white/15 backdrop-blur transition hover:-translate-y-0.5">
-              Contact Us
+              合作洽詢
             </a>
           </div>
         </div>
 
-        <div class="lg:col-span-5">
-          <div class="relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/15 rounded-[2rem] p-6 sm:p-7 shadow-2xl">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.35),transparent_28%),radial-gradient(circle_at_85%_15%,rgba(34,211,238,0.18),transparent_30%)]"></div>
-            <div class="relative z-10">
-              <p class="text-blue-200 text-xs font-black tracking-[0.24em] uppercase mb-2">System Workflow</p>
-              <h2 class="text-white text-2xl sm:text-3xl font-black tracking-tight mb-8">From data to field deployment</h2>
-              <div class="space-y-4">
-                {[
-                  ["01", "Sensing", "Collect images, ToF signals, thermal data, and field-specific sensor streams."],
-                  ["02", "AI Modeling", "Train and validate models that turn raw data into actionable decisions."],
-                  ["03", "Edge Deploy", "Bring real-time feedback into clinical, industrial, and human-centered environments."]
-                ].map(([step, heading, copy]) => (
-                  <div class="flex items-center gap-4 rounded-2xl bg-white/10 border border-white/10 p-4">
-                    <div class="w-12 h-12 rounded-xl bg-blue-400/15 border border-blue-300/20 flex items-center justify-center shrink-0 text-blue-200 font-black">{step}</div>
+        <div class="lg:col-span-5 rv rv-right rv-delay-200">
+          <div class="relative">
+            <div class="absolute -inset-4 bg-cyan-500/20 blur-3xl rounded-[3rem]"></div>
+            <div class="relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/15 rounded-[2rem] p-6 sm:p-7 shadow-2xl">
+              <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.35),transparent_28%),radial-gradient(circle_at_85%_15%,rgba(34,211,238,0.18),transparent_30%)]"></div>
+              <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:36px_36px] opacity-40"></div>
+
+              <div class="relative z-10">
+                <div class="flex items-center justify-between mb-8">
+                  <div>
+                    <p class="text-blue-200 text-xs font-black tracking-[0.24em] uppercase mb-2">System Workflow</p>
+                    <h2 class="text-white text-2xl sm:text-3xl font-black tracking-tight">從資料到現場部署</h2>
+                  </div>
+                  <div class="w-12 h-12 rounded-2xl bg-blue-500/20 border border-blue-300/20 flex items-center justify-center">
+                    <svg class="w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                  </div>
+                </div>
+
+                <div class="space-y-4">
+                  <div class="workflow-card group flex items-center gap-4 rounded-2xl bg-white/10 border border-white/10 p-4 transition-all duration-300 hover:bg-white/15 hover:-translate-y-0.5">
+                    <div class="w-12 h-12 rounded-xl bg-cyan-400/15 border border-cyan-300/20 flex items-center justify-center shrink-0 text-cyan-200 font-black">01</div>
                     <div>
-                      <h3 class="text-white font-black text-lg">{heading}</h3>
-                      <p class="text-slate-400 text-sm mt-0.5">{copy}</p>
+                      <h3 class="text-white font-black text-lg">Sensing</h3>
+                      <p class="text-slate-400 text-sm mt-0.5">感測資料、影像訊號、臨床與產線場域資料蒐集</p>
                     </div>
                   </div>
-                ))}
+
+                  <div class="relative ml-6 h-6 border-l border-dashed border-blue-300/30"></div>
+
+                  <div class="workflow-card group flex items-center gap-4 rounded-2xl bg-white/10 border border-white/10 p-4 transition-all duration-300 hover:bg-white/15 hover:-translate-y-0.5">
+                    <div class="w-12 h-12 rounded-xl bg-blue-400/15 border border-blue-300/20 flex items-center justify-center shrink-0 text-blue-200 font-black">02</div>
+                    <div>
+                      <h3 class="text-white font-black text-lg">AI Modeling</h3>
+                      <p class="text-slate-400 text-sm mt-0.5">模型訓練、辨識判讀、決策邏輯與系統驗證</p>
+                    </div>
+                  </div>
+
+                  <div class="relative ml-6 h-6 border-l border-dashed border-blue-300/30"></div>
+
+                  <div class="workflow-card group flex items-center gap-4 rounded-2xl bg-white/10 border border-white/10 p-4 transition-all duration-300 hover:bg-white/15 hover:-translate-y-0.5">
+                    <div class="w-12 h-12 rounded-xl bg-indigo-400/15 border border-indigo-300/20 flex items-center justify-center shrink-0 text-indigo-200 font-black">03</div>
+                    <div>
+                      <h3 class="text-white font-black text-lg">Edge Deploy</h3>
+                      <p class="text-slate-400 text-sm mt-0.5">邊緣運算、即時回饋、現場導入與跨域應用</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="mt-7 grid grid-cols-3 gap-3">
+                  <div class="rounded-2xl bg-slate-950/35 border border-white/10 p-4 text-center">
+                    <div class="text-white text-2xl font-black">AI</div>
+                    <div class="text-slate-400 text-[11px] mt-1">Research</div>
+                  </div>
+                  <div class="rounded-2xl bg-slate-950/35 border border-white/10 p-4 text-center">
+                    <div class="text-white text-2xl font-black">IoT</div>
+                    <div class="text-slate-400 text-[11px] mt-1">Sensing</div>
+                  </div>
+                  <div class="rounded-2xl bg-slate-950/35 border border-white/10 p-4 text-center">
+                    <div class="text-white text-2xl font-black">Edge</div>
+                    <div class="text-slate-400 text-[11px] mt-1">Deploy</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        </div>      </div>
     </div>
   </header>
 
-  <main class="flex-grow">
-    <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24 space-y-20">
-      <section id="mission" class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-        <div class="lg:col-span-5">
-          <div class="inline-flex items-center gap-3 mb-5">
-            <span class="w-10 h-1 bg-blue-600 rounded-full"></span>
-            <span class="text-blue-600 text-xs font-black tracking-[0.25em] uppercase">Lab Positioning</span>
-          </div>
-          <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-            Research is only complete when it can be used.
-          </h2>
-          <p class="mt-6 text-slate-600 leading-relaxed text-base lg:text-lg">
-            iCPS Lab approaches AI research as system engineering. We begin with field problems, design intelligent models, and validate whether the final system can support people in real settings.
-          </p>
-        </div>
+  <!-- ============================================================ -->
+  <!-- ✨ 網站主體：內容重新設計                                      -->
+  <!-- ============================================================ -->
+  <main class="flex-grow relative z-20 w-full">
 
-        <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <article class="bg-white rounded-[1.75rem] p-6 border border-slate-200/70 shadow-sm">
-            <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center mb-5 font-black">01</div>
-            <h3 class="font-black text-slate-900 text-lg mb-2">Field Sensing</h3>
-            <p class="text-slate-500 text-sm leading-relaxed">Capture reliable data from healthcare, manufacturing, and human activity environments.</p>
-          </article>
-          <article class="bg-white rounded-[1.75rem] p-6 border border-slate-200/70 shadow-sm">
-            <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-700 flex items-center justify-center mb-5 font-black">02</div>
-            <h3 class="font-black text-slate-900 text-lg mb-2">AI Reasoning</h3>
-            <p class="text-slate-500 text-sm leading-relaxed">Build recognition, assessment, and decision-support models with measurable performance.</p>
-          </article>
-          <article class="bg-white rounded-[1.75rem] p-6 border border-slate-200/70 shadow-sm">
-            <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-800 flex items-center justify-center mb-5 font-black">03</div>
-            <h3 class="font-black text-slate-900 text-lg mb-2">System Impact</h3>
-            <p class="text-slate-500 text-sm leading-relaxed">Deploy prototypes that support training, care, safety, and operational efficiency.</p>
-          </article>
+    <!-- Sticky page tabs -->
+    <div class="sticky top-0 z-20 bg-[#f8fafc]/85 backdrop-blur-xl border-b border-slate-200/70">
+      <div class="max-w-7xl mx-auto px-6 py-3 overflow-x-auto scrollbar-hide">
+        <div class="flex items-center gap-2 min-w-max text-sm font-bold text-slate-500">
+          <a href="#mission" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">實驗室定位</a>
+          <a href="#pi" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">實驗室領航</a>
+          <a href="#collaboration" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">合作與人才</a>
+          <a href="#research" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">核心研究</a>
+          <a href="#journey" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">加入我們</a>
         </div>
-      </section>
+      </div>
+    </div>
 
-      <section class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
-        <div class="lg:col-span-5">
-          <div class="relative h-full min-h-[420px] rounded-[2.25rem] overflow-hidden bg-slate-900 shadow-2xl group">
-            <img src="/images/professor-chang.png" alt="Professor Wan-Jung Chang" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.src='/images/professor.png';" />
-            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-            <div class="absolute left-6 right-6 bottom-6">
-              <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 text-white text-[11px] font-bold tracking-widest uppercase backdrop-blur border border-white/20 mb-4">Principal Investigator</div>
-              <h2 class="text-white text-3xl font-black">張萬榮 教授</h2>
-              <p class="text-blue-200 mt-1 font-medium">Wan-Jung Chang, Ph.D.</p>
-            </div>
-          </div>
-        </div>
+    <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24 space-y-24 lg:space-y-32">
 
-        <div class="lg:col-span-7">
-          <div class="h-full bg-white border border-slate-200/70 rounded-[2.25rem] p-8 sm:p-10 lg:p-12 shadow-sm">
+      <!-- Mission -->
+      <section id="mission" class="scroll-mt-28">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div class="lg:col-span-5 rv rv-left">
             <div class="inline-flex items-center gap-3 mb-5">
-              <span class="w-9 h-1 bg-blue-600 rounded-full"></span>
-              <span class="text-blue-600 text-xs font-black tracking-[0.25em] uppercase">Lab Leadership</span>
+              <span class="w-10 h-1 bg-blue-600 rounded-full"></span>
+              <span class="text-blue-600 text-xs font-black tracking-[0.25em] uppercase">Lab Positioning</span>
             </div>
-            <h3 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight mb-6">Training engineers who can cross disciplines and solve practical problems.</h3>
-            <p class="text-slate-600 leading-relaxed mb-7">
-              Led by Professor Wan-Jung Chang, the lab connects electronic engineering, AIoT systems, edge AI, healthcare collaboration, and industrial applications. Students are encouraged to move from theoretical understanding to deployable prototypes.
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
+              不是單點技術展示，<br />而是完整系統解題。
+            </h2>
+            <p class="mt-6 text-slate-600 leading-relaxed text-base lg:text-lg">
+              iCPS Lab 的核心價值，是把人工智慧、感測資料與實體場域整合成可部署、可驗證、可持續改善的系統。研究從問題定義開始，最後回到醫療、製造與智慧城市等真實應用場景。
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
-              <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
-                <div class="text-slate-900 font-black">AIoT</div>
-                <div class="text-xs text-slate-500 mt-1">Intelligent sensing</div>
-              </div>
-              <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
-                <div class="text-slate-900 font-black">Edge AI</div>
-                <div class="text-xs text-slate-500 mt-1">Real-time deployment</div>
-              </div>
-              <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
-                <div class="text-slate-900 font-black">XR</div>
-                <div class="text-xs text-slate-500 mt-1">Immersive training</div>
+          </div>
+
+          <div class="lg:col-span-7 rv rv-right">
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <article class="process-card group bg-white rounded-[1.75rem] p-6 border border-slate-200/70 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+                <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-700 flex items-center justify-center mb-5 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
+                  <span class="font-black">01</span>
+                </div>
+                <h3 class="font-black text-slate-900 text-lg mb-2">感測資料</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">從影像、ToF、熱影像與感測訊號取得可信任的場域資料。</p>
+              </article>
+              <article class="process-card group bg-white rounded-[1.75rem] p-6 border border-slate-200/70 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 rv-delay-100">
+                <div class="w-12 h-12 rounded-2xl bg-cyan-50 text-cyan-700 flex items-center justify-center mb-5 group-hover:bg-cyan-600 group-hover:text-white transition-all duration-300">
+                  <span class="font-black">02</span>
+                </div>
+                <h3 class="font-black text-slate-900 text-lg mb-2">AI 判讀</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">透過模型設計、訓練與驗證，把資料轉化為可解釋的決策依據。</p>
+              </article>
+              <article class="process-card group bg-white rounded-[1.75rem] p-6 border border-slate-200/70 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-1 rv-delay-200">
+                <div class="w-12 h-12 rounded-2xl bg-slate-100 text-slate-800 flex items-center justify-center mb-5 group-hover:bg-slate-900 group-hover:text-white transition-all duration-300">
+                  <span class="font-black">03</span>
+                </div>
+                <h3 class="font-black text-slate-900 text-lg mb-2">系統落地</h3>
+                <p class="text-slate-500 text-sm leading-relaxed">結合邊緣運算與人機介面，讓技術進入臨床、產線與實際場域。</p>
+              </article>
+            </div>
+
+            <div class="mt-5 bg-gradient-to-r from-slate-900 to-blue-950 rounded-[1.75rem] p-7 sm:p-8 overflow-hidden relative shadow-xl">
+              <div class="absolute top-0 right-0 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+              <div class="relative z-10 flex flex-col md:flex-row md:items-center gap-6 justify-between">
+                <div>
+                  <p class="text-blue-300 text-xs font-black tracking-[0.22em] uppercase mb-2">Research Philosophy</p>
+                  <h3 class="text-white text-2xl sm:text-3xl font-black leading-snug">從場域問題出發，讓研究成果被真正使用。</h3>
+                </div>
+                <a href="/en/achievements" class="shrink-0 inline-flex items-center justify-center gap-2 bg-white text-slate-900 px-5 py-3 rounded-full font-bold text-sm hover:bg-blue-50 transition">
+                  查看成果榮譽
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+                </a>
               </div>
             </div>
-            <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center gap-2 bg-slate-900 hover:bg-blue-700 text-white px-5 py-3 rounded-full font-bold text-sm transition hover:-translate-y-0.5">
-              Faculty Profile
-            </a>
           </div>
         </div>
       </section>
 
-      <section class="bg-white border border-slate-200/70 rounded-[2.25rem] p-8 sm:p-10 lg:p-12 shadow-sm">
-        <div class="max-w-3xl mb-10">
-          <p class="text-blue-600 text-xs font-black tracking-[0.25em] uppercase mb-4">Research Focus</p>
-          <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">Core directions for intelligent cyber-physical systems.</h2>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {[
-            ["Smart Healthcare", "AI-assisted care, clinical training, rehabilitation, and safety monitoring."],
-            ["AIoT Sensing", "Sensor fusion, computer vision, ToF, thermal sensing, and human activity understanding."],
-            ["Edge Intelligence", "Deployable AI systems for real-time feedback and low-latency applications."],
-            ["Smart Manufacturing", "Industrial inspection, automation, and AI-enabled process improvement."]
-          ].map(([heading, copy]) => (
-            <article class="rounded-[1.5rem] bg-slate-50 border border-slate-100 p-6">
-              <h3 class="font-black text-slate-900 mb-3">{heading}</h3>
-              <p class="text-slate-600 text-sm leading-relaxed">{copy}</p>
-            </article>
-          ))}
+      <!-- Principal Investigator -->
+      <section id="pi" class="scroll-mt-28">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch">
+          <div class="lg:col-span-5 rv rv-left">
+            <div class="relative h-full min-h-[420px] rounded-[2.25rem] overflow-hidden bg-slate-900 shadow-2xl group">
+              <img src="/images/professor-chang.png" alt="張萬榮 教授" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" onerror="this.src='/images/professor.png';" />
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+              <div class="absolute left-6 right-6 bottom-6">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 text-white text-[11px] font-bold tracking-widest uppercase backdrop-blur border border-white/20 mb-4">Principal Investigator</div>
+                <h2 class="text-white text-3xl font-black">張萬榮 教授</h2>
+                <p class="text-blue-200 mt-1 font-medium">Wan-Jung Chang, Ph.D.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-7 rv rv-right">
+            <div class="h-full bg-white border border-slate-200/70 rounded-[2.25rem] p-8 sm:p-10 lg:p-12 shadow-sm relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-72 h-72 bg-blue-50 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3"></div>
+              <div class="relative z-10">
+                <div class="inline-flex items-center gap-3 mb-5">
+                  <span class="w-9 h-1 bg-blue-600 rounded-full"></span>
+                  <span class="text-blue-600 text-xs font-black tracking-[0.25em] uppercase">Lab Leadership</span>
+                </div>
+                <h3 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight mb-6">跨域整合訓練，培養解題的工程人才。</h3>
+                <blockquote class="relative pl-5 border-l-4 border-blue-500 mb-7">
+                  <p class="text-slate-700 text-lg leading-relaxed font-medium">
+                    「工程教育的價值在於探索未知，並將科技回饋社會。我們期許團隊不僅掌握前瞻技術，更能為臨床與產業提出切實可行的解方。」
+                  </p>
+                </blockquote>
+                <p class="text-slate-600 leading-relaxed mb-7">
+                  張教授深耕 AIoT 與邊緣運算多年，在高科大電子工程系建構高度跨域協作的研究環境。對外橋接醫療院所與科技產業，對內引導學生在紮實學理基礎上，將創意轉化為可驗證的系統成果。
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+                  <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
+                    <div class="text-slate-900 font-black">AIoT</div>
+                    <div class="text-xs text-slate-500 mt-1">智慧感測整合</div>
+                  </div>
+                  <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
+                    <div class="text-slate-900 font-black">Edge AI</div>
+                    <div class="text-xs text-slate-500 mt-1">邊緣部署應用</div>
+                  </div>
+                  <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
+                    <div class="text-slate-900 font-black">XR</div>
+                    <div class="text-xs text-slate-500 mt-1">沉浸式訓練系統</div>
+                  </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row gap-3">
+                  <a href="https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw" target="_blank" rel="noopener noreferrer" class="inline-flex justify-center items-center gap-2 bg-slate-900 hover:bg-blue-700 text-white px-5 py-3 rounded-full font-bold text-sm transition hover:-translate-y-0.5">
+                    查看完整簡歷
+                  </a>
+                  <a href="mailto:allenchang@nkust.edu.tw" class="inline-flex justify-center items-center gap-2 bg-white hover:bg-blue-50 text-slate-700 hover:text-blue-700 border border-slate-200 hover:border-blue-200 px-5 py-3 rounded-full font-bold text-sm transition hover:-translate-y-0.5">
+                    寄信聯繫教授
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
-      <section class="bg-gradient-to-r from-slate-900 to-blue-950 rounded-[2.25rem] p-8 sm:p-10 lg:p-12 text-white overflow-hidden relative">
-        <div class="absolute top-0 right-0 w-80 h-80 bg-blue-500/20 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2"></div>
-        <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-8">
-            <p class="text-blue-300 text-xs font-black tracking-[0.25em] uppercase mb-4">Collaboration & Talent</p>
-            <h2 class="text-3xl sm:text-4xl font-black tracking-tight mb-5">We welcome students and partners who want to build useful AI systems.</h2>
-            <p class="text-slate-300 leading-relaxed">
-              iCPS Lab works with hospitals, care institutions, industry partners, and academic collaborators. Students can participate in research projects, competitions, publications, and prototype deployment.
-            </p>
+      <!-- Collaboration / Students -->
+      <section id="collaboration" class="scroll-mt-28">
+        <div class="text-center max-w-3xl mx-auto mb-12 rv rv-up">
+          <div class="inline-flex items-center gap-3 mb-4">
+            <span class="w-8 h-1 bg-blue-600 rounded-full"></span>
+            <span class="text-blue-600 text-xs font-black tracking-[0.25em] uppercase">Two-Way Impact</span>
+            <span class="w-8 h-1 bg-blue-600 rounded-full"></span>
           </div>
-          <div class="lg:col-span-4 flex flex-col gap-3">
-            <a href="/members" class="inline-flex justify-center items-center bg-white text-slate-950 px-5 py-3 rounded-full font-bold hover:bg-blue-50 transition">Meet the Team</a>
-            <a href="/achievements" class="inline-flex justify-center items-center bg-white/10 text-white border border-white/15 px-5 py-3 rounded-full font-bold hover:bg-white/15 transition">View Achievements</a>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">對外連結產醫場域，對內培養研究人才。</h2>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          <article class="impact-card group relative overflow-hidden rounded-[2rem] bg-slate-950 p-8 sm:p-10 min-h-[430px] shadow-xl rv rv-left">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgba(37,99,235,0.38),transparent_32%),linear-gradient(135deg,#020617,#0f172a)]"></div>
+            <div class="absolute right-0 bottom-0 w-80 h-80 bg-blue-600/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3"></div>
+            <div class="relative z-10 h-full flex flex-col">
+              <div class="w-14 h-14 rounded-2xl bg-blue-500/20 border border-blue-400/25 text-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">🤝</div>
+              <p class="text-blue-300 text-xs font-black tracking-[0.24em] uppercase mb-3">For Partners</p>
+              <h3 class="text-3xl font-black text-white mb-5">產醫跨域合作</h3>
+              <p class="text-slate-300 leading-relaxed mb-7">
+                我們具備產學合作與臨床場域驗證經驗，能為企業與醫院提供客製化技術評估、AI 系統開發與 PoC 驗證，協助把研究概念推進到實際應用。
+              </p>
+              <ul class="space-y-3 text-sm text-slate-300 mb-8">
+                <li class="flex gap-3"><span class="text-blue-300">✓</span><span>臨床痛點 AI 輔助系統開發</span></li>
+                <li class="flex gap-3"><span class="text-blue-300">✓</span><span>智慧工廠瑕疵檢測與自動化導入</span></li>
+                <li class="flex gap-3"><span class="text-blue-300">✓</span><span>前瞻技術轉移與聯合研發</span></li>
+              </ul>
+              <a href="mailto:allenchang@nkust.edu.tw" class="mt-auto inline-flex w-max items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-5 py-3 rounded-full text-sm transition hover:-translate-y-0.5">
+                提案與洽詢合作
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </a>
+            </div>
+          </article>
+
+          <article class="impact-card group relative overflow-hidden rounded-[2rem] bg-white border border-slate-200/70 p-8 sm:p-10 min-h-[430px] shadow-sm hover:shadow-xl transition rv rv-right rv-delay-100">
+            <div class="absolute top-0 right-0 w-72 h-72 bg-blue-50 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2 group-hover:bg-blue-100 transition"></div>
+            <div class="relative z-10 h-full flex flex-col">
+              <div class="w-14 h-14 rounded-2xl bg-blue-50 text-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition">🎓</div>
+              <p class="text-blue-600 text-xs font-black tracking-[0.24em] uppercase mb-3">For Students</p>
+              <h3 class="text-3xl font-black text-slate-950 mb-5">啟動研究生涯</h3>
+              <p class="text-slate-600 leading-relaxed mb-7">
+                歡迎博碩士與大學部專題生加入。你將不只學理論，而會真正參與資料處理、模型訓練、系統整合、論文發表與競賽實作。
+              </p>
+              <ul class="space-y-3 text-sm text-slate-700 mb-8 font-medium">
+                <li class="flex gap-3"><span class="text-blue-600">✓</span><span>從演算法開發到系統落地的完整訓練</span></li>
+                <li class="flex gap-3"><span class="text-blue-600">✓</span><span>輔導發表國內外研討會與期刊</span></li>
+                <li class="flex gap-3"><span class="text-blue-600">✓</span><span>累積創新競賽與產學專案實戰履歷</span></li>
+              </ul>
+              <a href="/en/members" class="mt-auto inline-flex w-max items-center gap-2 bg-slate-900 hover:bg-blue-700 text-white font-bold px-5 py-3 rounded-full text-sm transition hover:-translate-y-0.5">
+                認識實驗室學長姐
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Core Research -->
+      <section id="research" class="scroll-mt-28">
+        <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-12 rv rv-up">
+          <div>
+            <div class="inline-flex items-center gap-3 mb-4">
+              <span class="w-10 h-1 bg-blue-600 rounded-full"></span>
+              <span class="text-blue-600 text-xs font-black tracking-[0.25em] uppercase">Core Applications</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">三大核心研究領域</h2>
+          </div>
+          <p class="text-slate-500 max-w-xl leading-relaxed">以 AIoT 為技術主軸，串接智慧醫療、智慧製造與智慧交通，讓模型不只停留在準確率，而是進一步形成可部署的應用系統。</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <article class="research-card group rounded-[2rem] bg-white border border-slate-200/70 p-7 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 rv rv-up">
+            <div class="h-44 rounded-[1.5rem] bg-gradient-to-br from-red-50 to-white mb-6 flex items-center justify-center overflow-hidden relative">
+              <div class="absolute w-36 h-36 bg-red-200/50 rounded-full blur-2xl group-hover:scale-125 transition duration-700"></div>
+              <svg class="relative z-10 w-16 h-16 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+            </div>
+            <p class="text-red-500 text-xs font-black tracking-widest uppercase mb-2">Healthcare AI</p>
+            <h3 class="text-xl font-black text-slate-950 mb-4">數位醫療與智慧照護</h3>
+            <p class="text-slate-600 text-sm leading-relaxed text-justify">整合熱影像、ToF 感測器與 AI 骨幹辨識，應用於精神病房自傷預警、病患行為辨識、耳病灶自動診斷、舌肌復健與手術器械教育訓練 XR 平台。</p>
+          </article>
+
+          <article class="research-card group rounded-[2rem] bg-white border border-slate-200/70 p-7 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 rv rv-up rv-delay-100">
+            <div class="h-44 rounded-[1.5rem] bg-gradient-to-br from-amber-50 to-white mb-6 flex items-center justify-center overflow-hidden relative">
+              <div class="absolute w-36 h-36 bg-amber-200/50 rounded-full blur-2xl group-hover:scale-125 transition duration-700"></div>
+              <svg class="relative z-10 w-16 h-16 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+            </div>
+            <p class="text-amber-500 text-xs font-black tracking-widest uppercase mb-2">Smart Manufacturing</p>
+            <h3 class="text-xl font-black text-slate-950 mb-4">工業 4.0 智能製造</h3>
+            <p class="text-slate-600 text-sm leading-relaxed text-justify">導入 Edge AI 邊緣運算，針對電容缺漏焊、產品包裝缺陷等痛點，開發低延遲、高精準度的自動化產線瑕疵檢測系統。</p>
+          </article>
+
+          <article class="research-card group rounded-[2rem] bg-white border border-slate-200/70 p-7 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500 rv rv-up rv-delay-200">
+            <div class="h-44 rounded-[1.5rem] bg-gradient-to-br from-emerald-50 to-white mb-6 flex items-center justify-center overflow-hidden relative">
+              <div class="absolute w-36 h-36 bg-emerald-200/50 rounded-full blur-2xl group-hover:scale-125 transition duration-700"></div>
+              <svg class="relative z-10 w-16 h-16 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+            </div>
+            <p class="text-emerald-600 text-xs font-black tracking-widest uppercase mb-2">Smart City</p>
+            <h3 class="text-xl font-black text-slate-950 mb-4">智慧交通與物聯網</h3>
+            <p class="text-slate-600 text-sm leading-relaxed text-justify">佈建高可靠度 IoT 感測網路，實現網路通訊與物理世界雙向交互，應用於智慧交通監測、環境監測與永續城市應用。</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Journey CTA -->
+      <section id="journey" class="scroll-mt-28 rv rv-up">
+        <div class="relative overflow-hidden rounded-[2.5rem] bg-slate-950 px-7 py-12 sm:p-12 lg:p-16 shadow-2xl">
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_18%_25%,rgba(59,130,246,0.36),transparent_30%),radial-gradient(circle_at_85%_20%,rgba(14,165,233,0.18),transparent_32%)]"></div>
+          <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:48px_48px] opacity-30"></div>
+          <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-8">
+              <p class="text-blue-300 text-xs font-black tracking-[0.25em] uppercase mb-4">Join / Collaborate / Build</p>
+              <h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">下一個能真正落地的 AI 系統，可能就從這裡開始。</h2>
+              <p class="mt-6 text-slate-300 leading-relaxed max-w-2xl">無論你是想尋找產醫合作、投入研究專題，或希望了解實驗室成果，歡迎透過網站與信件與我們連繫。</p>
+            </div>
+            <div class="lg:col-span-4 flex flex-col gap-3">
+              <a href="mailto:allenchang@nkust.edu.tw" class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3.5 rounded-full transition hover:-translate-y-0.5">聯繫 iCPS Lab</a>
+              <a href="/en/members" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/15 text-white border border-white/15 font-bold px-6 py-3.5 rounded-full transition hover:-translate-y-0.5">查看實驗室成員</a>
+            </div>
           </div>
         </div>
       </section>
+
     </div>
   </main>
 
-  <footer class="bg-slate-950 text-slate-300 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-6 py-10 flex flex-col md:flex-row gap-6 md:items-center md:justify-between">
-      <div>
-        <p class="text-white font-black text-lg">iCPS Lab</p>
-        <p class="text-sm text-slate-400 mt-1">Intelligent Cyber-Physical Systems Lab, NKUST</p>
+  <!-- ============================================================ -->
+  <!-- 🔒 頁尾：原版不動                                            -->
+  <!-- ============================================================ -->
+  <footer class="bg-[#0f172a] py-16 mt-auto border-t border-slate-800 relative z-20">
+    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
+      <div class="md:w-1/2">
+        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
+        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+          Intelligent Cyber-Physical Systems Laboratory <br/>
+          國立高雄科技大學 (NKUST)
+        </p>
       </div>
-      <div class="flex flex-col sm:flex-row gap-3 text-sm">
-        <a href="/about" class="hover:text-white transition">中文版本</a>
-        <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-white transition">allenchang@nkust.edu.tw</a>
+      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
+        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
+      </div>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+        <p class="text-xs text-slate-500 leading-normal">
+          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
+        </p>
+        <p class="text-xs text-slate-500 hidden sm:block">|</p>
+        <p class="text-xs text-slate-500">All rights reserved.</p>
+      </div>
+      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-600 mx-1">|</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
       </div>
     </div>
   </footer>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', 'Noto Sans TC', system-ui, -apple-system, BlinkMacSystemFont, sans-serif; }
+
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .rv {
+      opacity: 0;
+      transition: opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1), transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .rv-up { transform: translateY(36px); }
+    .rv-left { transform: translateX(-36px); }
+    .rv-right { transform: translateX(36px); }
+    .rv-scale { transform: scale(0.96); }
+    .rv.is-visible { opacity: 1; transform: translate(0, 0) scale(1); }
+    .rv-delay-100 { transition-delay: 0.1s; }
+    .rv-delay-200 { transition-delay: 0.2s; }
+    .rv-delay-300 { transition-delay: 0.3s; }
+
+    .page-tab.is-active {
+      background: white;
+      color: #1d4ed8;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+    }
+
+    .research-card, .impact-card, .process-card { transform: translateZ(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rv { opacity: 1; transform: none; transition: none; }
+      * { scroll-behavior: auto !important; }
+    }
+  </style>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+
+      // ── 1. 訪客計數器 ──
+      const initCounter = async () => {
+        const counterEl = document.getElementById('visitor-count');
+        if (!counterEl) return;
+        const namespace = 'icpslab_site', key = 'visits';
+        const localCountKey = 'icps_saved_count', lastVisitTimeKey = 'icps_last_visit_time';
+        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
+        let currentCount = localStorage.getItem(localCountKey) || '------';
+        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
+        const now = Date.now();
+        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
+        try {
+          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
+          if (!hasVisitedWithin24Hours) {
+            const response = await fetch(url + '/up');
+            if (!response.ok) throw new Error('API error');
+            const data = await response.json();
+            currentCount = String(data.count).padStart(6, '0');
+            localStorage.setItem(lastVisitTimeKey, now.toString());
+            localStorage.setItem(localCountKey, currentCount);
+          } else {
+            try {
+              const r = await fetch(url);
+              if (r.ok) {
+                const d = await r.json();
+                currentCount = String(d.count).padStart(6, '0');
+                localStorage.setItem(localCountKey, currentCount);
+              }
+            } catch {}
+          }
+        } catch {}
+        counterEl.textContent = currentCount;
+      };
+      initCounter();
+
+      // ── 2. Scroll Reveal ──
+      const revealEls = document.querySelectorAll('.rv');
+      const revealObserver = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -56px 0px' });
+      revealEls.forEach(el => revealObserver.observe(el));
+
+      // ── 3. Sticky tabs active state ──
+      const tabs = Array.from(document.querySelectorAll('.page-tab'));
+      const sections = tabs
+        .map(tab => document.querySelector(tab.getAttribute('href')))
+        .filter(Boolean);
+
+      const tabObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const activeHref = `#${entry.target.id}`;
+            tabs.forEach(tab => tab.classList.toggle('is-active', tab.getAttribute('href') === activeHref));
+          }
+        });
+      }, { threshold: 0.28, rootMargin: '-18% 0px -62% 0px' });
+      sections.forEach(section => tabObserver.observe(section));
+
+      // ── 4. Hero Canvas 粒子線條動畫 ──
+      const canvas = document.getElementById('hero-canvas');
+      if (canvas) {
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
+        const isReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        const resize = () => {
+          const dpr = Math.min(window.devicePixelRatio || 1, 2);
+          W = canvas.offsetWidth;
+          H = canvas.offsetHeight;
+          canvas.width = W * dpr;
+          canvas.height = H * dpr;
+          ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        };
+
+        const createParticles = () => {
+          const count = window.innerWidth < 768 ? 34 : 62;
+          particles = Array.from({ length: count }, () => ({
+            x: Math.random() * W,
+            y: Math.random() * H,
+            vx: (Math.random() - 0.5) * 0.34,
+            vy: (Math.random() - 0.5) * 0.34,
+            r: Math.random() * 1.7 + 0.6,
+            a: Math.random() * 0.45 + 0.15,
+          }));
+        };
+
+        resize();
+        createParticles();
+        window.addEventListener('resize', () => { resize(); createParticles(); });
+
+        const draw = () => {
+          ctx.clearRect(0, 0, W, H);
+          particles.forEach(p => {
+            if (!isReduced) {
+              p.x += p.vx;
+              p.y += p.vy;
+              if (p.x < 0) p.x = W;
+              if (p.x > W) p.x = 0;
+              if (p.y < 0) p.y = H;
+              if (p.y > H) p.y = 0;
+            }
+          });
+
+          const maxDist = window.innerWidth < 768 ? 86 : 120;
+          for (let i = 0; i < particles.length; i++) {
+            for (let j = i + 1; j < particles.length; j++) {
+              const dx = particles[i].x - particles[j].x;
+              const dy = particles[i].y - particles[j].y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+              if (dist < maxDist) {
+                ctx.beginPath();
+                ctx.strokeStyle = `rgba(96, 165, 250, ${(1 - dist / maxDist) * 0.18})`;
+                ctx.lineWidth = 0.75;
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.stroke();
+              }
+            }
+          }
+
+          particles.forEach(p => {
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(147, 197, 253, ${p.a})`;
+            ctx.fill();
+          });
+
+          if (!isReduced) requestAnimationFrame(draw);
+        };
+        draw();
+      }
+    });
+  </script>
+
 </BaseLayout>

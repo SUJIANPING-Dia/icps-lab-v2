@@ -10,10 +10,10 @@ const isEnglish = lang === "en";
 const links = [
   { href: "/", enHref: "/en", label: "首頁", english: "Home", match: "/", enMatch: "/en" },
   { href: "/about", enHref: "/en/about", label: "關於 iCPS Lab", english: "About", match: "/about", enMatch: "/en/about" },
-  { href: "/news", label: "最新消息", english: "News", match: "/news" },
-  { href: "/activities", label: "活動花絮", english: "Events", match: "/activities" },
-  { href: "/videos", label: "影音專區", english: "Media", match: "/videos" },
-  { href: "/achievements", label: "成果榮譽", english: "Achievements", match: "/achievements" },
+  { href: "/news", enHref: "/en/news", label: "最新消息", english: "News", match: "/news", enMatch: "/en/news" },
+  { href: "/activities", enHref: "/en/activities", label: "活動花絮", english: "Events", match: "/activities", enMatch: "/en/activities" },
+  { href: "/videos", enHref: "/en/videos", label: "影音專區", english: "Media", match: "/videos", enMatch: "/en/videos" },
+  { href: "/achievements", enHref: "/en/achievements", label: "成果榮譽", english: "Achievements", match: "/achievements", enMatch: "/en/achievements" },
   { href: "/members", enHref: "/en/members", label: "實驗室成員", english: "Members", match: "/members", enMatch: "/en/members" },
   { href: "/faq", enHref: "/en/faq", label: "常見問題", english: "FAQ", match: "/faq", enMatch: "/en/faq" },
 ];
@@ -29,16 +29,25 @@ const isActive = (match: string) => {
   return activePath === match || activePath.startsWith(`${match}/`);
 };
 
-const normalizedPath = activePath.replace(/\/$/, "") || "/";
+const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const languagePairs = [
   { zh: "/", en: "/en" },
   { zh: "/about", en: "/en/about" },
+  { zh: "/news", en: "/en/news" },
+  { zh: "/activities", en: "/en/activities" },
+  { zh: "/videos", en: "/en/videos" },
+  { zh: "/achievements", en: "/en/achievements" },
   { zh: "/members", en: "/en/members" },
   { zh: "/faq", en: "/en/faq" },
 ];
-const currentPair = languagePairs.find((pair) => pair.zh === normalizedPath || pair.en === normalizedPath);
-const zhHref = currentPair ? currentPair.zh : activePath.startsWith("/en/") ? "/" : activePath;
-const enHref = currentPair ? currentPair.en : "/en";
+const currentPair = languagePairs.find((pair) => pair.zh === currentPath || pair.en === currentPath);
+const detailPair = currentPath.startsWith("/en/news/") || currentPath.startsWith("/en/activities/")
+  ? { zh: currentPath.replace(/^\/en/, ""), en: currentPath }
+  : currentPath.startsWith("/news/") || currentPath.startsWith("/activities/")
+    ? { zh: currentPath, en: `/en${currentPath}` }
+    : null;
+const zhHref = currentPair ? currentPair.zh : detailPair ? detailPair.zh : currentPath.startsWith("/en/") ? currentPath.replace(/^\/en/, "") || "/" : currentPath;
+const enHref = currentPair ? currentPair.en : detailPair ? detailPair.en : currentPath.startsWith("/en/") ? currentPath : `/en${currentPath === "/" ? "" : currentPath}`;
 ---
 
 <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">

@@ -1,6 +1,18 @@
 ---
 import { newsData } from "../data/news";
 
+interface Props {
+  lang?: "zh" | "en";
+}
+
+const { lang = "zh" } = Astro.props;
+const isEnglish = lang === "en";
+const newsBasePath = isEnglish ? "/en/news" : "/news";
+const sectionTitle = isEnglish ? "News" : "最新消息";
+const sectionSubtitle = "News & Announcements";
+const pinnedLabel = isEnglish ? "Pinned" : "置頂";
+const readMoreLabel = isEnglish ? "Read Full Article" : "閱讀完整新聞";
+
 const sortedNewsData = [...newsData].sort((a, b) => {
   if (a.isPinned && !b.isPinned) return -1;
   if (!a.isPinned && b.isPinned) return 1;
@@ -12,8 +24,8 @@ const sortedNewsData = [...newsData].sort((a, b) => {
   <div class="border-b-2 border-slate-800 pb-3 mb-8 flex justify-between items-end">
     <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
       <div class="w-2 h-8 bg-blue-700"></div>
-      最新消息
-      <span class="text-sm font-normal text-slate-500 uppercase tracking-wider ml-2 hidden sm:inline">News & Announcements</span>
+      {sectionTitle}
+      <span class="text-sm font-normal text-slate-500 uppercase tracking-wider ml-2 hidden sm:inline">{sectionSubtitle}</span>
     </h2>
   </div>
 
@@ -32,7 +44,7 @@ const sortedNewsData = [...newsData].sort((a, b) => {
                 {/* 🌟 新增：如果設定為置頂，就顯示置頂徽章 */}
                 {item.isPinned && (
                   <span class="px-2 py-0.5 text-[11px] font-bold text-red-600 bg-red-50 border border-red-200 rounded shrink-0 flex items-center gap-1 shadow-sm">
-                    📌 置頂
+                    📌 {pinnedLabel}
                   </span>
                 )}
               </div>
@@ -55,11 +67,11 @@ const sortedNewsData = [...newsData].sort((a, b) => {
                 <div set:html={item.content}></div>
                 <div class="pt-2">
                   <a
-                    href={`/news/${item.slug}`}
+                    href={`${newsBasePath}/${item.slug}`}
                     class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700"
-                    aria-label={`閱讀完整新聞：${item.title}`}
+                    aria-label={`${readMoreLabel}: ${item.title}`}
                   >
-                    閱讀完整新聞
+                    {readMoreLabel}
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
                     </svg>
@@ -78,6 +90,9 @@ const sortedNewsData = [...newsData].sort((a, b) => {
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
+    const isEnglishPage = document.documentElement.lang === 'en';
+    const previousPageLabel = isEnglishPage ? 'Previous' : '上一頁';
+    const nextPageLabel = isEnglishPage ? 'Next' : '下一頁';
     const toggleButtons = document.querySelectorAll('.news-toggle-btn');
     toggleButtons.forEach(button => {
       button.addEventListener('click', function() {
@@ -123,7 +138,7 @@ const sortedNewsData = [...newsData].sort((a, b) => {
 
       let html = '';
       const prevDisabled = currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
-      html += `<button onclick="window.changePage(${currentPage - 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${prevDisabled}" ${currentPage === 1 ? 'disabled' : ''}>上一頁</button>`;
+      html += `<button onclick="window.changePage(${currentPage - 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${prevDisabled}" ${currentPage === 1 ? 'disabled' : ''}>${previousPageLabel}</button>`;
 
       for (let i = 1; i <= totalPages; i++) {
         const activeClass = i === currentPage ? 'bg-blue-700 text-white border-blue-700 shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50';
@@ -131,7 +146,7 @@ const sortedNewsData = [...newsData].sort((a, b) => {
       }
 
       const nextDisabled = currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
-      html += `<button onclick="window.changePage(${currentPage + 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${nextDisabled}" ${currentPage === totalPages ? 'disabled' : ''}>下一頁</button>`;
+      html += `<button onclick="window.changePage(${currentPage + 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${nextDisabled}" ${currentPage === totalPages ? 'disabled' : ''}>${nextPageLabel}</button>`;
 
       paginationContainer.innerHTML = html;
     }
