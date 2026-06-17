@@ -62,7 +62,7 @@ const enHref = currentPair ? currentPair.en : detailPair ? detailPair.en : curre
         />
       </a>
       <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
-      <a href="/" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
+      <a href={isEnglish ? "/en" : "/"} class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
         <img
           src="/images/sicp-logo.png"
           alt="iCPS Lab 智慧網宇實體系統實驗室"
