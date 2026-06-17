@@ -43,7 +43,7 @@ projectGroup?.yearlyData.forEach(year => {
 const isBillion = totalAmountValue > 100000000;
 // 修改為保留兩位小數
 const amountNum = isBillion ? (totalAmountValue / 100000000).toFixed(2) : Math.floor(totalAmountValue / 10000);
-const amountSuffix = isBillion ? " 億+" : " 萬+";
+const amountSuffix = isBillion ? " x100M NTD" : " x10K NTD";
 // 讓前端動畫知道要跳到小數點後兩位
 const amountDecimals = isBillion ? 2 : 0; 
 
@@ -57,11 +57,11 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
 
 // 🖼️ 7. 實驗室海報作品清單 (擴充為 10 個作品測試捲軸佈局)
 const posters = [
-  { id: 1, title: "PigView", category: "Smart Farming", desc: "AI 豬隻體重估測系統", thumb: "/images/pigview-full.png", full: "/images/pigview-full.png" },
-  { id: 2, title: "iEar", category: "Healthcare AI", desc: "AI 智慧中耳炎診斷系統", thumb: "/images/iear-full.png", full: "/images/iear-full.png" },
-  { id: 3, title: "iNoodle", category: "Smart Manufacturing", desc: "泡麵調味包 AI 辨識系統", thumb: "/images/inoodle-full.png", full: "/images/inoodle-full.png" },
-  { id: 4, title: "ToFPose", category: "Healthcare AI", desc: "具隱私保護之飛時測距骨架估測", thumb: "/images/tofpose-full.png", full: "/images/tofpose-full.png" },
-  { id: 5, title: "GaitMirror", category: "Healthcare AI", desc: "AI 步態偵測系統", thumb: "/images/gaitmirror-full.png", full: "/images/gaitmirror-full.png" }
+  { id: 1, title: "PigView", category: "Smart Farming", desc: "AI-based pig weight estimation system", thumb: "/images/pigview-full.png", full: "/images/pigview-full.png" },
+  { id: 2, title: "iEar", category: "Healthcare AI", desc: "AI-powered otitis media diagnosis system", thumb: "/images/iear-full.png", full: "/images/iear-full.png" },
+  { id: 3, title: "iNoodle", category: "Smart Manufacturing", desc: "AI seasoning packet recognition system", thumb: "/images/inoodle-full.png", full: "/images/inoodle-full.png" },
+  { id: 4, title: "ToFPose", category: "Healthcare AI", desc: "Privacy-preserving ToF skeleton estimation", thumb: "/images/tofpose-full.png", full: "/images/tofpose-full.png" },
+  { id: 5, title: "GaitMirror", category: "Healthcare AI", desc: "AI gait analysis system", thumb: "/images/gaitmirror-full.png", full: "/images/gaitmirror-full.png" }
   // 👇 模擬未來新增的作品
   
 ];
@@ -134,10 +134,10 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <header class="relative w-full bg-[#0f172a] overflow-hidden border-b-4 border-blue-700 aspect-[16/9] sm:aspect-[21/9] lg:aspect-[12/5]">
     <div id="hero-slider" class="absolute inset-0 w-full h-full z-10 group/slider">
       <!-- 調整順序，背景 5 和 6 先出現，並設定背景 5 為預設顯示 -->
-      <img src="/images/hero-bg-5.png" alt="實驗室背景 5" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-6.png" alt="實驗室背景 6" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-3.jpg" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-4.png" alt="實驗室背景 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-5.png" alt="iCPS Lab background 5" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-6.png" alt="iCPS Lab background 6" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-3.jpg" alt="iCPS Lab background 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-4.png" alt="iCPS Lab background 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
       
       <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 sm:w-8 sm:h-8">
@@ -176,18 +176,18 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <span class="text-blue-700 text-xs font-black tracking-[0.22em] uppercase">Intelligent Cyber-Physical Systems Lab</span>
               </div>
               <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-950 tracking-tight leading-tight">
-                以 AIoT 連結感測、資料與決策，打造可落地的智慧系統。
+                Connecting sensing, data, and decisions through deployable AIoT systems.
               </h1>
               <p class="mt-6 text-slate-600 text-base sm:text-lg leading-relaxed max-w-2xl">
-                iCPS Lab 聚焦智慧醫療、智慧製造與智慧農業，從資料擷取、AI 模型、邊緣運算到系統整合，讓研究成果真正進入應用場域。
+                iCPS Lab focuses on healthcare AI, smart manufacturing, and smart agriculture, integrating data acquisition, AI models, edge computing, and system deployment for real-world applications.
               </p>
               <div class="mt-8 flex flex-col sm:flex-row gap-3">
                 <a href="#featured-works" class="inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-slate-950 text-white text-sm font-bold shadow-lg shadow-slate-900/15 hover:bg-blue-700 hover:-translate-y-0.5 transition-all duration-300">
-                  查看亮點作品
+                  View Featured Systems
                   <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                 </a>
                 <a href="/en/achievements" class="inline-flex items-center justify-center px-6 py-3.5 rounded-full bg-white text-slate-800 text-sm font-bold border border-slate-200 hover:border-blue-300 hover:text-blue-700 hover:-translate-y-0.5 transition-all duration-300">
-                  成果與榮譽
+                  Achievements
                 </a>
               </div>
             </div>
@@ -200,7 +200,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <span class="text-xs font-bold text-blue-200 tracking-widest uppercase">Systems</span>
                 <div>
                   <div class="text-3xl font-black">5+</div>
-                  <div class="mt-1 text-sm text-slate-300">代表性 AIoT 作品</div>
+                  <div class="mt-1 text-sm text-slate-300">Representative AIoT systems</div>
                 </div>
               </div>
             </a>
@@ -209,7 +209,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <span class="text-xs font-black text-cyan-600 tracking-widest uppercase">Team</span>
                 <div>
                   <div class="text-3xl font-black text-slate-950">20+</div>
-                  <div class="mt-1 text-sm text-slate-500">博、碩士、專題生</div>
+                  <div class="mt-1 text-sm text-slate-500">PhD, master’s, and project students</div>
                 </div>
               </div>
             </a>
@@ -217,8 +217,8 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
               <div class="flex items-center justify-between gap-4">
                 <div>
                   <span class="text-xs font-black text-blue-700 tracking-widest uppercase">Latest Updates</span>
-                  <h3 class="mt-2 text-xl font-black text-slate-900">快速掌握最新消息與研究動態</h3>
-                  <p class="mt-2 text-sm text-slate-500">活動、成果、論文與實驗室重要公告集中呈現。</p>
+                  <h3 class="mt-2 text-xl font-black text-slate-900">Follow the latest lab updates and research news</h3>
+                  <p class="mt-2 text-sm text-slate-500">Events, achievements, publications, and important lab announcements in one place.</p>
                 </div>
                 <div class="w-11 h-11 rounded-full bg-white text-blue-700 flex items-center justify-center shadow-sm group-hover:translate-x-1 transition-transform">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
@@ -242,13 +242,13 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                   <span class="text-blue-200 text-xs font-black tracking-widest uppercase">Lab Milestones</span>
                 </div>
                 <h2 class="text-3xl sm:text-4xl font-black tracking-tight leading-snug">
-                  研究成果與<br/>學術影響力
+                  Research Output and<br/>Academic Impact
                 </h2>
                 <p class="mt-6 text-slate-300 text-sm sm:text-base leading-relaxed">
-                  以可驗證的成果累積實驗室能量，橫跨競賽、專利、論文、產學合作與大型計畫執行。
+                  The lab builds its impact through verifiable outcomes across competitions, patents, publications, industry-academia collaboration, and funded projects.
                 </p>
                 <a href="/en/achievements" class="mt-8 inline-flex items-center text-sm font-bold text-white/90 hover:text-blue-200 transition-colors group/link">
-                  查看完整成果
+                  View All Achievements
                   <svg class="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
                 </a>
               </div>
@@ -259,37 +259,37 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-rose-200 hover:shadow-xl hover:shadow-rose-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 0ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Awards</span><span class="w-9 h-9 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center">🏆</span></div>
                   <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={awardCount}>0</div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">國內外競賽得獎</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">Domestic and international awards</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 80ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Patents</span><span class="w-9 h-9 rounded-full bg-cyan-50 text-cyan-600 flex items-center justify-center">💡</span></div>
                   <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={patentCount}>0</div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">獲得專利項目</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">Granted patent items</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 160ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Journals</span><span class="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">📄</span></div>
                   <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={journalCount}>0</div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">國際期刊論文</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">International journal papers</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 240ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Conferences</span><span class="w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center">🌐</span></div>
                   <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={confCount}>0</div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">國際研討會論文</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">International conference papers</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 320ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Partners</span><span class="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">🤝</span></div>
                   <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={partnerCount} data-suffix="+">0</div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">產學合作廠商</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">Industry-academia partners</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-6 hover:shadow-xl hover:shadow-amber-900/10 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 400ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-amber-600 tracking-widest uppercase">Funding</span><span class="w-9 h-9 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center">↗</span></div>
                   <div class="counter-anim text-3xl sm:text-4xl font-black text-slate-950 tabular-nums tracking-tight whitespace-nowrap" data-target={amountNum} data-suffix={amountSuffix} data-decimals={amountDecimals}>0</div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">總執行計畫金額</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">Total project funding</div>
                 </div>
               </div>
             </div>
@@ -302,7 +302,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         <div class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-black tracking-widest uppercase border border-blue-100">Newsroom</span>
-            <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">最新消息</h2>
+            <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">News</h2>
           </div>
           
         </div>
@@ -319,13 +319,13 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
               <div class="w-8 h-1 bg-blue-600 rounded-full"></div>
               <span class="text-blue-700 text-xs font-black tracking-widest uppercase">Our People</span>
             </div>
-            <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">領導與團隊</h2>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">Leadership and Team</h2>
             <p class="mt-4 text-slate-500 text-sm sm:text-base max-w-2xl leading-relaxed">
-              由張萬榮教授帶領，整合專案經理、博士後研究員與博碩士人才，形成兼具研究、開發與落地驗證能力的跨域團隊。
+              Led by Professor Wan-Jung Chang, the lab brings together project managers, postdoctoral researchers, and graduate students to form an interdisciplinary team capable of research, development, and field validation.
             </p>
           </div>
           <a href="/en/members" class="inline-flex items-center text-sm font-bold text-slate-900 hover:text-blue-700 transition group/link">
-            查看所有成員
+            View All Members
             <svg class="w-4 h-4 ml-2 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
           </a>
         </div>
@@ -336,7 +336,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <div class="relative z-10 flex flex-col sm:flex-row gap-8 items-start sm:items-center">
               <div class="w-32 sm:w-44 shrink-0">
                 <div class="rounded-[1.5rem] overflow-hidden shadow-xl shadow-slate-900/10 ring-1 ring-slate-900/5 aspect-[4/5] bg-slate-100">
-                  <img src="/images/professor.png" alt="張萬榮 教授" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/default-avatar.png';" />
+                  <img src="/images/professor.png" alt="Professor Wan-Jung Chang" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/default-avatar.png';" />
                 </div>
               </div>
               <div class="flex-1">
@@ -344,10 +344,10 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                   <span class="h-1.5 w-1.5 rounded-full bg-blue-300"></span>
                   Principal Investigator
                 </div>
-                <h3 class="text-2xl sm:text-3xl font-black text-slate-950 mb-1">張萬榮 <span class="text-lg text-slate-500 font-semibold ml-1">教授</span></h3>
+                <h3 class="text-2xl sm:text-3xl font-black text-slate-950 mb-1">Wan-Jung Chang <span class="text-lg text-slate-500 font-semibold ml-1">Professor</span></h3>
                 <p class="text-blue-700 font-semibold text-sm mb-5">Wan-Jung Chang, Ph.D.</p>
                 <blockquote class="text-slate-600 text-sm sm:text-base leading-relaxed border-l-[3px] border-blue-500 pl-4 mb-6">
-                  「我們專注於 AI 與醫護、製造、農業場域的跨域整合，讓學生不只會做模型，更能完成可運作、可驗證、可推廣的系統。」
+                  “We focus on interdisciplinary integration of AI with healthcare, manufacturing, and agriculture, training students to build systems that are functional, verifiable, and ready for real deployment.”
                 </blockquote>
                 <div class="flex flex-wrap gap-2 mb-7">
                   <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold">AIoT</span>
@@ -355,7 +355,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                   <span class="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-bold">Smart Manufacturing</span>
                 </div>
                 <a href="/en/members#professor" class="inline-flex items-center text-sm font-black text-slate-950 hover:text-blue-700 transition-colors group/link">
-                  查看教授學術履歷與研究專長
+                  View academic profile and research expertise
                   <svg class="w-4 h-4 ml-2 transform group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </a>
               </div>
@@ -363,13 +363,13 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
 
           <a href="/en/members" class="lg:col-span-5 rounded-[2rem] bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 shadow-2xl shadow-slate-900/15 p-7 sm:p-9 lg:p-10 relative overflow-hidden flex flex-col min-h-[360px] group" data-reveal="up" style="transition-delay: 200ms;">
-            <img src="/images/team-group.jpg" alt="實驗室團隊" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay group-hover:opacity-35 group-hover:scale-105 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop';" />
+            <img src="/images/team-group.jpg" alt="iCPS Lab team" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay group-hover:opacity-35 group-hover:scale-105 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop';" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-900/20"></div>
             <div class="relative z-10 flex h-full flex-col justify-between">
               <div>
                 <div class="inline-block px-3 py-1 bg-white/10 text-white backdrop-blur-sm text-[10px] font-black tracking-widest uppercase rounded-full border border-white/20 mb-4">Our Researchers</div>
-                <h3 class="text-2xl sm:text-3xl font-black text-white mb-3">堅強的研究團隊</h3>
-                <p class="text-slate-300 text-sm leading-relaxed max-w-md">跨年級、跨專長協作，從研究設計、資料處理、模型開發到系統實作，累積完整的專案實戰能力。</p>
+                <h3 class="text-2xl sm:text-3xl font-black text-white mb-3">A strong research team</h3>
+                <p class="text-slate-300 text-sm leading-relaxed max-w-md">Students across grades and specialties collaborate on research design, data processing, model development, and system implementation.</p>
               </div>
               <div class="flex items-end justify-between mt-10">
                 <div>
@@ -398,9 +398,9 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <span class="text-emerald-700 text-xs font-black tracking-widest uppercase">Featured Systems</span>
             <div class="w-8 h-1 bg-emerald-600 rounded-full"></div>
           </div>
-          <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">實驗室亮點作品</h2>
+          <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">Featured Lab Systems</h2>
           <p class="mt-4 text-slate-500 text-sm sm:text-base max-w-2xl leading-relaxed">
-            以代表性系統作品呈現實驗室技術能量，理解每個研究的應用場域與價值。
+            Representative system projects show the lab’s technical depth and the application value behind each research direction.
           </p>
         </div>
 
@@ -467,23 +467,23 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         <div class="mb-9 flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5" data-reveal="up">
           <div>
             <span class="inline-flex items-center px-3 py-1 bg-blue-50 text-blue-700 text-xs font-black tracking-widest uppercase rounded-full mb-3 border border-blue-100">Activities & Albums</span>
-            <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">活動花絮</h2>
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">Activities</h2>
           </div>
 
         </div>
 
         <div class="relative w-full rounded-[2.25rem] overflow-hidden shadow-[0_28px_80px_rgba(15,23,42,0.16)] h-[380px] sm:h-[460px] flex items-center justify-center group" data-reveal="zoom" style="transition-delay: 100ms;">
-          <img src="/images/activity-banner.jpg" alt="活動花絮背景" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop';" />
+          <img src="/images/activity-banner.jpg" alt="Activity album background" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop';" />
           <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/45 to-slate-900/20 group-hover:from-slate-950/85 transition-colors duration-500"></div>
           <div class="relative z-10 w-full px-6 sm:px-10 lg:px-14">
             <div class="max-w-xl bg-white/12 backdrop-blur-xl border border-white/20 rounded-[2rem] shadow-2xl p-7 sm:p-10 transform transition-transform duration-500 group-hover:-translate-y-1">
               <div class="w-10 h-1 bg-blue-300 mb-6 rounded-full"></div>
-              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-4 tracking-tight drop-shadow-md">實驗室日常與活動紀錄</h3>
+              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white mb-4 tracking-tight drop-shadow-md">Lab life and event records</h3>
               <p class="text-sm sm:text-base text-slate-100 mb-8 leading-relaxed drop-shadow">
-                收錄國內外學術研討會、創新競賽、專題發表、實驗室聚餐與團隊活動，讓訪客看見研究背後的真實團隊文化。
+                Browse academic conferences, innovation competitions, project presentations, lab gatherings, and team activities that show the culture behind the research.
               </p>
               <a href="/en/activities" class="inline-flex items-center justify-center px-7 py-3.5 bg-white text-slate-950 hover:bg-blue-600 hover:text-white text-sm font-black rounded-full transition-all duration-300 shadow-lg group/btn">
-                前往活動相簿
+                Open Activity Albums
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transition-transform duration-300 group-hover/btn:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" /></svg>
               </a>
             </div>
@@ -496,7 +496,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         <div class="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
           <div>
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-black tracking-widest uppercase border border-indigo-100">Media</span>
-            <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">影音專區</h2>
+            <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">Videos</h2>
           </div>
         
         </div>
@@ -513,16 +513,16 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
         <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
-        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <p class="text-sm text-blue-400 font-medium mb-4">Intelligent Cyber-Physical Systems Laboratory</p>
         <p class="text-sm text-slate-400 leading-relaxed max-w-md">
           Intelligent Cyber-Physical Systems Laboratory <br/>
-          國立高雄科技大學 (NKUST)
+          National Kaohsiung University of Science and Technology (NKUST)
         </p>
       </div>
       <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
         <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> NKUST Jianguo Campus</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> +886-7-3814526 ext. 15672</p>
         <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
     </div>
@@ -541,9 +541,9 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
         </svg>
-        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">Total Visits</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">Loading...</span>
       </div>
 
     </div>
@@ -722,7 +722,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
           if (!hasVisitedWithin24Hours) {
             const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API 回應錯誤');
+            if (!response.ok) throw new Error('API response error');
             const data = await response.json();
             currentCount = String(data.count).padStart(6, '0');
             localStorage.setItem(lastVisitTimeKey, now.toString());
