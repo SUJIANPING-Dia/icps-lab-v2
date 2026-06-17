@@ -11,8 +11,35 @@ export function getStaticPaths() {
 }
 
 const { item } = Astro.props as { item: NewsItem };
-const title = `${item.title} | iCPS Lab`;
-const description = `${item.date} - ${item.title}`;
+const englishNewsTitles: Record<string, string> = {
+  "2026-icme-ai-surgical-instrument-award": "iCPS Lab Receives Excellent Poster Submission Recognition at ICME 2026",
+  "2026-itaoi-honorable-mention": "iCPS Lab Receives Honorable Mention at ITAOI 2026",
+  "2026-neihu-vocational-school-visit": "Neihu Vocational School Visits iCPS Lab",
+  "2026-atlife-expo-ai-care": "AI Care Technologies Showcased at the 2026 ATLife Expo",
+  "2026-student-project-competition-second-place": "Student Project Team Wins Second Place in National Competition",
+  "2026-ustv-ai-smart-glasses-report": "USTV Features iCPS Lab AI Smart Glasses Research",
+  "2026-ustv-ar-glasses-tof-interview": "USTV Interview on AR Glasses and ToF Applications",
+  "2026-student-project-competition-finalist": "Student Project Team Selected as National Competition Finalist",
+  "2026-japan-patent-tongue-rehabilitation": "Japan Patent Granted for Tongue Rehabilitation Game Platform",
+  "2026-icct-pacific-papers": "iCPS Lab Presents Papers at ICCT-Pacific 2026",
+  "2026-dsp-competition-celebration": "DSP Competition Celebration",
+  "2026-website-launch": "iCPS Lab Website Launch",
+  "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
+};
+const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("icme") || slug.includes("itaoi")) return "Award";
+  if (slug.includes("neihu")) return "Visit";
+  if (slug.includes("atlife")) return "Exhibition";
+  if (slug.includes("competition") || slug.includes("dsp")) return "Competition";
+  if (slug.includes("ustv")) return "Media";
+  if (slug.includes("patent")) return "Patent";
+  if (slug.includes("icct")) return "Publication";
+  return "Announcement";
+};
+const displayTitle = englishNewsTitles[item.slug] ?? item.title;
+const displayTag = getEnglishNewsTag(item.slug);
+const title = `${displayTitle} | iCPS Lab`;
+const description = `${item.date} - ${displayTitle}`;
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900";
 ---
 
@@ -43,25 +70,22 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
           </svg>
-          返回最新消息
-        </a>
+          Back to News</a>
 
         <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div class="lg:col-span-7">
             <div class="flex flex-wrap items-center gap-3 mb-6">
               <time class="text-blue-200 font-mono text-sm tracking-tight">{item.date}</time>
-              <span class={`px-2.5 py-1 text-xs font-bold rounded-sm border bg-white ${item.tagTheme}`}>{item.tag}</span>
+              <span class={`px-2.5 py-1 text-xs font-bold rounded-sm border bg-white ${item.tagTheme}`}>{displayTag}</span>
               {item.isPinned && (
-                <span class="px-2 py-0.5 text-[11px] font-bold text-red-200 bg-red-500/15 border border-red-300/30 rounded">
-                  置頂
-                </span>
+                <span class="px-2 py-0.5 text-[11px] font-bold text-red-200 bg-red-500/15 border border-red-300/30 rounded">Pinned</span>
               )}
             </div>
             <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight leading-tight">
-              {item.title}
+              {displayTitle}
             </h1>
             <p class="mt-6 text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-              iCPS Lab 最新消息與研究動態
+              iCPS Lab news and research updates
             </p>
           </div>
 
@@ -88,18 +112,18 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <p class="text-xs font-black tracking-[0.18em] text-blue-700 uppercase mb-4">News Detail</p>
             <dl class="space-y-4 text-sm">
               <div>
-                <dt class="text-slate-400 font-bold mb-1">日期</dt>
+                <dt class="text-slate-400 font-bold mb-1">Date</dt>
                 <dd class="text-slate-800 font-mono">{item.date}</dd>
               </div>
               <div>
-                <dt class="text-slate-400 font-bold mb-1">分類</dt>
+                <dt class="text-slate-400 font-bold mb-1">Category</dt>
                 <dd>
-                  <span class={`inline-flex px-2.5 py-1 text-xs font-medium rounded-sm border ${item.tagTheme}`}>{item.tag}</span>
+                  <span class={`inline-flex px-2.5 py-1 text-xs font-medium rounded-sm border ${item.tagTheme}`}>{displayTag}</span>
                 </dd>
               </div>
             </dl>
             <a href="/en/news" class="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-4 py-3 text-sm font-bold text-white transition hover:bg-blue-700">
-              回到新聞列表
+              Back to News List
               <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
               </svg>
@@ -112,7 +136,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             {!item.img && (
               <div class="mb-8 rounded-[1.5rem] bg-slate-50 border border-slate-200 p-6">
                 <p class="text-sm font-bold text-slate-500">iCPS Lab News</p>
-                <p class="mt-2 text-slate-700">{item.title}</p>
+                <p class="mt-2 text-slate-700">{displayTitle}</p>
               </div>
             )}
             <div set:html={item.content}></div>
@@ -126,17 +150,17 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
         <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
-        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <p class="text-sm text-blue-400 font-medium mb-4">Intelligent Cyber-Physical Systems Laboratory</p>
         <p class="text-sm text-slate-400 leading-relaxed max-w-md">
           Intelligent Cyber-Physical Systems Laboratory <br/>
-          國立高雄科技大學 (NKUST)
+          National Kaohsiung University of Science and Technology (NKUST)
         </p>
       </div>
       <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
         <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Location</span> National Kaohsiung University of Science and Technology, Jiangong Campus</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Tel</span> 07-3814526 ext. 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Email</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
     </div>
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
@@ -152,9 +176,9 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
         </svg>
-        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">Total visits</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">Loading...</span>
       </div>
     </div>
   </footer>

@@ -12,6 +12,33 @@ const sectionTitle = isEnglish ? "News" : "最新消息";
 const sectionSubtitle = "News & Announcements";
 const pinnedLabel = isEnglish ? "Pinned" : "置頂";
 const readMoreLabel = isEnglish ? "Read Full Article" : "閱讀完整新聞";
+const englishNewsTitles: Record<string, string> = {
+  "2026-icme-ai-surgical-instrument-award": "iCPS Lab Receives Excellent Poster Submission Recognition at ICME 2026",
+  "2026-itaoi-honorable-mention": "iCPS Lab Receives Honorable Mention at ITAOI 2026",
+  "2026-neihu-vocational-school-visit": "Neihu Vocational School Visits iCPS Lab",
+  "2026-atlife-expo-ai-care": "AI Care Technologies Showcased at the 2026 ATLife Expo",
+  "2026-student-project-competition-second-place": "Student Project Team Wins Second Place in National Competition",
+  "2026-ustv-ai-smart-glasses-report": "USTV Features iCPS Lab AI Smart Glasses Research",
+  "2026-ustv-ar-glasses-tof-interview": "USTV Interview on AR Glasses and ToF Applications",
+  "2026-student-project-competition-finalist": "Student Project Team Selected as National Competition Finalist",
+  "2026-japan-patent-tongue-rehabilitation": "Japan Patent Granted for Tongue Rehabilitation Game Platform",
+  "2026-icct-pacific-papers": "iCPS Lab Presents Papers at ICCT-Pacific 2026",
+  "2026-dsp-competition-celebration": "DSP Competition Celebration",
+  "2026-website-launch": "iCPS Lab Website Launch",
+  "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
+};
+const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("icme") || slug.includes("itaoi")) return "Award";
+  if (slug.includes("neihu")) return "Visit";
+  if (slug.includes("atlife")) return "Exhibition";
+  if (slug.includes("competition") || slug.includes("dsp")) return "Competition";
+  if (slug.includes("ustv")) return "Media";
+  if (slug.includes("patent")) return "Patent";
+  if (slug.includes("icct")) return "Publication";
+  return "Announcement";
+};
+const getDisplayTitle = (slug: string, fallback: string) => isEnglish ? (englishNewsTitles[slug] ?? fallback) : fallback;
+const getDisplayTag = (slug: string, fallback: string) => isEnglish ? getEnglishNewsTag(slug) : fallback;
 
 const sortedNewsData = [...newsData].sort((a, b) => {
   if (a.isPinned && !b.isPinned) return -1;
@@ -40,7 +67,7 @@ const sortedNewsData = [...newsData].sort((a, b) => {
               {/* 🌟 左側寬度改用 md:w-[17rem]，以容納新增的置頂標籤 */}
               <div class="flex items-center gap-3 shrink-0 md:w-[17rem]">
                 <span class="text-slate-500 font-mono text-sm tracking-tight">{item.date}</span>
-                <span class={`px-2.5 py-1 text-xs font-medium rounded-sm border shrink-0 ${item.tagTheme}`}>{item.tag}</span>
+                <span class={`px-2.5 py-1 text-xs font-medium rounded-sm border shrink-0 ${item.tagTheme}`}>{getDisplayTag(item.slug, item.tag)}</span>
                 {/* 🌟 新增：如果設定為置頂，就顯示置頂徽章 */}
                 {item.isPinned && (
                   <span class="px-2 py-0.5 text-[11px] font-bold text-red-600 bg-red-50 border border-red-200 rounded shrink-0 flex items-center gap-1 shadow-sm">
@@ -49,7 +76,7 @@ const sortedNewsData = [...newsData].sort((a, b) => {
                 )}
               </div>
               {/* 🌟 根據 isPinned 動態加入粗體 (font-bold) */}
-              <span class={`transition group-hover:text-blue-700 ${item.isPinned ? 'text-slate-900 font-bold' : 'text-slate-800 font-medium'}`}>{item.title}</span>
+              <span class={`transition group-hover:text-blue-700 ${item.isPinned ? 'text-slate-900 font-bold' : 'text-slate-800 font-medium'}`}>{getDisplayTitle(item.slug, item.title)}</span>
             </div>
             <svg class="w-5 h-5 text-slate-400 toggle-icon transition-transform duration-300 shrink-0 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
@@ -69,7 +96,7 @@ const sortedNewsData = [...newsData].sort((a, b) => {
                   <a
                     href={`${newsBasePath}/${item.slug}`}
                     class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-blue-700"
-                    aria-label={`${readMoreLabel}: ${item.title}`}
+                    aria-label={`${readMoreLabel}: ${getDisplayTitle(item.slug, item.title)}`}
                   >
                     {readMoreLabel}
                     <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">

@@ -80,7 +80,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
     
     <div class="relative z-10 px-4 animate-hero-zoom">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">活動花絮</h1>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">Activities</h1>
       <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow">Activities & Albums</p>
     </div>
   </header>
@@ -90,14 +90,14 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     <div class="mb-10">
       <a href="/en" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-        返回首頁
+        Back to Home
       </a>
     </div>
 
     <!-- 📷 相簿網格區塊 -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       {activities.map((item) => (
-        <a href={`/activities/${encodeURIComponent(item.id)}`} class="bg-white rounded-md border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 group flex flex-col cursor-pointer block">
+        <a href={`/en/activities/${encodeURIComponent(item.id)}`} class="bg-white rounded-md border border-slate-200 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-300 transition-all duration-300 group flex flex-col cursor-pointer block">
           <div class="relative aspect-[4/3] overflow-hidden bg-slate-100 shrink-0">
             <img src={item.img} alt={item.title} class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" loading="lazy" />
             <div class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-bold px-3 py-1.5 rounded-sm shadow-sm flex items-center gap-1.5">
@@ -110,7 +110,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
               {item.title}
             </h3>
             <div class="mt-3 inline-flex items-center gap-1.5 text-[13px] font-bold text-slate-400 group-hover:text-blue-600 transition-colors">
-              觀看相簿 →
+              View Album ->
             </div>
           </div>
         </a>
@@ -119,24 +119,23 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   </main>
 
   <!-- 🔷 頁尾 (Footer) -->
-  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
+  <footer class="bg-[#0f172a] py-16 mt-auto border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
         <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
-        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <p class="text-sm text-blue-400 font-medium mb-4">Intelligent Cyber-Physical Systems Laboratory</p>
         <p class="text-sm text-slate-400 leading-relaxed max-w-md">
           Intelligent Cyber-Physical Systems Laboratory <br/>
-          國立高雄科技大學 (NKUST)
+          National Kaohsiung University of Science and Technology (NKUST)
         </p>
       </div>
       <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
         <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Location</span> National Kaohsiung University of Science and Technology, Jiangong Campus</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Tel</span> 07-3814526 ext. 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Email</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
     </div>
-    
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
       <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
         <p class="text-xs text-slate-500 leading-normal">
@@ -145,20 +144,18 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         <p class="text-xs text-slate-500 hidden sm:block">|</p>
         <p class="text-xs text-slate-500">All rights reserved.</p>
       </div>
-
       <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
         <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
         </svg>
-        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">Total visits</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">Loading...</span>
       </div>
     </div>
   </footer>
 
-  <!-- 🔷 智慧訪客計數器邏輯 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // --- 智慧訪客計數器邏輯 (原封不動保留) ---
@@ -181,7 +178,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
           if (!hasVisitedWithin24Hours) {
             const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API 回應錯誤');
+            if (!response.ok) throw new Error('API response error');
             const data = await response.json();
             currentCount = String(data.count).padStart(6, '0');
             localStorage.setItem(lastVisitTimeKey, now.toString());
@@ -196,7 +193,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 localStorage.setItem(localCountKey, currentCount);
               }
             } catch (e) {
-              console.warn('無法從伺服器獲取最新數字');
+              console.warn('Could not fetch the latest visitor count');
             }
             counterEl.textContent = currentCount;
           }

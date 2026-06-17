@@ -64,8 +64,8 @@ try {
   console.error("讀取相簿照片失敗:", error);
 }
 
-const title = `${id} - 活動照片 | iCPS Lab 智慧網宇實體系統實驗室`;
-const description = `瀏覽 iCPS Lab「${id}」活動相簿照片與活動紀錄。`;
+const title = `${id} - Activity Album | iCPS Lab`;
+const description = `Browse photos and records from the iCPS Lab activity album: ${id}.`;
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative";
 ---
 
@@ -135,7 +135,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     <div class="mb-10">
       <a href="/en/activities" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-        返回活動花絮清單
+        Back to Activity Albums
       </a>
     </div>
 
@@ -147,7 +147,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <img 
               src={img.thumb} 
               data-full={img.full}
-              alt="活動照片" 
+              alt="Activity photo"
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 gallery-img" 
               loading="lazy" 
             />
@@ -155,7 +155,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         ))
       ) : (
         <div class="col-span-full text-center py-20">
-          <p class="text-slate-500 text-lg">此相簿目前沒有照片，或是正在載入中...</p>
+          <p class="text-slate-500 text-lg">This album currently has no photos, or photos are still loading...</p>
         </div>
       )}
     </div>
@@ -163,42 +163,47 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 
   <!-- 🔷 燈箱元件 (Lightbox Overlay) -->
   <div id="lightbox-overlay" aria-hidden="true">
-    <img id="lightbox-image" src="" alt="放大照片" />
+    <img id="lightbox-image" src="" alt="Enlarged activity photo" />
   </div>
 
   <!-- 🔷 頁尾 (Footer) -->
-  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
+  <footer class="bg-[#0f172a] py-16 mt-auto border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
-        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" />
-        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
+        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
+        <p class="text-sm text-blue-400 font-medium mb-4">Intelligent Cyber-Physical Systems Laboratory</p>
         <p class="text-sm text-slate-400 leading-relaxed max-w-md">
           Intelligent Cyber-Physical Systems Laboratory <br/>
-          國立高雄科技大學 (NKUST)
+          National Kaohsiung University of Science and Technology (NKUST)
         </p>
       </div>
       <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
         <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span>📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span>📞</span> 07-3814526 分機 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span>✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Location</span> National Kaohsiung University of Science and Technology, Jiangong Campus</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Tel</span> 07-3814526 ext. 15672</p>
+        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Email</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
       </div>
     </div>
-    
     <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      <p class="text-xs text-slate-500 text-center lg:text-left">
-        &copy; 2026 iCPS Lab, National Kaohsiung University of Science and Technology. All rights reserved.
-      </p>
-
+      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+        <p class="text-xs text-slate-500 leading-normal">
+          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
+        </p>
+        <p class="text-xs text-slate-500 hidden sm:block">|</p>
+        <p class="text-xs text-slate-500">All rights reserved.</p>
+      </div>
       <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
+        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span class="text-xs text-slate-400 font-medium tracking-wide">Total visits</span>
         <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
+        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">Loading...</span>
       </div>
     </div>
   </footer>
 
-  <!-- 🔷 燈箱互動邏輯與計數器 -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       // --- 1. 燈箱放大邏輯 (保留原樣) ---

@@ -9,6 +9,13 @@ const { lang = "zh" } = Astro.props;
 const isEnglish = lang === "en";
 const sectionTitle = isEnglish ? "Media" : "影音專區";
 const sectionSubtitle = "Featured Videos";
+const englishVideoTitles: Record<string, string> = {
+  "CWx9cUO4ym0": "2026 International Conference on Medical Education | NKUST iCPS Lab",
+  "FYVEmAv1t38": "iCPS Lab Research Video 1",
+  "x6QEfvkknOM": "iCPS Lab Research Video 2",
+  "1LYw3fPlm5s": "iCPS Lab Research Video 3",
+};
+const getDisplayTitle = (youtubeId: string, fallback: string) => isEnglish ? (englishVideoTitles[youtubeId] ?? fallback) : fallback;
 ---
 
 <section id="videos" class="scroll-mt-24">
@@ -30,13 +37,17 @@ const sectionSubtitle = "Featured Videos";
           <iframe
             class="absolute inset-0 w-full h-full"
             src={`https://www.youtube.com/embed/${video.youtubeId}`}
-            title={video.title}
+            title={getDisplayTitle(video.youtubeId, video.title)}
             frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
           ></iframe>
         </div>
-        
+        {isEnglish && (
+          <div class="p-4 bg-white border-t border-slate-200">
+            <h3 class="text-sm font-bold text-slate-800 leading-snug">{getDisplayTitle(video.youtubeId, video.title)}</h3>
+          </div>
+        )}
       </div>
     ))}
   </div>
