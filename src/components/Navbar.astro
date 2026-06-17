@@ -118,25 +118,27 @@ const enHref = currentPair ? currentPair.en : detailPair ? detailPair.en : curre
   </div>
 </nav>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
+<script is:inline>
+  (() => {
     const mobileMenuBtn = document.getElementById("mobile-menu-btn");
     const mobileMenu = document.getElementById("mobile-menu");
     const hamburgerIcon = document.getElementById("hamburger-icon");
 
-    if (mobileMenuBtn && mobileMenu && hamburgerIcon) {
-      mobileMenuBtn.addEventListener("click", () => {
-        const isHidden = mobileMenu.classList.contains("hidden");
-        mobileMenu.classList.toggle("hidden", !isHidden);
-        hamburgerIcon.setAttribute("d", isHidden ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16");
-      });
+    if (!mobileMenuBtn || !mobileMenu || !hamburgerIcon) return;
+    if (mobileMenuBtn.dataset.menuBound === "true") return;
 
-      mobileMenu.querySelectorAll("a").forEach((link) => {
-        link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
-          hamburgerIcon.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
-        });
+    mobileMenuBtn.dataset.menuBound = "true";
+    mobileMenuBtn.addEventListener("click", () => {
+      const isHidden = mobileMenu.classList.contains("hidden");
+      mobileMenu.classList.toggle("hidden", !isHidden);
+      hamburgerIcon.setAttribute("d", isHidden ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16");
+    });
+
+    mobileMenu.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        hamburgerIcon.setAttribute("d", "M4 6h16M4 12h16M4 18h16");
       });
-    }
-  });
+    });
+  })();
 </script>
