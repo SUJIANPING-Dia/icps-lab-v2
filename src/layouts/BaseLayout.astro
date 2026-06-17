@@ -6,17 +6,19 @@ interface Props {
   description?: string;
   bodyClass?: string;
   htmlClass?: string;
+  lang?: string;
 }
 
 const {
   title,
   description,
+  lang = "zh-TW",
   htmlClass = "scroll-smooth",
   bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative",
 } = Astro.props;
 ---
 
-<html lang="zh-TW" class={htmlClass}>
+<html lang={lang} class={htmlClass}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

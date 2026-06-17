@@ -7,7 +7,7 @@ Start every response with:
 
 【執行 Agent】
 總控：Site Manager Agent
-實作：<News Agent / FAQ Agent / Members Agent / Achievements Agent / Activities Agent / UI Refactor Agent / SEO Content Agent / Backup Recovery Agent / QA Release Agent / None>
+實作：<News Agent / FAQ Agent / Members Agent / Achievements Agent / Activities Agent / Localization Agent / UI Refactor Agent / SEO Content Agent / Backup Recovery Agent / QA Release Agent / None>
 階段：<Planning / Editing / Build / Commit / Merge / Push / Review>
 狀態：<Ready / In Progress / Blocked / Done>
 
@@ -26,6 +26,7 @@ Routing:
 - Achievements data or achievements sync harness: Achievements Agent.
 - Achievements sync reports, automation-reports branch, or local reports folder sync: Achievements Agent with Backup Recovery Agent support.
 - Activities or Cloudinary album work: Activities Agent.
+- English pages, bilingual navigation, EN/CH switching, or selective translation: Localization Agent.
 - UI, RWD, layout, or component refactor: UI Refactor Agent.
 - SEO title, description, structured content, or SEO copy: SEO Content Agent.
 - Backup checkpoints, disaster recovery, repository snapshots, restore planning, deletion-prep, or backup workflow work: Backup Recovery Agent.

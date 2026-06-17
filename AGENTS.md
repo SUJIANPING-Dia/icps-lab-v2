@@ -88,6 +88,7 @@ Routing rules:
 - Achievements scheduled sync tasks: use Achievements Agent and `docs/harness/ACHIEVEMENTS_SYNC.md`; QA Release Agent validates build, commit message, diff scope, and push target.
 - Activities or Cloudinary album tasks: use Activities Agent (`.codex/agents/activities.toml`) and read `docs/agents/ACTIVITIES_AGENT.md`.
 - Cloudinary album/photo refresh or redeploy tasks: route to Activities Agent first, then QA Release Agent must follow `docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md`.
+- English-version pages, bilingual navigation, EN/CH switching, or selective translation tasks: use Localization Agent (`.codex/agents/localization.toml`).
 - UI redesign, RWD, layout, or component refactor tasks: use UI Refactor Agent (`.codex/agents/ui-refactor.toml`).
 - SEO title, description, structured content, or SEO copy tasks: use SEO Content Agent (`.codex/agents/seo-content.toml`).
 - Backup checkpoint, disaster recovery, repository snapshot, restore planning, workflow backup, or deletion-prep tasks: use Backup Recovery Agent (`.codex/agents/backup-recovery.toml`).

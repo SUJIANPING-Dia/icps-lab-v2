@@ -7,6 +7,7 @@ This document is the human-readable maintenance guide for the iCPS Lab Astro web
 - Astro static site with Tailwind CSS.
 - Shared page shell: `src/layouts/BaseLayout.astro`.
 - Shared global navigation: `src/components/Navbar.astro`.
+- English prototype route: `src/pages/en/about.astro`.
 - Achievements data: `src/data/achievements.json`.
 - Achievements sync: `.github/workflows/sync-achievements.yml` runs the scraper daily.
 - Repository snapshot backups: `.github/workflows/backup-repo-snapshot.yml` creates a weekly Git bundle artifact.
@@ -25,6 +26,7 @@ This document is the human-readable maintenance guide for the iCPS Lab Astro web
 - Members agent config: `.codex/agents/members.toml`
 - Achievements agent config: `.codex/agents/achievements.toml`
 - Activities agent config: `.codex/agents/activities.toml`
+- Localization agent config: `.codex/agents/localization.toml`
 - UI Refactor agent config: `.codex/agents/ui-refactor.toml`
 - SEO Content agent config: `.codex/agents/seo-content.toml`
 - Backup Recovery agent config: `.codex/agents/backup-recovery.toml`

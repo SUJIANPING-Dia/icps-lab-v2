@@ -120,6 +120,25 @@ Forbidden:
 - `.env`
 - package files
 
+## Localization Tasks
+
+Allowed:
+
+- Explicitly scoped English pages under `src/pages/en/`.
+- Explicitly scoped language support in `src/layouts/BaseLayout.astro`.
+- Explicitly scoped bilingual navigation support in `src/components/Navbar.astro`.
+- Localization-related agent and harness documentation when the task is about workflow rules.
+
+Forbidden:
+
+- full-site translation in a single task
+- translating names, project titles, paper titles, award names, or activity album names unless explicitly requested
+- content data migration
+- Cloudinary API logic
+- `scripts/fetchAchievements.js`
+- `.env`
+- package files
+
 ## SEO Content Tasks
 
 Allowed:

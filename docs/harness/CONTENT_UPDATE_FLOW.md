@@ -159,7 +159,23 @@ Flow:
 4. Run `npm.cmd run build`.
 5. Report changed metadata/copy and any pages that should be checked after deployment.
 
-## 9. Long-Term Data Migration
+## 9. Localization Flow
+
+Use:
+
+- `.codex/agents/localization.toml`
+
+Flow:
+
+1. Site Manager Agent confirms this is an English page, bilingual navigation, EN/CH switching, or selective translation task.
+2. Confirm whether the task is a prototype or production page.
+3. Preserve formal names, project titles, paper titles, award names, and activity album names unless the user explicitly asks to translate them.
+4. Add or update one English route or one shared language-support component at a time.
+5. Run `npm.cmd run build`.
+6. Confirm only scoped localization files changed.
+7. Hand release work to QA Release Agent.
+
+## 10. Long-Term Data Migration
 
 News, FAQ, and Members are still embedded in `.astro` files. Future data migration candidates:
 

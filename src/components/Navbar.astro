@@ -1,13 +1,15 @@
 ---
 interface Props {
   activePath?: string;
+  lang?: "zh" | "en";
 }
 
-const { activePath = Astro.url.pathname } = Astro.props;
+const { activePath = Astro.url.pathname, lang = "zh" } = Astro.props;
+const isEnglish = lang === "en";
 
 const links = [
   { href: "/", label: "首頁", english: "Home", match: "/" },
-  { href: "/about", label: "關於 iCPS Lab", english: "About", match: "/about" },
+  { href: "/about", enHref: "/en/about", label: "關於 iCPS Lab", english: "About", match: "/about", enMatch: "/en/about" },
   { href: "/news", label: "最新消息", english: "News", match: "/news" },
   { href: "/activities", label: "活動花絮", english: "Events", match: "/activities" },
   { href: "/videos", label: "影音專區", english: "Media", match: "/videos" },
@@ -16,10 +18,18 @@ const links = [
   { href: "/faq", label: "常見問題", english: "FAQ", match: "/faq" },
 ];
 
+const getHref = (link: typeof links[number]) => isEnglish && "enHref" in link && link.enHref ? link.enHref : link.href;
+const getMatch = (link: typeof links[number]) => isEnglish && "enMatch" in link && link.enMatch ? link.enMatch : link.match;
+const getPrimaryLabel = (link: typeof links[number]) => isEnglish ? link.english : link.label;
+const getSecondaryLabel = (link: typeof links[number]) => isEnglish ? link.label : link.english;
+
 const isActive = (match: string) => {
   if (match === "/") return activePath === "/";
   return activePath === match || activePath.startsWith(`${match}/`);
 };
+
+const zhHref = activePath === "/en/about" ? "/about" : activePath.startsWith("/en/") ? "/" : activePath;
+const enHref = activePath === "/about" || activePath === "/en/about" ? "/en/about" : "/en/about";
 ---
 
 <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
@@ -44,19 +54,24 @@ const isActive = (match: string) => {
       </a>
     </div>
 
-    <div class="hidden md:flex space-x-8 text-sm font-bold text-slate-600 shrink-0 ml-4">
+    <div class="hidden md:flex items-center gap-5 lg:gap-7 text-sm font-bold text-slate-600 shrink-0 ml-4">
       {links.map((link) => {
-        const active = isActive(link.match);
+        const active = isActive(getMatch(link));
         return (
           <a
-            href={link.href}
+            href={getHref(link)}
             class={`group flex flex-col items-center transition border-b-2 pb-1 ${active ? "text-blue-800 border-blue-800" : "hover:text-blue-800 border-transparent hover:border-blue-800"}`}
           >
-            <span>{link.label}</span>
-            <span class={`text-xs font-normal ${active ? "text-blue-600" : "text-slate-400 group-hover:text-blue-600"}`}>{link.english}</span>
+            <span>{getPrimaryLabel(link)}</span>
+            <span class={`text-xs font-normal ${active ? "text-blue-600" : "text-slate-400 group-hover:text-blue-600"}`}>{getSecondaryLabel(link)}</span>
           </a>
         );
       })}
+      <div class="h-8 border-l border-slate-200"></div>
+      <div class="flex items-center rounded-full border border-slate-200 bg-slate-50 p-1 text-xs font-black tracking-wide">
+        <a href={zhHref} class={`px-2.5 py-1 rounded-full transition ${isEnglish ? "text-slate-500 hover:text-blue-800" : "bg-white text-blue-800 shadow-sm"}`}>CH</a>
+        <a href={enHref} class={`px-2.5 py-1 rounded-full transition ${isEnglish ? "bg-white text-blue-800 shadow-sm" : "text-slate-500 hover:text-blue-800"}`}>EN</a>
+      </div>
     </div>
 
     <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
@@ -68,16 +83,20 @@ const isActive = (match: string) => {
 
   <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
     {links.map((link) => {
-      const active = isActive(link.match);
+      const active = isActive(getMatch(link));
       return (
         <a
-          href={link.href}
+          href={getHref(link)}
           class={`block px-6 py-4 font-bold ${active ? "text-blue-800 bg-blue-50" : "text-slate-600 hover:bg-slate-50 hover:text-blue-800"}`}
         >
-          {link.label}
+          {getPrimaryLabel(link)}
         </a>
       );
     })}
+    <div class="flex items-center gap-2 px-6 py-4 border-t border-slate-100 bg-slate-50">
+      <a href={zhHref} class={`px-4 py-2 rounded-full text-sm font-black ${isEnglish ? "text-slate-500 bg-white border border-slate-200" : "text-white bg-blue-800"}`}>CH</a>
+      <a href={enHref} class={`px-4 py-2 rounded-full text-sm font-black ${isEnglish ? "text-white bg-blue-800" : "text-slate-500 bg-white border border-slate-200"}`}>EN</a>
+    </div>
   </div>
 </nav>
 

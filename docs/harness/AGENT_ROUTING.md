@@ -29,6 +29,7 @@ Responsibilities:
 | Achievements sync report storage or local report sync | Achievements Agent -> Backup Recovery Agent | Reports branch `automation-reports`, ignored local `reports/` folder |
 | Maintain activity albums or activity pages | Activities Agent | Cloudinary first; code only when explicitly requested |
 | Cloudinary album/photos uploaded or updated | Activities Agent -> QA Release Agent | No code edit; Vercel redeploy only when explicitly requested |
+| English pages, EN/CH switch, bilingual navigation, selective translation | Localization Agent | `src/pages/en/` plus explicitly scoped language support files |
 | UI redesign, RWD, layout, component refactor | UI Refactor Agent | Explicitly scoped UI files only |
 | SEO title, description, structured content, SEO copy | SEO Content Agent | Explicitly scoped SEO/content files only |
 | Backup checkpoint, repo snapshot, restore planning, disaster recovery | Backup Recovery Agent | Backup workflows, recovery docs, checkpoint planning |

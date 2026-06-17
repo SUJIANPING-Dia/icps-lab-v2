@@ -17,6 +17,7 @@ Site Manager Agent
   +-- Members Agent
   +-- Achievements Agent
   +-- Activities Agent
+  +-- Localization Agent
   +-- UI Refactor Agent
   +-- SEO Content Agent
   +-- QA Release Agent
@@ -36,6 +37,7 @@ These agents now have concrete `.codex/agents/*.toml` definitions.
 | Members Agent | `.codex/agents/members.toml` | Member records and user-provided member photos |
 | Achievements Agent | `.codex/agents/achievements.toml` | Achievements data and achievements sync harness |
 | Activities Agent | `.codex/agents/activities.toml` | Cloudinary album workflow and explicitly scoped activity page edits |
+| Localization Agent | `.codex/agents/localization.toml` | Selective English pages, bilingual navigation, EN/CH switching |
 | UI Refactor Agent | `.codex/agents/ui-refactor.toml` | Layout, RWD, component extraction, UI structure |
 | SEO Content Agent | `.codex/agents/seo-content.toml` | Title, description, structured content, SEO copy |
 | QA Release Agent | `.codex/agents/qa-release.toml` | Build, diff, release, push, redeploy validation |
@@ -51,6 +53,7 @@ Some content is still embedded in Astro files. This is intentional for now; do n
 | Members | `src/pages/members.astro` | Members Agent |
 | Achievements | `src/data/achievements.json` | Achievements Agent |
 | Activities albums | Cloudinary, rendered by `src/pages/activities*.astro` | Activities Agent |
+| English pages | `src/pages/en/` plus shared language support | Localization Agent |
 | SEO metadata | Page/layout frontmatter and BaseLayout props | SEO Content Agent |
 | Shared UI | `src/layouts/`, `src/components/`, page composition | UI Refactor Agent |
 
@@ -156,6 +159,22 @@ Cannot:
 - Expose Cloudinary secrets.
 - Change Cloudinary API logic, `getStaticPaths()`, or album route rules unless explicitly requested.
 - Trigger Vercel Deploy Hook directly.
+
+### Localization Agent
+
+Can:
+
+- Add selective English routes such as `/en/about`.
+- Add EN/CH switching and bilingual navigation support.
+- Translate page-level headings, metadata, and explanatory copy.
+- Preserve formal names while adding English context.
+
+Cannot:
+
+- Translate people names, project titles, paper titles, award names, or activity album names unless explicitly requested.
+- Create a full-site English version in one task.
+- Migrate News, FAQ, Members, Achievements, or Activities data.
+- Edit Cloudinary API logic, scraper scripts, package files, or `.env`.
 
 ### UI Refactor Agent
 
