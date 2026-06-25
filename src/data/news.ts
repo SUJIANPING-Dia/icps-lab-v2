@@ -12,6 +12,74 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-international-nursing-summit-indonesia",
+    date: "2026.06.18",
+    tag: "國際交流",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "活動分享｜張萬榮教授赴印尼萬隆參與 International Nursing Summit 2026",
+    img: "",
+    imgAlt: "",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        2026 年 6 月 15 日至 18 日，國立高雄科技大學電子工程系智慧型網宇實體系統實驗室張萬榮教授赴印尼萬隆，參與 <strong>International Nursing Summit 2026</strong>，與來自印尼及其他國家的護理、醫療照護、健康科技與學術研究領域夥伴進行交流。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        這次行程不只是一次國際研討會參與，更是一段很有收穫的跨國學術交流。從專題演講、Workshop、護理學院學生專題分享，到最後前往雅加達參訪 Universitas Negeri Jakarta, UNJ，以及設於該校的 Taiwan Education Center，整趟行程讓我們更深入看見人工智慧、智慧照護與護理教育在東南亞地區的發展潛力。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">Keynote Speech：AI 智慧照護研究分享</h3>
+          <p class="text-slate-700">
+            在 International Nursing Summit 2026 中，張萬榮教授受邀擔任 Keynote Speech 講者，分享本實驗室近年在 AI 智慧照護、病房環境感知、臥床長者異常行為偵測，以及醫院照護場域 AI 系統應用等相關研究成果。現場與線上參與者包含護理教師、護理系學生、醫院護理人員及健康照護領域專業人員，交流氣氛相當熱烈。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">把工程研究帶到真實照護場域</h3>
+          <p class="text-slate-700">
+            對實驗室而言，這次分享最重要的意義，不只是展示技術成果，而是把工程研究帶到真實醫療與護理場域中討論。智慧照護系統的設計，不能只從技術角度出發，更需要理解臨床照護流程、護理人員工作負擔、病人安全需求，以及系統實際導入後可能面對的情境。因此，透過與護理專業人員的直接交流，也讓我們更清楚未來研究可以持續深化的方向。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">Workshop：從臨床需求出發的創新設計</h3>
+          <p class="text-slate-700">
+            除了專題演講外，張萬榮教授也於 Workshop 中，與護理學院教師分享如何以 <strong>Stanford Biodesign Program</strong> 的概念，從臨床與照護現場出發，尋找護理領域中的 Unmet Needs，並進一步透過需求分析、腦力激盪、雛型設計與驗證規劃，將問題逐步轉化為可實作的創新方案。這樣的交流過程，也讓工程、護理與醫療照護之間有更多對話的可能。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">護理教育與學生專題交流</h3>
+          <p class="text-slate-700">
+            行程中，張萬榮教授亦受邀擔任印尼護理學院學生期末專題報告之客座教授。從學生的專題作品中，可以看到印尼護理教育正在積極嘗試將 AI 工具、系統平台與 APP 應用導入護理照護情境。學生們針對健康促進、社區照護、病人安全與護理服務提出不同構想，也讓我們看見年輕世代對於智慧護理與數位健康應用的想像力。
+          </p>
+        </div>
+
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">參訪 UNJ 與 Taiwan Education Center</h3>
+          <p class="text-slate-700">
+            在最後一天的行程中，張萬榮教授與團隊前往雅加達參訪 <strong>Universitas Negeri Jakarta, UNJ</strong>，除參觀相關 AI 實驗室並與師生進行交流外，也參訪了 Taiwan Education Center。透過此次參訪，我們與當地大學、護理學院及醫療相關單位建立了更多連結，也收到後續合作與再訪邀約，為未來推動跨國研究、學生交流與智慧照護應用合作奠定良好基礎。
+          </p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">持續推動 AIoT 與智慧醫療國際合作</h3>
+          <p class="text-slate-700 mb-3">
+            智慧型網宇實體系統實驗室長期投入 AIoT、邊緣 AI、智慧醫療、照護感知與臨床場域應用研究。我們相信，未來的智慧照護不只是單一技術的發展，而是需要工程、護理、醫療、教育與國際合作共同推動。
+          </p>
+          <p class="text-slate-700 mb-3">
+            本次印尼交流讓我們看見更多跨領域合作的可能，也讓實驗室未來在國際研究與人才培育上有了新的方向。未來，我們也歡迎對人工智慧、智慧醫療、AIoT、護理科技與跨國研究有興趣的國際學生、研究夥伴與合作單位與我們交流，共同探索智慧照護技術在真實世界中的應用價值。
+          </p>
+          <p class="font-semibold text-blue-800">
+            Welcome international students and research partners who are interested in AI, smart healthcare, AIoT, and nursing technology to connect with iCPS Lab.
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-icme-ai-surgical-instrument-award",
     date: "2026.06.03",
     tag: "競賽佳績",

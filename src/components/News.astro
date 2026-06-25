@@ -13,6 +13,7 @@ const sectionSubtitle = "News & Announcements";
 const pinnedLabel = isEnglish ? "Pinned" : "置頂";
 const readMoreLabel = isEnglish ? "Read Full Article" : "閱讀完整新聞";
 const englishNewsTitles: Record<string, string> = {
+  "2026-international-nursing-summit-indonesia": "Prof. Wan-Jung Chang Joins International Nursing Summit 2026 in Bandung, Indonesia",
   "2026-icme-ai-surgical-instrument-award": "iCPS Lab Receives Excellent Poster Submission Recognition at ICME 2026",
   "2026-itaoi-honorable-mention": "iCPS Lab Receives Honorable Mention at ITAOI 2026",
   "2026-neihu-vocational-school-visit": "Neihu Vocational School Visits iCPS Lab",
@@ -28,6 +29,7 @@ const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("nursing-summit")) return "International";
   if (slug.includes("icme") || slug.includes("itaoi")) return "Award";
   if (slug.includes("neihu")) return "Visit";
   if (slug.includes("atlife")) return "Exhibition";
