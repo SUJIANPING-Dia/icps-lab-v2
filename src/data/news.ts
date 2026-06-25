@@ -17,8 +17,8 @@ export const newsData: NewsItem[] = [
     tag: "國際交流",
     tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
     title: "張萬榮教授赴印尼參與 International Nursing Summit 2026，分享 AI 智慧照護研究",
-    img: "",
-    imgAlt: "",
+    img: "/images/international-nursing-summit-2026-keynote.jpg",
+    imgAlt: "張萬榮教授於 International Nursing Summit 2026 交流活動現場",
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         2026 年 6 月 15 日至 18 日，國立高雄科技大學電子工程系 iCPS Lab 張萬榮教授赴印尼萬隆，參與 <strong>International Nursing Summit 2026</strong>，並受邀擔任 Keynote Speech 講者，分享實驗室在 AI 智慧照護與醫療場域應用上的研究成果。
@@ -27,6 +27,13 @@ export const newsData: NewsItem[] = [
       <p class="mb-6 text-slate-700">
         本次行程涵蓋專題演講、Workshop、護理學院學生專題交流，以及雅加達 Universitas Negeri Jakarta（UNJ）與 Taiwan Education Center 參訪。透過與護理、醫療照護、健康科技與學術研究領域夥伴的交流，也讓我們看見 AI、智慧照護與護理教育在東南亞地區的發展潛力。
       </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/international-nursing-summit-2026-unj-visit.jpg" alt="張萬榮教授與團隊參訪 Universitas Negeri Jakarta 與 Taiwan Education Center" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：張萬榮教授與團隊於印尼行程期間參訪 UNJ 與 Taiwan Education Center，交流智慧照護與跨國合作可能。
+        </figcaption>
+      </figure>
 
       <div class="space-y-6">
         <div class="border-l-4 border-blue-500 pl-4">
