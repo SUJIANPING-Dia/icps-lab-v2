@@ -12,6 +12,66 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-medical-taiwan-ai-surgical-instrument-recognition",
+    date: "2026.06.26",
+    tag: "展覽動態",
+    tagTheme: "text-cyan-800 bg-cyan-50 border-cyan-200",
+    title: "iCPS Lab 於 2026 台灣國際醫療暨健康照護展展出 AI 外科手術器械識別技術",
+    img: "/images/medical-taiwan-2026-group-photo.jpg",
+    imgAlt: "iCPS Lab 團隊於 2026 台灣國際醫療暨健康照護展現場合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        iCPS Lab 受 <strong>經濟部智慧財產局</strong> 邀請，於 <strong>2026 台灣國際醫療暨健康照護展</strong> 展出與 <strong>臺安醫院</strong> 合作開發的 <strong>AI 外科手術器械識別技術</strong>，將人工智慧研究成果帶到醫療照護與手術室教育訓練場域中展示。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本項技術可應用於醫院外科護理人員的手術器械識別教育訓練，並協助手術器械在術前與術後的清點檢核流程。透過 AI 影像辨識與系統化教學介面，期待降低臨床教學負擔，也讓新進護理人員能更有效率地熟悉手術器械與照護流程。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/medical-taiwan-2026-technology-demo.jpg" alt="iCPS Lab 於展場展示 AI 外科手術器械識別技術與系統成果" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：iCPS Lab 於 2026 台灣國際醫療暨健康照護展現場展示 AI 外科手術器械識別技術，分享智慧醫療與護理教育應用成果。
+        </figcaption>
+      </figure>
+
+      <div class="relative w-full mb-6 overflow-hidden rounded-lg shadow-md" style="padding-top: 56.25%;">
+        <iframe
+          class="absolute top-0 left-0 w-full h-full"
+          src="https://www.youtube.com/embed/ou1L5Okv2eA"
+          title="三立新聞報導 iCPS Lab AI 外科手術器械識別技術"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-cyan-500 pl-4">
+          <h3 class="font-semibold text-cyan-700 mb-2">展出重點</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>展出活動：</strong>2026 台灣國際醫療暨健康照護展</li>
+            <li><strong>邀請單位：</strong>經濟部智慧財產局</li>
+            <li><strong>合作單位：</strong>臺安醫院</li>
+            <li><strong>技術主題：</strong>AI 外科手術器械識別技術</li>
+            <li><strong>專利資訊：</strong>發明專利證書號 I907322</li>
+            <li><strong>媒體曝光：</strong>三立新聞採訪報導</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">從專利成果走向醫療照護應用</h3>
+          <p class="text-slate-700 mb-3">
+            對 iCPS Lab 而言，這次展出不只是專利成果的展示，更是把工程技術帶到真實醫療照護現場中被看見、被討論。手術室教育訓練涉及器械辨識、流程熟悉、病人安全與臨床工作節奏，這些都是智慧醫療系統設計時必須共同考量的關鍵因素。
+          </p>
+          <p class="text-slate-700">
+            未來實驗室將持續推動 AIoT、智慧醫療、臨床教育科技與照護場域應用研究，並期待透過跨域合作，讓 AI 技術能更實際地支持醫療與護理人員的工作需求。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-international-nursing-summit-indonesia",
     date: "2026.06.18",
     tag: "國際交流",

@@ -12,6 +12,7 @@ export function getStaticPaths() {
 
 const { item } = Astro.props as { item: NewsItem };
 const englishNewsTitles: Record<string, string> = {
+  "2026-medical-taiwan-ai-surgical-instrument-recognition": "iCPS Lab Showcases AI Surgical Instrument Recognition at Medical Taiwan 2026",
   "2026-international-nursing-summit-indonesia": "Prof. Wan-Jung Chang Joins International Nursing Summit 2026 in Bandung, Indonesia",
   "2026-icme-ai-surgical-instrument-award": "iCPS Lab Receives Excellent Poster Submission Recognition at ICME 2026",
   "2026-itaoi-honorable-mention": "iCPS Lab Receives Honorable Mention at ITAOI 2026",
@@ -28,6 +29,7 @@ const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("medical-taiwan")) return "Exhibition";
   if (slug.includes("nursing-summit")) return "International";
   if (slug.includes("icme") || slug.includes("itaoi")) return "Award";
   if (slug.includes("neihu")) return "Visit";
