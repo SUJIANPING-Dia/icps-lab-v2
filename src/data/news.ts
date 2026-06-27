@@ -12,6 +12,49 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-nstc-undergrad-project-tsai-yiming",
+    date: "2026.06.27",
+    tag: "學生榮譽",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "恭喜 iCPS Lab 大三專題生蔡一銘獲國科會大專學生研究計畫補助",
+    img: "/images/nstc-undergrad-project-2026-tsai-yiming.png",
+    imgAlt: "蔡一銘同學通過國科會 115 年度大專學生研究計畫補助查詢結果",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        恭喜 iCPS Lab 大三專題生 <strong>蔡一銘</strong> 同學通過國科會 115 年度大專學生研究計畫補助，計畫題目為 <strong>「基於多流時空姿態分析與深度迴歸技術之銀髮族體適能品質偵測系統」</strong>，核定金額為 58,000 元，執行期間自 2026 年 7 月 1 日至 2027 年 2 月 28 日，指導教授為張萬榮教授。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本計畫結合多流時空姿態分析、深度學習與智慧感測技術，期望建立可協助評估銀髮族動作品質與體適能狀態的智慧系統。通過國科會審查，也代表蔡一銘同學的研究主題、方法規劃與執行潛力獲得肯定。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">計畫資訊</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>學生姓名：</strong>蔡一銘</li>
+            <li><strong>計畫名稱：</strong>基於多流時空姿態分析與深度迴歸技術之銀髮族體適能品質偵測系統</li>
+            <li><strong>計畫編號：</strong>115-2813-C-992-075-E</li>
+            <li><strong>補助單位：</strong>國科會</li>
+            <li><strong>指導教授：</strong>張萬榮教授</li>
+            <li><strong>執行期間：</strong>2026/07/01 至 2027/02/28</li>
+            <li><strong>核定金額：</strong>58,000 元</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">從專題走向研究實作</h3>
+          <p class="text-slate-700 mb-3">
+            iCPS Lab 長期投入 AIoT、智慧醫療、智慧照護、人體姿態辨識與邊緣 AI 應用研究，也鼓勵大學部學生從專題階段參與真實研究問題。透過實驗室的研究訓練，學生能逐步累積 AI 模型設計、資料分析、系統整合與跨域應用能力。
+          </p>
+          <p class="text-slate-700">
+            再次恭喜蔡一銘同學，也期待本研究後續能在智慧照護與銀髮族健康評估應用上展現更多成果。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-medical-taiwan-ai-surgical-instrument-recognition",
     date: "2026.06.26",
     tag: "展覽動態",
