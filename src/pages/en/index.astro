@@ -57,12 +57,12 @@ const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => s
 
 // 🖼️ 7. 實驗室海報作品清單 (擴充為 10 個作品測試捲軸佈局)
 const posters = [
-  { id: 1, title: "KneeEye", category: "Healthcare AI", desc: "Dual-modal patellar tendon reflex quantification system", thumb: "/images/kneeeye-thumb.jpg", full: "/images/kneeeye-full.png" },
-  { id: 2, title: "PigView", category: "Smart Farming", desc: "AI-based pig weight estimation system", thumb: "/images/pigview-full.png", full: "/images/pigview-full.png" },
-  { id: 3, title: "iEar", category: "Healthcare AI", desc: "AI-powered otitis media diagnosis system", thumb: "/images/iear-full.png", full: "/images/iear-full.png" },
-  { id: 4, title: "iNoodle", category: "Smart Manufacturing", desc: "AI seasoning packet recognition system", thumb: "/images/inoodle-full.png", full: "/images/inoodle-full.png" },
-  { id: 5, title: "ToFPose", category: "Healthcare AI", desc: "Privacy-preserving ToF skeleton estimation", thumb: "/images/tofpose-full.png", full: "/images/tofpose-full.png" },
-  { id: 6, title: "GaitMirror", category: "Healthcare AI", desc: "AI gait analysis system", thumb: "/images/gaitmirror-full.png", full: "/images/gaitmirror-full.png" }
+  { id: 1, title: "KneeEye", category: "Healthcare AI", desc: "Dual-modal patellar tendon reflex quantification system", thumb: "/images/kneeeye-display.webp", full: "/images/kneeeye-display.webp" },
+  { id: 2, title: "PigView", category: "Smart Farming", desc: "AI-based pig weight estimation system", thumb: "/images/pigview-display.webp", full: "/images/pigview-display.webp" },
+  { id: 3, title: "iEar", category: "Healthcare AI", desc: "AI-powered otitis media diagnosis system", thumb: "/images/iear-display.webp", full: "/images/iear-display.webp" },
+  { id: 4, title: "iNoodle", category: "Smart Manufacturing", desc: "AI seasoning packet recognition system", thumb: "/images/inoodle-display.webp", full: "/images/inoodle-display.webp" },
+  { id: 5, title: "ToFPose", category: "Healthcare AI", desc: "Privacy-preserving ToF skeleton estimation", thumb: "/images/tofpose-display.webp", full: "/images/tofpose-display.webp" },
+  { id: 6, title: "GaitMirror", category: "Healthcare AI", desc: "AI gait analysis system", thumb: "/images/gaitmirror-display.webp", full: "/images/gaitmirror-display.webp" }
   // 👇 模擬未來新增的作品
   
 ];
@@ -135,10 +135,10 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <header class="relative w-full bg-[#0f172a] overflow-hidden border-b-4 border-blue-700 aspect-[16/9] sm:aspect-[21/9] lg:aspect-[12/5]">
     <div id="hero-slider" class="absolute inset-0 w-full h-full z-10 group/slider">
       <!-- 調整順序，背景 5 和 6 先出現，並設定背景 5 為預設顯示 -->
-      <img src="/images/hero-bg-5.png" alt="iCPS Lab background 5" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-100" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-6.png" alt="iCPS Lab background 6" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-3.jpg" alt="iCPS Lab background 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-4.png" alt="iCPS Lab background 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-5.webp" alt="iCPS Lab background 5" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-100" loading="eager" decoding="async" fetchpriority="high" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-6.webp" alt="iCPS Lab background 6" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-3.webp" alt="iCPS Lab background 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img src="/images/hero-bg-4.webp" alt="iCPS Lab background 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
       
       <button id="prev-btn" class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 sm:w-8 sm:h-8">
@@ -340,7 +340,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <div class="relative z-10 flex flex-col sm:flex-row gap-8 items-start sm:items-center">
               <div class="w-32 sm:w-44 shrink-0">
                 <div class="rounded-[1.5rem] overflow-hidden shadow-xl shadow-slate-900/10 ring-1 ring-slate-900/5 aspect-[4/5] bg-slate-100">
-                  <img src="/images/professor.png" alt="Professor Wan-Jung Chang" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/default-avatar.png';" />
+                  <img src="/images/professor.webp" alt="Professor Wan-Jung Chang" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/default-avatar.png';" />
                 </div>
               </div>
               <div class="flex-1">
@@ -422,6 +422,8 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 src={posters[0].thumb} 
                 alt={posters[0].title} 
                 class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" 
+                loading="lazy"
+                decoding="async"
                 onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=1200&auto=format&fit=crop';`}
               />
               <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-transparent"></div>
@@ -452,7 +454,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                   onclick="selectPoster(this)"
                 >
                   <div class="w-24 h-[54px] sm:w-32 sm:h-[72px] lg:w-28 lg:h-[63px] shrink-0 rounded-xl overflow-hidden shadow-inner border border-white/20 bg-slate-100 relative">
-                    <img src={poster.thumb} alt={poster.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/selector:scale-105" onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=400&auto=format&fit=crop';`} />
+                    <img src={poster.thumb} alt={poster.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/selector:scale-105" loading="lazy" decoding="async" onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=400&auto=format&fit=crop';`} />
                   </div>
                   <div class="flex-1 min-w-0 py-1">
                     <div class={`text-[10px] font-black uppercase tracking-widest mb-1 truncate ${index === 0 ? 'text-blue-200' : 'text-blue-600'}`}>{poster.category}</div>
@@ -477,7 +479,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         </div>
 
         <div class="relative w-full rounded-[2.25rem] overflow-hidden shadow-[0_28px_80px_rgba(15,23,42,0.16)] h-[380px] sm:h-[460px] flex items-center justify-center group" data-reveal="zoom" style="transition-delay: 100ms;">
-          <img src="/images/activity-banner.jpg" alt="Activity album background" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop';" />
+          <img src="/images/activity-banner.webp" alt="Activity album background" class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2070&auto=format&fit=crop';" />
           <div class="absolute inset-0 bg-gradient-to-r from-slate-950/80 via-slate-900/45 to-slate-900/20 group-hover:from-slate-950/85 transition-colors duration-500"></div>
           <div class="relative z-10 w-full px-6 sm:px-10 lg:px-14">
             <div class="max-w-xl bg-white/12 backdrop-blur-xl border border-white/20 rounded-[2rem] shadow-2xl p-7 sm:p-10 transform transition-transform duration-500 group-hover:-translate-y-1">
@@ -516,7 +518,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
     <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
       <div class="md:w-1/2">
-        <img src="/images/footer-logo.png" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
+        <img src="/images/footer-logo.webp" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
         <p class="text-sm text-blue-400 font-medium mb-4">Intelligent Cyber-Physical Systems Laboratory</p>
         <p class="text-sm text-slate-400 leading-relaxed max-w-md">
           Intelligent Cyber-Physical Systems Laboratory <br/>
