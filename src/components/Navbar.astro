@@ -51,48 +51,50 @@ const enHref = currentPair ? currentPair.en : detailPair ? detailPair.en : curre
 ---
 
 <nav class="w-full bg-white border-b border-slate-200 shadow-sm relative z-30">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between py-3 md:py-4">
-    <div class="flex items-center gap-3 sm:gap-6 lg:gap-8 min-w-0">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center gap-5 py-2.5 md:py-3">
+    <div class="flex items-center gap-3 sm:gap-5 lg:gap-6 min-w-0 shrink-0 pr-5 lg:pr-8 xl:pr-10 border-r border-slate-200">
       <a href="https://www.nkust.edu.tw/" target="_blank" class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
         <img
           src="/images/nkust-logo.png"
           alt="NKUST 國立高雄科技大學"
-          class="h-6 sm:h-9 md:h-10 lg:h-11 w-auto object-contain"
+          class="h-6 sm:h-8 md:h-9 lg:h-9 w-auto object-contain"
           onerror="this.src='https://upload.wikimedia.org/wikipedia/zh/thumb/4/46/National_Kaohsiung_University_of_Science_and_Technology_logo.svg/800px-National_Kaohsiung_University_of_Science_and_Technology_logo.svg.png';"
         />
       </a>
-      <div class="h-4 sm:h-6 md:h-8 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
+      <div class="h-4 sm:h-6 md:h-7 border-l-[1.5px] border-slate-300/80 shrink-0 rounded-full"></div>
       <a href={isEnglish ? "/en" : "/"} class="flex items-center shrink-0 transition-transform duration-300 hover:scale-105">
         <img
           src="/images/sicp-logo.png"
           alt="iCPS Lab 智慧網宇實體系統實驗室"
-          class="h-7 sm:h-11 md:h-12 lg:h-[3.25rem] w-auto object-contain"
+          class="h-7 sm:h-9 md:h-10 lg:h-10 w-auto object-contain"
           onerror="this.style.display='none';"
         />
       </a>
     </div>
 
-    <div class="hidden xl:flex items-center gap-5 lg:gap-7 text-sm font-bold text-slate-600 shrink-0 ml-4">
+    <div class="hidden xl:flex flex-1 items-center justify-center gap-4 text-[13px] font-bold text-slate-600 min-w-0">
       {links.map((link) => {
         const active = isActive(getMatch(link));
         return (
           <a
             href={getHref(link)}
-            class={`group flex flex-col items-center transition border-b-2 pb-1 ${active ? "text-blue-800 border-blue-800" : "hover:text-blue-800 border-transparent hover:border-blue-800"}`}
+            class={`group flex min-w-[4.25rem] flex-col items-center transition border-b-2 px-1 pb-1.5 ${active ? "text-blue-800 border-blue-800" : "hover:text-blue-800 border-transparent hover:border-blue-800"}`}
           >
             <span>{getPrimaryLabel(link)}</span>
             <span class={`text-xs font-normal ${active ? "text-blue-600" : "text-slate-400 group-hover:text-blue-600"}`}>{getSecondaryLabel(link)}</span>
           </a>
         );
       })}
-      <div class="h-8 border-l border-slate-200"></div>
+    </div>
+
+    <div class="hidden xl:flex items-center shrink-0 pl-5 border-l border-slate-200">
       <div class="flex items-center rounded-full border border-slate-200 bg-slate-50 p-1 text-xs font-black tracking-wide">
         <a href={zhHref} class={`px-2.5 py-1 rounded-full transition ${isEnglish ? "text-slate-500 hover:text-blue-800" : "bg-white text-blue-800 shadow-sm"}`}>CH</a>
         <a href={enHref} class={`px-2.5 py-1 rounded-full transition ${isEnglish ? "bg-white text-blue-800 shadow-sm" : "text-slate-500 hover:text-blue-800"}`}>EN</a>
       </div>
     </div>
 
-    <button id="mobile-menu-btn" class="xl:hidden p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
+    <button id="mobile-menu-btn" class="xl:hidden ml-auto p-2 text-slate-600 hover:text-blue-800 transition focus:outline-none" aria-label="打開選單">
       <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
       </svg>
