@@ -12,6 +12,57 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-consumer-electronics-contribution-award",
+    date: "2026.07.02",
+    tag: "學術榮譽",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "張萬榮教授榮獲中華民國消費電子學會「傑出貢獻獎」",
+    img: "/images/consumer-electronics-contribution-award-group.jpg",
+    imgAlt: "張萬榮教授榮獲中華民國消費電子學會傑出貢獻獎活動合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        國立高雄科技大學電子工程系暨智慧網宇實體系統實驗室（iCPS Lab）張萬榮教授，榮獲 <strong>中華民國消費電子學會</strong> 頒發 <strong>「傑出貢獻獎」</strong>，肯定其長期投入人工智慧、AIoT、智慧醫療、智慧製造與消費電子相關研究，以及對學術推動與產學合作的持續貢獻。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        張萬榮教授長期致力於智慧網宇實體系統、邊緣人工智慧與跨域應用研究，並帶領 iCPS Lab 推動多項結合感測、影像辨識、醫療照護與智慧系統整合的研究成果。此次獲獎不僅是對個人研究能量與學術服務的肯定，也展現實驗室在 AIoT 與消費電子應用領域持續深耕的成果。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/consumer-electronics-contribution-award-presentation.jpg" alt="活動現場介紹張萬榮教授研究成果與傑出貢獻獎得獎事蹟" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：活動現場介紹張萬榮教授研究成果與得獎事蹟。
+        </figcaption>
+      </figure>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">獎項資訊</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>獎項名稱：</strong>傑出貢獻獎</li>
+            <li><strong>頒發單位：</strong>中華民國消費電子學會</li>
+            <li><strong>獲獎人：</strong>國立高雄科技大學 張萬榮教授</li>
+            <li><strong>頒獎日期：</strong>2026 年 7 月 2 日</li>
+          </ul>
+        </div>
+
+        <figure class="max-w-2xl mx-auto overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+          <img src="/images/consumer-electronics-contribution-award-trophy.jpg" alt="中華民國消費電子學會傑出貢獻獎獎座" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+          <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+            圖：中華民國消費電子學會「傑出貢獻獎」獎座。
+          </figcaption>
+        </figure>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">持續推動 AIoT 與智慧應用研究</h3>
+          <p class="text-slate-700">
+            iCPS Lab 將持續投入人工智慧物聯網、智慧醫療、智慧照護、邊緣運算與消費電子應用研究，並透過跨域合作推動研究成果落地，讓工程技術在真實場域中創造更高的應用價值。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-nstc-undergrad-project-tsai-yiming",
     date: "2026.06.27",
     tag: "學生榮譽",
