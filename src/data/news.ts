@@ -12,6 +12,59 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-nstc-t2-pose-three-year-project",
+    date: "2026.07.07",
+    tag: "研究計畫",
+    tagTheme: "text-emerald-800 bg-emerald-50 border-emerald-200",
+    title: "張萬榮教授通過國科會三年期專題研究計畫，推動 T2-Pose 隱私友善近床照護感知系統",
+    img: "/images/nstc-t2-pose-project-approval-2026.webp",
+    imgAlt: "張萬榮教授 T2-Pose 三年期國科會專題研究計畫核定通過畫面",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        國立高雄科技大學電子工程系暨智慧網宇實體系統實驗室（iCPS Lab）張萬榮教授通過國家科學及技術委員會三年期專題研究計畫，計畫名稱為 <strong>「T2-Pose：融合低解析熱影像與飛時測距影像之近床照護動作感知系統實現」</strong>，計畫編號為 <strong>115-2221-E-992-104-MY3</strong>，執行期間自 <strong>2026 年 8 月 1 日至 2029 年 7 月 31 日</strong>。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/nstc-t2-pose-project-approval-2026.webp" alt="張萬榮教授 T2-Pose 三年期國科會專題研究計畫核定通過畫面" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：張萬榮教授通過國科會三年期專題研究計畫，推動 T2-Pose 近床照護動作感知系統研究。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700">
+        本計畫以「隱私友善之近床照護動作感知」為核心，結合低解析度熱影像（Low-Resolution Thermal Imaging, LRTh）與飛時測距影像（Time-of-Flight, ToF），在不蒐集可識別外觀影像的前提下，萃取人體骨幹結構與動作歷程，支援近床照護情境中的動作辨識、事件判斷與即時通報。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        計畫將聚焦於臨床與長照場域中高度關注的近床照護需求，包括離床進程預警、床邊跌倒即時偵測，以及翻身拍背等照護勤務落實情形之辨識。透過多模態感測與骨幹時間序列分析，系統可望在兼顧受照護者隱私的同時，提升長時間監測、風險預警與照護反應效率。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-emerald-500 pl-4">
+          <h3 class="font-semibold text-emerald-700 mb-2">計畫資訊</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>計畫名稱：</strong>T2-Pose：融合低解析熱影像與飛時測距影像之近床照護動作感知系統實現</li>
+            <li><strong>計畫編號：</strong>115-2221-E-992-104-MY3</li>
+            <li><strong>補助單位：</strong>國家科學及技術委員會</li>
+            <li><strong>計畫主持人：</strong>張萬榮教授</li>
+            <li><strong>執行期間：</strong>2026/08/01 至 2029/07/31</li>
+            <li><strong>研究主軸：</strong>低解析熱影像、ToF 影像、人體骨幹辨識、近床照護、事件預警、隱私友善感測</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">三年期研究規劃</h3>
+          <p class="text-slate-700 mb-3">
+            第一年將建置近床多模態同步感測平台與去識別化資料集，並發展 LRTh-Pose 與 ToF-Pose 人體骨幹辨識模型；第二年將建立近床動作歷程表徵與事件預警演算法，並設計具情境切換能力的多模態融合策略；第三年則完成端到端系統整合，結合邊緣運算、雲端平台、行動端與網頁端介面，並規劃於臨床或類臨床場域進行效能驗證。
+          </p>
+          <p class="text-slate-700">
+            此計畫延續 iCPS Lab 在人工智慧、邊緣運算、智慧醫療與照護科技領域的研究基礎，預期可為智慧病房、長照機構與居家照護場域提供更具隱私保護、穩定性與實務導入潛力的智慧照護技術方案。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-consumer-electronics-contribution-award",
     date: "2026.07.02",
     tag: "學術榮譽",

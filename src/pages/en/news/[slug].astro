@@ -12,6 +12,7 @@ export function getStaticPaths() {
 
 const { item } = Astro.props as { item: NewsItem };
 const englishNewsTitles: Record<string, string> = {
+  "2026-nstc-t2-pose-three-year-project": "Prof. Wan-Jung Chang Receives Three-Year NSTC Grant for T2-Pose Near-Bed Care Sensing System",
   "2026-consumer-electronics-contribution-award": "Prof. Wan-Jung Chang Receives Outstanding Contribution Award from Taiwan Consumer Electronics Society (TCES)",
   "2026-nstc-undergrad-project-tsai-yiming": "iCPS Lab Undergraduate Student Yi-Ming Tsai Receives NSTC Student Research Grant",
   "2026-medical-taiwan-ai-surgical-instrument-recognition": "iCPS Lab Showcases AI Surgical Instrument Recognition at Medical Taiwan 2026",
@@ -31,6 +32,7 @@ const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("nstc-t2-pose")) return "Research Grant";
   if (slug.includes("contribution-award")) return "Award";
   if (slug.includes("nstc-undergrad-project")) return "Student Honor";
   if (slug.includes("medical-taiwan")) return "Exhibition";
