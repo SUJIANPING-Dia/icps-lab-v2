@@ -16,18 +16,18 @@ export const newsData: NewsItem[] = [
     date: "2026.07.07",
     tag: "研究計畫",
     tagTheme: "text-emerald-800 bg-emerald-50 border-emerald-200",
-    title: "張萬榮教授通過國科會三年期專題研究計畫，推動 T2-Pose 隱私友善近床照護感知系統",
+    title: "張萬榮教授通過國科會三年期專題研究計畫，推動 T²-Pose 隱私友善近床照護感知系統",
     img: "/images/nstc-t2-pose-project-approval-2026.webp",
-    imgAlt: "張萬榮教授 T2-Pose 三年期國科會專題研究計畫核定通過畫面",
+    imgAlt: "張萬榮教授 T²-Pose 三年期國科會專題研究計畫核定通過畫面",
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
-        國立高雄科技大學電子工程系暨智慧網宇實體系統實驗室（iCPS Lab）張萬榮教授通過國家科學及技術委員會三年期專題研究計畫，計畫名稱為 <strong>「T2-Pose：融合低解析熱影像與飛時測距影像之近床照護動作感知系統實現」</strong>，計畫編號為 <strong>115-2221-E-992-104-MY3</strong>，執行期間自 <strong>2026 年 8 月 1 日至 2029 年 7 月 31 日</strong>。
+        國立高雄科技大學電子工程系暨智慧網宇實體系統實驗室（iCPS Lab）張萬榮教授通過國家科學及技術委員會三年期專題研究計畫，計畫名稱為 <strong>「T<sup>2</sup>-Pose：融合低解析熱影像與飛時測距影像之近床照護動作感知系統實現」</strong>，計畫編號為 <strong>115-2221-E-992-104-MY3</strong>，執行期間自 <strong>2026 年 8 月 1 日至 2029 年 7 月 31 日</strong>。
       </p>
 
       <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
-        <img src="/images/nstc-t2-pose-project-approval-2026.webp" alt="張萬榮教授 T2-Pose 三年期國科會專題研究計畫核定通過畫面" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <img src="/images/nstc-t2-pose-project-approval-2026.webp" alt="張萬榮教授 T²-Pose 三年期國科會專題研究計畫核定通過畫面" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
-          圖：張萬榮教授通過國科會三年期專題研究計畫，推動 T2-Pose 近床照護動作感知系統研究。
+          圖：張萬榮教授通過國科會三年期專題研究計畫，推動 T<sup>2</sup>-Pose 近床照護動作感知系統研究。
         </figcaption>
       </figure>
 
@@ -43,7 +43,7 @@ export const newsData: NewsItem[] = [
         <div class="border-l-4 border-emerald-500 pl-4">
           <h3 class="font-semibold text-emerald-700 mb-2">計畫資訊</h3>
           <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
-            <li><strong>計畫名稱：</strong>T2-Pose：融合低解析熱影像與飛時測距影像之近床照護動作感知系統實現</li>
+            <li><strong>計畫名稱：</strong>T<sup>2</sup>-Pose：融合低解析熱影像與飛時測距影像之近床照護動作感知系統實現</li>
             <li><strong>計畫編號：</strong>115-2221-E-992-104-MY3</li>
             <li><strong>補助單位：</strong>國家科學及技術委員會</li>
             <li><strong>計畫主持人：</strong>張萬榮教授</li>
