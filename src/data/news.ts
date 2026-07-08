@@ -12,6 +12,48 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-ai-automation-equipment-award-second-place",
+    date: "2026.07.08",
+    tag: "競賽佳績",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "iCPS Lab 團隊榮獲第十五屆全國大專院校 AI 智動化設備創作獎第二名",
+    img: "/images/ai-automation-award-2026-second-place.png",
+    imgAlt: "iCPS Lab 團隊榮獲第十五屆全國大專院校 AI 智動化設備創作獎第二名合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        恭喜 iCPS Lab 學生團隊參加 <strong>「第十五屆全國大專院校 AI 智動化設備創作獎」</strong>，以作品 <strong>「AOI＋主機板 CPU 周圍電容缺漏焊自動化識別系統」</strong> 榮獲 <strong>第二名</strong>，並獲得獎金 <strong>15 萬元</strong>。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次獲獎團隊由 <strong>藍信安、胡景翔、謝修瑜、丁維暘、楊宗翰</strong> 同學共同完成。作品結合 YOLO 深度學習與邊緣運算技術，開發 CPU 周圍電容缺漏焊自動檢測系統，可快速且精準辨識缺陷，協助降低人工檢測可能產生的誤判，並提升產線檢測效率與品質穩定性。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">獲獎資訊</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>競賽名稱：</strong>第十五屆全國大專院校 AI 智動化設備創作獎</li>
+            <li><strong>獲獎名次：</strong>第二名</li>
+            <li><strong>獎金：</strong>15 萬元</li>
+            <li><strong>作品名稱：</strong>AOI＋主機板 CPU 周圍電容缺漏焊自動化識別系統</li>
+            <li><strong>獲獎學生：</strong>藍信安、胡景翔、謝修瑜、丁維暘、楊宗翰</li>
+            <li><strong>技術亮點：</strong>YOLO 深度學習、邊緣運算、AOI 自動光學檢測、缺漏焊辨識、智慧製造應用</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">AI 智動化與智慧製造實作成果</h3>
+          <p class="text-slate-700 mb-3">
+            此項作品展現 iCPS Lab 在 AI 影像辨識、智慧製造、邊緣運算與自動化檢測應用上的研究能量，也體現學生團隊將課堂所學、專題實作與產業需求結合的能力。從問題定義、模型訓練、系統整合到現場展示，團隊在過程中累積了完整的 AI 智動化應用開發經驗。
+          </p>
+          <p class="text-slate-700">
+            iCPS Lab 長期鼓勵學生投入真實場域問題，透過專題研究、競賽實作與跨域合作，培養學生在人工智慧、智慧感測、AIoT、邊緣運算與智慧製造等領域的實戰能力。再次恭喜團隊榮獲佳績，也期待同學們持續將 AI 技術應用於更多產業檢測與智慧製造場域。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-nstc-t2-pose-three-year-project",
     date: "2026.07.07",
     tag: "研究計畫",
