@@ -12,6 +12,53 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-asia-biotech-iearlm-exhibition",
+    date: "2026.07.16",
+    tag: "展覽活動",
+    tagTheme: "text-cyan-800 bg-cyan-50 border-cyan-200",
+    title: "iCPS Lab 參展 2026 亞洲生技大展，展示「iEarᴸᴹ：整合人工智慧與擴增實境技術之中外耳病灶識別暨臨床診斷報告自動生成系統」",
+    img: "/images/asia-biotech-2026-iearlm-team.png",
+    imgAlt: "iCPS Lab 團隊於 2026 亞洲生技大展展示 iEarLM 研究成果",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        iCPS Lab 於 <strong>2026 年 7 月 16 日至 19 日</strong> 參與 <strong>2026 亞洲生技大展</strong>，在台北南港展覽館展示最新智慧醫療研究成果：<strong>iEar<sup>LM</sup>：整合人工智慧與擴增實境技術之中外耳病灶識別暨臨床診斷報告自動生成系統</strong>。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本系統結合人工智慧影像辨識、擴增實境輔助與臨床診斷報告自動生成技術，針對中外耳病灶影像進行智慧化分析，協助醫療人員提升判讀效率，並降低臨床診斷紀錄撰寫負擔。透過現場展示，參觀者可實際了解 AI 技術如何應用於耳科檢查、病灶辨識與臨床診斷流程輔助。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/asia-biotech-2026-iearlm-demo.png" alt="iEarLM 系統於亞洲生技大展現場展示耳科影像辨識與 AR 輔助設備" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：iEar<sup>LM</sup> 系統於亞洲生技大展現場展示，包含耳科影像辨識、AR 輔助設備與臨床報告生成介面。
+        </figcaption>
+      </figure>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-cyan-500 pl-4">
+          <h3 class="font-semibold text-cyan-700 mb-2">展出資訊</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>展覽名稱：</strong>2026 亞洲生技大展</li>
+            <li><strong>展出時間：</strong>2026 年 7 月 16 日至 7 月 19 日</li>
+            <li><strong>展出地點：</strong>台北南港展覽館</li>
+            <li><strong>展出題目：</strong>iEar<sup>LM</sup>：整合人工智慧與擴增實境技術之中外耳病灶識別暨臨床診斷報告自動生成系統</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">將 AI 技術帶入臨床耳科診斷輔助</h3>
+          <p class="text-slate-700 mb-3">
+            iCPS Lab 長期投入智慧醫療、AIoT、邊緣運算與臨床場域應用研究。本次展出的 iEar<sup>LM</sup> 展示實驗室如何將工程技術結合真實醫療需求，讓人工智慧不只停留在模型辨識，而能進一步支援臨床流程、報告生成與醫療人員決策輔助。
+          </p>
+          <p class="text-slate-700">
+            未來，實驗室將持續與醫療場域及產業夥伴合作，推動 AI、AR 與智慧感測技術在臨床診斷與健康照護中的實際應用。
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-ai-automation-equipment-award-second-place",
     date: "2026.07.08",
     tag: "競賽佳績",

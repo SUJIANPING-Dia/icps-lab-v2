@@ -13,6 +13,7 @@ const sectionSubtitle = "News & Announcements";
 const pinnedLabel = isEnglish ? "Pinned" : "置頂";
 const readMoreLabel = isEnglish ? "Read Full Article" : "閱讀完整新聞";
 const englishNewsTitles: Record<string, string> = {
+  "2026-asia-biotech-iearlm-exhibition": "iCPS Lab Showcases iEarLM at Bio Asia-Taiwan 2026",
   "2026-ai-automation-equipment-award-second-place": "iCPS Lab Team Wins Second Place at the 15th National AI Automation Equipment Creation Award",
   "2026-nstc-t2-pose-three-year-project": "Prof. Wan-Jung Chang Receives Three-Year NSTC Grant for T²-Pose Near-Bed Care Sensing System",
   "2026-consumer-electronics-contribution-award": "Prof. Wan-Jung Chang Receives Outstanding Contribution Award from Taiwan Consumer Electronics Society (TCES)",
@@ -34,6 +35,7 @@ const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("asia-biotech")) return "Exhibition";
   if (slug.includes("ai-automation-equipment-award")) return "Competition";
   if (slug.includes("nstc-t2-pose")) return "Research Grant";
   if (slug.includes("contribution-award")) return "Award";
