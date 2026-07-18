@@ -15,6 +15,16 @@ pnpm-debug.log*
 # local automation reports
 reports/
 
+# local Codex/runtime artifacts
+.codex-remote-attachments/
+runtime/
+
+# local prototypes that should not become public routes
+src/pages/prototypes/
+
+# local archive files
+public/images/*.rar
+
 
 # environment variables
 .env
