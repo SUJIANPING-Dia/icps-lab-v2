@@ -868,20 +868,20 @@ export const newsData: NewsItem[] = [
     date: "2026.03.01",
     tag: "招生資訊",
     tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
-    title: "【115學年度】熱烈招收新進碩士生與專題生，歡迎加入 iCPS Lab 研究團隊！",
+    title: "熱烈招收博士生、碩士生與大學部專題生，歡迎加入 iCPS Lab 研究團隊！",
     img: "",
     imgAlt: "",
     content: `
       <p class="text-base font-bold text-slate-900 mb-4">
-        歡迎具備電機、資工、醫工或相關科系背景，且對軟硬體整合充滿熱忱的同學加入我們！
+        iCPS Lab 智慧型網宇實體系統實驗室持續招收對人工智慧、智慧物聯網、智慧醫療、邊緣運算、智慧製造、擴增實境，以及 Agentic AI / AI Agents 應用有興趣的博士生、碩士生與大學部專題生。
       </p>
 
       <div class="mb-4">
         <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">🔬 實驗室重點研究方向：</h4>
         <p>
-          在本實驗室，你將有機會參與大型產學合作計畫，並將演算法實際落地於產業場域。
-          我們目前的研究涵蓋：智慧物聯網 (AIoT) 與邊緣運算、醫療影像分析與穿戴式生理訊號辨識、
-          以及智慧製造與擴增實境 (AR) 協作系統。
+          在本實驗室，你將有機會參與大型產學合作計畫，並將 AI 技術實際導入產業與醫療照護場域。
+          我們目前的研究涵蓋：智慧物聯網 (AIoT) 與邊緣 AI、醫療影像分析、穿戴式生理訊號辨識、
+          智慧照護、智慧製造瑕疵檢測、擴增實境 (AR) 協作系統，以及結合多代理協作、自動化流程、工具使用與人機互動的 Agentic AI 系統應用。
         </p>
       </div>
 
@@ -890,7 +890,8 @@ export const newsData: NewsItem[] = [
         <ul class="list-disc list-inside space-y-1 pl-2 text-slate-700">
           <li>依參與計畫表現，提供<span class="font-bold text-amber-700">優渥的每月計畫津貼</span>。</li>
           <li>豐富的硬體資源：多台高階 GPU 伺服器、AR/VR 設備、多元感測器與開發板。</li>
-          <li>扎實的實作訓練與產學接軌經驗，大幅提升畢業後的就業競爭力。</li>
+          <li>扎實的實作訓練與產學接軌經驗，累積從資料處理、模型訓練、系統整合到成果展示的完整能力。</li>
+          <li>參與國科會計畫、產學合作、競賽、專利、論文發表與實際場域驗證的機會。</li>
           <li>融洽的實驗室氛圍與不定期聚餐活動。</li>
         </ul>
       </div>
@@ -898,17 +899,17 @@ export const newsData: NewsItem[] = [
       <div class="bg-blue-50 p-4 rounded border border-blue-100 mb-4">
         <h4 class="font-bold text-slate-900 mb-2">📩 面談報名方式：</h4>
         <p>
-          意者請將您的 
+          歡迎具備電機、資工、醫工或相關科系背景，且對軟硬體整合與實作研究有熱忱的同學加入。意者請將您的 
           <strong class="text-blue-700">1. 個人簡歷</strong>、
           <strong class="text-blue-700">2. 歷年成績單</strong> 與 
-          <strong class="text-blue-700">3. 專題報告或相關作品(若有)</strong> 
+          <strong class="text-blue-700">3. 專題報告、GitHub、競賽或相關作品(若有)</strong> 
           寄至張教授信箱：
           <a href="mailto:allenchang@nkust.edu.tw" class="text-blue-600 hover:underline">
             allenchang@nkust.edu.tw
           </a>
         </p>
         <p class="text-xs text-slate-500 mt-2">
-          ※ 信件主旨請註明：「[加入實驗室] 姓名 - 欲報考碩士班/專題生」，我們收到後將盡快與您安排實驗室參觀與面談時間！
+          ※ 信件主旨請註明：「[加入實驗室] 姓名 - 博士生/碩士生/專題生」，我們收到後將盡快與您安排實驗室參觀與面談時間！
         </p>
       </div>
 
