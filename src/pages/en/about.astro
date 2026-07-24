@@ -1,6 +1,13 @@
 ﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
+import PageHero from "../../components/PageHero.astro";
+
+const pageHeroItems = [
+  { label: "LAB IDENTITY", value: "Research Focus", note: "AIoT, edge AI, healthcare AI, and smart manufacturing" },
+  { label: "TEAM", value: "People & Training", note: "Cross-domain research and system implementation" },
+  { label: "COLLABORATION", value: "Real-World Sites", note: "Healthcare, industry, and international partnerships" },
+];
 
 const title = "About iCPS Lab | Intelligent Cyber-Physical Systems Laboratory";
 const description = "Introduction to iCPS Lab, research directions, system-building approach, training, and collaboration fields.";
@@ -18,114 +25,20 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <!-- ============================================================ -->
   <Navbar activePath="/en/about" lang="en" />
 
-  <!-- ============================================================ -->
-  <!-- ✨ 頁面 Hero：內容重新設計                                    -->
-  <!-- ============================================================ -->
-  <header class="relative min-h-[520px] lg:min-h-[600px] overflow-hidden bg-slate-950 border-b border-slate-800">
-    <canvas id="hero-canvas" class="absolute inset-0 w-full h-full opacity-80 pointer-events-none"></canvas>
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_25%,rgba(37,99,235,0.28),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(14,165,233,0.18),transparent_34%),linear-gradient(135deg,#020617_0%,#0f172a_52%,#071327_100%)]"></div>
-    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[size:56px_56px] opacity-30"></div>
-    <div class="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[#f8fafc] to-transparent"></div>
+  <PageHero
+    badgeDetail="About iCPS Lab"
+    eyebrow="LAB IDENTITY"
+    title="About iCPS Lab"
+    description="iCPS Lab connects AIoT, edge AI, smart healthcare, and smart manufacturing research with real-world systems and interdisciplinary collaboration."
+    primaryLabel="Explore Our Mission"
+    primaryHref="#mission"
+    secondaryLabel="AI-enabled systems for real-world impact"
+    panelLabel="LAB MAP"
+    panelTitle="Section Guide"
+    panelItems={pageHeroItems}
+  />
 
-    <div class="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-28 lg:pt-24 lg:pb-36">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-        <div class="lg:col-span-7 rv rv-left">
-          <a href="/en" class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-blue-200 bg-white/5 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md mb-8 hover:bg-white/10 transition">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
-            Back to Home
-          </a>
-          <p class="text-blue-300 font-black tracking-[0.28em] uppercase text-xs sm:text-sm mb-4">About iCPS Lab</p>
-          <h1 class="text-4xl sm:text-5xl lg:text-7xl font-black text-white tracking-tight leading-[1.05]">
-            Turning AI research<br />
-            into deployable <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-300 via-cyan-200 to-white">systems</span>.
-          </h1>
-          <p class="mt-7 text-slate-300 text-base sm:text-lg leading-relaxed max-w-2xl">
-            iCPS Lab focuses on AIoT, edge computing, healthcare AI, and smart manufacturing. We connect sensing, model design, and field deployment to build interdisciplinary solutions for real-world needs.
-          </p>
-          <div class="mt-9 flex flex-col sm:flex-row gap-3">
-            <a href="#mission" class="inline-flex justify-center items-center gap-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 rounded-full shadow-lg shadow-blue-950/30 transition hover:-translate-y-0.5">
-              Explore Research Focus
-              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
-            </a>
-            <a href="mailto:allenchang@nkust.edu.tw" class="inline-flex justify-center items-center gap-2 bg-white/10 hover:bg-white/15 text-white font-bold px-6 py-3 rounded-full border border-white/15 backdrop-blur transition hover:-translate-y-0.5">
-              Collaboration Contact
-            </a>
-          </div>
-        </div>
-
-        <div class="lg:col-span-5 rv rv-right rv-delay-200">
-          <div class="relative">
-            <div class="absolute -inset-4 bg-cyan-500/20 blur-3xl rounded-[3rem]"></div>
-            <div class="relative overflow-hidden bg-white/10 backdrop-blur-xl border border-white/15 rounded-[2rem] p-6 sm:p-7 shadow-2xl">
-              <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,0.35),transparent_28%),radial-gradient(circle_at_85%_15%,rgba(34,211,238,0.18),transparent_30%)]"></div>
-              <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.045)_1px,transparent_1px)] bg-[size:36px_36px] opacity-40"></div>
-
-              <div class="relative z-10">
-                <div class="flex items-center justify-between mb-8">
-                  <div>
-                    <p class="text-blue-200 text-xs font-black tracking-[0.24em] uppercase mb-2">System Workflow</p>
-                    <h2 class="text-white text-2xl sm:text-3xl font-black tracking-tight">From Data to Field Deployment</h2>
-                  </div>
-                  <div class="w-12 h-12 rounded-2xl bg-blue-500/20 border border-blue-300/20 flex items-center justify-center">
-                    <svg class="w-6 h-6 text-blue-200" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                  </div>
-                </div>
-
-                <div class="space-y-4">
-                  <div class="workflow-card group flex items-center gap-4 rounded-2xl bg-white/10 border border-white/10 p-4 transition-all duration-300 hover:bg-white/15 hover:-translate-y-0.5">
-                    <div class="w-12 h-12 rounded-xl bg-cyan-400/15 border border-cyan-300/20 flex items-center justify-center shrink-0 text-cyan-200 font-black">01</div>
-                    <div>
-                      <h3 class="text-white font-black text-lg">Sensing</h3>
-                      <p class="text-slate-400 text-sm mt-0.5">Collecting sensing data, image signals, and clinical or production-line data</p>
-                    </div>
-                  </div>
-
-                  <div class="relative ml-6 h-6 border-l border-dashed border-blue-300/30"></div>
-
-                  <div class="workflow-card group flex items-center gap-4 rounded-2xl bg-white/10 border border-white/10 p-4 transition-all duration-300 hover:bg-white/15 hover:-translate-y-0.5">
-                    <div class="w-12 h-12 rounded-xl bg-blue-400/15 border border-blue-300/20 flex items-center justify-center shrink-0 text-blue-200 font-black">02</div>
-                    <div>
-                      <h3 class="text-white font-black text-lg">AI Modeling</h3>
-                      <p class="text-slate-400 text-sm mt-0.5">Model training, recognition, decision logic, and system validation</p>
-                    </div>
-                  </div>
-
-                  <div class="relative ml-6 h-6 border-l border-dashed border-blue-300/30"></div>
-
-                  <div class="workflow-card group flex items-center gap-4 rounded-2xl bg-white/10 border border-white/10 p-4 transition-all duration-300 hover:bg-white/15 hover:-translate-y-0.5">
-                    <div class="w-12 h-12 rounded-xl bg-indigo-400/15 border border-indigo-300/20 flex items-center justify-center shrink-0 text-indigo-200 font-black">03</div>
-                    <div>
-                      <h3 class="text-white font-black text-lg">Edge Deploy</h3>
-                      <p class="text-slate-400 text-sm mt-0.5">Edge computing, real-time feedback, field integration, and cross-domain applications</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="mt-7 grid grid-cols-3 gap-3">
-                  <div class="rounded-2xl bg-slate-950/35 border border-white/10 p-4 text-center">
-                    <div class="text-white text-2xl font-black">AI</div>
-                    <div class="text-slate-400 text-[11px] mt-1">Research</div>
-                  </div>
-                  <div class="rounded-2xl bg-slate-950/35 border border-white/10 p-4 text-center">
-                    <div class="text-white text-2xl font-black">IoT</div>
-                    <div class="text-slate-400 text-[11px] mt-1">Sensing</div>
-                  </div>
-                  <div class="rounded-2xl bg-slate-950/35 border border-white/10 p-4 text-center">
-                    <div class="text-white text-2xl font-black">Edge</div>
-                    <div class="text-slate-400 text-[11px] mt-1">Deploy</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>      </div>
-    </div>
-  </header>
-
-  <!-- ============================================================ -->
-  <!-- ✨ 網站主體：內容重新設計                                      -->
-  <!-- ============================================================ -->
-  <main class="flex-grow relative z-20 w-full">
+  <main id="main-content" class="flex-grow relative z-20 w-full">
 
     <!-- Sticky page tabs -->
     <div class="sticky top-0 z-20 bg-[#f8fafc]/85 backdrop-blur-xl border-b border-slate-200/70">

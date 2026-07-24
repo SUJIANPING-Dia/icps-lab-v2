@@ -1,6 +1,7 @@
 ﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
+import PageHero from "../../components/PageHero.astro";
 
 // ==========================================
 // 🔹 Q&A 資料區 
@@ -151,6 +152,12 @@ const totalFaqItems = faqs.reduce((sum, group) => sum + group.items.length, 0);
 const cooperationIndex = faqs.findIndex(group => group.section === "Industry and Collaboration");
 const studentFaqItems = faqs.filter((_, index) => cooperationIndex === -1 || index < cooperationIndex).reduce((sum, group) => sum + group.items.length, 0);
 const partnerFaqItems = faqs.filter((_, index) => cooperationIndex !== -1 && index >= cooperationIndex).reduce((sum, group) => sum + group.items.length, 0);
+const pageHeroItems = [
+  { label: "QUESTIONS", value: `${totalFaqItems} FAQs`, note: "Joining, projects, research, and collaboration" },
+  { label: "CATEGORIES", value: `${faqs.length} categories`, note: "Browse questions by topic" },
+  { label: "AUDIENCE", value: "Students & Partners", note: "Information for lab applicants and collaborators" },
+];
+
 const title = "FAQ | iCPS Lab";
 const description = "Frequently asked questions about joining iCPS Lab, student research, graduate training, lab resources, and collaboration.";
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative";
@@ -171,28 +178,33 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <!-- 🔷 頂部導覽列 (Navbar) -->
   <Navbar activePath="/en/faq" lang="en" />
 
-  <header class="relative overflow-hidden border-b border-blue-900/10 bg-slate-950">
-    <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(59,130,246,.28),transparent_34%),radial-gradient(circle_at_78%_18%,rgba(14,165,233,.18),transparent_30%),linear-gradient(135deg,#020617_0%,#0f172a_48%,#0b2a4a_100%)]"></div>
-    <div class="absolute inset-0 opacity-[0.08] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:44px_44px]"></div>
-    <div class="relative max-w-7xl mx-auto px-6 py-16 lg:py-20">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-7" data-reveal="up">
-          <a href="/en" class="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-blue-200/90 bg-white/8 border border-white/10 px-4 py-2 rounded-full backdrop-blur-md hover:bg-white/12 transition mb-7"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>Back to Home</a>
-          <div class="inline-flex items-center gap-3 mb-4"><span class="w-9 h-1 bg-blue-400 rounded-full"></span><span class="text-blue-200 text-xs font-black tracking-[0.24em] uppercase">FAQ Center</span></div>
-          <h1 class="text-4xl md:text-6xl font-black text-white tracking-tight leading-tight mb-5">Frequently Asked<br class="hidden sm:block" />Questions</h1>
-          <p class="text-slate-300 text-base md:text-lg leading-relaxed max-w-2xl">Find answers about joining the lab, undergraduate projects, graduate training, lab resources, and industry-academia collaboration.</p>
+  <PageHero
+    badgeDetail="FAQ Center"
+    eyebrow="QUESTIONS & ANSWERS"
+    title="FAQ"
+    description="Frequently asked questions about joining iCPS Lab, student projects, graduate training, lab resources, and collaboration opportunities."
+    primaryLabel="Search Questions"
+    primaryHref="#faq-search"
+    secondaryLabel="For students and partners"
+    panelLabel="FAQ INDEX"
+    panelTitle="Section Guide"
+    panelItems={pageHeroItems}
+  />
+
+  <section id="faq-search" class="relative z-20 bg-slate-950 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 py-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+        <div class="lg:col-span-8 relative group">
+          <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><svg class="h-5 w-5 text-blue-200 group-focus-within:text-blue-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></div><input type="text" id="faq-search-input" class="block w-full pl-12 pr-11 py-4 bg-white text-slate-900 placeholder-slate-400 border border-white/20 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/25 focus:border-blue-300 transition-all duration-300 shadow-lg" placeholder="Search joining, projects, research, collaboration, resources..." /><button id="clear-search" class="absolute inset-y-0 right-0 pr-4 flex items-center hidden text-slate-400 hover:text-slate-700" aria-label="Clear search"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
         </div>
-        <div class="lg:col-span-5" data-reveal="zoom" style="transition-delay:120ms;">
-          <div class="rounded-[2rem] border border-white/15 bg-white/10 backdrop-blur-xl p-5 shadow-2xl shadow-blue-950/30">
-            <div class="relative group"><div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none"><svg class="h-5 w-5 text-blue-200 group-focus-within:text-blue-600 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></div><input type="text" id="faq-search-input" class="block w-full pl-12 pr-11 py-4 bg-white text-slate-900 placeholder-slate-400 border border-white/20 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/25 focus:border-blue-300 transition-all duration-300 shadow-lg" placeholder="Search: projects, graduation, scholarships, collaboration..." /><button id="clear-search" class="absolute inset-y-0 right-0 pr-4 flex items-center hidden text-slate-400 hover:text-slate-700" aria-label="Clear search"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button></div>
-            <div class="grid grid-cols-3 gap-3 mt-4"><div class="rounded-2xl bg-white/10 border border-white/10 p-4 text-white"><div class="text-2xl font-black tabular-nums">{totalFaqItems}</div><div class="text-[10px] tracking-widest uppercase text-blue-100 mt-1">Questions</div></div><div class="rounded-2xl bg-white/10 border border-white/10 p-4 text-white"><div class="text-2xl font-black tabular-nums">{faqs.length}</div><div class="text-[10px] tracking-widest uppercase text-blue-100 mt-1">Categories</div></div><div class="rounded-2xl bg-white/10 border border-white/10 p-4 text-white"><div class="text-2xl font-black tabular-nums">2</div><div class="text-[10px] tracking-widest uppercase text-blue-100 mt-1">Audiences</div></div></div>
-          </div>
+        <div class="lg:col-span-4 grid grid-cols-3 gap-3">
+          <div class="rounded-2xl bg-white/10 border border-white/10 p-4 text-white"><div class="text-2xl font-black tabular-nums">{totalFaqItems}</div><div class="text-[10px] tracking-widest uppercase text-blue-100 mt-1">Questions</div></div><div class="rounded-2xl bg-white/10 border border-white/10 p-4 text-white"><div class="text-2xl font-black tabular-nums">{faqs.length}</div><div class="text-[10px] tracking-widest uppercase text-blue-100 mt-1">Categories</div></div><div class="rounded-2xl bg-white/10 border border-white/10 p-4 text-white"><div class="text-2xl font-black tabular-nums">2</div><div class="text-[10px] tracking-widest uppercase text-blue-100 mt-1">Audiences</div></div>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
-  <main class="relative z-20"><div class="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-blue-50/80 to-transparent pointer-events-none"></div><div class="relative max-w-7xl mx-auto px-6 py-12 lg:py-16 min-h-[55vh]"><div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
+  <main id="main-content" class="relative z-20"><div class="absolute inset-x-0 top-0 h-72 bg-gradient-to-b from-blue-50/80 to-transparent pointer-events-none"></div><div class="relative max-w-7xl mx-auto px-6 py-12 lg:py-16 min-h-[55vh]"><div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
     <aside class="lg:col-span-4 xl:col-span-3" id="faq-sidebar" data-reveal="left"><div class="lg:sticky lg:top-8 space-y-4"><div class="bg-white/90 backdrop-blur rounded-[1.5rem] border border-slate-200 shadow-sm p-4"><div class="flex items-center justify-between mb-4 px-1"><div><h2 class="text-sm font-black text-slate-900 tracking-wide">Question Categories</h2><p class="text-xs text-slate-500 mt-1">Choose a topic to browse the FAQ</p></div><span class="text-xs font-bold text-blue-700 bg-blue-50 border border-blue-100 px-2 py-1 rounded-full">{faqs.length}</span></div><div class="flex lg:flex-col overflow-x-auto lg:overflow-visible hide-scrollbar gap-2 pb-1 lg:pb-0" id="faq-tabs-container">
       {faqs.map((faqGroup, index) => (<>{faqGroup.section && (<div class={`${index !== 0 ? 'lg:mt-5' : ''} hidden lg:flex items-center gap-2 px-2 py-2`}><span class="text-xs font-black text-slate-400 tracking-widest uppercase">{faqGroup.section}</span></div>)}<button class={`faq-tab-btn ${index === 0 ? 'is-active' : ''} flex-shrink-0 lg:w-full min-w-[190px] lg:min-w-0 text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-250 border border-slate-200 bg-white text-slate-700 hover:bg-blue-50 hover:border-blue-200 hover:text-blue-800`} data-target={`category-${index}`}><div class="flex items-center gap-3"><span class="tab-dot w-2 h-2 rounded-full bg-slate-300 shrink-0"></span><span class="flex-1 truncate">{faqGroup.category}</span><span class="tab-count inline-flex items-center justify-center bg-slate-100 text-slate-500 rounded-full min-w-6 h-6 px-2 text-xs">{faqGroup.items.length}</span></div></button></>))}
     </div></div><div class="hidden lg:block rounded-[1.5rem] bg-slate-900 text-white p-5 overflow-hidden relative"><div class="absolute -right-8 -top-8 w-28 h-28 rounded-full bg-blue-500/20 blur-2xl"></div><div class="relative"><div class="text-xs font-black text-blue-200 tracking-widest uppercase mb-2">Need more help?</div><p class="text-sm text-slate-300 leading-relaxed mb-4">If you cannot find the answer you need, please contact the lab directly.</p><a href="mailto:allenchang@nkust.edu.tw" class="inline-flex items-center gap-2 text-sm font-bold bg-white text-slate-900 hover:bg-blue-50 px-4 py-2.5 rounded-xl transition">Contact Us<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg></a></div></div></div></aside>

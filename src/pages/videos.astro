@@ -1,7 +1,14 @@
 ﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
+import PageHero from "../components/PageHero.astro";
 import Videos from "../components/Videos.astro";
+
+const pageHeroItems = [
+  { label: "REPORTS", value: "媒體報導", note: "新聞採訪、展覽曝光與外部報導" },
+  { label: "DEMOS", value: "研究展示", note: "AI 系統、專題作品與技術展示" },
+  { label: "STORIES", value: "活動紀錄", note: "實驗室參與活動與交流片段" },
+];
 
 const title = "影音專區 | iCPS Lab";
 const description = "觀看 iCPS Lab 研究展示、媒體報導與實驗室相關影片。";
@@ -12,23 +19,20 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <Navbar activePath="/videos" />
 
   <main class="min-h-screen">
-    <section class="relative overflow-hidden bg-slate-950 text-white border-b border-slate-800">
-      <div class="absolute inset-0 pointer-events-none">
-        <div class="absolute -left-24 top-16 h-72 w-72 rounded-full bg-blue-500/20 blur-3xl"></div>
-        <div class="absolute right-[-8rem] bottom-[-8rem] h-96 w-96 rounded-full bg-cyan-500/10 blur-3xl"></div>
-      </div>
-      <div class="relative max-w-7xl mx-auto px-6 py-16 sm:py-20">
-        <div class="max-w-3xl">
-          <p class="text-blue-300 text-xs font-black tracking-[0.22em] uppercase mb-4">Media & Videos</p>
-          <h1 class="text-4xl sm:text-5xl font-black tracking-tight">影音專區</h1>
-          <p class="mt-5 text-slate-300 text-base sm:text-lg leading-relaxed">
-            彙整 iCPS Lab 的研究展示、媒體報導與實驗室相關影片內容。
-          </p>
-        </div>
-      </div>
-    </section>
+    <PageHero
+      badgeDetail="Media & Videos"
+      eyebrow="MEDIA LIBRARY"
+      title="影音專區"
+      description="彙整 iCPS Lab 的研究展示、媒體報導與實驗室相關影片內容，讓訪客快速看見研究成果與現場紀錄。"
+      primaryLabel="觀看影片"
+      primaryHref="#main-content"
+      secondaryLabel="Research demos and media reports"
+      panelLabel="MEDIA INDEX"
+      panelTitle="內容索引"
+      panelItems={pageHeroItems}
+    />
 
-    <section class="max-w-7xl mx-auto px-6 py-12 sm:py-16">
+    <section id="main-content" class="max-w-7xl mx-auto px-6 py-12 sm:py-16">
       <div class="rounded-[2rem] bg-white/85 backdrop-blur-xl border border-white shadow-[0_18px_60px_rgba(15,23,42,0.07)] p-4 sm:p-6 lg:p-8 overflow-hidden">
         <Videos />
       </div>

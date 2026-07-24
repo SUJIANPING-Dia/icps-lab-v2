@@ -1,6 +1,7 @@
 ﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Navbar from "../components/Navbar.astro";
+import PageHero from "../components/PageHero.astro";
 
 const assistants = [
    { 
@@ -135,6 +136,12 @@ const sortedGradYears = Object.keys(groupedGraduates).sort((a, b) => Number(b) -
 // --- UI summary only: does not change enrollment / graduation / grade rules ---
 const activeStudentCount = phds.length + masters.length + undergrads.length + internationals.length;
 const totalMemberCount = 1 + assistants.length + activeStudentCount;
+const pageHeroItems = [
+  { label: "DIRECTOR", value: "指導教授", note: "研究方向、合作與人才培育" },
+  { label: "STUDENTS", value: `${activeStudentCount} 位學生`, note: "碩博士生與大學部專題團隊" },
+  { label: "DIRECTORY", value: `${totalMemberCount} 位成員`, note: "含教授、助理與在學成員" },
+];
+
 const title = "實驗室成員 | iCPS Lab 智慧網宇實體系統實驗室";
 const description = "認識 iCPS Lab 指導教授、行政團隊、博士班、碩士班、大學部專題生、外籍生與歷屆畢業生。";
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative";
@@ -429,23 +436,20 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <!-- =============================================================== -->
   <Navbar activePath="/members" />
 
-  <!-- =============================================================== -->
-  <!-- 🔒 Hero Banner — 不動                                          -->
-  <!-- =============================================================== -->
-  <header class="bg-gradient-to-br from-slate-950 via-[#0b1b35] to-slate-900 py-16 lg:py-24 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
-    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[720px] h-[260px] bg-blue-500/20 rounded-full blur-[90px] pointer-events-none"></div>
-    <div class="absolute bottom-0 right-0 w-[360px] h-[180px] bg-cyan-400/10 rounded-full blur-[70px] pointer-events-none"></div>
-    <div class="relative z-10 max-w-3xl mx-auto px-4" data-rv="zoom">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">實驗室成員</h1>
-      <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow">Laboratory Members</p>
-    </div>
-  </header>
+  <PageHero
+    badgeDetail="Laboratory Members"
+    eyebrow="PEOPLE DIRECTORY"
+    title="實驗室成員"
+    description="認識 iCPS Lab 指導教授、行政團隊、研究生、大學部專題生、外籍生與歷屆畢業生。"
+    primaryLabel="瀏覽成員"
+    primaryHref="#main-content"
+    secondaryLabel="Research teams and project groups"
+    panelLabel="TEAM INDEX"
+    panelTitle="成員索引"
+    panelItems={pageHeroItems}
+  />
 
-  <!-- =============================================================== -->
-  <!-- ✨ 主體 — 升級動畫                                              -->
-  <!-- =============================================================== -->
-  <main class="page-shell relative z-20 min-h-screen overflow-hidden">
+  <main id="main-content" class="page-shell relative z-20 min-h-screen overflow-hidden">
     <div class="absolute top-0 left-0 w-72 h-72 bg-blue-100/50 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/3 pointer-events-none"></div>
     <div class="absolute top-[35rem] right-0 w-96 h-96 bg-cyan-100/40 rounded-full blur-3xl translate-x-1/2 pointer-events-none"></div>
 

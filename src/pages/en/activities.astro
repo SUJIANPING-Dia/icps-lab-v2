@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
+import PageHero from "../../components/PageHero.astro";
 
 let activities = [];
 
@@ -54,6 +55,12 @@ try {
   console.error("Cloudinary API 獲取失敗:", error);
 }
 
+const pageHeroItems = [
+  { label: "ALBUMS", value: "Activity Albums", note: "Exhibitions, visits, competitions, and exchanges" },
+  { label: "EVENTS", value: "Field Records", note: "Photo records from lab activities" },
+  { label: "UPDATES", value: "Recent Moments", note: "Browse albums by creation date" },
+];
+
 const title = "Activities | iCPS Lab";
 const description = "Activity albums and event records from iCPS Lab.";
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative";
@@ -64,29 +71,20 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <!-- 🔷 頂部導覽列 (Navbar) -->
   <Navbar activePath="/en/activities" lang="en" />
 
-  <!-- 🔷 頁面標題區 -->
-<style>
-    /* 專屬於頂部 Banner 的載入動畫 (若您已將此段放到 global.css 中，可省略這裡的 <style>) */
-    @keyframes heroZoom {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .animate-hero-zoom {
-      animation: heroZoom 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-  </style>
+  <PageHero
+    badgeDetail="Events & Albums"
+    eyebrow="LAB EVENTS"
+    title="Activities"
+    description="Browse iCPS Lab activity albums, including exhibitions, visits, competitions, international exchanges, and research events."
+    primaryLabel="Browse Albums"
+    primaryHref="#main-content"
+    secondaryLabel="Activity records and field moments"
+    panelLabel="EVENT GUIDE"
+    panelTitle="Section Guide"
+    panelItems={pageHeroItems}
+  />
 
-  <header class="bg-gradient-to-r from-slate-900 via-[#0f172a] to-slate-800 py-16 lg:py-20 text-center border-b-[5px] border-blue-700 relative overflow-hidden shadow-inner">
-    <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
-    
-    <div class="relative z-10 px-4 animate-hero-zoom">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">Activities</h1>
-      <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow">Activities & Albums</p>
-    </div>
-  </header>
-
-  <!-- 🔷 網站主體區域 -->
-  <main class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
+  <main id="main-content" class="max-w-7xl mx-auto px-6 py-16 relative z-20 min-h-screen">
     <div class="mb-10">
       <a href="/en" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-blue-700 transition">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
