@@ -1,0 +1,418 @@
+---
+interface HeroPanelItem {
+  label: string;
+  value: string;
+  note: string;
+}
+
+interface Props {
+  badgeLabel?: string;
+  badgeDetail?: string;
+  eyebrow: string;
+  title: string;
+  description: string;
+  primaryLabel?: string;
+  primaryHref?: string;
+  secondaryLabel?: string;
+  panelLabel?: string;
+  panelTitle?: string;
+  panelItems?: HeroPanelItem[];
+}
+
+const {
+  badgeLabel = "iCPS Lab",
+  badgeDetail = "Research Intelligence Feed",
+  eyebrow,
+  title,
+  description,
+  primaryLabel,
+  primaryHref = "#main-content",
+  secondaryLabel,
+  panelLabel = "Signal Index",
+  panelTitle = "Section Guide",
+  panelItems = [],
+} = Astro.props;
+---
+
+<section class="page-hero" aria-labelledby="page-hero-title">
+  <div class="page-hero__gradient" aria-hidden="true"></div>
+  <div class="page-hero__grid" aria-hidden="true"></div>
+  <div class="page-hero__line page-hero__line--left" aria-hidden="true"></div>
+  <div class="page-hero__line page-hero__line--right" aria-hidden="true"></div>
+
+  <div class="page-hero__inner">
+    <div class="page-hero__copy">
+      <div class="page-hero__badge">
+        <span class="page-hero__brand"><span class="page-hero__brand-i">i</span>CPS Lab</span>
+        <span class="page-hero__dot" aria-hidden="true"></span>
+        <span>{badgeDetail}</span>
+      </div>
+
+      <p class="page-hero__eyebrow">{eyebrow}</p>
+      <h1 id="page-hero-title" class="page-hero__title">{title}</h1>
+      <p class="page-hero__description">{description}</p>
+
+      {(primaryLabel || secondaryLabel) && (
+        <div class="page-hero__actions">
+          {primaryLabel && (
+            <a href={primaryHref} class="page-hero__button">
+              {primaryLabel}
+              <svg class="page-hero__button-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+          )}
+          {secondaryLabel && <span class="page-hero__pill">{secondaryLabel}</span>}
+        </div>
+      )}
+    </div>
+
+    {panelItems.length > 0 && (
+      <aside class="page-hero__panel" aria-label={panelTitle}>
+        <div class="page-hero__panel-glow" aria-hidden="true"></div>
+        <div class="page-hero__panel-head">
+          <div>
+            <p class="page-hero__panel-label">{panelLabel}</p>
+            <h2 class="page-hero__panel-title">{panelTitle}</h2>
+          </div>
+          <div class="page-hero__panel-icon" aria-hidden="true">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6m4 6V7m4 10v-4M5 19h14"></path>
+            </svg>
+          </div>
+        </div>
+
+        <div class="page-hero__panel-list">
+          {panelItems.map((item) => (
+            <div class="page-hero__panel-item">
+              <div class="page-hero__panel-item-head">
+                <p class="page-hero__panel-item-label">{item.label}</p>
+                <span class="page-hero__panel-item-dot" aria-hidden="true"></span>
+              </div>
+              <p class="page-hero__panel-item-value">{item.value}</p>
+              <p class="page-hero__panel-item-note">{item.note}</p>
+            </div>
+          ))}
+        </div>
+      </aside>
+    )}
+  </div>
+</section>
+
+<style>
+  .page-hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    min-height: 560px;
+    border-bottom: 1px solid #1e293b;
+    background:
+      radial-gradient(circle at 15% 18%, rgba(34, 211, 238, 0.26), transparent 30%),
+      radial-gradient(circle at 82% 24%, rgba(59, 130, 246, 0.24), transparent 32%),
+      linear-gradient(135deg, #020617 0%, #07172f 46%, #030b18 100%);
+    color: #f8fafc;
+  }
+
+  .page-hero__gradient {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(115deg, rgba(2, 6, 23, 0.18), rgba(8, 47, 73, 0.2)),
+      radial-gradient(circle at 55% 110%, rgba(14, 165, 233, 0.18), transparent 42%);
+    pointer-events: none;
+  }
+
+  .page-hero__grid {
+    position: absolute;
+    inset: 0;
+    opacity: 0.22;
+    background-image:
+      linear-gradient(rgba(148, 163, 184, 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148, 163, 184, 0.18) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.85), transparent 92%);
+    pointer-events: none;
+  }
+
+  .page-hero__line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, rgba(103, 232, 249, 0.3), transparent);
+    pointer-events: none;
+  }
+
+  .page-hero__line--left {
+    left: 12%;
+  }
+
+  .page-hero__line--right {
+    right: 18%;
+    opacity: 0.72;
+  }
+
+  .page-hero__inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(20rem, 25rem);
+    align-items: center;
+    gap: 2.5rem;
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 3.5rem 1.5rem 5rem;
+  }
+
+  .page-hero__copy {
+    max-width: 48rem;
+  }
+
+  .page-hero__badge {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid rgba(103, 232, 249, 0.3);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.72);
+    color: #cffafe;
+    box-shadow: 0 18px 50px rgba(8, 145, 178, 0.16);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.16em;
+  }
+
+  .page-hero__brand {
+    white-space: nowrap;
+  }
+
+  .page-hero__brand-i {
+    font-family: Georgia, "Times New Roman", serif;
+    font-style: italic;
+    font-size: 1.1em;
+  }
+
+  .page-hero__dot {
+    width: 0.25rem;
+    height: 0.25rem;
+    border-radius: 999px;
+    background: #67e8f9;
+  }
+
+  .page-hero__eyebrow {
+    margin-bottom: 1rem;
+    color: #67e8f9;
+    font-size: 0.875rem;
+    font-weight: 800;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    text-shadow: 0 0 24px rgba(103, 232, 249, 0.45);
+  }
+
+  .page-hero__title {
+    color: #ffffff;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+    line-height: 1.05;
+    font-weight: 900;
+    letter-spacing: 0;
+    text-shadow: 0 18px 55px rgba(8, 145, 178, 0.26);
+  }
+
+  .page-hero__description {
+    max-width: 42rem;
+    margin-top: 1.5rem;
+    color: #cbd5e1;
+    font-size: 1.125rem;
+    line-height: 1.85;
+  }
+
+  .page-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .page-hero__button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    border-radius: 999px;
+    background: #67e8f9;
+    color: #020617;
+    box-shadow: 0 18px 40px rgba(8, 145, 178, 0.25);
+    font-size: 0.875rem;
+    font-weight: 900;
+    transition: background 180ms ease, transform 180ms ease;
+  }
+
+  .page-hero__button:hover {
+    background: #ffffff;
+    transform: translateY(-1px);
+  }
+
+  .page-hero__button-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .page-hero__pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.26);
+    border-radius: 999px;
+    background: rgba(15, 23, 42, 0.58);
+    color: #dbeafe;
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .page-hero__panel {
+    position: relative;
+    overflow: hidden;
+    padding: 1.25rem;
+    border: 1px solid rgba(103, 232, 249, 0.22);
+    border-radius: 1.5rem;
+    background: rgba(2, 6, 23, 0.7);
+    box-shadow: 0 30px 80px rgba(2, 6, 23, 0.48);
+  }
+
+  .page-hero__panel-glow {
+    position: absolute;
+    top: -2.5rem;
+    right: -2.5rem;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 999px;
+    background: rgba(34, 211, 238, 0.16);
+    filter: blur(36px);
+    pointer-events: none;
+  }
+
+  .page-hero__panel-head {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .page-hero__panel-label,
+  .page-hero__panel-item-label {
+    color: #a5f3fc;
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .page-hero__panel-title {
+    margin-top: 0.25rem;
+    color: #ffffff;
+    font-size: 1.25rem;
+    font-weight: 900;
+  }
+
+  .page-hero__panel-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid rgba(103, 232, 249, 0.28);
+    border-radius: 1rem;
+    color: #a5f3fc;
+  }
+
+  .page-hero__panel-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .page-hero__panel-list {
+    position: relative;
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .page-hero__panel-item {
+    padding: 1rem;
+    border: 1px solid rgba(148, 163, 184, 0.18);
+    border-radius: 1rem;
+    background: rgba(15, 23, 42, 0.82);
+  }
+
+  .page-hero__panel-item-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+
+  .page-hero__panel-item-dot {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background: #67e8f9;
+    box-shadow: 0 0 14px rgba(103, 232, 249, 0.9);
+  }
+
+  .page-hero__panel-item-value {
+    margin-top: 0.5rem;
+    color: #ffffff;
+    font-size: 1.125rem;
+    font-weight: 900;
+  }
+
+  .page-hero__panel-item-note {
+    margin-top: 0.25rem;
+    color: #cbd5e1;
+    font-size: 0.875rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 1023px) {
+    .page-hero {
+      min-height: auto;
+    }
+
+    .page-hero__inner {
+      grid-template-columns: 1fr;
+      padding-top: 3.5rem;
+      padding-bottom: 4rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .page-hero__inner {
+      padding: 3rem 1.5rem 3.5rem;
+    }
+
+    .page-hero__badge {
+      max-width: 100%;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+    }
+
+    .page-hero__eyebrow {
+      font-size: 0.78rem;
+      letter-spacing: 0.2em;
+    }
+
+    .page-hero__title {
+      font-size: 2.4rem;
+    }
+
+    .page-hero__description {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+  }
+</style>
