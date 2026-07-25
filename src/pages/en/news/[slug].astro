@@ -52,6 +52,7 @@ const getEnglishNewsTag = (slug: string) => {
 };
 const displayTitle = englishNewsTitles[item.slug] ?? item.title;
 const displayTag = getEnglishNewsTag(item.slug);
+const displayContent = item.contentEn ?? item.content;
 const title = `${displayTitle} | iCPS Lab`;
 const description = `${item.date} - ${displayTitle}`;
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900";
@@ -155,7 +156,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <p class="mt-2 text-slate-700">{displayTitle}</p>
               </div>
             )}
-            <div set:html={item.content}></div>
+            <div set:html={displayContent}></div>
           </div>
         </section>
       </div>

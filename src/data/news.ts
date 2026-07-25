@@ -8,6 +8,7 @@ export type NewsItem = {
   img: string;
   imgAlt: string;
   content: string;
+  contentEn?: string;
 };
 
 export const newsData: NewsItem[] = [
@@ -918,6 +919,56 @@ export const newsData: NewsItem[] = [
         歡迎參考我們的常見問題：
         <a href="https://icps-lab.com/faq" target="_blank" class="text-blue-600 hover:underline font-medium">
           ICPS Lab FAQ
+        </a>
+      </div>
+    `,
+    contentEn: `
+      <p class="text-base font-bold text-slate-900 mb-4">
+        The iCPS Lab, Intelligent Cyber-Physical Systems Laboratory, is recruiting PhD students, master's students, and undergraduate project students who are interested in artificial intelligence, AIoT, smart healthcare, edge computing, smart manufacturing, augmented reality, and Agentic AI / AI Agents applications. International students are also very welcome to contact us.
+      </p>
+
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">Research Focus</h4>
+        <p>
+          In our lab, you will have opportunities to join large-scale industry-academia collaboration projects and apply AI technologies in real industrial and healthcare settings.
+          Our current research areas include AIoT and edge AI, medical image analysis, wearable physiological signal recognition,
+          smart care, smart manufacturing defect detection, augmented reality (AR) collaboration systems, and Agentic AI system applications that combine multi-agent collaboration, workflow automation, tool use, and human-computer interaction.
+        </p>
+      </div>
+
+      <div class="mb-4">
+        <h4 class="font-bold text-blue-800 mb-2 border-l-2 border-blue-500 pl-2">What We Offer</h4>
+        <ul class="list-disc list-inside space-y-1 pl-2 text-slate-700">
+          <li>A <span class="font-bold text-amber-700">competitive monthly project stipend</span>, based on project participation and performance.</li>
+          <li>Rich hardware resources, including multiple high-end GPU servers, AR/VR devices, diverse sensors, and development boards.</li>
+          <li>Solid hands-on training and industry-academia experience, covering data processing, model training, system integration, and result presentation.</li>
+          <li>Opportunities to participate in NSTC projects, industry-academia collaborations, competitions, patent development, paper publication, and real-world field validation.</li>
+          <li>A friendly lab atmosphere with occasional group meals and lab activities.</li>
+        </ul>
+      </div>
+
+      <div class="bg-blue-50 p-4 rounded border border-blue-100 mb-4">
+        <h4 class="font-bold text-slate-900 mb-2">Interview Application</h4>
+        <p>
+          Students with backgrounds in electrical engineering, computer science, biomedical engineering, or related fields, and with enthusiasm for hardware-software integration and hands-on research, are welcome to apply. If interested, please send your
+          <strong class="text-blue-700">1. CV or resume</strong>,
+          <strong class="text-blue-700">2. academic transcripts</strong>, and
+          <strong class="text-blue-700">3. project report, GitHub profile, competition records, or related portfolio, if available</strong>
+          to Prof. Chang:
+          <a href="mailto:allenchang@nkust.edu.tw" class="text-blue-600 hover:underline">
+            allenchang@nkust.edu.tw
+          </a>
+        </p>
+        <p class="text-xs text-slate-500 mt-2">
+          Please use the email subject line: "[Join iCPS Lab] Name - PhD Student / Master's Student / Undergraduate Project Student". After receiving your message, we will contact you as soon as possible to arrange a lab visit and interview.
+        </p>
+      </div>
+
+      <div class="text-sm text-slate-600">
+        If you have questions about lab life, research topics, or the application process,
+        please refer to our FAQ:
+        <a href="/en/faq" class="text-blue-600 hover:underline font-medium">
+          iCPS Lab FAQ
         </a>
       </div>
     `
