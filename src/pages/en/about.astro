@@ -2,12 +2,92 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
 import PageHero from "../../components/PageHero.astro";
+import achievements from "../../data/achievements.json";
 
 const pageHeroItems = [
   { label: "LAB IDENTITY", value: "Research Focus", note: "AIoT, edge AI, healthcare AI, and smart manufacturing" },
   { label: "TEAM", value: "People & Training", note: "Cross-domain research and system implementation" },
   { label: "COLLABORATION", value: "Real-World Sites", note: "Healthcare, industry, and international partnerships" },
 ];
+
+const projectGroup = achievements.find((group) => group.type === "project");
+const projectRecords = projectGroup?.yearlyData
+  .flatMap((yearBlock) => yearBlock.items.map((item) => item.project || item.content || ""))
+  ?? [];
+const stripProjectTitles = (text: string) => text
+  .replace(/『[^』]*』/g, "")
+  .replace(/"[^"]*"/g, "");
+const getPartnerSourceText = (text: string) => {
+  const strippedText = stripProjectTitles(text);
+  const markerMatch = strippedText.match(/(?:共同計畫主持人|共同主持人|計畫主持人|指導教授|主持人)[^，,]*[，,](.*)/);
+  return (markerMatch?.[1] ?? strippedText).trim();
+};
+const projectCorpus = projectRecords.map(getPartnerSourceText).join("\n");
+const rawProjectCorpus = projectRecords.join("\n");
+
+const uniqueSorted = (items: string[]) => [...new Set(items.map((item) => item.trim()).filter(Boolean))]
+  .sort((a, b) => a.localeCompare(b, "zh-Hant"));
+
+const extractPartnerMatches = (pattern: RegExp) => uniqueSorted(
+  [...projectCorpus.matchAll(pattern)].map((match) => match[1])
+);
+
+const enterprisePartners = extractPartnerMatches(/([\u4e00-\u9fa5A-Za-z0-9]+(?:股份有限公司|有限公司))/g);
+const healthcarePartners = extractPartnerMatches(/([^,，、\s『「」』]+醫院)/g);
+const institutionalPartnerCandidates = [
+  "中華民國消費電子學會",
+  "台灣流行病學學會",
+  "台南市政府",
+  "文化部",
+  "財團法人工業技術研究院",
+  "財團法人台灣經濟研究院",
+  "財團法人船舶暨海洋產業研發中心",
+  "財團法人船舶暨海洋產業發展中心",
+  "國家實驗研究院",
+  "科技部南部科學園區管理局",
+  "勞動部勞動及職業安全衛生研究所",
+  "經濟部工業局",
+  "經濟部中小企業處",
+  "經濟部技術處",
+  "第四屆(114年)高科大高醫大研發暨產學合作補助計畫",
+];
+const institutionalPartners = uniqueSorted(
+  institutionalPartnerCandidates.filter((partner) => projectCorpus.includes(partner) || rawProjectCorpus.includes(partner))
+);
+
+const collaborationPartnerGroups = [
+  {
+    title: "Industry and Technology",
+    label: "Industry",
+    countText: `${enterprisePartners.length} companies`,
+    description: "Records related to smart manufacturing, AIoT, AR/XR, image recognition, system integration, and technical services.",
+    partners: enterprisePartners,
+    previewCount: 18,
+    statClass: "bg-blue-500/10 text-blue-100 border-blue-300/20",
+    chipClass: "bg-blue-50 text-blue-800 border-blue-100",
+  },
+  {
+    title: "Healthcare and Clinical Sites",
+    label: "Clinical",
+    countText: `${healthcarePartners.length} sites`,
+    description: "Clinical collaboration contexts involving decision support, smart care, medical training, and system validation.",
+    partners: healthcarePartners,
+    previewCount: 12,
+    statClass: "bg-rose-500/10 text-rose-100 border-rose-300/20",
+    chipClass: "bg-rose-50 text-rose-800 border-rose-100",
+  },
+  {
+    title: "Institutions, Research Centers, and Government Units",
+    label: "Institutions",
+    countText: `${institutionalPartners.length} units`,
+    description: "Research institutes, industry centers, academic societies, and government-related units appearing in project records.",
+    partners: institutionalPartners,
+    previewCount: 12,
+    statClass: "bg-emerald-500/10 text-emerald-100 border-emerald-300/20",
+    chipClass: "bg-emerald-50 text-emerald-800 border-emerald-100",
+  },
+];
+const totalCollaborationPartners = collaborationPartnerGroups.reduce((sum, group) => sum + group.partners.length, 0);
 
 const title = "About iCPS Lab | Intelligent Cyber-Physical Systems Laboratory";
 const description = "Introduction to iCPS Lab, research directions, system-building approach, training, and collaboration fields.";
@@ -47,6 +127,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           <a href="#mission" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">Lab Positioning</a>
           <a href="#pi" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">Leadership</a>
           <a href="#collaboration" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">Collaboration & Talent</a>
+          <a href="#partner-network" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">Collaboration Footprint</a>
           <a href="#research" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">Core Research</a>
           <a href="#journey" class="page-tab px-4 py-2 rounded-full hover:bg-white hover:text-blue-700 hover:shadow-sm transition">Join Us</a>
         </div>
@@ -146,7 +227,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                   Professor Chang has long focused on AIoT and edge computing, building a highly interdisciplinary research environment in the Department of Electronic Engineering at NKUST. The lab connects hospitals and technology industries externally, while guiding students to transform ideas into verifiable system outcomes internally.
                 </p>
 
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-8">
+                <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-3 mb-8">
                   <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
                     <div class="text-slate-900 font-black">AIoT</div>
                     <div class="text-xs text-slate-500 mt-1">Smart sensing integration</div>
@@ -158,6 +239,10 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                   <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
                     <div class="text-slate-900 font-black">XR</div>
                     <div class="text-xs text-slate-500 mt-1">Immersive training systems</div>
+                  </div>
+                  <div class="rounded-2xl bg-slate-50 border border-slate-100 p-4">
+                    <div class="text-slate-900 font-black">Agentic AI</div>
+                    <div class="text-xs text-slate-500 mt-1">Autonomous agent applications</div>
                   </div>
                 </div>
 
@@ -229,6 +314,96 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
               </a>
             </div>
           </article>
+        </div>
+
+        <div id="partner-network" class="scroll-mt-28 mt-8 rv rv-up">
+          <div class="overflow-hidden rounded-[2.25rem] bg-white border border-slate-200/70 shadow-sm">
+            <div class="grid grid-cols-1 lg:grid-cols-12">
+              <aside class="lg:col-span-4 bg-slate-950 text-white p-7 sm:p-9 lg:p-10">
+                <p class="text-blue-300 text-xs font-black tracking-[0.24em] uppercase mb-4">Collaboration Network</p>
+                <h3 class="text-3xl font-black tracking-tight mb-8">Collaboration Footprint</h3>
+
+                <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-3">
+                  {collaborationPartnerGroups.map((group) => (
+                    <div class={`rounded-2xl border px-4 py-3 ${group.statClass}`}>
+                      <div class="text-[11px] font-black tracking-widest uppercase opacity-80">{group.label}</div>
+                      <div class="mt-1 flex items-end justify-between gap-3">
+                        <span class="text-2xl font-black">{group.countText}</span>
+                        <span class="text-xs font-bold opacity-70">{group.title}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-white/10">
+                  <div class="text-[11px] font-black tracking-widest uppercase text-slate-400">Total Units</div>
+                  <div class="mt-2 text-4xl font-black">{totalCollaborationPartners}</div>
+                </div>
+              </aside>
+
+              <div class="lg:col-span-8 p-7 sm:p-9 lg:p-10">
+                <div class="mb-8">
+                  <div class="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-[11px] font-black uppercase tracking-widest text-slate-500">
+                    Project Collaboration
+                  </div>
+                  <h4 class="mt-4 text-2xl sm:text-3xl font-black text-slate-950 tracking-tight">Cross-Domain Connections in Practice</h4>
+                  <p class="mt-3 text-slate-600 leading-relaxed">
+                    The collaboration scope spans technology companies, clinical sites, research institutions, and government-related units across iCPS Lab projects and field validation work.
+                  </p>
+                </div>
+
+                <div class="space-y-8">
+                  {collaborationPartnerGroups.map((group) => {
+                    const previewPartners = group.partners.slice(0, group.previewCount);
+                    const remainingPartners = group.partners.slice(group.previewCount);
+                    return (
+                      <section class="border-b border-slate-100 last:border-b-0 last:pb-0 pb-8">
+                        <div class="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-4">
+                          <div>
+                            <p class="text-[11px] font-black tracking-widest uppercase text-blue-600">{group.label}</p>
+                            <h5 class="mt-1 text-xl font-black text-slate-950">{group.title}</h5>
+                          </div>
+                          <span class="inline-flex w-max items-center rounded-full bg-slate-100 px-3 py-1 text-xs font-black text-slate-500">
+                            {group.countText}
+                          </span>
+                        </div>
+                        <p class="text-sm leading-relaxed text-slate-500 mb-4">{group.description}</p>
+
+                        <div class="flex flex-wrap gap-2">
+                          {previewPartners.map((partner) => (
+                            <span class={`inline-flex rounded-full border px-3 py-1.5 text-xs font-bold leading-normal ${group.chipClass}`}>{partner}</span>
+                          ))}
+                        </div>
+
+                        {remainingPartners.length > 0 && (
+                          <div class="collaboration-toggle-group mt-4">
+                            <div class="hidden flex-wrap gap-2" data-collaboration-more>
+                              {remainingPartners.map((partner) => (
+                                <span class={`inline-flex rounded-full border px-3 py-1.5 text-xs font-bold leading-normal ${group.chipClass}`}>{partner}</span>
+                              ))}
+                            </div>
+                            <button
+                              type="button"
+                              class="mt-4 inline-flex cursor-pointer items-center gap-2 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm font-bold text-slate-600 transition hover:border-blue-200 hover:bg-blue-50 hover:text-blue-700"
+                              data-collaboration-toggle
+                              data-closed-label={`Show ${remainingPartners.length} more units`}
+                              data-open-label="Collapse unit list"
+                              aria-expanded="false"
+                            >
+                              <span data-collaboration-toggle-label>Show {remainingPartners.length} more units</span>
+                              <svg class="h-4 w-4 transition" data-collaboration-toggle-icon fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                              </svg>
+                            </button>
+                          </div>
+                        )}
+                      </section>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -441,7 +616,26 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
       }, { threshold: 0.28, rootMargin: '-18% 0px -62% 0px' });
       sections.forEach(section => tabObserver.observe(section));
 
-      // ── 4. Hero Canvas 粒子線條動畫 ──
+      // ── 4. Collaboration unit toggles ──
+      const collaborationToggles = document.querySelectorAll('[data-collaboration-toggle]');
+      collaborationToggles.forEach((button) => {
+        button.addEventListener('click', () => {
+          const group = button.closest('.collaboration-toggle-group');
+          const more = group?.querySelector('[data-collaboration-more]');
+          const label = button.querySelector('[data-collaboration-toggle-label]');
+          const icon = button.querySelector('[data-collaboration-toggle-icon]');
+          if (!more || !label) return;
+
+          const nextExpanded = button.getAttribute('aria-expanded') !== 'true';
+          button.setAttribute('aria-expanded', String(nextExpanded));
+          more.classList.toggle('hidden', !nextExpanded);
+          more.classList.toggle('flex', nextExpanded);
+          label.textContent = nextExpanded ? button.dataset.openLabel : button.dataset.closedLabel;
+          if (icon) icon.style.transform = nextExpanded ? 'rotate(180deg)' : 'rotate(0deg)';
+        });
+      });
+
+      // ── 5. Hero Canvas 粒子線條動畫 ──
       const canvas = document.getElementById('hero-canvas');
       if (canvas) {
         const ctx = canvas.getContext('2d');
