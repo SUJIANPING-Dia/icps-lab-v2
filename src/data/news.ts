@@ -13,6 +13,80 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-master-defense-hsu-lai",
+    date: "2026.07.30",
+    tag: "學術活動",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "iCPS Lab 學生許庭瑄、賴穎寬完成碩士學位口試",
+    img: "/images/master-defense-2026-committee-group.jpg",
+    imgAlt: "iCPS Lab 碩士學位口試學生與口試委員合影",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        國立高雄科技大學電子工程系 iCPS Lab 智慧型網宇實體系統實驗室於 <strong>2026 年 7 月 30 日</strong>，在建工校區資訊工業大樓 4 樓 403 會議室舉行碩士學位口試。本次口試學生為 <strong>許庭瑄</strong> 與 <strong>賴穎寬</strong>，指導教授為 <strong>張萬榮教授</strong>。
+      </p>
+
+      <figure class="max-w-4xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/master-defense-2026-committee-group.jpg" alt="iCPS Lab 碩士學位口試學生與口試委員合影" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：iCPS Lab 碩士學位口試學生與口試委員合影。
+        </figcaption>
+      </figure>
+
+      <div class="grid md:grid-cols-2 gap-4 mb-6">
+        <figure class="overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+          <img src="/images/master-defense-2026-hsu-ting-hsuan.jpg" alt="許庭瑄同學完成碩士學位口試後與口試委員合影" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+          <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+            圖：許庭瑄同學完成碩士學位口試。
+          </figcaption>
+        </figure>
+        <figure class="overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+          <img src="/images/master-defense-2026-lai-ying-kuan.jpg" alt="賴穎寬同學完成碩士學位口試後與口試委員合影" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+          <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+            圖：賴穎寬同學完成碩士學位口試。
+          </figcaption>
+        </figure>
+      </div>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-blue-500 pl-4">
+          <h3 class="font-semibold text-blue-700 mb-2">口試論文題目</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-2 ml-2">
+            <li><strong>許庭瑄：</strong>基於飛時測距感測影像之人工智慧銀髮族日常行為辨識技術效能評估與分析研究</li>
+            <li><strong>賴穎寬：</strong>基於低解析熱影像之人工智慧精神病患自我傷害行為照護偵測系統</li>
+          </ul>
+        </div>
+
+        <p class="text-slate-700">
+          許庭瑄同學的研究聚焦於 ToF 感測影像與人工智慧技術，探討銀髮族日常行為辨識在智慧照護場域中的應用與效能表現。賴穎寬同學的研究則以低解析熱影像與 AI 偵測技術為核心，應用於精神照護場域中自我傷害行為之輔助偵測，期望提升照護安全與即時反應能力。
+        </p>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">感謝口試委員蒞臨指導</h3>
+          <p class="text-slate-700 mb-3">
+            本次口試感謝 <strong>國立成功大學林輝堂教授</strong>、<strong>國立屏東科技大學吳庭育教授</strong>、<strong>國立高雄科技大學洪盟峰特聘教授</strong>、<strong>國立高雄科技大學林志學教授</strong>，以及 <strong>國立高雄科技大學張萬榮教授</strong> 擔任口試委員，蒞臨指導並提供寶貴建議。
+          </p>
+          <p class="text-slate-700">
+            兩位同學的研究皆延續 iCPS Lab 長期投入智慧醫療、AIoT、感測影像分析與臨床照護應用的研究方向，從實際照護需求出發，結合人工智慧與感測技術，探索 AI 系統在高齡照護與精神照護場域中的應用價值。
+          </p>
+        </div>
+
+        <div class="border border-blue-100 bg-blue-50 rounded p-4">
+          <h3 class="font-semibold text-blue-800 mb-2">口試資訊</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>口試學生：</strong>許庭瑄、賴穎寬</li>
+            <li><strong>指導教授：</strong>張萬榮教授</li>
+            <li><strong>時間：</strong>2026 年 7 月 30 日（四）13:30 至 15:30</li>
+            <li><strong>地點：</strong>國立高雄科技大學建工校區 資訊工業大樓 4 樓 403 會議室</li>
+          </ul>
+        </div>
+
+        <p class="text-slate-700">
+          恭喜許庭瑄與賴穎寬完成碩士學位口試，也感謝口試委員與實驗室師生的支持與協助。期待兩位同學未來持續將研究成果延伸到更多智慧照護與醫療科技應用場域。
+        </p>
+      </div>
+    `
+  },
+  {
     slug: "2026-asia-biotech-iearlm-exhibition",
     date: "2026.07.16",
     tag: "展覽活動",
