@@ -13,6 +13,115 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-isocip-contest-two-honorable-mentions",
+    date: "2026.07.31",
+    tag: "競賽佳績",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "iCPS Lab 指導學生於教育部 2026 跨域智慧晶片競賽雙獲佳作",
+    img: "/images/chip-contest-2026-terminal-team.jpg",
+    imgAlt: "智慧終端裝置組學生團隊於 2026 跨域智慧晶片設計應用創新專題實作競賽現場展示 AOI 作品",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        恭喜 iCPS Lab 指導學生團隊參加 <strong>「教育部 2026 跨域智慧晶片設計應用創新專題實作競賽」</strong>，共有兩件作品分別於智慧健康組與智慧終端裝置組榮獲 <strong>佳作</strong>，展現實驗室在邊緣 AI、智慧感測、智慧健康與智慧製造應用上的跨域研發成果。
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        本次智慧健康組獲獎作品為 <strong>「整合多模態穿戴式感測與邊緣 AI 視覺運算之神經膝反射量化系統」</strong>，由國立高雄科技大學與國立中正大學跨校合作完成，指導老師為張萬榮教授與周盈年教授。作品結合穿戴式感測、邊緣 AI 與視覺運算技術，聚焦於神經膝反射量化分析，期望將智慧晶片技術導入健康評估與臨床輔助應用。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/chip-contest-2026-health-team.jpg" alt="智慧健康組學生團隊於競賽現場展示神經膝反射量化系統作品" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：智慧健康組學生團隊於競賽現場展示神經膝反射量化系統作品。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700">
+        另一件智慧終端裝置組獲獎作品為 <strong>「AOI＋主機板 CPU 周圍電容缺漏焊異常自動化識別系統」</strong>，由國立高雄科技大學團隊完成，指導老師為張萬榮教授。此作品延續 iCPS Lab 在 AI 自動光學檢測與智慧製造應用的研究基礎，針對主機板 CPU 周圍電容缺漏焊異常進行自動化辨識，協助提升檢測效率與品質穩定性。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/chip-contest-2026-award-list.jpg" alt="教育部 2026 跨域智慧晶片設計應用創新專題實作競賽獲獎名單" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：教育部 2026 跨域智慧晶片設計應用創新專題實作競賽獲獎名單，iCPS Lab 指導學生團隊共有兩件作品獲得佳作。
+        </figcaption>
+      </figure>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">獲獎資訊</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>競賽名稱：</strong>教育部 2026 跨域智慧晶片設計應用創新專題實作競賽</li>
+            <li><strong>智慧健康組：</strong>佳作，作品「整合多模態穿戴式感測與邊緣 AI 視覺運算之神經膝反射量化系統」</li>
+            <li><strong>智慧終端裝置組：</strong>佳作，作品「AOI＋主機板 CPU 周圍電容缺漏焊異常自動化識別系統」</li>
+            <li><strong>指導老師：</strong>張萬榮教授、周盈年教授</li>
+            <li><strong>參賽學校：</strong>國立高雄科技大學、國立中正大學</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">跨域智慧晶片應用實作成果</h3>
+          <p class="text-slate-700 mb-3">
+            本屆競賽鼓勵學生以智慧晶片與跨域應用回應產業與社會場域需求。兩件作品分別聚焦智慧健康與智慧終端裝置，呈現學生團隊從感測資料、AI 模型、邊緣運算到系統整合的完整實作能力。
+          </p>
+          <p class="text-slate-700">
+            iCPS Lab 感謝學生團隊的投入與跨校合作夥伴的共同指導，也將持續推動 AIoT、邊緣智慧、智慧健康與智慧製造相關研究成果落地。
+          </p>
+        </div>
+      </div>
+    `,
+    contentEn: `
+      <p class="text-base font-semibold text-slate-900 mb-4">
+        Congratulations to the iCPS Lab student teams for receiving two <strong>Honorable Mention</strong> awards at the <strong>2026 Ministry of Education Interdisciplinary SoC Innovative Project Contest</strong>, with winning works in the Smart Healthcare and Smart Terminal Device categories.
+      </p>
+
+      <p class="mb-6 text-slate-700">
+        The Smart Healthcare award-winning work, <strong>"A Neural Knee Reflex Quantification System Integrating Multimodal Wearable Sensing and Edge AI Visual Computing,"</strong> was completed through collaboration between National Kaohsiung University of Science and Technology and National Chung Cheng University, advised by Prof. Wan-Jung Chang and Prof. Ying-Nien Chou. The work integrates wearable sensing, edge AI, and visual computing for quantitative neural knee reflex analysis.
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/chip-contest-2026-health-team.jpg" alt="Smart Healthcare student team presenting the neural knee reflex quantification system at the contest venue" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          Smart Healthcare student team presenting the neural knee reflex quantification system at the contest venue.
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700">
+        The Smart Terminal Device award-winning work, <strong>"AOI+ Automated Recognition System for Missing and Defective Soldering of Capacitors Around a Motherboard CPU,"</strong> was completed by a National Kaohsiung University of Science and Technology student team advised by Prof. Wan-Jung Chang. The work applies AI-based automated optical inspection to smart manufacturing scenarios and supports more efficient defect recognition.
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/chip-contest-2026-award-list.jpg" alt="Award list for the 2026 Ministry of Education Interdisciplinary SoC Innovative Project Contest" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          Award list for the 2026 Ministry of Education Interdisciplinary SoC Innovative Project Contest.
+        </figcaption>
+      </figure>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">Award Information</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>Contest:</strong> 2026 Ministry of Education Interdisciplinary SoC Innovative Project Contest</li>
+            <li><strong>Smart Healthcare:</strong> Honorable Mention, "A Neural Knee Reflex Quantification System Integrating Multimodal Wearable Sensing and Edge AI Visual Computing"</li>
+            <li><strong>Smart Terminal Device:</strong> Honorable Mention, "AOI+ Automated Recognition System for Missing and Defective Soldering of Capacitors Around a Motherboard CPU"</li>
+            <li><strong>Advisors:</strong> Prof. Wan-Jung Chang and Prof. Ying-Nien Chou</li>
+            <li><strong>Participating universities:</strong> National Kaohsiung University of Science and Technology and National Chung Cheng University</li>
+          </ul>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 rounded p-4">
+          <h3 class="font-semibold text-slate-800 mb-2">Interdisciplinary SoC Application Practice</h3>
+          <p class="text-slate-700 mb-3">
+            The two works reflect the student teams' practical capabilities across sensing data, AI models, edge computing, and system integration, addressing applications in smart healthcare and smart terminal devices.
+          </p>
+          <p class="text-slate-700">
+            iCPS Lab appreciates the dedication of the student teams and the guidance from cross-university collaborators. The lab will continue advancing AIoT, edge intelligence, smart healthcare, and smart manufacturing research toward real-world applications.
+          </p>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-master-defense-hsu-lai",
     date: "2026.07.30",
     tag: "學術活動",
