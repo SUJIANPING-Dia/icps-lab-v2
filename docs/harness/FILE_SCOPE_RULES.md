@@ -72,9 +72,10 @@ Forbidden:
 - other pages
 - package or environment files
 
-Scheduled sync harness rule:
+Manual sync harness rule:
 
 - The workflow may execute `node scripts/fetchAchievements.js`.
+- Generic prompts such as `更新網站`, `更新網頁`, `更新网页`, `更新一下網站`, or `更新一下網頁` count as explicit permission for Codex to run `node scripts/fetchAchievements.js` for achievements data sync unless another content domain is named.
 - Manual sync mode may commit and push only `src/data/achievements.json`.
 - Manual sync reports must be pushed to `automation-reports`, not `main`.
 - Local copies of reports must stay in the ignored `reports/` folder.

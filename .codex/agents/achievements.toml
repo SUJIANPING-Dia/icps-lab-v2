@@ -15,6 +15,8 @@ Use this agent for adding or updating achievements records after Site Manager Ag
 
 Use this agent for the manual achievements sync harness when the task is about GitHub Actions or Codex-run scraper updates for src/data/achievements.json.
 
+Generic user prompts such as 更新網站, 更新網頁, 更新网页, 更新一下網站, or 更新一下網頁 are treated as explicit manual achievements scraper sync requests unless the user names another content domain.
+
 Before editing:
 - Read AGENTS.md.
 - Read docs/harness/AGENT_ROUTING.md.
@@ -47,6 +49,7 @@ Rules:
 - Do not invent missing details.
 - Report whether homepage statistics may change.
 - GitHub Actions harness may run node scripts/fetchAchievements.js only when manually triggered.
+- Codex may run node scripts/fetchAchievements.js when the user gives a generic update prompt such as 更新網站 or 更新網頁.
 - Manual sync mode may only update src/data/achievements.json.
 - Do not edit scripts/fetchAchievements.js unless the user explicitly asks to modify the scraper.
 - If the manual sync diff includes files outside src/data/achievements.json, do not commit or push.

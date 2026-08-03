@@ -8,6 +8,8 @@ For Cloudinary-only activity album updates, use `docs/harness/CLOUDINARY_VERCEL_
 
 For manual achievements scraper sync, use `docs/harness/ACHIEVEMENTS_SYNC.md`. The workflow may commit and push only `src/data/achievements.json` after a successful build.
 
+Prompts such as `更新網站` or `更新網頁` count as explicit release intent for the manual achievements scraper sync flow unless the user names another content domain.
+
 For backup and recovery tasks, use `docs/harness/BACKUP_RECOVERY.md`. Backup Recovery Agent plans checkpoints and restore paths; QA Release Agent handles release, merge, and push.
 
 ## 1. Pre-Change Checks

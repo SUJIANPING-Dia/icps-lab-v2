@@ -8,6 +8,23 @@ The workflow is manual-only. It does not run on a daily schedule.
 
 Use this harness only when the user asks to update the website achievements data, for example with a prompt such as `更新網站`, or when a maintainer manually starts the GitHub Actions workflow.
 
+## Codex Prompt Trigger
+
+When the user says `更新網站`, `更新網頁`, `更新网页`, `更新一下網站`, `更新一下網頁`, or a close equivalent without naming another content domain, Codex should treat the prompt as a manual achievements scraper sync request.
+
+Default Codex action:
+
+1. Check the current branch and working tree.
+2. Run `node scripts/fetchAchievements.js`.
+3. Validate `src/data/achievements.json` and compare item counts before and after.
+4. Confirm the diff only includes `src/data/achievements.json`.
+5. Run `npm.cmd run build`.
+6. If there are changes and build passes, commit only `src/data/achievements.json`.
+7. Push the resulting commit to `main` so Vercel deploys the updated website.
+8. Verify production after deployment.
+
+If the scraper produces no data changes, stop without commit or push and report that the website was already up to date.
+
 ## Workflow File
 
 The workflow lives at:

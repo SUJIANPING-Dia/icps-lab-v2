@@ -25,6 +25,7 @@ Responsibilities:
 | Add, edit, remove, or reorder FAQ | FAQ Agent | `src/pages/faq.astro` |
 | Add, edit, remove, or reorder members | Members Agent | `src/pages/members.astro`, optional user-provided photos |
 | Add or update achievements data | Achievements Agent | `src/data/achievements.json` |
+| Generic website update prompts such as `更新網站` or `更新網頁` | Achievements Agent -> QA Release Agent | Codex-run manual scraper sync; only `src/data/achievements.json` may be committed |
 | Manual achievements scraper sync | Achievements Agent -> QA Release Agent | GitHub Actions harness or Codex-run scraper flow; only `src/data/achievements.json` may be committed |
 | Achievements sync report storage or local report sync | Achievements Agent -> Backup Recovery Agent | Reports branch `automation-reports`, ignored local `reports/` folder |
 | Maintain activity albums or activity pages | Activities Agent | Cloudinary first; code only when explicitly requested |
@@ -91,3 +92,5 @@ If the task type, allowed files, branch target, or release intent is unclear:
 2. Set response status to `Blocked`.
 3. Ask the user for clarification.
 4. Do not guess the agent or edit files.
+
+Exception: if the user says `更新網站`, `更新網頁`, `更新网页`, `更新一下網站`, `更新一下網頁`, or a close equivalent without naming a more specific content area, route directly to Manual achievements scraper sync. This prompt is considered explicit permission to run the scraper and update the website when the data changes.

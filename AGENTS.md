@@ -121,6 +121,14 @@ If `.codex/agents/*.toml`, `docs/harness/*.md`, or an agent playbook conflicts w
 - Do not run content scraping scripts unless explicitly requested or inside approved automation.
 - For HTML-rich news content, be careful with `set:html`; only render trusted local content.
 
+## Manual Website Update Prompt Rule
+
+- If the user says `更新網站`, `更新網頁`, `更新网页`, `更新一下網站`, `更新一下網頁`, or a close equivalent without naming a more specific content area, treat it as an explicit achievements scraper update request.
+- Route the task to Achievements Agent first, then QA Release Agent for build, commit, push, and production verification.
+- The default action is to run `node scripts/fetchAchievements.js`, validate `src/data/achievements.json`, confirm only that file changed, run `npm.cmd run build`, commit the data change, and push to `main` so the website updates.
+- If the scraper produces no data diff, do not create a commit or push; report that the website was already up to date.
+- If the user specifies another content domain, such as news, members, FAQ, activities, Cloudinary, UI, or SEO, route to that specialized flow instead of treating the prompt as an achievements scraper update.
+
 ## UI Maintenance Rules
 
 - Preserve the existing visual identity, Tailwind utility style, lab/university branding, and responsive behavior.
@@ -147,6 +155,7 @@ If `.codex/agents/*.toml`, `docs/harness/*.md`, or an agent playbook conflicts w
 ## Script Execution Rules
 
 - Do not run `scripts/fetchAchievements.js` unless the user explicitly asks or the manual GitHub Actions achievements sync harness is executing.
+- Generic prompts such as `更新網站` or `更新網頁` count as explicit permission to run `scripts/fetchAchievements.js` for achievements data sync, unless the user names a different content domain.
 - That script writes to `src/data/achievements.json`; inspect diffs after running it.
 - The manual achievements sync harness may only commit and push `src/data/achievements.json`.
 - If `scripts/fetchAchievements.js` changes any other file, the harness must fail before build, commit, or push.

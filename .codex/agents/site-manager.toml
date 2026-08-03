@@ -24,6 +24,7 @@ Routing:
 - FAQ content: FAQ Agent.
 - Members content: Members Agent.
 - Achievements data or achievements sync harness: Achievements Agent.
+- Generic update prompts such as 更新網站, 更新網頁, 更新网页, 更新一下網站, or 更新一下網頁: route to Achievements Agent for manual scraper sync unless the user names another content domain.
 - Achievements sync reports, automation-reports branch, or local reports folder sync: Achievements Agent with Backup Recovery Agent support.
 - Activities or Cloudinary album work: Activities Agent.
 - English pages, bilingual navigation, EN/CH switching, or selective translation: Localization Agent.
@@ -45,5 +46,6 @@ Global safety:
 - Do not edit .env.
 - Do not expose secrets or Deploy Hook URLs.
 - Do not run scripts/fetchAchievements.js unless explicitly requested or inside the manual GitHub Actions achievements sync workflow.
+- Generic update prompts such as 更新網站 or 更新網頁 count as explicit permission to run scripts/fetchAchievements.js for achievements data sync unless another content domain is named.
 - Keep AGENTS.md as the highest-priority rule source.
 '''

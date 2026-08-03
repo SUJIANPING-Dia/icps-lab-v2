@@ -78,19 +78,20 @@ Flow:
 Manual scraper sync flow:
 
 1. The workflow no longer runs on a daily schedule.
-2. Use this flow only when the user asks to update the website achievements data, for example `更新網站`, or when a maintainer manually triggers `workflow_dispatch`.
-3. The workflow runs `node scripts/fetchAchievements.js`.
-4. If no data changes exist, it prints `No achievements changes` and stops.
-5. If data changes exist, the workflow confirms only `src/data/achievements.json` changed.
-6. If the diff includes any other file, the workflow fails and does not commit or push.
-7. If the diff is valid, it runs `npm run build`.
-8. Build failure stops the workflow without commit or push.
-9. Build success commits `Sync achievements data` and pushes to `main`.
-10. Vercel deploys from the new `main` commit automatically.
-11. Every run writes reports to the `automation-reports` branch.
-12. Date summaries are available at `reports/achievements-sync/latest.md` after local sync.
-13. Individual manual run reports are available at `reports/achievements-sync/runs/latest-run.md` and `reports/achievements-sync/runs/` after local sync.
-14. To view reports locally, run `.\scripts\sync-achievements-reports.ps1`.
+2. If the user says `更新網站`, `更新網頁`, `更新网页`, `更新一下網站`, `更新一下網頁`, or a close equivalent without naming a different content area, treat it as explicit permission to run this achievements scraper sync flow.
+3. Site Manager Agent routes the task to Achievements Agent.
+4. Record the current achievement item count.
+5. Run `node scripts/fetchAchievements.js`.
+6. Validate the updated JSON and compare item counts.
+7. If no data changes exist, stop without commit or push and report that the website was already up to date.
+8. If data changes exist, confirm only `src/data/achievements.json` changed.
+9. If the diff includes any other file, stop without commit or push.
+10. Run `npm.cmd run build`.
+11. Build failure stops the flow without commit or push.
+12. Build success commits only `src/data/achievements.json`.
+13. QA Release Agent pushes the resulting commit to `main` so Vercel deploys from the new `main` commit.
+14. Verify production after deployment.
+15. A maintainer may also manually trigger the GitHub Actions `workflow_dispatch` version of this same sync harness.
 
 ## 5. Maintain Activity Albums
 
