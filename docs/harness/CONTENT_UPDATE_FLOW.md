@@ -62,7 +62,7 @@ Use:
 
 - `.codex/agents/achievements.toml`
 - `docs/agents/ACHIEVEMENTS_AGENT.md`
-- `docs/harness/ACHIEVEMENTS_SYNC.md` for scheduled automatic sync
+- `docs/harness/ACHIEVEMENTS_SYNC.md` for the manual scraper sync harness
 
 Flow:
 
@@ -75,10 +75,10 @@ Flow:
 7. Confirm only `src/data/achievements.json` changed.
 8. Commit with `Update achievements data`.
 
-Scheduled sync flow:
+Manual scraper sync flow:
 
-1. GitHub Actions runs `Sync Achievements Data` daily at Taiwan time 00:07.
-2. The workflow can also be triggered manually with `workflow_dispatch`.
+1. The workflow no longer runs on a daily schedule.
+2. Use this flow only when the user asks to update the website achievements data, for example `更新網站`, or when a maintainer manually triggers `workflow_dispatch`.
 3. The workflow runs `node scripts/fetchAchievements.js`.
 4. If no data changes exist, it prints `No achievements changes` and stops.
 5. If data changes exist, the workflow confirms only `src/data/achievements.json` changed.
@@ -88,8 +88,8 @@ Scheduled sync flow:
 9. Build success commits `Sync achievements data` and pushes to `main`.
 10. Vercel deploys from the new `main` commit automatically.
 11. Every run writes reports to the `automation-reports` branch.
-12. Daily summaries are available at `reports/achievements-sync/latest.md` after local sync.
-13. Individual manual or scheduled run reports are available at `reports/achievements-sync/runs/latest-run.md` and `reports/achievements-sync/runs/` after local sync.
+12. Date summaries are available at `reports/achievements-sync/latest.md` after local sync.
+13. Individual manual run reports are available at `reports/achievements-sync/runs/latest-run.md` and `reports/achievements-sync/runs/` after local sync.
 14. To view reports locally, run `.\scripts\sync-achievements-reports.ps1`.
 
 ## 5. Maintain Activity Albums

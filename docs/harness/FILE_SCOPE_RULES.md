@@ -75,8 +75,8 @@ Forbidden:
 Scheduled sync harness rule:
 
 - The workflow may execute `node scripts/fetchAchievements.js`.
-- Automatic sync mode may commit and push only `src/data/achievements.json`.
-- Automatic sync reports must be pushed to `automation-reports`, not `main`.
+- Manual sync mode may commit and push only `src/data/achievements.json`.
+- Manual sync reports must be pushed to `automation-reports`, not `main`.
 - Local copies of reports must stay in the ignored `reports/` folder.
 - The workflow must upload the pre-sync `src/data/achievements.json` as an artifact.
 - The workflow must stop on invalid JSON, empty data, missing required fields, or a 30% or larger item-count drop.
@@ -163,7 +163,7 @@ Allowed:
 - read-only checks
 - `npm.cmd run build`
 - fast-forward pull, merge, and push when requested
-- validating scheduled achievements sync workflow rules
+- validating manual achievements sync workflow rules
 
 Forbidden:
 
@@ -174,7 +174,7 @@ Forbidden:
 - force push
 - hard reset
 - clean
-- force push in scheduled achievements sync
+- force push in manual achievements sync
 
 ## Backup Recovery Tasks
 

@@ -44,6 +44,6 @@ Global safety:
 - Do not resolve conflicts unless the user explicitly authorizes a conflict-resolution task.
 - Do not edit .env.
 - Do not expose secrets or Deploy Hook URLs.
-- Do not run scripts/fetchAchievements.js unless explicitly requested or inside the scheduled GitHub Actions achievements sync workflow.
+- Do not run scripts/fetchAchievements.js unless explicitly requested or inside the manual GitHub Actions achievements sync workflow.
 - Keep AGENTS.md as the highest-priority rule source.
 '''

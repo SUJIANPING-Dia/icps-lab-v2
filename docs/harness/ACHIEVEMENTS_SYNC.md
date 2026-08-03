@@ -1,16 +1,12 @@
 # Achievements Sync Harness
 
-This harness keeps `src/data/achievements.json` synchronized automatically while protecting production from bad scraper output.
+This harness keeps `src/data/achievements.json` synchronized through an explicitly triggered manual workflow while protecting production from bad scraper output.
 
-## Schedule
+## Trigger
 
-GitHub Actions schedule syntax uses UTC. The workflow runs every day at:
+The workflow is manual-only. It does not run on a daily schedule.
 
-- Taiwan time: 00:07
-- UTC time: 16:07 on the previous day
-- Cron: `7 16 * * *`
-
-The job intentionally avoids the top of the hour because GitHub Actions scheduled workflows can be delayed during high-traffic times.
+Use this harness only when the user asks to update the website achievements data, for example with a prompt such as `更新網站`, or when a maintainer manually starts the GitHub Actions workflow.
 
 ## Workflow File
 
@@ -29,13 +25,12 @@ Sync Achievements Data
 Triggers:
 
 - `workflow_dispatch` for manual runs
-- scheduled daily run at `7 16 * * *`
 
 Permissions:
 
 - `contents: write`
 
-## Automatic Flow
+## Manual Workflow Flow
 
 1. Checkout `main`.
 2. Setup Node.js.
@@ -52,7 +47,7 @@ Permissions:
 13. If build succeeds, commit with `Sync achievements data`.
 14. Push back to `main`.
 15. Vercel deploys automatically because `main` receives a new commit.
-16. Generate a daily sync report, even when the run has no changes, is blocked, or fails.
+16. Generate a sync report, even when the run has no changes, is blocked, or fails.
 17. Push the report files to the independent `automation-reports` branch so report updates do not trigger Vercel deployments.
 
 ## Bad-Data Guardrails
@@ -87,7 +82,7 @@ The workflow must not:
 
 The workflow writes reports to the `automation-reports` branch, not to `main`.
 
-Daily summary files:
+Date summary files:
 
 ```text
 achievements-sync/YYYY-MM-DD.md
@@ -105,7 +100,7 @@ achievements-sync/runs/latest-run.md
 achievements-sync/runs/latest-run.json
 ```
 
-The daily summary files may be overwritten by later runs on the same date. The per-run files are unique, so manual GitHub `Run workflow` executions are preserved separately from scheduled executions.
+The date summary files may be overwritten by later runs on the same date. The per-run files are unique, so each manual GitHub `Run workflow` execution is preserved separately.
 
 The report records:
 
@@ -169,7 +164,7 @@ After the manual run finishes, run the local sync script to copy that run's repo
 
 If the workflow commits and pushes changes, Vercel should deploy from the new `main` commit automatically.
 
-The next day, or a few minutes after a manual run, check:
+A few minutes after a manual run that pushes changes, check:
 
 ```text
 https://icps-lab.com/achievements

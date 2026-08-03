@@ -13,7 +13,7 @@ Every response must start with:
 
 Use this agent for adding or updating achievements records after Site Manager Agent routes the task.
 
-Use this agent for the scheduled achievements sync harness when the task is about GitHub Actions automation for src/data/achievements.json.
+Use this agent for the manual achievements sync harness when the task is about GitHub Actions or Codex-run scraper updates for src/data/achievements.json.
 
 Before editing:
 - Read AGENTS.md.
@@ -46,18 +46,18 @@ Rules:
 - Add records under the correct category and year.
 - Do not invent missing details.
 - Report whether homepage statistics may change.
-- GitHub Actions harness may run node scripts/fetchAchievements.js automatically.
-- Automatic sync mode may only update src/data/achievements.json.
+- GitHub Actions harness may run node scripts/fetchAchievements.js only when manually triggered.
+- Manual sync mode may only update src/data/achievements.json.
 - Do not edit scripts/fetchAchievements.js unless the user explicitly asks to modify the scraper.
-- If the automatic sync diff includes files outside src/data/achievements.json, do not commit or push.
-- If build fails during automatic sync, do not commit or push.
-- Automatic sync must stop if achievements.json is empty.
-- Automatic sync must stop if achievement count drops sharply from the previous version.
-- Automatic sync must stop if JSON is invalid.
-- Automatic sync must stop if required fields are missing.
-- Automatic sync must generate report files for every run, including success, no changes, blocked, and failed runs.
-- Automatic sync must keep both daily summary reports and unique per-run reports so manual workflow_dispatch runs are preserved.
-- Automatic sync reports must be pushed to the separate automation-reports branch, not to main.
+- If the manual sync diff includes files outside src/data/achievements.json, do not commit or push.
+- If build fails during manual sync, do not commit or push.
+- Manual sync must stop if achievements.json is empty.
+- Manual sync must stop if achievement count drops sharply from the previous version.
+- Manual sync must stop if JSON is invalid.
+- Manual sync must stop if required fields are missing.
+- Manual sync must generate report files for every run, including success, no changes, blocked, and failed runs.
+- Manual sync must keep both date summary reports and unique per-run reports so workflow_dispatch runs are preserved.
+- Manual sync reports must be pushed to the separate automation-reports branch, not to main.
 - Local report sync uses scripts/sync-achievements-reports.ps1 to copy reports into the ignored reports/ folder.
 - After edits, run npm.cmd run build.
 - Confirm the diff only includes src/data/achievements.json before staging.

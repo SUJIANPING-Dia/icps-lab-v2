@@ -25,7 +25,7 @@ Responsibilities:
 | Add, edit, remove, or reorder FAQ | FAQ Agent | `src/pages/faq.astro` |
 | Add, edit, remove, or reorder members | Members Agent | `src/pages/members.astro`, optional user-provided photos |
 | Add or update achievements data | Achievements Agent | `src/data/achievements.json` |
-| Scheduled achievements data sync | Achievements Agent -> QA Release Agent | GitHub Actions harness; only `src/data/achievements.json` may be auto-committed |
+| Manual achievements scraper sync | Achievements Agent -> QA Release Agent | GitHub Actions harness or Codex-run scraper flow; only `src/data/achievements.json` may be committed |
 | Achievements sync report storage or local report sync | Achievements Agent -> Backup Recovery Agent | Reports branch `automation-reports`, ignored local `reports/` folder |
 | Maintain activity albums or activity pages | Activities Agent | Cloudinary first; code only when explicitly requested |
 | Cloudinary album/photos uploaded or updated | Activities Agent -> QA Release Agent | No code edit; Vercel redeploy only when explicitly requested |
@@ -75,13 +75,13 @@ Use QA Release Agent for:
 - push to `origin/main`
 - release-readiness review
 - Vercel Deploy Hook redeploy after Cloudinary-only activity album updates, only when the user explicitly requests it
-- Scheduled achievements sync validation: diff scope, build success, commit message, push target, and no force push
+- Manual achievements scraper sync validation: diff scope, build success, commit message, push target, and no force push
 
 QA Release Agent must not edit files, stage changes, create commits, resolve conflicts, or force push.
 
 For Cloudinary redeploy tasks, QA Release Agent must also avoid Git commits and Git pushes, check for a clean working tree, verify `$env:VERCEL_DEPLOY_HOOK_URL` exists without printing it, and follow `docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md`.
 
-For scheduled achievements sync tasks, QA Release Agent validates the workflow rules in `docs/harness/ACHIEVEMENTS_SYNC.md`. The workflow can run `node scripts/fetchAchievements.js`, but it can commit and push only `src/data/achievements.json` after a successful build.
+For manual achievements scraper sync tasks, QA Release Agent validates the workflow rules in `docs/harness/ACHIEVEMENTS_SYNC.md`. The workflow can run `node scripts/fetchAchievements.js`, but it can commit and push only `src/data/achievements.json` after a successful build.
 
 ## Unclear Task Rule
 

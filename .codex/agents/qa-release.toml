@@ -53,7 +53,7 @@ Release flow:
 
 If pull, merge, build, or scope checks fail, stop and report.
 
-Scheduled achievements sync QA rules:
+Manual achievements sync QA rules:
 - The only allowed data diff is src/data/achievements.json.
 - The workflow must upload the pre-sync achievements.json as an artifact.
 - The workflow must stop on empty data, invalid JSON, missing required fields, or a 30% or larger item-count drop.

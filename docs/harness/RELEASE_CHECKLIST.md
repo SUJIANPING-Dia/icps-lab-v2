@@ -6,7 +6,7 @@ Every response must follow `docs/harness/RESPONSE_PROTOCOL.md`.
 
 For Cloudinary-only activity album updates, use `docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md` instead of a Git release flow.
 
-For scheduled achievements data sync, use `docs/harness/ACHIEVEMENTS_SYNC.md`. The workflow may commit and push only `src/data/achievements.json` after a successful build.
+For manual achievements scraper sync, use `docs/harness/ACHIEVEMENTS_SYNC.md`. The workflow may commit and push only `src/data/achievements.json` after a successful build.
 
 For backup and recovery tasks, use `docs/harness/BACKUP_RECOVERY.md`. Backup Recovery Agent plans checkpoints and restore paths; QA Release Agent handles release, merge, and push.
 
@@ -127,10 +127,12 @@ Do not:
 - display the Deploy Hook URL
 - write the Deploy Hook URL to any repository file
 
-## 9. Scheduled Achievements Sync Checks
+## 9. Manual Achievements Scraper Sync Checks
 
 For `.github/workflows/sync-achievements.yml`, verify:
 
+- The workflow supports `workflow_dispatch`.
+- The workflow does not define `schedule` or `cron`.
 - The workflow uploads the current `src/data/achievements.json` as an artifact before running the scraper.
 - The workflow runs `node scripts/fetchAchievements.js`.
 - The workflow validates JSON before commit.
@@ -139,7 +141,7 @@ For `.github/workflows/sync-achievements.yml`, verify:
 - If no diff exists, the workflow prints `No achievements changes` and exits.
 - If other files changed, the workflow fails before build, commit, or push.
 - The workflow publishes report files to `automation-reports`, not to `main`.
-- The workflow keeps daily summary reports and unique per-run reports so manual `workflow_dispatch` runs are preserved.
+- The workflow keeps date summary reports and unique per-run reports so manual `workflow_dispatch` runs are preserved.
 - Report-only commits must not trigger Vercel deployments.
 - `npm run build` succeeds before commit.
 - Commit message is `Sync achievements data`.

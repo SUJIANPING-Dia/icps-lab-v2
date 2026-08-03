@@ -19,7 +19,7 @@ The achievements content is data-driven through `src/data/achievements.json`. Ne
 - Vanilla browser JavaScript inside `.astro` pages/components
 - Node.js scripts using `axios` and `cheerio`
 - Cloudinary REST API for activity albums
-- GitHub Actions for scheduled achievements sync and repository snapshot backups
+- GitHub Actions for manual achievements sync and scheduled repository snapshot backups
 - Static assets served from `public/images`
 
 ## Directory Responsibilities
@@ -85,7 +85,7 @@ Routing rules:
 - FAQ tasks: use FAQ Agent (`.codex/agents/faq.toml`) and read `docs/agents/FAQ_AGENT.md`.
 - Members tasks: use Members Agent (`.codex/agents/members.toml`) and read `docs/agents/MEMBERS_AGENT.md`.
 - Achievements tasks: use Achievements Agent (`.codex/agents/achievements.toml`) and read `docs/agents/ACHIEVEMENTS_AGENT.md`.
-- Achievements scheduled sync tasks: use Achievements Agent and `docs/harness/ACHIEVEMENTS_SYNC.md`; QA Release Agent validates build, commit message, diff scope, and push target.
+- Achievements manual sync tasks: use Achievements Agent and `docs/harness/ACHIEVEMENTS_SYNC.md`; QA Release Agent validates build, commit message, diff scope, and push target.
 - Activities or Cloudinary album tasks: use Activities Agent (`.codex/agents/activities.toml`) and read `docs/agents/ACTIVITIES_AGENT.md`.
 - Cloudinary album/photo refresh or redeploy tasks: route to Activities Agent first, then QA Release Agent must follow `docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md`.
 - English-version pages, bilingual navigation, EN/CH switching, or selective translation tasks: use Localization Agent (`.codex/agents/localization.toml`).
@@ -146,15 +146,15 @@ If `.codex/agents/*.toml`, `docs/harness/*.md`, or an agent playbook conflicts w
 
 ## Script Execution Rules
 
-- Do not run `scripts/fetchAchievements.js` unless the user explicitly asks or the scheduled GitHub Actions achievements sync harness is executing.
+- Do not run `scripts/fetchAchievements.js` unless the user explicitly asks or the manual GitHub Actions achievements sync harness is executing.
 - That script writes to `src/data/achievements.json`; inspect diffs after running it.
-- The scheduled achievements sync harness may only commit and push `src/data/achievements.json`.
+- The manual achievements sync harness may only commit and push `src/data/achievements.json`.
 - If `scripts/fetchAchievements.js` changes any other file, the harness must fail before build, commit, or push.
-- The scheduled achievements sync harness must upload a pre-sync artifact, validate JSON, block empty data, block missing required fields, block a 30% or larger item-count drop, and run a build before committing and pushing.
-- The scheduled achievements sync harness must generate report files for every run and push them to the separate `automation-reports` branch, not to `main`.
-- Achievements sync reports must include both daily summary files and unique per-run files so manual GitHub `workflow_dispatch` runs are preserved locally after report sync.
+- The manual achievements sync harness must upload a pre-sync artifact, validate JSON, block empty data, block missing required fields, block a 30% or larger item-count drop, and run a build before committing and pushing.
+- The manual achievements sync harness must generate report files for every run and push them to the separate `automation-reports` branch, not to `main`.
+- Achievements sync reports must include both date summary files and unique per-run files so manual GitHub `workflow_dispatch` runs are preserved locally after report sync.
 - Local sync reports may be copied into the ignored `reports/` folder with `scripts/sync-achievements-reports.ps1`.
-- Scheduled achievements sync must not use force push, Cloudinary flows, or Vercel Deploy Hook.
+- Manual achievements sync must not use force push, Cloudinary flows, or Vercel Deploy Hook.
 - Do not run destructive shell commands.
 
 ## Development and Build Commands

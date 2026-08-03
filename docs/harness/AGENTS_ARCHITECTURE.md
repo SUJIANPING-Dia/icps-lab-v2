@@ -212,7 +212,7 @@ Can:
 - Validate allowed file scope.
 - Push approved release commits to `main`.
 - Trigger Vercel redeploy only for explicitly approved Cloudinary refresh tasks.
-- Validate scheduled achievements sync safety rules.
+- Validate manual achievements sync safety rules.
 
 Cannot:
 
@@ -229,7 +229,7 @@ Cannot:
 | `docs/harness/AGENT_ROUTING.md` | Task routing table |
 | `docs/harness/FILE_SCOPE_RULES.md` | Allowed and forbidden file scope |
 | `docs/harness/CONTENT_UPDATE_FLOW.md` | Content update workflows |
-| `docs/harness/ACHIEVEMENTS_SYNC.md` | Scheduled achievements sync workflow |
+| `docs/harness/ACHIEVEMENTS_SYNC.md` | Manual achievements sync workflow |
 | `docs/harness/RELEASE_CHECKLIST.md` | Release checks |
 | `docs/harness/AGENTS_ARCHITECTURE.md` | Agent architecture overview |
 

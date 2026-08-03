@@ -2,9 +2,6 @@ name: Sync Achievements Data
 
 on:
   workflow_dispatch:
-  schedule:
-    # Runs at 00:07 Asia/Taipei (UTC+8). Avoid top-of-hour schedules to reduce GitHub Actions delay.
-    - cron: "7 16 * * *"
 
 permissions:
   contents: write

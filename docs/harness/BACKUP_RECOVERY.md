@@ -24,7 +24,7 @@ This harness defines the backup and recovery model for the ICPS Lab Astro websit
 
 ### Achievements Sync Reports
 
-- `.github/workflows/sync-achievements.yml` writes a report for every daily sync run.
+- `.github/workflows/sync-achievements.yml` writes a report for every manual sync run.
 - Reports are committed to the separate `automation-reports` branch, not to `main`.
 - This keeps success, no-change, blocked, and failed run notes available without triggering Vercel deployments.
 
@@ -74,7 +74,7 @@ Deletion tasks require both a checkpoint and explicit user confirmation before a
 
 ## Achievements Sync Bad-Data Recovery
 
-If the scheduled achievements sync writes bad data:
+If the manual achievements sync writes bad data:
 
 1. Stop further sync/release actions.
 2. Download the `achievements-json-before-sync-*` artifact from the failed or bad workflow run when available.
@@ -86,7 +86,7 @@ If the scheduled achievements sync writes bad data:
 
 The sync workflow must fail before commit/push when JSON is invalid, data is empty, required fields are missing, the item count drops by 30% or more, build fails, or the diff includes files outside `src/data/achievements.json`.
 
-Daily sync reports should still be published to `automation-reports` even when the data sync fails or is blocked.
+Sync reports should still be published to `automation-reports` even when the data sync fails or is blocked.
 
 To copy reports into the local ignored `reports/` folder:
 
