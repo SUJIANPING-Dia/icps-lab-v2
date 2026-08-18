@@ -182,6 +182,9 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     .tab-panel {
       display: none;
     }
+    .tab-panel[hidden] {
+      display: none !important;
+    }
     .tab-panel.tab-active {
       display: block;
       animation: tabEnter 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
@@ -655,6 +658,22 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </span>
         </div>
 
+        <div class="mb-6 rounded-xl border border-blue-100 bg-blue-50/80 px-4 py-3 sm:px-5 sm:py-4">
+          <div class="flex items-start gap-3">
+            <div class="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white text-blue-700 ring-1 ring-blue-100">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3M5 11h14M7 21h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <div class="min-w-0">
+              <p class="text-sm font-black text-slate-900">Student Roster Update Notice</p>
+              <p class="mt-1 text-sm leading-relaxed text-slate-600">
+                As August is a semester transition period, some student records are still being confirmed. The complete roster is expected to be updated in mid-September.
+              </p>
+            </div>
+          </div>
+        </div>
+
         <!-- 頁籤列 -->
         <div class="student-tabs-wrap overflow-x-auto">
           <nav class="flex min-w-max px-1" aria-label="Tabs">
@@ -682,7 +701,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         <div class="min-h-[300px]">
 
           <!-- ═══ 博士班 ═══ -->
-          <div id="tab-phd" class="tab-panel">
+          <div id="tab-phd" class="tab-panel" hidden>
             {phds.length > 0 ? (
               <div class="space-y-10">
                 {sortedPhdYears.map((year) => (
@@ -781,7 +800,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
 
           <!-- ═══ 大學部 ═══ -->
-          <div id="tab-undergrad" class="tab-panel">
+          <div id="tab-undergrad" class="tab-panel" hidden>
             {undergrads.length > 0 ? (
               <div class="space-y-10">
                 {sortedUndergradYears.map((year) => {
@@ -839,7 +858,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
 
           <!-- ═══ 外籍生 ═══ -->
-          <div id="tab-international" class="tab-panel">
+          <div id="tab-international" class="tab-panel" hidden>
             {internationals.length > 0 ? (
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {internationals.map((person) => (
@@ -867,7 +886,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
 
           <!-- ═══ 歷屆畢業生 ═══ -->
-          <div id="tab-graduate" class="tab-panel">
+          <div id="tab-graduate" class="tab-panel" hidden>
             {graduates.length > 0 ? (
               <div class="space-y-10">
                 {sortedGradYears.map((year) => (
@@ -975,11 +994,11 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           const targetId = btn.getAttribute('data-target') ?? '';
           tabPanels.forEach(p => {
             p.classList.remove('tab-active');
-            p.classList.add('hidden-panel');
+            p.setAttribute('hidden', '');
           });
           const target = document.getElementById(targetId);
           if (target) {
-            target.classList.remove('hidden-panel');
+            target.removeAttribute('hidden');
             // 強制 reflow 後再加 class，讓 animation 每次都重新播放
             void (target as HTMLElement).offsetWidth;
             target.classList.add('tab-active');
