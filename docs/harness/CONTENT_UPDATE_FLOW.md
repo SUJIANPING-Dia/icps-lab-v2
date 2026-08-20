@@ -14,12 +14,13 @@ Use:
 Flow:
 
 1. Site Manager Agent routes the task to News Agent.
-2. Inspect `src/components/News.astro`.
-3. Add or update the news item in the existing format.
-4. Add images to `public/images/` only if the user provided them.
-5. Run `npm.cmd run build`.
-6. Confirm only allowed files changed.
-7. Commit with `Add news item: <short title>` or `Update news item: <short title>`.
+2. Inspect `src/data/news.ts`; inspect `src/components/News.astro` only if rendering or list mappings must change.
+3. Add or update the news item in the existing data format.
+4. Ensure newly added or updated news body paragraphs use `text-justify` for left-and-right aligned article text; do not retroactively change older news unless explicitly requested.
+5. Add images to `public/images/` only if the user provided them.
+6. Run `npm.cmd run build`.
+7. Confirm only allowed files changed.
+8. Commit with `Add news item: <short title>` or `Update news item: <short title>`.
 
 ## 2. Add or Update FAQ
 

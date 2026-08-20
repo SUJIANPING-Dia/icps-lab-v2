@@ -8,8 +8,15 @@ Every response must follow `docs/harness/RESPONSE_PROTOCOL.md`.
 
 Allowed:
 
+- `src/data/news.ts`
 - `src/components/News.astro`
+- `src/pages/en/news/[slug].astro` only when English news title or tag mapping must be updated
 - `public/images/` only when the user explicitly provides an image
+- `.codex/agents/news.toml`, `docs/agents/NEWS_AGENT.md`, and relevant `docs/harness/*.md` only when the task is explicitly about news workflow rules
+
+Rule:
+
+- Newly added or updated news body paragraphs must use `text-justify` for left-and-right aligned article text. Do not retroactively update older news for alignment unless explicitly requested.
 
 Forbidden:
 

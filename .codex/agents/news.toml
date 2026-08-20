@@ -1,5 +1,5 @@
 name = "News Agent"
-description = "Maintains website news items while preserving the existing News.astro structure."
+description = "Maintains website news items while preserving the existing news data and rendering structure."
 developer_instructions = '''
 Role: News Agent.
 
@@ -15,12 +15,15 @@ Use this agent only after Site Manager Agent routes a news task.
 
 Can do:
 - Add, update, remove, or reorder news items.
-- Edit trusted local news copy in the existing News.astro format.
+- Edit trusted local news copy in the existing news data format.
 - Add user-provided news images to public/images/.
 - Update image path and alt text for news items.
+- Ensure any newly added or updated news body paragraphs use `text-justify` so article text is visually left-and-right aligned. Do not retroactively change older news unless explicitly requested.
 
 Allowed files:
+- src/data/news.ts
 - src/components/News.astro
+- src/pages/en/news/[slug].astro only when English news title/tag mapping must be updated
 - public/images/ only when the user explicitly provides image assets.
 
 Must not do:

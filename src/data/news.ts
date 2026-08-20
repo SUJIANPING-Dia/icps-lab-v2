@@ -21,7 +21,7 @@ export const newsData: NewsItem[] = [
     img: "/images/gpm-ai-automation-2026-booth-team.jpg",
     imgAlt: "iCPS Lab 團隊於 GPM 展區展示 AI 智動化競賽獲獎作品",
     content: `
-      <p class="text-base font-semibold text-slate-900 mb-4">
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
         iCPS Lab 學生團隊參加由 <strong>均豪精密工業股份有限公司（GPM）</strong>舉辦之<strong>「第十五屆全國大專院校 AI 智動化設備創作獎」</strong>，以作品 <strong>「AOI+－主機板 CPU 周圍電容缺漏焊自動化識別系統」</strong>榮獲第二名。因競賽成果受到肯定，團隊獲邀於 <strong>2026 台灣機器人與智慧自動化展 & 2026 台北國際自動化工業大展</strong>現場展示作品。
       </p>
 
@@ -32,7 +32,7 @@ export const newsData: NewsItem[] = [
         </figcaption>
       </figure>
 
-      <p class="mb-6 text-slate-700">
+      <p class="mb-6 text-slate-700 text-justify">
         本次展出作品聚焦於主機板 CPU 周圍電容缺漏焊檢測，結合影像擷取、AI 辨識、邊緣運算與自動化檢測流程，期望協助提升產線品質檢測效率，降低人工檢測可能產生的漏判與誤判風險，展現 AI 技術導入智慧製造場域的實作潛力。
       </p>
 
@@ -43,7 +43,7 @@ export const newsData: NewsItem[] = [
         </figcaption>
       </figure>
 
-      <p class="mb-6 text-slate-700">
+      <p class="mb-6 text-slate-700 text-justify">
         透過本次受邀參展，iCPS Lab 團隊將競賽成果帶入產業展會現場，與自動化設備、智慧製造及相關產業人士交流，也讓更多參觀者看見學生團隊從問題定義、模型訓練到系統整合的完整實作能力。未來實驗室將持續鼓勵學生以真實產業需求為題，推動人工智慧、影像辨識、AIoT 與自動化系統整合等技術落地應用。
       </p>
 
@@ -62,7 +62,7 @@ export const newsData: NewsItem[] = [
       </div>
     `,
     contentEn: `
-      <p class="text-base font-semibold text-slate-900 mb-4">
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
         The iCPS Lab student team participated in the <strong>15th National University and College AI Automation Equipment Creation Award</strong> organized by <strong>Gallant Precision Machining Co., Ltd. (GPM)</strong>, and won second place with the project <strong>"AOI+ Automated Recognition System for Missing and Defective Soldering of Capacitors Around a Motherboard CPU."</strong> In recognition of this achievement, the team was invited to showcase the work at the <strong>2026 Taiwan Automation Intelligence and Robot Show & 2026 Taipei International Industrial Automation Exhibition</strong>.
       </p>
 
@@ -73,7 +73,7 @@ export const newsData: NewsItem[] = [
         </figcaption>
       </figure>
 
-      <p class="mb-6 text-slate-700">
+      <p class="mb-6 text-slate-700 text-justify">
         The showcased project focuses on detecting missing and defective soldering of capacitors around a motherboard CPU. It integrates image acquisition, AI recognition, edge computing, and automated inspection workflows to support manufacturing quality inspection and reduce potential missed or incorrect manual judgments.
       </p>
 
@@ -84,7 +84,7 @@ export const newsData: NewsItem[] = [
         </figcaption>
       </figure>
 
-      <p class="mb-6 text-slate-700">
+      <p class="mb-6 text-slate-700 text-justify">
         Through this invited exhibition, the iCPS Lab team brought its competition achievement into an industrial exhibition setting and exchanged ideas with professionals in automation equipment and smart manufacturing. The experience highlights the team's end-to-end practical capability from problem definition and model training to system integration.
       </p>
 
