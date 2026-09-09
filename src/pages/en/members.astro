@@ -30,40 +30,68 @@ const assistants = [
   }
 ];
 
-const allStudents = [
-  { name: "賴穎寬", degree: "master", status: "active", enrollmentYear: 113, graduationYear: null, project: "基於人工智慧低解析熱影像骨幹辨識技術之精神病患自我傷害行為照護系統", summary: "This project uses low-resolution thermal imaging and skeleton recognition to build a real-time self-harm detection system. Joint-motion analysis improves recognition accuracy while preserving privacy and medical-care safety.", img: "/images/A1.jpg" },
-  { name: "許庭瑄", degree: "master", status: "active", enrollmentYear: 113, graduationYear: null, project: "基於ToF感測器之人體姿態日常行為辨識模型", summary: "This study combines ToF depth sensors with human skeleton recognition and time-series modeling to recognize continuous daily activities while protecting personal privacy.", img: "/images/A2.jpg" },
+type Student = {
+  name: string;
+  degree: 'master' | 'undergrad' | 'phd' | 'international';
+  status: 'active' | 'graduated';
+  enrollmentYear?: number | null;
+  graduationYear: number | null;
+  project: string;
+  summary?: string;
+  img: string | null;
+  track?: 'preMaster';
+  grade?: string;
+};
+
+const allStudents: Student[] = [
+  { name: "賴穎寬", degree: "master", status: "graduated", enrollmentYear: 113, graduationYear: 114, project: "基於人工智慧低解析熱影像骨幹辨識技術之精神病患自我傷害行為照護系統", summary: "This project uses low-resolution thermal imaging and skeleton recognition to build a real-time self-harm detection system. Joint-motion analysis improves recognition accuracy while preserving privacy and medical-care safety.", img: "/images/A1.jpg" },
+  { name: "許庭瑄", degree: "master", status: "graduated", enrollmentYear: 113, graduationYear: 114, project: "基於ToF感測器之人體姿態日常行為辨識模型", summary: "This study combines ToF depth sensors with human skeleton recognition and time-series modeling to recognize continuous daily activities while protecting personal privacy.", img: "/images/A2.jpg" },
   { name: "陳閔昱", degree: "master", status: "active", enrollmentYear: 114, graduationYear: null, project: "中外耳病灶識別暨臨床診斷報告自動生成系統", summary: "This study develops the iEar intelligent eardrum lesion recognition system, combining object detection and image segmentation to locate lesions, analyze contours, and support real-time clinical decisions.", img: "/images/A3.jpg" },
   { name: "張鈞翔", degree: "master", status: "active", enrollmentYear: 114, graduationYear: null, project: "精神病房隔離室病患之自我傷害行為辨識暨護理紀錄自動生成系統", summary: "This study uses low-resolution thermal images and human skeleton recognition to detect head-related self-harm behaviors in real time, balancing privacy protection, accurate alerts, and psychiatric-care safety.", img: "/images/A4.jpg" },
   { name: "李家馨", degree: "master", status: "active", enrollmentYear: 114, graduationYear: null, project: "基於熱影像與ToF感測器之翻身拍背系統", summary: "This study combines ToF sensing and deep learning to recognize nursing actions. YOLO and hand-skeleton recognition identify turning and back-patting actions to support care quality and patient safety.", img: "/images/A5.jpg" },
   { name: "陳冠廷", degree: "master", status: "active", enrollmentYear: 114, graduationYear: null, project: "基於yolo物件辨識之舌肌復健遊戲平台", summary: "This study builds the reTon tongue-muscle rehabilitation game platform, using YOLO object detection and tracking to convert tongue movements into interactive game control for rehabilitation training.", img: "/images/A6.jpg" },
   { name: "鍾詩威", degree: "master", status: "active", enrollmentYear: 114, graduationYear: null, project: "智慧型手術器械辨識與教育訓練平台", summary: "This study combines YOLO object detection with custom algorithms to build an intelligent surgical instrument recognition and training platform for standardized medical education and objective learning assessment.", img: "/images/A7.jpg" },
-  { name: "蔡一銘", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI銀髮族體適能健身系統", img: null },
+  { name: "蔡一銘", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "FitMirror：基於單一 RGB 影像與人體姿態估測之即時運動分析系統", img: "/images/member-placeholder.png", summary: "", track: "preMaster", grade: "大四" },
   { name: "林詩婷", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI銀髮族體適能健身系統", img: null },
   { name: "許峻銘", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI銀髮族體適能健身系統", img: null },
-  { name: "王柏鑑", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI手術器械辨識", img: null },
-  { name: "林傳巽", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI手術器械辨識", img: null },
-  { name: "林建宇", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI手術器械辨識", img: null },
-  { name: "紀政佑", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
+  { name: "王柏鑑", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI手術器械辨識", img: null, grade: "大四" },
+  { name: "林傳巽", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "題目未定", img: "/images/member-placeholder.png", summary: "", track: "preMaster", grade: "大四" },
+  { name: "林建宇", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI手術器械辨識", img: null, grade: "大四" },
+  { name: "紀政佑", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "復健手套", img: "/images/member-placeholder.png", summary: "This study aims to develop an intelligent rehabilitation glove system integrating conductive-yarn sensing and artificial intelligence-based image recognition for upper-limb rehabilitation assessment in patients with stroke or neurological impairments. Conductive yarns are embedded in the glove to detect electrical changes caused by finger flexion and wrist movement, enabling quantitative evaluation of finger-joint and wrist-joint activities. In addition, an AI-based vision system is employed to analyze hand postures and movement performance while patients perform designated rehabilitation exercises. By integrating wearable sensing data with visual information, the proposed system provides a more objective assessment of joint mobility, movement completion, and rehabilitation progress, thereby reducing the subjectivity associated with conventional visual observation. The proposed system is expected to support both clinical and home-based rehabilitation by providing therapists with quantitative and real-time information for rehabilitation monitoring. Ultimately, it may improve the efficiency of rehabilitation assessment, progress tracking, and personalized training for patients with impaired upper-limb motor functions.", track: "preMaster", grade: "大四" },
   { name: "李政曄", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
-  { name: "張德煜", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
+  { name: "張德煜", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null, grade: "大四" },
   { name: "林竣宇", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
   { name: "梁書毓", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI膝反射辨識系統", img: null },
-  { name: "陳品勳", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI塑膠微粒辨識系統", img: null },
-  { name: "李沛琪", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI塑膠微粒辨識系統", img: null },
+  { name: "陳品勳", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "題目未定", img: "/images/member-placeholder.png", summary: "", track: "preMaster", grade: "大四" },
+  { name: "李沛琪", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "題目未定", img: "/images/member-placeholder.png", summary: "", track: "preMaster", grade: "大四" },
   { name: "吳亮廷", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI塑膠微粒辨識系統", img: null },
-  { name: "謝修瑜", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
-  { name: "楊宗翰", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
-  { name: "丁維暘", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
-  { name: "藍信安", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
-  { name: "胡景翔", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null },
-  { name: "蔡柏昀", degree: "undergrad", status: "active", enrollmentYear: 111, graduationYear: null, project: "AI豬隻健康辨識系統", img: null },
+  { name: "謝修瑜", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null, grade: "大四" },
+  { name: "楊宗翰", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null, grade: "大四" },
+  { name: "丁維暘", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null, grade: "大四" },
+  { name: "藍信安", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null, grade: "大四" },
+  { name: "胡景翔", degree: "undergrad", status: "active", enrollmentYear: 112, graduationYear: null, project: "AI電容焊接瑕疵辨識", img: null, grade: "大四" },
+  { name: "蔡柏昀", degree: "master", status: "active", enrollmentYear: 115, graduationYear: null, project: "PoseAgent: A Vision-Language Model Agent Framework for Automatic Pig Skeletal Keypoint Annotation", img: "/images/member-placeholder.png", summary: "This study proposes PoseAgent, a VLM agent framework that automatically annotates pig skeletal keypoints through multiple annotator agents and an expert-agent review mechanism, establishing pig-specific OKS tolerances and a skeleton dataset to reduce manual annotation cost and support subsequent behavior monitoring applications." },
   { name: "施為元", degree: "undergrad", status: "active", enrollmentYear: 111, graduationYear: null, project: "AI豬隻健康辨識系統", img: null },
-  { name: "吳嘉祐", degree: "undergrad", status: "active", enrollmentYear: 111, graduationYear: null, project: "AI調料包缺陷辨識系統", img: null },
+  { name: "吳嘉祐", degree: "master", status: "active", enrollmentYear: 115, graduationYear: null, project: "雙站式深度學習視覺檢測系統於乾麵包裝產線之設計與實現", img: "/images/member-placeholder.png", summary: "This study develops a dual-station AI inspection system based on deep learning object detection, which verifies the type and quantity of seasoning packets and detects hair foreign objects on noodle blocks. By integrating an edge computing platform with PLC control, the system performs real-time determination and triggers alerts while the production line is running, establishing an automated quality inspection workflow deployable in food packaging facilities." },
   { name: "佘秉穎", degree: "undergrad", status: "active", enrollmentYear: 111, graduationYear: null, project: "AI調料包缺陷辨識系統", img: null },
+  { name: "吳秉宣", degree: "master", status: "active", enrollmentYear: 115, graduationYear: null, project: "題目未定", summary: "", img: "/images/member-placeholder.png" },
+  { name: "杜侑蓁", degree: "master", status: "active", enrollmentYear: 115, graduationYear: null, project: "基於物件偵測技術之港區船舶辨識監控系統", summary: "", img: "/images/member-placeholder.png" },
+  { name: "周中仁", degree: "master", status: "active", enrollmentYear: 115, graduationYear: null, project: "題目未定", summary: "", img: "/images/member-placeholder.png" },
+  { name: "柯妤杰", degree: "master", status: "active", enrollmentYear: 115, graduationYear: null, project: "題目未定", summary: "", img: "/images/member-placeholder.png" },
+  { name: "黃睿程", degree: "master", status: "active", enrollmentYear: 115, graduationYear: null, project: "題目未定", summary: "", img: "/images/member-placeholder.png" },
+  { name: "吳海睿", degree: "undergrad", status: "active", enrollmentYear: null, graduationYear: null, project: "題目未定", img: null, grade: "大三" },
+  { name: "李安婕", degree: "undergrad", status: "active", enrollmentYear: null, graduationYear: null, project: "題目未定", img: null, grade: "大三" },
+  { name: "林峻宇", degree: "undergrad", status: "active", enrollmentYear: null, graduationYear: null, project: "AI膝反射辨識系統", img: null, grade: "大四" },
+  { name: "陳俐今", degree: "undergrad", status: "active", enrollmentYear: null, graduationYear: null, project: "題目未定", img: null, grade: "大三" },
+  { name: "章名湘", degree: "undergrad", status: "active", enrollmentYear: null, graduationYear: null, project: "題目未定", img: null, grade: "大三" },
+  { name: "黃重程", degree: "undergrad", status: "active", enrollmentYear: null, graduationYear: null, project: "題目未定", img: null, grade: "大三" },
+  { name: "黃健程", degree: "undergrad", status: "active", enrollmentYear: null, graduationYear: null, project: "題目未定", img: null, grade: "大三" },
+  { name: "賴柏銘", degree: "undergrad", status: "active", enrollmentYear: null, graduationYear: null, project: "題目未定", img: null, grade: "大三" },
+  { name: "簡廷軒", degree: "undergrad", status: "active", enrollmentYear: null, graduationYear: null, project: "題目未定", img: null, grade: "大三" },
 ];
 
 const undergradProjectSummaries: Record<string, string> = {
+  "題目未定": "",
   "AI銀髮族體適能健身系統": "This project combines multi-model pose recognition and monocular 3D localization to evaluate exercise quality for older adults, balancing accuracy, privacy, and reduced manual workload.",
   "AI手術器械辨識": "This project combines YOLO-based surgical instrument recognition with LLM-generated guidance to provide real-time feedback for novice nurses and reduce clinical teaching workload.",
   "AI膝反射辨識系統": "This project integrates AI image recognition and conductive-yarn sensing to build an automated knee-reflex measurement system for objective clinical assessment and follow-up.",
@@ -77,7 +105,8 @@ const today = new Date();
 let currentAcYear = today.getFullYear() - 1911;
 if (today.getMonth() < 7) currentAcYear -= 1;
 
-function getGradeText(degree: string, enrollYear: number): string {
+function getGradeText(degree: string, enrollYear?: number | null): string {
+  if (enrollYear == null) return 'Year not confirmed';
   let diff = currentAcYear - enrollYear + 1;
   if (diff < 1) diff = 1;
   if (degree === 'master') return diff > 2 ? `M${diff} (extended)` : `M${diff}`;
@@ -93,6 +122,8 @@ function getAvatar(img: string | null | undefined, name: string): string {
 const phds         = allStudents.filter(s => s.status === 'active' && s.degree === 'phd');
 const masters      = allStudents.filter(s => s.status === 'active' && s.degree === 'master');
 const undergrads   = allStudents.filter(s => s.status === 'active' && s.degree === 'undergrad');
+const preMasters   = undergrads.filter(s => s.track === 'preMaster');
+const ordinaryUndergrads = undergrads.filter(s => s.track !== 'preMaster');
 const internationals = allStudents.filter(s => s.status === 'active' && s.degree === 'international');
 const graduates    = allStudents.filter(s => s.status === 'graduated');
 
@@ -112,15 +143,34 @@ const phdsByYear = phds.reduce((map, student) => {
 }, {} as Record<number, typeof phds>);
 const sortedPhdYears = Object.keys(phdsByYear).map(Number).sort((a, b) => a - b);
 
-const undergradByYear = undergrads.reduce((yearMap, student) => {
-  const yr = student.enrollmentYear ?? 0;
-  if (!yearMap[yr]) yearMap[yr] = {};
-  const projectName = student.project || 'Uncategorized Project';
-  if (!yearMap[yr][projectName]) yearMap[yr][projectName] = [];
-  yearMap[yr][projectName].push(student);
-  return yearMap;
-}, {} as Record<number, Record<string, typeof undergrads>>);
-const sortedUndergradYears = Object.keys(undergradByYear).map(Number).sort((a, b) => a - b);
+const undergradGradeNumbers: Record<string, number> = { '大一': 1, '大二': 2, '大三': 3, '大四': 4 };
+
+function getUndergradGrade(student: Student): string {
+  if (student.grade) return String(undergradGradeNumbers[student.grade] ?? 'unknown');
+  if (student.enrollmentYear == null) return 'unknown';
+  return String(Math.max(1, currentAcYear - student.enrollmentYear + 1));
+}
+
+function getUndergradGradeLabel(grade: string): string {
+  const year = Number(grade);
+  if (!year) return 'Year not confirmed';
+  if (year === 4) return 'Year 4 (Senior)';
+  if (year === 3) return 'Year 3 (Junior)';
+  return year > 4 ? `Year ${year} (extended)` : `Year ${year}`;
+}
+
+const undergradByGrade = ordinaryUndergrads.reduce((gradeMap, student) => {
+  const grade = getUndergradGrade(student);
+  if (!gradeMap[grade]) gradeMap[grade] = {};
+  const projectName = student.project || '題目未定';
+  if (!gradeMap[grade][projectName]) gradeMap[grade][projectName] = [];
+  gradeMap[grade][projectName].push(student);
+  return gradeMap;
+}, {} as Record<string, Record<string, Student[]>>);
+const sortedUndergradGrades = Object.keys(undergradByGrade).sort((a, b) => {
+  const priority: Record<string, number> = { '4': 0, '3': 1, '2': 2, '1': 3, unknown: 5 };
+  return (priority[a] ?? 4) - (priority[b] ?? 4) || Number(a) - Number(b);
+});
 
 const groupedGraduates = graduates.reduce((groups, student) => {
   const y = student.graduationYear ?? 'Unknown Year';
@@ -668,7 +718,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <div class="min-w-0">
               <p class="text-sm font-black text-slate-900">Student Roster Update Notice</p>
               <p class="mt-1 text-sm leading-relaxed text-slate-600">
-                As August is a semester transition period, some student records are still being confirmed. The complete roster is expected to be updated in mid-September.
+                The roster has been updated based on the latest submissions. Some member details and photos are still being confirmed.
               </p>
             </div>
           </div>
@@ -756,7 +806,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
               <div class="space-y-10">
                 {sortedMasterYears.map((year) => (
                   <div>
-                    <div class="flex items-center gap-3 mb-5">
+                    <div class="flex flex-wrap items-center gap-3 mb-5">
                       <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
                       <h4 class="text-base font-bold text-slate-700">Academic Year {year} Enrollment</h4>
                       <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100">{getGradeText('master', year)}</span>
@@ -765,24 +815,24 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                     </div>
                     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pl-5 border-l-2 border-slate-100">
                       {mastersByYear[year].map((person) => (
-                        <div class="member-card bg-white border border-slate-200 p-5 flex flex-col h-full rounded-xl">
-                          <div class="flex items-start gap-4 w-full">
-                            <div class="overflow-hidden rounded-full w-14 h-14 sm:w-16 sm:h-16 shrink-0 mt-1 border-2 border-slate-100">
-                              <img src={getAvatar(person.img, person.name)} alt={person.name} class="avatar-zoom w-full h-full object-cover" onerror="this.src='/images/default-avatar.png';" />
+                        <div class="member-card min-w-0 bg-white border border-slate-200 p-5 flex flex-col h-full rounded-xl">
+                          <div class="flex min-w-0 items-start gap-4 w-full">
+                            <div class="overflow-hidden rounded-full w-16 h-16 shrink-0 mt-1 border-2 border-slate-100">
+                              <img src={getAvatar(person.img, person.name)} alt={person.name} width="64" height="64" class="avatar-zoom w-full h-full object-cover" onerror="this.src='/images/default-avatar.png';" />
                             </div>
-                            <div class="flex-1">
+                            <div class="flex-1 min-w-0">
                               <div class="flex items-center gap-2 flex-wrap mb-1.5">
                                 <h4 class="font-bold text-slate-900 text-base">{person.name}</h4>
                                 <span class="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100">{getGradeText('master', person.enrollmentYear)}</span>
                               </div>
-                              <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed">
+                              <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed [overflow-wrap:anywhere]">
                                 <span class="font-semibold text-slate-700">Research Topic: </span>{person.project}
                               </p>
                             </div>
                           </div>
                           {person.summary && (
                             <div class="w-full mt-4 bg-slate-50 border border-slate-100 p-3 rounded-lg mt-auto">
-                              <p class="text-[13px] text-slate-500 leading-relaxed">{person.summary}</p>
+                              <p class="text-[13px] text-slate-500 leading-relaxed [overflow-wrap:anywhere]">{person.summary}</p>
                             </div>
                           )}
                         </div>
@@ -803,38 +853,71 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           <div id="tab-undergrad" class="tab-panel" hidden>
             {undergrads.length > 0 ? (
               <div class="space-y-10">
-                {sortedUndergradYears.map((year) => {
-                  const expectedGradYear = year + 3;
-                  const projectsInYear = undergradByYear[year];
+                {preMasters.length > 0 && (
+                  <div>
+                    <div class="flex flex-wrap items-center gap-3 mb-5">
+                      <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
+                      <h4 class="text-base font-bold text-slate-700">4+1 Pre-Master's Students (M0)</h4>
+                      <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100">Year 4 (Senior)</span>
+                      <span class="text-xs text-slate-400 font-mono bg-slate-100 px-2 py-0.5 rounded-md">{preMasters.length} members</span>
+                      <div class="year-divider-line"></div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pl-5 border-l-2 border-slate-100">
+                      {preMasters.map((person) => (
+                        <div class="member-card min-w-0 bg-white border border-slate-200 p-5 flex flex-col h-full rounded-xl">
+                          <div class="flex min-w-0 items-start gap-4 w-full">
+                            <div class="overflow-hidden rounded-full w-16 h-16 shrink-0 mt-1 border-2 border-slate-100">
+                              <img src={person.img} alt={person.name} width="64" height="64" class="avatar-zoom w-full h-full object-cover" />
+                            </div>
+                            <div class="flex-1 min-w-0">
+                              <div class="flex items-center gap-2 flex-wrap mb-1.5">
+                                <h5 class="font-bold text-slate-900 text-base">{person.name}</h5>
+                                <span class="text-[11px] font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100">M0 / Senior</span>
+                              </div>
+                              <p class="text-[13px] sm:text-sm text-slate-600 leading-relaxed [overflow-wrap:anywhere]">
+                                <span class="font-semibold text-slate-700">Research Topic: </span>{person.project}
+                              </p>
+                            </div>
+                          </div>
+                          {person.summary && (
+                            <p class="mt-4 border-t border-slate-100 pt-3 text-[13px] text-slate-500 leading-relaxed [overflow-wrap:anywhere]">{person.summary}</p>
+                          )}
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                {sortedUndergradGrades.map((grade) => {
+                  const projectsInGrade = undergradByGrade[grade];
                   return (
                     <div>
-                      <div class="flex items-center gap-3 mb-5">
+                      <div class="flex flex-wrap items-center gap-3 mb-5">
                         <span class="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
-                        <h4 class="text-base font-bold text-slate-700">Academic Year {year} Enrollment</h4>
-                        <span class="text-xs text-slate-400 font-mono bg-slate-100 px-2 py-0.5 rounded-md">Expected Graduation: {expectedGradYear}</span>
-                        <span class="text-xs font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md border border-blue-100">{getGradeText('undergrad', year)}</span>
+                        <h4 class="text-base font-bold text-slate-700">{getUndergradGradeLabel(grade)}</h4>
                         <div class="year-divider-line"></div>
                       </div>
                       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pl-5 border-l-2 border-slate-100">
-                        {Object.entries(projectsInYear).map(([topic, members]) => (
-                          <div class="project-card bg-white border border-slate-200 p-5 rounded-xl flex flex-col h-full">
-                            <div class="flex items-start gap-3 mb-3">
+                        {Object.entries(projectsInGrade).map(([topic, members]) => (
+                          <div class="project-card min-w-0 bg-white border border-slate-200 p-5 rounded-xl flex flex-col h-full">
+                            <div class="flex min-w-0 items-start gap-3 mb-3">
                               <div class="bg-blue-50 p-2 rounded-lg shrink-0">
                                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                                 </svg>
                               </div>
-                              <div>
-                                <h5 class="font-bold text-slate-800 text-[15px] leading-snug pt-0.5">{topic}</h5>
-                                <p class="text-[12px] text-slate-500 mt-1">Project Team ({(members as any[]).length} members)</p>
+                              <div class="min-w-0">
+                                <h5 class="font-bold text-slate-800 text-[15px] leading-snug pt-0.5 [overflow-wrap:anywhere]">{topic}</h5>
+                                <p class="text-[12px] text-slate-500 mt-1">Project Team ({members.length} members)</p>
                               </div>
                             </div>
-                            <p class="text-[13.5px] text-slate-600 leading-relaxed flex-1">
-                              {undergradProjectSummaries[topic] || "No detailed project description is available yet."}
-                            </p>
+                            {undergradProjectSummaries[topic] && (
+                              <p class="text-[13.5px] text-slate-600 leading-relaxed flex-1 [overflow-wrap:anywhere]">
+                                {undergradProjectSummaries[topic]}
+                              </p>
+                            )}
                             <div class="border-t border-slate-100 pt-3 mt-4">
                               <div class="flex flex-wrap gap-2">
-                                {(members as any[]).map((m: any) => (
+                                {members.map((m) => (
                                   <span class="inline-flex items-center gap-1.5 bg-slate-50 border border-slate-200 text-slate-700 text-[13px] font-medium px-2.5 py-1 rounded-full hover:bg-blue-50 hover:border-blue-200 hover:text-blue-700 transition-colors duration-200 cursor-default">
                                     <div class="w-1.5 h-1.5 rounded-full bg-blue-400"></div>
                                     {m.name}
