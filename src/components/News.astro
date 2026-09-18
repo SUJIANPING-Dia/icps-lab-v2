@@ -13,6 +13,7 @@ const sectionSubtitle = "News & Announcements";
 const pinnedLabel = isEnglish ? "Pinned" : "置頂";
 const readMoreLabel = isEnglish ? "Read Full Article" : "閱讀完整新聞";
 const englishNewsTitles: Record<string, string> = {
+  "2026-taiwan-innotech-expo-future-tech-imirror": "iCPS Lab Invited to Taiwan Innotech Expo 2026, Showcasing Industry-Academia Collaboration in AI-Powered Smart Health",
   "2026-gpm-ai-automation-exhibition": "iCPS Lab Award-Winning AI Automation Project Showcased at Taipei Automation 2026",
   "2026-isocip-contest-two-honorable-mentions": "iCPS Lab Student Teams Receive Two Honorable Mentions at the 2026 Interdisciplinary SoC Contest",
   "2026-asia-biotech-iearlm-exhibition": "iCPS Lab Showcases iEarLM at Bio Asia-Taiwan 2026",
@@ -37,6 +38,7 @@ const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("taiwan-innotech-expo")) return "Exhibition";
   if (slug.includes("gpm-ai-automation")) return "Exhibition";
   if (slug.includes("isocip")) return "Competition";
   if (slug.includes("asia-biotech")) return "Exhibition";
@@ -58,6 +60,7 @@ const getEnglishNewsTag = (slug: string) => {
 const getDisplayTitle = (slug: string, fallback: string) => isEnglish ? (englishNewsTitles[slug] ?? fallback) : fallback;
 const getDisplayTag = (slug: string, fallback: string) => isEnglish ? getEnglishNewsTag(slug) : fallback;
 const getDisplayContent = (item: NewsItem) => isEnglish && item.contentEn ? item.contentEn : item.content;
+const getDisplayImgAlt = (item: NewsItem) => isEnglish && item.imgAltEn ? item.imgAltEn : item.imgAlt;
 const hasEmbeddedLeadImage = (item: NewsItem, content: string) => Boolean(item.img && content.includes(item.img));
 
 const sortedNewsData = [...newsData].sort((a, b) => {
@@ -107,8 +110,8 @@ const sortedNewsData = [...newsData].sort((a, b) => {
               <div class="px-6 pb-6 md:pl-[19rem] text-slate-700 text-sm leading-relaxed space-y-5">
                 {item.img && !hasEmbeddedLeadImage(item, getDisplayContent(item)) && (
                   <div class="w-full max-w-3xl mx-auto bg-slate-100 rounded border border-slate-200 overflow-hidden relative mt-2 flex items-center justify-center min-h-[120px]">
-                    <span class="absolute text-slate-400 font-medium z-0">[ {item.imgAlt} ]</span>
-                    <img src={item.img} alt={item.imgAlt} class="w-full h-auto relative z-10 block" onerror="this.style.display='none';" />
+                    <span class="absolute text-slate-400 font-medium z-0">[ {getDisplayImgAlt(item)} ]</span>
+                    <img src={item.img} alt={getDisplayImgAlt(item)} class="w-full h-auto relative z-10 block" onerror="this.style.display='none';" />
                   </div>
                 )}
                 <div set:html={getDisplayContent(item)}></div>

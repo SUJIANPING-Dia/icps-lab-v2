@@ -7,11 +7,164 @@ export type NewsItem = {
   title: string;
   img: string;
   imgAlt: string;
+  imgAltEn?: string;
   content: string;
   contentEn?: string;
 };
 
 export const newsData: NewsItem[] = [
+  {
+    slug: "2026-taiwan-innotech-expo-future-tech-imirror",
+    date: "2026.09.18",
+    tag: "展覽活動",
+    tagTheme: "text-cyan-800 bg-cyan-50 border-cyan-200",
+    title: "iCPS Lab受邀參展2026台灣創新技術博覽會　展現AI智慧健康產學合作成果",
+    img: "/images/taiwan-innotech-expo-2026-gaitmirror-presentation.jpg",
+    imgAlt: "張萬榮教授於2026台灣創新技術博覽會進行人工智慧體適能運動分析技術發表",
+    imgAltEn: "Prof. Wan-Jung Chang presenting AI-based physical fitness motion analysis technology at Taiwan Innotech Expo 2026",
+    content: `
+      <iframe
+        class="w-full aspect-video block rounded-t-lg border border-slate-200 shadow-md"
+        src="https://www.youtube.com/embed/G5AQFzzx2No"
+        title="2026 未來科技－技術發表 GaitMirror"
+        frameborder="0"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        aria-describedby="gaitmirror-video-caption-zh"
+        allowfullscreen>
+      </iframe>
+      <div id="gaitmirror-video-caption-zh" class="mb-6 px-4 py-3 text-sm text-slate-600 bg-slate-50 border border-t-0 border-slate-200 rounded-b-lg">
+        張萬榮教授於2026台灣創新技術博覽會進行GaitMirror技術發表，分享人工智慧體適能運動分析與智慧健康評估研究成果。
+      </div>
+
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        iCPS Lab 受<strong>國家科學及技術委員會</strong>邀請，於<strong>2026年9月17日至19日</strong>參展<strong>2026台灣創新技術博覽會</strong>，在未來科技館產學合作專區展出<strong>「iMirror：人工智慧健康促進暨賦能互動式魔鏡」</strong>，呈現與<strong>雄欣科技股份有限公司</strong>合作的產學成果。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        9月18日，張萬榮教授於現場進行人工智慧體適能運動分析技術發表，說明系統如何結合姿態辨識、步態分析與體適能評估，並分享其於智慧健康照護、復健、長者照護與居家健康等場域的應用。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/taiwan-innotech-expo-2026-gaitmirror-presentation.jpg" alt="張萬榮教授於2026台灣創新技術博覽會進行人工智慧體適能運動分析技術發表" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          張萬榮教授於2026台灣創新技術博覽會進行技術發表，介紹人工智慧體適能運動分析與智慧健康評估技術。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        iMirror 以單一攝影機擷取人體動作影像，透過 AI 姿態辨識與邊緣運算進行即時分析。系統包含步態分析與體適能評估兩大功能分支，可量化步數、步長、行走速度、身體擺動、角度、動作次數與伸展距離等指標。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        系統整合 YOLO-Pose、AlphaPose 與 MediaPipe 等姿態估測技術，分析人體關鍵點與動作軌跡，協助辨識動作表現下降或代償情形。資料可於邊緣端進行運算，降低影像傳輸與集中儲存需求，在支援即時評估的同時兼顧隱私保護。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        展覽期間，參觀民眾於展區實際體驗 iMirror 智慧健康評估技術，現場團隊同步進行系統操作與功能解說，讓參觀者了解人工智慧姿態辨識、體適能評估與互動式健康應用的運作方式。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/taiwan-innotech-expo-2026-imirror-experience.jpg" alt="參觀民眾於2026台灣創新技術博覽會展區體驗iMirror智慧健康評估技術" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          參觀民眾於展區體驗iMirror智慧健康評估技術，現場團隊進行系統操作與功能解說。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        iMirror 可應用於醫院復健、長期照護、社區照護與居家健康等情境，用於追蹤復健進度、評估跌倒風險、提供肌少症預警、檢視運動品質，並依評估結果提供個人化建議。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        透過本次展覽與技術發表，iCPS Lab 與產業及參觀民眾交流研究成果與實際使用需求，促進智慧健康技術從研究走向實務應用。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-cyan-500 pl-4">
+          <h3 class="font-semibold text-cyan-700 mb-2">展覽資訊</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>展覽名稱：</strong>2026台灣創新技術博覽會－未來科技館</li>
+            <li><strong>展出專區：</strong>產學合作專區</li>
+            <li><strong>展覽日期：</strong>2026/9/17（四）–9/19（六）</li>
+            <li><strong>開放時間：</strong>9/17–18 09:30–17:30；9/19 09:30–16:30</li>
+            <li><strong>展覽地點：</strong>台北世貿一館</li>
+          </ul>
+        </div>
+      </div>
+    `,
+    contentEn: `
+      <iframe
+        class="w-full aspect-video block rounded-t-lg border border-slate-200 shadow-md"
+        src="https://www.youtube.com/embed/G5AQFzzx2No"
+        title="Future Tech 2026 - GaitMirror Technology Presentation"
+        frameborder="0"
+        loading="lazy"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        aria-describedby="gaitmirror-video-caption-en"
+        allowfullscreen>
+      </iframe>
+      <div id="gaitmirror-video-caption-en" class="mb-6 px-4 py-3 text-sm text-slate-600 bg-slate-50 border border-t-0 border-slate-200 rounded-b-lg">
+        Prof. Wan-Jung Chang presents GaitMirror at Taiwan Innotech Expo 2026, sharing research outcomes in AI-based physical fitness motion analysis and smart health assessment.
+      </div>
+
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        At the invitation of the <strong>National Science and Technology Council (NSTC)</strong>, iCPS Lab exhibited in the <strong>Industry-Academia Collaboration Area</strong> of the <strong>Future Tech Pavilion at Taiwan Innotech Expo 2026</strong> from <strong>September 17 to 19, 2026</strong>. The lab showcased <strong>"iMirror: An Interactive Mirror for AI-Powered Health Promotion and Empowerment,"</strong> an industry-academia collaboration with <strong>iAMBITION TECHNOLOGY CO., LTD.</strong>
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        On September 18, Prof. Wan-Jung Chang presented the lab's AI-based physical fitness motion analysis technology. He introduced how the system combines pose recognition, gait analysis, and physical fitness assessment, and discussed its applications in smart healthcare, rehabilitation, elder care, and home health.
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/taiwan-innotech-expo-2026-gaitmirror-presentation.jpg" alt="Prof. Wan-Jung Chang presenting AI-based physical fitness motion analysis technology at Taiwan Innotech Expo 2026" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          Prof. Wan-Jung Chang gives a technology presentation at Taiwan Innotech Expo 2026, introducing AI-based physical fitness motion analysis and smart health assessment technologies.
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        iMirror uses a single camera to capture human movement and combines AI-based pose recognition with edge computing for real-time analysis. The system has two branches: gait analysis and physical fitness assessment. It can quantify step count, step length, walking speed, body sway, angles, repetitions, and stretching distance.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        The system integrates YOLO-Pose, AlphaPose, and MediaPipe to analyze body keypoints and motion trajectories, helping identify declining movement performance or compensatory movements. Processing data at the edge reduces the need to transmit or centrally store images, supporting responsive assessment while providing privacy benefits.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        During the exhibition, visitors experienced the iMirror smart health assessment technology at the booth while the team demonstrated the system and explained its functions. The hands-on experience showed how AI-based pose recognition and physical fitness assessment can support interactive health applications.
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/taiwan-innotech-expo-2026-imirror-experience.jpg" alt="Visitors experiencing the iMirror smart health assessment technology at Taiwan Innotech Expo 2026" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          Visitors experience the iMirror smart health assessment technology while the on-site team demonstrates the system and explains its functions.
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        iMirror can be applied in hospital rehabilitation, long-term care, community care, and home health settings to track rehabilitation progress, assess fall risk, provide early warnings for sarcopenia, evaluate exercise quality, and offer personalized recommendations.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        The exhibition and technology presentation created an opportunity to exchange research outcomes and practical perspectives with industry representatives and visitors, supporting the translation of smart health research into practice.
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-cyan-500 pl-4">
+          <h3 class="font-semibold text-cyan-700 mb-2">Exhibition Information</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>Name:</strong> Taiwan Innotech Expo 2026 - Future Tech Pavilion</li>
+            <li><strong>Area:</strong> Industry-Academia Collaboration Area</li>
+            <li><strong>Dates:</strong> 2026/9/17 (Thu)–9/19 (Sat)</li>
+            <li><strong>Hours:</strong> September 17–18, 09:30–17:30; September 19, 09:30–16:30</li>
+            <li><strong>Venue:</strong> Taipei World Trade Center, Hall 1</li>
+          </ul>
+        </div>
+      </div>
+    `
+  },
   {
     slug: "2026-gpm-ai-automation-exhibition",
     date: "2026.08.20",

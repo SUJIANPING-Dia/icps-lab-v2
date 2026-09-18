@@ -12,6 +12,7 @@ export function getStaticPaths() {
 
 const { item } = Astro.props as { item: NewsItem };
 const englishNewsTitles: Record<string, string> = {
+  "2026-taiwan-innotech-expo-future-tech-imirror": "iCPS Lab Invited to Taiwan Innotech Expo 2026, Showcasing Industry-Academia Collaboration in AI-Powered Smart Health",
   "2026-gpm-ai-automation-exhibition": "iCPS Lab Award-Winning AI Automation Project Showcased at Taipei Automation 2026",
   "2026-isocip-contest-two-honorable-mentions": "iCPS Lab Student Teams Receive Two Honorable Mentions at the 2026 Interdisciplinary SoC Contest",
   "2026-master-defense-hsu-lai": "iCPS Lab Students Hsu Ting-Hsuan and Lai Ying-Kuan Complete Master's Thesis Defenses",
@@ -37,6 +38,7 @@ const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("taiwan-innotech-expo")) return "Exhibition";
   if (slug.includes("gpm-ai-automation")) return "Exhibition";
   if (slug.includes("isocip")) return "Competition";
   if (slug.includes("master-defense")) return "Academic";
@@ -59,6 +61,7 @@ const getEnglishNewsTag = (slug: string) => {
 const displayTitle = englishNewsTitles[item.slug] ?? item.title;
 const displayTag = getEnglishNewsTag(item.slug);
 const displayContent = item.contentEn ?? item.content;
+const displayImgAlt = item.imgAltEn ?? item.imgAlt;
 const title = `${displayTitle} | iCPS Lab`;
 const description = `${item.date} - ${displayTitle}`;
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900";
@@ -114,11 +117,11 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <div class="lg:col-span-5">
               <div class="relative overflow-hidden rounded-[2rem] border border-white/15 bg-white/10 p-3 shadow-2xl shadow-blue-950/30 backdrop-blur-xl">
                 <div class="overflow-hidden rounded-[1.5rem] bg-white">
-                  <img src={item.img} alt={item.imgAlt} class="w-full h-auto max-h-[22rem] object-contain bg-white" loading="lazy" onerror="this.style.display='none';" />
+                  <img src={item.img} alt={displayImgAlt} class="w-full h-auto max-h-[22rem] object-contain bg-white" loading="lazy" onerror="this.style.display='none';" />
                 </div>
-                {item.imgAlt && (
+                {displayImgAlt && (
                   <p class="px-2 pt-3 text-xs leading-relaxed text-slate-300">
-                    {item.imgAlt}
+                    {displayImgAlt}
                   </p>
                 )}
               </div>
