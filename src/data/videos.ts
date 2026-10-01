@@ -5,6 +5,10 @@ export type VideoItem = {
 
 export const videos: VideoItem[] = [
   {
+    title: "AI會統治人類嗎？來TIE提早看未來科技【劉沛 VLOG】",
+    youtubeId: "zmEHOqSvDPE",
+  },
+  {
     title: "2026 未來科技 - 技術發表GaitMirror",
     youtubeId: "G5AQFzzx2No",
   },
