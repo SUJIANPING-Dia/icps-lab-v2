@@ -12,6 +12,7 @@ export function getStaticPaths() {
 
 const { item } = Astro.props as { item: NewsItem };
 const englishNewsTitles: Record<string, string> = {
+  "2026-compassion-technology-iearlm-third-place": "iCPS Lab's \"iEarLM Smart Ear Diagnosis Platform\" Wins Third Place at the 10th National Compassion Technology Innovation Competition in 2026",
   "2026-taiwan-innotech-expo-future-tech-imirror": "iCPS Lab Invited to Taiwan Innotech Expo 2026, Showcasing Industry-Academia Collaboration in AI-Powered Smart Health",
   "2026-gpm-ai-automation-exhibition": "iCPS Lab Award-Winning AI Automation Project Showcased at Taipei Automation 2026",
   "2026-isocip-contest-two-honorable-mentions": "iCPS Lab Student Teams Receive Two Honorable Mentions at the 2026 Interdisciplinary SoC Contest",
@@ -38,6 +39,7 @@ const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("compassion-technology")) return "Competition";
   if (slug.includes("taiwan-innotech-expo")) return "Exhibition";
   if (slug.includes("gpm-ai-automation")) return "Exhibition";
   if (slug.includes("isocip")) return "Competition";

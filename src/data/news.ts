@@ -14,6 +14,128 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-compassion-technology-iearlm-third-place",
+    date: "2026.10.03",
+    tag: "競賽佳績",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "本實驗室「iEarLM智慧耳診平台」榮獲2026第十屆全國慈悲科技創新競賽大專院校組第三名",
+    img: "/images/compassion-technology-2026-iearlm-third-place.png",
+    imgAlt: "本實驗室iEarLM智慧耳診平台團隊於2026第十屆全國慈悲科技創新競賽獲頒大專院校組第三名",
+    imgAltEn: "The iCPS Lab iEarLM Smart Ear Diagnosis Platform team receiving Third Place in the University and College Division at the 10th National Compassion Technology Innovation Competition",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        本實驗室團隊<strong>「圓圓的腦袋,大大耳朵」</strong>以作品<strong>「iEarLM智慧耳診平台」</strong>參加<strong>「2026第十屆全國慈悲科技創新競賽」</strong>，於<strong>2026年10月3日</strong>在<strong>華山1914文創園區西5-1、5-2館</strong>舉行的決賽暨頒獎中，榮獲<strong>大專院校組第三名</strong>，並獲得獎金<strong>新臺幣30,000元</strong>。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        「2026第十屆全國慈悲科技創新競賽」由<strong>慈濟學校財團法人慈濟大學</strong>主辦，聚焦聯合國永續發展目標（SDGs）與慈悲科技應用，鼓勵參賽團隊以創新科技回應社會、健康與照護需求。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/compassion-technology-2026-iearlm-third-place.png" alt="本實驗室iEarLM智慧耳診平台團隊於2026第十屆全國慈悲科技創新競賽獲頒大專院校組第三名" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：本實驗室團隊於2026第十屆全國慈悲科技創新競賽決賽暨頒獎現場獲頒大專院校組第三名。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        本次參賽學生為<strong>丁維暘、謝修瑜、楊宗翰、胡景翔、藍信安、陳閔昱</strong>。團隊共同完成作品準備與現場展示，並以「iEarLM智慧耳診平台」獲得競賽肯定。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        「iEarLM智慧耳診平台」結合AI影像辨識、擴增實境與臨床診斷報告自動生成技術，針對中外耳病灶影像提供分析與資訊整理，並支援臨床紀錄、跨專業協作及醫學教育等應用情境。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/compassion-technology-2026-iearlm-project-display.png" alt="iEarLM智慧耳診平台於2026第十屆全國慈悲科技創新競賽現場展示" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：「iEarLM智慧耳診平台」於競賽現場展示，呈現系統介面、智慧耳鏡與擴增實境輔助設備。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        決賽過程中，團隊透過現場展示與評審問答，說明作品的問題意識、系統設計與應用構想。此次獲獎肯定本實驗室師生在人工智慧與智慧醫療跨域整合上的投入，也展現學生將研究成果轉化為完整系統的實作能力。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        未來，本實驗室將持續推動人工智慧、影像辨識、擴增實境與智慧醫療相關研究，鼓勵學生從真實需求出發，透過專題實作與競賽交流累積跨域整合與系統開發經驗。
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">獲獎資訊</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>競賽名稱：</strong>2026第十屆全國慈悲科技創新競賽</li>
+            <li><strong>決賽暨頒獎日期：</strong>2026年10月3日</li>
+            <li><strong>地點：</strong>華山1914文創園區西5-1、5-2館</li>
+            <li><strong>主辦單位：</strong>慈濟學校財團法人慈濟大學</li>
+            <li><strong>組別與名次：</strong>大專院校組第三名</li>
+            <li><strong>獎金：</strong>新臺幣30,000元</li>
+            <li><strong>團隊名稱：</strong>圓圓的腦袋,大大耳朵</li>
+            <li><strong>作品名稱：</strong>iEarLM智慧耳診平台</li>
+            <li><strong>參賽學生：</strong>丁維暘、謝修瑜、楊宗翰、胡景翔、藍信安、陳閔昱</li>
+          </ul>
+        </div>
+      </div>
+    `,
+    contentEn: `
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        The iCPS Lab team <strong>"圓圓的腦袋,大大耳朵"</strong> entered the <strong>"iEarLM Smart Ear Diagnosis Platform"</strong> in the <strong>10th National Compassion Technology Innovation Competition in 2026</strong>. At the final and award ceremony held on <strong>October 3, 2026</strong>, at <strong>Huashan 1914 Creative Park, West Halls 5-1 and 5-2</strong>, the team won <strong>Third Place in the University and College Division</strong> and received a cash prize of <strong>NT$30,000</strong>.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        Organized by <strong>Tzu Chi University</strong>, the competition focuses on the United Nations Sustainable Development Goals (SDGs) and compassionate technology, encouraging teams to apply innovation to social, health, and care-related needs.
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/compassion-technology-2026-iearlm-third-place.png" alt="The iCPS Lab iEarLM Smart Ear Diagnosis Platform team receiving Third Place in the University and College Division at the 10th National Compassion Technology Innovation Competition" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          The iCPS Lab team receives Third Place in the University and College Division at the final and award ceremony of the 10th National Compassion Technology Innovation Competition.
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        The participating students were <strong>丁維暘、謝修瑜、楊宗翰、胡景翔、藍信安、陳閔昱</strong>. The team worked together to prepare and present the project, earning competition recognition for the iEarLM Smart Ear Diagnosis Platform.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        The iEarLM Smart Ear Diagnosis Platform combines AI image recognition, augmented reality, and automated generation of clinical diagnostic reports. It supports image analysis and information organization for middle- and outer-ear lesions, as well as use cases involving clinical documentation, interdisciplinary collaboration, and medical education.
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/compassion-technology-2026-iearlm-project-display.png" alt="The iEarLM Smart Ear Diagnosis Platform displayed at the 10th National Compassion Technology Innovation Competition in 2026" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          The iEarLM Smart Ear Diagnosis Platform on display at the competition, featuring the system interface, smart otoscope, and augmented-reality assistive equipment.
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        During the final, the team presented the system and answered questions from the judges, explaining the problem addressed, system design, and intended applications. The award recognizes the lab's work in integrating AI with smart healthcare and the students' ability to turn research into a complete system.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        iCPS Lab will continue advancing research in AI, image recognition, augmented reality, and smart healthcare while encouraging students to develop cross-disciplinary integration and system-building experience through project work and competitions grounded in real-world needs.
+      </p>
+
+      <div class="space-y-6">
+        <div class="border-l-4 border-amber-500 pl-4">
+          <h3 class="font-semibold text-amber-700 mb-2">Award Information</h3>
+          <ul class="list-disc list-inside text-slate-700 space-y-1 ml-2">
+            <li><strong>Competition:</strong> 10th National Compassion Technology Innovation Competition in 2026</li>
+            <li><strong>Final and award ceremony:</strong> October 3, 2026</li>
+            <li><strong>Venue:</strong> Huashan 1914 Creative Park, West Halls 5-1 and 5-2</li>
+            <li><strong>Organizer:</strong> Tzu Chi University</li>
+            <li><strong>Division and award:</strong> Third Place, University and College Division</li>
+            <li><strong>Cash prize:</strong> NT$30,000</li>
+            <li><strong>Team:</strong> 圓圓的腦袋,大大耳朵</li>
+            <li><strong>Project:</strong> iEarLM Smart Ear Diagnosis Platform</li>
+            <li><strong>Students:</strong> 丁維暘、謝修瑜、楊宗翰、胡景翔、藍信安、陳閔昱</li>
+          </ul>
+        </div>
+      </div>
+    `
+  },
+  {
     slug: "2026-taiwan-innotech-expo-future-tech-imirror",
     date: "2026.09.18",
     tag: "展覽活動",
