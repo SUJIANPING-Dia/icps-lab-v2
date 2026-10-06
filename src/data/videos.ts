@@ -5,6 +5,10 @@ export type VideoItem = {
 
 export const videos: VideoItem[] = [
   {
+    title: "iMirror 步態分析+體適能偵測 Demo",
+    youtubeId: "7-TLPOKCebc",
+  },
+  {
     title: "AI會統治人類嗎？來TIE提早看未來科技【劉沛 VLOG】",
     youtubeId: "zmEHOqSvDPE",
   },
