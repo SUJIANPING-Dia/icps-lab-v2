@@ -14,6 +14,56 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-stanford-worlds-top-2-percent-scientists-wan-jung-chang",
+    date: "2026.10.08",
+    tag: "學術榮譽",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "本實驗室張萬榮教授連續三年入選史丹佛大學「全球前 2% 頂尖科學家」榜單",
+    img: "/images/worlds-top-2-percent-scientists-2026-wan-jung-chang.png",
+    imgAlt: "張萬榮教授連續三年入選史丹佛大學「全球前 2% 頂尖科學家」榜單",
+    imgAltEn: "Prof. Wan-Jung Chang selected for the World's Top 2% Scientists list for the third consecutive year",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        本實驗室張萬榮教授入選史丹佛大學發布的 <strong>World’s Top 2% Scientists 2026</strong> 榜單，並於<strong>2024、2025、2026 年連續三年入選</strong>。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        榜單依據 Scopus 研究與引用指標，呈現生涯累積與單年度表現。2026 年版於<strong>2026 年 10 月 7 日</strong>發布，使用截至<strong>2026 年 8 月</strong>的資料快照，年度引用指標截至<strong>2025 年</strong>。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/worlds-top-2-percent-scientists-2026-wan-jung-chang.png" alt="張萬榮教授連續三年入選史丹佛大學「全球前 2% 頂尖科學家」榜單" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          圖：張萬榮教授連續三年入選「全球前 2% 頂尖科學家」榜單。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        張萬榮教授的研究涵蓋 AI、IoT、XR 與智慧人機物聯網系統。本實驗室將持續推動跨域研究、人才培育及實務應用。
+      </p>
+    `,
+    contentEn: `
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        Prof. Wan-Jung Chang of iCPS Lab was included in the <strong>World's Top 2% Scientists 2026</strong> list published by Stanford University, marking his <strong>third consecutive selection in 2024, 2025, and 2026</strong>.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        The list is based on Scopus research and citation indicators and presents both career-long and single-year performance. The 2026 edition was released on <strong>October 7, 2026</strong>, using a data snapshot through <strong>August 2026</strong>; annual citation indicators are reported through <strong>2025</strong>.
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/worlds-top-2-percent-scientists-2026-wan-jung-chang.png" alt="Prof. Wan-Jung Chang selected for the World's Top 2% Scientists list for the third consecutive year" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          Prof. Wan-Jung Chang was selected for the World's Top 2% Scientists list for the third consecutive year.
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        Prof. Chang's research covers AI, IoT, XR, and intelligent human-machine-thing networking systems. iCPS Lab will continue cross-disciplinary research, talent development, and practical applications.
+      </p>
+    `
+  },
+  {
     slug: "2026-compassion-technology-iearlm-third-place",
     date: "2026.10.03",
     tag: "競賽佳績",

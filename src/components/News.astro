@@ -13,6 +13,7 @@ const sectionSubtitle = "News & Announcements";
 const pinnedLabel = isEnglish ? "Pinned" : "置頂";
 const readMoreLabel = isEnglish ? "Read Full Article" : "閱讀完整新聞";
 const englishNewsTitles: Record<string, string> = {
+  "2026-stanford-worlds-top-2-percent-scientists-wan-jung-chang": "Prof. Wan-Jung Chang Selected for the World's Top 2% Scientists List for the Third Consecutive Year",
   "2026-compassion-technology-iearlm-third-place": "iCPS Lab's \"iEarLM Smart Ear Diagnosis Platform\" Wins Third Place at the 10th National Compassion Technology Innovation Competition in 2026",
   "2026-taiwan-innotech-expo-future-tech-imirror": "iCPS Lab Invited to Taiwan Innotech Expo 2026, Showcasing Industry-Academia Collaboration in AI-Powered Smart Health",
   "2026-gpm-ai-automation-exhibition": "iCPS Lab Award-Winning AI Automation Project Showcased at Taipei Automation 2026",
@@ -39,6 +40,7 @@ const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 const getEnglishNewsTag = (slug: string) => {
+  if (slug.includes("stanford-worlds-top-2-percent-scientists")) return "Academic Honor";
   if (slug.includes("compassion-technology")) return "Competition";
   if (slug.includes("taiwan-innotech-expo")) return "Exhibition";
   if (slug.includes("gpm-ai-automation")) return "Exhibition";
