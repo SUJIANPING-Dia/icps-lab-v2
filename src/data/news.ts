@@ -24,11 +24,11 @@ export const newsData: NewsItem[] = [
     imgAltEn: "Prof. Wan-Jung Chang selected for the World's Top 2% Scientists list for the third consecutive year",
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
-        本實驗室張萬榮教授入選史丹佛大學發布的 <strong>World’s Top 2% Scientists 2026</strong> 榜單，並於<strong>2024、2025、2026 年連續三年入選</strong>。
+        <strong>國立高雄科技大學電子工程系張萬榮教授，連續三年（2024–2026）入選「全球前 2% 頂尖科學家」（World’s Top 2% Scientists）名單，展現長期累積的學術研究成果與國際影響力。</strong>
       </p>
 
       <p class="mb-6 text-slate-700 text-justify">
-        榜單依據 Scopus 研究與引用指標，呈現生涯累積與單年度表現。2026 年版於<strong>2026 年 10 月 7 日</strong>發布，使用截至<strong>2026 年 8 月</strong>的資料快照，年度引用指標截至<strong>2025 年</strong>。
+        2026 年最新公布的全球前 2% 頂尖科學家名單，由美國史丹佛大學研究團隊依據 Elsevier Scopus 學術資料庫建立，透過論文引用次數、h-index、作者貢獻及綜合引用指標等多項標準化數據，評估全球研究人員的學術影響力。
       </p>
 
       <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
@@ -39,16 +39,24 @@ export const newsData: NewsItem[] = [
       </figure>
 
       <p class="mb-6 text-slate-700 text-justify">
-        張萬榮教授的研究涵蓋 AI、IoT、XR 與智慧人機物聯網系統。本實驗室將持續推動跨域研究、人才培育及實務應用。
+        張萬榮教授長期致力於人工智慧、智慧感測、AIoT 及跨領域智慧科技應用研究，積極推動創新技術研發與產學合作，並將研究成果應用於智慧製造、智慧照護等領域。此次連續三年入選，不僅反映其研究成果持續受到國際學術界關注，也展現研究團隊在科技創新與學術研究上的長期投入。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        本實驗室將持續秉持創新研究與跨域合作的精神，深化人工智慧與智慧科技的研究應用，積極培育優秀研究人才，並拓展國際學術交流與產學合作機會，持續提升研究成果的學術與實務價值。
+      </p>
+
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        <strong>恭賀張萬榮教授連續三年入選全球前 2% 頂尖科學家！</strong>
       </p>
     `,
     contentEn: `
       <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
-        Prof. Wan-Jung Chang of iCPS Lab was included in the <strong>World's Top 2% Scientists 2026</strong> list published by Stanford University, marking his <strong>third consecutive selection in 2024, 2025, and 2026</strong>.
+        <strong>Prof. Wan-Jung Chang of the Department of Electronic Engineering at National Kaohsiung University of Science and Technology has been named to the “World’s Top 2% Scientists” list for three consecutive years (2024–2026), reflecting the academic research achievements and international influence he has built over time.</strong>
       </p>
 
       <p class="mb-6 text-slate-700 text-justify">
-        The list is based on Scopus research and citation indicators and presents both career-long and single-year performance. The 2026 edition was released on <strong>October 7, 2026</strong>, using a data snapshot through <strong>August 2026</strong>; annual citation indicators are reported through <strong>2025</strong>.
+        The latest 2026 World’s Top 2% Scientists list was compiled by a research team at Stanford University in the United States using the Elsevier Scopus academic database. It evaluates the academic influence of researchers worldwide based on multiple standardized measures, including paper citation counts, h-index, author contributions, and composite citation indicators.
       </p>
 
       <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
@@ -59,7 +67,15 @@ export const newsData: NewsItem[] = [
       </figure>
 
       <p class="mb-6 text-slate-700 text-justify">
-        Prof. Chang's research covers AI, IoT, XR, and intelligent human-machine-thing networking systems. iCPS Lab will continue cross-disciplinary research, talent development, and practical applications.
+        Prof. Wan-Jung Chang has long focused on research into artificial intelligence, intelligent sensing, AIoT, and cross-disciplinary applications of intelligent technologies. He actively promotes the development of innovative technologies and industry–academia collaboration, and applies research outcomes in fields such as smart manufacturing and intelligent care. Being named to the list for three consecutive years not only reflects the continued international academic attention his research has received, but also demonstrates the research team’s sustained commitment to technological innovation and academic research.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        Our laboratory will continue to uphold a spirit of innovative research and cross-disciplinary collaboration, deepen research and applications in artificial intelligence and intelligent technologies, actively cultivate outstanding research talent, and expand opportunities for international academic exchange and industry–academia collaboration, continually enhancing the academic and practical value of its research outcomes.
+      </p>
+
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        <strong>Congratulations to Prof. Wan-Jung Chang on being named to the World’s Top 2% Scientists list for three consecutive years!</strong>
       </p>
     `
   },
