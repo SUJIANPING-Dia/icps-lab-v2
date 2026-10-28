@@ -31,10 +31,6 @@ export const newsData: NewsItem[] = [
         GCCE 2026 於 2026 年 10 月 26 日至 29 日，在日本神戶國際會議場（Kobe International Conference Center）舉行。這項由 IEEE Consumer Technology Society 贊助的年度國際研討會，匯集消費性電子及相關科技領域的學界與產業專業人士，交流系統設計、創新技術與應用研究成果。
       </p>
 
-      <div class="mb-6 text-sm text-slate-600">
-        <a href="https://ieee-gcce.org/2026/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">GCCE 2026 官方網站</a>
-      </div>
-
       <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
         <img src="/images/gcce-2026-iear-team.jpg" alt="本實驗室團隊參與 IEEE GCCE 2026 研討會合影" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
@@ -61,10 +57,6 @@ export const newsData: NewsItem[] = [
         依大會官方評選辦法，優秀展示獎綜合考量論文審查結果與會議發表表現，並特別重視現場技術展示的吸引力及說明清晰度。此次獲得銀獎，肯定了團隊的研究成果與技術展示表現，也為本實驗室持續推動研究實作及國際交流增添重要成果。
       </p>
 
-      <div class="mb-6 text-sm text-slate-600">
-        <a href="https://ieee-gcce.org/2026/excellent_awards.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">GCCE 2026 優秀展示獎評選辦法</a>
-      </div>
-
       <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
         <img src="/images/gcce-2026-iear-silver-prize-certificate.jpg" alt="iEar 研究獲頒 GCCE 2026 Excellent Demo Awards 銀獎（Silver Prize）獎狀" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
@@ -84,10 +76,6 @@ export const newsData: NewsItem[] = [
       <p class="mb-6 text-slate-700 text-justify">
         GCCE 2026 takes place from October 26 to 29, 2026, at the Kobe International Conference Center in Kobe, Japan. Sponsored by the IEEE Consumer Technology Society, this annual international conference brings together academic and industry professionals in consumer electronics and related technologies to exchange findings in system design, innovative technologies, and applied research.
       </p>
-
-      <div class="mb-6 text-sm text-slate-600">
-        <a href="https://ieee-gcce.org/2026/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">GCCE 2026 Official Website</a>
-      </div>
 
       <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
         <img src="/images/gcce-2026-iear-team.jpg" alt="Group photo of the iCPS Lab team at the IEEE GCCE 2026 conference." class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
@@ -114,10 +102,6 @@ export const newsData: NewsItem[] = [
       <p class="mb-6 text-slate-700 text-justify">
         Under the conference's official selection criteria, the Excellent Demo Awards consider both paper review results and conference presentation performance, with particular emphasis on the appeal of the live technical demonstration and the clarity of its explanation. The Silver Prize recognizes the team's research and technical demonstration performance and marks an important achievement in the lab's continued work in research implementation and international exchange.
       </p>
-
-      <div class="mb-6 text-sm text-slate-600">
-        <a href="https://ieee-gcce.org/2026/excellent_awards.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">GCCE 2026 Excellent Demo Awards Selection Criteria</a>
-      </div>
 
       <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
         <img src="/images/gcce-2026-iear-silver-prize-certificate.jpg" alt="Certificate recognizing iEar's Silver Prize in the Excellent Demo Awards at GCCE 2026." class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
