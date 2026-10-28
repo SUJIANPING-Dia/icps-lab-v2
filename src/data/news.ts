@@ -14,6 +14,124 @@ export type NewsItem = {
 
 export const newsData: NewsItem[] = [
   {
+    slug: "2026-ieee-gcce-iear-excellent-demo-silver-prize",
+    date: "2026.10.28",
+    tag: "學術榮譽",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "本實驗室 iEar 耳膜病灶辨識研究榮獲 IEEE GCCE 2026 優秀技術展示銀獎",
+    img: "/images/gcce-2026-iear-team.jpg",
+    imgAlt: "本實驗室團隊參與 IEEE GCCE 2026 研討會合影",
+    imgAltEn: "Group photo of the iCPS Lab team at the IEEE GCCE 2026 conference.",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        本實驗室研究團隊在張萬榮教授帶領下，以耳膜病灶辨識研究成果「iEar」參與 2026 IEEE 第十五屆全球消費性電子研討會（GCCE 2026），榮獲優秀技術展示銀獎（Excellent Demo Awards－Silver Prize），展現本實驗室在人工智慧影像分析、智慧醫療與跨領域合作上的研究成果。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        GCCE 2026 於 2026 年 10 月 26 日至 29 日，在日本神戶國際會議場（Kobe International Conference Center）舉行。這項由 IEEE Consumer Technology Society 贊助的年度國際研討會，匯集消費性電子及相關科技領域的學界與產業專業人士，交流系統設計、創新技術與應用研究成果。
+      </p>
+
+      <div class="mb-6 text-sm text-slate-600">
+        <a href="https://ieee-gcce.org/2026/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">GCCE 2026 官方網站</a>
+      </div>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/gcce-2026-iear-team.jpg" alt="本實驗室團隊參與 IEEE GCCE 2026 研討會合影" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          本實驗室團隊參與 IEEE GCCE 2026 研討會合影。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        根據大會現場公布的統計，本屆共收到來自 28 個國家的 894 篇投稿，錄取 605 篇，包含 404 篇口頭發表、179 篇海報發表及 22 篇 Demo 展示。本實驗室透過此次參與，將研究成果帶上國際展示平台，分享人工智慧於耳科影像分析的研究方向，並拓展與不同領域研究團隊的交流機會。
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        本次獲獎論文題為「iEar: A Dual-Representation Approach for Eardrum Lesion Recognition Using Detection and Segmentation」，聚焦耳膜影像中的病灶辨識問題，結合偵測與分割方法，探索雙重表徵在耳膜病灶分析上的應用。偵測著重辨識目標所在位置，分割則描述目標區域的範圍；研究透過這兩種分析角度，探索耳膜病灶的影像辨識方法。這項成果亦結合跨校、產業及醫療合作夥伴的投入，呈現跨領域共同研究的成果。
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/gcce-2026-iear-demo.jpg" alt="本實驗室於 GCCE 2026 Demo 展示現場介紹 iEar 研究成果" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          本實驗室於 GCCE 2026 Demo 展示現場介紹 iEar 研究成果。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        依大會官方評選辦法，優秀展示獎綜合考量論文審查結果與會議發表表現，並特別重視現場技術展示的吸引力及說明清晰度。此次獲得銀獎，肯定了團隊的研究成果與技術展示表現，也為本實驗室持續推動研究實作及國際交流增添重要成果。
+      </p>
+
+      <div class="mb-6 text-sm text-slate-600">
+        <a href="https://ieee-gcce.org/2026/excellent_awards.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">GCCE 2026 優秀展示獎評選辦法</a>
+      </div>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/gcce-2026-iear-silver-prize-certificate.jpg" alt="iEar 研究獲頒 GCCE 2026 Excellent Demo Awards 銀獎（Silver Prize）獎狀" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          iEar 研究獲頒 GCCE 2026 Excellent Demo Awards 銀獎（Silver Prize）獎狀。
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        本實驗室感謝所有研究成員與合作夥伴的共同投入。未來將持續深化人工智慧與醫學影像分析研究，透過跨領域合作推進智慧醫療相關技術，並培養學生從問題定義、方法設計、系統實作到國際發表的完整能力，持續累積兼具學術與應用價值的研究成果。
+      </p>
+    `,
+    contentEn: `
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
+        Led by Prof. Wan-Jung Chang, the iCPS Lab research team presented its eardrum lesion recognition research, "iEar," at the 2026 IEEE 15th Global Conference on Consumer Electronics (GCCE 2026) and received the Silver Prize in the Excellent Demo Awards. The award highlights the lab's research achievements in artificial intelligence-based image analysis, smart healthcare, and interdisciplinary collaboration.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        GCCE 2026 takes place from October 26 to 29, 2026, at the Kobe International Conference Center in Kobe, Japan. Sponsored by the IEEE Consumer Technology Society, this annual international conference brings together academic and industry professionals in consumer electronics and related technologies to exchange findings in system design, innovative technologies, and applied research.
+      </p>
+
+      <div class="mb-6 text-sm text-slate-600">
+        <a href="https://ieee-gcce.org/2026/" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">GCCE 2026 Official Website</a>
+      </div>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/gcce-2026-iear-team.jpg" alt="Group photo of the iCPS Lab team at the IEEE GCCE 2026 conference." class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          Group photo of the iCPS Lab team at the IEEE GCCE 2026 conference.
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        According to statistics announced at the conference venue, this year's conference received 894 submissions from 28 countries and accepted 605, comprising 404 oral presentations, 179 poster presentations, and 22 demonstrations. Through its participation, iCPS Lab brought its research to an international showcase, shared its research direction in applying artificial intelligence to otologic image analysis, and expanded opportunities for exchanges with research teams across different fields.
+      </p>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        The award-winning paper, iEar: A Dual-Representation Approach for Eardrum Lesion Recognition Using Detection and Segmentation, focuses on recognizing lesions in eardrum images. It combines detection and segmentation methods to explore the application of dual representations to eardrum lesion analysis. Detection identifies where a target is located, while segmentation describes the extent of the target region. Through these two analytical perspectives, the study explores image recognition methods for eardrum lesions. This work also reflects contributions from partners across academic institutions, industry, and healthcare, representing the results of interdisciplinary research.
+      </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/gcce-2026-iear-demo.jpg" alt="iCPS Lab presents its iEar research at the GCCE 2026 demo session." class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          iCPS Lab presents its iEar research at the GCCE 2026 demo session.
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        Under the conference's official selection criteria, the Excellent Demo Awards consider both paper review results and conference presentation performance, with particular emphasis on the appeal of the live technical demonstration and the clarity of its explanation. The Silver Prize recognizes the team's research and technical demonstration performance and marks an important achievement in the lab's continued work in research implementation and international exchange.
+      </p>
+
+      <div class="mb-6 text-sm text-slate-600">
+        <a href="https://ieee-gcce.org/2026/excellent_awards.html" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline font-medium">GCCE 2026 Excellent Demo Awards Selection Criteria</a>
+      </div>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/gcce-2026-iear-silver-prize-certificate.jpg" alt="Certificate recognizing iEar's Silver Prize in the Excellent Demo Awards at GCCE 2026." class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          Certificate recognizing iEar's Silver Prize in the Excellent Demo Awards at GCCE 2026.
+        </figcaption>
+      </figure>
+
+      <p class="mb-6 text-slate-700 text-justify">
+        iCPS Lab thanks all research team members and collaborating partners for their shared contributions. The lab will continue to deepen its research in artificial intelligence and medical image analysis, advance smart healthcare technologies through interdisciplinary collaboration, and develop students' capabilities across the full research process, from problem definition and method design to system implementation and international presentation. It will continue to build a body of research with both academic and applied value.
+      </p>
+    `
+  },
+  {
     slug: "2026-stanford-worlds-top-2-percent-scientists-wan-jung-chang",
     date: "2026.10.08",
     tag: "學術榮譽",
