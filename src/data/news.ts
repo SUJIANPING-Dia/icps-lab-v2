@@ -58,6 +58,13 @@ export const newsData: NewsItem[] = [
       </p>
 
       <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/gcce-2026-iear-award-ceremony.jpg" alt="本實驗室團隊於 IEEE GCCE 2026 頒獎典禮領取優秀技術展示銀獎。" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          本實驗室團隊於 IEEE GCCE 2026 頒獎典禮領取優秀技術展示銀獎。
+        </figcaption>
+      </figure>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
         <img src="/images/gcce-2026-iear-silver-prize-certificate.jpg" alt="iEar 研究獲頒 GCCE 2026 Excellent Demo Awards 銀獎（Silver Prize）獎狀" class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
         <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
           iEar 研究獲頒 GCCE 2026 Excellent Demo Awards 銀獎（Silver Prize）獎狀。
@@ -102,6 +109,13 @@ export const newsData: NewsItem[] = [
       <p class="mb-6 text-slate-700 text-justify">
         Under the conference's official selection criteria, the Excellent Demo Awards consider both paper review results and conference presentation performance, with particular emphasis on the appeal of the live technical demonstration and the clarity of its explanation. The Silver Prize recognizes the team's research and technical demonstration performance and marks an important achievement in the lab's continued work in research implementation and international exchange.
       </p>
+
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/gcce-2026-iear-award-ceremony.jpg" alt="The iCPS Lab team receives the Silver Prize in the Excellent Demo Awards at IEEE GCCE 2026." class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 bg-slate-50 border-t border-slate-200">
+          The iCPS Lab team receives the Silver Prize in the Excellent Demo Awards at IEEE GCCE 2026.
+        </figcaption>
+      </figure>
 
       <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
         <img src="/images/gcce-2026-iear-silver-prize-certificate.jpg" alt="Certificate recognizing iEar's Silver Prize in the Excellent Demo Awards at GCCE 2026." class="w-full h-auto block" loading="lazy" onerror="this.closest('figure').style.display='none';">
