@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Footer from "../../components/Footer.astro";
 import Navbar from "../../components/Navbar.astro";
 import PageHero from "../../components/PageHero.astro";
 
@@ -563,7 +564,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <div class="avatar-frame w-48 md:w-56 shrink-0 mx-auto md:mx-0 overflow-hidden rounded-2xl border border-slate-200">
               <img src="/images/professor.webp" alt="Professor Wan-Jung Chang"
                    class="w-full h-auto object-cover transition-transform duration-500 hover:scale-105"
-                   onerror="this.src='/images/default-avatar.png';" />
+                   onerror="this.onerror=null;this.src='/images/member-placeholder.png';" />
             </div>
             <div class="flex-1">
               <div class="mb-4 text-center md:text-left">
@@ -657,7 +658,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 src={getAvatar(person.img, person.name)}
                 alt={person.name}
                 class="assistant-avatar w-16 h-16 sm:w-20 sm:h-20 rounded-full object-cover bg-slate-100 border-2 border-slate-100 shrink-0 mt-1"
-                onerror="this.src='/images/default-avatar.png';"
+                onerror="this.onerror=null;this.src='/images/member-placeholder.png';"
               />
               <div class="flex-1 w-full">
                 <div class="mb-4">
@@ -728,7 +729,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 
         <!-- 頁籤列 -->
         <div class="student-tabs-wrap overflow-x-auto">
-          <nav class="flex min-w-max px-1" aria-label="Tabs">
+          <nav class="flex min-w-max px-1" role="tablist" aria-label="Student categories">
             {[
               { id: 'tab-phd',           label: 'PhD Students',     count: phds.length },
               { id: 'tab-master',        label: "Master's Students", count: masters.length, defaultActive: true },
@@ -738,6 +739,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             ].map(t => (
               <button
                 class={`tab-btn whitespace-nowrap py-3 px-4 border-b-2 font-bold text-sm md:text-base ${t.defaultActive ? 'tab-active-style text-blue-700 border-blue-700' : 'text-slate-500 border-transparent hover:text-slate-700'}`}
+                type="button" role="tab" id={`${t.id}-button`} aria-controls={t.id} aria-selected={t.defaultActive ? "true" : "false"} tabindex={t.defaultActive ? 0 : -1}
                 data-target={t.id}
               >
                 {t.label}
@@ -753,7 +755,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         <div class="min-h-[300px]">
 
           <!-- ═══ 博士班 ═══ -->
-          <div id="tab-phd" class="tab-panel" hidden>
+          <div id="tab-phd" role="tabpanel" aria-labelledby="tab-phd-button" tabindex="0" class="tab-panel" hidden>
             {phds.length > 0 ? (
               <div class="space-y-10">
                 {sortedPhdYears.map((year) => (
@@ -770,7 +772,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                         <div class="member-card bg-white border border-slate-200 p-5 flex flex-col h-full rounded-xl">
                           <div class="flex items-start gap-4 w-full">
                             <div class="overflow-hidden rounded-full w-14 h-14 sm:w-16 sm:h-16 shrink-0 mt-1 border-2 border-slate-100">
-                              <img src={getAvatar(person.img, person.name)} alt={person.name} class="avatar-zoom w-full h-full object-cover" onerror="this.src='/images/default-avatar.png';" />
+                              <img src={getAvatar(person.img, person.name)} alt={person.name} class="avatar-zoom w-full h-full object-cover" onerror="this.onerror=null;this.src='/images/member-placeholder.png';" />
                             </div>
                             <div class="flex-1">
                               <div class="flex items-center gap-2 flex-wrap mb-1.5">
@@ -803,7 +805,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
 
           <!-- ═══ 碩士班 ═══ -->
-          <div id="tab-master" class="tab-panel tab-active">
+          <div id="tab-master" role="tabpanel" aria-labelledby="tab-master-button" tabindex="0" class="tab-panel tab-active">
             {masters.length > 0 ? (
               <div class="space-y-10">
                 {sortedMasterYears.map((year) => (
@@ -820,7 +822,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                         <div class="member-card min-w-0 bg-white border border-slate-200 p-5 flex flex-col h-full rounded-xl">
                           <div class="flex min-w-0 items-start gap-4 w-full">
                             <div class="overflow-hidden rounded-full w-16 h-16 shrink-0 mt-1 border-2 border-slate-100">
-                              <img src={getAvatar(person.img, person.name)} alt={person.name} width="64" height="64" class="avatar-zoom w-full h-full object-cover" onerror="this.src='/images/default-avatar.png';" />
+                              <img src={getAvatar(person.img, person.name)} alt={person.name} width="64" height="64" class="avatar-zoom w-full h-full object-cover" onerror="this.onerror=null;this.src='/images/member-placeholder.png';" />
                             </div>
                             <div class="flex-1 min-w-0">
                               <div class="flex items-center gap-2 flex-wrap mb-1.5">
@@ -852,7 +854,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
 
           <!-- ═══ 大學部 ═══ -->
-          <div id="tab-undergrad" class="tab-panel" hidden>
+          <div id="tab-undergrad" role="tabpanel" aria-labelledby="tab-undergrad-button" tabindex="0" class="tab-panel" hidden>
             {undergrads.length > 0 ? (
               <div class="space-y-10">
                 {preMasters.length > 0 && (
@@ -943,13 +945,13 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
 
           <!-- ═══ 外籍生 ═══ -->
-          <div id="tab-international" class="tab-panel" hidden>
+          <div id="tab-international" role="tabpanel" aria-labelledby="tab-international-button" tabindex="0" class="tab-panel" hidden>
             {internationals.length > 0 ? (
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
                 {internationals.map((person) => (
                   <div class="member-card bg-white border border-slate-200 p-5 flex items-start gap-4 rounded-xl">
                     <div class="overflow-hidden rounded-full w-14 h-14 sm:w-16 sm:h-16 shrink-0 mt-1 border-2 border-slate-100">
-                      <img src={getAvatar(person.img, person.name)} alt={person.name} class="avatar-zoom w-full h-full object-cover" onerror="this.src='/images/default-avatar.png';" />
+                      <img src={getAvatar(person.img, person.name)} alt={person.name} class="avatar-zoom w-full h-full object-cover" onerror="this.onerror=null;this.src='/images/member-placeholder.png';" />
                     </div>
                     <div class="flex-1">
                       <h4 class="font-bold text-slate-900 text-base mb-1.5">{person.name}</h4>
@@ -971,7 +973,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
 
           <!-- ═══ 歷屆畢業生 ═══ -->
-          <div id="tab-graduate" class="tab-panel" hidden>
+          <div id="tab-graduate" role="tabpanel" aria-labelledby="tab-graduate-button" tabindex="0" class="tab-panel" hidden>
             {graduates.length > 0 ? (
               <div class="space-y-10">
                 {sortedGradYears.map((year) => (
@@ -988,7 +990,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                       {groupedGraduates[year].map((person) => (
                         <div class="member-card bg-white border border-slate-200 p-4 flex items-center gap-4 rounded-xl">
                           <div class="overflow-hidden rounded-full w-12 h-12 shrink-0 border-2 border-slate-100">
-                            <img src={getAvatar(person.img, person.name)} alt={person.name} class="avatar-zoom w-full h-full object-cover" onerror="this.src='/images/default-avatar.png';" />
+                            <img src={getAvatar(person.img, person.name)} alt={person.name} class="avatar-zoom w-full h-full object-cover" onerror="this.onerror=null;this.src='/images/member-placeholder.png';" />
                           </div>
                           <div>
                             <h5 class="font-bold text-slate-800">
@@ -1024,52 +1026,29 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <!-- =============================================================== -->
   <!-- 🔒 頁尾 — 不動                                                 -->
   <!-- =============================================================== -->
-  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-      <div class="md:w-1/2">
-        <img src="/images/footer-logo.webp" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
-        <p class="text-sm text-blue-400 font-medium mb-4">Intelligent Cyber-Physical Systems Laboratory</p>
-        <p class="text-sm text-slate-400 leading-relaxed max-w-md">Intelligent Cyber-Physical Systems Laboratory <br/>National Kaohsiung University of Science and Technology (NKUST)</p>
-      </div>
-      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
-        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> National Kaohsiung University of Science and Technology, Jiangong Campus</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 ext. 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
-      </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-        <p class="text-xs text-slate-500">&copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.</p>
-        <p class="text-xs text-slate-500 hidden sm:block">|</p>
-        <p class="text-xs text-slate-500">All rights reserved.</p>
-      </div>
-      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg>
-        <span class="text-xs text-slate-400 font-medium tracking-wide">Total visits</span>
-        <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">Loading...</span>
-      </div>
-    </div>
-  </footer>
+  <Footer lang="en" phone="07-3814526 ext. 15672" />
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
 
       // ── 頁籤切換（含動畫） ──
-      const tabBtns     = document.querySelectorAll('.tab-btn');
+      const tabBtns     = document.querySelectorAll<HTMLButtonElement>('.tab-btn');
       const tabPanels   = document.querySelectorAll('.tab-panel');
 
       tabBtns.forEach(btn => {
         btn.addEventListener('click', () => {
           // 樣式切換
           tabBtns.forEach(b => {
+            b.setAttribute('aria-selected', 'false');
+            b.setAttribute('tabindex', '-1');
             b.classList.remove('tab-active-style', 'text-blue-700', 'border-blue-700');
             b.classList.add('text-slate-500', 'border-transparent');
             // 計數 badge 恢復灰色
             const badge = b.querySelector('span');
             if (badge) { badge.classList.remove('bg-blue-100', 'text-blue-700'); badge.classList.add('bg-slate-100', 'text-slate-500'); }
           });
+          btn.setAttribute('aria-selected', 'true');
+          btn.setAttribute('tabindex', '0');
           btn.classList.add('tab-active-style', 'text-blue-700', 'border-blue-700');
           btn.classList.remove('text-slate-500', 'border-transparent');
           const activeBadge = btn.querySelector('span');
@@ -1100,6 +1079,23 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 
 
 
+      const tabButtons = Array.from(tabBtns);
+      tabButtons.forEach((button, index) => {
+        button.addEventListener('keydown', (event) => {
+          let next = index;
+          if (event.key === 'ArrowRight') next = (index + 1) % tabButtons.length;
+          else if (event.key === 'ArrowLeft') next = (index - 1 + tabButtons.length) % tabButtons.length;
+          else if (event.key === 'Home') next = 0;
+          else if (event.key === 'End') next = tabButtons.length - 1;
+          else return;
+          event.preventDefault();
+          const target = tabButtons[next] as HTMLButtonElement;
+          target.click();
+          target.focus();
+          target.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+        });
+      });
+
       // ── Quick nav：點到隱藏頁籤區塊時，同步切換頁籤 ──
       document.querySelectorAll('.quick-nav a[href^="#tab-"]').forEach(link => {
         link.addEventListener('click', (event) => {
@@ -1109,7 +1105,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             event.preventDefault();
             targetBtn.click();
             setTimeout(() => {
-              document.getElementById('students')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              document.getElementById('students')?.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
             }, 20);
           }
         });
@@ -1128,31 +1124,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
       revealEls.forEach(el => revealObs.observe(el));
 
       // ── 訪客計數器 ──
-      const initCounter = async () => {
-        const el = document.getElementById('visitor-count');
-        if (!el) return;
-        const namespace = 'icpslab_site', key = 'visits';
-        const localKey = 'icps_saved_count', timeKey = 'icps_last_visit_time';
-        const TTL = 24 * 60 * 60 * 1000;
-        let current = localStorage.getItem(localKey) ?? '------';
-        const last = localStorage.getItem(timeKey);
-        const now = Date.now();
-        try {
-          const base = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          if (!last || now - parseInt(last, 10) >= TTL) {
-            const r = await fetch(base + '/up');
-            if (!r.ok) throw new Error();
-            const d = await r.json();
-            current = String(d.count).padStart(6, '0');
-            localStorage.setItem(timeKey, now.toString());
-            localStorage.setItem(localKey, current);
-          } else {
-            try { const r = await fetch(base); if (r.ok) { const d = await r.json(); current = String(d.count).padStart(6, '0'); localStorage.setItem(localKey, current); } } catch {}
-          }
-        } catch {}
-        el.textContent = current;
-      };
-      initCounter();
+
 
     });
   </script>

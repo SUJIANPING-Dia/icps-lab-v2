@@ -1,3 +1,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Keep keyboard focus visible even when a page removes the browser outline. */
+:where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: 3px solid #2563eb !important;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within,
+  html {
+    scroll-behavior: auto !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Reveal content immediately without requiring an animated entrance. */
+  [data-reveal],
+  [data-rv],
+  .rv,
+  .hero-rise {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

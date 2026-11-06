@@ -21,7 +21,7 @@ Responsibilities:
 
 | Task type | Agent | Main scope |
 | --- | --- | --- |
-| Add, edit, remove, or reorder news | News Agent | `src/components/News.astro`, optional user-provided images |
+| Add, edit, remove, or reorder news | News Agent | `src/data/news.ts`, `src/components/News.astro`, scoped news detail pages, optional user-provided images |
 | Add, edit, remove, or reorder FAQ | FAQ Agent | `src/pages/faq.astro` |
 | Add, edit, remove, or reorder members | Members Agent | `src/pages/members.astro`, optional user-provided photos |
 | Add or update achievements data | Achievements Agent | `src/data/achievements.json` |

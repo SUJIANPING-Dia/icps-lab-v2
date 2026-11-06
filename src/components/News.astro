@@ -1,82 +1,29 @@
 ---
-import { newsData } from "../data/news";
+import { newsData, englishNewsTitles, getEnglishNewsTag, sortNews, prepareNewsContent, type NewsItem } from "../data/news";
 
 interface Props {
   lang?: "zh" | "en";
+  sectionId?: string;
 }
 
-const { lang = "zh" } = Astro.props;
+const { lang = "zh", sectionId = "news" } = Astro.props;
 const isEnglish = lang === "en";
 const newsBasePath = isEnglish ? "/en/news" : "/news";
 const sectionTitle = isEnglish ? "News" : "最新消息";
 const sectionSubtitle = "News & Announcements";
 const pinnedLabel = isEnglish ? "Pinned" : "置頂";
 const readMoreLabel = isEnglish ? "Read Full Article" : "閱讀完整新聞";
-const englishNewsTitles: Record<string, string> = {
-  "2026-ieee-gcce-iear-excellent-demo-silver-prize": "iCPS Lab iEar Research Wins Silver Prize in the Excellent Demo Awards at IEEE GCCE 2026",
-  "2026-stanford-worlds-top-2-percent-scientists-wan-jung-chang": "Prof. Wan-Jung Chang Selected for the World's Top 2% Scientists List for the Third Consecutive Year",
-  "2026-compassion-technology-iearlm-third-place": "iCPS Lab's \"iEarLM Smart Ear Diagnosis Platform\" Wins Third Place at the 10th National Compassion Technology Innovation Competition in 2026",
-  "2026-taiwan-innotech-expo-future-tech-imirror": "iCPS Lab Invited to Taiwan Innotech Expo 2026, Showcasing Industry-Academia Collaboration in AI-Powered Smart Health",
-  "2026-gpm-ai-automation-exhibition": "iCPS Lab Award-Winning AI Automation Project Showcased at Taipei Automation 2026",
-  "2026-isocip-contest-two-honorable-mentions": "iCPS Lab Student Teams Receive Two Honorable Mentions at the 2026 Interdisciplinary SoC Contest",
-  "2026-asia-biotech-iearlm-exhibition": "iCPS Lab Showcases iEarLM at Bio Asia-Taiwan 2026",
-  "2026-ai-automation-equipment-award-second-place": "iCPS Lab Team Wins Second Place at the 15th National AI Automation Equipment Creation Award",
-  "2026-nstc-t2-pose-three-year-project": "Prof. Wan-Jung Chang Receives Three-Year NSTC Grant for T²-Pose Near-Bed Care Sensing System",
-  "2026-consumer-electronics-contribution-award": "Prof. Wan-Jung Chang Receives Outstanding Contribution Award from Taiwan Consumer Electronics Society (TCES)",
-  "2026-nstc-undergrad-project-tsai-yiming": "iCPS Lab Undergraduate Student Yi-Ming Tsai Receives NSTC Student Research Grant",
-  "2026-medical-taiwan-ai-surgical-instrument-recognition": "iCPS Lab Showcases AI Surgical Instrument Recognition at Medical Taiwan 2026",
-  "2026-international-nursing-summit-indonesia": "Prof. Wan-Jung Chang Joins International Nursing Summit 2026 in Bandung, Indonesia",
-  "2026-icme-ai-surgical-instrument-award": "iCPS Lab Receives Excellent Poster Submission Recognition at ICME 2026",
-  "2026-itaoi-honorable-mention": "iCPS Lab Receives Honorable Mention at ITAOI 2026",
-  "2026-neihu-vocational-school-visit": "Neihu Vocational School Visits iCPS Lab",
-  "2026-atlife-expo-ai-care": "AI Care Technologies Showcased at the 2026 ATLife Expo",
-  "2026-student-project-competition-second-place": "Student Project Team Wins Second Place in National Competition",
-  "2026-ustv-ai-smart-glasses-report": "USTV Features iCPS Lab AI Smart Glasses Research",
-  "2026-ustv-ar-glasses-tof-interview": "USTV Interview on AR Glasses and ToF Applications",
-  "2026-student-project-competition-finalist": "Student Project Team Selected as National Competition Finalist",
-  "2026-japan-patent-tongue-rehabilitation": "Japan Patent Granted for Tongue Rehabilitation Game Platform",
-  "2026-icct-pacific-papers": "iCPS Lab Presents Papers at ICCT-Pacific 2026",
-  "2026-dsp-competition-celebration": "DSP Competition Celebration",
-  "2026-website-launch": "iCPS Lab Website Launch",
-  "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
-};
-const getEnglishNewsTag = (slug: string) => {
-  if (slug === "2026-ieee-gcce-iear-excellent-demo-silver-prize") return "Award";
-  if (slug.includes("stanford-worlds-top-2-percent-scientists")) return "Academic Honor";
-  if (slug.includes("compassion-technology")) return "Competition";
-  if (slug.includes("taiwan-innotech-expo")) return "Exhibition";
-  if (slug.includes("gpm-ai-automation")) return "Exhibition";
-  if (slug.includes("isocip")) return "Competition";
-  if (slug.includes("asia-biotech")) return "Exhibition";
-  if (slug.includes("ai-automation-equipment-award")) return "Competition";
-  if (slug.includes("nstc-t2-pose")) return "Research Grant";
-  if (slug.includes("contribution-award")) return "Award";
-  if (slug.includes("nstc-undergrad-project")) return "Student Honor";
-  if (slug.includes("medical-taiwan")) return "Exhibition";
-  if (slug.includes("nursing-summit")) return "International";
-  if (slug.includes("icme") || slug.includes("itaoi")) return "Award";
-  if (slug.includes("neihu")) return "Visit";
-  if (slug.includes("atlife")) return "Exhibition";
-  if (slug.includes("competition") || slug.includes("dsp")) return "Competition";
-  if (slug.includes("ustv")) return "Media";
-  if (slug.includes("patent")) return "Patent";
-  if (slug.includes("icct")) return "Publication";
-  return "Announcement";
-};
 const getDisplayTitle = (slug: string, fallback: string) => isEnglish ? (englishNewsTitles[slug] ?? fallback) : fallback;
 const getDisplayTag = (slug: string, fallback: string) => isEnglish ? getEnglishNewsTag(slug) : fallback;
 const getDisplayContent = (item: NewsItem) => isEnglish && item.contentEn ? item.contentEn : item.content;
 const getDisplayImgAlt = (item: NewsItem) => isEnglish && item.imgAltEn ? item.imgAltEn : item.imgAlt;
 const hasEmbeddedLeadImage = (item: NewsItem, content: string) => Boolean(item.img && content.includes(item.img));
+const getPreparedContent = (item: NewsItem) => prepareNewsContent(getDisplayContent(item), lang, getDisplayTitle(item.slug, item.title));
 
-const sortedNewsData = [...newsData].sort((a, b) => {
-  if (a.isPinned && !b.isPinned) return -1;
-  if (!a.isPinned && b.isPinned) return 1;
-  return 0;
-});
+const sortedNewsData = sortNews(newsData);
 ---
 
-<section id="news" class="scroll-mt-12">
+<section id={sectionId} data-news-root class="scroll-mt-12">
   <div class="border-b-2 border-slate-800 pb-3 mb-8 flex justify-between items-end">
     <h2 class="text-3xl font-bold text-slate-900 flex items-center gap-3">
       <div class="w-2 h-8 bg-blue-700"></div>
@@ -88,14 +35,14 @@ const sortedNewsData = [...newsData].sort((a, b) => {
   <div class="bg-white border border-slate-200 rounded-sm shadow-sm">
     <ul id="news-list" class="divide-y divide-slate-100">
       {/* 🌟 這裡改為映射 sortedNewsData 而不是原本的 newsData */}
-      {sortedNewsData.map((item) => (
-        <li class="group news-item">
+      {sortedNewsData.map((item, index) => (
+        <li class="group news-item" hidden={index >= 5} inert={index >= 5}>
           {/* 🌟 根據 isPinned 動態加入灰底背景色與 hover 效果 */}
-          <button class={`news-toggle-btn w-full text-left transition-colors flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus:outline-none ${item.isPinned ? 'bg-slate-50 hover:bg-slate-100' : 'bg-transparent hover:bg-slate-50'}`}>
+          <button type="button" id={`news-toggle-${item.slug}`} aria-expanded="false" aria-controls={`news-content-${item.slug}`} class={`news-toggle-btn w-full text-left transition-colors flex flex-col md:flex-row md:items-center px-6 py-5 gap-4 justify-between focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-blue-600 ${item.isPinned ? 'bg-slate-50 hover:bg-slate-100' : 'bg-transparent hover:bg-slate-50'}`}>
             <div class="flex flex-col md:flex-row md:items-center gap-4">
               {/* 🌟 左側寬度改用 md:w-[17rem]，以容納新增的置頂標籤 */}
               <div class="flex items-center gap-3 shrink-0 md:w-[17rem]">
-                <span class="text-slate-500 font-mono text-sm tracking-tight">{item.date}</span>
+                <time datetime={item.date.replaceAll('.', '-')} class="text-slate-500 font-mono text-sm tracking-tight">{item.date}</time>
                 <span class={`px-2.5 py-1 text-xs font-medium rounded-sm border shrink-0 ${item.tagTheme}`}>{getDisplayTag(item.slug, item.tag)}</span>
                 {/* 🌟 新增：如果設定為置頂，就顯示置頂徽章 */}
                 {item.isPinned && (
@@ -111,16 +58,16 @@ const sortedNewsData = [...newsData].sort((a, b) => {
           </button>
           
           {/* 🌟 展開時也延續置頂文章的灰底顏色 */}
-          <div style="grid-template-rows: 0fr;" data-expanded="false" class={`grid transition-[grid-template-rows] duration-300 ease-in-out ${item.isPinned ? 'bg-slate-50' : 'bg-transparent'}`}>
+          <div id={`news-content-${item.slug}`} role="region" aria-labelledby={`news-toggle-${item.slug}`} hidden inert data-expanded="false" class={item.isPinned ? 'bg-slate-50' : 'bg-transparent'}>
             <div class="overflow-hidden">
               <div class="px-6 pb-6 md:pl-[19rem] text-slate-700 text-sm leading-relaxed space-y-5">
                 {item.img && !hasEmbeddedLeadImage(item, getDisplayContent(item)) && (
                   <div class="w-full max-w-3xl mx-auto bg-slate-100 rounded border border-slate-200 overflow-hidden relative mt-2 flex items-center justify-center min-h-[120px]">
                     <span class="absolute text-slate-400 font-medium z-0">[ {getDisplayImgAlt(item)} ]</span>
-                    <img src={item.img} alt={getDisplayImgAlt(item)} class="w-full h-auto relative z-10 block" onerror="this.style.display='none';" />
+                    <img src={item.img} alt={getDisplayImgAlt(item)} class="w-full h-auto relative z-10 block" loading="lazy" decoding="async" onerror="this.style.display='none';" />
                   </div>
                 )}
-                <div set:html={getDisplayContent(item)}></div>
+                <div set:html={getPreparedContent(item)}></div>
                 <div class="pt-2">
                   <a
                     href={`${newsBasePath}/${item.slug}`}
@@ -141,108 +88,97 @@ const sortedNewsData = [...newsData].sort((a, b) => {
     </ul>
   </div>
 
-  <div id="pagination-controls" class="flex justify-center items-center mt-8 gap-2"></div>
+  <nav id="pagination-controls" aria-label={isEnglish ? 'News pages' : '新聞分頁'} class="flex flex-wrap justify-center items-center mt-8 gap-2"></nav>
+  <noscript>
+    <ul class="mt-6 space-y-3">
+      {sortedNewsData.map((item) => <li><a class="text-blue-700 underline" href={`${newsBasePath}/${item.slug}`}>{getDisplayTitle(item.slug, item.title)}</a></li>)}
+    </ul>
+  </noscript>
 </section>
 
 <script is:inline>
   document.addEventListener('DOMContentLoaded', () => {
+    const section = document.querySelector('[data-news-root]');
+    if (!section) return;
     const isEnglishPage = document.documentElement.lang === 'en';
-    const previousPageLabel = isEnglishPage ? 'Previous' : '上一頁';
-    const nextPageLabel = isEnglishPage ? 'Next' : '下一頁';
-    const toggleButtons = document.querySelectorAll('.news-toggle-btn');
-    toggleButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        const content = this.nextElementSibling;
-        const icon = this.querySelector('.toggle-icon');
-        const isExpanded = content.getAttribute('data-expanded') === 'true';
+    const newsItems = Array.from(section.querySelectorAll('.news-item'));
+    const pagination = section.querySelector('#pagination-controls');
+    const itemsPerPage = 5;
+    const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+    let currentPage = 1;
 
-        // 🟢 如果要展開當前項目，先收起所有其他已展開的項目
-        if (!isExpanded) {
-          const allExpanded = document.querySelectorAll('#news-list [data-expanded="true"]');
-          allExpanded.forEach(expandedContent => {
-            expandedContent.style.gridTemplateRows = '0fr';
-            expandedContent.setAttribute('data-expanded', 'false');
-            const expandedIcon = expandedContent.previousElementSibling.querySelector('.toggle-icon');
-            if (expandedIcon) expandedIcon.style.transform = 'rotate(0deg)';
-          });
-        }
+    function setExpanded(button, expanded) {
+      const content = document.getElementById(button.getAttribute('aria-controls'));
+      if (!content) return;
+      content.hidden = !expanded;
+      content.inert = !expanded;
+      content.dataset.expanded = String(expanded);
+      button.setAttribute('aria-expanded', String(expanded));
+      const icon = button.querySelector('.toggle-icon');
+      if (icon) icon.style.transform = expanded ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
 
-        // 切換當前項目的狀態
-        if (!isExpanded) {
-          content.style.gridTemplateRows = '1fr';
-          content.setAttribute('data-expanded', 'true');
-          if (icon) icon.style.transform = 'rotate(180deg)';
-        } else {
-          content.style.gridTemplateRows = '0fr';
-          content.setAttribute('data-expanded', 'false');
-          if (icon) icon.style.transform = 'rotate(0deg)';
-        }
+    section.querySelectorAll('.news-toggle-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') !== 'true';
+        section.querySelectorAll('.news-toggle-btn[aria-expanded="true"]').forEach(other => {
+          setExpanded(other, false);
+        });
+        setExpanded(button, expanded);
       });
     });
 
-    const itemsPerPage = 5;
-    let currentPage = 1;
-    const newsItems = Array.from(document.querySelectorAll('.news-item'));
-    const paginationContainer = document.getElementById('pagination-controls');
-
     function renderPagination() {
-      const totalPages = Math.ceil(newsItems.length / itemsPerPage);
-      if (totalPages <= 1) {
-        paginationContainer.innerHTML = '';
-        return;
+      pagination.replaceChildren();
+      if (totalPages <= 1) return;
+
+      function addButton(label, page, disabled = false, active = false) {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = label;
+        button.dataset.page = String(page);
+        button.disabled = disabled;
+        button.setAttribute('aria-controls', 'news-list');
+        if (active) button.setAttribute('aria-current', 'page');
+        if (/^\d+$/.test(label)) {
+          button.setAttribute('aria-label', isEnglishPage ? `Page ${page}` : `第 ${page} 頁`);
+        }
+        const colors = active
+          ? 'bg-blue-700 text-white border-blue-700 shadow-sm'
+          : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50';
+        button.className = `min-w-8 px-3 py-1.5 text-sm font-medium rounded border transition focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600 disabled:opacity-30 disabled:cursor-not-allowed ${colors}`;
+        pagination.append(button);
       }
 
-      let html = '';
-      const prevDisabled = currentPage === 1 ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
-      html += `<button onclick="window.changePage(${currentPage - 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${prevDisabled}" ${currentPage === 1 ? 'disabled' : ''}>${previousPageLabel}</button>`;
-
-      for (let i = 1; i <= totalPages; i++) {
-        const activeClass = i === currentPage ? 'bg-blue-700 text-white border-blue-700 shadow-sm' : 'bg-white text-slate-600 border-slate-300 hover:bg-slate-50';
-        html += `<button onclick="window.changePage(${i})" class="w-8 h-8 flex items-center justify-center text-sm font-bold rounded border transition ${activeClass}">${i}</button>`;
+      addButton(isEnglishPage ? 'Previous' : '上一頁', currentPage - 1, currentPage === 1);
+      for (let page = 1; page <= totalPages; page++) {
+        addButton(String(page), page, false, page === currentPage);
       }
-
-      const nextDisabled = currentPage === totalPages ? 'opacity-30 cursor-not-allowed' : 'hover:bg-slate-100 hover:text-slate-800';
-      html += `<button onclick="window.changePage(${currentPage + 1})" class="px-3 py-1.5 text-sm font-medium rounded border border-slate-300 text-slate-600 transition ${nextDisabled}" ${currentPage === totalPages ? 'disabled' : ''}>${nextPageLabel}</button>`;
-
-      paginationContainer.innerHTML = html;
+      addButton(isEnglishPage ? 'Next' : '下一頁', currentPage + 1, currentPage === totalPages);
     }
 
-    window.changePage = function(page, scrollToNews = true) {
-      const totalPages = Math.ceil(newsItems.length / itemsPerPage);
+    function changePage(page, moveFocus = true) {
       if (page < 1 || page > totalPages) return;
-      
       currentPage = page;
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-
+      const first = (page - 1) * itemsPerPage;
       newsItems.forEach((item, index) => {
-        const content = item.querySelector('[data-expanded]');
-        const icon = item.querySelector('.toggle-icon');
-        
-        // 換頁時自動收合所有展開的項目
-        if(content && content.getAttribute('data-expanded') === 'true') {
-          content.style.gridTemplateRows = '0fr';
-          content.setAttribute('data-expanded', 'false');
-          if (icon) icon.style.transform = 'rotate(0deg)';
-        }
-
-        if (index >= startIndex && index < endIndex) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
-        }
+        const button = item.querySelector('.news-toggle-btn');
+        if (button) setExpanded(button, false);
+        item.hidden = index < first || index >= first + itemsPerPage;
+        item.inert = item.hidden;
       });
-
       renderPagination();
-
-      if (scrollToNews) {
-        const newsSection = document.getElementById('news');
-        const elementPosition = newsSection.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset;
-        window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+      if (moveFocus) {
+        pagination.querySelector('[aria-current="page"]')?.focus({ preventScroll: true });
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        section.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' });
       }
-    };
+    }
 
-    window.changePage(1, false);
+    pagination.addEventListener('click', event => {
+      const button = event.target.closest('button[data-page]');
+      if (button && !button.disabled) changePage(Number(button.dataset.page));
+    });
+    changePage(1, false);
   });
 </script>

@@ -4,14 +4,16 @@ This document is the human-readable maintenance guide for the iCPS Lab Astro web
 
 ## Current Architecture
 
-- Astro static site with Tailwind CSS.
+- Astro 7 static site with Tailwind CSS 3, using Node.js 24.x (`.nvmrc` and `package.json`).
 - Shared page shell: `src/layouts/BaseLayout.astro`.
 - Shared global navigation: `src/components/Navbar.astro`.
-- English prototype routes: `src/pages/en/index.astro`, `src/pages/en/about.astro`, `src/pages/en/members.astro`, `src/pages/en/faq.astro`.
+- English counterparts live under `src/pages/en/`, including news, achievements, videos, and activity albums. Preserve selective translation rules and original research titles.
 - Achievements data: `src/data/achievements.json`.
-- Achievements sync: `.github/workflows/sync-achievements.yml` runs the scraper daily.
+- Reviewed partner names/aliases and source references: `src/data/partners.mjs`. Homepage counts industry entries only; About also lists clinical and funding institutions. These are historical records, not active-contract counts. Review new organizations when source records change; do not infer a company from a project title or invent a missing-data fallback.
+- Achievements sync: `.github/workflows/sync-achievements.yml` is manual-only (`workflow_dispatch`).
 - Repository snapshot backups: `.github/workflows/backup-repo-snapshot.yml` creates a weekly Git bundle artifact.
-- News content: `src/components/News.astro`.
+- News content and shared presentation metadata: `src/data/news.ts`; rendering: `src/components/News.astro` and news detail routes.
+- Video records: `src/data/videos.ts`.
 - FAQ content: `src/pages/faq.astro`.
 - Members content: `src/pages/members.astro`.
 - Activities albums: Cloudinary-backed pages in `src/pages/activities.astro` and `src/pages/activities/[id].astro`.
@@ -32,7 +34,7 @@ This document is the human-readable maintenance guide for the iCPS Lab Astro web
 - Backup Recovery agent config: `.codex/agents/backup-recovery.toml`
 - QA Release agent config: `.codex/agents/qa-release.toml`
 
-Legacy detailed playbooks:
+Detailed playbooks:
 
 - News updates: `docs/agents/NEWS_AGENT.md`
 - FAQ updates: `docs/agents/FAQ_AGENT.md`
@@ -78,14 +80,14 @@ Run safety checks first:
 ```powershell
 git branch --show-current
 git status --short
-git pull --ff-only origin main
+git log -1 --oneline
 ```
 
-If the working tree is dirty, stop and report before editing or merging.
+If the working tree contains unexpected changes, stop and report before editing or merging. Account for changes already assigned to collaborating agents. Do not pull or change branches during an in-progress task; an authorized release follows the release checklist.
 
 Before major refactors, data migrations, batch image changes, workflow edits, or deletion tasks, ask whether to create a backup checkpoint. Deletion tasks require a checkpoint and explicit user confirmation before continuing.
 
-Then create a focused branch:
+Reuse the suitable current task branch, or create a focused branch when needed:
 
 ```powershell
 git switch -c codex/<task-name>
@@ -104,7 +106,7 @@ Only commit when:
 
 - Build succeeds.
 - Changed files match the task's allowed scope.
-- No generated, dependency, package, environment, or unrelated files changed.
+- No generated, dependency-cache, environment, or unrelated files changed. Package and lockfile changes require an explicitly scoped dependency task.
 
 ## Release Flow
 
@@ -120,9 +122,9 @@ Use `docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md` for this flow. The Vercel Deplo
 
 QA Release Agent may trigger the deploy hook only when the user explicitly says Cloudinary upload/update is complete and asks to redeploy. It must first confirm a clean working tree and must not commit, push Git, modify files, display the full hook URL, or write the hook URL to any file.
 
-## Achievements Automatic Sync Flow
+## Achievements Manual Sync Flow
 
-The GitHub Actions workflow `Sync Achievements Data` runs daily at Taiwan time 00:07 using UTC cron `7 16 * * *`. It can also be started manually from the GitHub Actions tab with `workflow_dispatch`.
+The GitHub Actions workflow `Sync Achievements Data` runs only when started manually from the GitHub Actions tab with `workflow_dispatch`. It has no daily schedule. An explicit Codex achievements-update request follows the same safeguards in `docs/harness/ACHIEVEMENTS_SYNC.md`.
 
 The workflow uploads the current `src/data/achievements.json` as an artifact, runs `node scripts/fetchAchievements.js`, validates the updated JSON, checks whether `src/data/achievements.json` changed, and exits with `No achievements changes` when there is no diff.
 
@@ -148,7 +150,7 @@ reports/
 
 Open `reports/achievements-sync/latest.md` for the latest daily summary, or `reports/achievements-sync/runs/latest-run.md` for the most recent individual run. All individual run reports are stored under `reports/achievements-sync/runs/`.
 
-After an automatic or manual sync, check `https://icps-lab.com/achievements` once the Vercel deployment finishes.
+After an authorized sync, check `https://icps-lab.com/achievements` once the Vercel deployment finishes.
 
 ## Backup and Recovery Flow
 
@@ -158,7 +160,7 @@ Backup layers:
 
 - Git commits or tags for code and documentation checkpoints.
 - GitHub Actions repository snapshot artifacts from `Backup Repository Snapshot`.
-- `achievements-json-before-sync-*` artifacts from scheduled achievements sync runs.
+- `achievements-json-before-sync-*` artifacts from manual achievements sync runs.
 - Vercel deployment rollback for production deployment recovery.
 - Cloudinary restore tools for activity media when available.
 
@@ -170,7 +172,6 @@ Run a monthly restore drill by verifying the latest repository snapshot artifact
 
 The following content is still embedded in Astro files:
 
-- News: `src/components/News.astro`
 - FAQ: `src/pages/faq.astro`
 - Members: `src/pages/members.astro`
 
@@ -179,7 +180,7 @@ For long-term maintenance, migrate these into `src/data/` gradually in separate 
 ## Files That Usually Need Extra Care
 
 - `.env`: never print or edit secrets.
-- `scripts/fetchAchievements.js`: do not run unless explicitly requested or inside the approved scheduled workflow.
+- `scripts/fetchAchievements.js`: do not run unless explicitly requested or inside the approved manual workflow. Keep TLS certificate verification enabled; investigate certificate failures instead of bypassing verification.
 - `src/data/achievements.json`: changes affect achievements page and homepage stats.
 - `src/pages/activities.astro` and `src/pages/activities/[id].astro`: preserve Cloudinary API logic unless explicitly scoped.
 - `src/components/Navbar.astro` and `src/layouts/BaseLayout.astro`: shared across all main pages.
@@ -191,6 +192,8 @@ For now, use a lightweight maintenance process:
 - Small scoped branch per task.
 - Build verification with `npm.cmd run build`.
 - Diff checks with `git diff --stat` and `git diff --name-status`.
+- Focused regression tests with `npm.cmd test`, and dependency checks with `npm.cmd audit` for dependency/security work.
+- After building, run `node scripts/verify-site.mjs` for all generated links/assets, IDs/ARIA targets, canonical/hreflang/social metadata, sitemap coverage, deferred players, and archived-image redirect targets.
 - Manual mobile production check after deployment.
 - Monthly backup/restore drill.
 

@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Navbar from "../../../components/Navbar.astro";
-import { newsData, type NewsItem } from "../../../data/news";
+import Footer from "../../../components/Footer.astro";
+import { newsData, prepareNewsContent, englishNewsTitles, getEnglishNewsTag, type NewsItem } from "../../../data/news";
 
 export function getStaticPaths() {
   return newsData.map((item) => ({
@@ -11,59 +12,6 @@ export function getStaticPaths() {
 }
 
 const { item } = Astro.props as { item: NewsItem };
-const englishNewsTitles: Record<string, string> = {
-  "2026-ieee-gcce-iear-excellent-demo-silver-prize": "iCPS Lab iEar Research Wins Silver Prize in the Excellent Demo Awards at IEEE GCCE 2026",
-  "2026-stanford-worlds-top-2-percent-scientists-wan-jung-chang": "Prof. Wan-Jung Chang Selected for the World's Top 2% Scientists List for the Third Consecutive Year",
-  "2026-compassion-technology-iearlm-third-place": "iCPS Lab's \"iEarLM Smart Ear Diagnosis Platform\" Wins Third Place at the 10th National Compassion Technology Innovation Competition in 2026",
-  "2026-taiwan-innotech-expo-future-tech-imirror": "iCPS Lab Invited to Taiwan Innotech Expo 2026, Showcasing Industry-Academia Collaboration in AI-Powered Smart Health",
-  "2026-gpm-ai-automation-exhibition": "iCPS Lab Award-Winning AI Automation Project Showcased at Taipei Automation 2026",
-  "2026-isocip-contest-two-honorable-mentions": "iCPS Lab Student Teams Receive Two Honorable Mentions at the 2026 Interdisciplinary SoC Contest",
-  "2026-master-defense-hsu-lai": "iCPS Lab Students Hsu Ting-Hsuan and Lai Ying-Kuan Complete Master's Thesis Defenses",
-  "2026-asia-biotech-iearlm-exhibition": "iCPS Lab Showcases iEarLM at Bio Asia-Taiwan 2026",
-  "2026-ai-automation-equipment-award-second-place": "iCPS Lab Team Wins Second Place at the 15th National AI Automation Equipment Creation Award",
-  "2026-nstc-t2-pose-three-year-project": "Prof. Wan-Jung Chang Receives Three-Year NSTC Grant for T²-Pose Near-Bed Care Sensing System",
-  "2026-consumer-electronics-contribution-award": "Prof. Wan-Jung Chang Receives Outstanding Contribution Award from Taiwan Consumer Electronics Society (TCES)",
-  "2026-nstc-undergrad-project-tsai-yiming": "iCPS Lab Undergraduate Student Yi-Ming Tsai Receives NSTC Student Research Grant",
-  "2026-medical-taiwan-ai-surgical-instrument-recognition": "iCPS Lab Showcases AI Surgical Instrument Recognition at Medical Taiwan 2026",
-  "2026-international-nursing-summit-indonesia": "Prof. Wan-Jung Chang Joins International Nursing Summit 2026 in Bandung, Indonesia",
-  "2026-icme-ai-surgical-instrument-award": "iCPS Lab Receives Excellent Poster Submission Recognition at ICME 2026",
-  "2026-itaoi-honorable-mention": "iCPS Lab Receives Honorable Mention at ITAOI 2026",
-  "2026-neihu-vocational-school-visit": "Neihu Vocational School Visits iCPS Lab",
-  "2026-atlife-expo-ai-care": "AI Care Technologies Showcased at the 2026 ATLife Expo",
-  "2026-student-project-competition-second-place": "Student Project Team Wins Second Place in National Competition",
-  "2026-ustv-ai-smart-glasses-report": "USTV Features iCPS Lab AI Smart Glasses Research",
-  "2026-ustv-ar-glasses-tof-interview": "USTV Interview on AR Glasses and ToF Applications",
-  "2026-student-project-competition-finalist": "Student Project Team Selected as National Competition Finalist",
-  "2026-japan-patent-tongue-rehabilitation": "Japan Patent Granted for Tongue Rehabilitation Game Platform",
-  "2026-icct-pacific-papers": "iCPS Lab Presents Papers at ICCT-Pacific 2026",
-  "2026-dsp-competition-celebration": "DSP Competition Celebration",
-  "2026-website-launch": "iCPS Lab Website Launch",
-  "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
-};
-const getEnglishNewsTag = (slug: string) => {
-  if (slug === "2026-ieee-gcce-iear-excellent-demo-silver-prize") return "Award";
-  if (slug.includes("worlds-top-2-percent-scientists")) return "Academic Honor";
-  if (slug.includes("compassion-technology")) return "Competition";
-  if (slug.includes("taiwan-innotech-expo")) return "Exhibition";
-  if (slug.includes("gpm-ai-automation")) return "Exhibition";
-  if (slug.includes("isocip")) return "Competition";
-  if (slug.includes("master-defense")) return "Academic";
-  if (slug.includes("asia-biotech")) return "Exhibition";
-  if (slug.includes("ai-automation-equipment-award")) return "Competition";
-  if (slug.includes("nstc-t2-pose")) return "Research Grant";
-  if (slug.includes("contribution-award")) return "Award";
-  if (slug.includes("nstc-undergrad-project")) return "Student Honor";
-  if (slug.includes("medical-taiwan")) return "Exhibition";
-  if (slug.includes("nursing-summit")) return "International";
-  if (slug.includes("icme") || slug.includes("itaoi")) return "Award";
-  if (slug.includes("neihu")) return "Visit";
-  if (slug.includes("atlife")) return "Exhibition";
-  if (slug.includes("competition") || slug.includes("dsp")) return "Competition";
-  if (slug.includes("ustv")) return "Media";
-  if (slug.includes("patent")) return "Patent";
-  if (slug.includes("icct")) return "Publication";
-  return "Announcement";
-};
 const displayTitle = englishNewsTitles[item.slug] ?? item.title;
 const displayTag = getEnglishNewsTag(item.slug);
 const displayContent = item.contentEn ?? item.content;
@@ -73,7 +21,7 @@ const description = `${item.date} - ${displayTitle}`;
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900";
 ---
 
-<BaseLayout title={title} description={description} bodyClass={bodyClass} lang="en">
+<BaseLayout title={title} description={description} bodyClass={bodyClass} image={item.img} imageAlt={displayImgAlt} type="article" publishedTime={item.date.replaceAll(".", "-")} lang="en">
   <Fragment slot="head">
     <style is:global>
       .news-detail-content > div > :first-child {
@@ -105,7 +53,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           <div class="lg:col-span-7">
             <div class="flex flex-wrap items-center gap-3 mb-6">
-              <time class="text-blue-200 font-mono text-sm tracking-tight">{item.date}</time>
+              <time datetime={item.date.replaceAll(".", "-")} class="text-blue-200 font-mono text-sm tracking-tight">{item.date}</time>
               <span class={`px-2.5 py-1 text-xs font-bold rounded-sm border bg-white ${item.tagTheme}`}>{displayTag}</span>
               {item.isPinned && (
                 <span class="px-2 py-0.5 text-[11px] font-bold text-red-200 bg-red-500/15 border border-red-300/30 rounded">Pinned</span>
@@ -171,85 +119,12 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <p class="mt-2 text-slate-700">{displayTitle}</p>
               </div>
             )}
-            <div set:html={displayContent}></div>
+            <div set:html={prepareNewsContent(displayContent, "en", displayTitle)}></div>
           </div>
         </section>
       </div>
     </article>
   </main>
 
-  <footer class="bg-[#0f172a] py-16 mt-auto border-t border-slate-800 relative z-20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-      <div class="md:w-1/2">
-        <img src="/images/footer-logo.webp" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
-        <p class="text-sm text-blue-400 font-medium mb-4">Intelligent Cyber-Physical Systems Laboratory</p>
-        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-          Intelligent Cyber-Physical Systems Laboratory <br/>
-          National Kaohsiung University of Science and Technology (NKUST)
-        </p>
-      </div>
-      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
-        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Location</span> National Kaohsiung University of Science and Technology, Jiangong Campus</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Tel</span> 07-3814526 ext. 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Email</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
-      </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-        <p class="text-xs text-slate-500 leading-normal">
-          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
-        </p>
-        <p class="text-xs text-slate-500 hidden sm:block">|</p>
-        <p class="text-xs text-slate-500">All rights reserved.</p>
-      </div>
-      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
-        <span class="text-xs text-slate-400 font-medium tracking-wide">Total visits</span>
-        <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">Loading...</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const initCounter = async () => {
-        const counterEl = document.getElementById('visitor-count');
-        if (!counterEl) return;
-        const namespace = 'icpslab_site', key = 'visits';
-        const localCountKey = 'icps_saved_count', lastVisitTimeKey = 'icps_last_visit_time';
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-        let currentCount = localStorage.getItem(localCountKey) || '------';
-        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
-        const now = Date.now();
-        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
-        try {
-          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          if (!hasVisitedWithin24Hours) {
-            const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API error');
-            const data = await response.json();
-            currentCount = String(data.count).padStart(6, '0');
-            localStorage.setItem(lastVisitTimeKey, now.toString());
-            localStorage.setItem(localCountKey, currentCount);
-          } else {
-            try {
-              const r = await fetch(url);
-              if (r.ok) {
-                const d = await r.json();
-                currentCount = String(d.count).padStart(6, '0');
-                localStorage.setItem(localCountKey, currentCount);
-              }
-            } catch {}
-          }
-        } catch {}
-        counterEl.textContent = currentCount;
-      };
-      initCounter();
-    });
-  </script>
+  <Footer lang="en" margin="auto" campus="National Kaohsiung University of Science and Technology, Jiangong Campus" phone="07-3814526 ext. 15672" />
 </BaseLayout>

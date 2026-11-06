@@ -1,5 +1,6 @@
 ﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import Footer from "../../components/Footer.astro";
 import Navbar from "../../components/Navbar.astro";
 import PageHero from "../../components/PageHero.astro";
 import achievements from "../../data/achievements.json";
@@ -88,7 +89,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     <div class="max-w-7xl mx-auto px-6 py-8">
       <div class="max-w-4xl relative group">
         <div class="absolute inset-y-0 left-0 pl-5 flex items-center pointer-events-none"><svg class="h-5 w-5 text-slate-400 group-focus-within:text-blue-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg></div>
-        <input type="text" id="search-input" class="block w-full pl-14 pr-12 py-4 bg-white text-slate-900 placeholder-slate-400 border border-white/40 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-400/30 focus:border-blue-300 transition-all duration-300 shadow-xl shadow-slate-950/20" placeholder="Search by paper title, author, award, year, or project...">
+        <input type="text" id="search-input" aria-label="Search achievements" class="block w-full pl-14 pr-12 py-4 bg-white text-slate-900 placeholder-slate-400 border border-white/40 rounded-2xl focus:outline-none focus:ring-4 focus:ring-blue-400/30 focus:border-blue-300 transition-all duration-300 shadow-xl shadow-slate-950/20" placeholder="Search by paper title, author, award, year, or project...">
         <button id="clear-search" class="absolute inset-y-0 right-0 pr-5 flex items-center hidden text-slate-400 hover:text-slate-700 transition" aria-label="Clear search"><svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>
       </div>
     </div>
@@ -107,7 +108,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                   return (
                     <>
                       {group.section && (<div class={`${index !== 0 ? 'lg:mt-5' : ''} px-1 flex-shrink-0 lg:w-full hidden lg:block`}><h2 class="text-[11px] font-black text-slate-400 tracking-widest uppercase border-b border-slate-100 pb-2">{getAchievementSectionLabel(index, group.section)}</h2></div>)}
-                      <button class={`tab-btn flex-shrink-0 lg:w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-200 border ${index === 0 ? 'is-active bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-600/20' : 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-800 border-slate-200'}`} data-target={`category-${index}`}>
+                      <button class={`tab-btn flex-shrink-0 lg:w-full text-left px-4 py-3 rounded-2xl text-sm font-bold transition-all duration-200 border ${index === 0 ? 'is-active bg-blue-600 text-white border-blue-600 shadow-lg shadow-blue-600/20' : 'bg-white text-slate-600 hover:bg-blue-50 hover:text-blue-800 border-slate-200'}`} data-target={`category-${index}`} aria-controls={`category-${index}`} aria-pressed={index === 0 ? "true" : "false"}>
                         <div class="flex items-center justify-between gap-4"><span class="whitespace-nowrap lg:whitespace-normal">{getAchievementCategoryLabel(index, group.category)}</span><span class="tab-count inline-flex items-center justify-center rounded-full min-w-7 h-7 px-2 text-xs bg-slate-100 text-slate-500">{totalItems}</span></div>
                       </button>
                     </>
@@ -122,7 +123,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
         </aside>
         <section class="lg:col-span-9" id="content-area" data-rv="up">
-          <div id="no-results-msg" class="hidden text-center py-16 px-6 bg-white rounded-3xl border border-dashed border-slate-300 shadow-sm"><div class="mx-auto w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4"><svg class="h-8 w-8 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div><h3 class="text-lg font-bold text-slate-800 mb-2">No matching records found</h3><p class="text-slate-500">Try another keyword, year, author, project name, or category.</p></div>
+          <div id="no-results-msg" role="status" class="hidden text-center py-16 px-6 bg-white rounded-3xl border border-dashed border-slate-300 shadow-sm"><div class="mx-auto w-16 h-16 rounded-full bg-slate-100 flex items-center justify-center mb-4"><svg class="h-8 w-8 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg></div><h3 class="text-lg font-bold text-slate-800 mb-2">No matching records found</h3><p class="text-slate-500">Try another keyword, year, author, project name, or category.</p></div>
           <div id="groups-container">
             {achievements.map((group, groupIndex) => (
               <div id={`category-${groupIndex}`} class={`category-group fade-in ${groupIndex === 0 ? 'is-active' : ''}`}>
@@ -136,7 +137,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <div class="space-y-5">
                   {group.yearlyData.map((yearBlock, yearIndex) => (
                     <div class="year-block bg-white rounded-[1.5rem] border border-slate-200 overflow-hidden shadow-sm">
-                      <button class="year-toggle-btn w-full flex items-center justify-between px-5 sm:px-6 py-4 bg-white hover:bg-slate-50 transition-colors group" data-target={`year-content-${groupIndex}-${yearIndex}`}>
+                      <button class="year-toggle-btn w-full flex items-center justify-between px-5 sm:px-6 py-4 bg-white hover:bg-slate-50 transition-colors group" data-target={`year-content-${groupIndex}-${yearIndex}`} aria-controls={`year-content-${groupIndex}-${yearIndex}`} aria-expanded={yearIndex === 0 ? "true" : "false"}>
                         <div class="flex items-center gap-3 min-w-0"><span class="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-slate-900 text-white text-sm font-black tracking-wider font-mono shadow-sm group-hover:bg-blue-600 transition-colors shrink-0">{yearBlock.year}</span><div class="text-left min-w-0"><div class="text-slate-900 font-black">{yearBlock.year} Achievements</div><div class="text-slate-400 text-xs font-bold tracking-widest uppercase mt-0.5">{yearBlock.items.length} records</div></div></div>
                         <svg class={`w-5 h-5 text-slate-400 transition-transform duration-300 ${yearIndex === 0 ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
                       </button>
@@ -183,42 +184,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     </div>
   </main>
 
-<footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-      <div class="md:w-1/2">
-        <img src="/images/footer-logo.webp" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
-        <p class="text-sm text-blue-400 font-medium mb-4">Intelligent Cyber-Physical Systems Laboratory</p>
-        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-          Intelligent Cyber-Physical Systems Laboratory <br/>
-          National Kaohsiung University of Science and Technology (NKUST)
-        </p>
-      </div>
-      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
-        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Location</span> National Kaohsiung University of Science and Technology, Jiangong Campus</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Tel</span> 07-3814526 ext. 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">Email</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
-      </div>
-    </div>
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-        <p class="text-xs text-slate-500 leading-normal">
-          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
-        </p>
-        <p class="text-xs text-slate-500 hidden sm:block">|</p>
-        <p class="text-xs text-slate-500">All rights reserved.</p>
-      </div>
-      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
-        <span class="text-xs text-slate-400 font-medium tracking-wide">Total visits</span>
-        <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">Loading...</span>
-      </div>
-    </div>
-  </footer>
+<Footer lang="en" phone="07-3814526 ext. 15672" />
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
@@ -233,6 +199,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
       const setTabActiveStyle = (targetId) => {
         tabBtns.forEach(btn => {
           const active = btn.getAttribute('data-target') === targetId;
+          btn.setAttribute('aria-pressed', String(active));
           btn.classList.toggle('is-active', active);
           btn.classList.toggle('bg-blue-600', active);
           btn.classList.toggle('text-white', active);
@@ -270,6 +237,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         if (searchTerm === '') {
           clearSearchBtn.classList.add('hidden');
           sidebar.classList.remove('opacity-50', 'pointer-events-none');
+          tabBtns.forEach(btn => { (btn as HTMLButtonElement).disabled = false; });
           noResultsMsg.classList.add('hidden');
           document.querySelectorAll('.year-block').forEach(block => block.classList.remove('hidden'));
           document.querySelectorAll('.achievement-item').forEach(item => item.classList.remove('hidden'));
@@ -278,6 +246,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         }
         clearSearchBtn.classList.remove('hidden');
         sidebar.classList.add('opacity-50', 'pointer-events-none');
+        tabBtns.forEach(btn => { (btn as HTMLButtonElement).disabled = true; btn.setAttribute('aria-pressed', 'false'); });
         categoryGroups.forEach(group => {
           let hasResultInGroup = false;
           const yearBlocks = group.querySelectorAll('.year-block');
@@ -295,6 +264,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
               const content = block.querySelector('.year-content');
               const icon = block.querySelector('.year-toggle-btn svg');
               if (content) content.classList.remove('hidden');
+              block.querySelector('.year-toggle-btn')?.setAttribute('aria-expanded', 'true');
               if (icon) icon.classList.add('rotate-180');
             }
           });
@@ -315,6 +285,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           if (!content) return;
           const shouldHide = !content.classList.contains('hidden');
           content.classList.toggle('hidden', shouldHide);
+          btn.setAttribute('aria-expanded', String(!shouldHide));
           if (icon) icon.classList.toggle('rotate-180', !shouldHide);
         });
       });
@@ -324,40 +295,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
       }, { threshold: .12, rootMargin: '0px 0px -40px 0px' });
       document.querySelectorAll('[data-rv]').forEach(el => revealObs.observe(el));
 
-      const initCounter = async () => {
-        const counterEl = document.getElementById('visitor-count');
-        if (!counterEl) return;
-        const namespace = 'icpslab_site', key = 'visits', localCountKey = 'icps_saved_count', lastVisitTimeKey = 'icps_last_visit_time';
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-        let currentCount = localStorage.getItem(localCountKey) || '------';
-        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
-        const now = Date.now();
-        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
-        try {
-          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          if (!hasVisitedWithin24Hours) {
-            const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API response error');
-            const data = await response.json();
-            currentCount = String(data.count).padStart(6, '0');
-            localStorage.setItem(lastVisitTimeKey, now.toString());
-            localStorage.setItem(localCountKey, currentCount);
-          } else {
-            try {
-              const response = await fetch(url);
-              if (response.ok) {
-                const data = await response.json();
-                currentCount = String(data.count).padStart(6, '0');
-                localStorage.setItem(localCountKey, currentCount);
-              }
-            } catch (e) {}
-          }
-          counterEl.textContent = currentCount;
-        } catch (error) {
-          counterEl.textContent = currentCount;
-        }
-      };
-      initCounter();
+
     });
   </script>
 </BaseLayout>

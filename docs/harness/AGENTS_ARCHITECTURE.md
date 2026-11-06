@@ -48,7 +48,7 @@ Some content is still embedded in Astro files. This is intentional for now; do n
 
 | Content area | Current location | Owning agent |
 | --- | --- | --- |
-| News | `src/components/News.astro` | News Agent |
+| News | `src/data/news.ts`, rendered by `src/components/News.astro` and detail routes | News Agent |
 | FAQ | `src/pages/faq.astro` | FAQ Agent |
 | Members | `src/pages/members.astro` | Members Agent |
 | Achievements | `src/data/achievements.json` | Achievements Agent |
@@ -61,7 +61,7 @@ Some content is still embedded in Astro files. This is intentional for now; do n
 
 Recommended future migrations:
 
-- Move news items from `src/components/News.astro` to `src/data/news.json` or `src/data/news.ts`.
+- News records already live in `src/data/news.ts`; keep list and detail presentation metadata synchronized there.
 - Move FAQ entries from `src/pages/faq.astro` to `src/data/faq.json` or `src/data/faq.ts`.
 - Move members data from `src/pages/members.astro` to `src/data/members.json` or `src/data/members.ts`.
 - Consider structured SEO metadata in `src/data/seo.ts` after page metadata stabilizes.

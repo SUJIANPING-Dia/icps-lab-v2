@@ -1,0 +1,11 @@
+{
+  "redirects": [
+    { "source": "/images/kneeeye-full.png", "destination": "/images/kneeeye-display.webp", "permanent": true },
+    { "source": "/images/pigview-full.png", "destination": "/images/pigview-display.webp", "permanent": true },
+    { "source": "/images/iear-full.png", "destination": "/images/iear-display.webp", "permanent": true },
+    { "source": "/images/inoodle-full.png", "destination": "/images/inoodle-display.webp", "permanent": true },
+    { "source": "/images/tofpose-full.png", "destination": "/images/tofpose-display.webp", "permanent": true },
+    { "source": "/images/gaitmirror-full.png", "destination": "/images/gaitmirror-display.webp", "permanent": true },
+    { "source": "/images/hero-bg-4.png", "destination": "/images/hero-bg-4.webp", "permanent": true }
+  ]
+}

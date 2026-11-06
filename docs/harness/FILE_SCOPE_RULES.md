@@ -238,7 +238,7 @@ Forbidden:
 
 ## Long-Term Data Migration Note
 
-News, FAQ, and Members are still embedded in `.astro` files. Long-term maintenance would improve if they are gradually migrated to `src/data/`, but that migration must be a separate explicit task. Do not perform data migration during ordinary content updates.
+News and video records already live in `src/data/news.ts` and `src/data/videos.ts`. FAQ and Members remain embedded in `.astro` files. Their migration must be a separate explicit task; do not combine it with ordinary content updates.
 
 ## Out-of-Scope Rule
 

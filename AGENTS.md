@@ -9,11 +9,11 @@ The main pages now share:
 - `src/layouts/BaseLayout.astro`
 - `src/components/Navbar.astro`
 
-The achievements content is data-driven through `src/data/achievements.json`. News, FAQ, and Members content are still embedded in `.astro` files and should be migrated to `src/data/` only as a separate explicit future task.
+Achievements, news, and videos are data-driven through `src/data/achievements.json`, `src/data/news.ts`, and `src/data/videos.ts`. FAQ and Members content remain embedded in `.astro` files; migrate them only as a separate explicit task.
 
 ## Tech Stack
 
-- Astro 6
+- Astro 7 on Node.js 24.x
 - Tailwind CSS 3
 - PostCSS with Autoprefixer
 - Vanilla browser JavaScript inside `.astro` pages/components
@@ -115,7 +115,7 @@ If `.codex/agents/*.toml`, `docs/harness/*.md`, or an agent playbook conflicts w
 ## Content Management Rules
 
 - Prefer structured data files in `src/data` for repeatable content.
-- Good future data-file candidates: site navigation, footer contact information, members, FAQ, news, videos, homepage featured works, hero slides, and research cards.
+- Good future data-file candidates: site navigation, members, FAQ, homepage featured works, hero slides, and research cards. News and videos already use `src/data/`.
 - Keep page files focused on rendering and composition.
 - Preserve Traditional Chinese copy unless the user asks for rewriting or translation.
 - Do not run content scraping scripts unless explicitly requested or inside approved automation.
@@ -172,6 +172,8 @@ If `.codex/agents/*.toml`, `docs/harness/*.md`, or an agent playbook conflicts w
 - Start local development server: `npm run dev`
 - Build production site: `npm run build`
 - Preview production build: `npm run preview`
+- Run focused regression tests: `npm test`
+- Check dependency advisories: `npm audit`
 - Astro CLI passthrough: `npm run astro -- --help`
 
 ## Harness Documents

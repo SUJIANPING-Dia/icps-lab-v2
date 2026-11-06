@@ -7,6 +7,10 @@ interface Props {
   bodyClass?: string;
   htmlClass?: string;
   lang?: string;
+  image?: string;
+  imageAlt?: string;
+  type?: "website" | "article";
+  publishedTime?: string;
 }
 
 const {
@@ -15,7 +19,25 @@ const {
   lang = "zh-TW",
   htmlClass = "scroll-smooth",
   bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative",
+  image = "/images/activity-banner.jpg",
+  imageAlt,
+  type = "website",
+  publishedTime,
 } = Astro.props;
+
+const isEnglish = lang.startsWith("en");
+const siteUrl = Astro.site ?? new URL("https://icps-lab.com");
+// Keep canonical and language-alternate URLs consistent without changing routes.
+const pathname = Astro.url.pathname.replace(/\/+$/, "") || "/";
+const canonicalUrl = new URL(pathname, siteUrl).href;
+const chinesePath = pathname.replace(/^\/en(?=\/|$)/, "") || "/";
+const chineseUrl = new URL(chinesePath, siteUrl).href;
+const englishUrl = new URL(`/en${chinesePath === "/" ? "" : chinesePath}`, siteUrl).href;
+const pageDescription = description || (isEnglish
+  ? "iCPS Lab at National Kaohsiung University of Science and Technology: AIoT, edge AI, smart healthcare, and smart manufacturing research."
+  : "國立高雄科技大學 iCPS Lab 智慧網宇實體系統實驗室，聚焦 AIoT、邊緣 AI、智慧醫療與智慧製造研究。");
+const imageUrl = new URL(image || "/images/activity-banner.jpg", siteUrl).href;
+const socialImageAlt = imageAlt || (isEnglish ? "iCPS Lab group activity" : "iCPS Lab 實驗室活動合影");
 ---
 
 <html lang={lang} class={htmlClass}>
@@ -24,7 +46,32 @@ const {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/png" href="/images/lab-logo.png" />
     <title>{title}</title>
-    {description && <meta name="description" content={description} />}
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="alternate" hreflang="zh-TW" href={chineseUrl} />
+    <link rel="alternate" hreflang="en" href={englishUrl} />
+    <link rel="alternate" hreflang="x-default" href={chineseUrl} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:site_name" content="iCPS Lab" />
+    <meta property="og:type" content={type} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:locale" content={isEnglish ? "en_US" : "zh_TW"} />
+    <meta property="og:locale:alternate" content={isEnglish ? "zh_TW" : "en_US"} />
+    <meta property="og:image" content={imageUrl} />
+    <meta property="og:image:alt" content={socialImageAlt} />
+    {type === "article" && publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={imageUrl} />
+    <meta name="twitter:image:alt" content={socialImageAlt} />
+    <noscript>
+      <style is:global>
+        [data-reveal], [data-rv], .rv { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
     <slot name="head" />
   </head>
 

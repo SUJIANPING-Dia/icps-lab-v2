@@ -1,16 +1,14 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import https from 'https';
 import fs from 'fs';
 import path from 'path';
 
 const targetUrl = 'https://ec.nkust.edu.tw/p/404-1122-98302.php?Lang=zh-tw';
-const agent = new https.Agent({ rejectUnauthorized: false });
 
 async function scrapeData() {
   try {
     console.log('⏳ 正在同步原始資料...');
-    const response = await axios.get(targetUrl, { httpsAgent: agent });
+    const response = await axios.get(targetUrl, { timeout: 30_000 });
     const html = response.data;
     const $ = cheerio.load(html);
     
@@ -109,6 +107,7 @@ async function scrapeData() {
     console.log(`✅ 同步完成！`);
   } catch (error) { 
     console.error('❌', error.message); 
+    process.exitCode = 1;
   }
 }
 

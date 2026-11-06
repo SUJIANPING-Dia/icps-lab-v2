@@ -1,43 +1,48 @@
-# Astro Starter Kit: Minimal
+# iCPS Lab website
+
+The bilingual iCPS Lab website at [icps-lab.com](https://icps-lab.com), built as an Astro static site and deployed on Vercel. Activity albums come from Cloudinary at build time; committed images are served from `public/images`.
+
+## Development
+
+Use Node.js **24.x**, matching `.nvmrc`, `package.json`, and the achievements workflow. On Windows use `npm.cmd` if PowerShell blocks the npm script shim.
 
 ```sh
-npm create astro@latest -- --template minimal
+npm ci
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+| Command | Purpose |
+| --- | --- |
+| `npm run build` | Generate the production site in `dist/` |
+| `npm run preview` | Serve the latest production build locally |
+| `npm test` | Run focused regression checks |
+| `npm audit` | Check dependency advisories |
+| `node scripts/verify-site.mjs` | Check all built routes, local assets, metadata, sitemap and ARIA references |
 
-## 🚀 Project Structure
+Builds that include activity albums need the existing Cloudinary credentials in the environment. Obtain them through the maintainer's private configuration process. Never commit, print, or copy `.env` into reports or backups. A preview is local; it does not update production.
 
-Inside of your Astro project, you'll see the following folders and files:
+## Where to edit
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+| Area | Source |
+| --- | --- |
+| Pages and English counterparts | `src/pages/`, `src/pages/en/` |
+| Shared document and metadata | `src/layouts/BaseLayout.astro` |
+| Shared navigation and UI | `src/components/` |
+| News and bilingual presentation metadata | `src/data/news.ts` |
+| Achievements and derived statistics | `src/data/achievements.json` |
+| Video records | `src/data/videos.ts` |
+| FAQ and member records | Their respective `.astro` pages |
+| Static images | `public/images/` |
+| Global styles | `src/styles/` |
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Maintain Traditional Chinese source copy and existing formal names. Do not run the achievements scraper as part of an ordinary build or UI check.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Maintenance and release
 
-Any static assets, like images, can be placed in the `public/` directory.
+Read [AGENTS.md](AGENTS.md) and [MAINTENANCE.md](MAINTENANCE.md) before changes. Site Manager assigns content/UI work to the appropriate specialist; QA Release Agent validates builds and handles authorized releases.
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Achievements sync is **manual-only**. Use the [sync harness](docs/harness/ACHIEVEMENTS_SYNC.md); generated run reports belong on `automation-reports`, not `main`.
+- Cloudinary updates require a rebuilt deployment. Follow the [redeploy harness](docs/harness/CLOUDINARY_VERCEL_REDEPLOY.md) after uploads are complete and redeployment is requested.
+- Before major changes, create and verify a checkpoint following [backup and recovery](docs/harness/BACKUP_RECOVERY.md). Repository snapshots run weekly and on manual dispatch; artifacts are retained for 90 days.
+- Keep local reports/backups in ignored `reports/`. Do not commit `dist/`, `.astro/`, `node_modules/`, credentials, or deployment hooks.
+- A successful local build is a release prerequisite. Publishing is a separate authorized action under the [release checklist](docs/harness/RELEASE_CHECKLIST.md).

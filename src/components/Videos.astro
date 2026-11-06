@@ -3,55 +3,47 @@ import { videos } from "../data/videos";
 
 interface Props {
   lang?: "zh" | "en";
+  sectionId?: string;
 }
 
-const { lang = "zh" } = Astro.props;
+const { lang = "zh", sectionId = "videos" } = Astro.props;
 const isEnglish = lang === "en";
 const sectionTitle = isEnglish ? "Media" : "影音專區";
 const sectionSubtitle = "Featured Videos";
-const englishVideoTitles: Record<string, string> = {
-  "7-TLPOKCebc": "iMirror Gait Analysis + Physical Fitness Detection Demo",
-  "zmEHOqSvDPE": "Will AI Rule Humanity? Get an Early Look at Future Tech at TIE | Liu Pei Vlog",
-  "G5AQFzzx2No": "Future Tech 2026: GaitMirror Technology Presentation",
-  "ou1L5Okv2eA": "Sanlih News: iCPS Lab AI Surgical Instrument Recognition at Medical Taiwan 2026",
-  "CWx9cUO4ym0": "2026 International Conference on Medical Education | NKUST iCPS Lab",
-  "FYVEmAv1t38": "iCPS Lab Research Video 1",
-  "x6QEfvkknOM": "iCPS Lab Research Video 2",
-  "1LYw3fPlm5s": "iCPS Lab Research Video 3",
-};
-const getDisplayTitle = (youtubeId: string, fallback: string) => isEnglish ? (englishVideoTitles[youtubeId] ?? fallback) : fallback;
+const getDisplayTitle = (video: typeof videos[number]) => isEnglish ? video.titleEn ?? video.title : video.title;
 ---
 
-<section id="videos" class="scroll-mt-24">
+<section id={sectionId} class="scroll-mt-24">
   <!-- 標題區塊 -->
-  <div class="flex items-center gap-4 mb-10">
+  <div class="flex flex-wrap items-center gap-4 mb-10">
     <h2 class="text-3xl font-bold text-slate-800 tracking-tight">{sectionTitle}</h2>
     <div class="h-px flex-1 bg-slate-200"></div>
-    <span class="text-sm font-semibold text-blue-600 tracking-widest uppercase">{sectionSubtitle}</span>
+    <span class="text-sm font-semibold text-blue-600 tracking-widest uppercase hidden sm:inline">{sectionSubtitle}</span>
   </div>
 
   <!-- 影片網格區塊：設定 lg:grid-cols-3 讓大螢幕一排顯示 3 個 -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
     {videos.map((video) => (
-      <!-- 單純的影片外框，保留圓角與微微的陰影效果 -->
       <div class="rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-300 bg-slate-100">
-        
+        <!-- 保留影片外框的圓角與陰影。 -->
         <!-- 16:9 完美比例的 YouTube 嵌入框 -->
         <div class="aspect-video relative">
-          <iframe
-            class="absolute inset-0 w-full h-full"
-            src={`https://www.youtube.com/embed/${video.youtubeId}`}
-            title={getDisplayTitle(video.youtubeId, video.title)}
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-          ></iframe>
+          <a
+            class="absolute inset-0 w-full h-full flex items-center justify-center overflow-hidden bg-slate-950 text-white"
+            href={`https://www.youtube.com/watch?v=${video.youtubeId}`}
+            data-video-trigger
+            data-video-src={`https://www.youtube.com/embed/${video.youtubeId}`}
+            data-video-title={getDisplayTitle(video)}
+            data-video-class="absolute inset-0 w-full h-full"
+            aria-label={`${isEnglish ? "Play video" : "播放影片"}: ${getDisplayTitle(video)}`}
+          >
+            <img src={`https://i.ytimg.com/vi/${video.youtubeId}/hqdefault.jpg`} alt="" width="480" height="360" loading="lazy" decoding="async" class="absolute inset-0 w-full h-full object-cover opacity-60" />
+            <span class="relative z-10 rounded-full bg-slate-950/90 px-5 py-3 text-sm font-bold"><span aria-hidden="true">▶ </span>{isEnglish ? "Play video" : "播放影片"}</span>
+          </a>
         </div>
-        {isEnglish && (
-          <div class="p-4 bg-white border-t border-slate-200">
-            <h3 class="text-sm font-bold text-slate-800 leading-snug">{getDisplayTitle(video.youtubeId, video.title)}</h3>
-          </div>
-        )}
+        <div class="p-4 bg-white border-t border-slate-200">
+          <h3 class="text-sm font-bold text-slate-800 leading-snug">{getDisplayTitle(video)}</h3>
+        </div>
       </div>
     ))}
   </div>

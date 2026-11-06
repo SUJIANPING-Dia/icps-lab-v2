@@ -1,6 +1,7 @@
 ﻿---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
 
 // 🔷 第一步：動態生成所有相簿頁面的路徑
 export async function getStaticPaths() {
@@ -72,17 +73,29 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 <BaseLayout title={title} description={description} bodyClass={bodyClass}>
   <Fragment slot="head">
     <style is:global>
-    /* 🔷 放大燈箱的 CSS 樣式 */
+    /* Native dialog keeps background content outside the keyboard focus order. */
     #lightbox-overlay {
-      display: none;
       position: fixed;
       inset: 0;
-      background-color: rgba(0, 0, 0, 0.9);
-      z-index: 9999;
+      width: 100vw;
+      height: 100dvh;
+      max-width: none;
+      max-height: none;
+      margin: 0;
+      border: 0;
+      background: transparent;
       cursor: zoom-out;
+      padding: 64px 20px 20px;
+    }
+
+    #lightbox-overlay[open] {
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px;
+    }
+
+    #lightbox-overlay::backdrop {
+      background: rgba(0, 0, 0, 0.9);
     }
 
     #lightbox-image {
@@ -90,13 +103,8 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
       max-height: 100%;
       border-radius: 4px;
       box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
-      transform: scale(0.9);
-      transition: transform 0.3s ease-out;
+      object-fit: contain;
       cursor: default;
-    }
-
-    #lightbox-overlay.active #lightbox-image {
-      transform: scale(1);
     }
     
     /* 禁止滾動的輔助樣式 */
@@ -142,16 +150,24 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     <!-- 📷 網格顯示所有照片 (加上點擊放大的標記) -->
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
       {photos.length > 0 ? (
-        photos.map((img) => (
-          <div class="aspect-[4/3] rounded-md overflow-hidden shadow-sm border border-slate-200 bg-white group cursor-zoom-in gallery-item">
+        photos.map((img, index) => (
+          <button
+            type="button"
+            class="aspect-[4/3] rounded-md overflow-hidden shadow-sm border border-slate-200 bg-white group cursor-zoom-in gallery-item"
+            data-full={img.full}
+            data-photo-alt={`${id} 活動照片 ${index + 1}`}
+            aria-label={`放大 ${id} 活動照片 ${index + 1}`}
+            aria-haspopup="dialog"
+            aria-controls="lightbox-overlay"
+          >
             <img 
               src={img.thumb} 
-              data-full={img.full}
-              alt="活動照片" 
+              alt={`${id} 活動照片 ${index + 1}`}
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 gallery-img" 
-              loading="lazy" 
+              loading="lazy"
+              decoding="async"
             />
-          </div>
+          </button>
         ))
       ) : (
         <div class="col-span-full text-center py-20">
@@ -162,87 +178,52 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   </main>
 
   <!-- 🔷 燈箱元件 (Lightbox Overlay) -->
-  <div id="lightbox-overlay" aria-hidden="true">
-    <img id="lightbox-image" src="" alt="放大照片" />
-  </div>
+  <dialog id="lightbox-overlay" aria-labelledby="lightbox-title">
+    <h2 id="lightbox-title" class="sr-only">{id} 相簿照片</h2>
+    <button id="lightbox-close" type="button" class="absolute top-4 right-4 rounded-lg border border-white/60 bg-slate-900 px-4 py-2 font-semibold text-white hover:bg-slate-700 cursor-pointer" autofocus>關閉照片 ×</button>
+    <img id="lightbox-image" alt="放大照片" decoding="async" />
+  </dialog>
 
-  <!-- 🔷 頁尾 (Footer) -->
-  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-      <div class="md:w-1/2">
-        <img src="/images/footer-logo.webp" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" />
-        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
-        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-          Intelligent Cyber-Physical Systems Laboratory <br/>
-          國立高雄科技大學 (NKUST)
-        </p>
-      </div>
-      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
-        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span>📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span>📞</span> 07-3814526 分機 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span>✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
-      </div>
-    </div>
-    
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      <p class="text-xs text-slate-500 text-center lg:text-left">
-        &copy; 2026 iCPS Lab, National Kaohsiung University of Science and Technology. All rights reserved.
-      </p>
+  <!-- 共用頁尾包含經驗證的造訪計數器。 -->
+  <Footer lang="zh" />
 
-      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
-        <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
-      </div>
-    </div>
-  </footer>
-
-  <!-- 🔷 燈箱互動邏輯與計數器 -->
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      // --- 1. 燈箱放大邏輯 (保留原樣) ---
-      const overlay = document.getElementById('lightbox-overlay');
-      const lightboxImg = document.getElementById('lightbox-image');
-      const galleryImgs = document.querySelectorAll('.gallery-img');
+    const overlay = document.querySelector<HTMLDialogElement>("#lightbox-overlay");
+    const lightboxImg = document.querySelector<HTMLImageElement>("#lightbox-image");
+    const closeButton = document.querySelector<HTMLButtonElement>("#lightbox-close");
+    let opener: HTMLButtonElement | null = null;
 
-      if (overlay && lightboxImg) {
-        galleryImgs.forEach(img => {
-          img.addEventListener('click', () => {
-            const fullUrl = img.getAttribute('data-full');
-            if (fullUrl) {
-              lightboxImg.src = fullUrl;
-              overlay.style.display = 'flex';
-              setTimeout(() => overlay.classList.add('active'), 10);
-              document.body.classList.add('no-scroll');
-            }
-          });
+    if (overlay && lightboxImg && closeButton) {
+      document.querySelectorAll<HTMLButtonElement>(".gallery-item").forEach((button) => {
+        button.addEventListener("click", () => {
+          const fullUrl = button.dataset.full;
+          if (!fullUrl || overlay.open) return;
+          opener = button;
+          lightboxImg.src = fullUrl;
+          lightboxImg.alt = button.dataset.photoAlt ?? "相簿照片";
+          overlay.showModal();
+          document.body.classList.add("no-scroll");
+          closeButton.focus();
         });
+      });
 
-        overlay.addEventListener('click', () => {
-          overlay.classList.remove('active');
-          setTimeout(() => {
-            overlay.style.display = 'none';
-            lightboxImg.src = '';
-          }, 300);
-          document.body.classList.remove('no-scroll');
-        });
-      }
-
-      // --- 2. 訪客計數器邏輯 (保留原樣) ---
-      const initCounter = async () => {
-        const counterEl = document.getElementById('visitor-count');
-        if (!counterEl) return;
-        const url = `https://api.counterapi.dev/v1/icpslab_site/visits`;
-        try {
-          const response = await fetch(url + '/up');
-          const data = await response.json();
-          counterEl.textContent = String(data.count).padStart(6, '0');
-        } catch (e) {
-          counterEl.textContent = '000000';
-        }
-      };
-      initCounter();
-    });
+      closeButton.addEventListener("click", () => overlay.close());
+      overlay.addEventListener("keydown", (event) => {
+        if (event.key !== "Tab" || !overlay.open) return;
+        // Close is the dialog's only focusable control, in either Tab direction.
+        event.preventDefault();
+        closeButton.focus();
+      });
+      overlay.addEventListener("click", (event) => {
+        if (event.target === overlay) overlay.close();
+      });
+      // The native cancel action continues to handle Escape.
+      overlay.addEventListener("close", () => {
+        document.body.classList.remove("no-scroll");
+        lightboxImg.removeAttribute("src");
+        opener?.focus({ preventScroll: true });
+        opener = null;
+      });
+    }
   </script>
 </BaseLayout>

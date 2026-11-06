@@ -1,0 +1,50 @@
+---
+import VisitorCounter from "./VisitorCounter.astro";
+import LazyVideo from "./LazyVideo.astro";
+
+interface Props {
+  lang?: "zh" | "en";
+  margin?: "spaced" | "auto";
+  subtitle?: string;
+  university?: string;
+  campus?: string;
+  phone?: string;
+}
+
+const { lang = "zh", margin = "spaced" } = Astro.props;
+const isEnglish = lang === "en";
+const subtitle = Astro.props.subtitle ?? (isEnglish ? "Intelligent Cyber-Physical Systems Laboratory" : "智慧網宇實體系統實驗室");
+const university = Astro.props.university ?? (isEnglish ? "National Kaohsiung University of Science and Technology (NKUST)" : "國立高雄科技大學 (NKUST)");
+const campus = Astro.props.campus ?? (isEnglish ? "NKUST Jiangong Campus" : "國立高雄科技大學 (建工校區)");
+const phone = Astro.props.phone ?? (isEnglish ? "+886-7-3814526 ext. 15672" : "07-3814526 分機 15672");
+---
+
+<footer class:list={["bg-[#0f172a] py-16 border-t border-slate-800 relative z-20", margin === "auto" ? "mt-auto" : "mt-12"]}>
+  <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
+    <div class="md:w-1/2">
+      <img src="/images/footer-logo.webp" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" loading="lazy" decoding="async" onerror="this.style.display='none';" />
+      <p class="text-sm text-blue-400 font-medium mb-4">{subtitle}</p>
+      <p class="text-sm text-slate-400 leading-relaxed max-w-md">
+        Intelligent Cyber-Physical Systems Laboratory <br />
+        {university}
+      </p>
+    </div>
+    <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
+      <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
+      <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500" aria-hidden="true">📍</span> {campus}</p>
+      <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500" aria-hidden="true">📞</span> {phone}</p>
+      <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500" aria-hidden="true">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
+    </div>
+  </div>
+  <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
+    <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
+      <p class="text-xs text-slate-500 leading-normal">
+        &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
+      </p>
+      <p class="text-xs text-slate-500 hidden sm:block" aria-hidden="true">|</p>
+      <p class="text-xs text-slate-500">All rights reserved.</p>
+    </div>
+    <VisitorCounter lang={lang} />
+  </div>
+</footer>
+<LazyVideo />

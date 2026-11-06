@@ -1,0 +1,48 @@
+---
+interface Props {
+  lang?: "zh" | "en";
+}
+
+const { lang = "zh" } = Astro.props;
+const isEnglish = lang === "en";
+const loading = isEnglish ? "Loading..." : "載入中...";
+const unavailable = isEnglish ? "Unavailable" : "暫時無法取得";
+---
+
+<div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
+  <svg class="w-4 h-4 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+  </svg>
+  <span class="text-xs text-slate-400 font-medium tracking-wide">{isEnglish ? "Total Visits" : "累積造訪人數"}</span>
+  <span class="text-xs text-slate-600 mx-1" aria-hidden="true">|</span>
+  <span
+    class="text-sm font-mono font-bold text-blue-400 tracking-wider"
+    id="visitor-count"
+    data-visitor-count
+    data-unavailable={unavailable}
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+  >{loading}</span>
+</div>
+
+<script>
+  import { formatVisitorCount, loadVisitorCount } from "../lib/visitor-counter.mjs";
+
+  async function updateVisitorCounters() {
+    const counters = document.querySelectorAll<HTMLElement>("[data-visitor-count]");
+    if (!counters.length) return;
+    const result = await loadVisitorCount();
+    for (const counter of counters) {
+      counter.textContent = formatVisitorCount(result.count) ?? counter.dataset.unavailable ?? "Unavailable";
+      counter.dataset.counterState = result.source;
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", updateVisitorCounters, { once: true });
+  } else {
+    updateVisitorCounters();
+  }
+</script>

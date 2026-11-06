@@ -179,9 +179,8 @@ Flow:
 
 ## 10. Long-Term Data Migration
 
-News, FAQ, and Members are still embedded in `.astro` files. Future data migration candidates:
+News and video records already use `src/data/news.ts` and `src/data/videos.ts`. Remaining data migration candidates:
 
-- `src/components/News.astro` -> `src/data/news.*`
 - `src/pages/faq.astro` -> `src/data/faq.*`
 - `src/pages/members.astro` -> `src/data/members.*`
 

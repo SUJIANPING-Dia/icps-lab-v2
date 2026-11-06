@@ -1,3 +1,5 @@
+import { load } from "cheerio";
+
 export type NewsItem = {
   isPinned?: boolean;
   slug: string;
@@ -10,6 +12,107 @@ export type NewsItem = {
   imgAltEn?: string;
   content: string;
   contentEn?: string;
+};
+
+export const englishNewsTitles: Record<string, string> = {
+  "2026-ieee-gcce-iear-excellent-demo-silver-prize": "iCPS Lab iEar Research Wins Silver Prize in the Excellent Demo Awards at IEEE GCCE 2026",
+  "2026-stanford-worlds-top-2-percent-scientists-wan-jung-chang": "Prof. Wan-Jung Chang Selected for the World's Top 2% Scientists List for the Third Consecutive Year",
+  "2026-compassion-technology-iearlm-third-place": "iCPS Lab's \"iEarLM Smart Ear Diagnosis Platform\" Wins Third Place at the 10th National Compassion Technology Innovation Competition in 2026",
+  "2026-taiwan-innotech-expo-future-tech-imirror": "iCPS Lab Invited to Taiwan Innotech Expo 2026, Showcasing Industry-Academia Collaboration in AI-Powered Smart Health",
+  "2026-gpm-ai-automation-exhibition": "iCPS Lab Award-Winning AI Automation Project Showcased at Taipei Automation 2026",
+  "2026-isocip-contest-two-honorable-mentions": "iCPS Lab Student Teams Receive Two Honorable Mentions at the 2026 Interdisciplinary SoC Contest",
+  "2026-master-defense-hsu-lai": "iCPS Lab Students Hsu Ting-Hsuan and Lai Ying-Kuan Complete Master's Thesis Defenses",
+  "2026-asia-biotech-iearlm-exhibition": "iCPS Lab Showcases iEarLM at Bio Asia-Taiwan 2026",
+  "2026-ai-automation-equipment-award-second-place": "iCPS Lab Team Wins Second Place at the 15th National AI Automation Equipment Creation Award",
+  "2026-nstc-t2-pose-three-year-project": "Prof. Wan-Jung Chang Receives Three-Year NSTC Grant for T²-Pose Near-Bed Care Sensing System",
+  "2026-consumer-electronics-contribution-award": "Prof. Wan-Jung Chang Receives Outstanding Contribution Award from Taiwan Consumer Electronics Society (TCES)",
+  "2026-nstc-undergrad-project-tsai-yiming": "iCPS Lab Undergraduate Student Yi-Ming Tsai Receives NSTC Student Research Grant",
+  "2026-medical-taiwan-ai-surgical-instrument-recognition": "iCPS Lab Showcases AI Surgical Instrument Recognition at Medical Taiwan 2026",
+  "2026-international-nursing-summit-indonesia": "Prof. Wan-Jung Chang Joins International Nursing Summit 2026 in Bandung, Indonesia",
+  "2026-icme-ai-surgical-instrument-award": "iCPS Lab Receives Excellent Poster Submission Recognition at ICME 2026",
+  "2026-itaoi-honorable-mention": "iCPS Lab Receives Honorable Mention at ITAOI 2026",
+  "2026-neihu-vocational-school-visit": "Neihu Vocational School Visits iCPS Lab",
+  "2026-atlife-expo-ai-care": "AI Care Technologies Showcased at the 2026 ATLife Expo",
+  "2026-student-project-competition-second-place": "Student Project Team Wins Second Place in National Competition",
+  "2026-ustv-ai-smart-glasses-report": "USTV Features iCPS Lab AI Smart Glasses Research",
+  "2026-ustv-ar-glasses-tof-interview": "USTV Interview on AR Glasses and ToF Applications",
+  "2026-student-project-competition-finalist": "Student Project Team Selected as National Competition Finalist",
+  "2026-japan-patent-tongue-rehabilitation": "Japan Patent Granted for Tongue Rehabilitation Game Platform",
+  "2026-icct-pacific-papers": "iCPS Lab Presents Papers at ICCT-Pacific 2026",
+  "2026-dsp-competition-celebration": "DSP Competition Celebration",
+  "2026-website-launch": "iCPS Lab Website Launch",
+  "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
+};
+export const getEnglishNewsTag = (slug: string) => {
+  if (slug === "2026-ieee-gcce-iear-excellent-demo-silver-prize") return "Award";
+  if (slug.includes("worlds-top-2-percent-scientists")) return "Academic Honor";
+  if (slug.includes("compassion-technology")) return "Competition";
+  if (slug.includes("taiwan-innotech-expo")) return "Exhibition";
+  if (slug.includes("gpm-ai-automation")) return "Exhibition";
+  if (slug.includes("isocip")) return "Competition";
+  if (slug.includes("master-defense")) return "Academic";
+  if (slug.includes("asia-biotech")) return "Exhibition";
+  if (slug.includes("ai-automation-equipment-award")) return "Competition";
+  if (slug.includes("nstc-t2-pose")) return "Research Grant";
+  if (slug.includes("contribution-award")) return "Award";
+  if (slug.includes("nstc-undergrad-project")) return "Student Honor";
+  if (slug.includes("medical-taiwan")) return "Exhibition";
+  if (slug.includes("nursing-summit")) return "International";
+  if (slug.includes("icme") || slug.includes("itaoi")) return "Award";
+  if (slug.includes("neihu")) return "Visit";
+  if (slug.includes("atlife")) return "Exhibition";
+  if (slug.includes("competition") || slug.includes("dsp")) return "Competition";
+  if (slug.includes("ustv")) return "Media";
+  if (slug.includes("patent")) return "Patent";
+  if (slug.includes("icct")) return "Publication";
+  return "Announcement";
+};
+
+/** Pinned announcements come first; dates use the source's YYYY.MM.DD format. */
+export const sortNews = (items: readonly NewsItem[]): NewsItem[] => [...items].sort((a, b) =>
+  Number(Boolean(b.isPinned)) - Number(Boolean(a.isPinned)) || b.date.localeCompare(a.date)
+);
+
+/** Prepare trusted local article HTML without contacting a video provider during render. */
+export const prepareNewsContent = (content: string, lang: "zh" | "en", fallbackTitle: string): string => {
+  const $ = load(content, null, false);
+  $("img").attr("loading", "lazy").attr("decoding", "async");
+  $("iframe").each((_, element) => {
+    const frame = $(element);
+    const source = frame.attr("src");
+    if (!source) return;
+    let url: URL;
+    try { url = new URL(source); } catch { return; }
+    if (!["www.youtube.com", "youtube.com", "www.youtube-nocookie.com"].includes(url.hostname)) {
+      frame.attr("loading", "lazy");
+      return;
+    }
+    const videoId = url.pathname.match(/^\/embed\/([A-Za-z0-9_-]{11})$/)?.[1];
+    if (!videoId) return;
+    const originalTitle = frame.attr("title");
+    const title = originalTitle && originalTitle !== "YouTube video player" ? originalTitle : fallbackTitle;
+    const label = lang === "en" ? "Play video" : "播放影片";
+    const frameClass = frame.attr("class") || "w-full aspect-video";
+    const positionClass = frameClass.split(/\s+/).includes("absolute") ? "" : "relative";
+    const trigger = $("<a></a>").attr({
+      href: `https://www.youtube.com/watch?v=${videoId}`,
+      class: `${frameClass} ${positionClass} overflow-hidden flex items-center justify-center bg-slate-950 text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-blue-600`,
+      "aria-label": `${label}: ${title}`,
+      "data-video-trigger": "",
+      "data-video-src": source,
+      "data-video-title": title,
+      "data-video-class": frameClass,
+    });
+    const describedBy = frame.attr("aria-describedby");
+    if (describedBy) trigger.attr("aria-describedby", describedBy);
+    trigger.append($("<img>").attr({
+      src: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`, alt: "", loading: "lazy", decoding: "async",
+      class: "absolute inset-0 w-full h-full object-cover opacity-60",
+    }));
+    trigger.append($("<span></span>").attr("class", "relative z-10 rounded-full bg-slate-950/90 px-5 py-3 text-sm font-bold text-center").text(`▶ ${label}`));
+    frame.replaceWith(trigger);
+  });
+  return $.html();
 };
 
 export const newsData: NewsItem[] = [

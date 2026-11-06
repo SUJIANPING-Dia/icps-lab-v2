@@ -1,0 +1,64 @@
+---
+interface Props { lang?: "zh" | "en"; }
+const { lang = "zh" } = Astro.props;
+---
+
+<dialog id="poster-modal" aria-labelledby="modal-title" class="fixed m-auto w-[92vw] max-w-5xl max-h-[95vh] overflow-auto rounded-xl border border-white/20 bg-slate-950 p-4 sm:p-6 text-white shadow-2xl">
+  <div class="flex justify-end mb-3">
+    <button type="button" data-close-poster class="inline-flex min-h-11 items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm font-bold hover:bg-white/20" autofocus>
+      <span aria-hidden="true">✕</span> {lang === "en" ? "Close" : "關閉"}
+    </button>
+  </div>
+  <img id="modal-image" alt="" class="mx-auto max-h-[75vh] max-w-full object-contain rounded-lg" />
+  <h2 id="modal-title" class="mt-4 text-center text-lg sm:text-xl font-bold"></h2>
+</dialog>
+
+<style>
+  dialog:not([open]) { display: none; }
+  dialog::backdrop { background: rgb(15 23 42 / 90%); backdrop-filter: blur(4px); }
+</style>
+
+<script>
+  const dialog = document.querySelector<HTMLDialogElement>("#poster-modal");
+  const image = dialog?.querySelector<HTMLImageElement>("#modal-image");
+  const title = dialog?.querySelector<HTMLElement>("#modal-title");
+  const closeButton = dialog?.querySelector<HTMLButtonElement>("[data-close-poster]");
+  let returnTarget: HTMLElement | null = null;
+
+  if (dialog && image && title && closeButton) {
+    document.addEventListener("click", (event) => {
+      if (!(event.target instanceof Element)) return;
+      const trigger = event.target.closest<HTMLElement>("[data-poster-full]");
+      if (!trigger || !trigger.dataset.posterFull) return;
+      returnTarget = trigger;
+      const fallback = trigger.querySelector<HTMLImageElement>("img")?.src;
+      image.onerror = () => {
+        image.onerror = null;
+        if (fallback) image.src = fallback;
+      };
+      image.alt = trigger.dataset.posterTitle ?? "";
+      title.textContent = trigger.dataset.posterTitle ?? "";
+      image.src = trigger.dataset.posterFull;
+      dialog.showModal();
+      document.body.classList.add("modal-open");
+    });
+    closeButton.addEventListener("click", () => dialog.close());
+    dialog.addEventListener("keydown", (event) => {
+      if (event.key !== "Tab" || !dialog.open) return;
+      // Close is the dialog's only focusable control, in either Tab direction.
+      event.preventDefault();
+      closeButton.focus();
+    });
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        const bounds = dialog.getBoundingClientRect();
+        if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
+      }
+    });
+    dialog.addEventListener("close", () => {
+      document.body.classList.remove("modal-open");
+      image.removeAttribute("src");
+      returnTarget?.focus();
+    });
+  }
+</script>

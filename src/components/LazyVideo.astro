@@ -1,0 +1,24 @@
+<script>
+  document.addEventListener("click", (event) => {
+    if (!(event.target instanceof Element) || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    const trigger = event.target.closest<HTMLAnchorElement>("a[data-video-trigger]");
+    if (!trigger) return;
+    let source: URL;
+    try { source = new URL(trigger.dataset.videoSrc ?? ""); } catch { return; }
+    if (source.protocol !== "https:" || !["youtube.com", "www.youtube.com", "www.youtube-nocookie.com"].includes(source.hostname) || !/^\/embed\/[A-Za-z0-9_-]{11}$/.test(source.pathname)) return;
+    event.preventDefault();
+    source.searchParams.set("autoplay", "1");
+    const frame = document.createElement("iframe");
+    frame.src = source.href;
+    frame.title = trigger.dataset.videoTitle ?? trigger.getAttribute("aria-label") ?? "YouTube video";
+    frame.className = trigger.dataset.videoClass ?? "absolute inset-0 w-full h-full";
+    frame.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+    frame.allowFullscreen = true;
+    frame.referrerPolicy = "strict-origin-when-cross-origin";
+    frame.style.border = "0";
+    const describedBy = trigger.getAttribute("aria-describedby");
+    if (describedBy) frame.setAttribute("aria-describedby", describedBy);
+    trigger.replaceWith(frame);
+    frame.focus();
+  });
+</script>

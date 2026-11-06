@@ -1,11 +1,14 @@
 ﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Footer from "../components/Footer.astro";
+import PosterDialog from "../components/PosterDialog.astro";
 import Navbar from "../components/Navbar.astro";
 // 👇 移除了 Members 的匯入，只保留 News 和 Videos
 import News from "../components/News.astro";
 import Videos from "../components/Videos.astro";
 // 🌟 讀取成就資料，用於自動計算首頁統計數據
 import achievements from "../data/achievements.json";
+import { getProjectPartners } from "../data/partners.mjs";
 
 // --- 📊 數據自動統計邏輯 (基於 achievements.json) ---
 
@@ -17,17 +20,9 @@ const journalCount = journalGroup ? journalGroup.yearlyData.reduce((sum, year) =
 const confGroup = achievements.find(a => a.category && a.category.includes("國際研討會論文"));
 const confCount = confGroup ? confGroup.yearlyData.reduce((sum, year) => sum + year.items.length, 0) : 0;
 
-// 3. 合作廠商數量 (從計畫描述中提取不重複的公司/醫院/機構名稱)
+// 3. 已核對歷年計畫中的企業與業者
 const projectGroup = achievements.find(a => a.type === "project");
-const partners = new Set();
-projectGroup?.yearlyData.forEach(year => {
-  year.items.forEach(item => {
-    // 匹配包含「公司」、「企業」、「醫院」、「中心」、「學會」、「局」等關鍵字
-    const match = item.project?.match(/([^,，、\s『「]+(?:公司|企業|醫院|中心|學會|局))/);
-    if (match) partners.add(match[1].trim());
-  });
-});
-const partnerCount = partners.size || 40; 
+const partnerCount = getProjectPartners(achievements).industry.length;
 
 // 4. 計畫總金額彙整
 let totalAmountValue = 0;
@@ -45,7 +40,7 @@ const isBillion = totalAmountValue > 100000000;
 const amountNum = isBillion ? (totalAmountValue / 100000000).toFixed(2) : Math.floor(totalAmountValue / 10000);
 const amountSuffix = isBillion ? " 億+" : " 萬+";
 // 讓前端動畫知道要跳到小數點後兩位
-const amountDecimals = isBillion ? 2 : 0; 
+const amountDecimals = isBillion ? 2 : 0;
 
 // 5. 國內外競賽得獎數量
 const awardGroup = achievements.find(a => a.category && (a.category.includes("競賽") || a.category.includes("得獎") || a.category.includes("榮譽")));
@@ -67,7 +62,7 @@ const posters = [
   { id: 8, title: "iMP Viewer", category: "Environmental AI", desc: "空氣微塑膠辨識與二維尺寸估測系統", thumb: "/images/imp-viewer-display.webp", full: "/images/imp-viewer-full.png" },
   { id: 9, title: "SDView", category: "Smart Manufacturing", desc: "SD 卡印刷瑕疵非監督式檢測系統", thumb: "/images/sdview-display.webp", full: "/images/sdview-full.png" }
   // 👇 模擬未來新增的作品
-  
+
 ];
 const title = "iCPS Lab | 智慧網宇實體系統實驗室 - 國立高雄科技大學";
 const description = "iCPS Lab 智慧網宇實體系統實驗室聚焦 AIoT、智慧醫療、智慧製造與智慧感測研究，展示研究成果、活動、影音與最新消息。";
@@ -84,7 +79,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
       /* 使用貝茲曲線讓動畫更有彈性與質感 */
       transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    
+
     /* 各種方向的初始位移設定 */
     [data-reveal="up"] { transform: translateY(40px); }
     [data-reveal="down"] { transform: translateY(-40px); }
@@ -143,7 +138,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
       <img src="/images/hero-agentic-ai-multi-agent-zh.webp" alt="iCPS Lab 多代理協作與 Agentic AI 智慧系統研究首頁橫幅" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.onerror=null;this.src='/images/hero-bg-3.webp';" />
       <img src="/images/hero-bg-3.webp" alt="實驗室背景 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
       <img src="/images/hero-bg-4.webp" alt="實驗室背景 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      
+
       <button id="prev-btn" aria-label="上一張橫幅" class="absolute right-12 bottom-2 sm:right-24 sm:bottom-3 lg:left-6 lg:right-auto lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 sm:w-8 sm:h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -154,6 +149,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
       </button>
+      <button id="pause-btn" type="button" class="absolute left-2 bottom-2 sm:left-6 sm:bottom-3 z-30 rounded-full bg-slate-950/75 px-3 py-2 text-xs sm:text-sm font-bold text-white" aria-pressed="false" data-pause-label="暫停輪播" data-resume-label="繼續輪播">暫停輪播</button>
     </div>
 
   </header>
@@ -263,37 +259,37 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
               <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-rose-200 hover:shadow-xl hover:shadow-rose-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 0ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Awards</span><span class="w-9 h-9 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center">🏆</span></div>
-                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={awardCount}>0</div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={awardCount}>{awardCount}</div>
                   <div class="mt-2 text-sm font-bold text-slate-700">國內外競賽得獎</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 80ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Patents</span><span class="w-9 h-9 rounded-full bg-cyan-50 text-cyan-600 flex items-center justify-center">💡</span></div>
-                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={patentCount}>0</div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={patentCount}>{patentCount}</div>
                   <div class="mt-2 text-sm font-bold text-slate-700">獲得專利項目</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 160ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Journals</span><span class="w-9 h-9 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center">📄</span></div>
-                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={journalCount}>0</div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={journalCount}>{journalCount}</div>
                   <div class="mt-2 text-sm font-bold text-slate-700">國際期刊論文</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 240ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Conferences</span><span class="w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center">🌐</span></div>
-                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={confCount}>0</div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={confCount}>{confCount}</div>
                   <div class="mt-2 text-sm font-bold text-slate-700">國際研討會論文</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 320ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Partners</span><span class="w-9 h-9 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">🤝</span></div>
-                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={partnerCount} data-suffix="+">0</div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">產學合作廠商</div>
+                  <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={partnerCount} data-suffix="">{partnerCount}</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">歷年產學合作廠商</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-6 hover:shadow-xl hover:shadow-amber-900/10 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 400ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-amber-600 tracking-widest uppercase">Funding</span><span class="w-9 h-9 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center">↗</span></div>
-                  <div class="counter-anim text-3xl sm:text-4xl font-black text-slate-950 tabular-nums tracking-tight whitespace-nowrap" data-target={amountNum} data-suffix={amountSuffix} data-decimals={amountDecimals}>0</div>
+                  <div class="counter-anim text-3xl sm:text-4xl font-black text-slate-950 tabular-nums tracking-tight whitespace-nowrap" data-target={amountNum} data-suffix={amountSuffix} data-decimals={amountDecimals}>{amountNum}{amountSuffix}</div>
                   <div class="mt-2 text-sm font-bold text-slate-700">總執行計畫金額</div>
                 </div>
               </div>
@@ -309,10 +305,10 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-black tracking-widest uppercase border border-blue-100">Newsroom</span>
             <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">最新消息</h2>
           </div>
-          
+
         </div>
         <div class="rounded-[2rem] bg-white/85 backdrop-blur-xl border border-white shadow-[0_18px_60px_rgba(15,23,42,0.07)] p-4 sm:p-6 lg:p-8 overflow-hidden">
-          <News />
+          <News sectionId="home-news" />
         </div>
       </section>
 
@@ -341,7 +337,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <div class="relative z-10 flex flex-col sm:flex-row gap-8 items-start sm:items-center">
               <div class="w-32 sm:w-44 shrink-0">
                 <div class="rounded-[1.5rem] overflow-hidden shadow-xl shadow-slate-900/10 ring-1 ring-slate-900/5 aspect-[4/5] bg-slate-100">
-                  <img src="/images/professor.webp" alt="張萬榮 教授" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.src='/images/default-avatar.png';" />
+                  <img src="/images/professor.webp" alt="張萬榮 教授" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" onerror="this.onerror=null;this.src='/images/member-placeholder.png';" />
                 </div>
               </div>
               <div class="flex-1">
@@ -368,7 +364,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
           </div>
 
           <a href="/members" class="lg:col-span-5 rounded-[2rem] bg-gradient-to-br from-slate-900 to-slate-950 border border-slate-800 shadow-2xl shadow-slate-900/15 p-7 sm:p-9 lg:p-10 relative overflow-hidden flex flex-col min-h-[360px] group" data-reveal="up" style="transition-delay: 200ms;">
-            <img src="/images/team-group.jpg" alt="實驗室團隊" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay group-hover:opacity-35 group-hover:scale-105 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop';" />
+            <img src="/images/gcce-2026-iear-team.jpg" alt="iCPS Lab 團隊參與 IEEE GCCE 2026 合影" class="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-overlay group-hover:opacity-35 group-hover:scale-105 transition-all duration-700" onerror="this.src='https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop';" />
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/70 to-slate-900/20"></div>
             <div class="relative z-10 flex h-full flex-col justify-between">
               <div>
@@ -411,38 +407,37 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch" data-reveal="up" style="transition-delay: 100ms;">
           <div class="lg:col-span-8 w-full">
-            <div 
+            <button type="button" aria-haspopup="dialog" aria-controls="poster-modal"
               id="hero-container"
-              class="relative group rounded-[2.25rem] overflow-hidden shadow-[0_28px_80px_rgba(15,23,42,0.18)] border border-white bg-slate-900 w-full aspect-[16/9] cursor-pointer"
+              class="relative text-left group rounded-[2.25rem] overflow-hidden shadow-[0_28px_80px_rgba(15,23,42,0.18)] border border-white bg-slate-900 w-full aspect-[16/9] cursor-pointer"
               data-poster-full={posters[0].full}
               data-poster-title={posters[0].title}
-              onclick="openPosterModal(this)"
             >
-              <img 
+              <img
                 id="hero-img"
-                src={posters[0].thumb} 
-                alt={posters[0].title} 
-                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105" 
+                src={posters[0].thumb}
+                alt={posters[0].title}
+                class="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                 loading="lazy"
                 decoding="async"
                 onerror={`this.src='https://images.unsplash.com/photo-1595188832622-54070a8d6728?q=80&w=1200&auto=format&fit=crop';`}
               />
-              <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-transparent"></div>
-              <div class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-12 pointer-events-none">
+              <span class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/15 to-transparent"></span>
+              <span class="absolute inset-x-0 bottom-0 p-6 sm:p-10 lg:p-12 pointer-events-none">
                 <span id="hero-category" class="inline-block px-3 py-1 bg-white/15 text-white backdrop-blur-md text-[10px] sm:text-xs font-black tracking-widest uppercase rounded-full mb-4 border border-white/20 shadow-md transition-all duration-300">{posters[0].category}</span>
-                <h3 id="hero-title" class="text-white font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight drop-shadow-xl mb-3 transition-all duration-300">{posters[0].title}</h3>
-                <p id="hero-desc" class="text-slate-200 text-sm sm:text-base lg:text-lg font-medium drop-shadow-md max-w-xl transition-all duration-300">{posters[0].desc}</p>
-              </div>
-              <div class="absolute top-6 right-6 sm:top-10 sm:right-10 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transform scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 shadow-xl border border-white/30">
+                <span id="hero-title" class="block text-white font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight drop-shadow-xl mb-3 transition-all duration-300">{posters[0].title}</span>
+                <span id="hero-desc" class="block text-slate-200 text-sm sm:text-base lg:text-lg font-medium drop-shadow-md max-w-xl transition-all duration-300">{posters[0].desc}</span>
+              </span>
+              <span class="absolute top-6 right-6 sm:top-10 sm:right-10 w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white transform scale-75 opacity-0 group-hover:scale-100 group-hover:opacity-100 transition-all duration-500 shadow-xl border border-white/30">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" /></svg>
-              </div>
-            </div>
+              </span>
+            </button>
           </div>
 
           <div class="lg:col-span-4 relative h-[132px] sm:h-[150px] lg:h-auto">
             <div class="absolute inset-0 w-full flex flex-row lg:flex-col gap-3 lg:gap-4 overflow-x-auto lg:overflow-x-hidden lg:overflow-y-auto custom-scrollbar snap-x snap-mandatory lg:snap-none lg:pr-3 pb-4 lg:pb-0">
               {posters.map((poster, index) => (
-                <button 
+                <button
                   class={`selector-btn text-left flex items-center gap-4 p-3.5 rounded-[1.25rem] transition-all duration-300 min-w-[290px] sm:min-w-[340px] lg:min-w-0 snap-start group/selector
                     ${index === 0 ? 'bg-slate-950 text-white ring-2 ring-blue-500 shadow-xl shadow-slate-900/15' : 'bg-white text-slate-900 border border-slate-200 hover:bg-slate-50 hover:border-blue-200 shadow-sm hover:shadow-lg'}
                   `}
@@ -505,10 +500,10 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             <span class="inline-flex items-center px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-black tracking-widest uppercase border border-indigo-100">Media</span>
             <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-950 tracking-tight">影音專區</h2>
           </div>
-        
+
         </div>
         <div class="rounded-[2rem] bg-white/85 backdrop-blur-xl border border-white shadow-[0_18px_60px_rgba(15,23,42,0.07)] p-4 sm:p-6 lg:p-8 overflow-hidden">
-          <Videos />
+          <Videos sectionId="home-videos" />
         </div>
       </section>
 
@@ -516,66 +511,12 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   </main>
 
   <!-- 🔷 頁尾 (Footer) -->
-  <footer class="bg-[#0f172a] py-16 mt-12 border-t border-slate-800 relative z-20">
-    <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-      <div class="md:w-1/2">
-        <img src="/images/footer-logo.webp" alt="iCPS Lab" class="h-14 md:h-20 w-auto mb-3 object-contain" onerror="this.style.display='none';" />
-        <p class="text-sm text-blue-400 font-medium mb-4">智慧網宇實體系統實驗室</p>
-        <p class="text-sm text-slate-400 leading-relaxed max-w-md">
-          Intelligent Cyber-Physical Systems Laboratory <br/>
-          國立高雄科技大學 (NKUST)
-        </p>
-      </div>
-      <div class="md:w-1/2 flex flex-col md:items-end text-sm space-y-3">
-        <h3 class="text-white font-semibold mb-2 tracking-wide uppercase text-xs">Contact Us</h3>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📍</span> 國立高雄科技大學 (建工校區)</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">📞</span> 07-3814526 分機 15672</p>
-        <p class="flex items-center gap-2 text-slate-300"><span class="text-slate-500">✉️</span> <a href="mailto:allenchang@nkust.edu.tw" class="hover:text-blue-400 transition">allenchang@nkust.edu.tw</a></p>
-      </div>
-    </div>
-    
-    <div class="max-w-7xl mx-auto px-6 mt-12 pt-6 border-t border-slate-800 flex flex-col lg:flex-row justify-between items-center gap-6 lg:gap-4">
-      <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-        <p class="text-xs text-slate-500 leading-normal">
-          &copy; 2026 <span class="italic font-['Times_New_Roman',_Times,_serif] text-[1.15em]">i</span>CPS Lab, National Kaohsiung University of Science and Technology.
-        </p>
-        <p class="text-xs text-slate-500 hidden sm:block">|</p>
-        <p class="text-xs text-slate-500">All rights reserved.</p>
-      </div>
+  <Footer />
 
-      <div class="flex items-center gap-2 bg-slate-800/50 px-3 py-1.5 rounded-md border border-slate-700 shadow-sm transition hover:border-slate-600">
-        <svg class="w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-        </svg>
-        <span class="text-xs text-slate-400 font-medium tracking-wide">累積造訪人數</span>
-        <span class="text-xs text-slate-600 mx-1">|</span>
-        <span class="text-sm font-mono font-bold text-blue-400 tracking-wider" id="visitor-count">載入中...</span>
-      </div>
-
-    </div>
-  </footer>
-
-  <!-- 🪟 海報燈箱 (Modal) 結構，預設隱藏 -->
-  <div id="poster-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8 bg-slate-900/90 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity duration-300">
-    <!-- 關閉按鈕 -->
-    <button onclick="closePosterModal()" class="absolute top-4 right-4 sm:top-8 sm:right-8 w-12 h-12 bg-white/10 hover:bg-white/20 text-white rounded-full flex items-center justify-center backdrop-blur-md transition-colors z-10">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-    
-    <!-- 圖片容器 (點擊背景關閉) -->
-    <div class="relative w-full max-w-5xl max-h-full flex flex-col items-center justify-center" onclick="closePosterModal()">
-      <div class="relative w-full max-h-[85vh] flex justify-center" onclick="event.stopPropagation()">
-        <!-- 高畫質海報圖 -->
-        <img id="modal-image" src="" alt="Poster View" class="w-auto h-auto max-w-full max-h-[85vh] object-contain rounded-lg shadow-2xl scale-95 transition-transform duration-300" />
-      </div>
-      <h3 id="modal-title" class="text-white text-xl sm:text-2xl font-bold mt-4 tracking-wider"></h3>
-    </div>
-  </div>
+  <PosterDialog />
 
   <script>
+    import { initHeroCarousel } from "../lib/hero-carousel";
     // --- 🎯 Hero + Selector 切換邏輯 ---
     window.selectPoster = function(btn) {
       const thumbSrc = btn.getAttribute('data-thumb');
@@ -597,6 +538,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 
       setTimeout(() => {
         heroImg.src = thumbSrc;
+        heroImg.alt = title;
         heroCategory.innerText = category;
         heroTitle.innerText = title;
         heroDesc.innerText = desc;
@@ -624,133 +566,12 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     };
 
 
-    // --- 🖼️ 海報燈箱 (Modal) 互動邏輯 ---
-    window.openPosterModal = function(element) {
-      const fullSrc = element.getAttribute('data-poster-full');
-      const title = element.getAttribute('data-poster-title');
-      
-      const modal = document.getElementById('poster-modal');
-      const modalImage = document.getElementById('modal-image');
-      const modalTitle = document.getElementById('modal-title');
-      
-      if (modal && modalImage && modalTitle) {
-        
-        modalImage.src = fullSrc;
-        // 如果載入高畫質圖片失敗，就顯示原來的縮圖
-        modalImage.onerror = function() {
-          this.src = element.querySelector('img').src || element.getAttribute('src');
-        };
-        
-        modalTitle.textContent = title;
-        
-        // 顯示 Modal
-        modal.classList.remove('opacity-0', 'pointer-events-none');
-        document.body.classList.add('modal-open'); // 鎖定背景滾動
-        
-        // 加入圖片縮放動畫
-        setTimeout(() => {
-          modalImage.classList.remove('scale-95');
-          modalImage.classList.add('scale-100');
-        }, 10);
-      }
-    };
-
-    window.closePosterModal = function() {
-      const modal = document.getElementById('poster-modal');
-      const modalImage = document.getElementById('modal-image');
-      
-      if (modal && modalImage) {
-        // 隱藏 Modal
-        modal.classList.add('opacity-0', 'pointer-events-none');
-        document.body.classList.remove('modal-open'); // 恢復背景滾動
-        
-        // 還原圖片縮放狀態
-        modalImage.classList.remove('scale-100');
-        modalImage.classList.add('scale-95');
-      }
-    };
-
-    // 監聽 ESC 鍵關閉燈箱
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') {
-        window.closePosterModal();
-      }
-    });
-
     document.addEventListener("DOMContentLoaded", () => {
 
-      // --- 1. 封面輪播邏輯 ---
-      const images = document.querySelectorAll('.slider-img');
-      const prevBtn = document.getElementById('prev-btn');
-      const nextBtn = document.getElementById('next-btn');
-      
-      let currentIndex = 0;
-      let slideInterval;
-
-      if (images.length >= 2) {
-        const showImage = (index) => {
-          images[currentIndex].classList.remove('opacity-100');
-          images[currentIndex].classList.add('opacity-0');
-
-          currentIndex = index;
-
-          images[currentIndex].classList.remove('opacity-0');
-          images[currentIndex].classList.add('opacity-100');
-        };
-
-        const nextImage = () => { showImage((currentIndex + 1) % images.length); };
-        const prevImage = () => { showImage((currentIndex - 1 + images.length) % images.length); };
-        
-        const startSlide = () => { slideInterval = setInterval(nextImage, 6000); };
-        const resetSlide = () => { clearInterval(slideInterval); startSlide(); };
-
-        if (nextBtn) { nextBtn.addEventListener('click', () => { nextImage(); resetSlide(); }); }
-        if (prevBtn) { prevBtn.addEventListener('click', () => { prevImage(); resetSlide(); }); }
-        startSlide();
-      }
+      initHeroCarousel();
 
       // --- 2. 智慧訪客計數器邏輯 ---
-      const initCounter = async () => {
-        const counterEl = document.getElementById('visitor-count');
-        if (!counterEl) return;
 
-        const namespace = 'icpslab_site';
-        const key = 'visits';
-        const localCountKey = 'icps_saved_count';
-        const lastVisitTimeKey = 'icps_last_visit_time';
-        const TWENTY_FOUR_HOURS = 24 * 60 * 60 * 1000;
-
-        let currentCount = localStorage.getItem(localCountKey) || '------';
-        const lastVisitTime = localStorage.getItem(lastVisitTimeKey);
-        const now = Date.now();
-        const hasVisitedWithin24Hours = lastVisitTime && (now - parseInt(lastVisitTime, 10) < TWENTY_FOUR_HOURS);
-        
-        try {
-          const url = `https://api.counterapi.dev/v1/${namespace}/${key}`;
-          if (!hasVisitedWithin24Hours) {
-            const response = await fetch(url + '/up');
-            if (!response.ok) throw new Error('API 回應錯誤');
-            const data = await response.json();
-            currentCount = String(data.count).padStart(6, '0');
-            localStorage.setItem(lastVisitTimeKey, now.toString());
-            localStorage.setItem(localCountKey, currentCount);
-          } else {
-            try {
-              const response = await fetch(url);
-              if (response.ok) {
-                const data = await response.json();
-                currentCount = String(data.count).padStart(6, '0');
-                localStorage.setItem(localCountKey, currentCount);
-              }
-            } catch (e) {}
-          }
-          counterEl.textContent = currentCount;
-        } catch (error) {
-          counterEl.textContent = currentCount;
-        }
-      };
-
-      initCounter();
 
       // --- 3. 數字跳動動畫 (Counter Animation) ---
       const counters = document.querySelectorAll('.counter-anim');
@@ -760,12 +581,16 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         const target = parseFloat(counter.getAttribute('data-target'));
         const suffix = counter.getAttribute('data-suffix') || '';
         const decimals = parseInt(counter.getAttribute('data-decimals')) || 0;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          counter.innerText = target.toFixed(decimals) + suffix;
+          return;
+        }
         let startTime = null;
 
         const step = (currentTime) => {
           if (!startTime) startTime = currentTime;
           const progress = Math.min((currentTime - startTime) / animationDuration, 1);
-          
+
           const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
           const currentNum = (easeProgress * target).toFixed(decimals);
 
@@ -777,7 +602,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             counter.innerText = target.toFixed(decimals) + suffix;
           }
         };
-        
+
         window.requestAnimationFrame(step);
       };
 
@@ -796,7 +621,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 
       // --- ✨ 4. 新增：滾動觸發動畫 (Scroll Reveal) 邏輯 ---
       const revealElements = document.querySelectorAll('[data-reveal]');
-      
+
       const revealObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
@@ -809,7 +634,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
       }, {
         root: null,
         // 設定觸發邊界：元素進入視窗底部上方 10% 左右時才觸發，看起來比較自然
-        rootMargin: '0px 0px -10% 0px', 
+        rootMargin: '0px 0px -10% 0px',
         threshold: 0.1
       });
 
