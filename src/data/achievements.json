@@ -271,6 +271,66 @@
         "year": "2026",
         "items": [
           {
+            "title": "TonView: An Edge AI Vision Platform for Non-Contact Tongue Motion Tracking and Interactive Rehabilitation",
+            "authors": "Wan-Jung Chang, Kuan-Ting Chen, Yen-Chin Chen, and Jian-Ping Su,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "PsychiView: A Privacy-Preserving Multimodal System for Self-Harm Behavior Recognition Using Low-Resolution Thermal Skeletons and Abnormal Sound Detection",
+            "authors": "Wan-Jung Chang, Chun-Hsiang Chang, and Jian-Ping Su,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "Multi-State Surgical Instrument Recognition Using YOLOv11 Under Articulation-Induced Geometric Variations",
+            "authors": "Wan-Jung Chang, Shih-Wei Chung, Hui-Chien Hung, Hsiu-Yen Huang, and Jian-Ping Su,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "ToFCare: A Privacy-Preserving ToF-Based System for Turning-Over and Back-Percussion Monitoring",
+            "authors": "Chia-Hsin Lee, Wan-Jung Chang, and Jian-Ping Su,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "iCattle: A Facial Keypoint-Based Vision System for Chewing and Rumination Monitoring in Dairy Cattle",
+            "authors": "Wan-Jung Chang, Thi Thi Zin, and Wei-Yuan Shih,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "NoodleEye: A Dual-Station Edge AI Inspection System for Seasoning-Packet Anomaly and Hair Contaminant Detection in Packaged Dried Noodle Production",
+            "authors": "Chia-Yu Wu, Wan-Jung Chang, and Jian-Ping Su,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "PoseAgent: A Vision-Language Model Agent Framework for Automatic Pig Skeletal Keypoint Annotation",
+            "authors": "Wan-Jung Chang, Thi Thi Zin, Bo-Yun Tsai, and Jian-Ping Su,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "iEarLM: An AI- and AR-Enabled Intelligent Ear Diagnostic Platform for Lesion Recognition and Clinical Collaboration",
+            "authors": "Xiu-Yu Xie, Wan-Jung Chang, Min-Yu Chen, Jian-Ping Su, Zong-Han Yang, Wei-Yang Ding, Hsin-An Lan, Jing-Xiang Hu, Ching-Nung Wu, Chung-Feng Hwang, Ming-Che Chen, and Chih-Hsueh Lin,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "iMP Viewer: An AI-Based Microscopic Analysis System for Airborne Microplastic Detection, Classification, and Size Measurement",
+            "authors": "Wan-Jung Chang, Pei-Qi Li, Pin-Xun Chen, and Jian-Ping Su,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "FitMotion: A Unified Edge AI Framework for Vision-Based Exercise Analysis Using Single-RGB Human Pose Estimation",
+            "authors": "Yi-Ming Tsai, Wan-Jung Chang, Chia-Lun Lee, Yen-Chin Chen, and Jian-Ping Su,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "KneeEye: A Dual-Modal System Integrating a Wearable Sensing Knee Sleeve and AI-Based Image Recognition for Patellar Tendon Reflex Quantification",
+            "authors": "Cheng-You Chi, Wan-Jung Chang, Ying-Nien Chou, Po-Chun Huang, Jian-Ping Su, and Kai-Sheng Hsieh,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
+            "title": "iCapa: A Task-Decoupled Dual-Stage Lightweight System for SMD Capacitor Defect Detection on High-Resolution Motherboards",
+            "authors": "Wan-Jung Chang, Zong-Han Yang, Xiu-Yu Xie, Wei-Yang Ding, Hsin-An Lan, and Jing-Xiang Hu,",
+            "venue": ", the 8th International Conference on Smart Vehicular Technology, Transportation, Communication and Applications (VTCA 2026), Miyazaki, Japan, Nov. 25 - 27, 2026."
+          },
+          {
             "title": "iEar: A Dual-Representation Approach for Eardrum Lesion Recognition Using Detection and Segmentation",
             "authors": "Wan-Jung Chang, Min-Yu Chen, Jian-Ping Su, Zong-Han Yang, Xiu-Yu Xie, Wei-Yang Ding, Hsin-An Lan, Jing-Xiang Hu, Ching-Nung Wu, Chung-Feng Hwang, Ming-Che Chen, and Chih-Hsueh Lin,",
             "venue": ", the 2026 IEEE 15th Global Conference on Consumer Electronics (GCCE 2026), Kobe, Japan, Oct. 26 - 29, 2026."
@@ -291,11 +351,6 @@
             "venue": ", the 23rd IAGG World Congress of Gerontology and Geriatrics, RAI Amsterdam, Amsterdam, The Netherlands, Jul. 5 - 8, 2026."
           },
           {
-            "title": "AI 手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐",
-            "authors": "張萬榮、王柏鑑、林傳巽、林建宇、鍾詩威、洪慧倩、黃秀燕、蘇健平，",
-            "venue": "，發表於\"2026 醫學教育國際研討會 - AI 與擬真時代的醫師養成：勝任能力導向教育的未來發展\"，高雄醫學大學，高雄市，台灣，2026年6月3日。"
-          },
-          {
             "title": "HiveNet: A Software-Defined Active Load Balancing Strategy for Lifetime Extension in Heterogeneous LEV Battery Clusters",
             "authors": "Zong-Han Yang, Wan-Jung Chang, and Saher JAVAID,",
             "venue": ", the 2026 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW), Taoyuan, Taiwan, Jul. 1 - 3, 2026."
@@ -304,6 +359,11 @@
             "title": "Placement-Free Multi-Camera Monitoring Using Skeletal and Spatial Information",
             "authors": "Remon NAKASHIMA, Thi Thi Zin, Wan-Jung Chang, and Shinji WATANABE,",
             "venue": ", the 2026 IEEE International Conference on Consumer Electronics – Taiwan (ICCE-TW), Taoyuan, Taiwan, Jul. 1 - 3, 2026."
+          },
+          {
+            "title": "Design and Evaluation of an IoT-Enabled Sustainable Smart Library Ecosystem Using RFID and ESP32",
+            "authors": "Taryudi Taryudi, Nur Hanifah Yuninda, Rizki Pratama Putra, Murti Kusuma Wirasti, Wan-Jung Chang, Nawanda Husna, and Adinda Nur Azizah,",
+            "venue": ", the 15th International Physics Seminar (IPS 2026), Jakarta, Indonesia, Jun. 20, 2026. Published in EPJ Web of Conferences, vol. 377, article 02014, 2026. DOI: 10.1051/epjconf/202637702014."
           },
           {
             "title": "PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning",
@@ -928,6 +988,11 @@
         "year": "2026",
         "items": [
           {
+            "title": "KneeEye：整合穿戴式感測護膝與人工智慧影像辨識之雙模態膝反射量化系統",
+            "authors": "張萬榮、周盈年、紀政佑、黃柏均、蘇健平、謝凱生，",
+            "venue": "，發表於\"中國機械工程學會115年度年會暨第43屆全國學術研討會（CSME 2026）\"，國立中正大學，嘉義縣，台灣，2026年12月4~5日。"
+          },
+          {
             "title": "iEarTM：一項基於耳鏡影像之常見耳膜病灶人工智慧辨識技術",
             "authors": "張萬榮、陳閔昱、蘇健平、謝修瑜、楊宗翰、丁維暘、藍信安、胡景翔、吳靖農、黃仲鋒、陳銘哲、林志學，",
             "venue": "，發表於\"第三十九屆電腦視覺、圖學暨影像處理研討會 CVGIP2026\"，福爾摩沙遊艇酒店，臺南市，台灣，2026年8月30~9月1日。"
@@ -936,6 +1001,11 @@
             "title": "NoodleEye：應用於包裝乾麵生產線的人工智慧調味包辨識系統",
             "authors": "張萬榮、吳嘉祐、蘇健平、施為元、蔡柏昀，",
             "venue": "，發表於\"第三十九屆電腦視覺、圖學暨影像處理研討會 CVGIP2026\"，福爾摩沙遊艇酒店，臺南市，台灣，2026年8月30~9月1日。"
+          },
+          {
+            "title": "AI 手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐",
+            "authors": "張萬榮、王柏鑑、林傳巽、林建宇、鍾詩威、洪慧倩、黃秀燕、蘇健平，",
+            "venue": "，發表於\"2026 醫學教育國際研討會 - AI 與擬真時代的醫師養成：勝任能力導向教育的未來發展\"，高雄醫學大學，高雄市，台灣，2026年6月3日。"
           },
           {
             "title": "iEarTM：一項基於耳鏡影像之常見耳膜病灶人工智慧辨識技術",
