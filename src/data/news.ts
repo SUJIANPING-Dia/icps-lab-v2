@@ -15,6 +15,7 @@ export type NewsItem = {
 };
 
 export const englishNewsTitles: Record<string, string> = {
+  "2026-innoserve-awards-two-winning-projects": "Two iCPS Lab Smart Healthcare Projects Win Second Place in Information Applications and an Honorable Mention in Industry-Academia Collaboration at the 2026 InnoServe Awards",
   "2026-ieee-gcce-iear-excellent-demo-silver-prize": "iCPS Lab iEar Research Wins Silver Prize in the Excellent Demo Awards at IEEE GCCE 2026",
   "2026-stanford-worlds-top-2-percent-scientists-wan-jung-chang": "Prof. Wan-Jung Chang Selected for the World's Top 2% Scientists List for the Third Consecutive Year",
   "2026-compassion-technology-iearlm-third-place": "iCPS Lab's \"iEarLM Smart Ear Diagnosis Platform\" Wins Third Place at the 10th National Compassion Technology Innovation Competition in 2026",
@@ -44,6 +45,7 @@ export const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 export const getEnglishNewsTag = (slug: string) => {
+  if (slug === "2026-innoserve-awards-two-winning-projects") return "Competition";
   if (slug === "2026-ieee-gcce-iear-excellent-demo-silver-prize") return "Award";
   if (slug.includes("worlds-top-2-percent-scientists")) return "Academic Honor";
   if (slug.includes("compassion-technology")) return "Competition";
@@ -116,6 +118,28 @@ export const prepareNewsContent = (content: string, lang: "zh" | "en", fallbackT
 };
 
 export const newsData: NewsItem[] = [
+  {
+    slug: "2026-innoserve-awards-two-winning-projects",
+    date: "2026.11.07",
+    tag: "競賽獲獎",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "本實驗室兩項智慧醫療作品獲 2026 InnoServe 資訊應用組第二名及產學合作組佳作",
+    img: "/images/innoserve-2026-award-ceremony.jpg",
+    imgAlt: "本實驗室團隊於 2026 InnoServe 決賽頒獎典禮上台領取資訊應用組（IP7）第二名。",
+    imgAltEn: "The iCPS Lab team accepts second place in the Information Applications category (IP7) onstage at the 2026 InnoServe Awards finals ceremony.",
+    content: `
+      <p class="mb-6 text-slate-700 text-justify">2026 年 11 月 7 日，第 31 屆大專校院資訊應用服務創新競賽（InnoServe Awards）在國立臺灣大學綜合體育館舉行決賽。國立高雄科技大學電子工程系 iCPS Lab 兩項作品獲獎：智慧膝反射量化系統榮獲<strong>資訊應用組（IP7）第二名</strong>，iSLM 手術器械辨識與教育訓練平台獲得<strong>產學合作組佳作</strong>。</p>
+      <p class="mb-6 text-slate-700 text-justify">獲得第二名的作品「基於 Edge AI 與多模態感知之智慧膝反射量化系統」，由本實驗室與國立中正大學周盈年教授跨校合作開發。作品結合多模態感測與邊緣人工智慧，將膝反射的量測、紀錄與分析整合至同一平台，讓不同次的量測結果能在一致的流程下進行比較。</p>
+      <p class="mb-6 text-slate-700 text-justify">獲得產學合作組佳作的「iSLM－人工智慧手術器械辨識與教育訓練平台」，在臺北臺安醫院協力下開發。團隊將 AI 影像辨識融入手術器械教學，協助新進護理人員練習辨認不同器械，作為手術室教育訓練的輔助工具。</p>
+      <p class="mb-6 text-slate-700 text-justify">本屆競賽吸引全臺 149 所大專校院、共 1,982 隊次報名，累計 9,870 人次參與。本實驗室恭喜兩組同學獲獎，也感謝周盈年教授與臺北臺安醫院的協力，讓同學能從健康量測與護理教育的實際需求出發，將研究構想做成可操作的系統。</p>
+    `,
+    contentEn: `
+      <p class="mb-6 text-slate-700 text-justify">On November 7, 2026, the finals of the 31st InnoServe Awards, a competition in information application and service innovation for colleges and universities, took place at the National Taiwan University Sports Center. Two projects from iCPS Lab in the Department of Electronics Engineering at National Kaohsiung University of Science and Technology won awards: the smart knee reflex quantification system took <strong>second place in the Information Applications category (IP7)</strong>, and the iSLM surgical instrument recognition and training platform received <strong>an honorable mention in the Industry-Academia Collaboration category</strong>.</p>
+      <p class="mb-6 text-slate-700 text-justify">The second-place project, "Smart Knee Reflex Quantification System Based on Edge AI and Multimodal Sensing," was jointly developed by iCPS Lab and Professor Ying-Nien Chou of National Chung Cheng University. It combines multimodal sensing and edge AI to measure, record, and analyze knee reflexes on one platform. This allows results from different measurement sessions to be compared using a consistent procedure.</p>
+      <p class="mb-6 text-slate-700 text-justify">The honorable mention went to "iSLM: AI Surgical Instrument Recognition and Training Platform," developed with support from Taiwan Adventist Hospital in Taipei. The team incorporated AI image recognition into surgical instrument instruction so newly hired nursing staff can practice identifying different instruments. The platform serves as a supplementary tool for operating room training.</p>
+      <p class="mb-6 text-slate-700 text-justify">This year's competition drew 1,982 team registrations from 149 colleges and universities across Taiwan, with 9,870 instances of participation in total. We congratulate both student teams and thank Professor Ying-Nien Chou and Taiwan Adventist Hospital for helping the students turn research ideas into working systems that address practical needs in health measurement and nursing education.</p>
+    `,
+  },
   {
     slug: "2026-ieee-gcce-iear-excellent-demo-silver-prize",
     date: "2026.10.28",
