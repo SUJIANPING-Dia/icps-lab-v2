@@ -15,6 +15,7 @@ export type NewsItem = {
 };
 
 export const englishNewsTitles: Record<string, string> = {
+  "2026-inoodle-tainan-sbir-award": "Miin Jiang Earns Tainan SBIR Recognition and Showcases iNoodle",
   "2026-innoserve-awards-two-winning-projects": "Two iCPS Lab Smart Healthcare Projects Win Second Place in Information Applications and an Honorable Mention in Industry-Academia Collaboration at the 2026 InnoServe Awards",
   "2026-ieee-gcce-iear-excellent-demo-silver-prize": "iCPS Lab iEar Research Wins Silver Prize in the Excellent Demo Awards at IEEE GCCE 2026",
   "2026-stanford-worlds-top-2-percent-scientists-wan-jung-chang": "Prof. Wan-Jung Chang Selected for the World's Top 2% Scientists List for the Third Consecutive Year",
@@ -45,6 +46,7 @@ export const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 export const getEnglishNewsTag = (slug: string) => {
+  if (slug === "2026-inoodle-tainan-sbir-award") return "Industry-Academia Collaboration";
   if (slug === "2026-innoserve-awards-two-winning-projects") return "Competition";
   if (slug === "2026-ieee-gcce-iear-excellent-demo-silver-prize") return "Award";
   if (slug.includes("worlds-top-2-percent-scientists")) return "Academic Honor";
@@ -118,6 +120,42 @@ export const prepareNewsContent = (content: string, lang: "zh" | "en", fallbackT
 };
 
 export const newsData: NewsItem[] = [
+  {
+    slug: "2026-inoodle-tainan-sbir-award",
+    date: "2026.11.11",
+    tag: "產學合作",
+    tagTheme: "text-blue-800 bg-blue-50 border-blue-200",
+    title: "iNoodle 協助乾麵產線品檢，名將實業獲選臺南市地方型 SBIR 績優廠商",
+    img: "/images/inoodle-2026-sbir-exhibit.png",
+    imgAlt: "iNoodle 於臺南市聯合成果展展出，現場陳列系統展板、乾麵產品與產線品檢影像。",
+    imgAltEn: "The iNoodle display at the Tainan Joint Results Exhibition featured a system poster, dried noodle products, and images from packaging-line inspections.",
+    content: `
+      <p class="mb-6 text-slate-700 text-justify">本實驗室的產學合作夥伴<strong>名將實業有限公司</strong>獲選臺南市「地方產業創新研發推動計畫」（地方型 SBIR）數位轉型類 <strong>114 年度績優廠商</strong>，並於 2026 年 11 月 11 日在贏地創新育成基地舉行的臺南市聯合成果展接受表揚。名將實業也在現場展出與本實驗室合作的成果「iNoodle：人工智慧製麵包裝產線之影像辨識系統」。</p>
+      <p class="mb-6 text-slate-700 text-justify">iNoodle 由國立高雄科技大學電子工程系張萬榮教授帶領本實驗室團隊，受名將實業委託研發。系統透過 AI 即時分析乾麵包裝產線的影像，自動檢查調味包的數量與種類，並偵測毛髮異物，減輕人工目視檢查的負擔，讓品檢流程更一致。</p>
+      <p class="mb-6 text-slate-700 text-justify">依名將實業在成果展公布的資料，導入 iNoodle 後，<strong>品檢時間由約 30 秒縮短至約 6 秒</strong>。本實驗室恭賀名將實業獲獎，也感謝合作夥伴，讓 AI 影像辨識技術能實際用於食品包裝產線的品質檢查。</p>
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/inoodle-2026-sbir-trophy.png" alt="臺南市地方型 SBIR 數位轉型類績優廠商獎座" class="w-full h-auto block" loading="lazy">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 text-center">名將實業有限公司獲頒臺南市地方型 SBIR 數位轉型類「114 年度績優廠商」獎座。</figcaption>
+      </figure>
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/inoodle-2026-sbir-booth.png" alt="iNoodle 成果展攤位與現場來賓" class="w-full h-auto block" loading="lazy">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 text-center">iNoodle 成果展攤位與現場來賓。</figcaption>
+      </figure>
+    `,
+    contentEn: `
+      <p class="mb-6 text-slate-700 text-justify">Our industry partner, Miin Jiang Industrial Co., Ltd., was named a 2025 Outstanding Company in the Digital Transformation category of Tainan City's local Small Business Innovation Research (SBIR) program. The company received the award on November 11, 2026, at the Tainan Joint Results Exhibition at the WinWin Innovation &amp; Incubation Base. It also showcased iNoodle, an AI vision system for noodle packaging lines developed in collaboration with our lab.</p>
+      <p class="mb-6 text-slate-700 text-justify">Miin Jiang commissioned iCPS Lab to develop iNoodle under the leadership of Professor Wan-Jung Chang of the Department of Electronics Engineering at National Kaohsiung University of Science and Technology. The system analyzes images from the dried noodle packaging line in real time, checks the number and types of seasoning packets, and detects stray hairs. This reduces the need for manual visual inspection and makes quality checks more consistent.</p>
+      <p class="mb-6 text-slate-700 text-justify">According to figures Miin Jiang shared at the exhibition, inspection time fell from about 30 seconds to about 6 seconds after iNoodle was introduced. We congratulate Miin Jiang on the award and thank our partners for helping put AI vision to work in food packaging quality control.</p>
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/inoodle-2026-sbir-trophy.png" alt="Tainan local SBIR Outstanding Company trophy for Digital Transformation" class="w-full h-auto block" loading="lazy">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 text-center">Miin Jiang Industrial Co., Ltd. received Tainan's local SBIR trophy as a 2025 Outstanding Company in the Digital Transformation category.</figcaption>
+      </figure>
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/inoodle-2026-sbir-booth.png" alt="Visitors at the iNoodle exhibition booth" class="w-full h-auto block" loading="lazy">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 text-center">The iNoodle exhibition booth and its visitors.</figcaption>
+      </figure>
+    `,
+  },
   {
     slug: "2026-innoserve-awards-two-winning-projects",
     date: "2026.11.07",
