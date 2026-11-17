@@ -46,7 +46,7 @@ export const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 export const getEnglishNewsTag = (slug: string) => {
-  if (slug === "2026-inoodle-tainan-sbir-award") return "Industry-Academia Collaboration";
+  if (slug === "2026-inoodle-tainan-sbir-award") return "Industry Partnership";
   if (slug === "2026-innoserve-awards-two-winning-projects") return "Competition";
   if (slug === "2026-ieee-gcce-iear-excellent-demo-silver-prize") return "Award";
   if (slug.includes("worlds-top-2-percent-scientists")) return "Academic Honor";
