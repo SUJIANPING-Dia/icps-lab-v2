@@ -127,7 +127,7 @@ export const newsData: NewsItem[] = [
     date: "2026.11.18",
     tag: "競賽獲獎",
     tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
-    title: "iCPS Lab 以 iNoodle 奪下 AI Manufacturing 2026 全國競賽第一名及最佳人氣獎",
+    title: "本實驗室以 iNoodle 奪下 AI Manufacturing 2026 全國競賽第一名及最佳人氣獎",
     img: "/images/inoodle-2026-ai-manufacturing-first-place.png",
     imgAlt: "iCPS Lab 團隊以 iNoodle 榮獲 AI Manufacturing 2026 全國競賽第一名，獎金新臺幣 20 萬元。",
     imgAltEn: "The iCPS Lab team won first place and NT$200,000 with iNoodle at the national AI Manufacturing 2026 competition.",
