@@ -15,6 +15,7 @@ export type NewsItem = {
 };
 
 export const englishNewsTitles: Record<string, string> = {
+  "2026-inoodle-ai-manufacturing-first-place": "iNoodle Wins First Place and Most Popular Award at AI Manufacturing 2026",
   "2026-inoodle-tainan-sbir-award": "Miin Jiang Earns Tainan SBIR Recognition and Showcases iNoodle",
   "2026-innoserve-awards-two-winning-projects": "Two iCPS Lab Smart Healthcare Projects Win Second Place in Information Applications and an Honorable Mention in Industry-Academia Collaboration at the 2026 InnoServe Awards",
   "2026-ieee-gcce-iear-excellent-demo-silver-prize": "iCPS Lab iEar Research Wins Silver Prize in the Excellent Demo Awards at IEEE GCCE 2026",
@@ -46,6 +47,7 @@ export const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 export const getEnglishNewsTag = (slug: string) => {
+  if (slug === "2026-inoodle-ai-manufacturing-first-place") return "Competition";
   if (slug === "2026-inoodle-tainan-sbir-award") return "Industry Partnership";
   if (slug === "2026-innoserve-awards-two-winning-projects") return "Competition";
   if (slug === "2026-ieee-gcce-iear-excellent-demo-silver-prize") return "Award";
@@ -120,6 +122,34 @@ export const prepareNewsContent = (content: string, lang: "zh" | "en", fallbackT
 };
 
 export const newsData: NewsItem[] = [
+  {
+    slug: "2026-inoodle-ai-manufacturing-first-place",
+    date: "2026.11.18",
+    tag: "競賽獲獎",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "iCPS Lab 以 iNoodle 奪下 AI Manufacturing 2026 全國競賽第一名及最佳人氣獎",
+    img: "/images/inoodle-2026-ai-manufacturing-first-place.png",
+    imgAlt: "iCPS Lab 團隊以 iNoodle 榮獲 AI Manufacturing 2026 全國競賽第一名，獎金新臺幣 20 萬元。",
+    imgAltEn: "The iCPS Lab team won first place and NT$200,000 with iNoodle at the national AI Manufacturing 2026 competition.",
+    content: `
+      <p class="mb-6 text-slate-700 text-justify">國立高雄科技大學電子工程系 iCPS Lab 的吳嘉祐、蔡柏昀、施為元三位同學，以「<strong>iNoodle－應用於製麵產線之 AI 智慧品檢與即時響應系統</strong>」參加 AI Manufacturing 2026 全國 AI 智慧製造競賽，一舉拿下<strong>第一名與最佳人氣獎</strong>，分別獲得新臺幣 20 萬元及 1 萬 5,000 元，合計獎金 <strong>21 萬 5,000 元</strong>。</p>
+      <p class="mb-6 text-slate-700 text-justify">iNoodle 從乾麵包裝產線的品檢需求出發，透過 AI 即時分析影像，<strong>核對調味包的種類與數量，並偵測麵塊上的毛髮異物</strong>。發現異常時，系統即發出警示，讓現場人員能及時確認與處理。這項作品把影像辨識接到實際的品檢流程，讓 AI 不只看得出異常，也能協助產線即時應對。</p>
+      <p class="mb-6 text-slate-700 text-justify">本屆競賽由國立雲林科技大學主辦、勤誠興業股份有限公司贊助，鼓勵學生將 AI 技術做成可實際展示的製造應用。本實驗室恭喜三位同學，把食品包裝現場的品檢問題做成可運作的系統，並在全國競賽中獲得兩項肯定。</p>
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/inoodle-2026-ai-manufacturing-popularity-award.png" alt="iCPS Lab 團隊上台領取最佳人氣獎" class="w-full h-auto block" loading="lazy">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 text-center">iCPS Lab 團隊於頒獎典禮獲頒最佳人氣獎，獎金新臺幣 1 萬 5,000 元。</figcaption>
+      </figure>
+    `,
+    contentEn: `
+      <p class="mb-6 text-slate-700 text-justify">Chia-Yu Wu, Bo-Yun Tsai, and Wei-Yuan Shih of iCPS Lab in the Department of Electronics Engineering at National Kaohsiung University of Science and Technology entered the national AI Manufacturing 2026 competition with <strong>iNoodle, an AI quality inspection and real-time response system for noodle production lines</strong>. They won <strong>first place and the Most Popular Award</strong>, earning NT$200,000 and NT$15,000 respectively, for a total of <strong>NT$215,000</strong>.</p>
+      <p class="mb-6 text-slate-700 text-justify">Designed for quality inspection on dried noodle packaging lines, iNoodle analyzes images in real time to <strong>check the types and quantities of seasoning packets and detect stray hairs on noodle blocks</strong>. When the system detects a problem, it alerts operators so they can check and address it promptly. By integrating image recognition into the inspection workflow, iNoodle helps operators respond to problems as they occur.</p>
+      <p class="mb-6 text-slate-700 text-justify">Organized by National Yunlin University of Science and Technology and sponsored by Chenbro Micom Co., Ltd., the competition encouraged students to build AI applications for manufacturing that they could demonstrate. We congratulate the three students on building a working system that addresses a real food-packaging inspection problem and winning two awards in the national competition.</p>
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/inoodle-2026-ai-manufacturing-popularity-award.png" alt="The iCPS Lab team accepts the Most Popular Award" class="w-full h-auto block" loading="lazy">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 text-center">The iCPS Lab team received the Most Popular Award and NT$15,000 at the awards ceremony.</figcaption>
+      </figure>
+    `,
+  },
   {
     slug: "2026-inoodle-tainan-sbir-award",
     date: "2026.11.11",
