@@ -15,6 +15,7 @@ export type NewsItem = {
 };
 
 export const englishNewsTitles: Record<string, string> = {
+  "2026-nkust-electronics-senior-project-awards": "Six Lab Projects Win Awards, Including Two First Places, at NKUST Electronics Senior Project Competition",
   "2026-inoodle-ai-manufacturing-first-place": "iNoodle Wins First Place and Most Popular Award at AI Manufacturing 2026",
   "2026-inoodle-tainan-sbir-award": "Miin Jiang Earns Tainan SBIR Recognition and Showcases iNoodle",
   "2026-innoserve-awards-two-winning-projects": "Two iCPS Lab Smart Healthcare Projects Win Second Place in Information Applications and an Honorable Mention in Industry-Academia Collaboration at the 2026 InnoServe Awards",
@@ -47,6 +48,7 @@ export const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 export const getEnglishNewsTag = (slug: string) => {
+  if (slug === "2026-nkust-electronics-senior-project-awards") return "Competition";
   if (slug === "2026-inoodle-ai-manufacturing-first-place") return "Competition";
   if (slug === "2026-inoodle-tainan-sbir-award") return "Industry Partnership";
   if (slug === "2026-innoserve-awards-two-winning-projects") return "Competition";
@@ -122,6 +124,52 @@ export const prepareNewsContent = (content: string, lang: "zh" | "en", fallbackT
 };
 
 export const newsData: NewsItem[] = [
+  {
+    slug: "2026-nkust-electronics-senior-project-awards",
+    date: "2026.11.24",
+    tag: "競賽獲獎",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "本實驗室六件畢業專題全數獲獎，勇奪通訊組與資訊組雙第一",
+    img: "/images/nkust-2026-senior-project-smart-ptrlm.jpg",
+    imgAlt: "通訊組第一名作品 Smart PTRLM 團隊於競賽現場與膝反射評估設備合影。",
+    imgAltEn: "The Smart PTRLM team, winners of first place in the Communications category, poses with its knee reflex assessment equipment at the competition.",
+    content: `
+      <p class="mb-6 text-slate-700 text-justify">國立高雄科技大學電子工程系於 11 月 21 日舉辦「115 學年度畢業班學生實務專題競賽」，並於 11 月 23 日公布得獎名單。<strong>本實驗室六件參賽作品全數獲獎</strong>，其中 Smart PTRLM 智慧膝反射量化與輔助評估系統拿下<strong>通訊組第一名</strong>，AOI+ 主機板電容缺漏焊自動化識別系統拿下<strong>資訊組第一名</strong>。</p>
+      <h2 class="mb-2 text-lg font-bold text-slate-800">獲獎作品</h2>
+      <ul class="mb-6 list-disc space-y-1 pl-6 text-slate-700">
+        <li><strong>通訊組第一名</strong>｜Smart PTRLM 智慧膝反射量化與輔助評估系統</li>
+        <li><strong>資訊組第一名</strong>｜AOI+ 主機板電容缺漏焊自動化識別系統</li>
+        <li><strong>綜合組第二名</strong>｜iSLM 人工智慧手術器械辨識與教育訓練平台</li>
+        <li><strong>資訊組第三名</strong>｜FitSense 銀髮族體適能檢測暨功能性訓練系統</li>
+        <li><strong>綜合組第三名</strong>｜iEarLM 智慧耳診平台</li>
+        <li><strong>通訊組佳作</strong>｜iMP Viewer 空氣中微塑膠偵測系統</li>
+      </ul>
+      <p class="mb-6 text-slate-700 text-justify">六件作品從不同的實際需求出發，涵蓋健康評估、護理教育、智慧製造與環境監測。從發想、系統設計、反覆測試到現場展示，同學們把課堂所學做成可操作、可展示的專題成果。</p>
+      <p class="mb-6 text-slate-700 text-justify">本實驗室恭喜所有獲獎同學，也感謝研究生學長姐在專題製作與備賽期間的陪伴與協助，讓同學們能把最初的構想一步步做成作品。</p>
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/nkust-2026-senior-project-islm.jpg" alt="iSLM 團隊與專題海報及手術器械辨識與教育訓練平台合影" class="w-full h-auto block" loading="lazy">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 text-center">綜合組第二名作品 iSLM 團隊於專題海報及手術器械辨識與教育訓練平台旁合影。</figcaption>
+      </figure>
+    `,
+    contentEn: `
+      <p class="mb-6 text-slate-700 text-justify">The Department of Electronics Engineering at National Kaohsiung University of Science and Technology held its 2026 academic year Senior Project Competition on November 21 and announced the winners on November 23. <strong>All six projects entered by our lab won awards.</strong> Smart PTRLM, a system for quantifying knee reflexes and supporting assessment, won <strong>first place in the Communications category</strong>, while AOI+, an automated system for identifying missing or poorly soldered motherboard capacitors, won <strong>first place in the Information Technology category</strong>.</p>
+      <h2 class="mb-2 text-lg font-bold text-slate-800">Award-Winning Projects</h2>
+      <ul class="mb-6 list-disc space-y-1 pl-6 text-slate-700">
+        <li><strong>First Place, Communications:</strong> Smart PTRLM, Smart Knee Reflex Quantification and Assisted Assessment System</li>
+        <li><strong>First Place, Information Technology:</strong> AOI+, Automated Detection of Missing and Poorly Soldered Motherboard Capacitors</li>
+        <li><strong>Second Place, General:</strong> iSLM, AI Platform for Surgical Instrument Recognition and Training</li>
+        <li><strong>Third Place, Information Technology:</strong> FitSense, Physical Fitness Assessment and Functional Training System for Older Adults</li>
+        <li><strong>Third Place, General:</strong> iEarLM, Smart Ear Diagnosis Platform</li>
+        <li><strong>Honorable Mention, Communications:</strong> iMP Viewer, Airborne Microplastics Detection System</li>
+      </ul>
+      <p class="mb-6 text-slate-700 text-justify">The six projects address practical needs in health assessment, nursing education, smart manufacturing, and environmental monitoring. From developing ideas and designing systems to repeated testing and on-site demonstrations, the students applied what they learned in class to build working projects they could demonstrate.</p>
+      <p class="mb-6 text-slate-700 text-justify">Our lab congratulates all the award-winning students and thanks the graduate students who supported them as they developed their projects and prepared for the competition. With that help, the teams turned their initial ideas into working projects step by step.</p>
+      <figure class="max-w-3xl mx-auto mb-6 overflow-hidden rounded border border-slate-200 bg-white shadow-sm">
+        <img src="/images/nkust-2026-senior-project-islm.jpg" alt="The iSLM team poses beside its project poster and surgical instrument recognition and training platform" class="w-full h-auto block" loading="lazy">
+        <figcaption class="px-4 py-3 text-sm text-slate-600 text-center">The iSLM team, winners of second place in the General category, poses beside its project poster and surgical instrument recognition and training platform.</figcaption>
+      </figure>
+    `,
+  },
   {
     slug: "2026-inoodle-ai-manufacturing-first-place",
     date: "2026.11.18",
