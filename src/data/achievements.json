@@ -268,6 +268,26 @@
     "description": "發表於國際學術研討會之研究成果。",
     "yearlyData": [
       {
+        "year": "2027",
+        "items": [
+          {
+            "title": "SDView: A VAE- and SSIM-Based Unsupervised Inspection System for SD Card Printing Defect Detection",
+            "authors": "Wan-Jung Chang, Chia-Yu Wu, and Yen-Kai Wang,",
+            "venue": ", the 45th IEEE International Conference on Consumer Electronics (ICCE 2027), Las Vegas, Nevada, USA, Jan. 8-11, 2027."
+          },
+          {
+            "title": "HomeFit: An Edge-AI System for Vision-Based Home Exercise Analysis Using Single-RGB Human Pose Estimation",
+            "authors": "Wan-Jung Chang, Yi-Ming Tsai, Chia-Lun Lee, Yen-Chin Chen, and Jian-Ping Su,",
+            "venue": ", the 45th IEEE International Conference on Consumer Electronics (ICCE 2027), Las Vegas, Nevada, USA, Jan. 8-11, 2027."
+          },
+          {
+            "title": "KneeEye: A Dual-Modal System Integrating a Wearable Sensing Knee Sleeve and AI-Based Image Recognition for Patellar Tendon Reflex Quantification",
+            "authors": "Wan-Jung Chang, Ying-Nien Chou, Cheng-You Chi, Po-Chun Huang, Jian-Ping Su, and Kai-Sheng Hsieh,",
+            "venue": ", the 45th IEEE International Conference on Consumer Electronics (ICCE 2027), Las Vegas, Nevada, USA, Jan. 8-11, 2027."
+          }
+        ]
+      },
+      {
         "year": "2026",
         "items": [
           {
@@ -2368,6 +2388,16 @@
       {
         "year": "2026",
         "items": [
+          {
+            "content": "指導學生參加『AI Manufacturing 2026 全國 AI 智慧製造競賽』－榮獲第一名，作品：「iNoodle－應用於製麵產線之 AI 智慧品檢與即時響應系統」",
+            "project": "指導學生參加『AI Manufacturing 2026 全國 AI 智慧製造競賽』－榮獲第一名，作品：「iNoodle－應用於製麵產線之 AI 智慧品檢與即時響應系統」",
+            "amount": ""
+          },
+          {
+            "content": "指導學生參加『AI Manufacturing 2026 全國 AI 智慧製造競賽』－榮獲最佳人氣獎，作品：「iNoodle－應用於製麵產線之 AI 智慧品檢與即時響應系統」",
+            "project": "指導學生參加『AI Manufacturing 2026 全國 AI 智慧製造競賽』－榮獲最佳人氣獎，作品：「iNoodle－應用於製麵產線之 AI 智慧品檢與即時響應系統」",
+            "amount": ""
+          },
           {
             "content": "指導學生參加『第31屆 InnoServe 大專校院資訊應用服務創新競賽』產學合作組－榮獲佳作，作品：「iSLM-人工智慧手術器械辨識與教育訓練平台」",
             "project": "指導學生參加『第31屆 InnoServe 大專校院資訊應用服務創新競賽』產學合作組－榮獲佳作，作品：「iSLM-人工智慧手術器械辨識與教育訓練平台」",
