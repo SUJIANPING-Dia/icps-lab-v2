@@ -23,7 +23,7 @@ Responsibilities:
 | --- | --- | --- |
 | Add, edit, remove, or reorder news | News Agent | `src/data/news.ts`, `src/components/News.astro`, scoped news detail pages, optional user-provided images |
 | Add, edit, remove, or reorder FAQ | FAQ Agent | `src/pages/faq.astro` |
-| Add, edit, remove, or reorder members | Members Agent | `src/pages/members.astro`, optional user-provided photos |
+| Add, edit, remove, or reorder members | Members Agent | `src/data/members.ts`, member pages for profile copy, optional user-provided photos |
 | Add or update achievements data | Achievements Agent | `src/data/achievements.json` |
 | Generic website update prompts such as `更新網站` or `更新網頁` | Achievements Agent -> QA Release Agent | Codex-run manual scraper sync; only `src/data/achievements.json` may be committed |
 | Manual achievements scraper sync | Achievements Agent -> QA Release Agent | GitHub Actions harness or Codex-run scraper flow; only `src/data/achievements.json` may be committed |

@@ -1,4 +1,16 @@
 {
+  "buildCommand": "npm run build && node scripts/verify-site.mjs",
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'self'; form-action 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https://res.cloudinary.com https://i.ytimg.com https://ui-avatars.com https://images.unsplash.com https://upload.wikimedia.org https://www.transparenttextures.com; connect-src 'self'; frame-src https://www.youtube.com https://www.youtube-nocookie.com https://youtube.com" }
+      ]
+    }
+  ],
   "redirects": [
     { "source": "/images/kneeeye-full.png", "destination": "/images/kneeeye-display.webp", "permanent": true },
     { "source": "/images/pigview-full.png", "destination": "/images/pigview-display.webp", "permanent": true },

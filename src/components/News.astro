@@ -1,12 +1,14 @@
 ---
-import { newsData, englishNewsTitles, getEnglishNewsTag, sortNews, prepareNewsContent, type NewsItem } from "../data/news";
+import { load } from "cheerio";
+import { newsData, englishNewsTitles, getEnglishNewsTag, sortNews, type NewsItem } from "../data/news";
 
 interface Props {
   lang?: "zh" | "en";
   sectionId?: string;
+  compact?: boolean;
 }
 
-const { lang = "zh", sectionId = "news" } = Astro.props;
+const { lang = "zh", sectionId = "news", compact = false } = Astro.props;
 const isEnglish = lang === "en";
 const newsBasePath = isEnglish ? "/en/news" : "/news";
 const sectionTitle = isEnglish ? "News" : "最新消息";
@@ -16,9 +18,11 @@ const readMoreLabel = isEnglish ? "Read Full Article" : "閱讀完整新聞";
 const getDisplayTitle = (slug: string, fallback: string) => isEnglish ? (englishNewsTitles[slug] ?? fallback) : fallback;
 const getDisplayTag = (slug: string, fallback: string) => isEnglish ? getEnglishNewsTag(slug) : fallback;
 const getDisplayContent = (item: NewsItem) => isEnglish && item.contentEn ? item.contentEn : item.content;
-const getDisplayImgAlt = (item: NewsItem) => isEnglish && item.imgAltEn ? item.imgAltEn : item.imgAlt;
-const hasEmbeddedLeadImage = (item: NewsItem, content: string) => Boolean(item.img && content.includes(item.img));
-const getPreparedContent = (item: NewsItem) => prepareNewsContent(getDisplayContent(item), lang, getDisplayTitle(item.slug, item.title));
+function getSummary(item: NewsItem) {
+  const $ = load(getDisplayContent(item), null, false);
+  const paragraphs = $("p").filter((_, p) => !$(p).closest("figure,figcaption").length && !!$(p).text().trim());
+  return paragraphs.slice(0, compact ? 1 : 2).map((_, p) => $(p).text().replace(/\s+/g, " ").trim()).get();
+}
 
 const sortedNewsData = sortNews(newsData);
 ---
@@ -61,13 +65,7 @@ const sortedNewsData = sortNews(newsData);
           <div id={`news-content-${item.slug}`} role="region" aria-labelledby={`news-toggle-${item.slug}`} hidden inert data-expanded="false" class={item.isPinned ? 'bg-slate-50' : 'bg-transparent'}>
             <div class="overflow-hidden">
               <div class="px-6 pb-6 md:pl-[19rem] text-slate-700 text-sm leading-relaxed space-y-5">
-                {item.img && !hasEmbeddedLeadImage(item, getDisplayContent(item)) && (
-                  <div class="w-full max-w-3xl mx-auto bg-slate-100 rounded border border-slate-200 overflow-hidden relative mt-2 flex items-center justify-center min-h-[120px]">
-                    <span class="absolute text-slate-400 font-medium z-0">[ {getDisplayImgAlt(item)} ]</span>
-                    <img src={item.img} alt={getDisplayImgAlt(item)} class="w-full h-auto relative z-10 block" loading="lazy" decoding="async" onerror="this.style.display='none';" />
-                  </div>
-                )}
-                <div set:html={getPreparedContent(item)}></div>
+                {getSummary(item).map(paragraph => <p class="text-justify" lang={isEnglish && !item.contentEn ? "zh-TW" : undefined}>{paragraph}</p>)}
                 <div class="pt-2">
                   <a
                     href={`${newsBasePath}/${item.slug}`}

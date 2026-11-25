@@ -1,0 +1,64 @@
+---
+interface Props {
+  groups: { category: string; items: { question: string; answer: string }[] }[];
+  lang: "zh" | "en";
+}
+const { groups, lang } = Astro.props;
+const english = lang === "en";
+---
+
+{groups.map((group, index) => (
+  <section id={`category-${index}`} class:list={["faq-category-group", { "is-active": index === 0 }]}>
+    <div class="mb-6">
+      <div class="inline-flex items-center gap-3 mb-3">
+        <span class="w-9 h-1 bg-blue-600 rounded-full"></span>
+        <span class="text-blue-700 text-xs font-black tracking-widest uppercase">FAQ Category</span>
+      </div>
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3">
+        <div>
+          <h2 class="text-2xl md:text-3xl font-black text-slate-900 tracking-tight">{group.category}</h2>
+          <p class="text-sm text-slate-500 mt-2">
+            {english ? `${group.items.length} frequently asked questions` : `共 ${group.items.length} 個常見問題`}
+          </p>
+        </div>
+        <button type="button" class="open-all-btn inline-flex items-center gap-2 text-sm font-bold text-blue-700 bg-white border border-blue-100 hover:bg-blue-50 px-4 py-2.5 rounded-full transition shadow-sm" data-group={`category-${index}`} aria-controls={`category-${index}`} aria-expanded="false">
+          <span class="open-all-label">{english ? "Expand This Category" : "展開本分類"}</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+        </button>
+      </div>
+    </div>
+    <div class="space-y-3">
+      {group.items.map((item, itemIndex) => (
+        <details class="faq-item bg-white border border-slate-200 rounded-[1.25rem] overflow-hidden shadow-sm transition-all duration-300" data-question={item.question.toLowerCase()} data-answer={item.answer.toLowerCase()}>
+          <summary class="faq-btn w-full px-5 py-4 sm:px-6 sm:py-5 text-left flex justify-between gap-5 items-start cursor-pointer list-none group hover:bg-slate-50 transition [&::-webkit-details-marker]:hidden" aria-controls={`faq-${index}-${itemIndex}`}>
+            <span class="flex items-start gap-4 min-w-0">
+              <span aria-hidden="true" class="hidden sm:inline-flex w-8 h-8 rounded-xl bg-blue-50 text-blue-700 items-center justify-center text-xs font-black shrink-0">Q</span>
+              <span class="font-black text-slate-800 text-[15px] sm:text-base group-hover:text-blue-700 transition leading-relaxed faq-question-text">{item.question}</span>
+            </span>
+            <span class="faq-icon w-9 h-9 rounded-full bg-slate-100 text-slate-500 group-hover:bg-blue-600 group-hover:text-white transition-all shrink-0 flex items-center justify-center" aria-hidden="true">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" /></svg>
+            </span>
+          </summary>
+          <div id={`faq-${index}-${itemIndex}`} class="faq-answer-content bg-gradient-to-b from-slate-50 to-white border-t border-slate-100">
+            <div class="px-5 py-5 sm:px-6 sm:py-6 text-slate-600 text-sm sm:text-[15px] leading-loose faq-answer-text flex gap-4">
+              <span aria-hidden="true" class="hidden sm:inline-flex w-8 h-8 rounded-xl bg-slate-900 text-white items-center justify-center text-xs font-black shrink-0">A</span>
+              <span>{item.answer}</span>
+            </div>
+          </div>
+        </details>
+      ))}
+    </div>
+  </section>
+))}
+
+<style is:global>
+  html:not(.faq-enhanced) :is(#faq-search, #faq-sidebar, .open-all-btn) { display: none; }
+  html:not(.faq-enhanced) #faq-content-area { grid-column: 1 / -1; }
+  html:not(.faq-enhanced) .faq-category-group + .faq-category-group { margin-top: 3rem; }
+  html:not(.faq-enhanced) #faq-content-area { opacity: 1; transform: none; }
+  .faq-enhanced .faq-category-group:not(.is-active) { display: none; }
+  .faq-enhanced .faq-category-group.is-active { animation: faqPanelIn .38s ease both; }
+  .faq-item[open] { border-color: #bfdbfe; box-shadow: 0 18px 45px -32px rgb(37 99 235 / .55); }
+  .faq-item[open] .faq-icon { transform: rotate(45deg); }
+  @keyframes faqPanelIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
+</style>

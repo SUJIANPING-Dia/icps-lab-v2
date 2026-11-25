@@ -1,0 +1,7 @@
+---
+import AchievementDirectory from '../../../components/AchievementDirectory.astro';
+import { categoryRoutes } from '../../../lib/achievement-directory';
+
+export function getStaticPaths() { return categoryRoutes(); }
+---
+<AchievementDirectory slug={Astro.params.category} lang="en" />

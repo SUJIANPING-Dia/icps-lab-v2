@@ -1,6 +1,7 @@
-const COUNTER_URL = "https://api.counterapi.dev/v1/icpslab_site/visits";
-const COUNT_KEY = "icps_saved_count";
-const VISIT_KEY = "icps_last_visit_time";
+const COUNTER_URL = "/api/visits";
+const COUNT_KEY = "icps_visit_total_v2";
+const VISIT_KEY = "icps_visit_time_v2";
+const BROWSER_KEY = "icps_visit_id_v2";
 const STORAGE_PROBE_KEY = "icps_counter_storage_probe";
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -48,6 +49,7 @@ export function createVisitorCounter({
   fetchImpl = (...args) => globalThis.fetch(...args),
   storage = browserStorage(),
   now = () => Date.now(),
+  newId = () => globalThis.crypto.randomUUID(),
   timeoutMs = 8000,
 } = {}) {
   let request;
@@ -64,16 +66,28 @@ export function createVisitorCounter({
     const timeout = setTimeout(() => controller.abort(), timeoutMs);
 
     try {
-      const response = await fetchImpl(increment ? `${COUNTER_URL}/up` : COUNTER_URL, {
-        signal: controller.signal,
-      });
+      let visitor;
+      if (increment) {
+        try {
+          // Retain the same ID on a failed/ambiguous request so the server can deduplicate retries.
+          visitor = readStorage(storage, BROWSER_KEY);
+          if (!visitor) {
+            visitor = newId();
+            storage.setItem(BROWSER_KEY, visitor);
+          }
+        } catch { visitor = undefined; }
+      }
+      const response = await fetchImpl(COUNTER_URL, visitor ? {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ visitor }), signal: controller.signal,
+      } : { method: "GET", signal: controller.signal });
       if (!response.ok) throw new Error("Counter request failed");
       const data = await response.json();
       const count = parseCount(data?.count);
       if (count === null) throw new Error("Invalid counter response");
 
       try {
-        if (increment) storage?.setItem(VISIT_KEY, String(currentTime));
+        if (visitor) storage?.setItem(VISIT_KEY, String(currentTime));
         storage?.setItem(COUNT_KEY, String(count));
       } catch {
         // A valid response remains usable if storage becomes unavailable afterwards.

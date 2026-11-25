@@ -3,7 +3,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import path from 'node:path';
 import { load } from 'cheerio';
 
-const root = path.resolve('dist');
+const root = path.resolve(process.argv[2] ?? 'dist');
 const origin = 'https://icps-lab.com';
 const errors = [];
 const check = (condition, message) => { if (!condition) errors.push(message); };
@@ -68,11 +68,13 @@ for (const [url, { $ }] of pages) {
   const ids = $('[id]').toArray().map(element => $(element).attr('id'));
   check(new Set(ids).size === ids.length, `${url}: duplicate element IDs`);
   $('[href]').each((_, element) => verifyReference($(element).attr('href'), url, { anchor: true }));
-  $('[src],[poster]').each((_, element) => {
+  $('[src],[poster],.slider-img[data-src],.gallery-item[data-full]').each((_, element) => {
     const node = $(element);
     if (node.attr('src') !== undefined) check(node.attr('src') !== '', `${url}: empty src`);
     verifyReference(node.attr('src'), url);
     verifyReference(node.attr('poster'), url);
+    verifyReference(node.attr('data-src'), url);
+    verifyReference(node.attr('data-full'), url);
   });
   $('[srcset]').each((_, element) => {
     for (const candidate of ($(element).attr('srcset') ?? '').split(',')) verifyReference(candidate.trim().split(/\s+/)[0], url);
@@ -104,6 +106,26 @@ if (existsSync(sitemapIndex)) {
   }
 }
 for (const url of pages.keys()) check(sitemapUrls.has(url), `Missing from sitemap: ${url}`);
+const albumInventories = [];
+for (const prefix of ['/activities', '/en/activities']) {
+  const index = pages.get(canonical(prefix))?.$;
+  const albums = new Map();
+  if (index) {
+    for (const link of index('a[data-album-photos]').toArray()) {
+      const href = index(link).attr('href');
+      const count = Number(index(link).attr('data-album-photos'));
+      check(href.startsWith(prefix + '/') && !albums.has(href), `Invalid or duplicate album: ${href}`);
+      const detail = pages.get(canonical(href))?.$;
+      check(detail && Number.isSafeInteger(count) && count >= 0 && detail('.gallery-item[data-full]').length === count, `Album photo count mismatch: ${href}`);
+      albums.set(href, count);
+    }
+  }
+  const built = [...pages.keys()].filter(url => new URL(url).pathname.startsWith(prefix + '/'));
+  check(albums.size > 0 && [...albums.values()].some(count => count > 0), `Missing activity inventory: ${prefix}`);
+  check(albums.size === built.length, `Album directory/detail count mismatch: ${prefix}`);
+  albumInventories.push([...albums].map(([href, count]) => [href.slice(prefix.length), count]).sort());
+}
+check(JSON.stringify(albumInventories[0]) === JSON.stringify(albumInventories[1]), 'Chinese and English album inventories differ');
 for (const redirect of redirects) {
   check(redirect.permanent === true, `Nonpermanent archive redirect: ${redirect.source}`);
   check(existsSync(path.join('assets/archive', path.basename(redirect.source))), `Missing archived original: ${redirect.source}`);

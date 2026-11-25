@@ -17,6 +17,7 @@ reports/
 
 # local Codex/runtime artifacts
 .codex-remote-attachments/
+.codex-attachments/
 runtime/
 
 # local prototypes that should not become public routes
@@ -28,7 +29,9 @@ public/images/*.rar
 
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
+.vercel/
 
 # macOS-specific files
 .DS_Store

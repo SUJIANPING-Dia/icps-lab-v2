@@ -19,7 +19,9 @@ npm run dev
 | `npm audit` | Check dependency advisories |
 | `node scripts/verify-site.mjs` | Check all built routes, local assets, metadata, sitemap and ARIA references |
 
-Builds that include activity albums need the existing Cloudinary credentials in the environment. Obtain them through the maintainer's private configuration process. Never commit, print, or copy `.env` into reports or backups. A preview is local; it does not update production.
+Release builds require the existing Cloudinary credentials. A failed album request stops the build. GitHub checks and offline builds can set `ICPS_ALBUM_FIXTURE=1` to exercise a populated and an empty album. Vercel rejects that setting. The production build runs the site verifier before promotion.
+
+The footer calls the same-origin `/api/visits` Vercel function. Its dedicated Neon database is connected to the production project with the server-side `VISITS_DATABASE_URL` variable. Run `node scripts/initialize-visit-store.mjs` when provisioning a new database. This command is idempotent. Totals start on November 25, 2026. One anonymous browser ID is eligible once per rolling 24 hours. Expired IDs are pruned on subsequent writes. Read-only health checks use `GET /api/visits`. Obtain credentials through the maintainer's private configuration process.
 
 ## Where to edit
 
@@ -29,9 +31,9 @@ Builds that include activity albums need the existing Cloudinary credentials in 
 | Shared document and metadata | `src/layouts/BaseLayout.astro` |
 | Shared navigation and UI | `src/components/` |
 | News and bilingual presentation metadata | `src/data/news.ts` |
-| Achievements and derived statistics | `src/data/achievements.json` |
+| Achievements, homepage statistics and featured works | `src/data/achievements.json`, `src/data/homepage.ts` |
 | Video records | `src/data/videos.ts` |
-| FAQ and member records | Their respective `.astro` pages |
+| FAQ and member records | FAQ page data and `src/data/members.ts` |
 | Static images | `public/images/` |
 | Global styles | `src/styles/` |
 

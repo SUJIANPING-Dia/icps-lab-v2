@@ -12,20 +12,14 @@ export function initFaq() {
   const english = document.documentElement.lang === "en";
   let activeCategory = "category-0";
 
-  const setOpen = (item: HTMLElement, open: boolean) => {
-    item.classList.toggle("is-open", open);
-    item.querySelector(".faq-btn")?.setAttribute("aria-expanded", String(open));
-    const answer = item.querySelector<HTMLElement>(".faq-answer-content");
-    if (answer) answer.hidden = !open;
-  };
-
   const updateGroupButton = (group: HTMLElement) => {
     const button = group.querySelector<HTMLButtonElement>(".open-all-btn");
-    const items = Array.from(group.querySelectorAll<HTMLElement>(".faq-item:not(.hidden)"));
-    const allOpen = items.length > 0 && items.every(item => item.classList.contains("is-open"));
+    const items = Array.from(group.querySelectorAll<HTMLDetailsElement>(".faq-item:not(.hidden)"));
+    const allOpen = items.length > 0 && items.every(item => item.open);
     if (!button) return;
     button.setAttribute("aria-expanded", String(allOpen));
-    if (button.firstChild) button.firstChild.textContent = english
+    const label = button.querySelector(".open-all-label");
+    if (label) label.textContent = english
       ? allOpen ? "Collapse This Category" : "Expand This Category"
       : allOpen ? "收合本分類" : "展開本分類";
   };
@@ -39,7 +33,7 @@ export function initFaq() {
     });
     groups.forEach(group => {
       group.classList.toggle("is-active", group.id === id);
-      if (group.id !== id) group.querySelectorAll<HTMLElement>(".faq-item").forEach(item => setOpen(item, false));
+      if (group.id !== id) group.querySelectorAll<HTMLDetailsElement>(".faq-item").forEach(item => { item.open = false; });
       updateGroupButton(group);
     });
   };
@@ -50,9 +44,9 @@ export function initFaq() {
     searchState?.classList.add("hidden");
     noResults?.classList.add("hidden");
     sidebar?.classList.remove("opacity-60");
-    document.querySelectorAll<HTMLElement>(".faq-item").forEach(item => {
+    document.querySelectorAll<HTMLDetailsElement>(".faq-item").forEach(item => {
       item.classList.remove("hidden");
-      setOpen(item, false);
+      item.open = false;
     });
     switchCategory(activeCategory);
     if (focus) input?.focus();
@@ -64,21 +58,22 @@ export function initFaq() {
     document.querySelector("main")?.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
   }));
 
-  document.querySelectorAll<HTMLButtonElement>(".faq-btn").forEach(button => button.addEventListener("click", () => {
-    const item = button.closest<HTMLElement>(".faq-item");
+  document.querySelectorAll<HTMLElement>(".faq-btn").forEach(button => button.addEventListener("click", event => {
+    const item = button.closest<HTMLDetailsElement>(".faq-item");
     const group = button.closest<HTMLElement>(".faq-category-group");
     if (!item || !group) return;
-    const open = !item.classList.contains("is-open");
-    group.querySelectorAll<HTMLElement>(".faq-item").forEach(other => setOpen(other, other === item && open));
+    event.preventDefault();
+    const open = !item.open;
+    group.querySelectorAll<HTMLDetailsElement>(".faq-item").forEach(other => { other.open = other === item && open; });
     updateGroupButton(group);
   }));
 
   document.querySelectorAll<HTMLButtonElement>(".open-all-btn").forEach(button => button.addEventListener("click", () => {
     const group = document.getElementById(button.dataset.group ?? "");
     if (!group) return;
-    const items = Array.from(group.querySelectorAll<HTMLElement>(".faq-item:not(.hidden)"));
-    const open = items.some(item => !item.classList.contains("is-open"));
-    items.forEach(item => setOpen(item, open));
+    const items = Array.from(group.querySelectorAll<HTMLDetailsElement>(".faq-item:not(.hidden)"));
+    const open = items.some(item => !item.open);
+    items.forEach(item => { item.open = open; });
     updateGroupButton(group);
   }));
 
@@ -93,10 +88,10 @@ export function initFaq() {
     tabs.forEach(tab => tab.setAttribute("aria-pressed", "false"));
     groups.forEach(group => {
       let groupMatches = false;
-      group.querySelectorAll<HTMLElement>(".faq-item").forEach(item => {
+      group.querySelectorAll<HTMLDetailsElement>(".faq-item").forEach(item => {
         const matched = (item.dataset.question ?? "").includes(term) || (item.dataset.answer ?? "").includes(term);
         item.classList.toggle("hidden", !matched);
-        setOpen(item, false);
+        item.open = false;
         if (matched) { matches += 1; groupMatches = true; }
       });
       group.classList.toggle("is-active", groupMatches);
@@ -108,6 +103,7 @@ export function initFaq() {
 
   clear?.addEventListener("click", () => resetSearch());
   reset?.addEventListener("click", () => resetSearch());
+  document.documentElement.classList.add("faq-enhanced");
   const observer = new IntersectionObserver((entries, currentObserver) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) { entry.target.classList.add("is-visible"); currentObserver.unobserve(entry.target); }

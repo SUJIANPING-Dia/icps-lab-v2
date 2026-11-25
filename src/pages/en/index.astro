@@ -3,67 +3,13 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Footer from "../../components/Footer.astro";
 import PosterDialog from "../../components/PosterDialog.astro";
 import Navbar from "../../components/Navbar.astro";
-// 👇 移除了 Members 的匯入，只保留 News 和 Videos
 import News from "../../components/News.astro";
 import Videos from "../../components/Videos.astro";
-// 🌟 讀取成就資料，用於自動計算首頁統計數據
 import achievements from "../../data/achievements.json";
-import { getProjectPartners } from "../../data/partners.mjs";
+import { getHomepageStatistics, getFeaturedWorks } from "../../data/homepage";
 
-// --- 📊 數據自動統計邏輯 (基於 achievements.json) ---
-
-// 1. 國際期刊數量
-const journalGroup = achievements.find(a => a.category && a.category.includes("國際期刊"));
-const journalCount = journalGroup ? journalGroup.yearlyData.reduce((sum, year) => sum + year.items.length, 0) : 0;
-
-// 2. 國際研討會數量
-const confGroup = achievements.find(a => a.category && a.category.includes("國際研討會論文"));
-const confCount = confGroup ? confGroup.yearlyData.reduce((sum, year) => sum + year.items.length, 0) : 0;
-
-// 3. 已核對歷年計畫中的企業與業者
-const projectGroup = achievements.find(a => a.type === "project");
-const partnerCount = getProjectPartners(achievements).industry.length;
-
-// 4. 計畫總金額彙整
-let totalAmountValue = 0;
-projectGroup?.yearlyData.forEach(year => {
-  year.items.forEach(item => {
-    // 將 "1,200,000元" 轉換為數字
-    const num = parseInt(item.amount?.replace(/[^0-9]/g, '') || "0");
-    totalAmountValue += num;
-  });
-});
-
-// 格式化顯示 (拆分為純數字與後綴，方便前端動畫使用)
-const isBillion = totalAmountValue > 100000000;
-// 修改為保留兩位小數
-const amountNum = isBillion ? (totalAmountValue / 100000000).toFixed(2) : Math.floor(totalAmountValue / 10000);
-const amountUnit = isBillion ? "x 100M NTD" : "x 10K NTD";
-// 讓前端動畫知道要跳到小數點後兩位
-const amountDecimals = isBillion ? 2 : 0;
-
-// 5. 國內外競賽得獎數量
-const awardGroup = achievements.find(a => a.category && (a.category.includes("競賽") || a.category.includes("得獎") || a.category.includes("榮譽")));
-const awardCount = awardGroup ? awardGroup.yearlyData.reduce((sum, year) => sum + year.items.length, 0) : 0;
-
-// 6. 專利數量 (新增)
-const patentGroup = achievements.find(a => a.category && (a.category.includes("專利") || a.category.includes("Patent")));
-const patentCount = patentGroup ? patentGroup.yearlyData.reduce((sum, year) => sum + year.items.length, 0) : 0;
-
-// 🖼️ 7. 實驗室海報作品清單 (擴充為 10 個作品測試捲軸佈局)
-const posters = [
-  { id: 1, title: "KneeEye", category: "Healthcare AI", desc: "Dual-modal patellar tendon reflex quantification system", thumb: "/images/kneeeye-display.webp", full: "/images/kneeeye-display.webp" },
-  { id: 2, title: "PigView", category: "Smart Farming", desc: "AI-based pig weight estimation system", thumb: "/images/pigview-display.webp", full: "/images/pigview-display.webp" },
-  { id: 3, title: "iEar", category: "Healthcare AI", desc: "AI-powered otitis media diagnosis system", thumb: "/images/iear-display.webp", full: "/images/iear-display.webp" },
-  { id: 4, title: "iNoodle", category: "Smart Manufacturing", desc: "AI seasoning packet recognition system", thumb: "/images/inoodle-display.webp", full: "/images/inoodle-display.webp" },
-  { id: 5, title: "ToFPose", category: "Healthcare AI", desc: "Privacy-preserving ToF skeleton estimation", thumb: "/images/tofpose-display.webp", full: "/images/tofpose-display.webp" },
-  { id: 6, title: "GaitMirror", category: "Healthcare AI", desc: "AI gait analysis system", thumb: "/images/gaitmirror-display.webp", full: "/images/gaitmirror-display.webp" },
-  { id: 7, title: "AOI+", category: "Smart Manufacturing", desc: "Automated missing-solder inspection for capacitors around motherboard CPUs", thumb: "/images/aoi-plus-display.webp", full: "/images/aoi-plus-full.png" },
-  { id: 8, title: "iMP Viewer", category: "Environmental AI", desc: "Edge-AI airborne microplastic detection and 2D size estimation", thumb: "/images/imp-viewer-display.webp", full: "/images/imp-viewer-full.png" },
-  { id: 9, title: "SDView", category: "Smart Manufacturing", desc: "Unsupervised SD card printing defect inspection", thumb: "/images/sdview-display.webp", full: "/images/sdview-full.png" }
-  // 👇 模擬未來新增的作品
-
-];
+const { awardCount, patentCount, journalCount, confCount, partnerCount, reportedFunding, unreportedProjects } = getHomepageStatistics(achievements);
+const posters = getFeaturedWorks("en");
 const title = "iCPS Lab | Intelligent Cyber-Physical Systems Laboratory - NKUST";
 const description = "iCPS Lab focuses on AIoT, healthcare AI, smart manufacturing, sensing systems, research achievements, activities, media, and news.";
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative";
@@ -133,18 +79,18 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
   <header class="relative w-full bg-[#0f172a] overflow-hidden border-b-4 border-blue-700 aspect-[16/9] sm:aspect-[21/9] lg:aspect-[12/5]">
     <div id="hero-slider" class="absolute inset-0 w-full h-full z-10 group/slider">
       <img src="/images/hero-top-2-percent-scientists-2026-en.webp" alt="Professor Wan-Jung Chang recognized as one of the World's Top 2% Scientists for three consecutive years, 2024–2026" class="slider-img absolute inset-0 w-full h-full object-contain object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-100" loading="eager" decoding="async" fetchpriority="high" onerror="this.onerror=null; this.src='/images/hero-bg-3.webp';" />
-      <img src="/images/hero-edge-ai-platform-en.webp" alt="iCPS Lab Edge AI research platform with NVIDIA Jetson devices" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='/images/hero-bg-3.webp';" />
-      <img src="/images/hero-tces-award-2026.webp" alt="Prof. Wan-Jung Chang receives the TCES Outstanding Contribution Award homepage banner" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='/images/hero-bg-3.webp';" />
-      <img src="/images/hero-agentic-ai-multi-agent-en.webp" alt="iCPS Lab multi-agent collaboration and Agentic AI research homepage banner" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='/images/hero-bg-3.webp';" />
-      <img src="/images/hero-bg-3.webp" alt="iCPS Lab background 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
-      <img src="/images/hero-bg-4.webp" alt="iCPS Lab background 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" loading="lazy" decoding="async" onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img aria-hidden="true" data-src="/images/hero-edge-ai-platform-en.webp" alt="iCPS Lab Edge AI research platform with NVIDIA Jetson devices" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" decoding="async" onerror="this.onerror=null; this.src='/images/hero-bg-3.webp';" />
+      <img aria-hidden="true" data-src="/images/hero-tces-award-2026.webp" alt="Prof. Wan-Jung Chang receives the TCES Outstanding Contribution Award homepage banner" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" decoding="async" onerror="this.onerror=null; this.src='/images/hero-bg-3.webp';" />
+      <img aria-hidden="true" data-src="/images/hero-agentic-ai-multi-agent-en.webp" alt="iCPS Lab multi-agent collaboration and Agentic AI research homepage banner" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" decoding="async" onerror="this.onerror=null; this.src='/images/hero-bg-3.webp';" />
+      <img aria-hidden="true" data-src="/images/hero-bg-3.webp" alt="iCPS Lab background 3" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
+      <img aria-hidden="true" data-src="/images/hero-bg-4.webp" alt="iCPS Lab background 4" class="slider-img absolute inset-0 w-full h-full object-cover object-left lg:object-center bg-[#0f172a] transition-opacity duration-1000 ease-in-out opacity-0" decoding="async" onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=2070&auto=format&fit=crop';" />
 
-      <button id="prev-btn" aria-label="Previous banner" class="absolute right-12 bottom-2 sm:right-24 sm:bottom-3 lg:left-6 lg:right-auto lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
+      <button id="prev-btn" aria-label="Previous banner" class="absolute right-12 bottom-2 sm:right-24 sm:bottom-3 lg:left-6 lg:right-auto lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 lg:focus-visible:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 sm:w-8 sm:h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
         </svg>
       </button>
-      <button id="next-btn" aria-label="Next banner" class="absolute right-2 bottom-2 sm:right-6 sm:bottom-3 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100">
+      <button id="next-btn" aria-label="Next banner" class="absolute right-2 bottom-2 sm:right-6 sm:bottom-3 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 z-30 p-2 sm:p-3 bg-black/30 hover:bg-black/60 backdrop-blur-sm text-white/80 hover:text-white rounded-full transition-all cursor-pointer opacity-100 lg:opacity-0 lg:group-hover/slider:opacity-100 lg:focus-visible:opacity-100">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-5 h-5 sm:w-8 sm:h-8">
           <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
         </svg>
@@ -266,7 +212,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-cyan-200 hover:shadow-xl hover:shadow-cyan-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 80ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Patents</span><span class="w-9 h-9 rounded-full bg-cyan-50 text-cyan-600 flex items-center justify-center">💡</span></div>
                   <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={patentCount}>{patentCount}</div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">Granted patent items</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">Patent records</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 160ms;">
@@ -278,7 +224,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-indigo-200 hover:shadow-xl hover:shadow-indigo-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 240ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-slate-400 tracking-widest uppercase">Conferences</span><span class="w-9 h-9 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center">🌐</span></div>
                   <div class="counter-anim text-4xl sm:text-5xl font-black text-slate-950 tabular-nums tracking-tight" data-target={confCount}>{confCount}</div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">International conference papers</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">International conference records</div>
                 </div>
 
                 <div class="group rounded-[1.5rem] border border-slate-200 bg-white p-6 hover:border-emerald-200 hover:shadow-xl hover:shadow-emerald-900/5 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 320ms;">
@@ -289,11 +235,9 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 
                 <div class="group rounded-[1.5rem] border border-amber-200 bg-gradient-to-br from-amber-50 to-white p-6 hover:shadow-xl hover:shadow-amber-900/10 hover:-translate-y-1 transition-all duration-300" data-reveal="up" style="transition-delay: 400ms;">
                   <div class="flex items-center justify-between mb-8"><span class="text-[11px] font-black text-amber-600 tracking-widest uppercase">Funding</span><span class="w-9 h-9 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center">↗</span></div>
-                  <div class="flex flex-wrap items-baseline gap-x-2 gap-y-1">
-                    <span class="counter-anim text-3xl sm:text-4xl font-black text-slate-950 tabular-nums tracking-tight leading-none" data-target={amountNum} data-decimals={amountDecimals}>{amountNum}</span>
-                    <span class="text-base sm:text-lg font-black text-slate-800 whitespace-nowrap">{amountUnit}</span>
-                  </div>
-                  <div class="mt-2 text-sm font-bold text-slate-700">Total project funding</div>
+                  <div class="text-2xl sm:text-3xl font-black text-slate-950 tabular-nums tracking-tight">{reportedFunding.toLocaleString("en-US")}</div>
+                  <div class="mt-2 text-sm font-bold text-slate-700">Reported funding for participating projects (NTD)</div>
+                  {unreportedProjects > 0 && <p class="mt-1 text-xs text-slate-600">Excludes {unreportedProjects} project {unreportedProjects === 1 ? "record" : "records"} without a reported amount.</p>}
                 </div>
               </div>
             </div>
@@ -311,7 +255,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 
         </div>
         <div class="rounded-[2rem] bg-white/85 backdrop-blur-xl border border-white shadow-[0_18px_60px_rgba(15,23,42,0.07)] p-4 sm:p-6 lg:p-8 overflow-hidden">
-          <News lang="en" sectionId="home-news" />
+          <News compact lang="en" sectionId="home-news" />
         </div>
       </section>
 

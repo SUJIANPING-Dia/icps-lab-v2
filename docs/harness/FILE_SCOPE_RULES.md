@@ -49,6 +49,7 @@ Forbidden:
 Allowed:
 
 - `src/pages/members.astro`
+- `src/data/members.ts`
 - `public/images/` only when the user explicitly provides a photo
 
 Forbidden:
@@ -238,7 +239,7 @@ Forbidden:
 
 ## Long-Term Data Migration Note
 
-News and video records already live in `src/data/news.ts` and `src/data/videos.ts`. FAQ and Members remain embedded in `.astro` files. Their migration must be a separate explicit task; do not combine it with ordinary content updates.
+News, video and member records live in `src/data/news.ts`, `src/data/videos.ts` and `src/data/members.ts`. FAQ records remain in their language pages. Migrate FAQ data only in a separate explicit task.
 
 ## Out-of-Scope Rule
 

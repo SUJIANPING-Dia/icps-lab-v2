@@ -3,70 +3,16 @@ import BaseLayout from "../../../layouts/BaseLayout.astro";
 import Navbar from "../../../components/Navbar.astro";
 import Footer from "../../../components/Footer.astro";
 
-// 🔷 第一步：動態生成所有相簿頁面的路徑
+import { getActivityAlbums } from "../../../lib/activity-albums.mjs";
+
 export async function getStaticPaths() {
-  const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME;
-  const apiKey = import.meta.env.CLOUDINARY_API_KEY;
-  const apiSecret = import.meta.env.CLOUDINARY_API_SECRET;
-
-  try {
-    const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/folders/events`, {
-      headers: {
-        'Authorization': `Basic ${btoa(apiKey + ':' + apiSecret)}`
-      }
-    });
-    
-    const result = await response.json();
-    
-    if (result.folders && result.folders.length > 0) {
-      return result.folders.map(folder => ({
-        params: { id: folder.name }
-      }));
-    }
-    
-    return [];
-  } catch (error) {
-    console.error("生成相簿路徑失敗:", error);
-    return [];
-  }
+  const albums = await getActivityAlbums(import.meta.env);
+  return albums.map(album => ({ params: { id: album.id }, props: { album } }));
 }
 
-// 🔷 第二步：根據目前的 ID 抓取該相簿內的所有照片
-const { id } = Astro.params; 
-let photos = [];
-
-try {
-  const cloudName = import.meta.env.CLOUDINARY_CLOUD_NAME;
-  const apiKey = import.meta.env.CLOUDINARY_API_KEY;
-  const apiSecret = import.meta.env.CLOUDINARY_API_SECRET;
-
-  const response = await fetch(`https://api.cloudinary.com/v1_1/${cloudName}/resources/search`, {
-    method: 'POST',
-    headers: {
-      'Authorization': `Basic ${btoa(apiKey + ':' + apiSecret)}`,
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      expression: `folder="events/${id}"`, 
-      sort_by: [{ created_at: 'desc' }],
-      max_results: 500
-    })
-  });
-
-  const result = await response.json();
-  if (result.resources) {
-    // 這裡我們產生兩種 URL：一個是列表用的縮圖 (thumb)，一個是放大用的原圖 (full)
-    photos = result.resources.map(img => ({
-      thumb: img.secure_url.replace('/upload/', '/upload/f_auto,q_auto,w_800/'),
-      full: img.secure_url.replace('/upload/', '/upload/f_auto,q_auto/')
-    }));
-  }
-} catch (error) {
-  console.error("讀取相簿照片失敗:", error);
-}
-
-const title = `${id} - Activity Album | iCPS Lab`;
-const description = `Browse photos and records from the iCPS Lab activity album: ${id}.`;
+const { title: albumTitle, photos } = Astro.props.album;
+const title = `${albumTitle} - Activity Album | iCPS Lab`;
+const description = `Browse photos and records from the iCPS Lab activity album: ${albumTitle}.`;
 const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:bg-blue-200 selection:text-blue-900 relative";
 ---
 
@@ -133,7 +79,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
     <div class="absolute inset-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] pointer-events-none"></div>
     
     <div class="relative z-10 px-4 animate-hero-zoom">
-      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">{id}</h1>
+      <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest mb-4 drop-shadow-md">{albumTitle}</h1>
       <p class="text-blue-200 text-sm md:text-base font-medium tracking-[0.2em] uppercase drop-shadow">Album Details</p>
     </div>
   </header>
@@ -155,14 +101,14 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
             type="button"
             class="aspect-[4/3] rounded-md overflow-hidden shadow-sm border border-slate-200 bg-white group cursor-zoom-in gallery-item"
             data-full={img.full}
-            data-photo-alt={`${id} activity photo ${index + 1}`}
-            aria-label={`Enlarge ${id} activity photo ${index + 1}`}
+            data-photo-alt={`${albumTitle} activity photo ${index + 1}`}
+            aria-label={`Enlarge ${albumTitle} activity photo ${index + 1}`}
             aria-haspopup="dialog"
             aria-controls="lightbox-overlay"
           >
             <img 
               src={img.thumb} 
-              alt={`${id} activity photo ${index + 1}`}
+              alt={`${albumTitle} activity photo ${index + 1}`}
               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500 gallery-img" 
               loading="lazy"
               decoding="async"
@@ -171,7 +117,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
         ))
       ) : (
         <div class="col-span-full text-center py-20">
-          <p class="text-slate-500 text-lg">This album currently has no photos, or photos are still loading...</p>
+          <p class="text-slate-500 text-lg">This album has no public photos yet.</p>
         </div>
       )}
     </div>
@@ -179,7 +125,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
 
   <!-- 🔷 燈箱元件 (Lightbox Overlay) -->
   <dialog id="lightbox-overlay" aria-labelledby="lightbox-title">
-    <h2 id="lightbox-title" class="sr-only">{id} album photos</h2>
+    <h2 id="lightbox-title" class="sr-only">{albumTitle} album photos</h2>
     <button id="lightbox-close" type="button" class="absolute top-4 right-4 rounded-lg border border-white/60 bg-slate-900 px-4 py-2 font-semibold text-white hover:bg-slate-700 cursor-pointer" autofocus>Close photo ×</button>
     <img id="lightbox-image" alt="Enlarged photo" decoding="async" />
   </dialog>

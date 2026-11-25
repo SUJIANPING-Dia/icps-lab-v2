@@ -15,7 +15,7 @@ This document is the human-readable maintenance guide for the iCPS Lab Astro web
 - News content and shared presentation metadata: `src/data/news.ts`; rendering: `src/components/News.astro` and news detail routes.
 - Video records: `src/data/videos.ts`.
 - FAQ content: `src/pages/faq.astro`.
-- Members content: `src/pages/members.astro`.
+- Members content: `src/data/members.ts` supplies both member pages.
 - Activities albums: Cloudinary-backed pages in `src/pages/activities.astro` and `src/pages/activities/[id].astro`.
 - Cloudinary-only album updates normally need a Vercel redeploy, not website code changes.
 
@@ -170,12 +170,7 @@ Run a monthly restore drill by verifying the latest repository snapshot artifact
 
 ## Long-Term Content Data Plan
 
-The following content is still embedded in Astro files:
-
-- FAQ: `src/pages/faq.astro`
-- Members: `src/pages/members.astro`
-
-For long-term maintenance, migrate these into `src/data/` gradually in separate explicit tasks. Do not combine data migration with routine content updates.
+FAQ copy lives in the Chinese and English FAQ pages. Migrate it into `src/data/` only in a separate explicit task.
 
 ## Files That Usually Need Extra Care
 

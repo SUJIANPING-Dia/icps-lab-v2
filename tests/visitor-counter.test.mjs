@@ -17,10 +17,10 @@ function memoryStorage(initial = {}) {
 const response = (count) => ({ ok: true, json: async () => ({ count }) });
 
 test("HTTP errors preserve a valid cached count without recording a visit", async () => {
-  const storage = memoryStorage({ icps_saved_count: "002090" });
+  const storage = memoryStorage({ icps_visit_total_v2: "002090" });
   const load = createVisitorCounter({ storage, now: () => NOW, fetchImpl: async () => ({ ok: false }) });
   assert.deepEqual(await load(), { count: 2090, source: "cached" });
-  assert.equal(storage.getItem("icps_last_visit_time"), null);
+  assert.equal(storage.getItem("icps_visit_time_v2"), null);
 });
 
 test("missing or invalid count never renders undefined or a fabricated zero", async () => {
@@ -43,11 +43,11 @@ test("blocked storage still displays the live count using a read-only request", 
   const load = createVisitorCounter({
     storage: blocked,
     now: () => NOW,
-    fetchImpl: async (url) => { requested.push(url); return response(2090); },
+    fetchImpl: async (url, options) => { requested.push([url, options.method]); return response(2090); },
   });
   assert.deepEqual(await load(), { count: 2090, source: "live" });
   assert.equal(requested.length, 1);
-  assert.equal(requested[0].endsWith("/up"), false);
+  assert.deepEqual(requested, [["/api/visits", "GET"]]);
 });
 
 test("repeated page navigation increments once per 24 hours", async () => {
@@ -57,14 +57,15 @@ test("repeated page navigation increments once per 24 hours", async () => {
   const options = {
     storage,
     now: () => clock,
-    fetchImpl: async (url) => { requested.push(url); return response(2091); },
+    fetchImpl: async (url, options) => { requested.push(options); return response(2091); },
   };
   await createVisitorCounter(options)();
   clock += 1000;
   await createVisitorCounter(options)();
   clock = NOW + DAY_MS;
   await createVisitorCounter(options)();
-  assert.deepEqual(requested.map((url) => url.endsWith("/up")), [true, false, true]);
+  assert.deepEqual(requested.map(options => options.method), ["POST", "GET", "POST"]);
+  assert.equal(requested[0].body, requested[2].body);
 });
 
 test("concurrent and repeated mounts share a single request for the page", async () => {
@@ -86,7 +87,7 @@ test("network and JSON failures use unavailable when there is no valid cache", a
     async () => { throw new Error("Offline"); },
     async () => ({ ok: true, json: async () => { throw new Error("Invalid JSON"); } }),
   ]) {
-    const load = createVisitorCounter({ storage: memoryStorage({ icps_saved_count: "undefined" }), fetchImpl });
+    const load = createVisitorCounter({ storage: memoryStorage({ icps_visit_total_v2: "undefined" }), fetchImpl });
     assert.deepEqual(await load(), { count: null, source: "unavailable" });
   }
 });

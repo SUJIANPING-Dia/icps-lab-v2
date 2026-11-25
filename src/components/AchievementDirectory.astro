@@ -1,0 +1,106 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Footer from './Footer.astro';
+import Navbar from './Navbar.astro';
+import PageHero from './PageHero.astro';
+import { categoryPath, directory } from '../lib/achievement-directory';
+
+interface Props { lang?: 'zh' | 'en'; slug?: string }
+const { lang = 'zh', slug = '' } = Astro.props;
+const en = lang === 'en';
+const active = directory.find(group => group.slug === slug);
+if (!active) throw new Error('Unknown achievement category: ' + slug);
+const label = en ? active.enLabel : active.zhLabel;
+const heading = en ? 'Achievements' : '成果與榮譽';
+const title = [slug && label, heading, en ? 'iCPS Lab' : 'iCPS Lab 智慧網宇實體系統實驗室'].filter(Boolean).join(' | ');
+const description = slug ? (en ? active.enDescription : active.description) : (en
+  ? 'Explore iCPS Lab publications, awards, research projects, patents, and honors through category filters and keyword search.'
+  : '彙整實驗室論文發表、競賽得獎、產學計畫與專利成果，透過分類與搜尋快速掌握研究累積與技術落地成果。');
+const count = (type?: string) => directory.reduce((sum, group) => sum + (!type || group.type === type ? group.count : 0), 0);
+const years = directory.flatMap(group => group.years.map(block => Number(block.year))).filter(Number.isFinite);
+const searchLabel = en ? 'Search all achievements' : '搜尋所有成果';
+const panelItems = [
+  { label: 'PUBLICATIONS', value: count('publication') + (en ? ' papers' : ' 篇論文'), note: en ? 'Journal and conference records' : '期刊與研討會論文紀錄' },
+  { label: 'AWARDS', value: count('award') + (en ? ' awards' : ' 項獎項'), note: en ? 'Competitions, honors, and student projects' : '競賽、榮譽與專題獲獎' },
+  { label: 'LATEST YEAR', value: years.length ? String(Math.max(...years)) : '—', note: en ? 'Latest indexed achievement year' : '最新收錄成果年度' },
+];
+---
+
+<BaseLayout title={title} description={description} lang={en ? 'en' : 'zh-TW'}>
+  <Navbar activePath={categoryPath('', en)} lang={lang} />
+  <PageHero badgeDetail="Achievements Directory" eyebrow="RESEARCH IMPACT" title={heading}
+    description={description} primaryLabel={en ? 'Browse by category' : '依分類瀏覽'} primaryHref="#main-content"
+    secondaryLabel={count() + (en ? ' research records' : ' 筆成果紀錄')} panelLabel="IMPACT INDEX"
+    panelTitle={en ? 'Section Guide' : '成果索引'} panelItems={panelItems} />
+  <section id="achievement-search" class="bg-slate-950 border-b border-slate-800" aria-label={searchLabel} hidden>
+    <div class="max-w-7xl mx-auto px-6 py-8 flex items-center gap-3">
+      <input id="search-input" type="search" aria-label={searchLabel} aria-controls="search-results"
+        placeholder={en ? 'Search by category, paper title, author, year, or project…' : '搜尋分類、論文題目、作者、年度或合作計畫…'}
+        class="min-w-0 w-full max-w-4xl rounded-2xl px-5 py-4 bg-white text-slate-900 focus-visible:outline-blue-400" />
+      <button id="clear-search" class="font-bold text-white" hidden>{en ? 'Clear' : '清除搜尋'}</button>
+    </div>
+  </section>
+  <main id="main-content" class="bg-gradient-to-br from-slate-50 via-white to-blue-50/40">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-12 lg:py-16 grid lg:grid-cols-12 gap-8">
+      <aside class="lg:col-span-3">
+        <nav class="lg:sticky lg:top-8 rounded-3xl border bg-white p-4 shadow-sm" aria-label={en ? 'Achievement categories' : '成果分類'}>
+          <h2 class="pb-3 text-sm font-bold text-blue-800">{en ? 'Browse by Category' : '依成果分類瀏覽'}</h2>
+          <div class="flex gap-2 overflow-x-auto pb-1 lg:flex-col" id="tabs-container">
+            {directory.map(group => (
+              <a href={categoryPath(group.slug, en) + '#content-area'} aria-current={group.slug === slug ? 'page' : undefined}
+                class:list={['tab-btn flex shrink-0 items-center justify-between gap-3 rounded-2xl border px-4 py-3 text-sm font-bold',
+                  group.slug === slug ? 'bg-blue-700 border-blue-700 text-white' : 'text-slate-700 hover:bg-blue-50']}>
+                <span>{en ? group.enLabel : group.zhLabel}</span><span class="tab-count">{group.count}</span>
+              </a>
+            ))}
+          </div>
+        </nav>
+      </aside>
+      <section class="min-w-0 lg:col-span-9" id="content-area">
+        <div id="search-results" hidden>
+          <h2 class="mb-4 text-lg font-bold" role="status" id="search-status"></h2>
+          <ol class="space-y-3" id="result-list"></ol>
+          <div class="mt-5 flex items-center gap-5" id="search-pagination" hidden>
+            <button id="search-prev" class="rounded-lg border bg-white px-4 py-2 disabled:opacity-40">{en ? 'Previous' : '上一頁'}</button>
+            <span id="search-page" class="text-sm"></span>
+            <button id="search-next" class="rounded-lg border bg-white px-4 py-2 disabled:opacity-40">{en ? 'Next' : '下一頁'}</button>
+          </div>
+        </div>
+        <div id="category-records">
+          <header class="mb-6 rounded-3xl border-t-4 border-blue-700 bg-white p-6 shadow-sm">
+            <h2 class="text-2xl lg:text-3xl font-black">{label}</h2>
+            <p class="mt-2 text-slate-600">{en ? active.enDescription : active.description}</p>
+            <p class="mt-3 font-bold text-blue-700">{active.count} {en ? 'records' : '筆紀錄'}</p>
+          </header>
+          {active.years.map((block, index) => (
+            <details open={index === 0} class="year-block mb-4 rounded-3xl border border-slate-200 bg-white shadow-sm">
+              <summary class="year-toggle-btn cursor-pointer p-5 font-bold focus-visible:outline-blue-700">
+                {en && block.year === '歷年專利' ? 'All patents' : en && block.year === '歷年統整' ? 'All years' : block.year}
+                <span class="ml-2 text-sm font-normal text-slate-600">{block.items.length} {en ? 'records' : '筆'}</span>
+              </summary>
+              <ol class="divide-y divide-slate-200 border-t px-5">
+                {block.items.map(item => (
+                  <li id={item.id} class="achievement-item py-4 scroll-mt-4">
+                    <h3 class="text-lg font-bold leading-relaxed text-slate-900">{item.title}</h3>
+                    {item.authors && <p class="mt-2 text-sm text-slate-700">{item.authors}</p>}
+                    {item.venue && <p class="mt-1 text-sm italic text-blue-800">{item.venue}</p>}
+                    {item.amount && <p class="mt-2 text-sm font-bold text-emerald-800">{en ? 'Amount' : '核定金額'}　{item.amount}</p>}
+                    {item.link && <a class="font-bold text-blue-700 underline" href={item.link} target="_blank" rel="noopener noreferrer">{en ? 'View publication' : '查看論文'}</a>}
+                  </li>
+                ))}
+              </ol>
+            </details>
+          ))}
+        </div>
+      </section>
+    </div>
+  </main>
+  <Footer lang={lang} />
+</BaseLayout>
+<style>
+  [hidden] { display: none !important; }
+</style>
+<script>
+  import { initAchievementSearch } from '../lib/achievement-search';
+  initAchievementSearch();
+</script>

@@ -95,79 +95,59 @@ const enHref = currentPair ? currentPair.en : detailPair ? detailPair.en : curre
       </div>
     </div>
 
-    <button id="mobile-menu-btn" type="button" class="xl:hidden ml-auto p-2 rounded-md text-slate-600 hover:text-blue-800 transition" aria-label={isEnglish ? "Open menu" : "打開選單"} aria-expanded="false" aria-controls="mobile-menu" data-open-label={isEnglish ? "Open menu" : "打開選單"} data-close-label={isEnglish ? "Close menu" : "關閉選單"}>
-      <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-        <path id="hamburger-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-      </svg>
-    </button>
-  </div>
-
-  <div id="mobile-menu" class="hidden xl:hidden absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
-    {links.map((link) => {
-      const active = isActive(getMatch(link));
-      return (
-        <a
-          href={getHref(link)}
-          aria-current={active ? "page" : undefined}
-          class={`block px-6 py-4 font-bold ${active ? "text-blue-800 bg-blue-50" : "text-slate-600 hover:bg-slate-50 hover:text-blue-800"}`}
-        >
-          {getPrimaryLabel(link)}
-        </a>
-      );
-    })}
-    <div class="flex items-center gap-2 px-6 py-4 border-t border-slate-100 bg-slate-50">
-      <a href={zhHref} class={`px-4 py-2 rounded-full text-sm font-black ${isEnglish ? "text-slate-500 bg-white border border-slate-200" : "text-white bg-blue-800"}`}>CH</a>
-      <a href={enHref} class={`px-4 py-2 rounded-full text-sm font-black ${isEnglish ? "text-white bg-blue-800" : "text-slate-500 bg-white border border-slate-200"}`}>EN</a>
-    </div>
+    <details id="mobile-navigation" class="group ml-auto xl:hidden">
+      <summary id="mobile-menu-btn" class="flex cursor-pointer list-none rounded-md p-2 text-slate-600 hover:text-blue-800 [&::-webkit-details-marker]:hidden" aria-label={isEnglish ? "Menu" : "選單"} aria-controls="mobile-menu">
+        <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path class="group-open:hidden" stroke-linecap="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <path class="hidden group-open:block" stroke-linecap="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </summary>
+      <div id="mobile-menu" class="absolute top-full max-h-[calc(100dvh-4rem)] overflow-y-auto left-0 w-full bg-white border-b border-slate-200 shadow-lg flex flex-col z-20">
+        {links.map((link) => {
+          const active = isActive(getMatch(link));
+          return (
+            <a
+              href={getHref(link)}
+              aria-current={active ? "page" : undefined}
+              class={`block px-6 py-4 font-bold ${active ? "text-blue-800 bg-blue-50" : "text-slate-600 hover:bg-slate-50 hover:text-blue-800"}`}
+            >
+              {getPrimaryLabel(link)}
+            </a>
+          );
+        })}
+        <div class="flex items-center gap-2 px-6 py-4 border-t border-slate-100 bg-slate-50">
+          <a href={zhHref} class={`px-4 py-2 rounded-full text-sm font-black ${isEnglish ? "text-slate-500 bg-white border border-slate-200" : "text-white bg-blue-800"}`}>CH</a>
+          <a href={enHref} class={`px-4 py-2 rounded-full text-sm font-black ${isEnglish ? "text-white bg-blue-800" : "text-slate-500 bg-white border border-slate-200"}`}>EN</a>
+        </div>
+      </div>
+    </details>
   </div>
 </nav>
 
-<script is:inline>
-  (() => {
-    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
-    const mobileMenu = document.getElementById("mobile-menu");
-    const hamburgerIcon = document.getElementById("hamburger-icon");
-
-    if (!mobileMenuBtn || !mobileMenu || !hamburgerIcon) return;
-    if (mobileMenuBtn.dataset.menuBound === "true") return;
-
-    mobileMenuBtn.dataset.menuBound = "true";
-    const setMenuOpen = (open, returnFocus = false) => {
-      mobileMenu.classList.toggle("hidden", !open);
-      mobileMenuBtn.setAttribute("aria-expanded", String(open));
-      mobileMenuBtn.setAttribute("aria-label", open ? mobileMenuBtn.dataset.closeLabel : mobileMenuBtn.dataset.openLabel);
-      hamburgerIcon.setAttribute("d", open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16");
-      if (returnFocus) mobileMenuBtn.focus();
-    };
-
-    mobileMenuBtn.addEventListener("click", () => {
-      setMenuOpen(mobileMenuBtn.getAttribute("aria-expanded") !== "true");
-    });
-
-    mobileMenuBtn.addEventListener("keydown", (event) => {
+<script>
+  const menu = document.querySelector<HTMLDetailsElement>("#mobile-navigation");
+  const toggle = menu?.querySelector("summary");
+  if (menu && toggle) {
+    const syncState = () => toggle.setAttribute("aria-expanded", String(menu.open));
+    syncState();
+    menu.addEventListener("toggle", syncState);
+    toggle.addEventListener("keydown", event => {
       if (event.key === "ArrowDown") {
         event.preventDefault();
-        setMenuOpen(true);
-        mobileMenu.querySelector("a")?.focus();
+        menu.open = true;
+        menu.querySelector("a")?.focus();
       }
     });
-
-    document.addEventListener("keydown", (event) => {
-      if (event.key === "Escape" && mobileMenuBtn.getAttribute("aria-expanded") === "true") {
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape" && menu.open) {
         event.preventDefault();
-        setMenuOpen(false, true);
+        menu.open = false;
+        toggle.focus();
       }
     });
-
-    const desktop = window.matchMedia("(min-width: 1280px)");
-    desktop.addEventListener("change", (event) => {
-      if (event.matches) setMenuOpen(false);
+    window.matchMedia("(min-width: 1280px)").addEventListener("change", event => {
+      if (event.matches) menu.open = false;
     });
-
-    mobileMenu.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        setMenuOpen(false);
-      });
-    });
-  })();
+    menu.querySelectorAll("a").forEach(link => link.addEventListener("click", () => { menu.open = false; }));
+  }
 </script>

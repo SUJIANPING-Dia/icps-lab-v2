@@ -720,6 +720,7 @@ export const newsData: NewsItem[] = [
     title: "iCPS Lab AI 智動化競賽獲獎作品受邀於 2026 台北國際自動化工業大展展出",
     img: "/images/gpm-ai-automation-2026-booth-team.jpg",
     imgAlt: "iCPS Lab 團隊於 GPM 展區展示 AI 智動化競賽獲獎作品",
+    imgAltEn: "The iCPS Lab team demonstrates its award-winning AI automation project at the GPM booth.",
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4 text-justify">
         iCPS Lab 學生團隊參加由 <strong>均豪精密工業股份有限公司（GPM）</strong>舉辦之<strong>「第十五屆全國大專院校 AI 智動化設備創作獎」</strong>，以作品 <strong>「AOI+－主機板 CPU 周圍電容缺漏焊自動化識別系統」</strong>榮獲第二名。因競賽成果受到肯定，團隊獲邀於 <strong>2026 台灣機器人與智慧自動化展 & 2026 台北國際自動化工業大展</strong>現場展示作品。
@@ -811,6 +812,7 @@ export const newsData: NewsItem[] = [
     title: "iCPS Lab 指導學生於教育部 2026 跨域智慧晶片競賽雙獲佳作",
     img: "/images/chip-contest-2026-terminal-team.jpg",
     imgAlt: "智慧終端裝置組學生團隊於 2026 跨域智慧晶片設計應用創新專題實作競賽現場展示 AOI 作品",
+    imgAltEn: "Students demonstrate their automated optical inspection project in the smart device category at the 2026 interdisciplinary chip design competition.",
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         恭喜 iCPS Lab 指導學生團隊參加 <strong>「教育部 2026 跨域智慧晶片設計應用創新專題實作競賽」</strong>，共有兩件作品分別於智慧健康組與智慧終端裝置組榮獲 <strong>佳作</strong>，展現實驗室在邊緣 AI、智慧感測、智慧健康與智慧製造應用上的跨域研發成果。
@@ -920,6 +922,24 @@ export const newsData: NewsItem[] = [
     title: "iCPS Lab 學生許庭瑄、賴穎寬完成碩士學位口試",
     img: "/images/master-defense-2026-committee-group.jpg",
     imgAlt: "iCPS Lab 碩士學位口試學生與口試委員合影",
+    imgAltEn: "Hsu Ting-Hsuan and Lai Ying-Kuan with their master's defense committee.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">Hsu Ting-Hsuan and Lai Ying-Kuan, both advised by Professor Wan-Jung Chang in NKUST’s Department of Electronics Engineering, completed their master’s thesis defenses on July 30, 2026. The defenses took place from 1:30 to 3:30 p.m. in Room 403 of the Information Industry Building on the Jiangong Campus.</p>
+      <p class="mb-4 text-justify text-slate-700">Hsu evaluated how well AI can recognize older adults’ daily activities from time-of-flight (ToF) sensor images. Lai developed a system that uses low-resolution thermal images to help care teams detect self-injurious behavior in psychiatric settings. Both projects started with care teams’ practical needs and examined how sensing can support timely responses.</p>
+      <p class="mb-4 text-justify text-slate-700">The lab thanks the committee members for their feedback: Professor <span lang="zh-TW">林輝堂</span> of National Cheng Kung University, Professor <span lang="zh-TW">吳庭育</span> of National Pingtung University of Science and Technology, and Distinguished Professor <span lang="zh-TW">洪盟峰</span>, Professor <span lang="zh-TW">林志學</span> and Professor Wan-Jung Chang of NKUST.</p>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/master-defense-2026-committee-group.jpg" alt="The students and the examination committee after the defenses." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">The students and the examination committee after the defenses.</figcaption>
+      </figure>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/master-defense-2026-hsu-ting-hsuan.jpg" alt="Hsu Ting-Hsuan with the committee after the defense." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">Hsu Ting-Hsuan with the committee after the defense.</figcaption>
+      </figure>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/master-defense-2026-lai-ying-kuan.jpg" alt="Lai Ying-Kuan with the committee after the defense." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">Lai Ying-Kuan with the committee after the defense.</figcaption>
+      </figure>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         國立高雄科技大學電子工程系 iCPS Lab 智慧型網宇實體系統實驗室於 <strong>2026 年 7 月 30 日</strong>，在建工校區資訊工業大樓 4 樓 403 會議室舉行碩士學位口試。本次口試學生為 <strong>許庭瑄</strong> 與 <strong>賴穎寬</strong>，指導教授為 <strong>張萬榮教授</strong>。
@@ -994,6 +1014,15 @@ export const newsData: NewsItem[] = [
     title: "iCPS Lab 參展 2026 亞洲生技大展，展示「iEarᴸᴹ：整合人工智慧與擴增實境技術之中外耳病灶識別暨臨床診斷報告自動生成系統」",
     img: "/images/asia-biotech-2026-iearlm-team.png",
     imgAlt: "iCPS Lab 團隊於 2026 亞洲生技大展展示 iEarLM 研究成果",
+    imgAltEn: "The iCPS Lab team presents iEarLM at Bio Asia-Taiwan 2026.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">iCPS Lab exhibited iEarLM at Bio Asia-Taiwan from July 16 to 19, 2026, at the Taipei Nangang Exhibition Center. The system combines AI and augmented reality (AR) to identify lesions of the outer and middle ear and draft clinical reports.</p>
+      <p class="mb-4 text-justify text-slate-700">Visitors could follow an ear examination from image analysis to the AR display and report interface. The team designed this workflow to help clinicians interpret images and reduce the time they spend documenting examinations. The lab plans to continue developing these applications with clinical and industry partners.</p>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/asia-biotech-2026-iearlm-demo.png" alt="The iEarLM demonstration included ear image recognition, AR equipment and a clinical report interface." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">The iEarLM demonstration included ear image recognition, AR equipment and a clinical report interface.</figcaption>
+      </figure>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         iCPS Lab 於 <strong>2026 年 7 月 16 日至 19 日</strong> 參與 <strong>2026 亞洲生技大展</strong>，在台北南港展覽館展示最新智慧醫療研究成果：<strong>iEar<sup>LM</sup>：整合人工智慧與擴增實境技術之中外耳病灶識別暨臨床診斷報告自動生成系統</strong>。
@@ -1041,6 +1070,12 @@ export const newsData: NewsItem[] = [
     title: "iCPS Lab 團隊榮獲第十五屆全國大專院校 AI 智動化設備創作獎第二名",
     img: "/images/ai-automation-award-2026-second-place.png",
     imgAlt: "iCPS Lab 團隊榮獲第十五屆全國大專院校 AI 智動化設備創作獎第二名合影",
+    imgAltEn: "The AOI+ team celebrates second place at the 15th national AI automation equipment competition.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">The iCPS Lab student team took second place and won NT$150,000 at the 15th National AI Automation Equipment Creation Award. Their project, AOI+, inspects solder joints on capacitors around the CPU on a motherboard.</p>
+      <p class="mb-4 text-justify text-slate-700">The team members were <span lang="zh-TW">藍信安、胡景翔、謝修瑜、丁維暘、楊宗翰</span>. They combined a YOLO deep-learning model with edge computing to identify missing solder joints during automated optical inspection. The system was developed to reduce errors in manual inspections and improve consistency on the production line.</p>
+      <p class="mb-4 text-justify text-slate-700">The students defined the inspection problem, trained the model, integrated the system and demonstrated it at the competition. The lab congratulates them on bringing their project work to a manufacturing application.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         恭喜 iCPS Lab 學生團隊參加 <strong>「第十五屆全國大專院校 AI 智動化設備創作獎」</strong>，以作品 <strong>「AOI＋主機板 CPU 周圍電容缺漏焊自動化識別系統」</strong> 榮獲 <strong>第二名</strong>，並獲得獎金 <strong>15 萬元</strong>。
@@ -1083,6 +1118,16 @@ export const newsData: NewsItem[] = [
     title: "張萬榮教授通過國科會三年期專題研究計畫，推動 T²-Pose 隱私友善近床照護感知系統",
     img: "/images/nstc-t2-pose-project-approval-2026.webp",
     imgAlt: "張萬榮教授 T²-Pose 三年期國科會專題研究計畫核定通過畫面",
+    imgAltEn: "NSTC approval of Professor Wan-Jung Chang’s three-year T²-Pose project.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">The National Science and Technology Council (NSTC) approved Professor Wan-Jung Chang’s three-year T²-Pose project at NKUST. Grant 115-2221-E-992-104-MY3 runs from August 1, 2026, through July 31, 2029. The project combines low-resolution thermal and time-of-flight images to recognize movements during bedside care.</p>
+      <p class="mb-4 text-justify text-slate-700">The proposed system extracts skeletal structure and motion sequences without collecting images that show identifiable appearance. The team will study warnings as a person begins to leave bed, detection of falls beside the bed, and recognition of care activities such as turning and back patting.</p>
+      <p class="mb-4 text-justify text-slate-700">In year one, the researchers will build a synchronized sensing platform and de-identified dataset and develop LRTh-Pose and ToF-Pose models. Year two focuses on motion sequences, event alerts and strategies for combining sensors in different situations. In year three the team will integrate edge and cloud processing with mobile and web interfaces and evaluate performance in a clinical or simulated clinical setting.</p>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/nstc-t2-pose-project-approval-2026.webp" alt="The NSTC approval record for the T²-Pose bedside sensing project." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">The NSTC approval record for the T²-Pose bedside sensing project.</figcaption>
+      </figure>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         國立高雄科技大學電子工程系暨智慧網宇實體系統實驗室（iCPS Lab）張萬榮教授通過國家科學及技術委員會三年期專題研究計畫，計畫名稱為 <strong>「T<sup>2</sup>-Pose：融合低解析熱影像與飛時測距影像之近床照護動作感知系統實現」</strong>，計畫編號為 <strong>115-2221-E-992-104-MY3</strong>，執行期間自 <strong>2026 年 8 月 1 日至 2029 年 7 月 31 日</strong>。
@@ -1136,6 +1181,19 @@ export const newsData: NewsItem[] = [
     title: "張萬榮教授榮獲中華民國消費電子學會「傑出貢獻獎」",
     img: "/images/consumer-electronics-contribution-award-group.jpg",
     imgAlt: "張萬榮教授榮獲中華民國消費電子學會傑出貢獻獎活動合影",
+    imgAltEn: "Professor Wan-Jung Chang at the Taiwan Consumer Electronics Society award ceremony.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">The Taiwan Consumer Electronics Society (TCES) presented Professor Wan-Jung Chang of NKUST with its Outstanding Contribution Award on July 2, 2026. The award recognizes his research in AI, AIoT, healthcare, manufacturing and consumer electronics, as well as his academic service and work with industry.</p>
+      <p class="mb-4 text-justify text-slate-700">Under Professor Chang’s direction, iCPS Lab has combined sensing, image recognition and edge AI in systems for care and other real-world settings. The lab will continue this work with clinical, academic and industry partners.</p>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/consumer-electronics-contribution-award-presentation.jpg" alt="The ceremony presentation highlights Professor Chang’s research and contributions." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">The ceremony presentation highlights Professor Chang’s research and contributions.</figcaption>
+      </figure>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/consumer-electronics-contribution-award-trophy.jpg" alt="The TCES Outstanding Contribution Award trophy." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">The TCES Outstanding Contribution Award trophy.</figcaption>
+      </figure>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         國立高雄科技大學電子工程系暨智慧網宇實體系統實驗室（iCPS Lab）張萬榮教授，榮獲 <strong>中華民國消費電子學會</strong> 頒發 <strong>「傑出貢獻獎」</strong>，肯定其長期投入人工智慧、AIoT、智慧醫療、智慧製造與消費電子相關研究，以及對學術推動與產學合作的持續貢獻。
@@ -1187,6 +1245,12 @@ export const newsData: NewsItem[] = [
     title: "恭喜 iCPS Lab 大三專題生蔡一銘獲國科會大專學生研究計畫補助",
     img: "/images/nstc-undergrad-project-2026-tsai-yiming.png",
     imgAlt: "蔡一銘同學通過國科會 115 年度大專學生研究計畫補助查詢結果",
+    imgAltEn: "NSTC approval record for Yi-Ming Tsai’s undergraduate research project.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">Yi-Ming Tsai, a third-year iCPS Lab undergraduate advised by Professor Wan-Jung Chang, received an NSTC undergraduate research grant of NT$58,000. Project 115-2813-C-992-075-E runs from July 1, 2026, to February 28, 2027.</p>
+      <p class="mb-4 text-justify text-slate-700">The project will evaluate the quality of older adults’ fitness movements using multi-stream spatiotemporal pose analysis and deep regression. Tsai will combine motion data, deep learning and sensing to develop a tool for assessing exercise form and fitness.</p>
+      <p class="mb-4 text-justify text-slate-700">iCPS Lab encourages undergraduates to participate in research from the project stage, gaining experience in model design, data analysis and system integration. We congratulate Yi-Ming on the award.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         恭喜 iCPS Lab 大三專題生 <strong>蔡一銘</strong> 同學通過國科會 115 年度大專學生研究計畫補助，計畫題目為 <strong>「基於多流時空姿態分析與深度迴歸技術之銀髮族體適能品質偵測系統」</strong>，核定金額為 58,000 元，執行期間自 2026 年 7 月 1 日至 2027 年 2 月 28 日，指導教授為張萬榮教授。
@@ -1230,6 +1294,17 @@ export const newsData: NewsItem[] = [
     title: "iCPS Lab 於 2026 台灣國際醫療暨健康照護展展出 AI 外科手術器械識別技術",
     img: "/images/medical-taiwan-2026-group-photo.jpg",
     imgAlt: "iCPS Lab 團隊於 2026 台灣國際醫療暨健康照護展現場合影",
+    imgAltEn: "iCPS Lab team members at Medical Taiwan 2026.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">At the invitation of Taiwan’s Intellectual Property Office, iCPS Lab presented its AI surgical instrument recognition technology at Medical Taiwan 2026. The lab developed the technology with Taiwan Adventist Hospital. Sanlih News covered the demonstration.</p>
+      <p class="mb-4 text-justify text-slate-700">The system uses image recognition and a teaching interface to help newly assigned operating-room nurses learn to identify surgical instruments. It can also assist with checks before and after surgery. The associated invention patent is I907322.</p>
+      <p class="mb-4 text-justify text-slate-700">The exhibition gave the team a chance to discuss training, patient safety and the pace of work in operating rooms with people who would use the technology.</p>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/medical-taiwan-2026-technology-demo.jpg" alt="The team demonstrates instrument recognition and its uses in nursing education." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">The team demonstrates instrument recognition and its uses in nursing education.</figcaption>
+      </figure>
+      <iframe src="https://www.youtube.com/embed/ou1L5Okv2eA" title="Sanlih News coverage of iCPS Lab’s surgical instrument recognition technology" class="w-full aspect-video" allowfullscreen></iframe>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         iCPS Lab 受 <strong>經濟部智慧財產局</strong> 邀請，於 <strong>2026 台灣國際醫療暨健康照護展</strong> 展出與 <strong>臺安醫院</strong> 合作開發的 <strong>AI 外科手術器械識別技術</strong>，將人工智慧研究成果帶到醫療照護與手術室教育訓練場域中展示。
@@ -1290,6 +1365,16 @@ export const newsData: NewsItem[] = [
     title: "張萬榮教授赴印尼參與 International Nursing Summit 2026，分享 AI 智慧照護研究",
     img: "/images/international-nursing-summit-2026-keynote.jpg",
     imgAlt: "張萬榮教授於 International Nursing Summit 2026 交流活動現場",
+    imgAltEn: "Professor Wan-Jung Chang at the International Nursing Summit 2026 in Indonesia.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">Professor Wan-Jung Chang traveled to Bandung, Indonesia, from June 15 to 18 to give an invited keynote at the International Nursing Summit 2026. He presented the lab’s work on ward sensing, detecting unusual behavior in bedridden older adults and the use of AI systems in hospital care.</p>
+      <p class="mb-4 text-justify text-slate-700">A workshop based on the Stanford Biodesign Program examined how to identify unmet clinical needs and turn them into practical designs. Professor Chang also served as a guest professor for nursing students’ final project presentations, which included AI tools, platforms and apps for nursing education.</p>
+      <p class="mb-4 text-justify text-slate-700">The delegation visited Universitas Negeri Jakarta (UNJ) and the Taiwan Education Center in Jakarta to discuss collaborative research and student exchange. The conversations highlighted the importance of understanding nursing workloads, patient safety and clinical workflows when introducing care technology. The lab welcomes international students and partners interested in AI, AIoT and nursing technology.</p>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/international-nursing-summit-2026-unj-visit.jpg" alt="Professor Chang and the delegation visit Universitas Negeri Jakarta and the Taiwan Education Center." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">Professor Chang and the delegation visit Universitas Negeri Jakarta and the Taiwan Education Center.</figcaption>
+      </figure>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         2026 年 6 月 15 日至 18 日，國立高雄科技大學電子工程系 iCPS Lab 張萬榮教授赴印尼萬隆，參與 <strong>International Nursing Summit 2026</strong>，並受邀擔任 Keynote Speech 講者，分享實驗室在 AI 智慧照護與醫療場域應用上的研究成果。
@@ -1340,6 +1425,16 @@ export const newsData: NewsItem[] = [
     title: "iCPS Lab 於 2026 醫學教育研討會獲選傑出海報論文，為唯一非醫院獲獎團隊",
     img: "/images/icme-2026-award-ceremony.jpg",
     imgAlt: "iCPS Lab 團隊於 2026 醫學教育研討會獲選傑出海報論文合影",
+    imgAltEn: "The iCPS Lab team at the 2026 medical education conference.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">On its first submission to the 2026 medical education conference hosted by Kaohsiung Medical University, iCPS Lab received an Excellent Poster Submission award. The conference received 72 posters, accepted 52 for presentation and recognized six. iCPS Lab was the only award recipient outside a hospital.</p>
+      <p class="mb-4 text-justify text-slate-700">The poster described the design and implementation of an AI-assisted surgical instrument recognition system for competency-based nursing education. Developed with the Department of Nursing at Taiwan Adventist Hospital in Taipei, it gives new operating-room nurses a way to practice instrument identification. The team aims to reduce the time senior nurses spend teaching and help trainees become familiar with instruments and workflows.</p>
+      <p class="mb-4 text-justify text-slate-700">The lab thanks the students and the hospital team for supporting the design and evaluation of the system.</p>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/icme-2026-award-certificate.jpg" alt="The Excellent Poster Submission certificate from the 2026 medical education conference." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">The Excellent Poster Submission certificate from the 2026 medical education conference.</figcaption>
+      </figure>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         iCPS Lab 團隊首次投稿由高雄醫學大學主辦的 <strong>2026 醫學教育研討會</strong>，以作品 <strong>「AI輔助手術器械辨識教學系統於勝任能力導向護理教育之設計與實踐」</strong> 獲選 <strong>Excellent Poster Submission（傑出海報論文）</strong>，很高興獲得大會委員的肯定。
@@ -1387,6 +1482,15 @@ export const newsData: NewsItem[] = [
     title: "狂賀！iCPS Lab 團隊於 ITAOI 2026 榮獲佳作論文獎",
     img: "/images/itaoi-2026-team.jpg",
     imgAlt: "iCPS Lab 團隊於 ITAOI 2026 會場合影",
+    imgAltEn: "The iCPS Lab team at ITAOI 2026.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">Twelve iCPS Lab master’s and undergraduate project students presented five papers at the 24th ITAOI conference, held May 29–31, 2026, at the Baoshan Campus of National Changhua University of Education. The conference received 403 submissions. The lab’s FitSense paper received an Honorable Mention Award.</p>
+      <p class="mb-4 text-justify text-slate-700">FitSense combines hand and body skeletal pose recognition to help assess fitness exercises performed by older adults. The team credited on the paper included Wan-Jung Chang, Yi-Ming Tsai and Jian-Ping Su, with Professors <span lang="zh-TW">陳嬿今</span> and <span lang="zh-TW">李佳倫</span> of National Sun Yat-sen University as collaborators. The lab thanks the students and collaborating faculty for their work on the research and presentations.</p>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/itaoi-2026-award.jpg" alt="The ITAOI 2026 Honorable Mention Award certificate for FitSense." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">The ITAOI 2026 Honorable Mention Award certificate for FitSense.</figcaption>
+      </figure>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         iCPS Lab 團隊參與第二十四屆離島資訊技術與應用研討會（ITAOI 2026），本次共帶領 12 位碩士班與大學部專題生發表五篇論文，並以論文 <strong>「FitSense：整合手部與身體骨幹姿態辨識之銀髮族體適能運動評估系統」</strong> 榮獲 <strong>Honorable Mention Award（佳作論文獎）</strong>。
@@ -1432,6 +1536,11 @@ export const newsData: NewsItem[] = [
     title: "台北市立內湖高工電子科蒞臨參訪，iCPS Lab 展示 AI 跨域應用成果",
     img: "/images/visit-neihu-vs.jpg", 
     imgAlt: "內湖高工師生參訪實驗室合影與體驗實況",
+    imgAltEn: "Neihu Vocational High School visitors with iCPS Lab members during the hands-on demonstrations.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">Students and teachers from the electronics program at Taipei Municipal Neihu Vocational High School visited NKUST’s Department of Electronics Engineering on the Jiangong Campus on May 21. iCPS Lab hosted the group on behalf of the department.</p>
+      <p class="mb-4 text-justify text-slate-700">At three hands-on stations, visitors tried exercise guidance based on visual pose analysis, saw how AI can help identify lesions in medical images, and explored how de-identified sensor data can help monitor safety in older adults’ homes. The lab welcomed the students’ questions and invites those interested in electronics and AI to learn more about the department.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         今日，台北市立內湖高級工業職業學校（內湖高工）電子科師生團隊蒞臨國立高雄科技大學電子工程系（建工校區）進行參訪，iCPS Lab 非常榮幸代表系上接待，並展出近期的重點研究成果。
@@ -1471,6 +1580,12 @@ export const newsData: NewsItem[] = [
     title: "iCPS Lab 雙作品參展「2026 台灣輔具暨長期照護大展」，展現 AI 智慧照護研發能量",
     img: "/images/exhibition-atlife.jpg", 
     imgAlt: "2026台灣輔具暨長期照護大展參展合影",
+    imgAltEn: "The iCPS Lab team at the 2026 Assistive Technology for Life exhibition.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">From May 14 to 17, iCPS Lab presented two projects at the 2026 Assistive Technology for Life exhibition at the Taipei Nangang Exhibition Center. The team joined NKUST’s smart care technology booth to demonstrate applications for safety and rehabilitation.</p>
+      <p class="mb-4 text-justify text-slate-700">ToFEye uses 3D time-of-flight sensing and edge AI to recognize falls and unusual postures in bathrooms and send alerts. The depth sensor is designed to protect the privacy of patients and older adults in homes and care facilities.</p>
+      <p class="mb-4 text-justify text-slate-700">FitMirror uses image recognition to track older adults’ skeletal movements during exercise and rehabilitation. It guides users through movement and helps them identify poor form that could lead to injury. Students and faculty demonstrated both systems and discussed their use with visitors and industry partners.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         2026 年 5 月 14 日至 17 日，iCPS Lab 團隊前往台北世貿南港展覽館，參與年度長照盛會「2026 台灣輔具暨長期照護大展」。
@@ -1514,6 +1629,12 @@ export const newsData: NewsItem[] = [
     title: "狂賀！實驗室團隊勇奪「2026年全國技專校院學生實務專題製作競賽」全國第二名",
     img: "/images/competition-second-place.jpg", 
     imgAlt: "2026全國技專院校實務專題實作競賽頒獎典禮合影",
+    imgAltEn: "The iCPS Lab team at the national student project competition awards ceremony.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">iCPS Lab’s third-year undergraduates won national second place in the Computer Science and Communications category at the Ministry of Education’s 2026 practical project competition for technical colleges and universities. Their system for identifying outer- and middle-ear lesions and generating clinical reports competed in a field of more than 200 entries from across Taiwan, according to the final award announcement.</p>
+      <p class="mb-4 text-justify text-slate-700">The iEarLM system uses instance segmentation to outline lesions, a medical knowledge base with retrieval-augmented generation (RAG), and a large language model to draft reports. NVIDIA edge computing and Jorjin AR glasses stream images with low latency, allowing trainees and attending physicians to share an examination view. The system has been introduced at Kaohsiung Chang Gung Memorial Hospital for clinical validation.</p>
+      <p class="mb-4 text-justify text-slate-700">The team thanks the NKUST Department of Electronics Engineering and co-adviser Professor <span lang="zh-TW">林志學</span>. Dr. <span lang="zh-TW">吳靖農</span> of Kaohsiung Chang Gung Memorial Hospital assisted with the clinical data collection.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         決賽捷報！由教育部主辦之「2026全國技專院校實務專題實作競賽暨成果展」為期兩天的競賽與展覽圓滿落幕，恭喜 iCPS Lab 大三專題同學們勇奪「資工通訊群」全國第二名的殊榮！
@@ -1555,6 +1676,12 @@ export const newsData: NewsItem[] = [
     title: "非凡新聞專題報導：AI智慧眼鏡化身「電子導盲犬」！解析ToF感測與多模態技術突破",
     img: "", 
     imgAlt: "",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">USTV News released its feature on the AI smart glasses demonstrated by Professor Wan-Jung Chang and the iCPS Lab team. The report explores how the glasses could complement a cane or guide dog by converting information about obstacles ahead into audible cues for people with visual impairments.</p>
+      <p class="mb-4 text-justify text-slate-700">The glasses combine image recognition and a multimodal model with an infrared camera and a time-of-flight (ToF) depth sensor. The camera captures details in dark areas, while the sensor measures the return time of infrared signals to estimate the distance and depth of nearby objects.</p>
+      <p class="mb-4 text-justify text-slate-700">The sensing system can also track hand movements to manipulate virtual objects in AR. The team is exploring spatial interaction, first-person video streaming and applications in healthcare and remote care. The lab welcomes students and partners interested in this work.</p>
+      <iframe src="https://www.youtube.com/embed/FYVEmAv1t38" title="USTV News feature on AI smart glasses, time-of-flight sensing and navigation assistance" class="w-full aspect-video" allowfullscreen></iframe>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         正式報導影片上線！非凡新聞台日前蒞臨高科大 iCPS Lab（智慧網宇實體系統實驗室）進行深度專題採訪，由張萬榮教授帶領團隊展示最新研發的「AI 智慧眼鏡」技術。看前瞻科技如何結合先進感測器，化身視障朋友的「電子導盲犬」，落實大學社會責任並為醫療照護領域帶來革命性的改變。
@@ -1614,6 +1741,11 @@ export const newsData: NewsItem[] = [
     title: "非凡新聞台專訪！聚焦實驗室「AR智慧眼鏡」與「ToF感測技術」研究成果",
     img: "/images/media-ustv-interview.jpg", 
     imgAlt: "非凡電視台記者至實驗室進行採訪",
+    imgAltEn: "USTV reporters interview the iCPS Lab team on the Jiangong Campus.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">A USTV News crew visited iCPS Lab in NKUST’s Department of Electronics Engineering on the Jiangong Campus on April 21. Students demonstrated the lab’s AR smart glasses and time-of-flight (ToF) sensing research on camera.</p>
+      <p class="mb-4 text-justify text-slate-700">The interview focused on how these technologies can assist people with visual impairments while walking and support work in healthcare settings. At the time of the visit, USTV expected to air the feature in mid-May.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         感謝非凡電視台（非凡新聞台）蒞臨高科大建工校區電子工程系 ICPS Lab 進行專題採訪！
@@ -1649,6 +1781,11 @@ export const newsData: NewsItem[] = [
     title: "狂賀！實驗室團隊入圍「2026年全國技專校院學生實務專題製作競賽」決賽",
     img: "/images/competition-shortlist.png", 
     imgAlt: "全國技專校院實務專題競賽入圍名單",
+    imgAltEn: "Finalist list for the national practical project competition for technical colleges and universities.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">iCPS Lab advanced to the final of the Ministry of Education’s 2026 national practical project competition for students at technical colleges and universities. Of 1,167 entries nationwide, 137 reached the final.</p>
+      <p class="mb-4 text-justify text-slate-700">In Group C, Computer Science and Communications, eight of 83 entries qualified. The lab was one of three NKUST teams selected in that category. The students were preparing to demonstrate their project at the final beginning May 14. The team thanks its advisers, including co-adviser Professor <span lang="zh-TW">林志學</span>, for their guidance.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         狂賀！ICPS Lab 專題團隊傳來捷報，成功晉級教育部主辦之「2026年全國技專校院學生實務專題製作競賽暨成果展」決賽！
@@ -1690,6 +1827,11 @@ export const newsData: NewsItem[] = [
     title: "捷報！實驗室榮獲第一件日本發明專利「舌部追蹤方法及其舌肌復健系統」",
     img: "/images/japan-patent-certificate.jpg", 
     imgAlt: "日本發明專利特許證",
+    imgAltEn: "The Japanese patent certificate for the tongue tracking and rehabilitation system.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">iCPS Lab received its first Japanese invention patent for a tongue tracking method and tongue-muscle rehabilitation system. The patent’s Japanese title is <span lang="ja">舌部追跡法とその舌筋リハビリテーションシステム</span>. The system combines tracking technology and human-factors design to make rehabilitation exercises interactive.</p>
+      <p class="mb-4 text-justify text-slate-700">The lab thanks the collaborating team at Kaohsiung Medical University. Professor <span lang="zh-TW">歐陽昆</span> contributed the interactive game scenarios and screen designs, drawing on users’ needs during implementation. NKUST provided full funding for the Japanese patent application and subsequent maintenance.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         ICPS Lab 迎來重大突破，榮獲實驗室第一件「日本發明專利」！本項專利名稱為「舌部追蹤方法及其舌肌復健系統」（舌部追跡法とその舌筋リハビリテーションシステム）。
@@ -1724,6 +1866,21 @@ export const newsData: NewsItem[] = [
     title: "狂賀！實驗室大四同學赴日參加 2026 IEEE ICCT-Pacific 國際研討會，成功發表兩篇論文",
     img: "/images/icct2026-group.jpg",
     imgAlt: "實驗室師生於日本山口大學 ICCT-Pacific 2026 研討會現場合影",
+    imgAltEn: "iCPS Lab faculty and students at ICCT-Pacific 2026 at Yamaguchi University, Japan.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">On March 29, iCPS Lab final-year undergraduates gave two oral presentations at the 2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026), held at Yamaguchi University’s Yoshida Campus in Japan.</p>
+      <p class="mb-4 text-justify text-slate-700"><strong>PigView: A Minimum Bounding-Box Pig Weight Estimation System Using Artificial Intelligence Deep Learning.</strong> The team used deep learning and minimum bounding boxes to estimate pigs’ weight, with the aim of reducing the need for physical handling in farm management.</p>
+      <p class="mb-4 text-justify text-slate-700"><strong>iNoodle: An Artificial Intelligence Seasoning-Packet Recognition System Applied to Packaged Dried Noodle Production Line.</strong> This system inspects seasoning packets using image recognition to support quality control and packaging efficiency on dried noodle production lines.</p>
+      <p class="mb-4 text-justify text-slate-700">The conference gave the students an opportunity to present their project work and discuss it with researchers from other countries.</p>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/icct2026-pigview.jpg" alt="A student presents the PigView paper at ICCT-Pacific." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">A student presents the PigView paper at ICCT-Pacific.</figcaption>
+      </figure>
+      <figure class="max-w-4xl mx-auto my-6">
+        <img src="/images/icct2026-inoodle.jpg" alt="The iNoodle oral presentation at ICCT-Pacific." class="w-full h-auto rounded-lg" loading="lazy">
+        <figcaption class="mt-2 text-sm text-slate-600">The iNoodle oral presentation at ICCT-Pacific.</figcaption>
+      </figure>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         本實驗室大四專題生於 2026 年 3 月 29 日，前往日本山口大學（Yamaguchi University, Yoshida Campus, Yamaguchi, Japan），參加 <strong>2026 IEEE 2nd International Conference on Consumer Technology – Pacific (ICCT-Pacific 2026)</strong> 國際研討會，並成功進行兩篇論文的口頭發表！
@@ -1774,6 +1931,11 @@ export const newsData: NewsItem[] = [
     title: "實驗室慶功聚餐！狂賀「第21屆數位訊號處理創思設計競賽」榮獲一亞三佳作",
     img: "/images/momo-paradise-dinner.jpg",
     imgAlt: "ICPS Lab 實驗室成員於 MO-MO-PARADISE 慶功聚餐大合照",
+    imgAltEn: "iCPS Lab members at their celebration dinner at MO-MO-PARADISE.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">Professor Chang invited iCPS Lab members to dinner to celebrate their results at the 21st Digital Signal Processing Creative Design Competition. The teams received one second-place award and three honorable mentions.</p>
+      <p class="mb-4 text-justify text-slate-700">Over sukiyaki at MO-MO-PARADISE, the students shared what it took to move from their first ideas to working demonstrations and the final competition. The dinner gave them time to thank one another and pass those experiences on to fellow lab members.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         為了慶祝實驗室團隊在「第21屆數位訊號處理創思設計競賽」中取得優異成績，張教授特別舉辦了慶功聚餐，慰勞大家這段時間備賽的辛勞！
@@ -1804,6 +1966,11 @@ export const newsData: NewsItem[] = [
     title: "ICPS Lab 官方網站正式上線",
     img: "/images/news-placeholder.jpg",
     imgAlt: "實驗室大合照",
+    imgAltEn: "A group photo of iCPS Lab members.",
+    contentEn: `
+      <p class="mb-4 text-justify text-slate-700">iCPS Lab has launched its official website. Visitors can meet the research team, find the latest lab news and learn about its work in the Artificial Intelligence of Things (AIoT), edge computing and intelligent systems.</p>
+      <p class="mb-4 text-justify text-slate-700">The lab will continue to publish news and updates here.</p>
+    `,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4">
         ICPS Lab 智慧網宇實體系統實驗室官方網站正式啟用。

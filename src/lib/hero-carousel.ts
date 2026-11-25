@@ -1,6 +1,6 @@
 export function initHeroCarousel() {
   const slider = document.querySelector<HTMLElement>("#hero-slider");
-  const images = Array.from(slider?.querySelectorAll<HTMLElement>(".slider-img") ?? []);
+  const images = Array.from(slider?.querySelectorAll<HTMLImageElement>(".slider-img") ?? []);
   const previous = slider?.querySelector<HTMLButtonElement>("#prev-btn");
   const next = slider?.querySelector<HTMLButtonElement>("#next-btn");
   const pause = slider?.querySelector<HTMLButtonElement>("#pause-btn");
@@ -13,14 +13,29 @@ export function initHeroCarousel() {
   let focused = false;
   let timer: ReturnType<typeof setInterval> | undefined;
 
-  const showImage = (index: number) => {
-    currentIndex = (index + images.length) % images.length;
+  const displayReadyImage = (index: number) => {
+    if (index !== currentIndex) return;
     images.forEach((image, imageIndex) => {
       const active = imageIndex === currentIndex;
       image.classList.toggle("opacity-100", active);
       image.classList.toggle("opacity-0", !active);
       image.setAttribute("aria-hidden", String(!active));
     });
+  };
+
+  const showImage = (index: number) => {
+    currentIndex = (index + images.length) % images.length;
+    const requestedIndex = currentIndex;
+    const image = images[requestedIndex];
+    if (image.dataset.src) {
+      image.src = image.dataset.src;
+      delete image.dataset.src;
+    }
+    if (image.complete && image.naturalWidth > 0) {
+      displayReadyImage(requestedIndex);
+    } else {
+      image.addEventListener("load", () => displayReadyImage(requestedIndex), { once: true });
+    }
   };
 
   const syncPlayback = () => {

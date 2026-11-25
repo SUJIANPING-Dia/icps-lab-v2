@@ -19,12 +19,13 @@ Can do:
 - Add user-provided member photos to public/images/.
 
 Allowed files:
+- src/data/members.ts
 - src/pages/members.astro
 - public/images/ only when the user explicitly provides photo assets.
 
 Must not do:
 - Do not edit layout files, Navbar, or unrelated pages.
-- Do not convert members data to src/data unless the user explicitly requests a separate data migration task.
+- Use src/data/members.ts for shared records and their translations.
 - Do not alter the members page internal tabs/nav unless the task explicitly asks for that UI change.
 - Do not invent member photos or profile details.
 

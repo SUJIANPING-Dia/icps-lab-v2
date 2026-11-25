@@ -119,7 +119,8 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <p class="mt-2 text-slate-700">{displayTitle}</p>
               </div>
             )}
-            <div set:html={prepareNewsContent(displayContent, "en", displayTitle)}></div>
+            {!item.contentEn && <p class="text-sm font-medium text-slate-600">This article is available in Traditional Chinese.</p>}
+            <div lang={item.contentEn ? "en" : "zh-TW"} set:html={prepareNewsContent(displayContent, item.contentEn ? "en" : "zh", displayTitle)}></div>
           </div>
         </section>
       </div>

@@ -184,31 +184,17 @@ jobs:
 
       - name: Check achievements diff scope
         id: check_diff
-        shell: bash
-        run: |
-          if git diff --quiet; then
-            echo "No achievements changes"
-            echo "changed=false" >> "$GITHUB_OUTPUT"
-            : > "$RUNNER_TEMP/achievements-changed-files.txt"
-            exit 0
-          fi
-
-          echo "changed=true" >> "$GITHUB_OUTPUT"
-          echo "Changed files:"
-          git diff --name-only
-          git diff --name-only > "$RUNNER_TEMP/achievements-changed-files.txt"
-
-          unexpected_files="$(git diff --name-only | grep -vx 'src/data/achievements.json' || true)"
-          if [ -n "$unexpected_files" ]; then
-            echo "Unexpected files changed. Only src/data/achievements.json is allowed." >&2
-            echo "$unexpected_files" >&2
-            exit 1
-          fi
+        run: node scripts/check-achievements-scope.mjs
 
       - name: Build site
         id: build_site
         if: steps.check_diff.outputs.changed == 'true'
-        run: npm run build
+        env:
+          ICPS_ALBUM_FIXTURE: '1'
+        run: |
+          npm test
+          npm run build
+          node scripts/verify-site.mjs
 
       - name: Commit achievements data
         id: commit_data
@@ -347,6 +333,20 @@ jobs:
           - Human Follow-up Needed: ${follow_up}
           REPORT
 
+          REPORT_MD="$report_md" node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          const file = path.join(process.env.RUNNER_TEMP, 'achievements-quality.json');
+          if (fs.existsSync(file)) {
+            const q = JSON.parse(fs.readFileSync(file, 'utf8'));
+            const rows = ['','## Data quality',''];
+            for (const key of ['changes', 'unparsed', 'duplicateProjects', 'missingAmounts']) {
+              rows.push(`- ${key}: ${q[key].length}`);
+              for (const row of q[key]) rows.push('    ' + JSON.stringify(row));
+            }
+            fs.appendFileSync(process.env.REPORT_MD, rows.join('\n') + '\n');
+          }
+          NODE
           cp "$report_md" "$latest_md"
           cp "$report_md" "$run_report_md"
           cp "$report_md" "$latest_run_md"
@@ -383,6 +383,8 @@ jobs:
             action_taken: process.env.ACTION_TAKEN,
             human_follow_up_needed: process.env.FOLLOW_UP === 'Yes'
           };
+          const qualityFile = require('node:path').join(process.env.RUNNER_TEMP, 'achievements-quality.json');
+          report.quality = fs.existsSync(qualityFile) ? JSON.parse(fs.readFileSync(qualityFile, 'utf8')) : null;
           fs.writeFileSync(process.env.REPORT_JSON, `${JSON.stringify(report, null, 2)}\n`);
           fs.copyFileSync(process.env.REPORT_JSON, process.env.LATEST_JSON);
           fs.copyFileSync(process.env.REPORT_JSON, process.env.RUN_REPORT_JSON);

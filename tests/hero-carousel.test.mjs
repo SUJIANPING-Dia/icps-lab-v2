@@ -10,6 +10,9 @@ function fixture(reduced, run) {
     setAttribute(name, value) { this.attributes[name] = value; },
   });
   const images = [element(), element()];
+  images[0].complete = true;
+  images[0].naturalWidth = 1440;
+  images[1].dataset.src = '/images/second.webp';
   images.forEach(image => { image.classList = { toggle: (name, enabled) => enabled ? image.classes.add(name) : image.classes.delete(name) }; });
   const pause = element();
   pause.dataset = { resumeLabel: 'Resume', pauseLabel: 'Pause' };
@@ -25,7 +28,7 @@ function fixture(reduced, run) {
     setInterval: fn => { const id = ++sequence; timers.set(id, fn); return id; },
     clearInterval: id => timers.delete(id),
   });
-  try { initHeroCarousel(); run({ images, pause, next, slider, preference, doc, timers }); }
+  try { initHeroCarousel(); run({ images, pause, next, previous, slider, preference, doc, timers }); }
   finally {
     for (const [key, descriptor] of Object.entries(saved)) {
       if (descriptor) Object.defineProperty(globalThis, key, descriptor);
@@ -38,7 +41,11 @@ test('reduced motion starts paused while manual navigation remains usable', () =
   fixture(true, ({ timers, pause, next, images }) => {
     assert.equal(timers.size, 0);
     assert.equal(pause.attributes['aria-pressed'], 'true');
+    assert.equal(images[1].src, undefined);
     next.listeners.click();
+    assert.equal(images[1].src, '/images/second.webp');
+    assert.equal(images[0].attributes['aria-hidden'], 'false');
+    images[1].listeners.load();
     assert.equal(images[1].attributes['aria-hidden'], 'false');
     assert.equal(timers.size, 0);
   });
@@ -57,5 +64,15 @@ test('pause persists after hover and hidden-page interruptions', () => {
     doc.hidden = false; doc.listeners.visibilitychange();
     assert.equal(timers.size, 0);
     assert.equal(pause.textContent, 'Resume');
+  });
+});
+
+test('a late image load cannot replace a newer navigation choice', () => {
+  fixture(false, ({ next, previous, images }) => {
+    next.listeners.click();
+    previous.listeners.click();
+    images[1].listeners.load();
+    assert.equal(images[0].attributes['aria-hidden'], 'false');
+    assert.equal(images[1].attributes['aria-hidden'], 'true');
   });
 });

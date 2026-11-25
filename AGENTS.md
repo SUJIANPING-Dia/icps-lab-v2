@@ -9,7 +9,7 @@ The main pages now share:
 - `src/layouts/BaseLayout.astro`
 - `src/components/Navbar.astro`
 
-Achievements, news, and videos are data-driven through `src/data/achievements.json`, `src/data/news.ts`, and `src/data/videos.ts`. FAQ and Members content remain embedded in `.astro` files; migrate them only as a separate explicit task.
+Achievements, news, videos, and bilingual member records are data-driven through `src/data/achievements.json`, `src/data/news.ts`, `src/data/videos.ts`, and `src/data/members.ts`. FAQ copy is embedded in its language pages. Migrate FAQ data only as a separate explicit task.
 
 ## Tech Stack
 
@@ -115,7 +115,7 @@ If `.codex/agents/*.toml`, `docs/harness/*.md`, or an agent playbook conflicts w
 ## Content Management Rules
 
 - Prefer structured data files in `src/data` for repeatable content.
-- Good future data-file candidates: site navigation, members, FAQ, homepage featured works, hero slides, and research cards. News and videos already use `src/data/`.
+- Future data-file candidates include site navigation, FAQ, hero slides, and research cards. Homepage featured works and statistics use `src/data/homepage.ts`.
 - Keep page files focused on rendering and composition.
 - Preserve Traditional Chinese copy unless the user asks for rewriting or translation.
 - Do not run content scraping scripts unless explicitly requested or inside approved automation.
