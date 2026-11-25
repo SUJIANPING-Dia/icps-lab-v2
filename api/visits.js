@@ -1,6 +1,8 @@
 import { createVisitStore } from '../src/lib/visit-store.mjs';
 
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
+// The lab chose this opening balance for visits before the current counter.
+const openingBalance = 3_000;
 
 export default async function visits(req, res) {
   res.setHeader('Cache-Control', 'no-store');
@@ -16,8 +18,11 @@ export default async function visits(req, res) {
   }
   try {
     const store = createVisitStore(process.env.VISITS_DATABASE_URL);
-    const count = req.method === 'POST' ? await store.record(req.body.visitor) : await store.read();
-    if (!Number.isSafeInteger(count) || count < 0) throw new Error('Invalid count');
+    const recorded = req.method === 'POST' ? await store.record(req.body.visitor) : await store.read();
+    const count = openingBalance + recorded;
+    if (!Number.isSafeInteger(recorded) || recorded < 0 || !Number.isSafeInteger(count)) {
+      throw new Error('Invalid count');
+    }
     return req.method === 'HEAD' ? res.status(200).end() : res.status(200).json({ count });
   } catch {
     return res.status(503).json({ error: 'Visitor count unavailable' });

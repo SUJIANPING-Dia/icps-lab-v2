@@ -1,5 +1,5 @@
 const COUNTER_URL = "/api/visits";
-const COUNT_KEY = "icps_visit_total_v2";
+const COUNT_KEY = "icps_visit_total_v3";
 const VISIT_KEY = "icps_visit_time_v2";
 const BROWSER_KEY = "icps_visit_id_v2";
 const STORAGE_PROBE_KEY = "icps_counter_storage_probe";
@@ -14,7 +14,7 @@ function parseCount(value) {
 
 export function formatVisitorCount(value) {
   const count = parseCount(value);
-  return count === null ? null : String(count).padStart(6, "0");
+  return count === null ? null : String(count);
 }
 
 function browserStorage() {

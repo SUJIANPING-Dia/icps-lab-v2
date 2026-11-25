@@ -17,10 +17,29 @@ function memoryStorage(initial = {}) {
 const response = (count) => ({ ok: true, json: async () => ({ count }) });
 
 test("HTTP errors preserve a valid cached count without recording a visit", async () => {
-  const storage = memoryStorage({ icps_visit_total_v2: "002090" });
+  const storage = memoryStorage({ icps_visit_total_v3: "3009" });
   const load = createVisitorCounter({ storage, now: () => NOW, fetchImpl: async () => ({ ok: false }) });
-  assert.deepEqual(await load(), { count: 2090, source: "cached" });
+  assert.deepEqual(await load(), { count: 3009, source: "cached" });
   assert.equal(storage.getItem("icps_visit_time_v2"), null);
+});
+
+test("a returning visitor keeps their visit window and caches the new total without adding the opening balance twice", async () => {
+  const id = crypto.randomUUID();
+  const lastVisit = String(NOW - 1000);
+  const storage = memoryStorage({ icps_visit_total_v2: "9", icps_visit_time_v2: lastVisit, icps_visit_id_v2: id });
+  const load = fetchImpl => createVisitorCounter({ storage, now: () => NOW, fetchImpl })();
+  const offline = async () => { throw new Error("Offline"); };
+  const methods = [];
+
+  assert.deepEqual(await load(offline), { count: null, source: "unavailable" });
+  assert.deepEqual(await load(async (_url, options) => {
+    methods.push(options.method);
+    return response(3009);
+  }), { count: 3009, source: "live" });
+  assert.deepEqual(methods, ["GET"]);
+  assert.equal(storage.getItem("icps_visit_id_v2"), id);
+  assert.equal(storage.getItem("icps_visit_time_v2"), lastVisit);
+  assert.deepEqual(await load(offline), { count: 3009, source: "cached" });
 });
 
 test("missing or invalid count never renders undefined or a fabricated zero", async () => {
@@ -29,8 +48,8 @@ test("missing or invalid count never renders undefined or a fabricated zero", as
     assert.deepEqual(await load(), { count: null, source: "unavailable" });
     assert.equal(formatVisitorCount(count), null);
   }
-  assert.equal(formatVisitorCount(0), "000000");
-  assert.equal(formatVisitorCount("2090"), "002090");
+  assert.equal(formatVisitorCount(0), "0");
+  assert.equal(formatVisitorCount("3001"), "3001");
 });
 
 test("blocked storage still displays the live count using a read-only request", async () => {
@@ -87,7 +106,7 @@ test("network and JSON failures use unavailable when there is no valid cache", a
     async () => { throw new Error("Offline"); },
     async () => ({ ok: true, json: async () => { throw new Error("Invalid JSON"); } }),
   ]) {
-    const load = createVisitorCounter({ storage: memoryStorage({ icps_visit_total_v2: "undefined" }), fetchImpl });
+    const load = createVisitorCounter({ storage: memoryStorage({ icps_visit_total_v3: "undefined" }), fetchImpl });
     assert.deepEqual(await load(), { count: null, source: "unavailable" });
   }
 });
