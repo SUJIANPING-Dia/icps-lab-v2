@@ -73,7 +73,7 @@ const bodyClass = "bg-[#f8fafc] text-slate-800 font-sans antialiased selection:b
                 <div class="overflow-hidden rounded-[1.5rem] bg-white">
                   <img src={item.img} alt={displayImgAlt} class="w-full h-auto max-h-[22rem] object-contain bg-white" loading="lazy" onerror="this.style.display='none';" />
                 </div>
-                {displayImgAlt && (
+                {!item.hideCoverCaption && displayImgAlt && (
                   <p class="px-2 pt-3 text-xs leading-relaxed text-slate-300">
                     {displayImgAlt}
                   </p>

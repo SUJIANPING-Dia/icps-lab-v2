@@ -10,6 +10,7 @@ export type NewsItem = {
   img: string;
   imgAlt: string;
   imgAltEn?: string;
+  hideCoverCaption?: boolean;
   content: string;
   contentEn?: string;
 };
@@ -133,8 +134,9 @@ export const newsData: NewsItem[] = [
     tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
     title: "張萬榮教授獲高科大彈性薪資獎勵，學術、產學、教學、服務四類全數獲獎",
     img: "/images/nkust-2026-flexible-salary-awards-wan-jung-chang.png",
-    imgAlt: "以張萬榮教授既有官方照片製作的賀圖，恭賀他獲高科大彈性薪資獎勵四類獎項。",
-    imgAltEn: "Congratulatory graphic based on an existing official photo of Prof. Wan-Jung Chang, celebrating his NKUST Flexible Salary Awards in all four categories.",
+    imgAlt: "張萬榮教授身穿淺灰色西裝，旁列高科大彈性薪資獎勵的四個類別。",
+    imgAltEn: "Prof. Wan-Jung Chang in a light gray suit beside a list of the four NKUST Flexible Salary Award categories.",
+    hideCoverCaption: true,
     content: `
       <p class="text-base font-semibold text-slate-900 mb-4 text-justify"><strong>本實驗室指導教授張萬榮教授</strong>榮獲國立高雄科技大學 115 年度「特殊優秀研究人才彈性薪資獎勵」，在學術類、產學類、教學類及服務類四個類別全數獲獎，肯定他過去一年在研究、產學合作、教學與服務上的投入。</p>
       <p class="mb-6 text-slate-700 text-justify">張萬榮教授感謝合作夥伴、實驗室同學，以及一路支持與協助的師長和朋友。從研究構想到實際執行，每一項成果都仰賴團隊與夥伴的共同努力。他也特別感謝本實驗室<strong>林穎琪經理</strong>協助整理與彙整成果資料，讓各項工作的累積得以完整呈現。</p>
