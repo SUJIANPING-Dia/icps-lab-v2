@@ -15,6 +15,7 @@ export type NewsItem = {
 };
 
 export const englishNewsTitles: Record<string, string> = {
+  "2026-nkust-flexible-salary-awards-wan-jung-chang": "Prof. Wan-Jung Chang Wins NKUST Flexible Salary Awards in All Four Categories",
   "2026-nkust-electronics-senior-project-awards": "Six Lab Projects Win Awards, Including Two First Places, at NKUST Electronics Senior Project Competition",
   "2026-inoodle-ai-manufacturing-first-place": "iNoodle Wins First Place and Most Popular Award at AI Manufacturing 2026",
   "2026-inoodle-tainan-sbir-award": "Miin Jiang Earns Tainan SBIR Recognition and Showcases iNoodle",
@@ -48,6 +49,7 @@ export const englishNewsTitles: Record<string, string> = {
   "2026-master-student-recruitment": "Master's Student Recruitment Announcement",
 };
 export const getEnglishNewsTag = (slug: string) => {
+  if (slug === "2026-nkust-flexible-salary-awards-wan-jung-chang") return "Award";
   if (slug === "2026-nkust-electronics-senior-project-awards") return "Competition";
   if (slug === "2026-inoodle-ai-manufacturing-first-place") return "Competition";
   if (slug === "2026-inoodle-tainan-sbir-award") return "Industry Partnership";
@@ -124,6 +126,26 @@ export const prepareNewsContent = (content: string, lang: "zh" | "en", fallbackT
 };
 
 export const newsData: NewsItem[] = [
+  {
+    slug: "2026-nkust-flexible-salary-awards-wan-jung-chang",
+    date: "2026.11.26",
+    tag: "學術榮譽",
+    tagTheme: "text-amber-800 bg-amber-50 border-amber-200",
+    title: "張萬榮教授獲高科大彈性薪資獎勵，學術、產學、教學、服務四類全數獲獎",
+    img: "/images/nkust-2026-flexible-salary-awards-wan-jung-chang.png",
+    imgAlt: "以張萬榮教授既有官方照片製作的賀圖，恭賀他獲高科大彈性薪資獎勵四類獎項。",
+    imgAltEn: "Congratulatory graphic based on an existing official photo of Prof. Wan-Jung Chang, celebrating his NKUST Flexible Salary Awards in all four categories.",
+    content: `
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify"><strong>本實驗室指導教授張萬榮教授</strong>榮獲國立高雄科技大學 115 年度「特殊優秀研究人才彈性薪資獎勵」，在學術類、產學類、教學類及服務類四個類別全數獲獎，肯定他過去一年在研究、產學合作、教學與服務上的投入。</p>
+      <p class="mb-6 text-slate-700 text-justify">張萬榮教授感謝合作夥伴、實驗室同學，以及一路支持與協助的師長和朋友。從研究構想到實際執行，每一項成果都仰賴團隊與夥伴的共同努力。他也特別感謝本實驗室<strong>林穎琪經理</strong>協助整理與彙整成果資料，讓各項工作的累積得以完整呈現。</p>
+      <p class="mb-6 text-slate-700 text-justify">本實驗室恭賀張萬榮教授獲此肯定，也將持續投入研究與教學，和合作夥伴一起推動研究成果的實際應用。</p>
+    `,
+    contentEn: `
+      <p class="text-base font-semibold text-slate-900 mb-4 text-justify"><strong>Our lab advisor, Prof. Wan-Jung Chang,</strong> received 2026 Flexible Salary Awards for Outstanding Research Talent from National Kaohsiung University of Science and Technology (NKUST) in all four categories: academic research, industry-academia collaboration, teaching, and service. The awards recognize his work in these areas over the past year.</p>
+      <p class="mb-6 text-slate-700 text-justify">Prof. Chang thanked his collaborators, lab students, and the mentors and friends who have supported him. From the initial research ideas to implementation, every result depended on the combined efforts of the team and its partners. He especially thanked <strong>lab manager <span lang="zh-TW">林穎琪</span></strong> for compiling and organizing the records so the full scope of their work could be presented.</p>
+      <p class="mb-6 text-slate-700 text-justify">Our lab congratulates Prof. Chang on this recognition and will continue its research and teaching while working with partners to put research findings into practice.</p>
+    `,
+  },
   {
     slug: "2026-nkust-electronics-senior-project-awards",
     date: "2026.11.24",
